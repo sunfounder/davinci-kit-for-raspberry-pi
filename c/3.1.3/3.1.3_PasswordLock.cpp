@@ -1,10 +1,10 @@
 /**********************************************************************
 * Filename    : 3.1.3_PasswordLock.cpp
 * Description : 
-* Author      : Robot
+* Author      : sunfounder
 * E-mail      : support@sunfounder.com
 * website     : www.sunfounder.com
-* Update      : Jimmy  2019/08/06 
+* Update      : 2020/01/03
 **********************************************************************/
 #include <stdio.h>
 #include <wiringPi.h>
@@ -34,7 +34,6 @@ unsigned char rowPins[ROWS] = {1, 4, 5, 6};
 unsigned char colPins[COLS] = {12, 3, 2, 0};
 
 void keyRead(unsigned char* result);
-bool keyIsPressed(const char key);
 bool keyCompare(unsigned char* a, unsigned char* b);
 void keyCopy(unsigned char* a, unsigned char* b);
 void keyPrint(unsigned char* a);
@@ -57,7 +56,6 @@ void init(void) {
     }
 }
 
-//////
 int main(){
 	unsigned char pressed_keys[BUTTON_NUM];
     unsigned char last_key_pressed[BUTTON_NUM];
@@ -102,7 +100,6 @@ int main(){
     
     return 1;
 }
-/////
 
 void write_word(int data){
 	int temp = data;
@@ -194,7 +191,6 @@ int check(){
     return 1;
 }
 
-////////
 void keyRead(unsigned char* result){
     int index;
     int count = 0;
@@ -211,17 +207,6 @@ void keyRead(unsigned char* result){
         delay(1);
         digitalWrite(rowPins[i], LOW);
     }
-}
-
-bool keyIsPressed(const char key){
-    int index = keyIndexOf(key);
-    int row, col;
-    row = index / ROWS;
-    col = index % COLS;
-    digitalWrite(rowPins[row], HIGH);
-    bool result = digitalRead(colPins[col]);
-    digitalWrite(rowPins[row], LOW);
-    return result;
 }
 
 bool keyCompare(unsigned char* a, unsigned char* b){
@@ -249,7 +234,6 @@ void keyPrint(unsigned char* a){
             printf(", %c",a[i]);
         }
     }
-    //printf("}\n");
     printf("\n");
 }
 

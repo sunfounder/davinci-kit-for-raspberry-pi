@@ -9,9 +9,9 @@ void MFRC522_HAL_write(unsigned char addr, unsigned char val);
 unsigned char MFRC522_HAL_read(unsigned char addr);
 void MFRC522_HAL_Delay(unsigned int ms);
 
-//Function Comment: read the storage capacity of the storage of the card.
-//Input Parameter: serNum--Pass in the card serial number.
-//Returned Value： Successfully put back the card capacity.
+//Function comment: read card storage capacity
+//Input parameter ： serNum--Pass in the card serial number
+//Returned value ： Successfully put back the card capacity
 uint8_t MFRC522_SelectTag(uint8_t *serNum) 
 {     
 	uint8_t  i;     
@@ -20,16 +20,16 @@ uint8_t MFRC522_SelectTag(uint8_t *serNum)
 	uint8_t recvBits;     
 	uint8_t  buffer[9];
 	//     
-	buffer[0] = PICC_ANTICOLL1;	// Anti - collision code1     
+	buffer[0] = PICC_ANTICOLL1;	// anticollision code1     
 	buffer[1] = 0x70;
 	buffer[6] = 0x00;						     
 	for (i=0; i<4; i++)					
 	{
 		buffer[i+2] = *(serNum+i);	//buffer[2]-buffer[5] is the serial number of the card
-		buffer[6]  ^=	*(serNum+i);	// Card verified code
+		buffer[6]  ^=	*(serNum+i);	// card-verified code
 	}
 	//
-	CalulateCRC(buffer, 7, &buffer[7]);	//buffer[7]-buffer[8] is RCR verified code
+	CalulateCRC(buffer, 7, &buffer[7]);	//buffer[7]-buffer[8] is RCR-verified code
 	ClearBitMask(Status2Reg,0x08);
 	status =PcdComMF522(PCD_TRANSCEIVE, buffer, 9, buffer, &recvBits);
 	//
@@ -63,12 +63,12 @@ uint8_t ReadRawRC(uint8_t addr) {
 char PcdReset(void)  //Function: reset RC522
 {
     
-    WriteRawRC(CommandReg,PCD_RESETPHASE);  // write RC632 register, reset
-	WriteRawRC(CommandReg,PCD_RESETPHASE);	//write RC632 register, reset
-    delay_ns(10);
+    WriteRawRC(CommandReg,PCD_RESETPHASE);  //Write RC632 register, reset 
+	WriteRawRC(CommandReg,PCD_RESETPHASE);	//Write RC632 register, reset
+    delay_ns(10); 
     
-    WriteRawRC(ModeReg,0x3D);            //communicate with Mifare card; the initial value of CRC is 0x6363
-    WriteRawRC(TReloadRegL,30);           //write RC632 register   
+    WriteRawRC(ModeReg,0x3D);            //communicate with Mifare card, CRC initial value 0x6363   
+    WriteRawRC(TReloadRegL,30);           //Write RC632 register
     WriteRawRC(TReloadRegH,0);
     WriteRawRC(TModeReg,0x8D);
     WriteRawRC(TPrescalerReg,0x3E);
@@ -78,17 +78,17 @@ char PcdReset(void)  //Function: reset RC522
     return MI_OK;
 }
 
-void InitRc522(void) // initialize RC522
+void InitRc522(void) //initialize RC522
 {
     MFRC522_HAL_init();
     PcdReset();  			// reset RC522
-    PcdAntennaOff();	// Turn off the antenna
-    MFRC522_HAL_Delay(2);  		// delay 2ms
-    PcdAntennaOn();		//Turn on the antenna
-    M500PcdConfigISOType( 'A' ); // Set working mode  
+    PcdAntennaOff();	// Turn off the antenna 
+    MFRC522_HAL_Delay(2);  		// Delay 2ms
+    PcdAntennaOn();		//Turn on the antenna 
+    M500PcdConfigISOType( 'A' ); // Set working mode 
 }
 
-void Reset_RC522(void) //reset RC522
+void Reset_RC522(void) //Reset RC522
 {
     PcdReset();				
     PcdAntennaOff();	
@@ -96,12 +96,12 @@ void Reset_RC522(void) //reset RC522
     PcdAntennaOn();		 	
 } 
 /*
-Function： Search card
-Function Comment:   req_code :Search card method
-            [IN]:0x52 = search all cards in the induction area that meet 14443A standard
-                 0x26 = Find a card that has not entered the sleeping mode
-            pTagType[out] : Card type code
-Return： If success, return MI_OK
+Function: search card 
+ Parameter comment：   req_code :card search mode 
+            [IN]:0x52 = all cards in the induction area that meet the 14443A standard
+                 0x26 = find a card that has not entered sleeping mode
+            pTagType[out] : card type code 
+Return: Successfully returned MI_OK 
 */
 char PcdRequest(uint8_t   req_code,uint8_t *pTagType)
 {
@@ -109,13 +109,13 @@ char PcdRequest(uint8_t   req_code,uint8_t *pTagType)
 	uint8_t   unLen;
 	uint8_t   ucComMF522Buf[MAXRLEN];  	// MAXRLEN  18
 
-	ClearBitMask(Status2Reg,0x08);	//clear RC522 register bit,/receive data command
-	WriteRawRC(BitFramingReg,0x07); //write RC632 register
-	SetBitMask(TxControlReg,0x03);  //set RC522 register bit
+	ClearBitMask(Status2Reg,0x08);	//Clear RC522 register bit,/ receive data command 
+	WriteRawRC(BitFramingReg,0x07); //Write RC632 register 
+	SetBitMask(TxControlReg,0x03);  //Set the RC522 register bit  
  
 	ucComMF522Buf[0] = req_code; 	  
 	
-	status = PcdComMF522(PCD_TRANSCEIVE,ucComMF522Buf,1,ucComMF522Buf,&unLen); //Communicate with ISO14443 card by using rc522
+	status = PcdComMF522(PCD_TRANSCEIVE,ucComMF522Buf,1,ucComMF522Buf,&unLen); //Communicate with ISO14443 card via rc522. 
 	
 	if ((status == MI_OK) && (unLen == 0x10))
 	{    
@@ -128,8 +128,8 @@ char PcdRequest(uint8_t   req_code,uint8_t *pTagType)
 }    
 /*
 Function: anti-collision
-Function Comment： psnr[out] Card serial number, 4 bytes
-Return: If success, return MI_OK
+Parameter Comment: psnr[out] card serial number, 4 bytes
+Return: MI_OK is returned successfully
  */
 char PcdAnticoll(uint8_t *pSnr)
 {
@@ -160,7 +160,11 @@ char PcdAnticoll(uint8_t *pSnr)
     SetBitMask(CollReg,0x80);
     return status;
 }
-
+/*
+Function: select card
+Parameter Comment：psnr[out] card serial number, 4 bytes 
+Return: MI_OK is returned successfully
+*/
 char PcdSelect(uint8_t *pSnr)
 {
     char status;
@@ -178,7 +182,7 @@ char PcdSelect(uint8_t *pSnr)
     	ucComMF522Buf[6]  ^= *(pSnr+i);
     }
 		
-    CalulateCRC(ucComMF522Buf,7,&ucComMF522Buf[7]); 
+    CalulateCRC(ucComMF522Buf,7,&ucComMF522Buf[7]); //Calculate CRC16 function with MF522 and verify data  
     ClearBitMask(Status2Reg,0x08);
     status = PcdComMF522(PCD_TRANSCEIVE,ucComMF522Buf,9,ucComMF522Buf,&unLen);
     if ((status == MI_OK) && (unLen == 0x18))
@@ -188,14 +192,22 @@ char PcdSelect(uint8_t *pSnr)
 
     return status;
 }
-
-
+/*
+Function: verify the card password
+Parameter Comment auth_mode[IN]: password verification mode  
+            0x60 = Verify A key 
+            0x61 = Verify B key  
+        addr[IN]: block address 
+        pKey[IN]: sector password 
+        psnr[in]: card serial number 
+Return: Successfully return MI_OK    
+*/
 char PcdAuthState(uint8_t   auth_mode,uint8_t   addr,uint8_t *pKey,uint8_t *pSnr)
 {
     char   status;
     uint8_t   unLen;
    	int i=0;
-    uint8_t   ucComMF522Buf[MAXRLEN];  
+    uint8_t   ucComMF522Buf[MAXRLEN];  //MAXRLEN 18
 	  
     ucComMF522Buf[0] = auth_mode;		
     ucComMF522Buf[1] = addr;				
@@ -208,7 +220,12 @@ char PcdAuthState(uint8_t   auth_mode,uint8_t   addr,uint8_t *pKey,uint8_t *pSnr
     
     return status;
 }
-
+/*
+Function: read M1 card data
+Parameter Comment: addr: block address
+        P: read block data, 16 bytes
+Return: MI_OK is returned successfully
+*/
 char PcdRead(uint8_t   addr,uint8_t *p )
 {
     char status;
@@ -229,7 +246,12 @@ char PcdRead(uint8_t   addr,uint8_t *p )
     
     return status;
 }
-
+/*
+Function: write data to M1 card     
+Parameter Comment: addr：block address 
+        p ：write data to block, 16 bytes  
+Return: MI_OK is returned successfully  
+*/
 char PcdWrite(uint8_t   addr,uint8_t *p )
 {
     char   status;
@@ -247,7 +269,7 @@ char PcdWrite(uint8_t   addr,uint8_t *p )
         
     if (status == MI_OK)
     {
-        for (i=0; i<16; i++)
+        for (i=0; i<16; i++)//Write 16Byte data to FIFO    
         {    
         	ucComMF522Buf[i] = *(p +i);   
         }
@@ -260,14 +282,17 @@ char PcdWrite(uint8_t   addr,uint8_t *p )
     
     return status;
 }
-
+/*
+Function： command the card to enter the sleep mode  
+Return：MI_OK is returned successfully 
+*/
 char PcdHalt(void)
 {
     uint8_t   status;
 
 	
     uint8_t   unLen;
-    uint8_t   ucComMF522Buf[MAXRLEN];
+    uint8_t   ucComMF522Buf[MAXRLEN]; //MAXRLEN==18
 	   status=status;
     ucComMF522Buf[0] = PICC_HALT;
     ucComMF522Buf[1] = 0;
@@ -277,7 +302,12 @@ char PcdHalt(void)
 
     return MI_OK;
 }
-
+/*
+Function：Calculate CRC16 function with MF522  
+Parameter Comment： pin：to read CRC data  
+         len：  data length 
+         pout： Calculate results of CRC   
+*/
 void CalulateCRC(uint8_t *pIn ,uint8_t   len,uint8_t *pOut )
 {
     uint8_t   i,n;
@@ -288,21 +318,23 @@ void CalulateCRC(uint8_t *pIn ,uint8_t   len,uint8_t *pOut )
 		for (i=0; i<len; i++)
     {  
 			WriteRawRC(FIFODataReg, *(pIn +i));   }
-	
+		//begin to calculate 
 			WriteRawRC(CommandReg, PCD_CALCCRC);
-				   
+				//Wait until the calculation is complete  
 			i = 0xFF;
     do 
     {
         n = ReadRawRC(DivIrqReg);
         i--;
     }
-    while ((i!=0) && !(n&0x04));
+    while ((i!=0) && !(n&0x04));//CRCIrq = 1
 			
 		pOut [0] = ReadRawRC(CRCResultRegL);
     pOut [1] = ReadRawRC(CRCResultRegM);
 }
-
+/*
+set working mode of RC632   
+*/
 char M500PcdConfigISOType(uint8_t   type)
 {
    if (type == 'A')                     //ISO14443_A
@@ -322,21 +354,36 @@ char M500PcdConfigISOType(uint8_t   type)
 
    return MI_OK;				
 }
-
+/*
+Function：set RC522 register bit 
+Parameter Comment：reg[IN]:register address 
+          mask[IN]:set value 
+*/
 void SetBitMask(uint8_t   reg,uint8_t   mask)  
 {
     char   tmp = 0x0;
     tmp = ReadRawRC(reg);				
     WriteRawRC(reg,tmp | mask);   
 }
-
+/*
+Function：clear RC522 register bit 
+Parameter Comment: reg[IN]: register address 
+          mask[IN]: clear bit value 
+*/
 void ClearBitMask(uint8_t   reg,uint8_t   mask)  
 {
     char   tmp = 0x0;
     tmp = ReadRawRC(reg);   
     WriteRawRC(reg, tmp & ~mask);  // clear bit mask
 } 
-
+/*
+Function：communicate with ISO14443 via RC522 
+Parameter Comment: command[IN]:RC522 command word 
+        pin[IN]: Data sent to the card via RC522   
+        InLenByte[IN]:The byte length of the data sent 
+        pOut[OUT]: The received card returns data  
+        pOutLenBit[OUT]：Returns the bit length of the data  
+*/
 char PcdComMF522(uint8_t Command,uint8_t *pIn,uint8_t InLenByte,uint8_t *pOut,uint8_t *pOutLenBit)
 {
     char status = MI_ERR;
@@ -348,11 +395,11 @@ char PcdComMF522(uint8_t Command,uint8_t *pIn,uint8_t InLenByte,uint8_t *pOut,ui
 	
     switch (Command)
     {
-		case PCD_AUTHENT:  
+		case PCD_AUTHENT:    //verify password
 				 irqEn   = 0x12;
 				 waitFor = 0x10;
 				 break;
-		case PCD_TRANSCEIVE: 
+		case PCD_TRANSCEIVE: // Send and receive data. 
 				 irqEn   = 0x77;
 				 waitFor = 0x30;
 				 break;
@@ -360,9 +407,9 @@ char PcdComMF522(uint8_t Command,uint8_t *pIn,uint8_t InLenByte,uint8_t *pOut,ui
 				 break;
     }
     WriteRawRC(ComIEnReg,irqEn|0x80);	
-    ClearBitMask(ComIrqReg,0x80);			
+    ClearBitMask(ComIrqReg,0x80);			//Clear all interrupt bits 
     WriteRawRC(CommandReg,PCD_IDLE);	
-    SetBitMask(FIFOLevelReg,0x80);	 
+    SetBitMask(FIFOLevelReg,0x80);	 	//clear FIFO buffer memory  
     
 
 		
@@ -372,11 +419,11 @@ char PcdComMF522(uint8_t Command,uint8_t *pIn,uint8_t InLenByte,uint8_t *pOut,ui
 				WriteRawRC(CommandReg, Command);	 
 			if (Command == PCD_TRANSCEIVE)
 				{  
-					SetBitMask(BitFramingReg,0x80);  }	
+					SetBitMask(BitFramingReg,0x80);  }	 //Start transmission 
     
 		
 		
-  //  i = 600;
+  //  i = 600;// According to clock frequency to adjustment, operation M1 card has maximum waiting time 25ms 
 				i = 2000;
 			do 
 				{
@@ -420,7 +467,10 @@ char PcdComMF522(uint8_t Command,uint8_t *pIn,uint8_t InLenByte,uint8_t *pOut,ui
     WriteRawRC(CommandReg,PCD_IDLE); 
     return status;
 }
-
+/*
+Turn on the antenna 
+There should be at least 1ms interval between each antenna start or close  
+*/
 void PcdAntennaOn(void)
 {
     uint8_t   i;
@@ -430,7 +480,9 @@ void PcdAntennaOn(void)
         SetBitMask(TxControlReg, 0x03);
     }
 }
-
+/*
+Turn off the antenna 
+*/
 void PcdAntennaOff(void)
 {
 	ClearBitMask(TxControlReg, 0x03); 

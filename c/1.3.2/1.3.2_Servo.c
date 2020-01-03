@@ -4,7 +4,7 @@
 * Author      : sunfounder
 * E-mail      : support@sunfounder.com
 * website     : www.sunfounder.com
-* Update      : 2019/08/05
+* Update      : 2020/01/03
 **********************************************************************/
 #include <wiringPi.h>
 #include <softPwm.h>
@@ -32,12 +32,12 @@ int main(void)
     }
     softPwmCreate(ServoPin, 0, 200);       //initialize PMW pin of servo
     while(1){
-        for(i=0;i<181;i++){     // Let servo rotate from 0 to 180; the angle plus 5 deg every 2ms.
+        for(i=0;i<181;i++){     // Let servo rotate from 0 to 180.
             setAngle(ServoPin,i);
             delay(2);
         }
         delay(1000);
-        for(i=181;i>-1;i--){        // Let servo rotate from 180 to 0; the angle plus 5 deg every 2ms.
+        for(i=181;i>-1;i--){        // Let servo rotate from 180 to 0.
             setAngle(ServoPin,i);
             delay(2);
         }

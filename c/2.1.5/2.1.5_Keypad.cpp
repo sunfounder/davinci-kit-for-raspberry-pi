@@ -1,10 +1,9 @@
 /**********************************************************************
 * Filename    : 2.1.5_Keypad.cpp
 * Description : obtain the key code of 4x4 Matrix Keypad
-* Author      : Robot
-* E-mail      : support@sunfounder.com
+ E-mail      : support@sunfounder.com
 * website     : www.sunfounder.com
-* Update      : Daisy    2019/08/05
+* Update      : sunfounder    2020/01/03
 **********************************************************************/
 #include <wiringPi.h>
 #include <stdio.h>
@@ -23,7 +22,6 @@ unsigned char rowPins[ROWS] = {1, 4, 5, 6};
 unsigned char colPins[COLS] = {12, 3, 2, 0};
 
 void keyRead(unsigned char* result);
-bool keyIsPressed(const char key);
 bool keyCompare(unsigned char* a, unsigned char* b);
 void keyCopy(unsigned char* a, unsigned char* b);
 void keyPrint(unsigned char* a);
@@ -35,7 +33,6 @@ void init(void) {
         pinMode(rowPins[i], OUTPUT);
         pinMode(colPins[i], INPUT);
     }
-    //printf("789");
 }
 
 int main(void){
@@ -54,27 +51,6 @@ int main(void){
             keyPrint(pressed_keys);
             keyCopy(last_key_pressed, pressed_keys);
         }
-        /*if (keyIsPressed('1')){
-            printf("1 is pressed!\n");
-        }
-        if (keyIsPressed('2')){
-            printf("2 is pressed!\n");
-        }
-        if (keyIsPressed('3')){
-            printf("3 is pressed!\n");
-        }
-        if (keyIsPressed('A')){
-            printf("A is pressed!\n");
-        }
-        if (keyIsPressed('B')){
-            printf("B is pressed!\n");
-        }
-        if (keyIsPressed('C')){
-            printf("C is pressed!\n");
-        }
-        if (keyIsPressed('D')){
-            printf("D is pressed!\n");
-        }*/
         delay(100);
     }
     return 0;  
@@ -100,17 +76,6 @@ void keyRead(unsigned char* result){
     }
 }
 
-bool keyIsPressed(const char key){
-    int index = keyIndexOf(key);
-    int row, col;
-    row = index / ROWS;
-    col = index % COLS;
-    digitalWrite(rowPins[row], HIGH);
-    bool result = digitalRead(colPins[col]);
-    digitalWrite(rowPins[row], LOW);
-    return result;
-}
-
 bool keyCompare(unsigned char* a, unsigned char* b){
     for (int i=0; i<BUTTON_NUM; i++){
         if (a[i] != b[i]){
@@ -127,7 +92,6 @@ void keyCopy(unsigned char* a, unsigned char* b){
 }
 
 void keyPrint(unsigned char* a){
-   //printf("{");
     if (a[0] != 0){
         printf("%c",a[0]);
     }

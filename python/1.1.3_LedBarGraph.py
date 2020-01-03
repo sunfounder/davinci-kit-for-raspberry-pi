@@ -5,26 +5,45 @@ import time
 
 ledPins = [11, 12, 13, 15, 16, 18, 22, 3, 5, 24]
 
+def oddLedBarGraph():
+	for i in range(5):
+		j = i*2
+		GPIO.output(ledPins[j],GPIO.HIGH)
+		time.sleep(0.3)
+		GPIO.output(ledPins[j],GPIO.LOW)
+
+def evenLedBarGraph():
+	for i in range(5):
+		j = i*2+1
+		GPIO.output(ledPins[j],GPIO.HIGH)
+		time.sleep(0.3)
+		GPIO.output(ledPins[j],GPIO.LOW)
+
+def allLedBarGraph():
+	for i in ledPins:
+		GPIO.output(i,GPIO.HIGH)
+		time.sleep(0.3)
+		GPIO.output(i,GPIO.LOW)
+
 def setup():
+	GPIO.setwarnings(False)
 	GPIO.setmode(GPIO.BOARD)        # Numbers GPIOs by physical location
-	for pin in ledPins:
-		GPIO.setup(pin, GPIO.OUT)   # Set all ledPins' mode is output
-		GPIO.output(pin, GPIO.HIGH) # Set all ledPins to high(+3.3V) to off led
+	for i in ledPins:
+		GPIO.setup(i, GPIO.OUT)   # Set all ledPins' mode is output
+		GPIO.output(i, GPIO.LOW) # Set all ledPins to high(+3.3V) to off led
 
 def loop():
 	while True:
-		for pin in ledPins:		#make led on from left to right
-			GPIO.output(pin, GPIO.LOW)	
-			time.sleep(0.1)
-			GPIO.output(pin, GPIO.HIGH)
-		for pin in ledPins[10:0:-1]:		#make led on from right to left
-			GPIO.output(pin, GPIO.LOW)	
-			time.sleep(0.1)
-			GPIO.output(pin, GPIO.HIGH)
+		oddLedBarGraph()
+		time.sleep(0.3)
+		evenLedBarGraph()
+		time.sleep(0.3)
+		allLedBarGraph()
+		time.sleep(0.3)
 
 def destroy():
 	for pin in ledPins:
-		GPIO.output(pin, GPIO.HIGH)    # turn off all leds
+		GPIO.output(pin, GPIO.LOW)    # turn off all leds
 	GPIO.cleanup()                     # Release resource
 
 if __name__ == '__main__':     # Program start from here

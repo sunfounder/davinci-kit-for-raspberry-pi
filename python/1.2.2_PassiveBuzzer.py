@@ -55,7 +55,7 @@ def loop():
 
 def destory():
 	Buzz.stop()                 # Stop the buzzer
-    GPIO.output(Buzzer, 1)      # Set Buzzer pin to High
+	GPIO.output(Buzzer, 1)      # Set Buzzer pin to High
 	GPIO.cleanup()				# Release resource
 
 if __name__ == '__main__':		# Program start from here

@@ -31,8 +31,8 @@ def hc595_shift(data):
 
 def pickDigit(digit):
     for i in placePin:
-        GPIO.output(i,GPIO.HIGH)
-    GPIO.output(placePin[digit], GPIO.LOW)
+        GPIO.output(i,GPIO.LOW)
+    GPIO.output(placePin[digit], GPIO.HIGH)
 
 
 def timer():  
@@ -50,7 +50,7 @@ def loop():
         clearDisplay() 
         pickDigit(0)  
         hc595_shift(number[counter % 10])
-
+        
         clearDisplay()
         pickDigit(1)
         hc595_shift(number[counter % 100//10])

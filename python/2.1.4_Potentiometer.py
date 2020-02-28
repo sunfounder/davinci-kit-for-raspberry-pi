@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
-#!/usr/bin/env python3
 import RPi.GPIO as GPIO
 import ADC0834
 import time
+
 LedPin = 22
+
 def setup():
     global led_val
     # Set the GPIO modes to BCM Numbering
@@ -16,6 +17,7 @@ def setup():
     led_val = GPIO.PWM(LedPin, 2000)
     # Set all begin with value 0
     led_val.start(0)
+
 def destroy():
     # Stop all pwm channel
     led_val.stop()

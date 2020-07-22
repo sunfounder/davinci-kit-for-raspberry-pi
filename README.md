@@ -4,32 +4,15 @@ This repository is for SunFounder Da Vinci Kit for Raspberry Pi. you can buy it 
 Quick Links:
 
  * [About this kit](#about_this_kit)
- * [Update](#update)
  * [Trouble Shootings](#trouble)
+ * [Update](#update)
  * [About SunFounder](#about_sunfounder)
  * [License](#license)
  * [Contact us](#contact_us)
 
 <a id="about_this_kit"></a>
 ## About this kit:
-Da Vinci Kit is a basic kit suitable to intelligent beginners who have project schedule. It contains 26 commonly used input and output components and modules and a number of basic electronic devices (such as resistors, capacitors) which can provide powerful assistance in your programming learning. 
-In the light of the kit, you can learn some basic knowledge on Raspberry Pi, including the installation method of Raspberry Pi, knowledge of Bash shell and GPIO. Having understood these knowledge, you can start programming.
-If you have no knowledge background of hardware, this document about the Kit provides you with 30 lessons for reference and learning, including 26 basic I/o lessons and 4 simple practical examples. It should be noted that the arrangement of these courses is not based on the degree of difficulty, but on the functions in practice. You can find corresponding courses in accordance with your needs. In other words, even if you haven't finished reading the entire course or mastered the use of the components mentioned, this document will play an important role in guiding you to complete practical projects in the future.
-We are looking forward to your projects and hope that you can share your achievements or creation on our BBS while reading this document.
-
-<a id="update"></a>
-## Update:
-2020-02-28:
- - Add in 10 lessons
-## Update:
-2020-01-02:
- - Modify the files
-## Update:
-2020-01-02:
- - Modify the files
-## Update:
-2019-08-20:
- - New Release
+This Da Vinci kit applies to the Raspberry Pi 4 Model B, 3 Model A+, 3 Model B+, 3 Model B, 2 Model B, 1 Model B+, 1 Model A+, zero W and zero. It includes various components and chips that can help to create various interesting phenomena which you can get via some operation with the guidance of  experiment instructions. In this process, you can learn some basic knowledge about programming. Also you can explore more application by yourself. Now go for it!  
 
 <a id="trouble"></a>
 ## Trouble Shootings:
@@ -47,6 +30,23 @@ gpio -v
 and make sure it’s version 2.52. 
 
 It will hopefully be part of the official release soon, but not for now.
+
+<a id="update"></a>
+## Update:
+2020-07-09:
+ - Add the note for the wiringPi library(Raspberry Pi 4B)
+
+2020-02-28:
+ - Add in 10 lessons
+
+2020-01-02:
+ - Modify the files
+
+2020-01-02:
+ - Modify the files
+
+2019-08-20:
+ - New Release
 
 <a id="about_sunfounder"></a>
 ## About SunFounder

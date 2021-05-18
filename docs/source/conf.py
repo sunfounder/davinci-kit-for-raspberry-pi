@@ -61,6 +61,6 @@ html_css_files = [
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-language = 'de'
+language = 'ja'
 locale_dirs = ['locale/']  # 设置本地化数据目录
 

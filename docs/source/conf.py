@@ -18,9 +18,9 @@
 # -- Project information -----------------------------------------------------
 import sphinx_rtd_theme
 
-project = 'da-vinci-kit'
+project = 'SunFounder Da Vinci Kit'
 copyright = '2021, sunfounder'
-author = 'sunfounder'
+author = 'www.sunfounder.com'
 
 
 # -- General configuration ---------------------------------------------------

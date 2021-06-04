@@ -17,7 +17,7 @@
 **1.2 Sound**
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     1.2.1_active_buzzer
     1.2.2_passive_buzzer
@@ -26,7 +26,7 @@
 **1.3 Drivers**
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     1.3.1_motor
     1.3.2_servo

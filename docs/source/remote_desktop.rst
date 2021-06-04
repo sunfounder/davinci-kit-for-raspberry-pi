@@ -18,7 +18,7 @@ disabled. You need to enable it in config.
 
 Input the following command:
 
-.. code-block:: c
+.. code-block::
 
     sudo raspi-config
 

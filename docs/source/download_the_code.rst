@@ -9,7 +9,7 @@ Before you download the code, please note that the example code is
 Log into Raspberry Pi and then change directory to */home/pi.*
 
 
-.. code-block:: python
+.. code-block::
 
    cd /home/pi/
 
@@ -19,7 +19,7 @@ Log into Raspberry Pi and then change directory to */home/pi.*
 
 Clone the repository from GitHub.
 
-.. code-block:: python
+.. code-block::
 
    git clone
    https://github.com/sunfounder/davinci-kit-for-raspberry-pi.git

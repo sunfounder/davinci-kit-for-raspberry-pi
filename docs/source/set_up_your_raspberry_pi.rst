@@ -16,16 +16,17 @@ Any Raspberry Pi   1 \* Power Adapter
 1 \* Mouse         1 \* Keyboard
 ================== =========================
 
-1) Insert the SD card you’ve set up with Raspberry Pi OS into the micro SD card slot on the underside of your Raspberry Pi.
+1. Insert the SD card you’ve set up with Raspberry Pi OS into the micro SD card slot on the underside of your Raspberry Pi.
 
-1) Plug in the Mouse and Keyboard.
+#. Plug in the Mouse and Keyboard.
 
-2) Connect the screen to Raspberry Pi’s HDMI port and make sure your screen is plugged into a wall socket and switched on.
+#. Connect the screen to Raspberry Pi’s HDMI port and make sure your screen is plugged into a wall socket and switched on.
 
-.. note::
-    If you use a Raspberry Pi 4, you need to connect the screen to the HDMI0 (nearest the power in port).
+    .. note::
 
-4) Use the power adapter to power the Raspberry Pi. After a few seconds, the Raspberry Pi OS desktop will be displayed.
+        If you use a Raspberry Pi 4, you need to connect the screen to the HDMI0 (nearest the power in port).
+
+#. Use the power adapter to power the Raspberry Pi. After a few seconds, the Raspberry Pi OS desktop will be displayed.
 
     .. image:: media/image20.png
         :align: center
@@ -150,15 +151,15 @@ When the PuTTY window prompts “\ **login as:”**, type in
 
 **Step 5**
 
-Here, we get the Raspberry Pi connected and it is time to conduct the
-next steps.
+Here, we get the Raspberry Pi connected and it is time to conduct the next steps.
 
-**Note**: When you input the password, the characters do not display on
-window accordingly, which is normal. What you need is to input the
-correct password.
+.. note::
 
-Note: If you are not satisfied with using the command window to control
-the Raspberry Pi, you can also use the remote desktop function, which
-can help us manage the files in the Raspberry Pi easily.
+    When you input the password, the characters do not display on window accordingly, which is normal. What you need is to input the correct password.
 
-For details on how to do this, please refer to :ref:`Remote Desktop`.
+
+.. note::
+
+    If you are not satisfied with using the command window to control the Raspberry Pi, you can also use the remote desktop function, which can help us manage the files in the Raspberry Pi easily.
+
+    For details on how to do this, please refer to :ref:`Remote Desktop`.

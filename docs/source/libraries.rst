@@ -17,7 +17,7 @@ documents, visit: http://sourceforge.net/p/raspberry-gpio-python/wiki/Home/.
 
 Test whether RPi.GPIO is installed or not, type in python:
 
-.. code-block::
+.. code-block:: bash
 
     python
 
@@ -36,7 +36,7 @@ RPi.GPIO is installed.
 
 If you want to quit python CLI, type in:
 
-.. code-block::
+.. code-block:: bash
 
     exit()
 
@@ -56,7 +56,7 @@ wiringPi includes lots of GPIO commands which enable you to control all
 kinds of interfaces on Raspberry Pi. You can test whether the wiringPi
 library is installed successfully or not by the following instructions.
 
-.. code-block::
+.. code-block:: bash
 
     gpio -v
 
@@ -67,7 +67,7 @@ library is installed successfully or not by the following instructions.
 
 If you are using Raspberry Pi 4B, but the GPIO version is **2.50**, it will cause no response after the C language code is running, that is, GPIO pins do not work. At this time, you need to manually update to version **2.52**, the update steps are as follows :
 
-.. code-block::
+.. code-block:: bash
 
     cd /tmp
 
@@ -77,13 +77,13 @@ If you are using Raspberry Pi 4B, but the GPIO version is **2.50**, it will caus
 
 Check with:
 
-.. code-block::
+.. code-block:: bash
 
     gpio -v
 
 and make sure it’s version 2.52.
 
-.. code-block::
+.. code-block:: bash
 
     gpio readall
 

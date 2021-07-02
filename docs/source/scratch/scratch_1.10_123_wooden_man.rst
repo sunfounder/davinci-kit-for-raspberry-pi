@@ -1,5 +1,5 @@
-1.17 123 Wooden Man
-~~~~~~~~~~~~~~~~~~~~~~~~
+1.10 123 Wooden Man
+=========================
 
 Today, we are going to play a game of 123 wooden man.
 

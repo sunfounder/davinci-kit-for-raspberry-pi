@@ -134,6 +134,26 @@ to the card.
 
 For Python Language Users
 ^^^^^^^^^^^^^^^^^^^^^^^^^
+**Step 2:** Install the libraries.
+
+The ``spidev`` library helps handle interactions with the SPI and is a key component to this tutorial as we need it for the Raspberry Pi to interact with the RFID RC522.
+
+Run the following command to install ``spidev`` to your Raspberry Pi via ``pip``.
+
+.. code-block:: shell
+
+    sudo pip3 install spidev
+
+
+Continue to install the MFRC522 library. The MFRC522 library contains two files: ``MFRC522.py`` and ``SimpleMFRC522.py``. 
+
+Among them ``MFRC522.py`` is the realization of RFID RC522 interface, this library handles all the heavy work of communicating with RFID through Pi's SPI interface.
+
+``SimpleMFRC522.py`` takes the ``MFRC522.py`` file and greatly simplifies it by allowing you to deal with only a few functions instead of a few functions.
+
+.. code-block:: shell
+
+    sudo pip3 install mfrc522
 
 **Step 3:** Go to the folder of the code.
 
@@ -148,38 +168,31 @@ For Python Language Users
     sudo python3 2.2.7_read.py
     sudo python3 2.2.7_write.py
 
-.. note::
-    There are two examples for you to read or write the card ID,
-    and you can choose one of them according to your need.
+    .. note::
+
+    * After running ``2.2.7_read.py``, it will print the ``id`` and ``text`` of your card in the shell.
+    * After running ``2.2.7_write.py``, you need to write a message first, press ``Enter`` to confirm, and finally put your card on the MFRC522 RFID module to finish writing.
+
 
 **Code Explanation**
 
 .. code-block:: python
 
-    RC522()
+    reader = SimpleMFRC522()
 
-Instantiate rc522 class.
-
-.. code-block:: python
-
-    RC522.Pcd_start()
-
-Initialize RFID
+Instantiate ``SimpleMFRC522()`` class.
 
 .. code-block:: python
 
-    RC522.read_card_data(addr)
+    reader.read()
 
-This function is used to read the card data. If the reading is 
-successful, it will return "1". addr is the address of the card.
+This function is used to read card data. If the reading is successful, id and text will be returned.
 
 .. code-block:: python
 
-    RC522.write_card_data(addr, data)
+    reader.write(text)
 
-This function is used to write card data, and if the write is 
-successful, there will return "1". addr is the address of the 
-card and data is the information to be written to the card.
+This function is used to write information to the card, press ``Enter`` key to finish writing. ``text`` is the information to be written to the card.
 
 Phenomenon Picture
 ------------------

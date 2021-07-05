@@ -1,7 +1,7 @@
 1.1 Wand
 =================
 
-Today we will use LED, Raspberry Pi and Scratch to make a fun game. When we wave the magic wand, the LED light will blink.
+Today we will use LED, Raspberry Pi and Scratch to make a fun game. When we wave the magic wand, the LED will blink.
 
 .. image:: media/1.1header.png
 
@@ -14,6 +14,11 @@ Build the Circuit
 -----------------------
 
 .. image:: media/image49.png
+
+In the image above, we only show the part where the GPIO expansion board is plugged into the breadboard.
+But in actual use, you need to connect the GPIO expansion board and the Raspberry Pi with 40pin ribbon cable, note that the direction must not be reversed. And you need to plug in the power cable to the Raspberry Pi.
+
+.. image:: media/image54.jpeg
 
 Add GPIO Extension
 ---------------------
@@ -29,8 +34,6 @@ Click on the **Add Extension** button in the bottom left corner，then add the *
 .. image:: media/scratchled3.png
     :align: center
 
-GPIO expansion boards give you the flexibility to connect and control a large number of electronic devices. In the Scratch project, the Raspberry Pi 40-pin GPIO expansion board uses the BCM nomenclature. For more information, please see: :ref:`GPIO Extension Board`.
-
 Load the Code and See What Happens
 -----------------------------------------
 
@@ -40,7 +43,7 @@ Load the code file from your computer(``home/pi/davinci-kit-for-raspberry-pi/scr
 
 .. image:: media/scratch_step2.png
 
-After clicking the magic wand in the stage area, you will see the LED light will blink for two seconds.
+After clicking the magic wand in the stage area, you will see the LED will blink for two seconds.
 
 .. image:: media/1.1_step3.png
 

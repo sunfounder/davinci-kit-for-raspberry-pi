@@ -8,7 +8,7 @@ Cloud4RPi is a cloud-based control panel for IoT projects. Cloud4RPi uses dashbo
 In this chapter, we combine some components with Cloud4RPi to do some interesting IOT projects.
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 2
 
     quick_guide_on_cloud4RPi
     learn_more_about_control.py

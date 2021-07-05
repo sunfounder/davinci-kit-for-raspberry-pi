@@ -1,7 +1,7 @@
 Clickable Dot
 ==================
 
-We've tried drawing motion graphics, responding to mouse events, and controlling LED.  So, we might as well combine these functions, draw a clickable dot, to control the LED!  
+We've tried drawing motion graphic, responding to mouse event, and controlling LED.  So, we might as well combine these functions, draw a clickable dot, to control the LED!  
 
 .. image:: img/clickable_dot_on.png
 
@@ -9,7 +9,7 @@ We've tried drawing motion graphics, responding to mouse events, and controlling
 
 .. image:: img/image49.png
 
-**Code**
+**Sketch**
 
 .. code-block:: arduino
 
@@ -41,8 +41,7 @@ We've tried drawing motion graphics, responding to mouse events, and controlling
 
 **How it works?**
 
-This project has a lot in common with :ref:`Blingking Dot`, the difference is that it puts the statement to state states in the mouse event.
+This project has a lot in common with :ref:`Blinking Dot`, the difference is that it puts the toggle state in the mouse event.
 This causes the LED to not blink automatically, but to light up and go off with a mouse click.
 
-And in the ``mouseClicked()`` event, the ``dist()`` function is used to determine the position of the mouse at the time of the click. When the click event is triggered, the mouse is considered to have clicked on the dot when its distance from the center of the dot is less than the radius.
-
+And in the ``mouseClicked()`` event, the ``dist()`` function is used to determine the position of the mouse at the time of the click, and the dot is considered clicked only if the distance between the mouse and the center of the dot is less than the radius.

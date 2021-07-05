@@ -6,8 +6,8 @@ In this chapter, you will play with Scratch 3 through 18 projects.
 If you are a user who has just used Scratch, we recommend that you try the projects in order so that you can quickly get started with Scratch.
 
 .. note::
-    Before trying the projects, you should have downloaded the relevant materials and code files.
-    Open a Terminal and enter the following command to download them from github.
+    Before trying these projects, you need to download the relevant images and code files.
+    Open a terminal and enter the following command to download them from github.
 
     .. code-block::
 

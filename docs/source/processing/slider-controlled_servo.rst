@@ -9,7 +9,7 @@ Let's draw a slider bar to control the Servo.
 
 .. image:: img/image125.png
 
-**Code**
+**Sketch**
 
 .. code-block:: arduino
 

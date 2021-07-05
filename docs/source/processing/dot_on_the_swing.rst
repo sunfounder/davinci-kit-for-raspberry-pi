@@ -10,7 +10,7 @@ In this project, 3 buttons are connected, one to change the size of the dot, one
 
 .. image:: img/circuit_dancing_dot.png
 
-**Code**
+**Sketch**
 
 .. code-block:: arduino
 
@@ -113,7 +113,7 @@ This is a simple way to draw dots with multiple identical properties.
 For example, if we add three functions to the dot in this project - change size, change position and change color - then each dot we declare will have the same function.
 We can use the same button to make them do the same thing, or we can use different buttons to control each dot separately.
 
-Using **classes** makes your code beautiful, powerful and flexible.
+Using **classes** makes your sketch beautiful, powerful and flexible.
 
 `Class (computer programming) - Wikipedia <https://en.wikipedia.org/wiki/Class_(computer_programming)>`_
 
@@ -124,7 +124,7 @@ Next, let's take a closer look at the ``Dot`` class.
 
     Dot(float x, float y, float s, int c)
 
-In the declaration, it needs to pass in four parameters, which are the X coordinate value of the position, the Y coordinate value, the size, and the color (here it is set to the `HSB color mode <https://en.wikipedia.org/wiki /HSL_and_HSV>`_ ).
+In the declaration, it needs to pass in four parameters, which are the X  and Y coordinate value of the position, the size, and the color (here it is set to the `HSB color mode <https://en.wikipedia.org/wiki/HSL_and_HSV>`_ ).
 
 Each parameter will be assigned to 2 sets of values ​​(initial value and current value).
 
@@ -163,7 +163,8 @@ Therefore, except for the X coordinate value, the current values of the other th
         currentColor = int(initColor + ColorRange * sin( timer ));
     }
 
-If you are familiar with trigonometric functions, it should not be difficult to understand ``sine and cosine <https://en.wikipedia.org/wiki/Sine>`_, which give a smooth periodic variation (from -1 to 1) of the current value of dot.
+
+If you are familiar with trigonometric functions, it should not be difficult to understand `sine and cosine <https://en.wikipedia.org/wiki/Sine>`_, which gives a smooth periodic change (from -1 to 1) of the current value of the dot.
 
 We also need to add a seed, ``timer``, for the periodic variation. It adds the fixed value in the method ``update()`` and is called in ``draw()``.
 

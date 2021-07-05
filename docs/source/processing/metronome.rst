@@ -10,7 +10,7 @@ Here we will make a metronome, the metronome is divided into 5 levels, the highe
 
 .. image:: img/image106.png
 
-**Code**
+**Sketch**
 
 .. code-block:: Arduino
 

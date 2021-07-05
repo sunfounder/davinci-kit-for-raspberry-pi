@@ -9,7 +9,7 @@ In Procesing, set the angle to the servo and let it turn by itself.
 .. image:: img/image125.png
 
 
-**Code**
+**Sketch**
 
 .. code-block:: arduino
 

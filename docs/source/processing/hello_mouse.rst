@@ -1,12 +1,11 @@
 Hello Mouse
 ==================
 
-In this code, your mouse will keep shooting lines towards a point.
-Move the mouse and you will draw a unique line starburst. Pressing the mouse will restart the drawing.
+In this project, your mouse will keep shooting lines towards a point; move the mouse and you will draw a unique line of stars. Press the mouse to restart the drawing.
 
 .. image:: img/hello_mouse1.png
 
-**Code**
+**Sketch**
 
 .. code-block:: arduino
 
@@ -33,12 +32,10 @@ Move the mouse and you will draw a unique line starburst. Pressing the mouse wil
 
 The previous project was drawing a single image without any animation or interaction.
 
-If we want to make an interactive program, we need to add the ``setup()`` and ``draw()`` functions (these are built-in functions that are called automatically) to build the frame.
+If we want to make an interactive sketch, we need to add the ``setup()`` and ``draw()`` functions (these are built-in functions that are called automatically) to build the frame.
 
-* ``setup()``: Executed only once at the start of the program.
-* ``draw()``: Executed repeatedly, where we usually add the code for drawing the animation.
-
-As shown in the following code.
+* ``setup()``: Executed only once at the start of the sketch.
+* ``draw()``: Executed repeatedly, where we usually add the sketch for drawing the animation.
 
 .. code-block:: arduino
 
@@ -55,9 +52,9 @@ As shown in the following code.
         line(pointX, pointY, mouseX, mouseY);
     }
 
-This code above already works smoothly as an interactive program.
+This sketch above already works smoothly as an interactive sketch.
 
-Next we can add a more advanced event, the mouse click. This event can be implemented with the ``mousePressed()`` function, in which I added statements to refresh the target point and clear the screen.
+Next you can add a mouse click event. This event can be implemented with the ``mousePressed()`` function, where we add statements to refresh the target point and clear the screen.
 
 .. code-block:: arduino
 

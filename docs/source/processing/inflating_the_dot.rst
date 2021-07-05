@@ -10,7 +10,7 @@ When we press the button, the dot will quickly get bigger; when we release the b
 
 .. image:: img/button_pressed.png
 
-**Code**
+**Sketch**
 
 .. code-block:: arduino
 
@@ -42,6 +42,5 @@ This project uses the input function compared to the previous 2 projects that us
 
 The ``GPIO.pinMode()`` function is used to set ``buttonPin`` to pull-up input mode, which makes the pin get high automatically in the default state.
 
-Then use the ``GPIO.digitalRead()`` function to read the value of ``buttonPin``, when the value is LOW then the button is pressed, at this point let the diameter of the dot increase by 5.
-If the button is released, then the diameter of the dot is decreased by 1.
+Then use the ``GPIO.digitalRead()`` function to read the value of ``buttonPin``. When the value is LOW, it means the button is pressed, at which point let the diameter of the dot increase by 5; if the button is released, then the diameter of the dot will decrease by 1.
 

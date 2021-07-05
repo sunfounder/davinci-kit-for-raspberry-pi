@@ -1,7 +1,7 @@
 Clickable Color Blocks
 =======================
 
-We've already tried drawing a clickable dot to control the LEDs, so let's take it a step further and draw 3 colored squares to adjust the RGB colors!
+We've already tried drawing a clickable dot to control the LED, so let's take it a step further and draw 3 colored squares to adjust the RGB colors!
 
 .. image:: img/colorful_square.png
 
@@ -10,7 +10,7 @@ We've already tried drawing a clickable dot to control the LEDs, so let's take i
 .. image:: img/image61.png
 
 
-**Code**
+**Sketch**
 
 .. code-block:: arduino
 
@@ -53,11 +53,11 @@ We've already tried drawing a clickable dot to control the LEDs, so let's take i
 
 **How it works?**
 
-This project has a lot in common with :ref:``Click Dot``, except that it refines the conditions for determining mouse click events.
+This project has a lot in common with :ref:``Clickable Dot``, except that it refines the conditions for determining mouse click event.
 
 First draw three color blocks in ``draw()``, then get which color block was clicked based on the value of mouseX (the X-axis coordinate of the mouse), and finally make RGB light up the corresponding color.
 
 **What more?**
 
-Based on the addition of light, we can make RGB LEDs display seven colors - adding red to green produces yellow; adding all three primary colors together produces white.
+Based on the addition of light, we can make RGB LED display seven colors - adding red to green produces yellow; adding all three primary colors together produces white.
 Now you can try it out for yourself.

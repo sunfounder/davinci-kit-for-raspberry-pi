@@ -1,4 +1,4 @@
-Quick Guide about Cloud4RPi
+Quick Guide on Cloud4RPi
 ================================
 
 Install Cloud4RPi in Your Raspberry Pi 
@@ -39,7 +39,7 @@ Before using it, you need to register and log in to your Cloud4RPi account.
 .. image:: img/cloud2.png
   :align: center
 
-Once logged in, you should see two buttons at the top of Cloud4RPi's webpage, **Devices** to display the device connections and **Control Panels** to display the information received or sent from the Raspberry Pi on the webpage.
+Once logged in, you should see two buttons at the top of Cloud4RPi, **Devices** to display the device connections and **Control Panels** to display the information received or sent from the Raspberry Pi on the webpage.
 
 .. image:: img/cloud3.png
   :align: center
@@ -47,7 +47,7 @@ Once logged in, you should see two buttons at the top of Cloud4RPi's webpage, **
 Connect Your Raspberry Pi to Cloud4RPi
 ----------------------------------------
 
-After logging in, click the **Devices** option above, and then click **New Device**.
+After logging in, click the **Devices** option, and then click **New Device**.
 
 
 .. image:: img/cloud4.png
@@ -58,14 +58,14 @@ Give the new device a name, and copy the current **Device token** to the clipboa
 .. image:: img/cloud5.png
   :align: center
 
-Open the terminal of the Raspberry Pi and download the test examples provided by Cloud4RPi to your Raspberry Pi.
+Open the terminal of the Raspberry Pi and download the test examples provided by Cloud4RPi.
 
 .. code-block:: shell
 
   cd /home/pi
   git clone https://github.com/cloud4rpi/cloud4rpi-raspberrypi-python.git
 
-Use a text editor such as Nano to modify the content of the control.py file.
+Use a text editor such as Nano to modify the content of the ``control.py`` file.
 
 .. code-block:: shell
 
@@ -78,7 +78,7 @@ Find the following line of code.
 
   DEVICE_TOKEN = '__YOUR_DEVICE_TOKEN__'
 
-Replace __YOUR_DEVICE_TOKEN__ with the Device token copied from the Cloud4RPi server. Press Ctrl + X to complete the modification.
+Replace ``__YOUR_DEVICE_TOKEN__`` with the **Device token** copied from the Cloud4RPi. Press ``Ctrl + X`` to complete the modification.
 
 .. code-block:: python
 
@@ -104,7 +104,7 @@ After entering **Control Panels**, click the **New Control Panel** button.
 
 .. note::
 
-  Always run the control.py file before using the Control Panel.
+  Always run the ``control.py`` file before using the Control Panel.
 
 .. image:: img/cloud7.png
   :align: center

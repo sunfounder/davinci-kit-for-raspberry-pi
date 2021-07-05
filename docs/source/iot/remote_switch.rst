@@ -30,7 +30,7 @@ Run the code.
 
     sudo python3 remote_switch.py
 
-Go to Cloud4RPi, add a new Control Panels named project2, and click **Add Widget** to add a **Switch** widget.
+Go to Cloud4RPi, add a new Control Panel named project2, and click **Add Widget** to add a **Switch** widget.
 
 .. image:: img/relay2.png
     :align: center
@@ -47,14 +47,14 @@ Code Explanation
 
     RELAY_PIN = 18
 
-Relay connected to GPIO18 of the T-expansion board
+Relay connected to GPIO18 of the T-expansion board.
 
 .. code-block:: python
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(RELAY_PIN, GPIO.OUT)
 
-Set to BCM nomenclature and set RELAY_PIN to output.
+Set to BCM nomenclature and set ``RELAY_PIN`` to output.
 
 .. code-block:: python
 
@@ -78,7 +78,7 @@ This function controls the relay according to the ``value`` and returns the curr
         },
     }
 
-By setting the value of the \'value\' key, we can set the initial value of the Switch widget, then always read the value of the \'value\' key and send the current level of ``RELAY_PIN`` (the value returned by the function ``relay_control()``) to Cloud4RPi.
+By setting the value of the ``'value'`` key, we can set the initial value of the Switch widget, then always read the value of the ``'value'`` key and send the current level of ``RELAY_PIN`` (the value returned by the function ``relay_control()``) to Cloud4RPi.
 
 
 

@@ -13,13 +13,7 @@ Processing is based on Java, but because program elements in Processing are fair
 
 The latest version of Processing can be downloaded at http://processing.org/download.
 
-An important goal for the project was to make this type of programming accessible to a wider audience. 
-For this reason, Processing is free to download, free to use, and open source. 
-But projects developed using the Processing environment and core libraries can be used for any purpose. 
-This model is identical to GCC, the GNU Compiler Collection. GCC and its associated libraries (e.g. libc) are open source under the GNU Public License (GPL), which stipulates that changes to the code must be made available. 
-However, programs created with GCC (examples too numerous to mention) are not themselves required to be open source.
-
-This text is adapted from the tutorial, `Processing Overview <https://processing.org/tutorials/overview/>`_ by Ben Fry and Casey Reas.
+This text is from the tutorial, `Processing Overview <https://processing.org/tutorials/overview/>`_.
 
 Install the Processing
 ------------------------------

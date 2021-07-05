@@ -30,7 +30,7 @@ Run the code.
 
     sudo python3 smart_light.py
 
-Go to Cloud4RPi, add a new Control Panels named project3, and click **Add Widget** to add a **Slider** widget.
+Go to Cloud4RPi, add a new Control Panel named project3, and click **Add Widget** to add a **Slider** widget.
 
 .. image:: img/led2.png
     :align: center
@@ -48,7 +48,7 @@ Code Explanation
     led_val = GPIO.PWM(LED_PIN, 2000)
     led_val.start(0)
 
-Call the ``GPIO.PWM()`` function to define ``LED_PIN`` as PWM pins and set the frequency of PWM pins to 2000Hz, then Use the ``start()`` function to set the initial duty cycle to 0.
+Call the ``GPIO.PWM()`` function to define ``LED_PIN`` as PWM pin and set the frequency of PWM pin to 2000Hz, then use the ``start()`` function to set the initial duty cycle to 0.
 
 .. code-block:: python
 
@@ -66,5 +66,5 @@ The value sent by Slider widget to Raspberry Pi is used as PWM duty cycle to cha
         },
     }
 
-By setting the value of the \'value\' key, we can set the initial value of the Slider widget, then always read the value of the \'value\' key and send the current level of ``LED_PIN`` (the value returned by the function ``relay_control()``) to Cloud4RPi.
+By setting the value of the ``'value'`` key, we can set the initial value of the Slider widget, then always read the value of the ``'value'`` key and send the current level of ``LED_PIN`` (the value returned by the function ``led_control``) to Cloud4RPi.
 

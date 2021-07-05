@@ -8,14 +8,9 @@ The Message Area is used for one line messages, and the Console is used for more
 
 Let's get familiar with the usage of Processing and draw a matchmaker.
 
-Copy the following code to Processing and run it. A new display window will appear and a cheering matchmaker will be drawn.
+**Sketch**
 
-.. warning:: 
-
-    If you run it and the message area turns red and reports some errors, then there is something wrong with the code. Make sure you copy the sample code exactly: numbers should be enclosed in parentheses, with commas between each number, and lines should end with semicolons.
-
-
-**Code**
+Copy the sketch below into Processing and run it. A new display window will appear and a cheering matchmaker will be drawn.
 
 .. code-block:: arduino
 
@@ -31,10 +26,16 @@ Copy the following code to Processing and run it. A new display window will appe
 
 .. image:: img/draw_one1.png
 
+.. note:: 
+
+    If you run it and the message area turns red and reports some errors, then there is something wrong with the sketch. Make sure you copy the sample sketch exactly: numbers should be enclosed in parentheses, with commas between each number, and lines should end with semicolons.
+
+
 **How it works?**
 
-The key here is to realize that a computer screen can be treated as a square of paper.
-Each pixel of the screen is a coordinate (X and Y) that determines the position of a point in space. The origin of the coordinate system for a pixel in a computer window (0,0) is in the upper left corner, the positive direction of the X-axis is horizontally to the right, and the positive direction of the Y-axis is vertically down.
+The key here is to realize that the display window can be treated as a square of paper.
+
+Each pixel of the display window is a coordinate (x,y) that determines the position of a point in space. The origin (0,0) of the coordinates is in the upper left corner, the positive direction of the X-axis is horizontally to the right, and the positive direction of the Y-axis is vertically down.
 
 What we have to do is to specify what shape and color should appear at these pixel coordinates.
 
@@ -47,7 +48,7 @@ For example, draw a rectangle of width 20 and height 60 with coordinates (100,12
 
 .. image:: img/draw_one_coodinate.png
 
-Once we understand the relationship between the drawing board and the axes, this code is not difficult for us, we just need to understand some simple graphic drawing statements.
+Once we understand the relationship between the display window and the axes, this sketch is not difficult for us, we just need to understand some simple graphic drawing statements.
 
     * ``size(width, height)``: Defines the dimension of the display window width and height in units of pixels.
     * ``background(red, green, blue)``: Set the background color of the display window.

@@ -10,7 +10,7 @@ import RPi.GPIO as GPIO  # pylint: disable=F0401
 
 # Put your device token here. To get the token,
 # sign up at https://cloud4rpi.io and create a device.
-DEVICE_TOKEN = '__YOUR_DEVICE_TOKEN__'
+DEVICE_TOKEN = 'M1vyY81aq3TQLbnFuepUFhA5'
 
 # Constants
 RELAY_PIN = 20
@@ -24,7 +24,7 @@ POLL_INTERVAL = 0.5  # 500 ms
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(RELAY_PIN, GPIO.OUT)
 ADC0834.setup()
-move = motor(26,19,13)
+move = motor(13,19,26)
 
 # Handler for the button or switch variable
 def relay_control(value=None):

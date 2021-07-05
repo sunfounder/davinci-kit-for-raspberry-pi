@@ -68,4 +68,4 @@ Read the value of channel CH0 (with photoresistor connected) of the ADC0834. If 
             'bind': getValue
         },
 
-Pass ``getValue()`` into the \'bind\' key as a callback function, so that the brightness value (the return value of the ``getValue()`` function) can be sent to the Text widget.
+Pass ``getValue()`` into the ``'bind'`` key as a callback function, so that the brightness value (the return value of the ``getValue()`` function) can be sent to the Text widget.

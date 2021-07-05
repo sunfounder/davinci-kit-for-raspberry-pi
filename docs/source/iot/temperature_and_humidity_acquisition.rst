@@ -8,7 +8,7 @@ Experimental Procedures
 
 Build the circuit.
 
-.. image:: img/Tem4.png
+.. image:: img/tem4.png
   :align: center
 
 Open the code.

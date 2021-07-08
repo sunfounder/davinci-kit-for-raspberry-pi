@@ -15,7 +15,7 @@ When we press the button, the dot will quickly get bigger; when we release the b
 .. code-block:: arduino
 
     import processing.io.*;
-    int buttonPin = 4; 
+    int buttonPin = 18; 
 
     float diameter;
 

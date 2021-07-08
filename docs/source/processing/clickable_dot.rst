@@ -24,10 +24,10 @@ We've tried drawing motion graphic, responding to mouse event, and controlling L
 
     void draw() {
         if (state == true) { 
-            GPIO.digitalWrite(ledPin, GPIO.HIGH);
+            GPIO.digitalWrite(ledPin, GPIO.LOW);
             fill(255, 0, 0);
         }else { 
-            GPIO.digitalWrite(ledPin, GPIO.LOW);
+            GPIO.digitalWrite(ledPin, GPIO.HIGH);
             fill(155);
         }
         ellipse(width/2, height/2, width*0.75, height*0.75);

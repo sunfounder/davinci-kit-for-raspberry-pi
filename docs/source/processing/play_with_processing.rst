@@ -11,7 +11,6 @@ Originally built as a domain-specific extension to Java targeted towards artists
 
 Processing is based on Java, but because program elements in Processing are fairly simple, you can learn to use it even if you don't know any Java. If you're familiar with Java, it's best to forget that Processing has anything to do with Java for a while, until you get the hang of how the API works.
 
-The latest version of Processing can be downloaded at http://processing.org/download.
 
 This text is from the tutorial, `Processing Overview <https://processing.org/tutorials/overview/>`_.
 

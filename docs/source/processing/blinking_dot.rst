@@ -28,10 +28,10 @@ In this project, we will draw a dot on Processing, which blinks synchronously wi
     void draw() {
         state = !state;
         if (state==true) {
-            GPIO.digitalWrite(ledPin, GPIO.HIGH); //led on 
+            GPIO.digitalWrite(ledPin, GPIO.LOW); //led on 
             fill(255, 0, 0); //set the fill color of led on
         } else {
-            GPIO.digitalWrite(ledPin, GPIO.LOW); //led off
+            GPIO.digitalWrite(ledPin, GPIO.HIGH); //led off
             fill(155); //set the fill color of led off
         } 
         ellipse(width/2, height/2, width*0.75, height*0.75);

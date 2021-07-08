@@ -10,6 +10,10 @@ Here we will make a metronome, the metronome is divided into 5 levels, the highe
 
 .. image:: img/image106.png
 
+.. note::
+
+    An active buzzer is used here, and it has a white sticker on it.
+    
 **Sketch**
 
 .. code-block:: Arduino

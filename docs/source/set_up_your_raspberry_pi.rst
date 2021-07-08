@@ -146,6 +146,12 @@ When the PuTTY window prompts “\ **login as:”**, type in
 “\ **pi”**\ (the user name of the RPi), and **password: “**\ raspberry”
 (the default one, if you haven't changed it).
 
+.. note::
+
+    When you input the password, the characters do not display on window accordingly, which is normal. What you need is to input the correct password.
+    
+    If inactive appears next to PuTTY, it means that the connection has been broken and needs to be reconnected.
+    
 .. image:: media/image26.png
     :align: center
 
@@ -153,9 +159,7 @@ When the PuTTY window prompts “\ **login as:”**, type in
 
 Here, we get the Raspberry Pi connected and it is time to conduct the next steps.
 
-.. note::
 
-    When you input the password, the characters do not display on window accordingly, which is normal. What you need is to input the correct password.
 
 
 .. note::

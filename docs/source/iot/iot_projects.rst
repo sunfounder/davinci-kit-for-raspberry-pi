@@ -9,7 +9,7 @@ Then copy the codes from the ``iot`` folder to the ``cloud4rpi-raspberrypi-pytho
 
 .. code-block:: shell
 
-    cp -r home/pi/davinci-kit-for-raspberry-pi/iot/* /home/pi/cloud4rpi-raspberrypi-python
+    cp -r /home/pi/davinci-kit-for-raspberry-pi/iot/* /home/pi/cloud4rpi-raspberrypi-python
 
 
 .. toctree::

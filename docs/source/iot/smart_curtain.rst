@@ -40,7 +40,8 @@ Go to Cloud4RPi, add a new control panel named **project4** and add 3 widgets (S
 .. image:: img/window2.png
     :align: center
 
-Once added, you can use the Switch widget to control the LED. The brightness value detected by the photoresistor will be displayed on the Text widget and the Chart widget will show the change over time.
+Once added, you can use the Switch widget to control the LED; the value of the photoresistor on the Text widget will be updated every 1 minute, when the value > 100, the motor rotates clockwise for 5 seconds; if the value is less than 20, the motor rotates counterclockwise for 5 seconds.
+You can see the change over time in the Chart widget.
 
 Code Explanation
 ----------------------

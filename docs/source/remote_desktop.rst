@@ -1,11 +1,12 @@
 Remote Desktop 
---------------------
+=====================
 
 There are two ways to control the desktop of the Raspberry Pi remotely:
-**VNC** and **XRDP.**
+
+**VNC** and **XRDP**, you can use any of them.
 
 VNC 
-~~~
+--------------
 
 You can use the function of remote desktop through VNC.
 
@@ -18,7 +19,7 @@ disabled. You need to enable it in config.
 
 Input the following command:
 
-.. code-block::
+.. code-block:: c
 
     sudo raspi-config
 
@@ -30,7 +31,7 @@ Input the following command:
 **Step 2**
 
 Choose **3** **Interfacing Options** by press the down arrow key on your
-keyboard, then press the **Enter** key..
+keyboard, then press the **Enter** key.
 
 .. image:: media/image282.png
    :width: 5.96944in
@@ -57,8 +58,7 @@ Select **Yes -> OK -> Finish** to exit the configuration.
 
 **Step 1**
 
-You need to install the **VNC Viewer** on personal computer. After the
-installation is done, open it.
+You need to download and install the `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ on personal computer. After the installation is done, open it.
 
 **Step 2**
 
@@ -105,10 +105,13 @@ Now you can see the desktop of the Raspberry Pi:
    :width: 6.39722in
    :height: 4.32222in
 
-XRDP
-~~~~
+That's the end of the VNC part.
 
-xrdp provides a graphical login to remote machines using RDP (Microsoft
+
+XRDP
+-----------------------
+
+Another method of remote desktop is XRDP, it provides a graphical login to remote machines using RDP (Microsoft
 Remote Desktop Protocol).
 
 **Install XRDP**
@@ -123,8 +126,8 @@ Input the following instructions to install XRDP.
 
 .. code-block:: 
 
-    sudo apt-get update
-    sudo apt-get install xrdp
+   sudo apt-get update
+   sudo apt-get install xrdp
 
 **Step 3**
 

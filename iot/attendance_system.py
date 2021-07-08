@@ -9,24 +9,24 @@ from mfrc522 import SimpleMFRC522
 
 # Put your device token here. To get the token,
 # sign up at https://cloud4rpi.io and create a device.
-DEVICE_TOKEN = '__YOUR_DEVICE_TOKEN__'
+DEVICE_TOKEN = 'M1vyY81aq3TQLbnFuepUFhA5'
 
 reader = SimpleMFRC522()
 
-attendance_list=[]
+sign_in_list=[]
 
-attendance_statistics = {}
+sign_in_statistics = {}
 
 # Change these values depending on your requirements.
 DATA_SENDING_INTERVAL = 60  # secs
 DIAG_SENDING_INTERVAL = 650  # secs
 POLL_INTERVAL = 0.5  # 500 ms
 
-RedPin = 27
-GreenPin = 17
+RedPin = 13
+GreenPin = 11
 
 # Configure GPIO library
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(RedPin, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(GreenPin, GPIO.OUT, initial=GPIO.HIGH)
 	
@@ -43,7 +43,7 @@ def get_time():
 	return present_date, present_time
 	
 def get_id():
-	attendance = False
+	sign_in = False
 	GPIO.output(GreenPin, GPIO.LOW)
 	GPIO.output(RedPin, GPIO.HIGH)
 	print("Reading...Please place the card...")
@@ -51,17 +51,17 @@ def get_id():
 	print("ID: %s\nText: %s" % (id,text))
 	GPIO.output(RedPin, GPIO.LOW)
 	GPIO.output(GreenPin, GPIO.HIGH)
-	if not id in attendance_list:
-		attendance = True
-		attendance_list.append(id)
+	if not id in sign_in_list:
+		sign_in = True	
+		sign_in_list.append(id)
 		present_date, present_time = get_time()
-		attendance_statistics[id] = present_time
-		with open('attendance_sheet.' + present_date + '.csv', 'w') as f:
-			[f.write('{0}  {1}\n'.format(key, value)) for key, value in attendance_statistics.items()]
-	return attendance
+		sign_in_statistics[id] = present_time
+		with open('Sign In Form.' + present_date + '.csv', 'w') as f:
+			[f.write('{0}  {1}\n'.format(key, value)) for key, value in sign_in_statistics.items()]
+	return sign_in	
 	
 def get_num():
-	return len(attendance_list)
+	return len(sign_in_list)
 
 def main():
     # Put variable declarations here

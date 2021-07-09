@@ -20,7 +20,7 @@ Build the Circuit
 Load the Code and See What Happens
 -----------------------------------------
 
-After loading the code file (``1.2_colorful_balls.sb3``) into Scratch 3, the RGB LED will light up yellow, blue, pink, green or purple respectively when you click on the corresponding ball.
+After loading the code file (``1.2_colorful_balls.sb3``) into Scratch 3, the RGB LED will light up yellow, blue, red, green or purple respectively when you click on the corresponding ball.
 
 Tips on Sprites
 ----------------

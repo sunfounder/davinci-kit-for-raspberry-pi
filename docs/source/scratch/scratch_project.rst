@@ -1,4 +1,4 @@
-Scratch project
+Projects
 ==================
 
 In this chapter, you will play with Scratch 3 through 18 projects.

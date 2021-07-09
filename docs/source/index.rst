@@ -23,7 +23,6 @@ Here is the Email: cs@sunfounder.com.
 
     component_list
     introduction
-    what_do_we_need
     preparation
     libraries
     gpio_extension_board

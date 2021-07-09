@@ -37,7 +37,7 @@ Go to Cloud4RPi, add a new control panel named **project5** and add 2 widgets (t
 .. image:: img/rfid2.png
 	:align: center
 
-	Once added, you can view the clock-in records for different time periods on the Chart widget (when the value of LED ON is True, it means someone clocked in), and then view the number of people who clocked in on the Text widget.
+Once added, you can view the clock-in records for different time periods on the Chart widget (when the value of LED ON is True, it means someone clocked in), and then view the number of people who clocked in on the Text widget.
 
 Also you can find the ``.csv`` file with the date under the path ``/home/pi/cloud4rpi-raspberrypi-python``.
 

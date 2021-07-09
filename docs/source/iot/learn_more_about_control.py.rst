@@ -5,7 +5,7 @@ In order to better understand the projects that follow, let's take a look at the
 
 .. note::
 
-    Please complete the previous section :ref:`Quick Guide about Cloud4RPi` before viewing this section.
+    Please complete the previous section :ref:`Quick Guide on Cloud4RPi` before viewing this section.
 
 Open the ``control.py`` file.
 

@@ -1,4 +1,4 @@
-For Scratch User
+Play with Scratch
 ====================
 
 Scratch is a block-based visual programming language and website targeted primarily at children 8-16 as an educational tool for coding. Users of the site can create projects on the web using a block-like interface. The service is developed by the MIT Media Lab, has been translated into 70+ languages, and is used in most parts of the world.

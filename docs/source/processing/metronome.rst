@@ -97,11 +97,36 @@ Here we will make a metronome, the metronome is divided into 5 levels, the highe
 
 **How it works?**
 
-As in the previous project, we created a ``Slider`` class and made it act as **WIDGET**.
+.. As in the previous project, we created a ``Slider`` class and made it act as **WIDGET**.
 
-However, ``dragPoint()`` has been slightly modified so that the widget has a discontinuous feature when sliding and is more suitable for level adjustment.
+.. However, ``dragPoint()`` has been slightly modified so that the widget has a discontinuous feature when sliding and is more suitable for level adjustment.
 
-.. code-block:: Arduino
+.. .. code-block:: Arduino
+
+..     int dragPoint(float mx, float my){
+..         if(mx>=slotPointAX && mx<=slotPointBX && my>=slotPointAY && my<=slotPointBY){
+..             value = int(map(mx,slotPointAX,slotPointBX,minRange,maxRange));
+..             linePoint = map(value,minRange,maxRange,slotPointAX,slotPointBX);
+..         }
+..         return value;
+..     }
+
+Here, we created a ``Slider`` class and made it act as **WIDGET**.
+
+.. code-block:: arduino
+
+    Slider(ax, ay, bx, by, min, max, v)
+
+In the declaration, it needs to be passed in 7 parameters.
+
+The first four parameters determine the size of the widget, followed by the coordinates (x1, y1) of the starting point in the upper left corner and (x2, y2) in the lower right corner.
+
+The last three parameters determine its numerical range (min to max) and initial value.
+
+It has two methods, the effect of ``dragPoint()`` is to make the slider draggable and return the slider's current position value.
+
+
+.. code-block:: arduino
 
     int dragPoint(float mx, float my){
         if(mx>=slotPointAX && mx<=slotPointBX && my>=slotPointAY && my<=slotPointBY){
@@ -111,3 +136,20 @@ However, ``dragPoint()`` has been slightly modified so that the widget has a dis
         return value;
     }
 
+Another method ``show()`` is to show the Slider. At the same time, the range value and current value are displayed in the corresponding position.
+
+.. code-block:: arduino
+
+    void show(){
+        rectMode(CORNERS);
+        fill(200);
+        stroke(255,0,0);
+        rect(slotPointAX, slotPointAY, slotPointBX, slotPointBY);
+        fill(255,0,0);
+        rect(slotPointAX, slotPointAY, linePoint, slotPointBY);
+        fill(200);
+        textSize(depth);
+        text(minRange, slotPointAX, slotPointBY+depth);
+        text(maxRange, slotPointBX, slotPointBY+depth);
+        text(value, linePoint, slotPointAY);
+    }

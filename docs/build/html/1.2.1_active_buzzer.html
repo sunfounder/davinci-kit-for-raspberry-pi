@@ -1,0 +1,434 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>1.2.1 Active Buzzer &mdash; SunFounder Da Vinci Kit  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://ezblock.cc/readDocFile/topHead.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="https://ezblock.cc/readDocFile/topHead.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1.2.2 Passive Buzzer" href="1.2.2_passive_buzzer.html" />
+    <link rel="prev" title="1.1.7 I2C LCD1602" href="1.1.7_i2c_lcd1602.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SunFounder Da Vinci Kit
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Component List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">GPIO Extension Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="1_output.html">1 Output</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 Blinking LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 LED Bar Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 7-segment Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 4-Digit 7-Segment Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 LED Dot Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.2.1 Active Buzzer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#principle">Principle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic-diagram">Schematic Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#experimental-procedures">Experimental Procedures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#for-c-language-users">For C Language Users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-python-language-users">For Python Language Users</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#phenomenon-picture">Phenomenon Picture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 Passive Buzzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.1_motor.html">1.3.1 Motor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.2_servo.html">1.3.2 Servo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 Stepper Motor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relay</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_input.html">2 Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iot/4_iot_projects.html">4 IOT Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing/play_with_processing.html">Play with Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scratch/play_with_scratch.html">Play with Scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder Da Vinci Kit</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="1_output.html">1 Output</a> &raquo;</li>
+        
+      <li>1.2.1 Active Buzzer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/1.2.1_active_buzzer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="active-buzzer">
+<h1>1.2.1 Active Buzzer<a class="headerlink" href="#active-buzzer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this lesson, we will learn how to drive an active buzzer to beep with
+a PNP transistor.</p>
+</div>
+<div class="section" id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/list_1.2.1.png" src="_images/list_1.2.1.png" />
+</div>
+<div class="section" id="principle">
+<h2>Principle<a class="headerlink" href="#principle" title="Permalink to this headline">¶</a></h2>
+<p><strong>Buzzer</strong></p>
+<p>As a type of electronic buzzer with an integrated structure, buzzers,
+which are supplied by DC power, are widely used in computers, printers,
+photocopiers, alarms, electronic toys, automotive electronic devices,
+telephones, timers and other electronic products or voice devices.
+Buzzers can be categorized as active and passive ones (see the following
+picture). Turn the buzzer so that its pins are facing up, and the buzzer
+with a green circuit board is a passive buzzer, while the one enclosed
+with a black tape is an active one.</p>
+<p>The difference between an active buzzer and a passive buzzer:</p>
+<img alt="_images/image101.png" src="_images/image101.png" />
+<p>The difference between an active buzzer and a passive buzzer is: An
+active buzzer has a built-in oscillating source, so it will make sounds
+when electrified. But a passive buzzer does not have such source, so it
+will not beep if DC signals are used; instead, you need to use square
+waves whose frequency is between 2K and 5K to drive it. The active
+buzzer is often more expensive than the passive one because of multiple
+built-in oscillating circuits.</p>
+<p>The following is the electrical symbol of a buzzer. It has two pins with
+positive and negative poles. With a + in the surface represents the
+anode and the other is the cathode.</p>
+<img alt="_images/image102.png" src="_images/image102.png" />
+<p>You can check the pins of the buzzer, the longer one is the anode and
+the shorter one is the cathode. Please don’t mix them up when
+connecting, otherwise the buzzer will not make sound.</p>
+</div>
+<div class="section" id="schematic-diagram">
+<h2>Schematic Diagram<a class="headerlink" href="#schematic-diagram" title="Permalink to this headline">¶</a></h2>
+<p>In this experiment, an active buzzer, a PNP transistor and a 1k resistor
+are used between the base of the transistor and GPIO to protect the
+transistor. When the GPIO17 of Raspberry Pi output is supplied with low
+level (0V) by programming, the transistor will conduct because of
+current saturation and the buzzer will make sounds. But when high level
+is supplied to the IO of Raspberry Pi, the transistor will be cut off
+and the buzzer will not make sounds.</p>
+<img alt="_images/image332.png" src="_images/image332.png" />
+</div>
+<div class="section" id="experimental-procedures">
+<h2>Experimental Procedures<a class="headerlink" href="#experimental-procedures" title="Permalink to this headline">¶</a></h2>
+<p><strong>Step 1:</strong> Build the circuit. (Pay attention to poles of the buzzer:
+The one with + label is the positive pole and the other is the
+negative.)</p>
+<img alt="_images/image104.png" src="_images/image104.png" />
+<div class="section" id="for-c-language-users">
+<h3>For C Language Users<a class="headerlink" href="#for-c-language-users" title="Permalink to this headline">¶</a></h3>
+<p><strong>Step 2</strong>: Open the code file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.2.1</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Step 3</strong>: Compile the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.2.1</span><span class="n">_ActiveBuzzer</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Step 4</strong>: Run the executable file above.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>The code run, the buzzer beeps.</p>
+<p><strong>Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;wiringPi.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#define BeepPin 0</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">){</span> <span class="c1">//when initialize wiring failed, print messageto screen</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>   <span class="c1">//set GPIO0 output</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+        <span class="c1">//beep on</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Buzzer on</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+        <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Buzzer off</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="c1">//beep off</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+        <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>We use an active buzzer in this experiment, so it will make sound
+automatically when connecting to the direct current. This sketch
+is to set the I/O port as low level (0V), thus to manage the
+transistor and make the buzzer beep.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To set the I/O port as high level(3.3V), thus the transistor is
+not energized and the buzzer doesn’t beep.</p>
+</div>
+<div class="section" id="for-python-language-users">
+<h3>For Python Language Users<a class="headerlink" href="#for-python-language-users" title="Permalink to this headline">¶</a></h3>
+<p><strong>Step 2</strong>: Open the code file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p><strong>Step 3</strong>: Run.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.2.1</span><span class="n">_ActiveBuzzer</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>The code run, the buzzer beeps.</p>
+<p><strong>Code</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Set GPIO17 as buzzer pin</span>
+<span class="n">BeepPin</span> <span class="o">=</span> <span class="mi">17</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Buzzer on (Beep)</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Buzzer On&#39;</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+        <span class="c1"># Buzzer off</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Buzzer Off&#39;</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="c1"># Turn off buzzer</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+    <span class="c1"># Release resource</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="c1"># If run this script directly, do:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">main</span><span class="p">()</span>
+    <span class="c1"># When &#39;Ctrl+C&#39; is pressed, the program</span>
+    <span class="c1"># destroy() will be  executed.</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set the buzzer pin as low level to make the buzzer beep.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Wait for 0.1 second. Change the switching frequency by
+changing this parameter.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not the sound frequency. Active Buzzer cannot change sound frequency.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Close the buzzer.</p>
+</div>
+</div>
+<div class="section" id="phenomenon-picture">
+<h2>Phenomenon Picture<a class="headerlink" href="#phenomenon-picture" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/image105.jpeg" src="_images/image105.jpeg" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="1.2.2_passive_buzzer.html" class="btn btn-neutral float-right" title="1.2.2 Passive Buzzer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="1.1.7_i2c_lcd1602.html" class="btn btn-neutral float-left" title="1.1.7 I2C LCD1602" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, sunfounder.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

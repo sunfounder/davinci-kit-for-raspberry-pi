@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>1.3.3 Stepper Motor &mdash; SunFounder Da Vinci Kit  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://ezblock.cc/readDocFile/topHead.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="https://ezblock.cc/readDocFile/topHead.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1.3.4 Relay" href="1.3.4_relay.html" />
+    <link rel="prev" title="1.3.2 Servo" href="1.3.2_servo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SunFounder Da Vinci Kit
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Component List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">GPIO Extension Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="1_output.html">1 Output</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 Blinking LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 LED Bar Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 7-segment Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 4-Digit 7-Segment Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 LED Dot Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 Active Buzzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 Passive Buzzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.1_motor.html">1.3.1 Motor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.2_servo.html">1.3.2 Servo</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.3.3 Stepper Motor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#principle">Principle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic-diagram">Schematic Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#experimental-procedures">Experimental Procedures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#for-c-language-users">For C Language Users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-python-language-users">For Python Language Users</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#phenomenon-picture">Phenomenon Picture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relay</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_input.html">2 Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iot/4_iot_projects.html">4 IOT Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing/play_with_processing.html">Play with Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scratch/play_with_scratch.html">Play with Scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder Da Vinci Kit</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="1_output.html">1 Output</a> &raquo;</li>
+        
+      <li>1.3.3 Stepper Motor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/1.3.3_stepper_motor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stepper-motor">
+<h1>1.3.3 Stepper Motor<a class="headerlink" href="#stepper-motor" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Stepper motors, due to their unique design, can be controlled to a high
+degree of accuracy without any feedback mechanisms. The shaft of a
+stepper, mounted with a series of magnets, is controlled by a series of
+electromagnetic coils that are charged positively and negatively in a
+specific sequence, precisely moving it forward or backward in small
+“steps”.</p>
+</div>
+<div class="section" id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/list_1.3.3.png" src="_images/list_1.3.3.png" />
+</div>
+<div class="section" id="principle">
+<h2>Principle<a class="headerlink" href="#principle" title="Permalink to this headline">¶</a></h2>
+<p><strong>Stepper Motor</strong></p>
+<p>There are two types of steppers, unipolars and bipolars, and it is very
+important to know which type you are working with. In this experiment,
+we will use a unipolar stepper.</p>
+<p>The stepper motor is a four-phase one, which uses a unipolarity DC power
+supply. As long as you electrify all phase windings of the motor by an
+appropriate timing sequence, you can make it rotate step by step. The
+schematic diagram of a four-phase reactive stepper motor:</p>
+<img alt="_images/image129.png" src="_images/image129.png" />
+<p>In the figure, in the middle of the motor is a rotor - a gear-shaped
+permanent magnet. Around the rotor, 0 to 5 are teeth. Then more outside,
+there are 8 magnetic poles, with each two opposite ones connected by
+coil winding. So they form four pairs from A to D, which is called a
+phase. It has four lead wires to be connected with switches SA, SB, SC,
+and SD. Therefore, the four phases are in parallel in the circuit, and
+the two magnetic poles in one phase are in series.</p>
+<p><strong>Here’s how a 4-phase stepper motor works:</strong></p>
+<p>When switch SB is power on, switch SA, SC, and SD is power off, and
+B-phase magnetic poles align with tooth 0 and 3 of the rotor. At the
+same time, tooth 1 and 4 generate staggered teeth with C- and D-phase
+poles. Tooth 2 and 5 generate staggered teeth with D- and A-phase poles.
+When switch SC is power on, switch SB, SA, and SD is power off, the
+rotor rotates under magnetic field of C-phase winding and that between
+tooth 1 and 4. Then tooth 1 and 4 align with the magnetic poles of
+C-phase winding. While tooth 0 and 3 generate staggered teeth with A-
+and B-phase poles, and tooth 2 and 5 generate staggered teeth with the
+magnetic poles of A- and D-phase poles. The similar situation goes on
+and on. Energize the A, B, C and D phases in turn, and the rotor will
+rotate in the order of A, B, C and D.</p>
+<img alt="_images/image130.png" src="_images/image130.png" />
+<p>The four-phase stepper motor has three operating modes: single
+four-step, double four-step, and eight-step. The step angle for the
+single four-step and double four-step are the same, but the driving
+torque for the single four-step is smaller. The step angle of the
+eight-step is half that of the single four-step and double four-step.
+Thus, the eight-step operating mode can keep high driving torque and
+improve control accuracy.</p>
+<p>The stator of Stepper Motor we use has 32 magnetic poles, so a circle
+needs 32 steps. The output shaft of the Stepper Motor is connected with
+a reduction gear set, and the reduction ratio is 1/64. So the final
+output shaft rotates a circle requiring a 32*64=2048 step.</p>
+<p><strong>ULN2003</strong></p>
+<img alt="_images/image338.png" src="_images/image338.png" />
+<p>The stepper motor driver constituted by ULN2003 chip and 4 LEDs is shown
+as follows. On the board, IN1,IN2,IN3 and IN4 work as input and the four
+LEDs, A, B, C, D are the indicators of input pin. In addition,
+OUT1,OUT2, OUT3 and OUT4 are connected to SA, SB, SC and SD on the
+stepper motor driver. When the value of IN1 is set to a high level, A
+lights up; switch SA is power on, and the stepper motor rotates one
+step. The similar case repeats on and on. Therefore, just give the
+stepper motor a specific timing sequence, it will rotate step by step.
+The ULN2003 here is used to provide particular timing sequences for the
+stepper motor.</p>
+<img alt="_images/image132.png" src="_images/image132.png" />
+</div>
+<div class="section" id="schematic-diagram">
+<h2>Schematic Diagram<a class="headerlink" href="#schematic-diagram" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/image339.png" src="_images/image339.png" />
+</div>
+<div class="section" id="experimental-procedures">
+<h2>Experimental Procedures<a class="headerlink" href="#experimental-procedures" title="Permalink to this headline">¶</a></h2>
+<p><strong>Step 1:</strong> Build the circuit.</p>
+<img alt="_images/image134.png" src="_images/image134.png" />
+<div class="section" id="for-c-language-users">
+<h3>For C Language Users<a class="headerlink" href="#for-c-language-users" title="Permalink to this headline">¶</a></h3>
+<p><strong>Step 2</strong>: Go to the folder of the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.3.3</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Step 3</strong>: Compile the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.3.3</span><span class="n">_StepperMotor</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Step 4</strong>: Run the executable file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>As the code runs, the stepper motor will rotate clockwise or
+anticlockwise according to your input ‘a’ or ‘c’.</p>
+<p><strong>Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;wiringPi.h&gt;</span><span class="cp"></span>
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">motorPin</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span>
+<span class="kt">int</span> <span class="n">rolePerMinute</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">stepsPerRevolution</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">stepSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">rotary</span><span class="p">(</span><span class="kt">char</span> <span class="n">direction</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="sc">&#39;c&#39;</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&gt;&gt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">));}</span>
+            <span class="n">delayMicroseconds</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span><span class="sc">&#39;a&#39;</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&lt;&lt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">));}</span>
+            <span class="n">delayMicroseconds</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">direction</span> <span class="o">=</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;select motor direction a=anticlockwise, c=clockwise: &quot;</span><span class="p">);</span>
+        <span class="n">direction</span><span class="o">=</span><span class="n">getchar</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="sc">&#39;c&#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;motor running clockwise</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="sc">&#39;a&#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;motor running anti-clockwise</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;input error, please try again!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">rotary</span><span class="p">(</span><span class="n">direction</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">pinMode</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">OUTPUT</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">stepSpeed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">60000000</span> <span class="o">/</span> <span class="n">rolePerMinute</span><span class="p">)</span> <span class="o">/</span> <span class="n">stepsPerRevolution</span><span class="p">;</span>
+    <span class="n">loop</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">rolePerMinute</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">stepsPerRevolution</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">stepSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>rolePerMinute:</strong> revolutions per minute, the RPM of the stepper motor
+used in this kit should be 0~17.</p>
+<p><strong>stepPerRevolution:</strong> the number of steps for each turn, and the
+stepper motor used in this kit needs 2048 steps per revolution.</p>
+<p><strong>stepSpeed:</strong> the time used for each step, and in main(), we assign the
+values to them:「(60000000 / rolePerMinute) /
+stepsPerRevolution」(60,000,000 us=1minute)</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">direction</span> <span class="o">=</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;select motor direction a=anticlockwise, c=clockwise: &quot;</span><span class="p">);</span>
+        <span class="n">direction</span><span class="o">=</span><span class="n">getchar</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="sc">&#39;c&#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;motor running clockwise</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="sc">&#39;a&#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;motor running anti-clockwise</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;input error, please try again!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">rotary</span><span class="p">(</span><span class="n">direction</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The loop() function is roughly divided into two parts (located between two while(1)) :</p>
+<p>The first part is to get the key value. When ‘a’ or ‘c’ is obtained, exit the loop and stop the input.</p>
+<p>The second part calls rotary(direction) to make the stepper motor run.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">rotary</span><span class="p">(</span><span class="kt">char</span> <span class="n">direction</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="sc">&#39;c&#39;</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&gt;&gt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">));}</span>
+            <span class="n">delayMicroseconds</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span><span class="sc">&#39;a&#39;</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&lt;&lt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">));}</span>
+            <span class="n">delayMicroseconds</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To make stepper motor <strong>rotate clockwise</strong>, level status of motorPin
+should is shown in the table below:</p>
+<img alt="_images/image340.png" src="_images/image340.png" />
+<p>Therefore, potential write of MotorPin is implemented by using a
+two-layer of for loop.</p>
+<p>In Step1, j=0, i=0~4.</p>
+<p>motorPin[0] will be written in the high level（10011001&amp;00001000=1）</p>
+<p>motorPin[1] will be written in the low level（10011001&amp;00000100=0）</p>
+<p>motorPin[2] will be written in the low level（10011001&amp;00000010=0）</p>
+<p>motorPin[3] will be written in the high level（10011001&amp;00000001=1）</p>
+<p>In Step2, j=1, i=0~4.</p>
+<p>motorPin[0] will be written in the high level（01001100&amp;00001000=1）</p>
+<p>motorPin[1] will be written in the low level（01001100&amp;00000100=1）</p>
+<p>and so on.</p>
+<p>And to make the stepper motor rotate <strong>anti-clockwise</strong>, the level
+status of motorPin is shown in the following table.</p>
+<img alt="_images/image341.png" src="_images/image341.png" />
+<p>In Step1, j=0, i=0~4.</p>
+<p>motorPin[0] will be written in the high level（10011001&amp;10000000=1）</p>
+<p>motorPin[1] will be written in the low level（10011001&amp;01000000=0）</p>
+<p>In Step2，j=1, i=0~4.</p>
+<p>motorPin[0] will be written in the high level（00110010&amp;10000000=0）</p>
+<p>motorPin[1] will be written in the low level（00110010&amp;01000000=0）</p>
+<p>and so on.</p>
+</div>
+<div class="section" id="for-python-language-users">
+<h3>For Python Language Users<a class="headerlink" href="#for-python-language-users" title="Permalink to this headline">¶</a></h3>
+<p><strong>Step 2</strong>: Go to the folder of the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Step 3</strong>: Run the executable file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.3.3</span><span class="n">_StepperMotor</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>As the code runs, the stepper motor will turn clockwise or
+anti-clockwise depending on your input ‘a’ or ‘c’.</p>
+<p><strong>Code</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="n">motorPin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">rolePerMinute</span> <span class="o">=</span><span class="mi">15</span>
+<span class="n">stepsPerRevolution</span> <span class="o">=</span> <span class="mi">2048</span>
+<span class="n">stepSpeed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">60</span><span class="o">/</span><span class="n">rolePerMinute</span><span class="p">)</span><span class="o">/</span><span class="n">stepsPerRevolution</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setwarnings</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">motorPin</span><span class="p">:</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">rotary</span><span class="p">(</span><span class="n">direction</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&gt;&gt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+
+    <span class="k">elif</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&lt;&lt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">direction</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;select motor direction a=anticlockwise, c=clockwise: &#39;</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;motor running clockwise</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">elif</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;motor running anti-clockwise</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;input error, please try again!&#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">rotary</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rolePerMinute</span> <span class="o">=</span><span class="mi">15</span>
+<span class="n">stepsPerRevolution</span> <span class="o">=</span> <span class="mi">2048</span>
+<span class="n">stepSpeed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">60</span><span class="o">/</span><span class="n">rolePerMinute</span><span class="p">)</span><span class="o">/</span><span class="n">stepsPerRevolution</span>
+</pre></div>
+</div>
+<p><strong>rolePerMinute:</strong> revolutions per minute, the RPM of the stepper motor
+used in this kit should be 0~17.</p>
+<p><strong>stepPerRevolution:</strong> the number of steps for each turn, and the
+stepper motor used in this kit needs 2048 steps per revolution.</p>
+<p><strong>stepSpeed:</strong> the time used for each step, and we assign the values to
+them:「(60 / rolePerMinute) / stepsPerRevolution」(60s=1minute).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">direction</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;select motor direction a=anticlockwise, c=clockwise: &#39;</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;motor running clockwise</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">elif</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;motor running anti-clockwise</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;input error, please try again!&#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">rotary</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The loop() function is roughly divided into two parts (located in two
+while(1)) :</p>
+<p>The first part is to get the key value. When ‘a’ or ‘c’ is obtained,
+exit the loop and stop the input.</p>
+<p>The second part calls rotary(direction) to make the stepper motor run.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rotary</span><span class="p">(</span><span class="n">direction</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&gt;&gt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+
+    <span class="k">elif</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&lt;&lt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To make the stepper motor rotate clockwise, the level status of motorPin
+is shown in the following table:</p>
+<img alt="_images/image342.png" src="_images/image342.png" />
+<p>Therefore, potential write of MotorPin is implemented by using a
+two-layer of for loop.</p>
+<p>In Step1, j=0, i=0~4.</p>
+<p>motorPin[0] will be written in the high level（10011001&amp;00001000=1）</p>
+<p>motorPin[1] will be written in the low level（10011001&amp;00000100=0）</p>
+<p>motorPin[2] will be written in the low level（10011001&amp;00000010=0）</p>
+<p>motorPin[3] will be written in the high level（10011001&amp;00000001=1）</p>
+<p>In Step2, j=1, i=0~4.</p>
+<p>motorPin[0] will be written in the high level（01001100&amp;00001000=1）</p>
+<p>motorPin[1] will be written in the low level（01001100&amp;00000100=1）</p>
+<p>and so on</p>
+<p>And to make the stepper motor rotate anti - clockwise, the level status
+of motorPin is shown in the following table.</p>
+<img alt="_images/image343.png" src="_images/image343.png" />
+<p>In Step1, j=0, i=0~4.</p>
+<p>motorPin[0] will be written in the high level（10011001&amp;10000000=1）</p>
+<p>motorPin[1] will be written in the low level（10011001&amp;01000000=0）</p>
+<p>In Step2, j=1, i=0~4.</p>
+<p>motorPin[0] will be written in the high level（00110010&amp;10000000=0）</p>
+<p>motorPin[1] will be written in the low level（00110010&amp;01000000=0）</p>
+<p>And so on.</p>
+</div>
+</div>
+<div class="section" id="phenomenon-picture">
+<h2>Phenomenon Picture<a class="headerlink" href="#phenomenon-picture" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/image135.jpeg" src="_images/image135.jpeg" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="1.3.4_relay.html" class="btn btn-neutral float-right" title="1.3.4 Relay" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="1.3.2_servo.html" class="btn btn-neutral float-left" title="1.3.2 Servo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, sunfounder.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

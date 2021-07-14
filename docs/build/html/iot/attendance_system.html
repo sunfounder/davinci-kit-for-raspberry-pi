@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Attendance system &mdash; SunFounder Da Vinci Kit  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://ezblock.cc/readDocFile/topHead.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="https://ezblock.cc/readDocFile/topHead.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Play with Processing" href="../processing/play_with_processing.html" />
+    <link rel="prev" title="Smart Curtain" href="smart_curtain.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SunFounder Da Vinci Kit
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Component List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO Extension Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_output.html">1 Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_input.html">2 Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_extension.html">3 Extension</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="4_iot_projects.html">4 IOT Projects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quick_guide_on_cloud4RPi.html">Quick Guide on Cloud4RPi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="learn_more_about_control.py.html">Learn More about <code class="docutils literal notranslate"><span class="pre">control.py</span></code></a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="iot_projects.html">Projects</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="temperature_and_humidity_acquisition.html">Temperature and Humidity Acquisition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_switch.html">Remote Switch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smart_light.html">Smart Light</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smart_curtain.html">Smart Curtain</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Attendance system</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#experimental-procedures">Experimental Procedures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-explanation">Code Explanation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/play_with_processing.html">Play with Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scratch/play_with_scratch.html">Play with Scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder Da Vinci Kit</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="4_iot_projects.html">4 IOT Projects</a> &raquo;</li>
+        
+          <li><a href="iot_projects.html">Projects</a> &raquo;</li>
+        
+      <li>Attendance system</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/iot/attendance_system.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="attendance-system">
+<h1>Attendance system<a class="headerlink" href="#attendance-system" title="Permalink to this headline">¶</a></h1>
+<p>In this project, we use MFRC522 RFID Module and Cloud4RPi to make a system, you can view the attendance information on Cloud4RPi, or open the local .csv file to view the attendance records.</p>
+<p>Due to the delay of network data transmission, the project only allows you to punch in when the green LED is on and upload data when the red LED is on.</p>
+<div class="section" id="experimental-procedures">
+<h2>Experimental Procedures<a class="headerlink" href="#experimental-procedures" title="Permalink to this headline">¶</a></h2>
+<p>Build the circuit.</p>
+<img alt="../_images/rfid1.png" class="align-center" src="../_images/rfid1.png" />
+<p>Open the code.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /home/pi/cloud4rpi-raspberrypi-python
+sudo nano attendance_system.py
+</pre></div>
+</div>
+<p>Find the line below and fill in the correct device token.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEVICE_TOKEN</span> <span class="o">=</span> <span class="s1">&#39;__YOUR_DEVICE_TOKEN__&#39;</span>
+</pre></div>
+</div>
+<p>Run the code.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo python3 attendance_system.py
+</pre></div>
+</div>
+<p>Go to Cloud4RPi, add a new control panel named <strong>project5</strong> and add 2 widgets (text and chart widgets) via the <strong>Add widget</strong> button.</p>
+<img alt="../_images/rfid2.png" class="align-center" src="../_images/rfid2.png" />
+<p>Once added, you can view the clock-in records for different time periods on the Chart widget (when the value of LED ON is True, it means someone clocked in), and then view the number of people who clocked in on the Text widget.</p>
+<p>Also you can find the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file with the date under the path <code class="docutils literal notranslate"><span class="pre">/home/pi/cloud4rpi-raspberrypi-python</span></code>.</p>
+<img alt="../_images/rfid3.png" class="align-center" src="../_images/rfid3.png" />
+<p>Open it with the following command.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo nano attendance_sheet.2021.06.28.csv
+</pre></div>
+</div>
+<p>In this way, you can read the punch-in records of different time periods. On the left is the ID of different MFRC522 RFID modules, and on the right is the time of punching in.</p>
+<img alt="../_images/rfid4.png" class="align-center" src="../_images/rfid4.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the person’s name is written to the MFRC522 RFID Module in advance, and then the id is replaced with text in the code (which will be mentioned later in the code explanation), so that the attendance sheet records the name of each person, rather than the ID of the card.</p>
+</div>
+</div>
+<div class="section" id="code-explanation">
+<h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">RedPin</span> <span class="o">=</span> <span class="mi">13</span>
+<span class="n">GreenPin</span> <span class="o">=</span> <span class="mi">11</span>
+
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BOARD</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">RedPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">GreenPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set 2 LEDs as output and set the initial value to high.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_time</span><span class="p">():</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">year</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y&#39;</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())))</span>
+            <span class="n">month</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%m&#39;</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())))</span>
+            <span class="n">day</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())))</span>
+            <span class="n">hour</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H&#39;</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())))</span>
+            <span class="n">minute</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%M&#39;</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())))</span>
+            <span class="n">second</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%S&#39;</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())))</span>
+            <span class="n">present_time</span> <span class="o">=</span> <span class="n">year</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">month</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">day</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">hour</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">minute</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">second</span>
+            <span class="n">present_date</span> <span class="o">=</span> <span class="n">year</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">month</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">day</span>
+            <span class="k">return</span> <span class="n">present_date</span><span class="p">,</span> <span class="n">present_time</span>
+</pre></div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">get_time()</span></code> function to get the current timestamp and return two values. Where <code class="docutils literal notranslate"><span class="pre">present_date</span></code> is accurate to the day and <code class="docutils literal notranslate"><span class="pre">present_time</span></code> is accurate to the second.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">attendance</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">GreenPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RedPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading...Please place the card...&quot;</span><span class="p">)</span>
+    <span class="nb">id</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ID: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">Text: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span><span class="n">text</span><span class="p">))</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RedPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">GreenPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>First, we set <code class="docutils literal notranslate"><span class="pre">attendance</span></code> to False, which means that no one is clocked in.</p>
+<p>Then set GreenPin to low level to light it, and RedPin to high level to keep it off, indicating that the current attendance system is working normally.</p>
+<p>When someone punches in, the id and text information of the card will be printed. If the red LED is on and the green LED is off, it means that the check-in is successful and the result is sent to Cloud4RPi.</p>
+<p>During this period, the attendance system is in sleep state until the next cycle starts (the green light is on).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">attendance_list</span><span class="p">:</span>
+            <span class="n">attendance</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">attendance_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+            <span class="n">present_date</span><span class="p">,</span> <span class="n">present_time</span> <span class="o">=</span> <span class="n">get_time</span><span class="p">()</span>
+            <span class="n">attendance_statistics</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">present_time</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;attendance_sheet.&#39;</span> <span class="o">+</span> <span class="n">present_date</span> <span class="o">+</span> <span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">  </span><span class="si">{1}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attendance_statistics</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+</pre></div>
+</div>
+<p>First determine if the id is duplicated in <code class="docutils literal notranslate"><span class="pre">attendance_list</span></code> by an if statement, if not, it means the punch-in is valid and pass the id information into <code class="docutils literal notranslate"><span class="pre">attendance_list</span></code>. Then we get the current timestamp and use the id as the key of the <code class="docutils literal notranslate"><span class="pre">attendance_statistics</span></code> dictionary and <code class="docutils literal notranslate"><span class="pre">present_time</span></code> as the value of the corresponding key. In this way, the <code class="docutils literal notranslate"><span class="pre">attendance_statistics</span></code> dictionary stores the punch time of the current id.</p>
+<p>Finally we write the <code class="docutils literal notranslate"><span class="pre">attendance_statistics</span></code> dictionary to a .csv file and name the file as <code class="docutils literal notranslate"><span class="pre">'attendance_sheet.''</span> <span class="pre">+</span> <span class="pre">present_date</span> <span class="pre">+</span> <span class="pre">'.csv'</span></code>, so that we store the attendance sheet in time order.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have written the person’s name in the MFRC522 RFID, then replace the <code class="docutils literal notranslate"><span class="pre">id</span></code> with <code class="docutils literal notranslate"><span class="pre">text</span></code> and your attendance sheet will record the name of the person.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_num</span><span class="p">():</span>
+            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">attendance_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Returns the length of <code class="docutils literal notranslate"><span class="pre">attendance_list</span></code>, i.e. the number of attendees.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../processing/play_with_processing.html" class="btn btn-neutral float-right" title="Play with Processing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="smart_curtain.html" class="btn btn-neutral float-left" title="Smart Curtain" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, sunfounder.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

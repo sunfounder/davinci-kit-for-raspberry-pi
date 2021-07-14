@@ -1,6 +1,17 @@
 Drag Number
 ================================================
 
+Let\'s draw a slider bar to control the 7-segment Display.
+
+.. image:: img/drag_servo.png
+	
+
+**Wiring**
+
+.. image:: img/image125.png
+
+**Sketch**
+
 .. code-block:: arduino
 
     import processing.io.*;
@@ -107,3 +118,9 @@ Drag Number
             return value;
         }
     }
+
+**How it works?**
+
+This project has a lot in common with :ref:`Show Number` and :ref:`Metronome` ,结合了
+前面两课Slider和7-segment Display的部分。
+

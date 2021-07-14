@@ -53,7 +53,7 @@ We've already tried drawing a clickable dot to control the LED, so let's take it
 
 **How it works?**
 
-This project has a lot in common with :ref:``Clickable Dot``, except that it refines the conditions for determining mouse click event.
+This project has a lot in common with :ref:`Clickable Dot`, except that it refines the conditions for determining mouse click event.
 
 First draw three color blocks in ``draw()``, then get which color block was clicked based on the value of mouseX (the X-axis coordinate of the mouse), and finally make RGB light up the corresponding color.
 

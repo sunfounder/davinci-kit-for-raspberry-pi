@@ -46,6 +46,6 @@ Projects
     clickable_color_blocks
     inflating_the_dot
     dot_on_the_swing
-    self-turning_servo
-    slider-controlled_servo
     metronome
+    show_number
+    drag_number

@@ -45,3 +45,5 @@ This project has a lot in common with :ref:`Blinking Dot`, the difference is tha
 This causes the LED to not blink automatically, but to light up and go off with a mouse click.
 
 And in the ``mouseClicked()`` event, the ``dist()`` function is used to determine the position of the mouse at the time of the click, and the dot is considered clicked only if the distance between the mouse and the center of the dot is less than the radius.
+
+For more please refer to `Processing Reference <https://processing.org/reference/>`_.

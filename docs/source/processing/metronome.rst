@@ -97,19 +97,6 @@ Here we will make a metronome, the metronome is divided into 5 levels, the highe
 
 **How it works?**
 
-.. As in the previous project, we created a ``Slider`` class and made it act as **WIDGET**.
-
-.. However, ``dragPoint()`` has been slightly modified so that the widget has a discontinuous feature when sliding and is more suitable for level adjustment.
-
-.. .. code-block:: Arduino
-
-..     int dragPoint(float mx, float my){
-..         if(mx>=slotPointAX && mx<=slotPointBX && my>=slotPointAY && my<=slotPointBY){
-..             value = int(map(mx,slotPointAX,slotPointBX,minRange,maxRange));
-..             linePoint = map(value,minRange,maxRange,slotPointAX,slotPointBX);
-..         }
-..         return value;
-..     }
 
 Here, we created a ``Slider`` class and made it act as **WIDGET**.
 
@@ -153,3 +140,5 @@ Another method ``show()`` is to show the Slider. At the same time, the range val
         text(maxRange, slotPointBX, slotPointBY+depth);
         text(value, linePoint, slotPointAY);
     }
+
+For more please refer to `Processing Reference <https://processing.org/reference/>`_.

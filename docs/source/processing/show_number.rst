@@ -118,8 +118,11 @@ At last assign the dat data to SDI(DS) by bits.
 	textAlign(CENTER,CENTER);
 	textSize(height*0.8);
 
-The ``fill()`` function used in ``setup()`` can fill the text color, ``textAlign(CENTER,CENTER)`` is used to center the text, ``textSize(height*0.8)`` change the text height to 0.8 times the original.
-These functions can customize the text style displayed on the processing
+* ``fill()``: Sets the color used to fill shapes.
+* ``textAlign(CENTER,CENTER)``: Sets the current alignment for drawing text. The parameters ``LEFT``, ``CENTER``, and ``RIGHT`` set the display characteristics of the letters in relation to the values for the x and y parameters of the ``text()`` function.
+* ``textSize()``: Sets the current font size. This size will be used in all subsequent calls to the ``text()`` function. Font size is measured in units of pixels.
+
+These functions can customize the text style displayed on the processing.
 
 .. code::
 
@@ -135,3 +138,5 @@ The ``frameCount`` is a seed, which is related to ``frameRate``.
 By default ``frameRate`` is 60, which means that ``frameCount`` will accumulate 60 times per second.
 
 Then we can let processing and 7-segment display to show the figure from 0 to 9 and A to F simultaneously.
+
+For more please refer to `Processing Reference <https://processing.org/reference/>`_.

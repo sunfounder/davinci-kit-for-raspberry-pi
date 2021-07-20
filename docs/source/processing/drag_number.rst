@@ -1,7 +1,7 @@
 Drag Number
 ================================================
 
-Let\'s draw a slider bar to control the 7-segment Display.
+Let's draw a slider bar to control the 7-segment Display.
 
 .. image:: img/drag_servo.png
 	

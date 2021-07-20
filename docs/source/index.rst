@@ -13,7 +13,7 @@ guidance of experiment instructions. In this process, you can learn some
 basic knowledge about programming. Also you can explore more application
 by yourself. Now go for it!
 
-If you want to learn another projects which we don’t have, please feel free to send Email and we will update to our online tutorials as soon as possible, any suggestions are welcomed.
+If you want to learn another projects which we don't have, please feel free to send Email and we will update to our online tutorials as soon as possible, any suggestions are welcomed.
 
 Here is the Email: cs@sunfounder.com.
 

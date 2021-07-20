@@ -61,3 +61,5 @@ First draw three color blocks in ``draw()``, then get which color block was clic
 
 Based on the addition of light, we can make RGB LED display seven colors - adding red to green produces yellow; adding all three primary colors together produces white.
 Now you can try it out for yourself.
+
+For more please refer to `Processing Reference <https://processing.org/reference/>`_.

@@ -1,9 +1,24 @@
-from rc522 import RC522
+#!/usr/bin/env python
 
-rc = RC522()
-rc.Pcd_start()
-print("Reading...Please place the card...")
-while True:
-    status = rc.read_card_data(2)
-    if status == 0:
-        break
+import time
+from mfrc522 import SimpleMFRC522
+import RPi.GPIO as GPIO
+
+reader = SimpleMFRC522()
+
+def main():
+    while True:
+        print("Reading...Please place the card...")
+        id, text = reader.read()
+        print("ID: %s\nText: %s" % (id,text))
+        time.sleep(3)
+        
+def destroy():
+    GPIO.cleanup()
+    
+if __name__ == '__main__':
+    try:
+        main()
+    # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
+    except KeyboardInterrupt:
+        destroy()

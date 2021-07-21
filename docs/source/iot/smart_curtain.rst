@@ -18,7 +18,11 @@ Build the circuit.
 
 Open the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cd /home/pi/cloud4rpi-raspberrypi-python
     sudo nano smart_curtain.py
@@ -31,7 +35,7 @@ Find the line below and fill in the correct device token.
 
 Run the code.
 
-.. code-block:: shell
+.. code-block:: 
 
     sudo python3 smart_curtain.py
 

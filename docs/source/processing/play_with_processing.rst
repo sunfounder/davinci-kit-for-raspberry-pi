@@ -23,6 +23,10 @@ Install the Processing
 
 Run the following command in Terminal to install Processing.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     curl https://processing.org/download/install-arm.sh | sudo sh

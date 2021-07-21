@@ -86,6 +86,10 @@ it.
 Type in **ssh pi@ip_address** . “pi”is your username and “ip_address” is
 your IP address. For example:
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     ssh pi@192.168.18.197

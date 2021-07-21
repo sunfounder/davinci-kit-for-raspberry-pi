@@ -5,6 +5,10 @@ SPI Configuration
 enabled it, skip this; if you do not know whether you have done that or
 not, please continue).
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     sudo raspi-config
@@ -30,17 +34,29 @@ not, please continue).
 
 **Step 2:** Check that the i2c modules are loaded and active.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     ls /dev/sp*
 
 Then the following codes will appear (the number may be different).
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     /dev/spidev0.0  /dev/spidev0.1
 
 **Step 3:** Install Python module SPI-Py.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 

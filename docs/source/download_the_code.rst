@@ -8,6 +8,9 @@ Before you download the code, please note that the example code is
 
 Log into Raspberry Pi and then change directory to ``/home/pi``.
 
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -19,6 +22,10 @@ Log into Raspberry Pi and then change directory to ``/home/pi``.
    cd to change to the intended directory from the current path. Informally, here is to go to the path ``/home/pi/``.
 
 Clone the repository from GitHub.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 

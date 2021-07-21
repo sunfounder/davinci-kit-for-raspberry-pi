@@ -13,7 +13,11 @@ Build the circuit.
 
 Open the code.
 
-.. code-block:: python
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cd /home/pi/cloud4rpi-raspberrypi-python
     sudo nano smart_light.py
@@ -26,7 +30,11 @@ Find the line below and fill in the correct device token.
 
 Run the code.
 
-.. code-block:: python
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo python3 smart_light.py
 

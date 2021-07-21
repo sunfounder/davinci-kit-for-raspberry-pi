@@ -1,0 +1,484 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>1.3.2 Servo &mdash; SunFounder Da Vinci Kit  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://ezblock.cc/readDocFile/topHead.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="https://ezblock.cc/readDocFile/topHead.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1.3.3 Stepper Motor" href="1.3.3_stepper_motor.html" />
+    <link rel="prev" title="1.3.1 Motor" href="1.3.1_motor.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SunFounder Da Vinci Kit
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Component List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">GPIO Extension Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="1_output.html">1 Output</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 Blinking LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 LED Bar Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 7-segment Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 4-Digit 7-Segment Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 LED Dot Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 Active Buzzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 Passive Buzzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.1_motor.html">1.3.1 Motor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.3.2 Servo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#principle">Principle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic-diagram">Schematic Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#experimental-procedures">Experimental Procedures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#for-c-language-users">For C Language Users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-python-language-users">For Python Language Users</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#phenomenon-picture">Phenomenon Picture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 Stepper Motor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relay</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_input.html">2 Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iot/4_iot_projects.html">4 IOT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing/play_with_processing.html">Play with Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scratch/play_with_scratch.html">Play with Scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder Da Vinci Kit</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="1_output.html">1 Output</a> &raquo;</li>
+        
+      <li>1.3.2 Servo</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/1.3.2_servo.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="servo">
+<h1>1.3.2 Servo<a class="headerlink" href="#servo" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this lesson, we will learn how to make the servo rotate.</p>
+</div>
+<div class="section" id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/list_1.3.2.png" src="_images/list_1.3.2.png" />
+</div>
+<div class="section" id="principle">
+<h2>Principle<a class="headerlink" href="#principle" title="Permalink to this headline">¶</a></h2>
+<p><strong>Servo</strong></p>
+<p>A servo is generally composed of the following parts: case, shaft, gear
+system, potentiometer, DC motor, and embedded board.</p>
+<img alt="_images/image121.png" src="_images/image121.png" />
+<p>It works like this: The microcontroller sends out PWM signals to the
+servo, and then the embedded board in the servo receives the signals
+through the signal pin and controls the motor inside to turn. As a
+result, the motor drives the gear system and then motivates the shaft
+after deceleration. The shaft and potentiometer of the servo are
+connected together. When the shaft rotates, it drives the potentiometer,
+so the potentiometer outputs a voltage signal to the embedded board.
+Then the board determines the direction and speed of rotation based on
+the current position, so it can stop exactly at the right position as
+defined and hold there.</p>
+<img alt="_images/image122.png" src="_images/image122.png" />
+<p>The angle is determined by the duration of a pulse that is applied to
+the control wire. This is called Pulse width Modulation. The servo
+expects to see a pulse every 20 ms. The length of the pulse will
+determine how far the motor turns. For example, a 1.5ms pulse will make
+the motor turn to the 90 degree position (neutral position).</p>
+<p>When a pulse is sent to a servo that is less than 1.5 ms, the servo
+rotates to a position and holds its output shaft some number of degrees
+counterclockwise from the neutral point. When the pulse is wider than
+1.5 ms the opposite occurs. The minimal width and the maximum width of
+pulse that will command the servo to turn to a valid position are
+functions of each servo. Generally the minimum pulse will be about 0.5
+ms wide and the maximum pulse will be 2.5 ms wide.</p>
+<img alt="_images/image123.jpeg" src="_images/image123.jpeg" />
+</div>
+<div class="section" id="schematic-diagram">
+<h2>Schematic Diagram<a class="headerlink" href="#schematic-diagram" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/image337.png" src="_images/image337.png" />
+</div>
+<div class="section" id="experimental-procedures">
+<h2>Experimental Procedures<a class="headerlink" href="#experimental-procedures" title="Permalink to this headline">¶</a></h2>
+<p><strong>Step 1:</strong> Build the circuit.</p>
+<img alt="_images/image125.png" src="_images/image125.png" />
+<div class="section" id="for-c-language-users">
+<h3>For C Language Users<a class="headerlink" href="#for-c-language-users" title="Permalink to this headline">¶</a></h3>
+<p><strong>Step 2</strong>: Go to the folder of the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.3.2</span>
+</pre></div>
+</div>
+<p><strong>Step 3</strong>: Compile the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.3.2</span><span class="n">_Servo</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Step 4</strong>: Run the executable file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>After the program is executed, the servo will rotate from
+0 degrees to 180 degrees, and then from 180 degrees to 0 degrees, circularly.</p>
+<p><strong>Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;wiringPi.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;softPwm.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#define ServoPin    1       </span><span class="c1">//define the servo to GPIO1</span>
+<span class="kt">long</span> <span class="nf">Map</span><span class="p">(</span><span class="kt">long</span> <span class="n">value</span><span class="p">,</span><span class="kt">long</span> <span class="n">fromLow</span><span class="p">,</span><span class="kt">long</span> <span class="n">fromHigh</span><span class="p">,</span><span class="kt">long</span> <span class="n">toLow</span><span class="p">,</span><span class="kt">long</span> <span class="n">toHigh</span><span class="p">){</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">toHigh</span><span class="o">-</span><span class="n">toLow</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">value</span><span class="o">-</span><span class="n">fromLow</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">fromHigh</span><span class="o">-</span><span class="n">fromLow</span><span class="p">)</span> <span class="o">+</span> <span class="n">toLow</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">setAngle</span><span class="p">(</span><span class="kt">int</span> <span class="n">pin</span><span class="p">,</span> <span class="kt">int</span> <span class="n">angle</span><span class="p">){</span>    <span class="c1">//Create a funtion to control the angle of the servo.</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">angle</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">angle</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">)</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span>
+    <span class="n">softPwmWrite</span><span class="p">(</span><span class="n">pin</span><span class="p">,</span><span class="n">Map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">){</span> <span class="c1">//when initialize wiring failed,print message to screen</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">softPwmCreate</span><span class="p">(</span><span class="n">ServoPin</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>       <span class="c1">//initialize PMW pin of servo</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">181</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>     <span class="c1">// Let servo rotate from 0 to 180.                  setAngle(ServoPin,i);</span>
+            <span class="n">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">181</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">-1</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">){</span>        <span class="c1">// Let servo rotate from 180 to 0.              setAngle(ServoPin,i);</span>
+            <span class="n">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="nf">Map</span><span class="p">(</span><span class="kt">long</span> <span class="n">value</span><span class="p">,</span><span class="kt">long</span> <span class="n">fromLow</span><span class="p">,</span><span class="kt">long</span> <span class="n">fromHigh</span><span class="p">,</span><span class="kt">long</span> <span class="n">toLow</span><span class="p">,</span><span class="kt">long</span> <span class="n">toHigh</span><span class="p">){</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">toHigh</span><span class="o">-</span><span class="n">toLow</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">value</span><span class="o">-</span><span class="n">fromLow</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">fromHigh</span><span class="o">-</span><span class="n">fromLow</span><span class="p">)</span> <span class="o">+</span> <span class="n">toLow</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Create a Map() function to map value in the following code.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">setAngle</span><span class="p">(</span><span class="kt">int</span> <span class="n">pin</span><span class="p">,</span> <span class="kt">int</span> <span class="n">angle</span><span class="p">){</span>    <span class="c1">//Create a funtion to control the angle of the servo.</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">angle</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">angle</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">)</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span>
+    <span class="n">softPwmWrite</span><span class="p">(</span><span class="n">pin</span><span class="p">,</span><span class="n">Map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Create a funtion, setAngle() to write angle to the servo.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">pin</span><span class="p">,</span><span class="n">Map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">25</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>This function can change the duty cycle of the PWM.</p>
+<p>To make the servo rotate to 0 ~ 180 °, the pulse width should change
+within the range of 0.5ms ~ 2.5ms when the period is 20ms; in the
+function, softPwmCreate(), we have set that the period is
+200x100us=20ms, thus we need to map 0 ~ 180 to 5x100us ~ 25x100us.</p>
+<p>The prototype of this function is shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int softPwmCreate（int pin，int initialValue，int pwmRange）;
+</pre></div>
+</div>
+<p><strong>Parameter pin:</strong> Any GPIO pin of Raspberry Pi can be set as PWM pin.</p>
+<p><strong>Parameter initialValue:</strong> The initial pulse width is that initialValue
+times 100us.</p>
+<p><strong>Parameter pwmRange:</strong> the period of PWM is that pwmRange times 100us.</p>
+</div>
+<div class="section" id="for-python-language-users">
+<h3>For Python Language Users<a class="headerlink" href="#for-python-language-users" title="Permalink to this headline">¶</a></h3>
+<p><strong>Step 2</strong>: Go to the folder of the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Step 3</strong>: Run the executable file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.3.2</span><span class="n">_Servo</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>After the program is executed, the servo will rotate from 0 degrees
+to 180 degrees, and then from 180 degrees to 0 degrees, circularly.</p>
+<p><strong>Code</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">SERVO_MIN_PULSE</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">SERVO_MAX_PULSE</span> <span class="o">=</span> <span class="mi">2500</span>
+<span class="n">ServoPin</span> <span class="o">=</span> <span class="mi">18</span>
+
+<span class="k">def</span> <span class="nf">map</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">inMin</span><span class="p">,</span> <span class="n">inMax</span><span class="p">,</span> <span class="n">outMin</span><span class="p">,</span> <span class="n">outMax</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">outMax</span> <span class="o">-</span> <span class="n">outMin</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">inMin</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">inMax</span> <span class="o">-</span> <span class="n">inMin</span><span class="p">)</span> <span class="o">+</span> <span class="n">outMin</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">p</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>       <span class="c1"># Numbers GPIOs by BCM</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">ServoPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>   <span class="c1"># Set ServoPin&#39;s mode is output</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ServoPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>  <span class="c1"># Set ServoPin to low</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">ServoPin</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>     <span class="c1"># set Frequecy to 50Hz</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                     <span class="c1"># Duty Cycle = 0</span>
+
+<span class="k">def</span> <span class="nf">setAngle</span><span class="p">(</span><span class="n">angle</span><span class="p">):</span>      <span class="c1"># make the servo rotate to specific angle (0-180 degrees)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="n">angle</span><span class="p">))</span>
+    <span class="n">pulse_width</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="n">SERVO_MIN_PULSE</span><span class="p">,</span> <span class="n">SERVO_MAX_PULSE</span><span class="p">)</span>
+    <span class="n">pwm</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">pulse_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">pwm</span><span class="p">)</span><span class="c1">#map the angle to duty cycle and output it</span>
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>   <span class="c1">#make servo rotate from 0 to 180 deg</span>
+            <span class="n">setAngle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>     <span class="c1"># Write to servo</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.002</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">):</span> <span class="c1">#make servo rotate from 180 to 0 deg</span>
+            <span class="n">setAngle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>     <span class="c1">#Program start from here</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>  <span class="c1"># When &#39;Ctrl+C&#39; is pressed, the program destroy() will be executed.</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">ServoPin</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>     <span class="c1"># set Frequecy to 50Hz</span>
+<span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                     <span class="c1"># Duty Cycle = 0</span>
+</pre></div>
+</div>
+<p>Set the servoPin to PWM pin, then the frequency to 50hz, and the period to 20ms.</p>
+<p>p.start(0): Run the PWM function，and set the initial value to 0.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setAngle</span><span class="p">(</span><span class="n">angle</span><span class="p">):</span>      <span class="c1"># make the servo rotate to specific angle (0-180 degrees)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="n">angle</span><span class="p">))</span>
+    <span class="n">pulse_width</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="n">SERVO_MIN_PULSE</span><span class="p">,</span> <span class="n">SERVO_MAX_PULSE</span><span class="p">)</span>
+    <span class="n">pwm</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">pulse_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">pwm</span><span class="p">)</span><span class="c1">#map the angle to duty cycle and output it</span>
+</pre></div>
+</div>
+<p>Create a function, setAngle() to write angle that ranges from 0 to 180 into the servo.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">angle</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="n">angle</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This code is used to limit the angle within the range 0-180°.</p>
+<p>The min() function returns the minimum of the input values.
+If 180&lt;angle, then return 180,if not, return angle.</p>
+<p>The max() method returns the maximum element in an iterable or largest of
+two or more parameters. If 0&gt;angle, then return 0, if not, return angle.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pulse_width</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="n">SERVO_MIN_PULSE</span><span class="p">,</span> <span class="n">SERVO_MAX_PULSE</span><span class="p">)</span>
+<span class="n">pwm</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">pulse_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">pwm</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To render a range 0 ~ 180 ° to the servo, the pulse width of the servo
+is set to 0.5ms(500us)-2.5ms(2500us).</p>
+<p>The period of PWM is 20ms(20000us), thus the duty cycle of PWM is
+(500/20000)%-(2500/20000)%, and the range 0 ~ 180 is mapped to 2.5 ~
+12.5.</p>
+</div>
+</div>
+<div class="section" id="phenomenon-picture">
+<h2>Phenomenon Picture<a class="headerlink" href="#phenomenon-picture" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/image126.jpeg" src="_images/image126.jpeg" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="1.3.3_stepper_motor.html" class="btn btn-neutral float-right" title="1.3.3 Stepper Motor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="1.3.1_motor.html" class="btn btn-neutral float-left" title="1.3.1 Motor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, sunfounder.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

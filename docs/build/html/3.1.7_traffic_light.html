@@ -1,0 +1,539 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>3.1.7 Traffic Light &mdash; SunFounder Da Vinci Kit  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://ezblock.cc/readDocFile/topHead.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="https://ezblock.cc/readDocFile/topHead.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3.1.8 Overheat Monitor" href="3.1.8_overheat_monitor.html" />
+    <link rel="prev" title="3.1.6 Motion Control" href="3.1.6_motion_control.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SunFounder Da Vinci Kit
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Component List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">GPIO Extension Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_output.html">1 Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_input.html">2 Input</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="3_extension.html">3 Extension</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="3.1.1_counting_device.html">3.1.1 Counting Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.2_welcome.html">3.1.2 Welcome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.3_reversing_alarm.html">3.1.3 Reversing Alarm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.4_smart_fan.html">3.1.4 Smart Fan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.5_battery_indicator.html">3.1.5 Battery Indicator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.6_motion_control.html">3.1.6 Motion Control</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.1.7 Traffic Light</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic-diagram">Schematic Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#experimental-procedures">Experimental Procedures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#for-c-language-users"><strong>For C Language Users</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-python-language-users"><strong>For Python Language Users</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#phenomenon-picture">Phenomenon Picture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.8_overheat_monitor.html">3.1.8 Overheat Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.9_password_lock.html">3.1.9 Password Lock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.10_alarm_bell.html">3.1.10 Alarm Bell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.11_morse_code_generator.html">3.1.11 Morse Code Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.12_game_guess_number.html">3.1.12 GAME– Guess Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.13_game_10_second.html">3.1.13 GAME– 10 Second</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.14_game_not_not.html">3.1.14 GAME– Not Not</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="iot/4_iot_projects.html">4 IOT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing/play_with_processing.html">Play with Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scratch/play_with_scratch.html">Play with Scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder Da Vinci Kit</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="3_extension.html">3 Extension</a> &raquo;</li>
+        
+      <li>3.1.7 Traffic Light</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/3.1.7_traffic_light.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="traffic-light">
+<h1>3.1.7 Traffic Light<a class="headerlink" href="#traffic-light" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this project, we will use LED lights of three colors to realize the
+change of traffic lights and a four-digit 7-segment display will be used
+to display the timing of each traffic state.</p>
+</div>
+<div class="section" id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/list_Traffic_Light.png" class="align-center" src="_images/list_Traffic_Light.png" />
+</div>
+<div class="section" id="schematic-diagram">
+<h2>Schematic Diagram<a class="headerlink" href="#schematic-diagram" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPIMOSI</p></td>
+<td><p>Pin 19</p></td>
+<td><p>12</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO23</p></td>
+<td><p>Pin 16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO24</p></td>
+<td><p>Pin 18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO25</p></td>
+<td><p>Pin 22</p></td>
+<td><p>6</p></td>
+<td><p>25</p></td>
+</tr>
+<tr class="row-even"><td><p>SPICE0</p></td>
+<td><p>Pin 24</p></td>
+<td><p>10</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPICE1</p></td>
+<td><p>Pin 26</p></td>
+<td><p>11</p></td>
+<td><p>7</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/Schematic_three_one7.png" class="align-center" src="_images/Schematic_three_one7.png" />
+</div>
+<div class="section" id="experimental-procedures">
+<h2>Experimental Procedures<a class="headerlink" href="#experimental-procedures" title="Permalink to this headline">¶</a></h2>
+<p><strong>Step 1:</strong> Build the circuit.</p>
+<a class="reference internal image-reference" href="_images/image254.png"><img alt="3.1.7_TrafficLight_bb" src="_images/image254.png" style="width: 6.84444in; height: 3.54097in;" /></a>
+<div class="section" id="for-c-language-users">
+<h3><strong>For C Language Users</strong><a class="headerlink" href="#for-c-language-users" title="Permalink to this headline">¶</a></h3>
+<p><strong>Step 2:</strong> Change directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">3.1.7</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Step 3:</strong> Compile.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">3.1.1</span><span class="n">_CountingDevice</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Step 4:</strong> Run.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>As the code runs, LEDs will simulate the color changing of traffic
+lights. Firstly, the red LED lights up for 60s, then the green LED
+lights up for 30s; next, the yellow LED lights up for 5s. After that,
+the red LED lights up for 60s once again. In this way, this series of
+actions will be executed repeatedly.</p>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define     SDI     5</span>
+<span class="cp">#define     RCLK    4</span>
+<span class="cp">#define     SRCLK    1</span>
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">placePin</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0xc0</span><span class="p">,</span> <span class="mh">0xf9</span><span class="p">,</span> <span class="mh">0xa4</span><span class="p">,</span> <span class="mh">0xb0</span><span class="p">,</span> <span class="mh">0x99</span><span class="p">,</span> <span class="mh">0x92</span><span class="p">,</span> <span class="mh">0x82</span><span class="p">,</span> <span class="mh">0xf8</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0x90</span><span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">pickDigit</span><span class="p">(</span><span class="kt">int</span> <span class="n">digit</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="kt">int8_t</span> <span class="n">data</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">clearDisplay</span><span class="p">();</span>
+<span class="kt">void</span> <span class="nf">display</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>These codes are used to realize the function of number display of 4-Digit 7-Segment
+Displays. Refer to chapter 1.1.5 of the document for more details. Here, we use the
+codes to display countdown of traffic light time.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ledPin</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">colorState</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">lightup</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">HIGH</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">[</span><span class="n">colorState</span><span class="p">],</span><span class="n">LOW</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The codes are used to switch the LED on and off.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">greenLight</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">yellowLight</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">redLight</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">colorState</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">lightColor</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;Red&quot;</span><span class="p">,</span><span class="s">&quot;Green&quot;</span><span class="p">,</span><span class="s">&quot;Yellow&quot;</span><span class="p">};</span>
+<span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">timer</span><span class="p">(</span><span class="kt">int</span>  <span class="n">timer1</span><span class="p">){</span>       <span class="c1">//Timer function</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">timer1</span> <span class="o">==</span> <span class="n">SIGALRM</span><span class="p">){</span>
+        <span class="n">counter</span> <span class="o">--</span><span class="p">;</span>
+        <span class="n">alarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">counter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">colorState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">greenLight</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">colorState</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">yellowLight</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">colorState</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">redLight</span><span class="p">;</span>
+            <span class="n">colorState</span> <span class="o">=</span> <span class="p">(</span><span class="n">colorState</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">3</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;counter : %d </span><span class="se">\t</span><span class="s"> light color: %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">counter</span><span class="p">,</span><span class="n">lightColor</span><span class="p">[</span><span class="n">colorState</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The codes are used to switch the timer on and off. Refer to chapter
+1.1.5 for more details. Here, when the timer returns to zero, colorState
+will be switched so as to switch LED, and the timer will be assigned to
+a new value.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+    <span class="n">display</span><span class="p">();</span>
+    <span class="n">lightup</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//…</span>
+    <span class="n">signal</span><span class="p">(</span><span class="n">SIGALRM</span><span class="p">,</span><span class="n">timer</span><span class="p">);</span>
+    <span class="n">alarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">loop</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The timer is started in the main() function. In loop() function, use
+<strong>while(1)</strong> loop and call the functions of 4-Digit 7-Segment and LED.</p>
+</div>
+<div class="section" id="for-python-language-users">
+<h3><strong>For Python Language Users</strong><a class="headerlink" href="#for-python-language-users" title="Permalink to this headline">¶</a></h3>
+<p><strong>Step 2:</strong> Change directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Step 3:</strong> Run.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.7</span><span class="n">_TrafficLight</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>As the code runs, LEDs will simulate the color changing of traffic
+lights. Firstly, the red LED lights up for 60s, then the green LED
+lights up for 30s; next, the yellow LED lights up for 5s. After that,
+the red LED lights up for 60s once again. In this way, this series of
+actions will be executed repeatedly. Meanwhile, the 4-digit 7-segment
+display displays the countdown time continuously.</p>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SDI</span>   <span class="o">=</span> <span class="mi">24</span>      <span class="c1">#serial data input(DS)</span>
+<span class="n">RCLK</span>  <span class="o">=</span> <span class="mi">23</span>     <span class="c1">#memory clock input(STCP)</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="mi">18</span>      <span class="c1">#shift register clock input(SHCP)</span>
+<span class="n">number</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0xc0</span><span class="p">,</span><span class="mh">0xf9</span><span class="p">,</span><span class="mh">0xa4</span><span class="p">,</span><span class="mh">0xb0</span><span class="p">,</span><span class="mh">0x99</span><span class="p">,</span><span class="mh">0x92</span><span class="p">,</span><span class="mh">0x82</span><span class="p">,</span><span class="mh">0xf8</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0x90</span><span class="p">)</span>
+<span class="n">placePin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">17</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">clearDisplay</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pickDigit</span><span class="p">(</span><span class="n">digit</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">display</span><span class="p">():</span>
+</pre></div>
+</div>
+<p>These codes are used to realize the function of number display of
+4-Digit 7-Segment. Refer to chapter 1.1.5 of the document for more
+details. Here, we use the codes to display countdown of traffic light
+time.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ledPin</span> <span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">colorState</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">lightup</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">colorState</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ledPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ledPin</span><span class="p">[</span><span class="n">colorState</span><span class="p">],</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The codes are used to switch the LED on and off.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">greenLight</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">yellowLight</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">redLight</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">lightColor</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Red&quot;</span><span class="p">,</span><span class="s2">&quot;Green&quot;</span><span class="p">,</span><span class="s2">&quot;Yellow&quot;</span><span class="p">)</span>
+
+<span class="n">colorState</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">timer1</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">timer</span><span class="p">():</span>        <span class="c1">#timer function</span>
+    <span class="k">global</span> <span class="n">counter</span>
+    <span class="k">global</span> <span class="n">colorState</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">timer1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="n">timer</span><span class="p">)</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">counter</span><span class="o">-=</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">counter</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">colorState</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">counter</span><span class="o">=</span> <span class="n">greenLight</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">colorState</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">counter</span><span class="o">=</span><span class="n">yellowLight</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">colorState</span> <span class="ow">is</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">counter</span><span class="o">=</span><span class="n">redLight</span>
+        <span class="n">colorState</span><span class="o">=</span><span class="p">(</span><span class="n">colorState</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">3</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;counter : </span><span class="si">%d</span><span class="s2">    color: </span><span class="si">%s</span><span class="s2"> &quot;</span><span class="o">%</span><span class="p">(</span><span class="n">counter</span><span class="p">,</span><span class="n">lightColor</span><span class="p">[</span><span class="n">colorState</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>The codes are used to switch the timer on and off. Refer to chapter
+1.1.5 for more details. Here, when the timer returns to zero, colorState
+will be switched so as to switch LED, and the timer will be assigned to
+a new value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="c1"># ...</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">timer1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="n">timer</span><span class="p">)</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">()</span>
+        <span class="n">lightup</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>   <span class="c1"># When &quot;Ctrl+C&quot; is pressed, the function is executed.</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>      <span class="c1">#cancel the timer</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span> <span class="c1"># Program starting from here</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In setup() function, start the timer. In loop() function, a <code class="docutils literal notranslate"><span class="pre">while</span>
+<span class="pre">True</span></code> is used: call the relative functions of 4-Digit 7-Segment and LED
+circularly.</p>
+</div>
+</div>
+<div class="section" id="phenomenon-picture">
+<h2>Phenomenon Picture<a class="headerlink" href="#phenomenon-picture" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/image255.jpeg" class="align-center" src="_images/image255.jpeg" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="3.1.8_overheat_monitor.html" class="btn btn-neutral float-right" title="3.1.8 Overheat Monitor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="3.1.6_motion_control.html" class="btn btn-neutral float-left" title="3.1.6 Motion Control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, sunfounder.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

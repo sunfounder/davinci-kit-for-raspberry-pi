@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>3.1.6 Motion Control &mdash; SunFounder Da Vinci Kit  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://ezblock.cc/readDocFile/topHead.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="https://ezblock.cc/readDocFile/topHead.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3.1.7 Traffic Light" href="3.1.7_traffic_light.html" />
+    <link rel="prev" title="3.1.5 Battery Indicator" href="3.1.5_battery_indicator.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SunFounder Da Vinci Kit
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Component List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">GPIO Extension Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_output.html">1 Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_input.html">2 Input</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="3_extension.html">3 Extension</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="3.1.1_counting_device.html">3.1.1 Counting Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.2_welcome.html">3.1.2 Welcome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.3_reversing_alarm.html">3.1.3 Reversing Alarm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.4_smart_fan.html">3.1.4 Smart Fan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.5_battery_indicator.html">3.1.5 Battery Indicator</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.1.6 Motion Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction"><strong>Introduction</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components"><strong>Components</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic-diagram"><strong>Schematic Diagram</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#experimental-procedures"><strong>Experimental Procedures</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#for-c-language-users"><strong>For C Language Users</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-python-language-users"><strong>For Python Language Users</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#phenomenon-picture"><strong>Phenomenon Picture</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.7_traffic_light.html">3.1.7 Traffic Light</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.8_overheat_monitor.html">3.1.8 Overheat Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.9_password_lock.html">3.1.9 Password Lock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.10_alarm_bell.html">3.1.10 Alarm Bell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.11_morse_code_generator.html">3.1.11 Morse Code Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.12_game_guess_number.html">3.1.12 GAME– Guess Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.13_game_10_second.html">3.1.13 GAME– 10 Second</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.14_game_not_not.html">3.1.14 GAME– Not Not</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="iot/4_iot_projects.html">4 IOT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing/play_with_processing.html">Play with Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scratch/play_with_scratch.html">Play with Scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder Da Vinci Kit</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="3_extension.html">3 Extension</a> &raquo;</li>
+        
+      <li>3.1.6 Motion Control</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/3.1.6_motion_control.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="motion-control">
+<h1>3.1.6 Motion Control<a class="headerlink" href="#motion-control" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this lesson, we will make a simple motion sensing and controlling
+device. The MPU6050 is used as a sensor and the stepper motor as a
+controlled device. With the MPU6050 mounted on the glove, you can
+control the stepper motor by rotating your wrist.</p>
+</div>
+<div class="section" id="components">
+<h2><strong>Components</strong><a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/list_Motion_Control.png" class="align-center" src="_images/list_Motion_Control.png" />
+</div>
+<div class="section" id="schematic-diagram">
+<h2><strong>Schematic Diagram</strong><a class="headerlink" href="#schematic-diagram" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO23</p></td>
+<td><p>Pin 16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO24</p></td>
+<td><p>Pin 18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO25</p></td>
+<td><p>Pin 22</p></td>
+<td><p>6</p></td>
+<td><p>25</p></td>
+</tr>
+<tr class="row-even"><td><p>SDA1</p></td>
+<td><p>Pin 3</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>SCL1</p></td>
+<td><p>Pin 5</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/Schematic_three_one6.png" class="align-center" src="_images/Schematic_three_one6.png" />
+</div>
+<div class="section" id="experimental-procedures">
+<h2><strong>Experimental Procedures</strong><a class="headerlink" href="#experimental-procedures" title="Permalink to this headline">¶</a></h2>
+<p><strong>Step 1:</strong> Build the circuit.</p>
+<a class="reference internal image-reference" href="_images/image251.png"><img alt="3.1.6 Motion Control_bb" src="_images/image251.png" style="width: 6.84792in; height: 3.93194in;" /></a>
+<div class="section" id="for-c-language-users">
+<h3><strong>For C Language Users</strong><a class="headerlink" href="#for-c-language-users" title="Permalink to this headline">¶</a></h3>
+<p><strong>Step 2</strong>: Go to the folder of the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">3.1.6</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Step 3</strong>: Compile the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">3.1.6</span><span class="n">_MotionControl</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Step 4</strong>: Run the executable file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>As the code runs, if the tilt angle of <strong>mpu6050</strong> on the
+<a class="reference external" href="https://cn.bing.com/dict/search?q=Y&amp;FORM=BDVSP6&amp;mkt=zh-cn">Y</a>-<a class="reference external" href="https://cn.bing.com/dict/search?q=axis&amp;FORM=BDVSP6&amp;mkt=zh-cn">axis</a>
+is larger than <strong>45</strong> ℃, the stepper motor rotates anticlockwise; if
+less than <strong>-45</strong> ℃, the stepper motor rotates clockwise.</p>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="nf">mpu6050</span><span class="p">(){</span>
+    <span class="n">acclX</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3B</span><span class="p">);</span>
+    <span class="n">acclY</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3D</span><span class="p">);</span>
+    <span class="n">acclZ</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3F</span><span class="p">);</span>
+    <span class="n">acclX_scaled</span> <span class="o">=</span> <span class="n">acclX</span> <span class="o">/</span> <span class="mf">16384.0</span><span class="p">;</span>
+    <span class="n">acclY_scaled</span> <span class="o">=</span> <span class="n">acclY</span> <span class="o">/</span> <span class="mf">16384.0</span><span class="p">;</span>
+    <span class="n">acclZ_scaled</span> <span class="o">=</span> <span class="n">acclZ</span> <span class="o">/</span> <span class="mf">16384.0</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">angle</span><span class="o">=</span><span class="n">get_y_rotation</span><span class="p">(</span><span class="n">acclX_scaled</span><span class="p">,</span> <span class="n">acclY_scaled</span><span class="p">,</span> <span class="n">acclZ_scaled</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">angle</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>mpu6050 gets the tilt angle in the direction of the Y-axis.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">rotary</span><span class="p">(</span><span class="kt">char</span> <span class="n">direction</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="sc">&#39;c&#39;</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&gt;&gt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">));}</span>
+            <span class="n">delayMicroseconds</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span><span class="sc">&#39;a&#39;</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&lt;&lt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">));}</span>
+            <span class="n">delayMicroseconds</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the received direction <strong>key</strong> is ‘<strong>c</strong>’, the stepper motor
+rotates clockwise; if the <strong>key</strong> is ‘<strong>a</strong>’, the motor rotates
+anticlockwise. Refer to <strong>1.3.3 Stepper Motor</strong> for more details about
+the calculation of the rotating direction of the stepper motor.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">setup</span><span class="p">();</span>
+    <span class="kt">double</span> <span class="n">angle</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">mpu6050</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">angle</span> <span class="o">&gt;=</span><span class="mi">45</span><span class="p">){</span><span class="n">rotary</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="p">);}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">angle</span><span class="o">&lt;=</span><span class="mi">-45</span><span class="p">){</span><span class="n">rotary</span><span class="p">(</span><span class="sc">&#39;c&#39;</span><span class="p">);}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The tilt angle in the direction of the Y-axis is read from <strong>mpu6050</strong>,
+and if it’s larger than <strong>45</strong>℃, the stepper motor rotates
+anticlockwise; if less than <strong>-45</strong> ℃, the stepper motor rotates
+clockwise.</p>
+</div>
+<div class="section" id="for-python-language-users">
+<h3><strong>For Python Language Users</strong><a class="headerlink" href="#for-python-language-users" title="Permalink to this headline">¶</a></h3>
+<p><strong>Step 2</strong>: Go to the folder of the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Step 3</strong>: Run the executable file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.6</span><span class="n">_MotionControl</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>As the code runs, if the tilt angle of <strong>mpu6050</strong> on the
+<a class="reference external" href="https://cn.bing.com/dict/search?q=Y&amp;FORM=BDVSP6&amp;mkt=zh-cn">Y</a><strong>-</strong><a class="reference external" href="https://cn.bing.com/dict/search?q=axis&amp;FORM=BDVSP6&amp;mkt=zh-cn">axis</a>
+is larger than <strong>45</strong> ℃, the stepper motor rotates anticlockwise; if
+less than <strong>-45</strong> ℃, the stepper motor rotates clockwise.</p>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mpu6050</span><span class="p">():</span>
+    <span class="n">accel_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3b</span><span class="p">)</span>
+    <span class="n">accel_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3d</span><span class="p">)</span>
+    <span class="n">accel_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3f</span><span class="p">)</span>
+    <span class="n">accel_xout_scaled</span> <span class="o">=</span> <span class="n">accel_xout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_yout_scaled</span> <span class="o">=</span> <span class="n">accel_yout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_zout_scaled</span> <span class="o">=</span> <span class="n">accel_zout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">angle</span><span class="o">=</span><span class="n">get_y_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">angle</span>
+</pre></div>
+</div>
+<p>mpu6050 gets the tilt angle in the direction of the Y-axis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rotary</span><span class="p">(</span><span class="n">direction</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&gt;&gt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+
+    <span class="k">elif</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&lt;&lt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the received direction <strong>key</strong> is ‘<strong>c</strong>’, the stepper motor
+rotates clockwise; if the <strong>key</strong> is ‘<strong>a</strong>’, the motor rotates
+anticlockwise. Refer to <strong>1.3.3 Stepper Motor</strong> for more details about
+the calculation of the rotating direction of the stepper motor.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">angle</span><span class="o">=</span><span class="n">mpu6050</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">angle</span> <span class="o">&gt;=</span><span class="mi">45</span> <span class="p">:</span>
+            <span class="n">rotary</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">angle</span> <span class="o">&lt;=-</span><span class="mi">45</span><span class="p">:</span>
+            <span class="n">rotary</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The tilt angle in the direction of the <strong>Y-axis</strong> is read from
+<strong>mpu6050</strong>, and if it’s larger than <strong>45</strong>℃, rotary() is called to
+let the stepper motor rotate anticlockwise; if less than <strong>-45</strong> ℃, the
+stepper motor rotates clockwise.</p>
+</div>
+</div>
+<div class="section" id="phenomenon-picture">
+<h2><strong>Phenomenon Picture</strong><a class="headerlink" href="#phenomenon-picture" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/image252.jpeg" class="align-center" src="_images/image252.jpeg" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="3.1.7_traffic_light.html" class="btn btn-neutral float-right" title="3.1.7 Traffic Light" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="3.1.5_battery_indicator.html" class="btn btn-neutral float-left" title="3.1.5 Battery Indicator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, sunfounder.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

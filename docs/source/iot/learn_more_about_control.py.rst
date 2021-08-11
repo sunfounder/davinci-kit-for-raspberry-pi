@@ -9,7 +9,11 @@ In order to better understand the projects that follow, let's take a look at the
 
 Open the ``control.py`` file.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cd cloud4rpi-raspberrypi-python
     sudo nano control.py

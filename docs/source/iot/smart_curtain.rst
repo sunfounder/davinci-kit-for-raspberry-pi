@@ -18,7 +18,11 @@ Build the circuit.
 
 Open the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cd /home/pi/cloud4rpi-raspberrypi-python
     sudo nano smart_curtain.py
@@ -31,7 +35,11 @@ Find the line below and fill in the correct device token.
 
 Run the code.
 
-.. code-block:: shell
+.. raw:: html
+
+    <run></run>
+ 
+.. code-block:: 
 
     sudo python3 smart_curtain.py
 
@@ -65,8 +73,8 @@ Read the value of channel CH0 (with photoresistor connected) of the ADC0834. If 
 .. code-block:: python
 
     'CPU Temp': {
-            'type': 'numeric',
-            'bind': getValue
-        },
+        'type': 'numeric',
+        'bind': getValue
+    },
 
 Pass ``getValue()`` into the ``'bind'`` key as a callback function, so that the brightness value (the return value of the ``getValue()`` function) can be sent to the Text widget.

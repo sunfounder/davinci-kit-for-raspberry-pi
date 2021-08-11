@@ -78,17 +78,29 @@ For C Language Users
 ^^^^^^^^^^^^^^^^^^^^^^^^
 Step 2: Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/c/1.1.5/
 
 Step 3: Compile the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 1.1.5_4-Digit.c -lwiringPi
 
 Step 4: Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -309,11 +321,19 @@ For Python Language Users
 
 Step 2: Go to the folder of the code. 
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/python/
 
 Step 3: Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -323,7 +343,15 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
 
 **Code**
 
-.. code-block:: python
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
 
     import RPi.GPIO as GPIO
     import time
@@ -360,6 +388,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
             GPIO.output(i,GPIO.LOW)
         GPIO.output(placePin[digit], GPIO.HIGH)
 
+
     def timer():  
         global counter
         global timer1
@@ -368,13 +397,14 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
         counter += 1
         print("%d" % counter)
 
+
     def loop():
         global counter                    
         while True:
             clearDisplay() 
             pickDigit(0)  
             hc595_shift(number[counter % 10])
-
+            
             clearDisplay()
             pickDigit(1)
             hc595_shift(number[counter % 100//10])
@@ -386,6 +416,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
             clearDisplay()
             pickDigit(3)
             hc595_shift(number[counter % 10000//1000])
+
 
     def setup():
         GPIO.setmode(GPIO.BCM)
@@ -403,7 +434,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
         GPIO.cleanup()
         timer1.cancel()  # cancel the timer
 
-    if __name__ == '__main__':  
+    if __name__ == '__main__':  # Program starting from here
         setup()
         try:
             loop()

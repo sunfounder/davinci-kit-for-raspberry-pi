@@ -51,17 +51,29 @@ Experimental Procedures
 
 **Step 2:** Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.5/
 
 **Step 3:** Compile the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     gcc 3.1.5_BatteryIndicator.c -lwiringPi
 
 **Step 4:** Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
@@ -127,11 +139,19 @@ there are 6 LEDs turning on.”
 
 **Step 2:** Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/python/
 
 **Step 3:** Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -141,6 +161,52 @@ After the program runs, give the 3rd pin of ADC0834 and the GND a
 lead-out wire separately and then lead them to the two poles of a
 battery separately. You can see the corresponding LED on the LED
 Bargraph is lit up to display the power level (measuring range: 0-5V).
+
+**Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    import RPi.GPIO as GPIO
+    import ADC0834
+    import time
+
+    ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)
+        ADC0834.setup()
+        for i in ledPins:
+            GPIO.setup(i, GPIO.OUT)
+            GPIO.output(i, GPIO.HIGH)
+
+    def LedBarGraph(value):
+        for i in ledPins:
+            GPIO.output(i,GPIO.HIGH)
+        for i in range(value):
+            GPIO.output(ledPins[i],GPIO.LOW)
+
+    def destroy():
+        GPIO.cleanup()
+
+    def loop():
+        while True:
+            analogVal = ADC0834.getResult()
+            LedBarGraph(int(analogVal/25))
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+            destroy()
 
 **Code Explanation**
 
@@ -173,7 +239,8 @@ The **10** LEDs on the LED Bargraph are used to display the
 increases, one more LED turns on, ex., if “analogVal=150 (about 3V),
 there are 6 LEDs turning on.”
 
-**Phenomenon Picture**
+Phenomenon Picture
+----------------------
 
 .. image:: media/image249.jpeg
    :align: center

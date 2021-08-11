@@ -5,7 +5,7 @@ What is Processing？
 ---------------------------
 
 Processing is a simple programming environment that was created to make it easier to develop visually oriented applications with an emphasis on animation and providing users with instant feedback through interaction. 
-The developers wanted a means to “sketch” ideas in code. 
+The developers wanted a means to \"sketch\" ideas in code. 
 As its capabilities have expanded over the past decade, Processing has come to be used for more advanced production-level work in addition to its sketching role. 
 Originally built as a domain-specific extension to Java targeted towards artists and designers, Processing has evolved into a full-blown design and prototyping tool used for large-scale installation work, motion graphics, and complex data visualization.
 
@@ -22,6 +22,10 @@ Install the Processing
     Before you can use Processing, you need to access the Raspberry Pi desktop remotely (:ref:`Remote Desktop`) or connect a display for the Raspberry Pi.
 
 Run the following command in Terminal to install Processing.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 

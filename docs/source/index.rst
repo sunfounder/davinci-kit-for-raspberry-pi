@@ -33,7 +33,7 @@ Here is the Email: cs@sunfounder.com.
     iot/4_iot_projects
     processing/play_with_processing
     scratch/play_with_scratch
-    appendix
+    appendix/appendix
 
 
 

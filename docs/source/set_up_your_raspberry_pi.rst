@@ -142,8 +142,8 @@ the IP address, there prompts a security reminder. Just click **Yes**.
 
 **Step 4**
 
-When the PuTTY window prompts “\ **login as:”**, type in
-“\ **pi”**\ (the user name of the RPi), and **password: “**\ raspberry”
+When the PuTTY window prompts \"**login as:**\", type in
+\"**pi**\" (the user name of the RPi), and password: \"**raspberry**\"
 (the default one, if you haven't changed it).
 
 .. note::

@@ -82,7 +82,8 @@ the motor’s rotation direction.
 .. image:: media/image336.png
 
 
-**Experimental Procedures**
+Experimental Procedures
+--------------------------
 
 **Step 1:** Build the circuit.
 
@@ -102,17 +103,29 @@ For C Language Users
 
 **Step 2**: Get into the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+    
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/c/1.3.1/
 
 **Step 3**: Compile.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 1.3.1_Motor.c -lwiringPi
 
 **Step 4**: Run the executable file above.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -220,11 +233,19 @@ For Python Language Users
 
 **Step 2**: Get into the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/python
 
 **Step 3**: Run.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -236,83 +257,139 @@ for 5s. This series of actions will be executed repeatedly.
 
 **Code**
 
-.. code-block:: python
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
 
     import RPi.GPIO as GPIO
     import time
 
-    # Set up pins
-    MotorPin1   = 17
-    MotorPin2   = 27
-    MotorEnable = 22
+    dhtPin = 17
 
-    def setup():
-        # Set the GPIO modes to BCM Numbering
-        GPIO.setmode(GPIO.BCM)
-        # Set pins to output
-        GPIO.setup(MotorPin1, GPIO.OUT)
-        GPIO.setup(MotorPin2, GPIO.OUT)
-        GPIO.setup(MotorEnable, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setmode(GPIO.BCM)
 
-    # Define a motor function to spin the motor
-    # direction should be
-    # 1(clockwise), 0(stop), -1(counterclockwise)
-    def motor(direction):
-        # Clockwise
-        if direction == 1:
-            # Set direction
-            GPIO.output(MotorPin1, GPIO.HIGH)
-            GPIO.output(MotorPin2, GPIO.LOW)
-            # Enable the motor
-            GPIO.output(MotorEnable, GPIO.HIGH)
-            print ("Clockwise")
-        # Counterclockwise
-        if direction == -1:
-            # Set direction
-            GPIO.output(MotorPin1, GPIO.LOW)
-            GPIO.output(MotorPin2, GPIO.HIGH)
-            # Enable the motor
-            GPIO.output(MotorEnable, GPIO.HIGH)
-            print ("Counterclockwise")
-        # Stop
-        if direction == 0:
-            # Disable the motor
-            GPIO.output(MotorEnable, GPIO.LOW)
-            print ("Stop")
+    MAX_UNCHANGE_COUNT = 100
+
+    STATE_INIT_PULL_DOWN = 1
+    STATE_INIT_PULL_UP = 2
+    STATE_DATA_FIRST_PULL_DOWN = 3
+    STATE_DATA_PULL_UP = 4
+    STATE_DATA_PULL_DOWN = 5
+
+    def readDht11():
+        GPIO.setup(dhtPin, GPIO.OUT)
+        GPIO.output(dhtPin, GPIO.HIGH)
+        time.sleep(0.05)
+        GPIO.output(dhtPin, GPIO.LOW)
+        time.sleep(0.02)
+        GPIO.setup(dhtPin, GPIO.IN, GPIO.PUD_UP)
+
+        unchanged_count = 0
+        last = -1
+        data = []
+        while True:
+            current = GPIO.input(dhtPin)
+            data.append(current)
+            if last != current:
+                unchanged_count = 0
+                last = current
+            else:
+                unchanged_count += 1
+                if unchanged_count > MAX_UNCHANGE_COUNT:
+                    break
+
+        state = STATE_INIT_PULL_DOWN
+
+        lengths = []
+        current_length = 0
+
+        for current in data:
+            current_length += 1
+
+            if state == STATE_INIT_PULL_DOWN:
+                if current == GPIO.LOW:
+                    state = STATE_INIT_PULL_UP
+                else:
+                    continue
+            if state == STATE_INIT_PULL_UP:
+                if current == GPIO.HIGH:
+                    state = STATE_DATA_FIRST_PULL_DOWN
+                else:
+                    continue
+            if state == STATE_DATA_FIRST_PULL_DOWN:
+                if current == GPIO.LOW:
+                    state = STATE_DATA_PULL_UP
+                else:
+                    continue
+            if state == STATE_DATA_PULL_UP:
+                if current == GPIO.HIGH:
+                    current_length = 0
+                    state = STATE_DATA_PULL_DOWN
+                else:
+                    continue
+            if state == STATE_DATA_PULL_DOWN:
+                if current == GPIO.LOW:
+                    lengths.append(current_length)
+                    state = STATE_DATA_PULL_UP
+                else:
+                    continue
+        if len(lengths) != 40:
+            #print ("Data not good, skip")
+            return False
+
+        shortest_pull_up = min(lengths)
+        longest_pull_up = max(lengths)
+        halfway = (longest_pull_up + shortest_pull_up) / 2
+        bits = []
+        the_bytes = []
+        byte = 0
+
+        for length in lengths:
+            bit = 0
+            if length > halfway:
+                bit = 1
+            bits.append(bit)
+        #print ("bits: %s, length: %d" % (bits, len(bits)))
+        for i in range(0, len(bits)):
+            byte = byte << 1
+            if (bits[i]):
+                byte = byte | 1
+            else:
+                byte = byte | 0
+            if ((i + 1) % 8 == 0):
+                the_bytes.append(byte)
+                byte = 0
+        #print (the_bytes)
+        checksum = (the_bytes[0] + the_bytes[1] + the_bytes[2] + the_bytes[3]) & 0xFF
+        if the_bytes[4] != checksum:
+            #print ("Data not good, skip")
+            return False
+
+        return the_bytes[0], the_bytes[2]
 
     def main():
-        # Define a dictionary to make the script more readable
-        # CW as clockwise, CCW as counterclockwise, STOP as stop
-        directions = {'CW': 1, 'CCW': -1, 'STOP': 0}
+
         while True:
-            # Clockwise
-            motor(directions['CW'])
-            time.sleep(5)
-            # Stop
-            motor(directions['STOP'])
-            time.sleep(5)
-            # Anticlockwise
-            motor(directions['CCW'])
-            time.sleep(5)
-            # Stop
-            motor(directions['STOP'])
-            time.sleep(5)
+            result = readDht11()
+            if result:
+                humidity, temperature = result
+                print ("humidity: %s %%,  Temperature: %s C`" % (humidity, temperature))
+            time.sleep(1)
 
     def destroy():
-        # Stop the motor
-        GPIO.output(MotorEnable, GPIO.LOW)
-        # Release resource
-        GPIO.cleanup()   
+        GPIO.cleanup()
 
-    # If run this script directly, do:
     if __name__ == '__main__':
-        setup()
         try:
             main()
-        # When 'Ctrl+C' is pressed, the program
-        # destroy() will be executed.
         except KeyboardInterrupt:
-            destroy()
+            destroy() 
 
 **Code Explanation**
 

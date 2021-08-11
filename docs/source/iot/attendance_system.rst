@@ -15,7 +15,11 @@ Build the circuit.
 
 Open the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cd /home/pi/cloud4rpi-raspberrypi-python
     sudo nano attendance_system.py
@@ -28,7 +32,11 @@ Find the line below and fill in the correct device token.
 
 Run the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo python3 attendance_system.py
 
@@ -46,7 +54,11 @@ Also you can find the ``.csv`` file with the date under the path ``/home/pi/clou
 
 Open it with the following command.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo nano attendance_sheet.2021.06.28.csv
 

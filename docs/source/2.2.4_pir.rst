@@ -44,8 +44,8 @@ the wind can also interfere with the sensor.
 .. image:: media/image212.png
 
 
-Distance Adjustment
---------------------
+**Distance Adjustment**
+
 
 Turning the knob of the distance adjustment potentiometer clockwise, the
 range of sensing distance increases, and the maximum sensing distance
@@ -53,8 +53,8 @@ range is about 0-7 meters. If turn it anticlockwise, the range of
 sensing distance is reduced, and the minimum sensing distance range is
 about 0-3 meters.
 
-Delay adjustment
-----------------
+**Delay adjustment**
+
 
 Rotate the knob of the delay adjustment potentiometer clockwise, you
 can also see the sensing delay increasing. The maximum of the sensing
@@ -68,7 +68,7 @@ Two trigger modes: (choosing different modes by using the jumper cap).
    somebody enters the sensing range,the output will keep being the high
    level.
 
--  **L**\ ：\ **Non-repeatable trigger mode**, outputs high level when
+-  **L:** **Non-repeatable trigger mode**, outputs high level when
    it senses the human body. After the delay, the output will change
    from high level into low level automatically. 
 
@@ -91,17 +91,29 @@ For C Language Users
 
 **Step 2:** Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/c/2.2.4/
 
 **Step 3:** Compile the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 2.2.4_PIR.c -lwiringPi
 
 **Step 4:** Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -166,7 +178,7 @@ need to try to adjust these two potentiometers.
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
 These codes are used to set the color of the RGB LED, and please refer
-to **1.1.2-RGB LED** for more details.
+to :ref:`1.1.2 RGB LED` for more details.
 
 .. code-block:: c
 
@@ -195,11 +207,19 @@ For Python Language Users
 
 **Step 2:** Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/python/
 
 **Step 3:** Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -213,7 +233,15 @@ need to try to adjust these two potentiometers.
 
 **Code**
 
-.. code-block:: python
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
 
     import RPi.GPIO as GPIO
     import time
@@ -223,7 +251,7 @@ need to try to adjust these two potentiometers.
 
     def setup():
         global p_R, p_G, p_B
-        GPIO.setmode(GPIO.BCM)      # Set the GPIO modes to BCM Numbering
+        GPIO.setmode(GPIO.BCM)		# Set the GPIO modes to BCM Numbering
         GPIO.setup(pirPin, GPIO.IN)    # Set pirPin to input
         # Set all LedPin's mode to output and initial level to High(3.3v)
         for i in rgbPins:
@@ -259,7 +287,7 @@ need to try to adjust these two potentiometers.
         p_R.ChangeDutyCycle(R_val)
         p_G.ChangeDutyCycle(G_val)
         p_B.ChangeDutyCycle(B_val)
-        #print ("color_msg: R_val = %s, G_val = %s, B_val = %s"%(R_val, G_val, B_val))
+        #print ("color_msg: R_val = %s,	G_val = %s,	B_val = %s"%(R_val, G_val, B_val))
 
     def loop():
         while True:
@@ -308,7 +336,7 @@ need to try to adjust these two potentiometers.
     ...
 
 These codes are used to set the color of the RGB LED, and please refer
-to **1.1.2-RGB LED** for more details.
+to :ref:`1.1.2 RGB LED` for more details.
 
 .. code-block:: python
 

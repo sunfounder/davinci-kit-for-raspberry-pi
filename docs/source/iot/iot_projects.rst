@@ -7,7 +7,11 @@ Before starting the project, you should have downloaded the code we provided (:r
 
 Then copy the codes from the ``iot`` folder to the ``cloud4rpi-raspberrypi-python`` folder.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cp -r /home/pi/davinci-kit-for-raspberry-pi/iot/* /home/pi/cloud4rpi-raspberrypi-python
 

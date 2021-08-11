@@ -1,19 +1,19 @@
 3.1.4 Smart Fan
 ~~~~~~~~~~~~~~~
 
-**Introduction**
+Introduction
 -----------------
 
 In this course, we will use motors, buttons and thermistors to make a
 manual + automatic smart fan whose wind speed is adjustable.
 
-**Components**
+Components
 ------------------
 
 .. image:: media/list_Smart_Fan.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 ------------------------
 
 ============ ======== ======== ===
@@ -30,7 +30,7 @@ GPIO13       Pin 33   23       13
 .. image:: media/Schematic_three_one4.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 -----------------------------
 
 **Step 1:** Build the circuit.
@@ -56,17 +56,29 @@ GPIO13       Pin 33   23       13
 
 **Step 2**: Get into the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.4/
 
 **Step 3**: Compile.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     gcc 3.1.4_SmartFan.c -lwiringPi -lm
 
 **Step 4**: Run the executable file above.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
@@ -98,7 +110,7 @@ automatically gets 1-grade faster or slower.
     }
 
 Temperture() works by converting thermistor values read by ADC0834 into
-temperature values. Refer to **2.2.2 Thermistor** for more details.
+temperature values. Refer to :ref:`2.2.2 Thermistor` for more details.
 
 .. code-block:: c
 
@@ -169,11 +181,19 @@ The function **main()** contains the whole program process as shown:
 
 **Step 2**: Get into the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     cd /home/pi/davinci-kit-for-raspberry-pi/python
 
 **Step 3**: Run.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
@@ -186,6 +206,98 @@ press the button, the fan stops working with a **0** wind speed.
 
 Once the temperature goes up or down for more than 2℃, the speed
 automatically gets 1-grade faster or slower.
+
+**Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    import RPi.GPIO as GPIO
+    import time
+    import ADC0834
+    import math
+
+    # Set up pins
+    MotorPin1   = 5
+    MotorPin2   = 6
+    MotorEnable = 13
+    BtnPin  = 22
+
+
+    def setup():
+        global p_M1,p_M2
+        ADC0834.setup()
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(MotorPin1, GPIO.OUT)
+        GPIO.setup(MotorPin2, GPIO.OUT)
+        p_M1=GPIO.PWM(MotorPin1,2000)
+        p_M2=GPIO.PWM(MotorPin2,2000)
+        p_M1.start(0)
+        p_M2.start(0)
+        GPIO.setup(MotorEnable, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(BtnPin, GPIO.IN)
+
+    def temperature():
+        analogVal = ADC0834.getResult()
+        Vr = 5 * float(analogVal) / 255
+        Rt = 10000 * Vr / (5 - Vr)
+        temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
+        Cel = temp - 273.15
+        Fah = Cel * 1.8 + 32
+        return Cel
+
+    def motor(level):
+        if level == 0:
+            GPIO.output(MotorEnable, GPIO.LOW)
+            return 0
+        if level>=4:
+            level = 4
+        GPIO.output(MotorEnable, GPIO.HIGH)
+        p_M1.ChangeDutyCycle(level*25)
+        return level
+
+
+    def main():
+        lastState=0
+        level=0
+        markTemp = temperature()
+        while True:
+            currentState =GPIO.input(BtnPin)
+            currentTemp=temperature()
+            if currentState == 1 and lastState == 0:
+                level=(level+1)%5
+                markTemp = currentTemp
+                time.sleep(0.5)
+            lastState=currentState
+            if level!=0:
+                if currentTemp-markTemp <= -2:
+                    level = level -1
+                    markTemp=currentTemp            
+                if currentTemp-markTemp >= 2:
+                    level = level +1
+                    markTemp=currentTemp             
+            level = motor(level)
+            
+
+    def destroy():
+        GPIO.output(MotorEnable, GPIO.LOW)
+        p_M1.stop()
+        p_M2.stop()
+        GPIO.cleanup()    
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
 
 **Code Explanation**
 
@@ -201,7 +313,7 @@ automatically gets 1-grade faster or slower.
         return Cel
 
 temperture() works by converting thermistor values read by **ADC0834**
-into temperature values. Refer to **2.2.2 Thermistor** for more details.
+into temperature values. Refer to :ref:`2.2.2 Thermistor` for more details.
 
 .. code-block:: python
 
@@ -256,7 +368,7 @@ The function **main()** contains the whole program process as shown:
 
 4) The motor changes the rotating speed with the **Level**.
 
-**Phenomenon Picture**
+Phenomenon Picture
 ------------------------
 
 .. image:: media/image246.png

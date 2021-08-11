@@ -1,7 +1,7 @@
 3.1.14 GAME– Not Not
 ~~~~~~~~~~~~~~~~~~~~
 
-**Introduction**
+Introduction
 --------------------
 
 In this lesson, we will make an interesting game device, and we call it "Not Not".
@@ -10,13 +10,13 @@ During the game, the dot matrix will refresh an arrow randomly. What you need to
 
 This game can really practice your reverse thinking, and now shall we have a try?
 
-**Components**
+Components
 ---------------
 
 .. image:: media/list_GAME_Not_Not.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 -----------------------
 
 ============ ======== ======== ===
@@ -31,7 +31,7 @@ GPIO26       Pin 37   25       26
 .. image:: media/Schematic_three_one14.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 -----------------------------
 
 **Step 1:** Build the circuit.
@@ -41,19 +41,31 @@ GPIO26       Pin 37   25       26
 **For C Language Users**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 5:** Go to the folder of code.
+**Step 2:** Go to the folder of code.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.14/
 
-**Step 6**: Compile.
+**Step 3**: Compile.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
     gcc 3.1.14_GAME_NotNot.c -lwiringPi
 
-**Step 7**: Run.
+**Step 4**: Run.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -72,7 +84,7 @@ increase the difficulty of the game.
 
 Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to
 make an amusing game device. So, if you are not very familiar with the
-dot matrix, please refer to **1.1.6 LED Dot Matrix**.
+dot matrix, please refer to :ref:`1.1.6 LED Dot Matrix`.
 
 The whole program process is as below:
 
@@ -273,13 +285,21 @@ check the button state; if under CHECK mode, what is displayed is
 **For Python Language Users**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 5**: Get into the folder of code.
+**Step 2**: Get into the folder of code.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/python
 
-**Step 6**: Run.
+**Step 3**: Run.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -294,11 +314,130 @@ the dot matrix displays “x”. You can also add 2 new buttons or replace
 them with Joystick keys for up, down, left and right— 4 directions to
 increase the difficulty of the game.
 
+**Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    import RPi.GPIO as GPIO
+    import time
+    import threading
+    import random
+
+    SDI   = 17
+    RCLK  = 18
+    SRCLK = 27
+
+    timerPlay = 0
+    timerCheck = 0
+
+    AButtonPin = 20
+    BButtonPin = 26
+
+    waypoint = "NULL"
+    stage = "NULL"
+
+    arrow={
+        #"down" :[0xFF,0xEF,0xC7,0xAB,0xEF,0xEF,0xEF,0xFF],
+        #"up":[0xFF,0xEF,0xEF,0xEF,0xAB,0xC7,0xEF,0xFF],
+        "right" : [0xFF,0xEF,0xDF,0x81,0xDF,0xEF,0xFF,0xFF],    
+        "left":[0xFF,0xF7,0xFB,0x81,0xFB,0xF7,0xFF,0xFF]
+    }
+    check={
+        "wrong":[0xFF,0xBB,0xD7,0xEF,0xD7,0xBB,0xFF,0xFF],
+        "right":[0xFF,0xFF,0xF7,0xEB,0xDF,0xBF,0xFF,0xFF]
+    }
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)    # Number GPIOs by its BCM location
+        GPIO.setup(SDI, GPIO.OUT)
+        GPIO.setup(RCLK, GPIO.OUT)
+        GPIO.setup(SRCLK, GPIO.OUT)
+        GPIO.output(SDI, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.LOW)
+        GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.setup(AButtonPin,GPIO.IN)
+        GPIO.setup(BButtonPin,GPIO.IN)    
+    
+    # Shift the data to 74HC595
+    def hc595_shift(dat):
+        for bit in range(0, 8): 
+            GPIO.output(SDI, 0x80 & (dat << bit))
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+
+    def display(glyphCode):
+        for i in range(0, 8):
+            hc595_shift(glyphCode[i])
+            hc595_shift(0x80>>i)
+            GPIO.output(RCLK, GPIO.HIGH)
+            GPIO.output(RCLK, GPIO.LOW)
+
+    def creatGlyph():
+        global waypoint
+        global stage
+        global timerPlay    
+        waypoint=random.choice(list(arrow.keys()))
+        stage = "PLAY"
+        timerPlay = threading.Timer(2.0, timeOut)  
+        timerPlay.start()  
+
+    def checkPoint(inputKey):
+        global waypoint
+        global stage
+        global timerCheck    
+        if inputKey == "empty" or inputKey == waypoint:
+            waypoint = "wrong"
+        else:
+            waypoint = "right"
+        timerPlay.cancel()
+        stage = "CHECK"
+        timerCheck = threading.Timer(1.0, creatGlyph)
+        timerCheck.start()  
+
+    def timeOut():  
+        checkPoint("empty")
+
+    def getKey():
+        if GPIO.input(AButtonPin)==1 and GPIO.input(BButtonPin)==0:
+            checkPoint("right")
+        elif GPIO.input(AButtonPin)==0 and GPIO.input(BButtonPin)==1:
+            checkPoint("left")
+        
+    def main():
+        creatGlyph()
+        while True:
+            if stage == "PLAY":
+                display(arrow[waypoint])
+                getKey()
+            elif stage == "CHECK":
+                display(check[waypoint])
+
+    def destroy():
+        global timer1
+        GPIO.cleanup()
+        timerPlay.cancel()  # cancel the timer
+        timerCheck.cancel()
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
+
 **Code Explanation**
 
 Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to
 make an amusing game device. So, if you are not very familiar with the
-dot matrix, please refer to **1.1.6 LED Dot Matrix**.
+dot matrix, please refer to :ref:`1.1.6 LED Dot Matrix`.
 
 The whole program process is as below:
 
@@ -440,7 +579,7 @@ getKey() reads the state of these two buttons, and if the right button
 is pressed, the parameter of checkPoint() is **right**; if the left
 button is pressed, the parameter is **left**.
 
-**Phenomenon Picture**
+Phenomenon Picture
 ------------------------
 
 .. image:: media/image281.jpeg

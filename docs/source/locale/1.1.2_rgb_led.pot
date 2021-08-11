@@ -1,0 +1,265 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, sunfounder
+# This file is distributed under the same license as the SunFounder Da Vinci Kit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SunFounder Da Vinci Kit \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-06 17:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../1.1.2_rgb_led.rst:2
+msgid "1.1.2 RGB LED"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:5
+msgid "Introduction"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:7
+msgid "In this lesson, we will use it to control an RGB LED to flash various kinds of colors."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:11
+msgid "Components"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:17
+msgid "Principle"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:19
+msgid "**PWM**"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:21
+msgid "Pulse Width Modulation, or PWM, is a technique for getting analog results with digital means. Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between full on (5 Volts) and off (0 Volts) by changing the portion of the time the signal spends on versus the time that the signal spends off. The duration of \"on time\" is called pulse width. To get varying analog values, you change, or modulate, that width. If you repeat this on-off pattern fast enough with some device, an LED for example, the result would be like this: the signal is a steady voltage between 0 and 5v controlling the brightness of the LED."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:32
+msgid "**Duty Cycle**"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:34
+msgid "A duty cycle is the percentage of one period in which a signal is active. A period is the time it takes for a signal to complete an on-and-off cycle. As a formula, a duty cycle may be expressed as:"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:43
+msgid "Where **D** is the duty cycle, **T** is the time the signal is active, and **P** is the total period of the signal. Thus, a 60% duty cycle means the signal is on 60% of the time but off 40% of the time. The \"on time\" for a 60% duty cycle could be a fraction of a second, a day, or even a week, depending on the length of the period."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:54
+msgid "**RGB LED**"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:59
+msgid "The three primary colors of the RGB LED can be mixed into various colors by brightness. The brightness of LED can be adjusted with PWM. Raspberry Pi has only one channel for hardware PWM output, but it needs three channels to control the RGB LED, which means it is difficult to control the RGB LED with the hardware PWM of Raspberry Pi. Fortunately, the softPwm library simulates PWM (softPwm) by programming. You only need to include the header file softPwm.h (for C language users), and then call the API it provides to easily control the RGB LED by multi-channel PWM output, so as to display all kinds of color."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:70
+msgid "Schematic Diagram"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:72
+msgid "After connecting the pins of R, G, and B to a current limiting resistor, connect them to the GPIO17, GPIO18, and GPIO27 respectively. The longest pin (GND) of the LED connects to the GND of the Raspberry Pi. When the three pins are given different PWM values, the RGB LED will display different colors."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:79
+msgid "T-Board Name"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:79
+msgid "physical"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:79
+msgid "wiringPi"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:79
+msgid "BCM"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:80
+msgid "GPIO17"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:80
+msgid "Pin 11"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:80
+msgid "0"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:80
+msgid "17"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:81
+msgid "GPIO18"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:81
+msgid "Pin 12"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:81
+msgid "1"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:81
+msgid "18"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:82
+msgid "GPIO27"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:82
+msgid "Pin 13"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:82
+msgid "2"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:82
+msgid "27"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:88
+msgid "Experimental Procedures"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:90
+msgid "**Step 1:** Build the circuit."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:97
+msgid "For C Language Users"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:99
+msgid "**Step 2:** Go to the folder of the code."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:109
+msgid "**Step 3:** Compile the code."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:121
+msgid "When the instruction \"gcc\" is executed, if \"-o \" is not called, then the executable file is named \"a.out\"."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:123
+msgid "**Step 4:** Run the executable file."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:134
+#: ../1.1.2_rgb_led.rst:277
+msgid "After the code runs, you will see that RGB displays red, green, blue, yellow, pink, and cyan."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:138
+#: ../1.1.2_rgb_led.rst:280
+msgid "**Code**"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:193
+#: ../1.1.2_rgb_led.rst:373
+msgid "**Code Explanation**"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:199
+msgid "Library used for realizing the pwm function of the software."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:209
+msgid "The function is to use software to create a PWM pin, set its period between 0x100us-100x100us."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:212
+msgid "The prototype of the function softPwmCreate(LedPinRed, 0, 100) is as follows:"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:219
+#: ../1.1.2_rgb_led.rst:242
+msgid "**Parameter pin:** Any GPIO pin of Raspberry Pi can be set as a PWM pin."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:220
+msgid "**Parameter initialValue:** The initial pulse width is that initialValue times100us."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:221
+msgid "**Parameter pwmRange:** the period of PWM is that pwmRange times100us."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:231
+msgid "This function is to set the colors of the LED. Using RGB, the formal parameter **r_val** represents the luminance of the red one, **g_val** of the green one, **b_val** of the blue one."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:235
+msgid "The prototype of the function softPwmWrite(LedPinBlue, b_val) is as follows："
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:243
+msgid "**Parameter Value:** The pulse width of PWM is value times 100us. Note that value can only be less than pwmRange defined previously, if it is larger than pwmRange, the value will be given a fixed value, pwmRange."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:249
+msgid "Call the function defined before. Write 0xff into LedPinRed and 0x00 into LedPinGreen and LedPinBlue. Only the Red LED lights up after running this code. If you want to light up LEDs in other colors, just modify the parameters."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:255
+msgid "For Python Language Users"
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:257
+msgid "**Step 2:** Open the code file."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:267
+msgid "**Step 3:** Run."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:284
+msgid "You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\\\python``."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:385
+msgid "Call the GPIO.PWM( )function to define Red, Green and Blue as PWM pins and set the frequency of PWM pins to 2000Hz, then Use the Start() function to set the initial duty cycle to zero."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:394
+msgid "Define a MAP function for mapping values. For instance, x=50, in_min=0, in_max=255, out_min=0, out_max=100. After the map function mapping, it returns (50-0) \\* (100-0)/(255-0) +0=19.6, meaning that 50 in 0-255 equals 19.6 in 0-100."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:406
+msgid "Configures the three LEDs’ luminance with the inputted color value, assign the first two values of the hexadecimal to R_val, the middle two assigned to G_val, the last two values to B_val. For instance, if color=0xFF00FF, R_val=（0xFF00FF & 0xFF0000）>> 16 = 0xFF, G_val = 0x00, B_val=0xFF."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:418
+msgid "Use map function to map the R,G,B value among 0~255 into PWM duty cycle range 0-100."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:427
+msgid "Assign the mapped duty cycle value to the corresponding PWM channel to change the luminance."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:436
+msgid "Assign every item in the COLOR list to the color respectively and change the color of the RGB LED via the setColor() function."
+msgstr ""
+
+#: ../1.1.2_rgb_led.rst:440
+msgid "Phenomenon Picture"
+msgstr ""

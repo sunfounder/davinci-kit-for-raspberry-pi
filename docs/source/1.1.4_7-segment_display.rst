@@ -81,8 +81,7 @@ bus.
 
 * **SHcp**: Time sequence input of shift register. On the rising edge, the data in shift register moves successively one bit, i.e. data in Q1 moves to Q2, and so forth. While on the falling edge, the data in shift register remain unchanged.
 
-* **STcp**: Time sequence input of storage register. On the rising edge,
-data in the shift register moves into memory register.
+* **STcp**: Time sequence input of storage register. On the rising edge, data in the shift register moves into memory register.
 
 * **CE**: Output enable pin, active at low level.
 
@@ -126,17 +125,29 @@ For C Language Users
 
 Step 2: Get into the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/c/1.1.4/
 
 Step 3: Compile.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 1.1.4_7-Segment.c -lwiringPi
 
 Step 4: Run the executable file above.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -241,6 +252,7 @@ RCLK's initial value was set to 0, and here it's set to 1, which is to generate 
                 delay(500);
             }
         }
+
 In this for loop, we use "%1X" to output i as a hexadecimal number. Apply i to find the corresponding segment code in the SegCode[] array, and employ hc595_shift() to pass the SegCode into 74HC595's shift register.
 
 For Python Language Users
@@ -248,11 +260,19 @@ For Python Language Users
 
 Step 2: Get into the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/python/
 
 Step 3: Run.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -262,7 +282,16 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
 
 **Code**
 
-.. code-block:: python
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
 
     import RPi.GPIO as GPIO
     import time
@@ -273,6 +302,7 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
     SRCLK = 27
 
     # Define a segment code from 0 to F in Hexadecimal
+    # Common cathode
     segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71]
 
     def setup():
@@ -283,7 +313,7 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
 
     # Shift the data to 74HC595
     def hc595_shift(dat):
-        for bit in range(0, 8): 
+        for bit in range(0, 8):	
             GPIO.output(SDI, 0x80 & (dat << bit))
             GPIO.output(SRCLK, GPIO.HIGH)
             time.sleep(0.001)
@@ -349,7 +379,8 @@ RCLK's initial value was set to LOW, and here it's set to HIGH, which is to gene
 .. note::
     The hexadecimal format of number 0~15 are (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
 
-**Phenomenon Picture**
+Phenomenon Picture
+-------------------------
 
 .. image:: media/image74.jpeg
 

@@ -1,7 +1,7 @@
 3.1.13 GAME– 10 Second
 ~~~~~~~~~~~~~~~~~~~~~~
 
-**Introduction**
+Introduction
 -------------------
 
 Next, follow me to make a game device to challenge your concentration.
@@ -11,13 +11,13 @@ stop counting. If you succeed in keeping the displayed count at
 **10.00**, then you win. You can play the game with your friends to see
 who is the time wizard.
 
-**Components**
+Components
 ----------------
 
 .. image:: media/list_GAME_10_Second.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 ------------------------
 
 ============ ======== ======== ===
@@ -35,7 +35,7 @@ GPIO26       Pin 37   25       26
 .. image:: media/Schematic_three_one13.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 ---------------------------------
 
 **Step 1**: Build the circuit.
@@ -50,17 +50,29 @@ GPIO26       Pin 37   25       26
 
 **Step 2**: Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.13/
 
 **Step 3**: Compile the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 3.1.13_GAME_10Second.c -lwiringPi
 
 **Step 4**: Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -121,11 +133,19 @@ of the tilt switch has changed, stateChange() is called.
 
 **Step 2**: Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/python/
 
 **Step 3**: Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -135,6 +155,126 @@ Shake the wand, the 4-digit segment display will start counting, shake
 again will let it stop counting. If you succeed in keeping the displayed
 count at **10.00**, then you win. Shake it one more time to start the
 next round of the game.
+
+**Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    import RPi.GPIO as GPIO
+    import time
+    import threading
+
+    sensorPin = 26
+
+    SDI = 24
+    RCLK = 23
+    SRCLK = 18
+
+    placePin = (10, 22, 27, 17)
+    number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+    counter = 0
+    timer =0
+    gameState =0
+
+    def clearDisplay():
+        for i in range(8):
+            GPIO.output(SDI, 1)
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        GPIO.output(RCLK, GPIO.LOW)    
+
+    def hc595_shift(data): 
+        for i in range(8):
+            GPIO.output(SDI, 0x80 & (data << i))
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        GPIO.output(RCLK, GPIO.LOW)
+
+    def pickDigit(digit):
+        for i in placePin:
+            GPIO.output(i,GPIO.LOW)
+        GPIO.output(placePin[digit], GPIO.HIGH)
+
+    def display():
+        global counter                    
+        clearDisplay() 
+        pickDigit(0)  
+        hc595_shift(number[counter % 10])
+
+        clearDisplay()
+        pickDigit(1)
+        hc595_shift(number[counter % 100//10])
+
+        clearDisplay()
+        pickDigit(2)
+        hc595_shift(number[counter % 1000//100]-0x80)
+
+        clearDisplay()
+        pickDigit(3)
+        hc595_shift(number[counter % 10000//1000])
+
+    def stateChange():
+        global gameState
+        global counter
+        global timer1
+        if gameState == 0:
+            counter = 0
+            time.sleep(1)
+            timer() 
+        elif gameState ==1:
+            timer1.cancel()
+            time.sleep(1)
+        gameState = (gameState+1)%2
+
+    def loop():
+        global counter
+        currentState = 0
+        lastState = 0
+        while True:
+            display()
+            currentState=GPIO.input(sensorPin)
+            if (currentState == 0) and (lastState == 1):
+                stateChange()
+            lastState=currentState
+
+    def timer():  
+        global counter
+        global timer1
+        timer1 = threading.Timer(0.01, timer) 
+        timer1.start()  
+        counter += 1
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(SDI, GPIO.OUT)
+        GPIO.setup(RCLK, GPIO.OUT)
+        GPIO.setup(SRCLK, GPIO.OUT)
+        for i in placePin:
+            GPIO.setup(i, GPIO.OUT)
+        GPIO.setup(sensorPin, GPIO.IN)
+
+    def destroy():   # When "Ctrl+C" is pressed, the function is executed.
+        GPIO.cleanup()
+        global timer1
+        timer1.cancel()
+
+    if __name__ == '__main__':  # Program starting from here
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt:
+            destroy()
 
 **Code Explanation**
 
@@ -193,7 +333,7 @@ After the interval reaches 0.01s, the timer function is called; add 1 to
 counter, and the timer is used again to execute itself repeatedly every
 0.01s.
 
-**Phenomenon Picture**
+Phenomenon Picture
 -----------------------
 
 .. image:: media/image278.jpeg

@@ -6,19 +6,31 @@ Install Cloud4RPi in Your Raspberry Pi
 
 It is advisable to update your system before installing.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo apt update && sudo apt upgrade -y
 
 Install/update the required packages.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo apt install git python3 python3-pip -y
 
 Install Cloud4RPi with the following command:
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo pip3 install cloud4rpi
 
@@ -60,14 +72,22 @@ Give the new device a name, and copy the current **Device token** to the clipboa
 
 Open the terminal of the Raspberry Pi and download the test examples provided by Cloud4RPi.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
   cd /home/pi
   git clone https://github.com/cloud4rpi/cloud4rpi-raspberrypi-python.git
 
 Use a text editor such as Nano to modify the content of the ``control.py`` file.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
   cd cloud4rpi-raspberrypi-python
   sudo nano control.py
@@ -86,7 +106,11 @@ Replace ``__YOUR_DEVICE_TOKEN__`` with the **Device token** copied from the Clou
 
 Run the sample file ``control.py``.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
   sudo python3 control.py
 

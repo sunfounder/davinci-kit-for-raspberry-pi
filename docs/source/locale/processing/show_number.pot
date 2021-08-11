@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, sunfounder
+# This file is distributed under the same license as the SunFounder Da Vinci Kit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SunFounder Da Vinci Kit \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-04 15:50+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../processing/show_number.rst:2
+msgid "Show Number"
+msgstr ""
+
+#: ../processing/show_number.rst:4
+msgid "In this lesson, we use processing to drive a 7-segment display to show a figure from 0 to 9 and A to F."
+msgstr ""
+
+#: ../processing/show_number.rst:7
+msgid "**Wiring**"
+msgstr ""
+
+#: ../processing/show_number.rst:12
+msgid "**Sketch**"
+msgstr ""
+
+#: ../processing/show_number.rst:70
+msgid "**How it works?**"
+msgstr ""
+
+#: ../processing/show_number.rst:72
+msgid "Import ``processing.io.*`` and use the GPIO function library to control the digital tube pins."
+msgstr ""
+
+#: ../processing/show_number.rst:74
+msgid "Define array ``SegCode = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}`` which represents a segment code array from 0 to F in Hexadecimal (Common cathode)."
+msgstr ""
+
+#: ../processing/show_number.rst:77
+msgid "``setup()`` function sets the three pins SDI,RCLK and SRCLK as output, and the initial data as 0."
+msgstr ""
+
+#: ../processing/show_number.rst:79
+msgid "``hc595_shift(int dat)`` function is used to shift the ``SegCode`` to 74HC595."
+msgstr ""
+
+#: ../processing/show_number.rst:103
+msgid "``n=(0x80 & (dat << i))`` means to shift dat to the left by ``i`` bits and then do the ``&`` operation with 0x80."
+msgstr ""
+
+#: ../processing/show_number.rst:105
+msgid "The rule of ``&`` operation is that when both sides of ``&`` are 1, the result is 1, otherwise the result is 0."
+msgstr ""
+
+#: ../processing/show_number.rst:107
+msgid "For example, we assume dat=0x3f,i=2(0011 1111 << 2 shift to 1111 1100), then 1111 1100 & 1000 0000 (0x80)) = 1000 0000."
+msgstr ""
+
+#: ../processing/show_number.rst:109
+msgid "At last assign the dat data to SDI(DS) by bits."
+msgstr ""
+
+#: ../processing/show_number.rst:111
+msgid "``digitalWrite(SRCLK, 1)`` when SRCLK generates a rising edge pulse from 0 to 1, the data will be transferred from the DS register to the shift register;"
+msgstr ""
+
+#: ../processing/show_number.rst:113
+msgid "``digitalWrite(RCLK, 1)`` when RCLK generates a rising edge pulse from 0 to 1, the data will be transferred from the shift register to the storage register."
+msgstr ""
+
+#: ../processing/show_number.rst:121
+msgid "``fill()``: Sets the color used to fill shapes."
+msgstr ""
+
+#: ../processing/show_number.rst:122
+msgid "``textAlign(CENTER,CENTER)``: Sets the current alignment for drawing text. The parameters ``LEFT``, ``CENTER``, and ``RIGHT`` set the display characteristics of the letters in relation to the values for the x and y parameters of the ``text()`` function."
+msgstr ""
+
+#: ../processing/show_number.rst:123
+msgid "``textSize()``: Sets the current font size. This size will be used in all subsequent calls to the ``text()`` function. Font size is measured in units of pixels."
+msgstr ""
+
+#: ../processing/show_number.rst:125
+msgid "These functions can customize the text style displayed on the processing."
+msgstr ""
+
+#: ../processing/show_number.rst:137
+msgid "The ``frameCount`` is a seed, which is related to ``frameRate``. By default ``frameRate`` is 60, which means that ``frameCount`` will accumulate 60 times per second."
+msgstr ""
+
+#: ../processing/show_number.rst:140
+msgid "Then we can let processing and 7-segment display to show the figure from 0 to 9 and A to F simultaneously."
+msgstr ""
+
+#: ../processing/show_number.rst:142
+msgid "For more please refer to `Processing Reference <https://processing.org/reference/>`_."
+msgstr ""

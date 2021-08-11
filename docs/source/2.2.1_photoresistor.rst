@@ -50,17 +50,29 @@ For C Language Users
 
 **Step 2:** Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/c/2.2.1/
 
 **Step 3:** Compile the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 2.2.1_Photoresistor.c -lwiringPi
 
 **Step 4:** Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -167,11 +179,19 @@ For Python Language Users
 
 **Step 2:** Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/python/
 
 **Step 3:** Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -182,13 +202,22 @@ of light that the photoresistor senses.
 
 **Code**
 
-.. code-block:: python
+.. note::
 
-    #!/usr/bin/env python3
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
     import RPi.GPIO as GPIO
     import ADC0834
     import time
+
     LedPin = 22
+
     def setup():
         global led_val
         # Set the GPIO modes to BCM Numbering
@@ -198,19 +227,23 @@ of light that the photoresistor senses.
         ADC0834.setup()
         # Set led as pwm channel and frequece to 2KHz
         led_val = GPIO.PWM(LedPin, 2000)
+
         # Set all begin with value 0
         led_val.start(0)
+
     def destroy():
         # Stop all pwm channel
         led_val.stop()
         # Release resource
         GPIO.cleanup()
+
     def loop():
         while True:
             analogVal = ADC0834.getResult()
             print ('analog value = %d' % analogVal)
             led_val.ChangeDutyCycle(analogVal*100/255)
             time.sleep(0.2)
+
     if __name__ == '__main__':
         setup()
         try:

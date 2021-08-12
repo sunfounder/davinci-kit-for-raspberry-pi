@@ -31,12 +31,14 @@ int main(void)
 			digitalWrite(led1, LOW);
 			digitalWrite(led2, HIGH);
 			printf("LED1 on\n");
+			delay(100);
 		}
 		// slide switch low, led2 on
 		if(digitalRead(slidePin) == 0){
 			digitalWrite(led2, LOW);
 			digitalWrite(led1, HIGH);
 			printf(".....LED2 on\n");
+			delay(100);
 		}
 	}
 

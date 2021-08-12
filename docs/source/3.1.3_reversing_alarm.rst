@@ -81,6 +81,10 @@ obstacle and then displays the information about the distance on
 LCD1602; besides, buzzer emits warning tone whose frequency changes with
 the distance.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 
 .. note::
@@ -144,6 +148,7 @@ the distance.
         while(1){
             dis = disMeasure();
             printf("%.2f cm \n",dis);
+            delay(100);
             digitalWrite(Buzzer,LOW);
             if (dis > 400){
                 clear();
@@ -218,7 +223,7 @@ If the value of distance is greater than the range value to be detected,
 an error message is printed on the LCD. And if the distance value is
 within the range, the corresponding results will be output.
 
-.. code-block:: 
+.. code-block:: c
 
     sprintf(result,"%.2f cm",dis);
 
@@ -274,7 +279,7 @@ interval for the ultrasonic sensor.
 
    <run></run>
 
-.. code-block:: python
+.. code-block:: 
 
     sudo python3 3.1.3_ReversingAlarm.py
 

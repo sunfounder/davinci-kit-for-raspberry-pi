@@ -162,6 +162,10 @@ With the code run, deflection angle of x axis, y axis and the
 acceleration, angular velocity on each axis read by MPU6050 will be
 printed on the screen after being calculating.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 
 .. code-block:: c
@@ -224,8 +228,11 @@ printed on the screen after being calculating.
 
         //Print values for the X, Y, and Z axes of the gyroscope sensor.
         printf("My gyroX_scaled: %f\n", gyroY X_scaled);
+        delay(100);
         printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
+        delay(100);
         printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
+        delay(100);
 
         acclX = read_word_2c(0x3B);
         acclY = read_word_2c(0x3D);
@@ -237,11 +244,16 @@ printed on the screen after being calculating.
         
         //Print the X, Y, and Z values of the acceleration sensor.
         printf("My acclX_scaled: %f\n", acclX_scaled);
+        delay(100);
         printf("My acclY_scaled: %f\n", acclY_scaled);
+        delay(100);
         printf("My acclZ_scaled: %f\n", acclZ_scaled);
+        delay(100);
 
         printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+        delay(100);
         printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+        delay(100);
         
         delay(100);
     }

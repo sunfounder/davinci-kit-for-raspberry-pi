@@ -159,6 +159,7 @@ int main(void)
 	while(1){
 		dis = disMeasure();
 		printf("%.2f cm \n",dis);
+		delay(100);
 		digitalWrite(Buzzer,LOW);
 		if (dis > 400){
 			clear();
@@ -171,6 +172,7 @@ int main(void)
 			clear();
 			write(0, 0, "Distance is");
 			sprintf(result,"%.2f cm",dis);
+			delay(100);
 			write(5, 1, result);
 			if(dis>=50)
 			{delay(500);}

@@ -81,6 +81,10 @@ For C Language Users
 The code run, the brightness of LED will vary depending on the intensity
 of light that the photoresistor senses.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 
 .. code-block:: c
@@ -162,6 +166,7 @@ of light that the photoresistor senses.
         while(1){
             analogVal = get_ADC_Result(0);
             printf("Current analogVal : %d\n", analogVal);
+            delay(100);
             softPwmWrite(LedPin, analogVal);
             delay(100);
         }

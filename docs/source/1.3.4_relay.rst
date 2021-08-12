@@ -144,6 +144,10 @@ After the code runs, the LED will light up. In addition, you can
 hear a ticktock caused by breaking normally close contact and 
 closing normally open contact.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 
 .. code-block:: c
@@ -161,10 +165,12 @@ closing normally open contact.
         while(1){
             // Tick
             printf("Relay Open......\n");
+            delay(100);
             digitalWrite(RelayPin, LOW);
             delay(1000);
             // Tock
             printf("......Relay Close\n");
+            delay(100);
             digitalWrite(RelayPin, HIGH);
             delay(1000);
         }

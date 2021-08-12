@@ -146,6 +146,10 @@ For C Language Users
 As the code runs, the stepper motor will rotate clockwise or
 anticlockwise according to your input ‘a’ or ‘c’.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 
 .. code-block:: c
@@ -181,20 +185,24 @@ anticlockwise according to your input ‘a’ or ‘c’.
         while (1)
         {       
             printf("select motor direction a=anticlockwise, c=clockwise: ");
+            delay(100);
             direction=getchar();
             if (direction == 'c')
             {
                 printf("motor running clockwise\n");
+                delay(100);
                 break;
             }
             else if (direction == 'a')
             {
                 printf("motor running anti-clockwise\n");
+                delay(100);
                 break;
             }
             else
             {
                 printf("input error, please try again!\n");
+                delay(100);
             }
         }
         while(1)

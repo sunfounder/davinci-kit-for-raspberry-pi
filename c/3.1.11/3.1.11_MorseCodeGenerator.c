@@ -104,9 +104,11 @@ void main(){
     code = (char*)malloc(sizeof(char)*length);
     while (1){
         printf("Please input the messenger:");
+        delay(100);
         scanf("%s",code);
         code=strupr(code);
         printf("%s\n",code);
+        delay(100);
         morsecode(code);
     }
 }

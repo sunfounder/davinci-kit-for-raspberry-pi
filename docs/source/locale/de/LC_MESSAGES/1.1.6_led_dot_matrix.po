@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SunFounder Davinci Kit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-06 17:51+0800\n"
+"POT-Creation-Date: 2021-08-11 18:19+0800\n"
 "PO-Revision-Date: 2021-05-31 21:03+0800\n"
 "Last-Translator: \n"
 "Language: de\n"
@@ -385,7 +385,7 @@ msgstr "**Schritt 6:** Kompilieren."
 msgid "**Step 7:** Run."
 msgstr "**Schritt 7:** Ausführen."
 
-#: ../1.1.6_led_dot_matrix.rst:157 ../1.1.6_led_dot_matrix.rst:300
+#: ../1.1.6_led_dot_matrix.rst:157 ../1.1.6_led_dot_matrix.rst:303
 msgid ""
 "After the code runs, the LED dot matrix lights up and out row by row and "
 "column by column."
@@ -393,15 +393,21 @@ msgstr ""
 "Nachdem die Kode ausgeführt wurde, leuchtet die LED-Punktmatrix Zeile für"
 " Zeile und Spalte für Spalte auf und aus."
 
-#: ../1.1.6_led_dot_matrix.rst:160 ../1.1.6_led_dot_matrix.rst:302
+#: ../1.1.6_led_dot_matrix.rst:161
+msgid ""
+"If it does not work after running, please refer to :ref:`C code is not "
+"working?`"
+msgstr "Wenn es nach dem Ausführen nicht funktioniert, lesen Sie bitte :ref:`C code is not working?`"
+
+#: ../1.1.6_led_dot_matrix.rst:163 ../1.1.6_led_dot_matrix.rst:305
 msgid "**Code**"
 msgstr "**Code**"
 
-#: ../1.1.6_led_dot_matrix.rst:226 ../1.1.6_led_dot_matrix.rst:370
+#: ../1.1.6_led_dot_matrix.rst:229 ../1.1.6_led_dot_matrix.rst:373
 msgid "**Code Explanation**"
 msgstr "**Code Erklärung**"
 
-#: ../1.1.6_led_dot_matrix.rst:233
+#: ../1.1.6_led_dot_matrix.rst:236
 msgid ""
 "The array code_H represents the elements of the LED dot matrix row, and "
 "the array code_L refers to the elements of the column. When characters "
@@ -417,7 +423,7 @@ msgstr ""
 "Punktmatrix gezeigt. Nehmen Sie als Beispiele die erste Nummer von "
 "code_H, 0x01 und die erste Nummer von code_L, 0x00."
 
-#: ../1.1.6_led_dot_matrix.rst:236 ../1.1.6_led_dot_matrix.rst:380
+#: ../1.1.6_led_dot_matrix.rst:239 ../1.1.6_led_dot_matrix.rst:383
 msgid ""
 "0x01 converted to binary becomes 00000001; 0x00 converted to binary "
 "becomes 0000 0000."
@@ -425,7 +431,7 @@ msgstr ""
 "0x01 konvertiert in Binär wird 00000001; 0x00 konvertiert in Binär wird "
 "0000 0000."
 
-#: ../1.1.6_led_dot_matrix.rst:238
+#: ../1.1.6_led_dot_matrix.rst:241
 msgid ""
 "In this kit, common anode LED dot matrix display is applied, so only the "
 "eight LEDs in the eighth row light up. When the conditions that code H is"
@@ -437,18 +443,18 @@ msgstr ""
 " die Bedingungen, dass Code H 0xff und Code_L 0x7f ist, gleichzeitig "
 "erfüllt sind, leuchten diese 8 LEDs in der ersten Spalte."
 
-#: ../1.1.6_led_dot_matrix.rst:253
+#: ../1.1.6_led_dot_matrix.rst:256
 msgid ""
 "Write the value of dat to pin SDI of the HC595 bit by bit. SRCLK's "
 "initial value was set to 0, and here it's set to 1, which is to generate "
 "a rising edge pulse, then shift the pinSDI(DS) date to shift register."
 msgstr ""
-"Schreiben Sie den Wert von dat bitweise auf den Pin SDI des HC595. "
-"Der Anfangswert von SRCLK wurde auf 0 gesetzt, und hier ist er auf 1 gesetzt, "
-"was einen ansteigenden Flankenimpuls erzeugen und dann das pinSDI(DS)-Datum in das Schieberegister verschieben soll."
-"code-block:: c"
+"Schreiben Sie den Wert von dat bitweise auf den Pin SDI des HC595. Der "
+"Anfangswert von SRCLK wurde auf 0 gesetzt, und hier ist er auf 1 gesetzt,"
+" was einen ansteigenden Flankenimpuls erzeugen und dann das "
+"pinSDI(DS)-Datum in das Schieberegister verschieben soll.code-block:: c"
 
-#: ../1.1.6_led_dot_matrix.rst:262
+#: ../1.1.6_led_dot_matrix.rst:265
 msgid ""
 "RCLK's initial value was set to 0, and here it's set to 1, which is to "
 "generate a rising edge, then shift data from shift register to storage "
@@ -458,7 +464,7 @@ msgstr ""
 "gesetzt, um eine ansteigende Flanke zu erzeugen und dann Daten vom "
 "Schieberegister zum Speicherregister zu verschieben."
 
-#: ../1.1.6_led_dot_matrix.rst:275
+#: ../1.1.6_led_dot_matrix.rst:278
 msgid ""
 "In this loop, these 20  elements in the two arrays, code_L and code_H "
 "will be uploaded to the two 74HC595 chip one by one. Then call the "
@@ -470,27 +476,29 @@ msgstr ""
 "Sie dann die Funktion hc595_out () auf, um Daten vom Schieberegister zum "
 "Speicherregister zu verschieben."
 
-#: ../1.1.6_led_dot_matrix.rst:278
+#: ../1.1.6_led_dot_matrix.rst:281
 msgid "For Python Language Users"
 msgstr "Für Python-Sprachbenutzer"
 
-#: ../1.1.6_led_dot_matrix.rst:280
+#: ../1.1.6_led_dot_matrix.rst:283
 msgid "**Step 5:** Get into the folder of code."
 msgstr "**Schritt 5:** Gehen Sie in den Kode-Ordner."
 
-#: ../1.1.6_led_dot_matrix.rst:290
+#: ../1.1.6_led_dot_matrix.rst:293
 msgid "**Step 6:** Run."
 msgstr "**Schritt 6:** Ausführen."
 
-#: ../1.1.6_led_dot_matrix.rst:306
+#: ../1.1.6_led_dot_matrix.rst:309
 msgid ""
 "You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, "
 "you need to go to  source code path like ``davinci-kit-for-raspberry-"
 "pi\\\\python``."
-msgstr "Sie können den folgenden Code **Ändern/Zurücksetzen/ Kopieren/Ausführen/Stoppen**. "
-"Zuvor müssen Sie jedoch zu einem Quellcodepfad wie ``davinci-kit-for-raspberry-pi\\\\python`` gehen."
+msgstr ""
+"Sie können den folgenden Code **Ändern/Zurücksetzen/ "
+"Kopieren/Ausführen/Stoppen**. Zuvor müssen Sie jedoch zu einem "
+"Quellcodepfad wie ``davinci-kit-for-raspberry-pi\\\\python`` gehen."
 
-#: ../1.1.6_led_dot_matrix.rst:377
+#: ../1.1.6_led_dot_matrix.rst:380
 msgid ""
 "The array code_H represents the elements of the matix row, and the array "
 "code_L refers to the elements of the column. When characters are "
@@ -506,7 +514,7 @@ msgstr ""
 "Punktmatrix gezeigt. Nehmen Sie als Beispiele die erste Nummer von "
 "code_H, 0x01 und die erste Nummer von code_L, 0x00."
 
-#: ../1.1.6_led_dot_matrix.rst:382
+#: ../1.1.6_led_dot_matrix.rst:385
 msgid ""
 "In this kit, common anode LED dot matrix is applied, so only the eight "
 "LEDs in the eighth row light up. When the conditions that code H is 0xff "
@@ -518,7 +526,7 @@ msgstr ""
 "Bedingungen, dass Code H 0xff und Code_L 0x7f ist, gleichzeitig erfüllt "
 "sind, leuchten diese 8 LEDs in der ersten Spalte."
 
-#: ../1.1.6_led_dot_matrix.rst:393
+#: ../1.1.6_led_dot_matrix.rst:396
 msgid ""
 "In this loop, these 20 elements in the two arrays, code_L and code_H will"
 " be uploaded to the HC595 chip one by one."
@@ -526,7 +534,7 @@ msgstr ""
 "In dieser Schleife werden diese 20 Elemente in den beiden Arrays Kode_L "
 "und Kode_H nacheinander auf den HC595-Chip hochgeladen."
 
-#: ../1.1.6_led_dot_matrix.rst:396
+#: ../1.1.6_led_dot_matrix.rst:399
 msgid ""
 "If you want to display characters on the LED dot matrix, please refer to "
 "a python code: https://github.com/sunfounder/SunFounder_Dot_Matrix"
@@ -534,6 +542,7 @@ msgstr ""
 "Wenn Sie Zeichen in der LED-Punktmatrix anzeigen möchten, lesen Sie bitte"
 " einen Python-Code: https://github.com/sunfounder/SunFounder_Dot_Matrix"
 
-#: ../1.1.6_led_dot_matrix.rst:399
+#: ../1.1.6_led_dot_matrix.rst:402
 msgid "Phenomenon Picture"
 msgstr "Phänomen Bild"
+

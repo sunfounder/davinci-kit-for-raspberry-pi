@@ -58,8 +58,11 @@ int main()
     
     //Print values for the X, Y, and Z axes of the gyroscope sensor.
     printf("My gyroX_scaled: %f\n", gyroX_scaled);
+    delay(100);
     printf("My gyroY_scaled: %f\n", gyroY_scaled);
+    delay(100);
     printf("My gyroZ_scaled: %f\n", gyroZ_scaled);
+    delay(100);
 
     acclX = read_word_2c(0x3B);
     acclY = read_word_2c(0x3D);
@@ -71,13 +74,15 @@ int main()
     
     //Print the X, Y, and Z values of the acceleration sensor.
     printf("My acclX_scaled: %f\n", acclX_scaled);
+    delay(100);
     printf("My acclY_scaled: %f\n", acclY_scaled);
+    delay(100);
     printf("My acclZ_scaled: %f\n", acclZ_scaled);
+    delay(100);
 
     printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
-    printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
-
-    
+    delay(100);
+    printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));    
     delay(100);
   }
   return 0;

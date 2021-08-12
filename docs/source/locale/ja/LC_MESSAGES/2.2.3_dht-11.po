@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SunFounder Davinci Kit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-06 17:58+0800\n"
+"POT-Creation-Date: 2021-08-11 18:19+0800\n"
 "PO-Revision-Date: 2021-05-28 08:17+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -87,7 +87,7 @@ msgstr "**ステップ1：** 回路を作る。"
 msgid "For C Language Users"
 msgstr "C言語ユーザー向け"
 
-#: ../2.2.3_dht-11.rst:59 ../2.2.3_dht-11.rst:278
+#: ../2.2.3_dht-11.rst:59 ../2.2.3_dht-11.rst:283
 msgid "**Step 2:** Go to the folder of the code."
 msgstr "**ステップ2：** コードのフォルダーに入る。"
 
@@ -99,48 +99,54 @@ msgstr "**ステップ3：** コードをコンパイルする。"
 msgid "**Step 4:** Run the executable file."
 msgstr "**ステップ4：** EXEファイルを実行する。"
 
-#: ../2.2.3_dht-11.rst:89 ../2.2.3_dht-11.rst:298
+#: ../2.2.3_dht-11.rst:89 ../2.2.3_dht-11.rst:303
 msgid ""
 "After the code runs, the program will print the temperature and humidity "
 "detected by DHT11 on the computer screen."
 msgstr "コードの実行後、プログラムはDHT11によって検出された温度と湿度をコンピューター画面にプリントする。"
 
-#: ../2.2.3_dht-11.rst:92 ../2.2.3_dht-11.rst:301
+#: ../2.2.3_dht-11.rst:94
+msgid ""
+"If it does not work after running, please refer to :ref:`C code is not "
+"working?`"
+msgstr "実行後に機能しない場合は、:ref:`C code is not working?` を参照してください。"
+
+#: ../2.2.3_dht-11.rst:97 ../2.2.3_dht-11.rst:306
 msgid "**Code**"
 msgstr "**コード**"
 
-#: ../2.2.3_dht-11.rst:166 ../2.2.3_dht-11.rst:437
+#: ../2.2.3_dht-11.rst:171 ../2.2.3_dht-11.rst:442
 msgid "**Code Explanation**"
 msgstr "**コードの説明**"
 
-#: ../2.2.3_dht-11.rst:179
+#: ../2.2.3_dht-11.rst:184
 msgid "This function is used to realize the function of DHT11."
 msgstr "この機能はDHT11の機能を実現するために使用される。"
 
-#: ../2.2.3_dht-11.rst:181
+#: ../2.2.3_dht-11.rst:186
 msgid "It generally can be divided into 3 parts:"
 msgstr "通常、次の3つの部分に分けることができる："
 
-#: ../2.2.3_dht-11.rst:183
+#: ../2.2.3_dht-11.rst:188
 msgid "prepare to read the pin:"
 msgstr "ピンを読む準備ができた："
 
-#: ../2.2.3_dht-11.rst:197
+#: ../2.2.3_dht-11.rst:202
 msgid "Its communication flow is determined by work timing."
 msgstr "その通信フローは、作業のタイミングによって決まる。"
 
-#: ../2.2.3_dht-11.rst:202
+#: ../2.2.3_dht-11.rst:207
 msgid ""
 "When DHT11 starts up, MCU will send a low level signal and then keep the "
 "signal at high level for 40us. After that, the detection of the condition"
 " of external environment will start."
 msgstr "DHT11が起動すると、MCUは低レベルの信号を送信し、40usの間信号を高レベルに保つ。その後、外部環境の状態の検出が開始される。"
 
-#: ../2.2.3_dht-11.rst:206
+#: ../2.2.3_dht-11.rst:211
 msgid "read data:"
 msgstr "データの読み取り："
 
-#: ../2.2.3_dht-11.rst:232
+#: ../2.2.3_dht-11.rst:237
 msgid ""
 "The loop stores the detected data in the dht11_dat[] array. DHT11 "
 "transmits data of 40 bits at a time. The first 16 bits are related to "
@@ -150,7 +156,7 @@ msgstr ""
 "ループは検出されたデータをdht11_dat "
 "[]配列に保存する。DHT11は一度に40ビットのデータを転送する。最初の16ビットは湿度に関連し、中央の16ビットは温度に関連し、最後の8ビットは検証に使用される。データ形式は次のとおりである："
 
-#: ../2.2.3_dht-11.rst:237
+#: ../2.2.3_dht-11.rst:242
 msgid ""
 "**8bit humidity integer data** + **8bit humidity decimal data** + **8bit "
 "temperature integer data** + **8bit temperature decimal data** + **8bit "
@@ -159,11 +165,11 @@ msgstr ""
 "**8ビット湿度整数データ** + **8ビット湿度10進データ** + **8ビット温度整数データ** + **8ビット温度10進データ** +"
 " **8ビットチェックビット**。"
 
-#: ../2.2.3_dht-11.rst:241
+#: ../2.2.3_dht-11.rst:246
 msgid "Print Humidity & Temperature."
 msgstr "湿度と温度をプリントする。"
 
-#: ../2.2.3_dht-11.rst:254
+#: ../2.2.3_dht-11.rst:259
 msgid ""
 "When the data storage is up to 40 bits, check the validity of the data "
 "through the **check bit (dht11_dat[4])**, and then print the temperature "
@@ -172,7 +178,7 @@ msgstr ""
 "データストレージが最大40ビットの場合、 **check bit (dht11_dat[4])** "
 "を通じてデータの有効性をチェックし、温度と湿度をプリントする。"
 
-#: ../2.2.3_dht-11.rst:258
+#: ../2.2.3_dht-11.rst:263
 msgid ""
 "For example, if the received data is 00101011(8-bit value of humidity "
 "integer) 00000000 (8-bit value of humidity decimal) 00111100 (8-bit value"
@@ -180,47 +186,48 @@ msgid ""
 "01100111 (check bit)"
 msgstr "たとえば、受信データが00101011（湿度整数の8ビット値）00000000（湿度10進数の8ビット値）00111100（温度整数の8ビット値）00000000（温度10進数の8ビット値）01100111（チェックビット）の場合、"
 
-#: ../2.2.3_dht-11.rst:263 ../2.2.3_dht-11.rst:480
+#: ../2.2.3_dht-11.rst:268 ../2.2.3_dht-11.rst:485
 msgid "**Calculation:**"
 msgstr "**計算：**"
 
-#: ../2.2.3_dht-11.rst:265 ../2.2.3_dht-11.rst:482
+#: ../2.2.3_dht-11.rst:270 ../2.2.3_dht-11.rst:487
 msgid "00101011+00000000+00111100+00000000=01100111."
 msgstr "00101011+00000000+00111100+00000000=01100111."
 
-#: ../2.2.3_dht-11.rst:267
+#: ../2.2.3_dht-11.rst:272
 msgid ""
 "The final result is equal to the check bit data, then the received data "
 "is correct:"
 msgstr "最終結果はチェックビットデータに等しく、受信データは正しいである："
 
-#: ../2.2.3_dht-11.rst:270
+#: ../2.2.3_dht-11.rst:275
 msgid "Humidity =43%，Temperature =60*C."
 msgstr "湿度= 43％、温度= 60 * C。"
 
-#: ../2.2.3_dht-11.rst:272
+#: ../2.2.3_dht-11.rst:277
 msgid ""
 "If it is not equal to the check bit data, the data transmission is not "
 "normal and the data is received again."
 msgstr "チェックビットデータと等しくない場合、データ送信は正常ではなく、データが再度受信される。"
 
-#: ../2.2.3_dht-11.rst:276
+#: ../2.2.3_dht-11.rst:281
 msgid "For Python Language Users"
 msgstr "Python言語ユーザー向け"
 
-#: ../2.2.3_dht-11.rst:288
+#: ../2.2.3_dht-11.rst:293
 msgid "**Step 3:** Run the executable file."
 msgstr "**ステップ3：** EXEファイルを実行する。"
 
-#: ../2.2.3_dht-11.rst:305
+#: ../2.2.3_dht-11.rst:310
 msgid ""
 "You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, "
 "you need to go to  source code path like ``davinci-kit-for-raspberry-"
 "pi\\\\python``."
-msgstr "以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、「davinci-kit-for-raspberry-pi\\\\python」のようなソースコードパスに移動する必要があります。"
+msgstr ""
+"以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、「davinci-kit-for-raspberry-"
+"pi\\\\python」のようなソースコードパスに移動する必要があります。"
 
-
-#: ../2.2.3_dht-11.rst:453
+#: ../2.2.3_dht-11.rst:458
 msgid ""
 "This function is used to implement the functions of DHT11. It stores the "
 "detected data in the the_bytes[] array. DHT11 transmits data of 40 bits "
@@ -231,7 +238,7 @@ msgstr ""
 "この関数はDHT11の関数を実装するために使用される。それは検出されたデータをthe_bytes "
 "[]配列に保存する。DHT11は一度に40ビットのデータを点灯する。最初の16ビットは湿度に関連し、中央の16ビットは温度に関連し、最後の8ビットは検証に使用される。データ形式は次のとおりである："
 
-#: ../2.2.3_dht-11.rst:459
+#: ../2.2.3_dht-11.rst:464
 msgid ""
 "**8bit humidity integer data** +\\ **8bit humidity decimal data** +\\ "
 "**8bit temperature integer data** + **8bit temperature decimal data** + "
@@ -240,13 +247,13 @@ msgstr ""
 "**8ビット湿度整数データ** +\\ **8ビット湿度10進データ** +\\ **8ビット温度整数データ** + "
 "**8ビット温度10進データ** + **8ビットチェックビット**。"
 
-#: ../2.2.3_dht-11.rst:463
+#: ../2.2.3_dht-11.rst:468
 msgid ""
 "When the validity is detected via the check bit, the function returns two"
 " results: 1. error; 2. humidity and temperature."
 msgstr "チェックビットを介して有効性が検出されると、関数は2つの結果を返す：1. エラー; 2.湿度と温度。"
 
-#: ../2.2.3_dht-11.rst:475
+#: ../2.2.3_dht-11.rst:480
 msgid ""
 "For example, if the received date is 00101011(8-bit value of humidity "
 "integer) 00000000 (8-bit value of humidity decimal) 00111100 (8-bit value"
@@ -254,13 +261,13 @@ msgid ""
 "01100111 (check bit)"
 msgstr "たとえば、受信した日付が00101011（湿度整数の8ビット値）00000000（湿度10進数の8ビット値）00111100（温度整数の8ビット値）00000000（温度10進数の8ビット値）01100111（チェックビット）の場合、"
 
-#: ../2.2.3_dht-11.rst:484
+#: ../2.2.3_dht-11.rst:489
 msgid ""
 "If the final result is equal to the check bit data, the data transmission"
 " is abnormal: return False."
 msgstr "最終結果がチェックビットデータと等しい場合、データ送信は異常である：Falseを返す。"
 
-#: ../2.2.3_dht-11.rst:487
+#: ../2.2.3_dht-11.rst:492
 msgid ""
 "If the final result is equal to the check bit data, the received data is "
 "correct, then there will return the_bytes[0] and the_bytes[2] and output "
@@ -269,6 +276,13 @@ msgstr ""
 "最終結果がチェックビットデータと等しく、受信データは正しい場合、the_bytes [0]とthe_bytes [2]が返され、「Humidity"
 " = 43％、Temperature= 60C」が出力される。"
 
-#: ../2.2.3_dht-11.rst:492
+#: ../2.2.3_dht-11.rst:497
 msgid "Phenomenon Picture"
 msgstr "現象画像"
+
+#~ msgid ""
+#~ "If it does not work after running,"
+#~ " please refer to :ref:`C code is "
+#~ "not working?`."
+#~ msgstr ""
+

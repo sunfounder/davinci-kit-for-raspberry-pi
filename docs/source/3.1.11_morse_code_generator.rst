@@ -74,6 +74,11 @@ negative.)
 After the program runs, type a series of characters, and the buzzer and
 the LED will send the corresponding Morse code signals.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
+
 **Code Explanation**
 
 .. code-block:: c
@@ -201,9 +206,11 @@ Before coding, you need to unify the letters into capital letters.
         code = (char*)malloc(sizeof(char)*length);
         while (1){
             printf("Please input the messenger:");
+            delay(100);
             scanf("%s",code);
             code=strupr(code);
             printf("%s\n",code);
+            delay(100);
             morsecode(code);
         }
     }

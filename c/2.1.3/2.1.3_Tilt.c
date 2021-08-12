@@ -48,6 +48,7 @@ int main(void)
 			if(0 == digitalRead(TiltPin)){
 				LED("RED");
 				printf("Tilt!\n");
+				delay(100);
 			}
 		}
 		else if(1 == digitalRead(TiltPin)){

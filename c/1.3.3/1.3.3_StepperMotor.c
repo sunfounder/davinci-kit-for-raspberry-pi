@@ -37,15 +37,18 @@ void loop()
     while (1)
     {       
         printf("select motor direction a=anticlockwise, c=clockwise: ");
+        delay(100);
         direction=getchar();
         if (direction == 'c')
         {
             printf("motor running clockwise\n");
+            delay(100);
             break;
         }
         else if (direction == 'a')
         {
             printf("motor running anti-clockwise\n");
+            delay(100);
             break;
         }
         else

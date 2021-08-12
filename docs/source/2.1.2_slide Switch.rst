@@ -124,6 +124,10 @@ For C Language Users
 While the code is running, get the switch connected to the left, then
 the yellow LED lights up; to the right, the red light turns on.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 
 .. code-block:: c
@@ -150,12 +154,14 @@ the yellow LED lights up; to the right, the red light turns on.
                 digitalWrite(led1, LOW);
                 digitalWrite(led2, HIGH);
                 printf("LED1 on\n");
+                delay(100);
             }
             // slide switch low, led2 on
             if(digitalRead(slidePin) == 0){
                 digitalWrite(led2, LOW);
                 digitalWrite(led1, HIGH);
                 printf(".....LED2 on\n");
+                delay(100);
             }
         }
         return 0;

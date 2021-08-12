@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SunFounder Davinci Kit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-07 09:33+0800\n"
+"POT-Creation-Date: 2021-08-11 18:19+0800\n"
 "PO-Revision-Date: 2021-05-31 20:59+0800\n"
 "Last-Translator: \n"
 "Language: de\n"
@@ -159,13 +159,17 @@ msgstr "**Pins von 74HC595 und ihre Funktionen**:"
 msgid ""
 "**Q0-Q7**: 8-bit parallel data output pins, able to control 8 LEDs or 8 "
 "pins of 7-segment display directly."
-msgstr "**Q0-Q7** : 8-Bit-Parallel-Datenausgangspins, die 8 LEDs oder 8 Pins der 7-Segment-Anzeige direkt steuern können."
+msgstr ""
+"**Q0-Q7** : 8-Bit-Parallel-Datenausgangspins, die 8 LEDs oder 8 Pins der "
+"7-Segment-Anzeige direkt steuern können."
 
 #: ../1.1.4_7-segment_display.rst:78
 msgid ""
 "**Q7’**: Series output pin, connected to DS of another 74HC595 to connect"
 " multiple 74HC595s in series."
-msgstr "**Q7’** : Serienausgangspin, verbunden mit DS eines anderen 74HC595, um mehrere 74HC595 in Reihe zu schalten."
+msgstr ""
+"**Q7’** : Serienausgangspin, verbunden mit DS eines anderen 74HC595, um "
+"mehrere 74HC595 in Reihe zu schalten."
 
 #: ../1.1.4_7-segment_display.rst:80
 msgid "**MR**: Reset pin, active at low level;"
@@ -184,8 +188,9 @@ msgid ""
 "**STcp**: Time sequence input of storage register. On the rising edge, "
 "data in the shift register moves into memory register."
 msgstr ""
-"**STcp**: Zeitfolgeeingabe des Speicherregisters. "
-"Bei der steigenden Flanke werden Daten im Schieberegister in das Speicherregister verschoben."
+"**STcp**: Zeitfolgeeingabe des Speicherregisters. Bei der steigenden "
+"Flanke werden Daten im Schieberegister in das Speicherregister "
+"verschoben."
 
 #: ../1.1.4_7-segment_display.rst:86
 msgid "**CE**: Output enable pin, active at low level."
@@ -305,7 +310,7 @@ msgstr "**Schritt 1:** Bauen Sie die Schaltung auf."
 msgid "For C Language Users"
 msgstr "Für Benutzer in C-Sprache"
 
-#: ../1.1.4_7-segment_display.rst:126 ../1.1.4_7-segment_display.rst:261
+#: ../1.1.4_7-segment_display.rst:126 ../1.1.4_7-segment_display.rst:265
 msgid "Step 2: Get into the folder of the code."
 msgstr "**Schritt 2:** Gehen Sie in den Ordner der Kode."
 
@@ -317,21 +322,27 @@ msgstr "**Schritt 3:** Kompilieren."
 msgid "Step 4: Run the executable file above."
 msgstr "**Schritt 4:** Führen Sie die obige ausführbare Datei aus."
 
-#: ../1.1.4_7-segment_display.rst:156 ../1.1.4_7-segment_display.rst:281
+#: ../1.1.4_7-segment_display.rst:156 ../1.1.4_7-segment_display.rst:285
 msgid "After the code runs, you'll see the 7-segment display display 0-9, A-F."
 msgstr ""
 "Nachdem der Code ausgeführt wurde, wird die 7-Segment-Anzeige 0-9, A-F "
 "angezeigt."
 
-#: ../1.1.4_7-segment_display.rst:158 ../1.1.4_7-segment_display.rst:283
+#: ../1.1.4_7-segment_display.rst:160
+msgid ""
+"If it does not work after running, please refer to :ref:`C code is not "
+"working?`"
+msgstr "Wenn es nach dem Ausführen nicht funktioniert, lesen Sie bitte :ref:`C code is not working?`"
+
+#: ../1.1.4_7-segment_display.rst:162 ../1.1.4_7-segment_display.rst:287
 msgid "**Code**"
 msgstr "**Code**"
 
-#: ../1.1.4_7-segment_display.rst:208 ../1.1.4_7-segment_display.rst:343
+#: ../1.1.4_7-segment_display.rst:212 ../1.1.4_7-segment_display.rst:347
 msgid "**Code Explanation**"
 msgstr "**Code Erklärung**"
 
-#: ../1.1.4_7-segment_display.rst:210
+#: ../1.1.4_7-segment_display.rst:214
 msgid ""
 "unsigned char SegCode[16] = "
 "{0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};"
@@ -342,7 +353,7 @@ msgstr ""
 " Ein Segmentcode-Array von 0 bis F in hexadezimaler Darstellung "
 "(gemeinsame Kathode)."
 
-#: ../1.1.4_7-segment_display.rst:224
+#: ../1.1.4_7-segment_display.rst:228
 msgid ""
 "Set ds, st_cp, sh_cp three pins to OUTPUT, and the initial state as 0. "
 "void hc595_shift(unsigned char dat){} To assign 8 bit value to 74HC595’s "
@@ -352,7 +363,7 @@ msgstr ""
 "auf 0. void hc595_shift(unsigned char dat){} Zuweisen eines 8-Bit-Werts "
 "zum Schieberegister des 74HC595."
 
-#: ../1.1.4_7-segment_display.rst:232
+#: ../1.1.4_7-segment_display.rst:236
 msgid ""
 "Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 "
 "1111, when i=2, 0x3f will shift left(<<) 2 bits. 1111 1100 (0x3f << 2) & "
@@ -363,7 +374,7 @@ msgstr ""
 "verschiebt. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000 ist "
 "wahr."
 
-#: ../1.1.4_7-segment_display.rst:238
+#: ../1.1.4_7-segment_display.rst:242
 msgid ""
 "SRCLK's initial value was set to 0, and here it's set to 1, which is to "
 "generate a rising edge pulse, then shift the DS date to shift register."
@@ -372,7 +383,7 @@ msgstr ""
 "gesetzt, um einen Anstiegsflankenimpuls zu erzeugen und dann das DS-Datum"
 " in das Schieberegister zu verschieben."
 
-#: ../1.1.4_7-segment_display.rst:244
+#: ../1.1.4_7-segment_display.rst:248
 msgid ""
 "RCLK's initial value was set to 0, and here it's set to 1, which is to "
 "generate a rising edge, then shift data from shift register to storage "
@@ -382,40 +393,44 @@ msgstr ""
 "gesetzt, um eine ansteigende Flanke zu erzeugen und dann Daten vom "
 "Schieberegister zum Speicherregister zu verschieben."
 
-#: ../1.1.4_7-segment_display.rst:256
+#: ../1.1.4_7-segment_display.rst:260
+#, python-format
 msgid ""
 "In this for loop, we use \"%1X\" to output i as a hexadecimal number. "
 "Apply i to find the corresponding segment code in the SegCode[] array, "
 "and employ hc595_shift() to pass the SegCode into 74HC595's shift "
 "register."
 msgstr ""
-"In dieser for-Schleife verwenden wir \"%1X\", um i als Hexadezimalzahl auszugeben. "
-"Wenden Sie i an, um den entsprechenden Segmentcode im SegCode[]-Array zu finden, "
-"und verwenden Sie hc595_shift(), um den SegCode in das Schieberegister des 74HC595 zu übergeben."
+"In dieser for-Schleife verwenden wir \"%1X\", um i als Hexadezimalzahl "
+"auszugeben. Wenden Sie i an, um den entsprechenden Segmentcode im "
+"SegCode[]-Array zu finden, und verwenden Sie hc595_shift(), um den "
+"SegCode in das Schieberegister des 74HC595 zu übergeben."
 
-#: ../1.1.4_7-segment_display.rst:259
+#: ../1.1.4_7-segment_display.rst:263
 msgid "For Python Language Users"
 msgstr "Für Python-Sprachbenutzer"
 
-#: ../1.1.4_7-segment_display.rst:271
+#: ../1.1.4_7-segment_display.rst:275
 msgid "Step 3: Run."
 msgstr "**Schritt 3:** Ausführen."
 
-#: ../1.1.4_7-segment_display.rst:288
+#: ../1.1.4_7-segment_display.rst:292
 msgid ""
 "You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, "
 "you need to go to  source code path like ``davinci-kit-for-raspberry-"
 "pi\\\\python``."
-msgstr "Sie können den folgenden Code **Ändern/Zurücksetzen/ Kopieren/Ausführen/Stoppen**. "
-"Zuvor müssen Sie jedoch zu einem Quellcodepfad wie ``davinci-kit-for-raspberry-pi\\\\python`` gehen."
+msgstr ""
+"Sie können den folgenden Code **Ändern/Zurücksetzen/ "
+"Kopieren/Ausführen/Stoppen**. Zuvor müssen Sie jedoch zu einem "
+"Quellcodepfad wie ``davinci-kit-for-raspberry-pi\\\\python`` gehen."
 
-#: ../1.1.4_7-segment_display.rst:349
+#: ../1.1.4_7-segment_display.rst:353
 msgid "A segment code array from 0 to F in Hexadecimal (Common cathode)."
 msgstr ""
 "Ein Segmentcode-Array von 0 bis F in hexadezimaler Darstellung "
 "(gemeinsame Kathode)."
 
-#: ../1.1.4_7-segment_display.rst:359
+#: ../1.1.4_7-segment_display.rst:363
 msgid ""
 "Set ds, st_cp, sh_cp three pins to output and the initial state as low "
 "level."
@@ -423,7 +438,7 @@ msgstr ""
 "Setzen Sie ds, st_cp, sh_cp auf drei Pins und den Ausgangszustand auf "
 "niedrigen Niveau."
 
-#: ../1.1.4_7-segment_display.rst:365
+#: ../1.1.4_7-segment_display.rst:369
 msgid ""
 "Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 "
 "1111, when bit=2, 0x3f will shift right(<<) 2 bits. 1111 1100 (0x3f << 2)"
@@ -434,7 +449,7 @@ msgstr ""
 "verschiebt. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000 ist "
 "wahr."
 
-#: ../1.1.4_7-segment_display.rst:371
+#: ../1.1.4_7-segment_display.rst:375
 msgid ""
 "SRCLK's initial value was set to LOW, and here it's set to HIGH, which is"
 " to generate a rising edge pulse, then shift the DS date to shift "
@@ -444,7 +459,7 @@ msgstr ""
 "HIGH gesetzt, um einen ansteigenden Flankenimpuls zu erzeugen und dann "
 "das DS-Datum in das Schieberegister zu verschieben."
 
-#: ../1.1.4_7-segment_display.rst:377
+#: ../1.1.4_7-segment_display.rst:381
 msgid ""
 "RCLK's initial value was set to LOW, and here it's set to HIGH, which is "
 "to generate a rising edge, then shift data from shift register to storage"
@@ -454,7 +469,7 @@ msgstr ""
 "HOCH gesetzt, um eine ansteigende Flanke zu erzeugen und dann Daten vom "
 "Schieberegister zum Speicherregister zu verschieben."
 
-#: ../1.1.4_7-segment_display.rst:380
+#: ../1.1.4_7-segment_display.rst:384
 msgid ""
 "The hexadecimal format of number 0~15 are (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "
 "A, B, C, D, E, F)"
@@ -462,6 +477,7 @@ msgstr ""
 "Das hexadezimale Format der Nummer 0 bis 15 ist (0, 1, 2, 3, 4, 5, 6, 7, "
 "8, 9, A, B, C, D, E, F)."
 
-#: ../1.1.4_7-segment_display.rst:383
+#: ../1.1.4_7-segment_display.rst:387
 msgid "Phenomenon Picture"
 msgstr "Phänomen Bild"
+

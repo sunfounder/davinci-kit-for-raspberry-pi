@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SunFounder Davinci Kit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-06 17:58+0800\n"
+"POT-Creation-Date: 2021-08-11 18:19+0800\n"
 "PO-Revision-Date: 2021-08-06 11:02+0800\n"
 "Last-Translator: \n"
 "Language: ja\n"
@@ -71,6 +71,7 @@ msgid ""
 msgstr "デューティサイクルは、信号が有効である1周期の割合である。期間とは、信号がオンとオフのサイクルを完了するのにかかる時間である。式として、デューティサイクルは次のように表示される："
 
 #: ../1.1.2_rgb_led.rst:43
+#, python-format
 msgid ""
 "Where **D** is the duty cycle, **T** is the time the signal is active, "
 "and **P** is the total period of the signal. Thus, a 60% duty cycle means"
@@ -213,51 +214,57 @@ msgstr "命令「gcc」が実行されるときに「-o」が呼び出されな�
 msgid "**Step 4:** Run the executable file."
 msgstr "**ステップ4:** EXEファイルを実行する。"
 
-#: ../1.1.2_rgb_led.rst:134 ../1.1.2_rgb_led.rst:277
+#: ../1.1.2_rgb_led.rst:134 ../1.1.2_rgb_led.rst:280
 msgid ""
 "After the code runs, you will see that RGB displays red, green, blue, "
 "yellow, pink, and cyan."
 msgstr "コードを実行すると、RGBが赤、緑、青、黄色、ピンク、およびシアンを表示する。"
 
-#: ../1.1.2_rgb_led.rst:138 ../1.1.2_rgb_led.rst:280
+#: ../1.1.2_rgb_led.rst:139
+msgid ""
+"If it does not work after running, please refer to :ref:`C code is not "
+"working?`"
+msgstr "実行後に機能しない場合は、:ref:`C code is not working?` を参照してください。"
+
+#: ../1.1.2_rgb_led.rst:141 ../1.1.2_rgb_led.rst:283
 msgid "**Code**"
 msgstr "**コード**"
 
-#: ../1.1.2_rgb_led.rst:193 ../1.1.2_rgb_led.rst:373
+#: ../1.1.2_rgb_led.rst:196 ../1.1.2_rgb_led.rst:376
 msgid "**Code Explanation**"
 msgstr "**コードの説明**"
 
-#: ../1.1.2_rgb_led.rst:199
+#: ../1.1.2_rgb_led.rst:202
 msgid "Library used for realizing the pwm function of the software."
 msgstr "ソフトウェアのpwm機能を実現するために使用されるライブラリ。"
 
-#: ../1.1.2_rgb_led.rst:209
+#: ../1.1.2_rgb_led.rst:212
 msgid ""
 "The function is to use software to create a PWM pin, set its period "
 "between 0x100us-100x100us."
 msgstr "この機能は、ソフトウェアを使用してPWMピンを作成し、その周期を0x100us〜100x100usに設定することである。"
 
-#: ../1.1.2_rgb_led.rst:212
+#: ../1.1.2_rgb_led.rst:215
 msgid ""
 "The prototype of the function softPwmCreate(LedPinRed, 0, 100) is as "
 "follows:"
 msgstr "関数softPwmCreate（LedPinRed、0、100）のプロトタイプは次のとおりである："
 
-#: ../1.1.2_rgb_led.rst:219 ../1.1.2_rgb_led.rst:242
+#: ../1.1.2_rgb_led.rst:222 ../1.1.2_rgb_led.rst:245
 msgid "**Parameter pin:** Any GPIO pin of Raspberry Pi can be set as a PWM pin."
 msgstr "**パラメータピン:** ラズベリーパイの任意のGPIOピンは、PWMピンとして設定することができます。"
 
-#: ../1.1.2_rgb_led.rst:220
+#: ../1.1.2_rgb_led.rst:223
 msgid ""
 "**Parameter initialValue:** The initial pulse width is that initialValue "
 "times100us."
 msgstr "**Parameter initialValue:** 初期パルス幅はinitialValueに100usを掛けたものである。"
 
-#: ../1.1.2_rgb_led.rst:221
+#: ../1.1.2_rgb_led.rst:224
 msgid "**Parameter pwmRange:** the period of PWM is that pwmRange times100us."
 msgstr "**Parameter pwmRange:** PWMの周期は、pwmRangeに100usを掛けたものである。"
 
-#: ../1.1.2_rgb_led.rst:231
+#: ../1.1.2_rgb_led.rst:234
 msgid ""
 "This function is to set the colors of the LED. Using RGB, the formal "
 "parameter **r_val** represents the luminance of the red one, **g_val** of"
@@ -266,13 +273,13 @@ msgstr ""
 "この機能はLEDの色を設定する。RGBを使用すると、仮パラメータは赤の輝度の **r_val** 、緑の輝度の **g_val** 、青の輝度の "
 "**b_val** を表す。"
 
-#: ../1.1.2_rgb_led.rst:235
+#: ../1.1.2_rgb_led.rst:238
 msgid ""
 "The prototype of the function softPwmWrite(LedPinBlue, b_val) is as "
 "follows："
 msgstr "関数softPwmWrite(LedPinBlue, b_val)のプロトタイプは次のとおりである："
 
-#: ../1.1.2_rgb_led.rst:243
+#: ../1.1.2_rgb_led.rst:246
 msgid ""
 "**Parameter Value:** The pulse width of PWM is value times 100us. Note "
 "that value can only be less than pwmRange defined previously, if it is "
@@ -281,7 +288,7 @@ msgstr ""
 "**パラメータ値:** PWMのパルス幅は、値の100usの倍数です。値は、以前に定義された pwmRange より小さく、pwmRange "
 "より大きい場合、値には固定値 pwmRange が与えられることに注意してください。"
 
-#: ../1.1.2_rgb_led.rst:249
+#: ../1.1.2_rgb_led.rst:252
 msgid ""
 "Call the function defined before. Write 0xff into LedPinRed and 0x00 into"
 " LedPinGreen and LedPinBlue. Only the Red LED lights up after running "
@@ -289,27 +296,28 @@ msgid ""
 "parameters."
 msgstr "前に定義した関数を呼び出す。LedPinRedに0xffを、LedPinGreenとLedPinBlueに0x00を書き込む。このコードを実行すると、赤色のLEDのみが点灯する。他の色のLEDを点灯させる場合は、パラメーターを変更するだけである。"
 
-#: ../1.1.2_rgb_led.rst:255
+#: ../1.1.2_rgb_led.rst:258
 msgid "For Python Language Users"
 msgstr "Python言語ユーザー向け"
 
-#: ../1.1.2_rgb_led.rst:257
+#: ../1.1.2_rgb_led.rst:260
 msgid "**Step 2:** Open the code file."
 msgstr "**ステップ2:** コードファイルを開く。"
 
-#: ../1.1.2_rgb_led.rst:267
+#: ../1.1.2_rgb_led.rst:270
 msgid "**Step 3:** Run."
 msgstr "**ステップ3:** 実行する。"
 
-#: ../1.1.2_rgb_led.rst:284
+#: ../1.1.2_rgb_led.rst:287
 msgid ""
 "You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, "
 "you need to go to  source code path like ``davinci-kit-for-raspberry-"
 "pi\\\\python``."
-msgstr "以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、「davinci-kit-for-raspberry-pi\\\\python」のようなソースコードパスに移動する必要があります。"
+msgstr ""
+"以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、「davinci-kit-for-raspberry-"
+"pi\\\\python」のようなソースコードパスに移動する必要があります。"
 
-
-#: ../1.1.2_rgb_led.rst:385
+#: ../1.1.2_rgb_led.rst:388
 msgid ""
 "Call the GPIO.PWM( )function to define Red, Green and Blue as PWM pins "
 "and set the frequency of PWM pins to 2000Hz, then Use the Start() "
@@ -318,7 +326,7 @@ msgstr ""
 "GPIO.PWM() 関数を呼び出して、赤、緑、青をPWMピンとして定義し、PWMピンの周波数を2000Hzに設定してから、Start() "
 "関数を使用して初期デューティサイクルをゼロに設定する。"
 
-#: ../1.1.2_rgb_led.rst:394
+#: ../1.1.2_rgb_led.rst:397
 msgid ""
 "Define a MAP function for mapping values. For instance, x=50, in_min=0, "
 "in_max=255, out_min=0, out_max=100. After the map function mapping, it "
@@ -329,7 +337,7 @@ msgstr ""
 "0、out_max = 100。マップ関数のマッピング後、（50-0）*（100-0）/（255-0）+ 0 = "
 "19.6を戻す。つまり、0-255の50は0-100の19.6に相当する。"
 
-#: ../1.1.2_rgb_led.rst:406
+#: ../1.1.2_rgb_led.rst:409
 msgid ""
 "Configures the three LEDs’ luminance with the inputted color value, "
 "assign the first two values of the hexadecimal to R_val, the middle two "
@@ -341,24 +349,31 @@ msgstr ""
 " = 0xFF00FF、R_val =（0xFF00FF＆0xFF0000）>> 16 = 0xFF、G_val = 0x00、B_val = "
 "0xFFの場合。"
 
-#: ../1.1.2_rgb_led.rst:418
+#: ../1.1.2_rgb_led.rst:421
 msgid ""
 "Use map function to map the R,G,B value among 0~255 into PWM duty cycle "
 "range 0-100."
 msgstr "マップ機能を使用して、0〜255のR、G、B値をPWMデューティサイクル範囲0〜100にマップする。"
 
-#: ../1.1.2_rgb_led.rst:427
+#: ../1.1.2_rgb_led.rst:430
 msgid ""
 "Assign the mapped duty cycle value to the corresponding PWM channel to "
 "change the luminance."
 msgstr "マッピングされたデューティサイクルを対応するPWMチャネルに割り当てて、輝度を変更する。"
 
-#: ../1.1.2_rgb_led.rst:436
+#: ../1.1.2_rgb_led.rst:439
 msgid ""
 "Assign every item in the COLOR list to the color respectively and change "
 "the color of the RGB LED via the setColor() function."
 msgstr "COLORリストのすべてのアイテムをそれぞれ色に割り当て、setColor() 関数を介してRGB LEDの色を変更する。"
 
-#: ../1.1.2_rgb_led.rst:440
+#: ../1.1.2_rgb_led.rst:443
 msgid "Phenomenon Picture"
 msgstr "現象画像"
+
+#~ msgid ""
+#~ "If it does not work after running,"
+#~ " please refer to :ref:`C code is "
+#~ "not working?`."
+#~ msgstr ""
+

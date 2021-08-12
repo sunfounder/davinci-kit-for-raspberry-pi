@@ -26,6 +26,7 @@ int main(void){
 
 	while(1){
 		printf("Clockwise\n");
+		delay(100);
 		digitalWrite(MotorEnable, HIGH);
 		digitalWrite(MotorPin1, HIGH);
 		digitalWrite(MotorPin2, LOW);
@@ -34,12 +35,14 @@ int main(void){
 		}
 
 		printf("Stop\n");
+		delay(100);
 		digitalWrite(MotorEnable, LOW);
 		for(i=0;i<3;i++){
 			delay(1000);
 		}
 
 		printf("Anti-clockwise\n");
+		delay(100);
 		digitalWrite(MotorEnable, HIGH);
 		digitalWrite(MotorPin1, LOW);
 		digitalWrite(MotorPin2, HIGH);
@@ -48,6 +51,7 @@ int main(void){
 		}
 
 		printf("Stop\n");
+		delay(100);
 		digitalWrite(MotorEnable, LOW);
 		for(i=0;i<3;i++){
 			delay(1000);

@@ -65,7 +65,7 @@ int main(void)
 
 	while(1){
 		printf("music is being played...\n");
-
+		delay(100);
 		for(i=0;i<sizeof(song_1)/4;i++){
 			softToneWrite(BuzPin, song_1[i]);	
 			delay(beat_1[i] * 500);

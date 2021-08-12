@@ -135,6 +135,10 @@ As the code runs, the motor first rotates clockwise for 5s then stops for 5s,
 after that, it rotates anticlockwise for 5s; subsequently, the motor stops 
 for 5s. This series of actions will be executed repeatedly.  
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 
 .. code-block:: c
@@ -158,6 +162,7 @@ for 5s. This series of actions will be executed repeatedly.
         pinMode(MotorEnable, OUTPUT);
         while(1){
             printf("Clockwise\n");
+            delay(100);
             digitalWrite(MotorEnable, HIGH);
             digitalWrite(MotorPin1, HIGH);
             digitalWrite(MotorPin2, LOW);
@@ -166,12 +171,14 @@ for 5s. This series of actions will be executed repeatedly.
             }
 
             printf("Stop\n");
+            delay(100);
             digitalWrite(MotorEnable, LOW);
             for(i=0;i<3;i++){
                 delay(1000);
             }
 
             printf("Anti-clockwise\n");
+            delay(100);
             digitalWrite(MotorEnable, HIGH);
             digitalWrite(MotorPin1, LOW);
             digitalWrite(MotorPin2, HIGH);
@@ -180,6 +187,7 @@ for 5s. This series of actions will be executed repeatedly.
             }
 
             printf("Stop\n");
+            delay(100);
             digitalWrite(MotorEnable, LOW);
             for(i=0;i<3;i++){
                 delay(1000);

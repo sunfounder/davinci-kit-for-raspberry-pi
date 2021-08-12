@@ -34,6 +34,7 @@ Here is the Email: cs@sunfounder.com.
     processing/play_with_processing
     scratch/play_with_scratch
     appendix/appendix
+    faq
 
 
 

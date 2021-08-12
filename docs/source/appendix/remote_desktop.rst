@@ -19,10 +19,13 @@ disabled. You need to enable it in config.
 
 Input the following command:
 
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
-    sudo raspi-config
+   sudo raspi-config
 
 .. image:: media/image287.png
    :align: center
@@ -109,6 +112,9 @@ Login to Raspberry Pi by using SSH.
 
 Input the following instructions to install XRDP.
 
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 

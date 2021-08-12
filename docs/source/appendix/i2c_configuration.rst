@@ -5,6 +5,9 @@ I2C Configuration
 enabled it, skip this; if you do not know whether you have done that or
 not, please continue).
 
+.. raw:: html
+
+    <run></run>
  
 .. code-block:: 
 
@@ -27,6 +30,9 @@ not, please continue).
 
 **Step 2:** Check whether the i2c modules are loaded and active.
 
+.. raw:: html
+
+    <run></run>
  
 .. code-block:: 
 
@@ -41,6 +47,9 @@ Then the following codes will appear (the number may be different).
 
 **Step 3:** Install i2c-tools.
 
+.. raw:: html
+
+    <run></run>
  
 .. code-block:: 
 
@@ -48,12 +57,17 @@ Then the following codes will appear (the number may be different).
 
 **Step 4:** Check the address of the I2C device.
 
+.. raw:: html
+
+    <run></run>
 
 .. code-block:: 
 
     i2cdetect -y 1      # For Raspberry Pi 2 and higher version
 
+.. raw:: html
 
+   <run></run>
 
 .. code-block:: 
 
@@ -79,6 +93,9 @@ If there is an I2C device connected, the address of the device will be displayed
 
 **For C language users:** Install libi2c-dev.
 
+.. raw:: html
+
+    <run></run>
  
 .. code-block:: 
 
@@ -86,7 +103,9 @@ If there is an I2C device connected, the address of the device will be displayed
 
 **For Python users:** Install smbus for I2C.
 
+.. raw:: html
 
+    <run></run>
  
 .. code-block:: 
 

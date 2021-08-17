@@ -35,6 +35,7 @@ Here is the Email: cs@sunfounder.com.
     scratch/play_with_scratch
     appendix/appendix
     faq
+    thank-learning
 
 
 

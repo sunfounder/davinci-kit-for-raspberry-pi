@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SunFounder Davinci Kit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-11 18:19+0800\n"
+"POT-Creation-Date: 2021-08-19 18:22+0800\n"
 "PO-Revision-Date: 2021-06-01 10:41+0800\n"
 "Last-Translator: \n"
 "Language: de\n"
@@ -136,23 +136,23 @@ msgstr "**Schritt 1:** Bauen Sie die Schaltung auf."
 msgid "Alarm Bell_bb"
 msgstr "Alarm Bell_bb"
 
-#: ../3.1.10_alarm_bell.rst:42
+#: ../3.1.10_alarm_bell.rst:41
 msgid "**For C Language Users**"
 msgstr "**Für Benutzer in C-Sprache**"
 
-#: ../3.1.10_alarm_bell.rst:44
+#: ../3.1.10_alarm_bell.rst:43
 msgid "**Step 2**: Change directory."
 msgstr "**Schritt 2:** Verzeichnis wechseln."
 
-#: ../3.1.10_alarm_bell.rst:54
+#: ../3.1.10_alarm_bell.rst:53
 msgid "**Step 3**: Compile."
 msgstr "**Schritt 3:** Kompilieren."
 
-#: ../3.1.10_alarm_bell.rst:64
+#: ../3.1.10_alarm_bell.rst:63
 msgid "**Step 4**: Run."
 msgstr "**Schritt 4:** Ausführen."
 
-#: ../3.1.10_alarm_bell.rst:74 ../3.1.10_alarm_bell.rst:240
+#: ../3.1.10_alarm_bell.rst:73 ../3.1.10_alarm_bell.rst:239
 msgid ""
 "After the program starts, the toggle switch will be toggled to the right,"
 " and the buzzer will give out alarm sounds. At the same time, the red and"
@@ -162,17 +162,19 @@ msgstr ""
 "umgeschaltet und der Summer gibt Alarmtöne aus. Gleichzeitig blinken die "
 "roten und grünen LEDs mit einer bestimmten Frequenz."
 
-#: ../3.1.10_alarm_bell.rst:80
+#: ../3.1.10_alarm_bell.rst:79
 msgid ""
 "If it does not work after running, please refer to :ref:`C code is not "
 "working?`"
-msgstr "Wenn es nach dem Ausführen nicht funktioniert, lesen Sie bitte :ref:`C code is not working?`"
+msgstr ""
+"Wenn es nach dem Ausführen nicht funktioniert, lesen Sie bitte :ref:`C "
+"code is not working?`"
 
-#: ../3.1.10_alarm_bell.rst:83 ../3.1.10_alarm_bell.rst:339
+#: ../3.1.10_alarm_bell.rst:82 ../3.1.10_alarm_bell.rst:338
 msgid "**Code Explanation**"
 msgstr "**Code Erklärung**"
 
-#: ../3.1.10_alarm_bell.rst:89
+#: ../3.1.10_alarm_bell.rst:88
 msgid ""
 "In this code, you'll use a new library, pthread.h, which is a set of "
 "common thread libraries and can realize multithreading. We add the "
@@ -185,7 +187,7 @@ msgstr ""
 "Kompilierungszeit hinzu, damit die LED und der Summer unabhängig "
 "voneinander arbeiten können."
 
-#: ../3.1.10_alarm_bell.rst:111 ../3.1.10_alarm_bell.rst:361
+#: ../3.1.10_alarm_bell.rst:110 ../3.1.10_alarm_bell.rst:360
 msgid ""
 "The function ledWork() helps to set the working state of these 2 LEDs: it"
 " keeps the green LED lighting up for 0.5s and then turns off; similarly, "
@@ -196,7 +198,7 @@ msgstr ""
 "erlischt dann. In ähnlicher Weise leuchtet die rote LED 0,5 Sekunden lang"
 " auf und erlischt dann."
 
-#: ../3.1.10_alarm_bell.rst:132 ../3.1.10_alarm_bell.rst:377
+#: ../3.1.10_alarm_bell.rst:131 ../3.1.10_alarm_bell.rst:376
 msgid ""
 "The function buzzWork() is used to set the working state of the buzzer. "
 "Here we set the frequency as between 130 and 800, to accumulate or decay "
@@ -206,21 +208,24 @@ msgstr ""
 "eingestellt. Hier stellen wir die Frequenz zwischen 130 und 800 ein, um "
 "sie in einem Intervall von 20 zu akkumulieren oder abzunehmen."
 
-#: ../3.1.10_alarm_bell.rst:150 ../3.1.10_alarm_bell.rst:392
+#: ../3.1.10_alarm_bell.rst:149 ../3.1.10_alarm_bell.rst:391
 msgid "In the function on():"
 msgstr "In der Funktion on ():"
 
-#: ../3.1.10_alarm_bell.rst:152 ../3.1.10_alarm_bell.rst:394
-msgid "Define the mark “flag=1”, indicating the ending of the control thread."
+#: ../3.1.10_alarm_bell.rst:151 ../3.1.10_alarm_bell.rst:393
+ 
+msgid ""
+"Define the mark \\\"flag=1\\\", indicating the ending of the control "
+"thread."
 msgstr ""
-"Definieren Sie die Markierung “flag = 1”, die das Ende des "
+"Definieren Sie die Markierung \"flag = 1\", die das Ende des "
 "Kontrollthreads angibt."
 
-#: ../3.1.10_alarm_bell.rst:155
+#: ../3.1.10_alarm_bell.rst:154
 msgid "Create a software-controlled tone pin **BeepPin**."
 msgstr "Erstellen Sie einen softwaregesteuerten Ton-Pin **BeepPin**."
 
-#: ../3.1.10_alarm_bell.rst:157
+#: ../3.1.10_alarm_bell.rst:156
 msgid ""
 "Create two separate threads so that the LED and the buzzer can work at "
 "the same time."
@@ -228,19 +233,20 @@ msgstr ""
 "Erstellen Sie zwei separate Threads, damit die LED und der Summer "
 "gleichzeitig arbeiten können."
 
-#: ../3.1.10_alarm_bell.rst:160
+#: ../3.1.10_alarm_bell.rst:159
 msgid "**pthread_t tLed:** Declare a thread **tLed**."
 msgstr "**pthread_t tLed:** Deklariert einen Thread **tLed**."
 
-#: ../3.1.10_alarm_bell.rst:162
+#: ../3.1.10_alarm_bell.rst:161
+ 
 msgid ""
-"**pthread_create(&tLed,NULL,ledWork,NULL)：**\\ Create the thread and its "
+"**pthread_create(&tLed,NULL,ledWork,NULL)：** Create the thread and its "
 "prototype is as follows:"
 msgstr ""
-"**pthread_create(&tLed,NULL,ledWork,NULL):**\\ Erstellen Sie den Thread "
+"**pthread_create(&tLed,NULL,ledWork,NULL):** Erstellen Sie den Thread "
 "und sein Prototyp lautet wie folgt:"
 
-#: ../3.1.10_alarm_bell.rst:165
+#: ../3.1.10_alarm_bell.rst:164
 msgid ""
 "int pthread_create(pthread_t \\*restrict tidp,const pthread_attr_t "
 "\\*restrict_attr,void*（*start_rtn)(void*),void \\*restrict arg);"
@@ -249,47 +255,49 @@ msgstr ""
 "\\*restrict_attr,void*（*start_rtn)(void*),void \\*restrict "
 "arg);einschränken);"
 
-#: ../3.1.10_alarm_bell.rst:168
+#: ../3.1.10_alarm_bell.rst:167
 msgid "**Return the Value**"
 msgstr "**Geben Sie den Wert zurück**"
 
-#: ../3.1.10_alarm_bell.rst:170
+#: ../3.1.10_alarm_bell.rst:169
+ 
 msgid ""
-"If successful, return “\\ **0**\\ ”；otherwise, return the **fall number**"
-" “\\ **-1**\\ ”."
+"If successful, return \\\"**0**\\\"；otherwise, return the **fall number**"
+" \\\"**-1**\\\"."
 msgstr ""
-"Wenn dies erfolgreich ist, geben Sie “\\ **0**\\ ” zurück. Andernfalls "
-"geben Sie **die Fallzahl** “\\ **-1**\\ ” zurück."
+"Wenn dies erfolgreich ist, geben Sie \"**0**\" zurück. Andernfalls "
+"geben Sie **die Fallzahl** \"**-1**\" zurück."
 
-#: ../3.1.10_alarm_bell.rst:173
+#: ../3.1.10_alarm_bell.rst:172
 msgid "**Parameter**"
 msgstr "**Parameter**"
 
-#: ../3.1.10_alarm_bell.rst:175
+#: ../3.1.10_alarm_bell.rst:174
 msgid "The first parameter is a pointer to the thread identifier."
 msgstr "Der erste Parameter ist ein Zeiger auf die Thread-ID."
 
-#: ../3.1.10_alarm_bell.rst:176
+#: ../3.1.10_alarm_bell.rst:175
 msgid "The second one is used to set the thread attribute."
 msgstr "Der zweite wird verwendet, um das Thread-Attribut festzulegen."
 
-#: ../3.1.10_alarm_bell.rst:177
+#: ../3.1.10_alarm_bell.rst:176
 msgid "The third one is the starting address of the thread running function."
 msgstr "Die dritte ist die Startadresse der Thread-Running-Funktion."
 
-#: ../3.1.10_alarm_bell.rst:178
+#: ../3.1.10_alarm_bell.rst:177
 msgid "The last one is the one that runs the function."
 msgstr "Der letzte ist derjenige, der die Funktion ausführt."
 
-#: ../3.1.10_alarm_bell.rst:190 ../3.1.10_alarm_bell.rst:424
+#: ../3.1.10_alarm_bell.rst:189 ../3.1.10_alarm_bell.rst:423
+ 
 msgid ""
-"The function Off() defines “flag=0” so as to exit the threads **ledWork**"
-" and **BuzzWork** and then turn off the buzzer and the LED."
+"The function Off() defines \\\"flag=0\\\" so as to exit the threads "
+"**ledWork** and **BuzzWork** and then turn off the buzzer and the LED."
 msgstr ""
-"Die Funktion Off() definiert “flag=0”, um die Threads **ledWork** und "
+"Die Funktion Off() definiert \"flag=0\", um die Threads **ledWork** und "
 "**BuzzWork** zu verlassen und dann den Summer und die LED auszuschalten."
 
-#: ../3.1.10_alarm_bell.rst:211 ../3.1.10_alarm_bell.rst:439
+#: ../3.1.10_alarm_bell.rst:210 ../3.1.10_alarm_bell.rst:438
 msgid ""
 "Main() contains the whole process of the program: firstly read the value "
 "of the slide switch; if the toggle switch is toggled to the right (the "
@@ -303,33 +311,34 @@ msgstr ""
 " wird zur Ausgabe von Tönen angesteuert und die rote und die grüne LED "
 "blinken. Andernfalls funktionieren der Summer und die LED nicht."
 
-#: ../3.1.10_alarm_bell.rst:218
+#: ../3.1.10_alarm_bell.rst:217
 msgid "**For Python Language Users**"
 msgstr "**Für Python-Sprachbenutzer**"
 
-#: ../3.1.10_alarm_bell.rst:220
+#: ../3.1.10_alarm_bell.rst:219
 msgid "**Step 2:** Change directory."
 msgstr "**Schritt 2:** Verzeichnis wechseln."
 
-#: ../3.1.10_alarm_bell.rst:230
+#: ../3.1.10_alarm_bell.rst:229
 msgid "**Step 3:** Run."
 msgstr "**Schritt 3:** Ausführen."
 
-#: ../3.1.10_alarm_bell.rst:244
+#: ../3.1.10_alarm_bell.rst:243
 msgid "**Code**"
 msgstr "**Code**"
 
-#: ../3.1.10_alarm_bell.rst:248
+#: ../3.1.10_alarm_bell.rst:247
+ 
 msgid ""
 "You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, "
 "you need to go to  source code path like ``davinci-kit-for-raspberry-"
-"pi\\\\python``."
+"pi/python``."
 msgstr ""
 "Sie können den folgenden Code **Ändern/Zurücksetzen/ "
 "Kopieren/Ausführen/Stoppen**. Zuvor müssen Sie jedoch zu einem "
-"Quellcodepfad wie ``davinci-kit-for-raspberry-pi\\\\python`` gehen."
+"Quellcodepfad wie ``davinci-kit-for-raspberry-pi/python`` gehen."
 
-#: ../3.1.10_alarm_bell.rst:345
+#: ../3.1.10_alarm_bell.rst:344
 msgid ""
 "Here, we import the **Threading** module and it allows you to do multiple"
 " things at once, while normal programs can only execute code from top to "
@@ -341,11 +350,11 @@ msgstr ""
 " oben nach unten ausführen können. Bei **Threading**-Modulen können die "
 "LED und der Summer separat arbeiten."
 
-#: ../3.1.10_alarm_bell.rst:397
+#: ../3.1.10_alarm_bell.rst:396
 msgid "Start the Buzz, and set the duty cycle to 50%."
 msgstr "Starten Sie den Buzz und stellen Sie den Arbeitszyklus auf 50% ein."
 
-#: ../3.1.10_alarm_bell.rst:399
+#: ../3.1.10_alarm_bell.rst:398
 msgid ""
 "Create **2** separate threads so that the LED and the buzzer can work at "
 "the same time."
@@ -353,15 +362,16 @@ msgstr ""
 "Erstellen Sie **2** separate Threads, damit die LED und der Summer "
 "gleichzeitig arbeiten können."
 
-#: ../3.1.10_alarm_bell.rst:402
+#: ../3.1.10_alarm_bell.rst:401
+ 
 msgid ""
-"tBuzz = threading.Thread(target=buzzerWork)\\ **：**\\ Create the thread "
-"and its prototype is as follows:"
+"tBuzz = threading.Thread(target=buzzerWork) **:** Create the thread and "
+"its prototype is as follows:"
 msgstr ""
-"tBuzz = threading.Thread (target = buzzerWork) **:**\\  Erstellen Sie den"
+"tBuzz = threading.Thread (target = buzzerWork) **:** Erstellen Sie den"
 " Thread und sein Prototyp lautet wie folgt:"
 
-#: ../3.1.10_alarm_bell.rst:406
+#: ../3.1.10_alarm_bell.rst:405
 msgid ""
 "class threading.Thread(group=None, target=None, name=None, args=(), "
 "kwargs={}, \\*, daemon=None)"
@@ -369,17 +379,18 @@ msgstr ""
 "class threading.Thread(group=None, target=None, name=None, args=(), "
 "kwargs={}, \\*, daemon=None)"
 
-#: ../3.1.10_alarm_bell.rst:408
+#: ../3.1.10_alarm_bell.rst:407
+ 
 msgid ""
 "Among the construction methods, the principal parameter is **target**, we"
 " need to assign a callable object (here are the functions **ledWork** and"
-" **BuzzWork**) to **target**."
+" **BuzzWork** ) to **target**."
 msgstr ""
 "Unter den Konstruktionsmethoden ist der Hauptparameter **target**. Wir "
 "müssen dem Ziel ein aufrufbares Objekt zuweisen (hier sind die Funktionen"
 " **ledWork** und **BuzzWork**)."
 
-#: ../3.1.10_alarm_bell.rst:412
+#: ../3.1.10_alarm_bell.rst:411
 msgid ""
 "Next **start()** is called to start the thread object, ex., tBuzz.start()"
 " is used to start the newly installed tBuzz thread."
@@ -388,7 +399,7 @@ msgstr ""
 "Beispiel: tBuzz.start () wird verwendet, um den neu installierten tBuzz-"
 "Thread zu starten."
 
-#: ../3.1.10_alarm_bell.rst:446
+#: ../3.1.10_alarm_bell.rst:445
 msgid "Phenomenon Picture"
 msgstr "Phänomen Bild"
 

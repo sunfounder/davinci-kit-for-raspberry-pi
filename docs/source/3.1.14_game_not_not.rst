@@ -4,7 +4,7 @@
 Introduction
 --------------------
 
-In this lesson, we will make an interesting game device, and we call it "Not Not".
+In this lesson, we will make an interesting game device, and we call it \"Not Not\".
 
 During the game, the dot matrix will refresh an arrow randomly. What you need to do is to press the button in the opposite direction of the arrow within a limited time. If the time is up, or if the button in the same direction as the arrow is pressed, you are out.
 
@@ -37,6 +37,8 @@ Experimental Procedures
 **Step 1:** Build the circuit.
 
 .. image:: media/image280.png
+    :width: 800
+
 
 **For C Language Users**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -74,9 +76,9 @@ Experimental Procedures
 After the program starts, a left or right arrow will be refreshed at
 random on the dot matrix. What you need to do is to press the button in
 the opposite direction of the arrow within a limited time. Then
-“\ **√**\ ” appears on the dot matrix. If the time is up, or if the
+\"**√**\" appears on the dot matrix. If the time is up, or if the
 button in the same direction as the arrow is pressed, you are out and
-the dot matrix displays “x”. You can also add 2 new buttons or replace
+the dot matrix displays \"x\". You can also add 2 new buttons or replace
 them with Joystick keys for up, down, left and right— 4 directions to
 increase the difficulty of the game.
 
@@ -138,8 +140,8 @@ up, down, left and right directions on the LED dot matrix.
 
 Now **down** and **up** are commented and uncomment them if needed.
 
-The array **check** is used to display these two images: ”\ **×**\ ” and
-”\ **√**\ ”.
+The array **check** is used to display these two images: \"**×**\" and
+\"**√**\".
 
 .. code-block:: c
 
@@ -152,9 +154,9 @@ The array **check** is used to display these two images: ”\ **×**\ ” and
         }    
     }
 
-The function **lookup()** works by “checking the dictionary”. Define a
+The function **lookup()** works by \"checking the dictionary\". Define a
 **key,** search the same words as **key** in the structure **GLYPH
-\*glyph** and return the corresponding information— “\ **code**\ ” of
+\*glyph** and return the corresponding information— \"**code**\" of
 the certain word.
 
 The function **Strcmp()** is used to compare the identity of two
@@ -185,19 +187,19 @@ Display the specified pattern on the dot matrix.
 
 The function **createGlyph()** is used to randomly select a direction
 (the word attribute of an element in the array **arrow[]:**
-“\ **left**\ ”, “\ **right**\ ”... ). Set the stage as “PLAY” and start
+\"**left**\", \"**right**\"... ). Set the stage as \"PLAY\" and start
 a 2-second alarm clock function.
 
 **srand(time(NULL)):** Initializes random seeds that are from the system
 clock.
 
-**(sizeof(arrow)/sizeof(arrow[0]))：**\ Get the length of the array, the
+**(sizeof(arrow)/sizeof(arrow[0]))：** Get the length of the array, the
 outcome is 2.
 
 **rand()%2:** The remainder is **0** or **1,** gotten from dividing a
-generated random number by 2\ **.**
+generated random number by 2.
 
-**waypoint=arrow[i].word:** The outcome should be “right” or “left”.
+**waypoint=arrow[i].word:** The outcome should be \"right\" or \"left\".
 
 .. code-block:: c
 
@@ -216,12 +218,12 @@ generated random number by 2\ **.**
 
 checkPoint() is used to check the button input; if the button is not
 pressed or the button in the same direction as the arrow is pressed, the
-outcome of the waypoint is wrong and “\ **x**\ ” appears on the dot
+outcome of the waypoint is wrong and \"**x**\" appears on the dot
 matrix. Otherwise, the waypoint is right and dot matrix displays
-“\ **√**\ ”. Here the **stage** is **CHECK,** and there can be set a
+\"**√**\". Here the **stage** is **CHECK,** and there can be set a
 1-second alarm clock function.
 
-alarm() is also called “alarm clock”, in which a timer can be set, and
+alarm() is also called \"alarm clock\", in which a timer can be set, and
 it sends **SIGALRM** signals to the progress when the defined time is
 up.
 
@@ -250,8 +252,8 @@ if the left button is pressed, the parameter is **left**.
     }
 
 Previously, timer() was called when set as the alarm() time’s up. Then
-under the “PLAY” mode, checkPoint() is to be called to judge the
-outcome. If the program is set to “CHECK” mode, the function
+under the \"PLAY\" mode, checkPoint() is to be called to judge the
+outcome. If the program is set to \"CHECK\" mode, the function
 createGlyph() should be called to select new patterns.
 
 .. code-block:: c
@@ -285,7 +287,7 @@ start the loop.
 
 In the loop: under PLAY mode, the dot matrix displays arrow patterns and
 check the button state; if under CHECK mode, what is displayed is
-“\ **x**\ ” or “\ **√**\ ”.
+\"**x**\" or \"**√**\".
 
 **For Python Language Users**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -313,9 +315,9 @@ check the button state; if under CHECK mode, what is displayed is
 After starting the program, on the dot matrix appears an arrow pointing
 to the right or the left. What you need to do is to press the button in
 the opposite direction of the arrow within a limited time. Then
-“\ **√**\ ” appears on the dot matrix. If the time is up, or if the
+\"**√**\" appears on the dot matrix. If the time is up, or if the
 button in the same direction as the arrow is pressed, you are out and
-the dot matrix displays “x”. You can also add 2 new buttons or replace
+the dot matrix displays \"x\". You can also add 2 new buttons or replace
 them with Joystick keys for up, down, left and right— 4 directions to
 increase the difficulty of the game.
 
@@ -323,7 +325,7 @@ increase the difficulty of the game.
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\python``. 
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
     
 .. raw:: html
 
@@ -447,6 +449,7 @@ dot matrix, please refer to :ref:`1.1.6 LED Dot Matrix`.
 The whole program process is as below:
 
 .. image:: media/notnot3.png
+    :width: 800
 
 1. Randomly select an arrow direction and generate **timer 1**.
 
@@ -478,7 +481,7 @@ start the loop.
 
 In the loop: under PLAY mode, the dot matrix displays arrow patterns and
 check the button state; if under CHECK mode, what is displayed is
-“\ **x**\ ” or “\ **√**\ ”.
+\"**x**\" or \"**√**\".
 
 .. code-block:: python
 
@@ -499,7 +502,7 @@ in up, down, left and right directions on the LED dot matrix.
 Now down and up are commented and uncomment them if needed.
 
 The **dictionary** check is used to display these two images:
-”\ **×**\ ” and ”\ **√**\ ”.
+\"**×**\" and \"**√**\".
 
 .. code-block:: python
 
@@ -525,18 +528,18 @@ Display the specified pattern on the dot matrix.
 
 The function **createGlyph()** is used to randomly select a direction
 (the word attribute of an element in the array **arrow[]:**
-“\ **left**\ ”, “\ **right**\ ”... ). Set the stage as “PLAY” and start
+\"**left**\", \"**right**\"... ). Set the stage as \"PLAY\" and start
 a 2-second alarm clock function.
 
-**arrow.keys():** Select the keys “right”and “left” in the arrow array.
+**arrow.keys():** Select the keys \"right\"and \"left\" in the arrow array.
 
-l\ **ist(arrow.keys()):** Combine these keys into an array.
+**list(arrow.keys()):** Combine these keys into an array.
 
 **random.choice(list(arrow.keys())):** Randomly select an element in the
 array.
 
 So, The outcome of **waypoint=random.choice(list(arrow.keys()))** should
-be “right” or “left”.
+be \"right\" or \"left\".
 
 .. code-block:: python
 
@@ -559,7 +562,7 @@ If no button is pressed or the button in the same direction as the the
 arrow is pressed, the assigned value of the **``waypoint``** is **``wrong``**
 and there displays ``x`` on the dot matrix.
 
-Otherwise, the waypoint is right and “\ **√**\ ” appears.
+Otherwise, the waypoint is right and \"**√**\" appears.
 
 Now the stage is **CHECK** and start a 1-second timer **timerCheck** to
 call the function creatGlyph() in a second.
@@ -570,7 +573,7 @@ call the function creatGlyph() in a second.
         checkPoint("empty")
 
 In the function timeout(), set the parameter of checkPoint() as
-”\ **empty**\ ”.
+\"**empty**\".
 
 .. code-block:: python
 

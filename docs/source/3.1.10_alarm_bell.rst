@@ -35,8 +35,7 @@ Experimental Procedures
 
 .. image:: media/image266.png
    :alt: Alarm Bell_bb
-   :width: 6.64861in
-   :height: 3.61458in
+   :width: 800
 
 **For C Language Users**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -149,7 +148,7 @@ at an interval of 20.
 
 In the function on():
 
-1) Define the mark “flag=1”, indicating the ending of the control
+1) Define the mark \"flag=1\", indicating the ending of the control
    thread.
 
 2) Create a software-controlled tone pin **BeepPin**.
@@ -159,7 +158,7 @@ In the function on():
 
 **pthread_t tLed:** Declare a thread **tLed**.
 
-**pthread_create(&tLed,NULL,ledWork,NULL)：**\ Create the thread and its
+**pthread_create(&tLed,NULL,ledWork,NULL)：** Create the thread and its
 prototype is as follows:
 
 int pthread_create(pthread_t \*restrict tidp,const pthread_attr_t
@@ -167,8 +166,8 @@ int pthread_create(pthread_t \*restrict tidp,const pthread_attr_t
 
 **Return the Value**
 
-If successful, return “\ **0**\ ”；otherwise, return the **fall number**
-“\ **-1**\ ”.
+If successful, return \"**0**\"；otherwise, return the **fall number**
+\"**-1**\".
 
 **Parameter**
 
@@ -187,7 +186,7 @@ If successful, return “\ **0**\ ”；otherwise, return the **fall number**
     }
 
 
-The function Off() defines “flag=0” so as to exit the threads
+The function Off() defines \"flag=0\" so as to exit the threads
 **ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
 
 .. code-block:: c
@@ -245,7 +244,7 @@ red and green LEDs will flash at a certain frequency.
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi\\python``. 
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
     
 .. raw:: html
 
@@ -391,7 +390,7 @@ at an interval of 20.
 
 In the function on():
 
-1) Define the mark “flag=1”, indicating the ending of the control
+1) Define the mark \"flag=1\", indicating the ending of the control
    thread.
 
 2) Start the Buzz, and set the duty cycle to 50%.
@@ -399,7 +398,7 @@ In the function on():
 3) Create **2** separate threads so that the LED and the buzzer can work
    at the same time.
 
-   tBuzz = threading.Thread(target=buzzerWork)\ **：**\ Create the
+   tBuzz = threading.Thread(target=buzzerWork) **:** Create the
    thread and its prototype is as follows:
 
 
@@ -407,7 +406,7 @@ class threading.Thread(group=None, target=None, name=None, args=(), kwargs=
 
 Among the construction methods, the principal parameter is **target**,
 we need to assign a callable object (here are the functions **ledWork**
-and **BuzzWork**) to **target**.
+and **BuzzWork** ) to **target**.
 
 Next **start()** is called to start the thread object, ex.,
 tBuzz.start() is used to start the newly installed tBuzz thread.
@@ -421,7 +420,7 @@ tBuzz.start() is used to start the newly installed tBuzz thread.
         GPIO.output(ALedPin,GPIO.LOW)
         GPIO.output(BLedPin,GPIO.LOW)
 
-The function Off() defines “flag=0” so as to exit the threads
+The function Off() defines \"flag=0\" so as to exit the threads
 **ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
 
 .. code-block:: python

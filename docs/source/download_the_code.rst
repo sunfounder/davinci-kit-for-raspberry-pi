@@ -33,6 +33,6 @@ Clone the repository from GitHub.
 
 **Method 2: Download the code.**
 
-Download the source code from github: https://github.com/sunfounder/davinci-kit-for-raspberry-pi
+Download the source code from github: https://github.com/sunfounder/davinci-kit-for-raspberry-pi.
 
 .. image:: media/image33.png

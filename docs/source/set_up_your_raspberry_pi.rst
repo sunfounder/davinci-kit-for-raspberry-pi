@@ -83,7 +83,7 @@ it.
 
 **Step 2**
 
-Type in **ssh pi@ip_address** . “pi”is your username and “ip_address” is
+Type in **ssh pi@ip_address** . \"pi\" is your username and \"ip_address\" is
 your IP address. For example:
 
 .. code-block::
@@ -92,7 +92,7 @@ your IP address. For example:
 
 **Step 3**
 
-Input”yes”.
+Input \"yes\".
 
 .. image:: media/image22.png
     :align: center
@@ -143,7 +143,7 @@ the IP address, there prompts a security reminder. Just click **Yes**.
 **Step 4**
 
 When the PuTTY window prompts \"**login as:**\", type in
-\"**pi**\" (the user name of the RPi), and password: \"**raspberry**\"
+\"**pi**\" (the user name of the RPi), and **password**: \"raspberry\"
 (the default one, if you haven't changed it).
 
 .. note::

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SunFounder Davinci Kit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-11 18:19+0800\n"
+"POT-Creation-Date: 2021-08-19 18:22+0800\n"
 "PO-Revision-Date: 2021-08-06 11:28+0800\n"
 "Last-Translator: \n"
 "Language: ja\n"
@@ -60,7 +60,7 @@ msgid ""
 "segments connected. In this kit, we use the former."
 msgstr "ピン接続には、カソードコモン（CC）とアノードコモン（CA）の2種類がある。名前が示すように、CAディスプレイには7セグメントのアノードがすべて接続されている場合、CCディスプレイには7つのLEDのカソードがすべて接続されている。このキットでは、前者を使用する。"
 
-#: ../1.1.4_7-segment_display.rst:33
+#: ../1.1.4_7-segment_display.rst:34
 msgid ""
 "Each of the LEDs in the display is given a positional segment with one of"
 " its connection pins led out from the rectangular plastic package. These "
@@ -71,11 +71,11 @@ msgid ""
 "stay dim, thus showing the corresponding character on the display."
 msgstr "ディスプレイの各LEDには、長方形のプラスチックパッケージから接続ピンの1つが引き出された位置セグメントがある。これらのLEDピンには、個々のLEDを表す「a」から「g」までのラベルが付いている。他のLEDピンは一緒に接続され、共通のピンを形成する。そのため、LEDセグメントの適切なピンを特定の順序で順方向にバイアスすることにより、一部のセグメントが明るくなり、他のセグメントが暗くなり、ディスプレイに対応する文字が表示される。"
 
-#: ../1.1.4_7-segment_display.rst:41
+#: ../1.1.4_7-segment_display.rst:42
 msgid "**Display Codes**"
 msgstr "**表示コード**"
 
-#: ../1.1.4_7-segment_display.rst:43
+#: ../1.1.4_7-segment_display.rst:44
 msgid ""
 "To help you get to know how 7-segment displays(Common Cathode) display "
 "Numbers, we have drawn the following table. Numbers are the number 0-F "
@@ -86,18 +86,18 @@ msgid ""
 "hexadecimal number."
 msgstr "7セグメントディスプレイ（カソードコモン）がどのように番号を表示するかを知るために、次の表を作成した。数字は、7セグメントディスプレイに表示される数字0〜Fである。（DP）GFEDCBAは、0または1に設定された対応するLEDを指す。たとえば、00111111は、DPとGが0に設定され、他が1に設定されることを意味する。したがって、7セグメントディスプレイには0が表示され、HEXコードは16進数に対応する。"
 
-#: ../1.1.4_7-segment_display.rst:54
+#: ../1.1.4_7-segment_display.rst:55
 msgid "**74HC595**"
 msgstr "**74HC595**"
 
-#: ../1.1.4_7-segment_display.rst:56
+#: ../1.1.4_7-segment_display.rst:57
 msgid ""
 "The 74HC595 consists of an 8−bit shift register and a storage register "
 "with three−state parallel outputs. It converts serial input into parallel"
 " output so you can save IO ports of an MCU."
 msgstr "74HC595は、8ビットのシフトレジスタと、3段階の並列出力を備えたストレージレジスタで構成されている。MCUのIOポートを節約できるように、シリアル入力を並列出力に変換する。"
 
-#: ../1.1.4_7-segment_display.rst:60
+#: ../1.1.4_7-segment_display.rst:61
 msgid ""
 "When MR (pin10) is high level and OE (pin13) is low level, data is input "
 "in the rising edge of SHcp and goes to the memory register through the "
@@ -109,27 +109,27 @@ msgid ""
 "enabled (low level), the data in memory register is output to the bus."
 msgstr "MR（ピン10）が高レベルで、OE（ピン13）が低レベルの場合、データはSHcpの立ち上がりエッジで入力され、SHcpの立ち上がりエッジを介してメモリレジスタに入力される。2つのクロックが接続されている場合、シフトレジスタは常にメモリレジスタより1パルス早くなる。メモリレジスタには、シリアルシフト入力ピン（Ds）、シリアル出力ピン（Q）、非同期リセットボタン（低レベル）がある。メモリレジスタは並列8ビットで3つの状態のバスを出力します。OEが有効（低レベル）の場合、メモリレジスタのデータがバスに出力される。"
 
-#: ../1.1.4_7-segment_display.rst:74
+#: ../1.1.4_7-segment_display.rst:78
 msgid "**Pins of 74HC595 and their functions**:"
 msgstr "**74HC595のピンとその機能**："
 
-#: ../1.1.4_7-segment_display.rst:76
+#: ../1.1.4_7-segment_display.rst:80
 msgid ""
 "**Q0-Q7**: 8-bit parallel data output pins, able to control 8 LEDs or 8 "
 "pins of 7-segment display directly."
 msgstr "**Q0-Q7**：8ビットパラレルデータ出力端子。8個のLEDまたは8個の7セグメントディスプレイを直接制御することができます。"
 
-#: ../1.1.4_7-segment_display.rst:78
+#: ../1.1.4_7-segment_display.rst:82
 msgid ""
 "**Q7’**: Series output pin, connected to DS of another 74HC595 to connect"
 " multiple 74HC595s in series."
 msgstr "**Q7'**: 複数の74HC595を直列に接続するために，別の74HC595のDSに接続される直列出力端子。"
 
-#: ../1.1.4_7-segment_display.rst:80
+#: ../1.1.4_7-segment_display.rst:84
 msgid "**MR**: Reset pin, active at low level;"
 msgstr "**MR**: リセットピン－低レベルで作動;"
 
-#: ../1.1.4_7-segment_display.rst:82
+#: ../1.1.4_7-segment_display.rst:86
 msgid ""
 "**SHcp**: Time sequence input of shift register. On the rising edge, the "
 "data in shift register moves successively one bit, i.e. data in Q1 moves "
@@ -140,33 +140,33 @@ msgstr ""
 "立ち上がりエッジでは、シフトレジスタのデータが1ビット連続して移動します。つまり、Q1のデータがQ2に移動します。 "
 "立ち下がりエッジにある間、シフトレジスタのデータは変更されません。"
 
-#: ../1.1.4_7-segment_display.rst:84
+#: ../1.1.4_7-segment_display.rst:88
 msgid ""
 "**STcp**: Time sequence input of storage register. On the rising edge, "
 "data in the shift register moves into memory register."
 msgstr "**STcp**：ストレージレジスタの時系列入力。 立ち上がりエッジで、シフトレジスタのデータがメモリレジスタに移動します。"
 
-#: ../1.1.4_7-segment_display.rst:86
+#: ../1.1.4_7-segment_display.rst:90
 msgid "**CE**: Output enable pin, active at low level."
 msgstr "**CE** : 出力イネーブルピン、低レベルで作動する。"
 
-#: ../1.1.4_7-segment_display.rst:88
+#: ../1.1.4_7-segment_display.rst:92
 msgid "**DS**: Serial data input pin"
 msgstr "**DS** : 直列データ入力ピン"
 
-#: ../1.1.4_7-segment_display.rst:90
+#: ../1.1.4_7-segment_display.rst:94
 msgid "**VCC**: Positive supply voltage"
 msgstr "**VCC** : 正の電源電圧"
 
-#: ../1.1.4_7-segment_display.rst:92
+#: ../1.1.4_7-segment_display.rst:96
 msgid "**GND**: Ground"
 msgstr "**GND** : 接地"
 
-#: ../1.1.4_7-segment_display.rst:95
+#: ../1.1.4_7-segment_display.rst:99
 msgid "Schematic Diagram"
 msgstr "回路図"
 
-#: ../1.1.4_7-segment_display.rst:97
+#: ../1.1.4_7-segment_display.rst:101
 msgid ""
 "Connect pin ST_CP of 74HC595 to Raspberry Pi GPIO18, SH_CP to GPIO27, DS "
 "to GPIO17, parallel output ports to 8 segments of the LED segment "
@@ -182,113 +182,113 @@ msgstr ""
 " Pi GPIOを介してSH_CPおよびST_CPの状態を制御し、直列データ入力を並列データ出力に変換して、Raspberry Pi "
 "GPIOを保存したりディスプレイを駆動したりすることはできる。"
 
-#: ../1.1.4_7-segment_display.rst:107
+#: ../1.1.4_7-segment_display.rst:111
 msgid "T-Board Name"
 msgstr "Tボード名"
 
-#: ../1.1.4_7-segment_display.rst:107
+#: ../1.1.4_7-segment_display.rst:111
 msgid "physical"
 msgstr "physical"
 
-#: ../1.1.4_7-segment_display.rst:107
+#: ../1.1.4_7-segment_display.rst:111
 msgid "wiringPi"
 msgstr "wiringPi"
 
-#: ../1.1.4_7-segment_display.rst:107
+#: ../1.1.4_7-segment_display.rst:111
 msgid "BCM"
 msgstr "BCM"
 
-#: ../1.1.4_7-segment_display.rst:108
+#: ../1.1.4_7-segment_display.rst:112
 msgid "GPIO17"
 msgstr "GPIO17"
 
-#: ../1.1.4_7-segment_display.rst:108
+#: ../1.1.4_7-segment_display.rst:112
 msgid "Pin 11"
 msgstr "Pin 11"
 
-#: ../1.1.4_7-segment_display.rst:108
+#: ../1.1.4_7-segment_display.rst:112
 msgid "0"
 msgstr "0"
 
-#: ../1.1.4_7-segment_display.rst:108
+#: ../1.1.4_7-segment_display.rst:112
 msgid "17"
 msgstr "17"
 
-#: ../1.1.4_7-segment_display.rst:109
+#: ../1.1.4_7-segment_display.rst:113
 msgid "GPIO18"
 msgstr "GPIO18"
 
-#: ../1.1.4_7-segment_display.rst:109
+#: ../1.1.4_7-segment_display.rst:113
 msgid "Pin 12"
 msgstr "Pin 12"
 
-#: ../1.1.4_7-segment_display.rst:109
+#: ../1.1.4_7-segment_display.rst:113
 msgid "1"
 msgstr "1"
 
-#: ../1.1.4_7-segment_display.rst:109
+#: ../1.1.4_7-segment_display.rst:113
 msgid "18"
 msgstr "18"
 
-#: ../1.1.4_7-segment_display.rst:110
+#: ../1.1.4_7-segment_display.rst:114
 msgid "GPIO27"
 msgstr "GPIO27"
 
-#: ../1.1.4_7-segment_display.rst:110
+#: ../1.1.4_7-segment_display.rst:114
 msgid "Pin 13"
 msgstr "Pin 13"
 
-#: ../1.1.4_7-segment_display.rst:110
+#: ../1.1.4_7-segment_display.rst:114
 msgid "2"
 msgstr "2"
 
-#: ../1.1.4_7-segment_display.rst:110
+#: ../1.1.4_7-segment_display.rst:114
 msgid "27"
 msgstr "27"
 
-#: ../1.1.4_7-segment_display.rst:117
+#: ../1.1.4_7-segment_display.rst:121
 msgid "Experimental Procedures"
 msgstr "実験手順"
 
-#: ../1.1.4_7-segment_display.rst:119
+#: ../1.1.4_7-segment_display.rst:123
 msgid "**Step 1:** Build the circuit."
 msgstr "**ステップ1:** 回路を作る。"
 
-#: ../1.1.4_7-segment_display.rst:124
+#: ../1.1.4_7-segment_display.rst:129
 msgid "For C Language Users"
 msgstr "C言語ユーザー向け"
 
-#: ../1.1.4_7-segment_display.rst:126 ../1.1.4_7-segment_display.rst:265
+#: ../1.1.4_7-segment_display.rst:131 ../1.1.4_7-segment_display.rst:270
 msgid "Step 2: Get into the folder of the code."
 msgstr "ステップ2：コードのフォルダーに入る。"
 
-#: ../1.1.4_7-segment_display.rst:136
+#: ../1.1.4_7-segment_display.rst:141
 msgid "Step 3: Compile."
 msgstr "ステップ3：コンパイルする。"
 
-#: ../1.1.4_7-segment_display.rst:146
+#: ../1.1.4_7-segment_display.rst:151
 msgid "Step 4: Run the executable file above."
 msgstr "ステップ4：EXEファイルを実行する。"
 
-#: ../1.1.4_7-segment_display.rst:156 ../1.1.4_7-segment_display.rst:285
+#: ../1.1.4_7-segment_display.rst:161 ../1.1.4_7-segment_display.rst:290
 msgid "After the code runs, you'll see the 7-segment display display 0-9, A-F."
 msgstr "コードの実行後、7セグメントディスプレイに0〜9、AFが表示される。"
 
-#: ../1.1.4_7-segment_display.rst:160
+#: ../1.1.4_7-segment_display.rst:165
 msgid ""
 "If it does not work after running, please refer to :ref:`C code is not "
 "working?`"
 msgstr "実行後に機能しない場合は、:ref:`C code is not working?` を参照してください。"
 
-#: ../1.1.4_7-segment_display.rst:162 ../1.1.4_7-segment_display.rst:287
+#: ../1.1.4_7-segment_display.rst:167 ../1.1.4_7-segment_display.rst:292
 msgid "**Code**"
 msgstr "**コード**"
 
-#: ../1.1.4_7-segment_display.rst:212 ../1.1.4_7-segment_display.rst:347
+#: ../1.1.4_7-segment_display.rst:217 ../1.1.4_7-segment_display.rst:352
 msgid "**Code Explanation**"
 msgstr "**コードの説明**"
 
-#: ../1.1.4_7-segment_display.rst:214
+#: ../1.1.4_7-segment_display.rst:219
 msgid ""
 "unsigned char SegCode[16] = "
 "{0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};"
@@ -298,7 +298,7 @@ msgstr ""
 "{0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};"
 " 16進数（カソードコモン）の0からFまでのセグメントコード配列。"
 
-#: ../1.1.4_7-segment_display.rst:228
+#: ../1.1.4_7-segment_display.rst:233
 msgid ""
 "Set ds, st_cp, sh_cp three pins to OUTPUT, and the initial state as 0. "
 "void hc595_shift(unsigned char dat){} To assign 8 bit value to 74HC595’s "
@@ -307,7 +307,7 @@ msgstr ""
 "Set ds, st_cp, sh_cpの3つのピンをOUTPUTに設定し、初期状態を0に設定する。void "
 "hc595_shift(unsigned char dat){} 8ビット値を74HC595のシフトレジスタに割り当てる。"
 
-#: ../1.1.4_7-segment_display.rst:236
+#: ../1.1.4_7-segment_display.rst:241
 msgid ""
 "Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 "
 "1111, when i=2, 0x3f will shift left(<<) 2 bits. 1111 1100 (0x3f << 2) & "
@@ -317,56 +317,56 @@ msgstr ""
 "2の場合、0x3fは左（<<）2ビットにシフトする。1111 1100（0x3f << 2）＆1000 0000（0x80）= 1000 "
 "0000、真である。"
 
-#: ../1.1.4_7-segment_display.rst:242
+#: ../1.1.4_7-segment_display.rst:247
 msgid ""
 "SRCLK's initial value was set to 0, and here it's set to 1, which is to "
 "generate a rising edge pulse, then shift the DS date to shift register."
 msgstr "SRCLKの初期値は元々に0に設定されていたが、ここでは1に設定されている。これは、立ち上がりエッジパルスを生成し、DSの日付をシフトレジスタにシフトする。"
 
-#: ../1.1.4_7-segment_display.rst:248
+#: ../1.1.4_7-segment_display.rst:253
 msgid ""
 "RCLK's initial value was set to 0, and here it's set to 1, which is to "
 "generate a rising edge, then shift data from shift register to storage "
 "register."
 msgstr "RCLKの初期値は元々に0に設定されていたが、ここでは1に設定されている。これは、立ち上がりエッジパルスを生成し、データーをシフトレジスタからストレージレジスターにシフトする。"
 
-#: ../1.1.4_7-segment_display.rst:260
-#, python-format
+#: ../1.1.4_7-segment_display.rst:265
 msgid ""
-"In this for loop, we use \"%1X\" to output i as a hexadecimal number. "
-"Apply i to find the corresponding segment code in the SegCode[] array, "
+"In this for loop, we use \\\"%1X\\\" to output i as a hexadecimal number."
+" Apply i to find the corresponding segment code in the SegCode[] array, "
 "and employ hc595_shift() to pass the SegCode into 74HC595's shift "
 "register."
-msgstr "このforループでは、iを16進数で出力するために、\"%1X\"を使用しています。iを適用してSegCode[]配列の対応するセグメントコードを求め、hc595_shift()で74HC595のシフトレジスターにSegCodeを渡します。"
+msgstr "このforループでは、iを16進数で出力するために、\"%1X\" を使用しています。iを適用してSegCode[]配列の対応するセグメントコードを求め、"
+"hc595_shift()で74HC595のシフトレジスターにSegCodeを渡します。"
 
-#: ../1.1.4_7-segment_display.rst:263
+#: ../1.1.4_7-segment_display.rst:268
 msgid "For Python Language Users"
 msgstr "Python言語ユーザー向け"
 
-#: ../1.1.4_7-segment_display.rst:275
+#: ../1.1.4_7-segment_display.rst:280
 msgid "Step 3: Run."
 msgstr "ステップ3：実行する。"
 
-#: ../1.1.4_7-segment_display.rst:292
+#: ../1.1.4_7-segment_display.rst:297
+ 
 msgid ""
 "You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, "
 "you need to go to  source code path like ``davinci-kit-for-raspberry-"
-"pi\\\\python``."
+"pi/python``."
 msgstr ""
-"以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、「davinci-kit-for-raspberry-"
-"pi\\\\python」のようなソースコードパスに移動する必要があります。"
+"以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、 ``davinci-kit-for-raspberry-pi/python`` のようなソースコードパスに移動する必要があります。"
 
-#: ../1.1.4_7-segment_display.rst:353
+#: ../1.1.4_7-segment_display.rst:358
 msgid "A segment code array from 0 to F in Hexadecimal (Common cathode)."
 msgstr "16進数（カソードコモン）の0からFまでのセグメントコード配列。"
 
-#: ../1.1.4_7-segment_display.rst:363
+#: ../1.1.4_7-segment_display.rst:368
 msgid ""
 "Set ds, st_cp, sh_cp three pins to output and the initial state as low "
 "level."
 msgstr "Set ds, st_cp, sh_cpの3つのピンを出力に設定し、初期状態を低レベルとして設定する。"
 
-#: ../1.1.4_7-segment_display.rst:369
+#: ../1.1.4_7-segment_display.rst:374
 msgid ""
 "Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 "
 "1111, when bit=2, 0x3f will shift right(<<) 2 bits. 1111 1100 (0x3f << 2)"
@@ -376,27 +376,27 @@ msgstr ""
 "2を仮定し、0x3fは右（<<）2ビットに切り替える。1111 1100（0x3f << 2）＆1000 0000（0x80）=1000 "
 "0000、は真である。"
 
-#: ../1.1.4_7-segment_display.rst:375
+#: ../1.1.4_7-segment_display.rst:380
 msgid ""
 "SRCLK's initial value was set to LOW, and here it's set to HIGH, which is"
 " to generate a rising edge pulse, then shift the DS date to shift "
 "register."
 msgstr "SRCLKの初期値は元々LOWに設定されていたが、ここでは立ち上がりエッジを生成し、DSデータをシフトレジスタに切り替えるためにHIGHに設定されている。"
 
-#: ../1.1.4_7-segment_display.rst:381
+#: ../1.1.4_7-segment_display.rst:386
 msgid ""
 "RCLK's initial value was set to LOW, and here it's set to HIGH, which is "
 "to generate a rising edge, then shift data from shift register to storage"
 " register."
 msgstr "SRCLKの初期値は元々LOWに設定されていたが、ここでは立ち上がりエッジを生成し、DSデータをシフトレジスタに切り替えるためにHIGHに設定されている。"
 
-#: ../1.1.4_7-segment_display.rst:384
+#: ../1.1.4_7-segment_display.rst:389
 msgid ""
 "The hexadecimal format of number 0~15 are (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "
 "A, B, C, D, E, F)"
 msgstr "番号0〜15の16進形式は：(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)。"
 
-#: ../1.1.4_7-segment_display.rst:387
+#: ../1.1.4_7-segment_display.rst:392
 msgid "Phenomenon Picture"
 msgstr "現象画像"
 

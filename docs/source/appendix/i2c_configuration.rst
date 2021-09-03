@@ -109,4 +109,4 @@ If there is an I2C device connected, the address of the device will be displayed
  
 .. code-block:: 
 
-    sudo apt-get install python-smbus
+    sudo pip3 install smbus2

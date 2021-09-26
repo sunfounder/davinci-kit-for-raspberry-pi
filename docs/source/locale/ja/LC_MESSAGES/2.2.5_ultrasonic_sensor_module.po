@@ -1,0 +1,250 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, SunFounder
+# This file is distributed under the same license as the SunFounder Davinci
+# Kit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: SunFounder Davinci Kit\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-19 18:22+0800\n"
+"PO-Revision-Date: 2021-05-28 08:29+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:2
+msgid "2.2.5 Ultrasonic Sensor Module"
+msgstr "2.2.5 超音波センサーモジュール"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:5
+msgid "Introduction"
+msgstr "前書き"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:7
+msgid ""
+"The ultrasonic sensor uses ultrasonic to accurately detect objects and "
+"measure distances. It sends out ultrasonic waves and converts them into "
+"electronic signals."
+msgstr "超音波センサーは超音波を使用して物体を正確に検出し、距離を測定する。超音波を送り出し、電子信号に変換する。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:12
+msgid "Components"
+msgstr "部品"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:18
+msgid "Principle"
+msgstr "原理"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:20
+msgid "**Ultrasonic**"
+msgstr "**超音波**"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:22
+msgid ""
+"Ultrasonic ranging module provides 2cm - 400cm non-contact measurement "
+"function, and the ranging accuracy can reach to 3mm. It can ensure that "
+"the signal is stable within 5m, and the signal is gradually weakened "
+"after 5m, till the 7m position disappears."
+msgstr ""
+"超音波測距モジュールは2cm-"
+"400cmの非接触測定機能を提供し、測距精度は3mmに達することができる。信号が5m以内で安定し、5m後に信号が徐々に弱まり、7mの位置が消えることを確認できる。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:27
+msgid ""
+"The module includes ultrasonic transmitters, receiver and control "
+"circuit. The basic principles are as follows:"
+msgstr "モジュールには、超音波送信機、受信機、と制御回路が含まれている。基本的な原理は次のとおりである："
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:30
+msgid "(1)Use an IO flip-flop to process a high level signal of at least 10us."
+msgstr "(1)IOフリップフロップを使用して、少なくとも10usの高レベル信号を処理する。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:32
+msgid ""
+"(2)The module automatically sends eight 40khz and detects if there is a "
+"pulse signal return."
+msgstr "(2)モジュールは8つの40khzを自動的に送信し、パルス信号が戻すかどうかを検出する。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:35
+msgid ""
+"(3)If the signal returns, passing the high level, the high output IO "
+"duration is the time from the transmission of the ultrasonic wave to the "
+"return of it. Here, test distance = (high time x sound speed (340 m / s) "
+"/ 2."
+msgstr ""
+"(3)信号が戻し、高レベルを通過する場合、高出力IO持続時間は、超音波の送信から信号の戻りまでの時間である。ここでは、テスト距離=（高時間x音速（340"
+" m/s）/ 2。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:50
+msgid ""
+"The timing diagram is shown below. You only need to supply a short 10us "
+"pulse for the trigger input to start the ranging, and then the module "
+"will send out an 8 cycle burst of ultrasound at 40 kHz and raise its "
+"echo. You can calculate the range through the time interval between "
+"sending trigger signal and receiving echo signal."
+msgstr ""
+"タイミング図を以下に示す。トリガー入力に10usの短いパルスを供給してレンジングを開始するだけで、モジュールは40 "
+"kHzで8サイクルの超音波バーストを送信し、エコーを上げる。トリガー信号を送信してからエコー信号を受信するまでの時間間隔で範囲を計算できる。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:56
+msgid ""
+"Formula: us / 58 = centimeters or us / 148 =inch; or: the range = high "
+"level time \\* velocity (340M/S) / 2; you are suggested to use "
+"measurement cycle over 60ms in order to prevent signal collisions of "
+"trigger signal and the echo signal."
+msgstr ""
+"式：us/58 =センチメートルまたはus/148 =インチ;または：範囲=高レベル時間 \\* 速度（340M/S）/ "
+"2;トリガー信号とエコー信号の信号衝突を防ぐために、60ms以上の測定サイクルを使用することをお勧めする。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:67
+msgid "Schematic Diagram"
+msgstr "回路図"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:73
+msgid "Experimental Procedures"
+msgstr "実験手順"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:75
+msgid "**Step 1:** Build the circuit."
+msgstr "**ステップ1：** 回路を作る。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:83
+msgid "For C Language Users"
+msgstr "C言語ユーザー向け"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:85
+#: ../2.2.5_ultrasonic_sensor_module.rst:268
+msgid "**Step 2:** Go to the folder of the code."
+msgstr "**ステップ2：** コードのフォルダーに入る。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:95
+msgid "**Step 3:** Compile the code."
+msgstr "**ステップ3：** コードをコンパイルする。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:105
+msgid "**Step 4:** Run the executable file."
+msgstr "**ステップ4：** EXEファイルを実行する。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:115
+#: ../2.2.5_ultrasonic_sensor_module.rst:288
+msgid ""
+"With the code run, the ultrasonic sensor module detects the distance "
+"between the obstacle ahead and the module itself, then the distance value"
+" will be printed on the screen."
+msgstr "コードを実行すると、超音波センサーモジュールが前方の障害物とモジュール自体の間の距離を検出し、距離値が画面に出力される。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:121
+msgid ""
+"If it does not work after running, please refer to :ref:`C code is not "
+"working?`"
+msgstr "実行後に機能しない場合は、:ref:`C code is not working?` を参照してください。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:123
+#: ../2.2.5_ultrasonic_sensor_module.rst:294
+msgid "**Code**"
+msgstr "**コード**"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:187
+#: ../2.2.5_ultrasonic_sensor_module.rst:352
+msgid "**Code Explanation**"
+msgstr "**コードの説明**"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:197
+msgid ""
+"Initialize the ultrasonic pin; meanwhile, set Echo to input, Trig to "
+"output."
+msgstr "超音波ピンを初期化する。一方、Echoを入力、Trigを出力に設定する。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:204
+#: ../2.2.5_ultrasonic_sensor_module.rst:358
+msgid ""
+"This function is used to realize the function of ultrasonic sensor by "
+"calculating the return detection distance."
+msgstr "戻り検出距離を計算することにより、この機能は超音波センサーの機能を実現するために使用される。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:212
+msgid ""
+"Struct timeval is a structure used to store the current time. The "
+"complete structure is as follows:"
+msgstr "構造体timevalは、現在の時刻を保存するために使用される構造体である。完全な構造は次の通りである："
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:223
+msgid ""
+"Here, tv_sec represents the seconds that Epoch spent when creating struct"
+" timeval. Tv_usec stands for microseconds or a fraction of seconds."
+msgstr "ここで、tv_secは、エポックがstruct timevalを作成するときに費やした秒を表す。Tv_usecはマイクロ秒または秒の一部を表す。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:233
+msgid "A 10us ultrasonic pulse is being sent out."
+msgstr "10usの超音波パルスが送信されている。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:240
+#: ../2.2.5_ultrasonic_sensor_module.rst:375
+msgid ""
+"This empty loop is used to ensure that when the trigger signal is sent, "
+"there is no interfering echo signal and then get the current time."
+msgstr "このempty loopは、トリガー信号が送信されたときに、干渉エコー信号がないことを確認してから現在の時刻を取得するために使用される。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:248
+#: ../2.2.5_ultrasonic_sensor_module.rst:384
+msgid ""
+"This empty loop is used to ensure that the next step is not performed "
+"until the echo signal is received and then get the current time."
+msgstr "このempty loopは、エコー信号が受信されて現在の時刻が取得されるまで次のステップが実行されないようにするために使用される。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:256
+msgid "Convert the time stored by struct timeval into a full microsecond time."
+msgstr "struct timevalによって保存された時間を完全なマイクロ秒時間に変換する。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:262
+msgid ""
+"The distance is calculated by the time interval and the speed of sound "
+"propagation. The speed of sound in the air: 34000cm/s."
+msgstr "距離は時間間隔と音の伝播速度によって計算される。空気中の音速：34000cm/s。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:266
+msgid "For Python Language Users"
+msgstr "Python言語ユーザー向け"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:278
+msgid "**Step 3:** Run the executable file."
+msgstr "**ステップ3：** EXEファイルを実行する。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:298
+ 
+msgid ""
+"You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, "
+"you need to go to  source code path like ``davinci-kit-for-raspberry-"
+"pi/python``."
+msgstr ""
+"以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、 ``davinci-kit-for-raspberry-pi/python`` のようなソースコードパスに移動する必要があります。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:367
+msgid "This is sending out a 10us ultrasonic pulse."
+msgstr "これは10usの超音波パルスを送信している。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:391
+msgid "Execute the interval calculation."
+msgstr "間隔計算を実行する。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:397
+msgid ""
+"The distance is calculated in the light of time interval and the speed of"
+" sound propagation. The speed of sound in the air: 340m/s."
+msgstr "距離は時間間隔の光と音の伝播速度によって計算される。空気中の音速：340m / s。"
+
+#: ../2.2.5_ultrasonic_sensor_module.rst:401
+msgid "Phenomenon Picture"
+msgstr "現象画像"
+
+#~ msgid ""
+#~ "If it does not work after running,"
+#~ " please refer to :ref:`C code is "
+#~ "not working?`."
+#~ msgstr ""
+

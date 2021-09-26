@@ -1,0 +1,182 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, sunfounder
+# This file is distributed under the same license as the SunFounder Da Vinci
+# Kit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: SunFounder Da Vinci Kit\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-04 15:50+0800\n"
+"PO-Revision-Date: 2021-08-04 18:26+0800\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"X-Generator: Poedit 3.0\n"
+
+#: ../processing/show_number.rst:2
+msgid "Show Number"
+msgstr "Anzahl anzeigen"
+
+#: ../processing/show_number.rst:4
+msgid ""
+"In this lesson, we use processing to drive a 7-segment display to show a "
+"figure from 0 to 9 and A to F."
+msgstr ""
+"In dieser Lektion verwenden wir die Verarbeitung, um eine 7-Segment-Anzeige "
+"anzusteuern, um eine Zahl von 0 bis 9 und A bis F anzuzeigen."
+
+#: ../processing/show_number.rst:7
+msgid "**Wiring**"
+msgstr "**Verdrahtung**"
+
+#: ../processing/show_number.rst:12
+msgid "**Sketch**"
+msgstr "**Skizzieren**"
+
+#: ../processing/show_number.rst:70
+msgid "**How it works?**"
+msgstr "**Wie es funktioniert?**"
+
+#: ../processing/show_number.rst:72
+msgid ""
+"Import ``processing.io.*`` and use the GPIO function library to control the "
+"digital tube pins."
+msgstr ""
+"Importieren Sie ``processing.io.*`` und verwenden Sie die GPIO-"
+"Funktionsbibliothek, um die digitalen Röhrenpins zu steuern."
+
+#: ../processing/show_number.rst:74
+msgid ""
+"Define array ``SegCode = "
+"{0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}"
+"`` which represents a segment code array from 0 to F in Hexadecimal (Common "
+"cathode)."
+msgstr ""
+"Definiere das Array ``SegCode = "
+"{0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}"
+"`` was ein Segmentcode-Array von 0 bis . darstellt F in Hexadezimal "
+"(gemeinsame Kathode)."
+
+#: ../processing/show_number.rst:77
+msgid ""
+"``setup()`` function sets the three pins SDI,RCLK and SRCLK as output, and the "
+"initial data as 0."
+msgstr ""
+"Die Funktion ``setup()`` setzt die drei Pins SDI,RCLK und SRCLK als Ausgang "
+"und die Anfangsdaten auf 0."
+
+#: ../processing/show_number.rst:79
+msgid ""
+"``hc595_shift(int dat)`` function is used to shift the ``SegCode`` to 74HC595."
+msgstr ""
+"Die Funktion ``hc595 shift(in data)`` wird verwendet, um den ``SegCode`` auf "
+"74HC595 zu verschieben."
+
+#: ../processing/show_number.rst:103
+msgid ""
+"``n=(0x80 & (dat << i))`` means to shift dat to the left by ``i`` bits and "
+"then do the ``&`` operation with 0x80."
+msgstr ""
+"``n=(0x80 & (dat << i))`` bedeutet, dat um ``i`` Bits nach links zu "
+"verschieben und dann die ``&`` Operation mit 0x80 auszuführen."
+
+#: ../processing/show_number.rst:105
+msgid ""
+"The rule of ``&`` operation is that when both sides of ``&`` are 1, the result "
+"is 1, otherwise the result is 0."
+msgstr ""
+"Die Regel der ``&``-Operation lautet, dass, wenn beide Seiten von ``und`` 1 "
+"sind, das Ergebnis 1 ist, andernfalls ist das Ergebnis 0."
+
+#: ../processing/show_number.rst:107
+msgid ""
+"For example, we assume dat=0x3f,i=2(0011 1111 << 2 shift to 1111 1100), then "
+"1111 1100 & 1000 0000 (0x80)) = 1000 0000."
+msgstr ""
+"Zum Beispiel nehmen wir an dat=0x3f,i=2(0011 1111 << 2 Verschiebung zu 1111 "
+"1100), dann 1111 1100 & 1000 0000 (0x80)) = 1000 0000."
+
+#: ../processing/show_number.rst:109
+msgid "At last assign the dat data to SDI(DS) by bits."
+msgstr "Zuletzt weisen Sie SDI(DS) die Dat-Daten bitweise zu."
+
+#: ../processing/show_number.rst:111
+msgid ""
+"``digitalWrite(SRCLK, 1)`` when SRCLK generates a rising edge pulse from 0 to "
+"1, the data will be transferred from the DS register to the shift register;"
+msgstr ""
+"``digitalWrite(SRCLK, 1)`` wenn SRCLK einen Anstiegsflankenimpuls von 0 bis 1 "
+"erzeugt, werden die Daten vom DS-Register zum Schieberegister übertragen;"
+
+#: ../processing/show_number.rst:113
+msgid ""
+"``digitalWrite(RCLK, 1)`` when RCLK generates a rising edge pulse from 0 to 1, "
+"the data will be transferred from the shift register to the storage register."
+msgstr ""
+"``digitalWrite(RCLK, 1)`` Wenn RCLK einen Anstiegsflankenimpuls von 0 auf 1 "
+"erzeugt, werden die Daten vom Schieberegister zum Speicherregister übertragen."
+
+#: ../processing/show_number.rst:121
+msgid "``fill()``: Sets the color used to fill shapes."
+msgstr ""
+"``fill()``: Legt die Farbe fest, die zum Füllen von Formen verwendet wird."
+
+#: ../processing/show_number.rst:122
+msgid ""
+"``textAlign(CENTER,CENTER)``: Sets the current alignment for drawing text. The "
+"parameters ``LEFT``, ``CENTER``, and ``RIGHT`` set the display characteristics "
+"of the letters in relation to the values for the x and y parameters of the "
+"``text()`` function."
+msgstr ""
+"``textAlign(CENTER,CENTER)``: Legt die aktuelle Ausrichtung zum Zeichnen von "
+"Text fest. Die Parameter ``LEFT``, ``CENTER`` und ``RIGHT`` setzen die "
+"Darstellungseigenschaften der Buchstaben in Relation zu den Werten für die x- "
+"und y-Parameter der Funktion ``text()``."
+
+#: ../processing/show_number.rst:123
+msgid ""
+"``textSize()``: Sets the current font size. This size will be used in all "
+"subsequent calls to the ``text()`` function. Font size is measured in units of "
+"pixels."
+msgstr ""
+"``textSize()``: Setzt die aktuelle Schriftgröße. Diese Größe wird in allen "
+"nachfolgenden Aufrufen der Funktion ``text()`` verwendet. Die Schriftgröße "
+"wird in Pixeleinheiten gemessen."
+
+#: ../processing/show_number.rst:125
+msgid "These functions can customize the text style displayed on the processing."
+msgstr ""
+"Diese Funktionen können den bei der Verarbeitung angezeigten Textstil anpassen."
+
+#: ../processing/show_number.rst:137
+msgid ""
+"The ``frameCount`` is a seed, which is related to ``frameRate``. By default "
+"``frameRate`` is 60, which means that ``frameCount`` will accumulate 60 times "
+"per second."
+msgstr ""
+"Der ``frameCount`` ist ein Seed, der mit ``frameRate`` verwandt ist. "
+"Standardmäßig ist ``frameRate`` 60, was bedeutet, dass ``frameCount`` 60 Mal "
+"pro Sekunde akkumuliert."
+
+#: ../processing/show_number.rst:140
+msgid ""
+"Then we can let processing and 7-segment display to show the figure from 0 to "
+"9 and A to F simultaneously."
+msgstr ""
+"Dann können wir Verarbeitung und 7-Segment-Anzeige die Zahl von 0 bis 9 und A "
+"bis F gleichzeitig anzeigen lassen."
+
+#: ../processing/show_number.rst:142
+msgid ""
+"For more please refer to `Processing Reference <https://processing.org/"
+"reference/>`_."
+msgstr ""
+"Weitere Informationen finden Sie unter `Verarbeitungsreferenz <https://"
+"processing.org/reference/>`_."

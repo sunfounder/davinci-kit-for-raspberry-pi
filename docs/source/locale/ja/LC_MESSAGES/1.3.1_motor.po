@@ -1,0 +1,283 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, SunFounder
+# This file is distributed under the same license as the SunFounder Davinci
+# Kit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: SunFounder Davinci Kit\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-20 18:20+0800\n"
+"PO-Revision-Date: 2021-05-27 18:52+0800\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.4.3\n"
+
+#: ../1.3.1_motor.rst:2
+msgid "1.3.1 Motor"
+msgstr "1.3.1 モーター"
+
+#: ../1.3.1_motor.rst:5
+msgid "Introduction"
+msgstr "前書き"
+
+#: ../1.3.1_motor.rst:7
+msgid ""
+"In this lesson, we will learn to how to use L293D to drive a DC motor "
+"and make it rotate clockwise and counterclockwise. Since the DC Motor "
+"needs a larger current, for safety purpose, here we use the Power Supply "
+"Module to supply motors."
+msgstr ""
+"このレッスンでは、L293Dを使用してDCモーターを駆動し、時計回りと反時計回り"
+"に回転させる方法を学習する。安全上の理由で、DCモーターは大電流を必要とす"
+"るため、ここでは電源モジュールを使用してモーターに電力を供給する。"
+
+#: ../1.3.1_motor.rst:13
+msgid "Components"
+msgstr "部品"
+
+#: ../1.3.1_motor.rst:19
+msgid "Principle"
+msgstr "原理"
+
+#: ../1.3.1_motor.rst:21
+msgid "**L293D**"
+msgstr "**L293D**"
+
+#: ../1.3.1_motor.rst:23
+msgid ""
+"L293D is a 4-channel motor driver integrated by chip with high voltage "
+"and high current. It's designed to connect to standard DTL, TTL logic "
+"level, and drive inductive loads (such as relay coils, DC, Stepper "
+"Motors) and power switching transistors etc. DC Motors are devices that "
+"turn DC electrical energy into mechanical energy. They are widely used "
+"in electrical drive for their superior speed regulation performance."
+msgstr ""
+"L293Dは、高電圧と高電流のチップで統合された4チャネルモータードライバーで"
+"ある。標準のDTL、TTLロジックレベルに接続し、誘導負荷（リレーコイル、DC、"
+"ステッピングモーターなど）およびパワースイッチングトランジスタなどを駆動"
+"するように設計される。DCモーターは、DC電気エネルギーを機械エネルギーに変"
+"換するデバイスである。それらは、優れた速度調整性能の利点により、電気駆動"
+"装置で広く使用されている。"
+
+#: ../1.3.1_motor.rst:30
+msgid ""
+"See the figure of pins below. L293D has two pins (Vcc1 and Vcc2) for "
+"power supply. Vcc2 is used to supply power for the motor, while Vcc1 to "
+"supply for the chip. Since a small-sized DC motor is used here, connect "
+"both pins to +5V."
+msgstr ""
+"ピンの図については、以下の図を参照してください。L293Dには、電源用の2つの"
+"ピン（Vcc1とVcc2）がある。Vcc2はモーターに電力を供給し、Vcc1はチップに電"
+"力を供給するために使用される。ここでは小型のDCモーターが使用されているた"
+"め、両方のピンを+ 5Vに接続してください。"
+
+#: ../1.3.1_motor.rst:38
+msgid ""
+"The following is the internal structure of L293D. Pin EN is an enable "
+"pin and only works with high level; A stands for input and Y for output. "
+"You can see the relationship among them at the right bottom. When pin EN "
+"is High level, if A is High, Y outputs high level; if A is Low, Y "
+"outputs Low level. When pin EN is Low level, the L293D does not work."
+msgstr ""
+"以下はL293Dの内部構造である。ピンENはイネーブルピンであり、高レベルでのみ"
+"機能する。Aは入力を表し、Yは出力を表す。それらの間の関係は右下に見ること"
+"ができる。ピンENがHighレベルのとき、AがHighの場合、YはHighレベルを出力す"
+"る。AがLowの場合、YはLowレベルを出力する。ピンENがLowレベルの場合、L293D"
+"は機能しない。"
+
+#: ../1.3.1_motor.rst:47
+msgid "**DC Motor**"
+msgstr "**DCモーター**"
+
+#: ../1.3.1_motor.rst:52
+msgid ""
+"This is a 5V DC motor. It will rotate when you give the two terminals of "
+"the copper sheet one high and one low level. For convenience, you can "
+"weld the pins to it."
+msgstr ""
+"これは5V DCモーターである。銅板の2つの端子に1つの高レベルと1つの低レベル"
+"を与えると回転する。便宜上、ピンを溶接することができる。"
+
+#: ../1.3.1_motor.rst:59
+msgid "**Power Supply Module**"
+msgstr "**電源モジュール**"
+
+#: ../1.3.1_motor.rst:61
+msgid ""
+"In this experiment, it needs large currents to drive the motor "
+"especially when it starts and stops, which will severely interfere with "
+"the normal work of Raspberry Pi. Therefore, we separately supply power "
+"for the motor by this module to make it run safely and steadily."
+msgstr ""
+"この実験では、特に起動時と停止時にモーターを駆動するために大きな電流が必"
+"要である。これは、Raspberry Piの通常の動作を大幅に妨害する可能性がある。"
+"そのため、このモジュールによってモーターに個別に電力を供給し、安全かつ着"
+"実に動作させる。"
+
+#: ../1.3.1_motor.rst:66
+msgid ""
+"You can just plug it in the breadboard to supply power. It provides a "
+"voltage of 3.3V and 5V, and you can connect either via a jumper cap "
+"included."
+msgstr ""
+"ブレッドボードに差し込むだけで電力を供給できる。3.3Vと5Vの電圧を提供し、"
+"付属のジャンパーキャップを介してどちらでも接続できる。"
+
+#: ../1.3.1_motor.rst:74
+msgid "Schematic Diagram"
+msgstr "回路図"
+
+#: ../1.3.1_motor.rst:76
+msgid ""
+"Plug the power supply module in breadboard, and insert the jumper cap to "
+"pin of 5V, then it will output voltage of 5V. Connect pin 1 of L293D to "
+"GPIO22, and set it as high level. Connect pin2 to GPIO27, and pin7 to "
+"GPIO17, then set one pin high, while the other low. Thus you can change "
+"the motor’s rotation direction."
+msgstr ""
+"電源モジュールをブレッドボードに差し込み、ジャンパーキャップを5Vのピンに"
+"挿入すると、5Vの電圧が出力される。L293Dのピン1をGPIO22に接続し、それを高"
+"レベルに設定する。ピン2をGPIO27に、ピン7をGPIO17に接続し、一方のピンを"
+"highに、もう一方のピンをhighに設定する。したがって、モーターの回転方向を"
+"変更できる。"
+
+#: ../1.3.1_motor.rst:85
+msgid "**Experimental Procedures**"
+msgstr "**実験手順**"
+
+#: ../1.3.1_motor.rst:87
+msgid "**Step 1:** Build the circuit."
+msgstr "**ステップ1：** 回路を作る。"
+
+#: ../1.3.1_motor.rst:93
+msgid ""
+"The power module can apply a 9V battery with the 9V Battery Buckle in "
+"the kit. Insert the jumper cap of the power module into the 5V bus "
+"strips of the breadboard."
+msgstr ""
+"電源モジュールはキットの9Vバッテリーバックルで9Vバッテリーを適用できる。"
+"電源モジュールのジャンパキャップをブレッドボードの5Vバスストリップに挿入"
+"する。"
+
+#: ../1.3.1_motor.rst:101
+msgid "For C Language Users"
+msgstr "C言語ユーザー向け"
+
+#: ../1.3.1_motor.rst:103 ../1.3.1_motor.rst:221
+msgid "**Step 2**: Get into the folder of the code."
+msgstr "**ステップ2：** コードのフォルダーに入る。"
+
+#: ../1.3.1_motor.rst:109
+msgid "**Step 3**: Compile."
+msgstr "**ステップ3：** コンパイルする。"
+
+#: ../1.3.1_motor.rst:115
+msgid "**Step 4**: Run the executable file above."
+msgstr "**ステップ4：** EXEファイルを実行する。"
+
+#: ../1.3.1_motor.rst:121 ../1.3.1_motor.rst:233
+msgid ""
+"As the code runs, the motor first rotates clockwise for 5s then stops "
+"for 5s, after that, it rotates anticlockwise for 5s; subsequently, the "
+"motor stops for 5s. This series of actions will be executed repeatedly."
+msgstr ""
+"コードが実行されると、モーターは最初に5秒間時計回りに回転し、それから5秒"
+"間停止し、その後5秒間反時計回りに回転してから5秒間停止する。この一連の動"
+"作は繰り返し実行される。"
+
+#: ../1.3.1_motor.rst:125 ../1.3.1_motor.rst:237
+msgid "**Code**"
+msgstr "**コード**"
+
+#: ../1.3.1_motor.rst:178 ../1.3.1_motor.rst:317
+msgid "**Code Explanation**"
+msgstr "**コードの説明**"
+
+#: ../1.3.1_motor.rst:184
+msgid "Enable the L239D."
+msgstr "L239Dを有効にする。"
+
+#: ../1.3.1_motor.rst:191
+msgid ""
+"Set a high level for 2A(pin 7); since 1,2EN(pin 1) is in high level, 2Y "
+"will output high level."
+msgstr ""
+"2A（ピン7）に高レベルを設定する。1,2EN（ピン1）は高レベルなので、2Yは高レ"
+"ベルを出力する。"
+
+#: ../1.3.1_motor.rst:194
+msgid ""
+"Set a low level for 1A, then 1Y will output low level, and the motor "
+"will rotate."
+msgstr ""
+"1Aに低レベルを設定すると、1Yが低レベルを出力し、モーターが回転する。"
+
+#: ../1.3.1_motor.rst:203
+msgid "this loop is to delay for 3*1000ms."
+msgstr "このループは3 * 1000ms遅延する。"
+
+#: ../1.3.1_motor.rst:209
+msgid ""
+"If 1,2EN (pin1) is in low level, L293D does not work. Motor stops "
+"rotating."
+msgstr ""
+"1,2EN（ピン1）が低レベルの場合、L293Dは機能しない。モーターが回転を停止す"
+"る。"
+
+#: ../1.3.1_motor.rst:216
+msgid ""
+"Reverse the current flow of the motor, then the motor will rotate "
+"reversely."
+msgstr "モーターの電流を逆にすると、モーターが逆回転する。"
+
+#: ../1.3.1_motor.rst:219
+msgid "For Python Language Users"
+msgstr "Python言語ユーザー向け"
+
+#: ../1.3.1_motor.rst:227
+msgid "**Step 3**: Run."
+msgstr "**ステップ3：** 実行する。"
+
+#: ../1.3.1_motor.rst:332
+msgid ""
+"Create a function, **motor()** whose variable is direction. As the "
+"condition that direction=1 is met, the motor rotates clockwise; when "
+"direction=-1, the motor rotates anticlockwise; and under the condition "
+"that direction=0, it stops rotating."
+msgstr ""
+"変数がdirectionである関数 **motor（）** を作成する。direction = 1の条件が満"
+"たされると、モーターは時計回りに回転する。direction = -1の場合、モーター"
+"は反時計回りに回転する。そして、direction = 0の条件下では、回転を停止す"
+"る。"
+
+#: ../1.3.1_motor.rst:357
+msgid ""
+"In the main（）function, create an array, directions[], in which CW is "
+"equal to 1, the value of CCW is -1, and the number 0 refers to Stop."
+msgstr ""
+"メイン（）関数で、CWが1、CCWの値が-1、0がStopを指す配列directions[]を作成"
+"する。"
+
+#: ../1.3.1_motor.rst:360
+msgid ""
+"As the code runs, the motor first rotates clockwise for 5s then stop for "
+"5s, after that, it rotates anticlockwise for 5s; subsequently, the motor "
+"stops for 5s. This series of actions will be executed repeatedly."
+msgstr ""
+"コードが実行されると、モーターは最初に5秒間時計回りに回転し、それから5秒"
+"間停止し、その後5秒間反時計回りに回転してから5秒間停止する。この一連の動"
+"作は繰り返し実行される。"
+
+#: ../1.3.1_motor.rst:364
+msgid "Now, you should see the motor blade rotating."
+msgstr "これで、モーターブレードが回転していることが分かる。"
+
+#: ../1.3.1_motor.rst:367
+msgid "Phenomenon Picture"
+msgstr "現象画像"

@@ -1,0 +1,289 @@
+2.1.6 Joystick
+==============
+
+Introduction
+------------
+
+In this project, We're going to learn how joystick works. We manipulate
+the Joystick and display the results on the screen.
+
+Components
+----------
+
+.. image:: media/image317.png
+
+
+Principle
+---------
+
+**Joystick**
+
+The basic idea of a joystick is to translate the movement of a stick
+into electronic information that a computer can process.
+
+In order to communicate a full range of motion to the computer, a
+joystick needs to measure the stick's position on two axes -- the X-axis
+(left to right) and the Y-axis (up and down). Just as in basic geometry,
+the X-Y coordinates pinpoint the stick's position exactly.
+
+To determine the location of the stick, the joystick control system
+simply monitors the position of each shaft. The conventional analog
+joystick design does this with two potentiometers, or variable
+resistors.
+
+The joystick also has a digital input that is actuated when the joystick
+is pressed down.
+
+.. image:: media/image318.png
+
+Schematic Diagram
+-----------------
+
+When the data of joystick is read, there are some differents between
+axis: data of X and Y axis is analog, which need to use ADC0834 to
+convert the analog value to digital value. Data of Z axis is digital, so
+you can directly use the GPIO to read, or you can also use ADC to read.
+
+.. image:: media/image319.png
+
+
+.. image:: media/image320.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: media/image193.png
+
+
+For C Language Users
+^^^^^^^^^^^^^^^^^^^^
+
+**Step 2:** Go to the folder of the code.
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/2.1.6/
+
+**Step 3:** Compile the code.
+
+.. code-block::
+
+    gcc 2.1.6_Joystick.c -lwiringPi
+
+**Step 4:** Run the executable file.
+
+.. code-block::
+
+    sudo ./a.out
+
+After the code runs, turn the Joystick, then the corresponding values of
+x, y, Btn are displayed on screen.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <softPwm.h>
+
+    typedef unsigned char uchar;
+    typedef unsigned int uint;
+
+    #define     ADC_CS    0
+    #define     ADC_CLK   1
+    #define     ADC_DIO   2
+    #define     BtnPin    3
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+    int odd = channel & 1;
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Start bit
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+    //Single End mode
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // ODD
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Select
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+    digitalWrite(ADC_CLK,1);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+    int main(void)
+    {
+        uchar x_val;
+        uchar y_val;
+        uchar btn_val;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(BtnPin,  INPUT);
+        pullUpDnControl(BtnPin, PUD_UP);
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+
+        while(1){
+            x_val = get_ADC_Result(0);
+            y_val = get_ADC_Result(1);
+            btn_val = digitalRead(BtnPin);
+            printf("x = %d, y = %d, btn = %d\n", x_val, y_val, btn_val);
+            delay(100);
+        }
+        return 0;
+    }
+
+**Code Explanation**
+
+.. code-block:: c
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Start bit
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Single End mode
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        ......
+
+The working process of the function is detailed in 2.1.4 Potentiometer.
+
+.. code-block:: c
+
+    while(1){
+            x_val = get_ADC_Result(0);
+            y_val = get_ADC_Result(1);
+            btn_val = digitalRead(BtnPin);
+            printf("x = %d, y = %d, btn = %d\n", x_val, y_val, btn_val);
+            delay(100);
+        }
+
+VRX and VRY of Joystick are connected to CH0, CH1 of ADC0834
+respectively. So the function getResult() is called to read the values
+of CH0 and CH1. Then the read values should be stored in the variables
+x_val and y_val. In addition, read the value of SW of joystick and store
+it into the variable Btn_val. Finally, the values of x_val, y_val and
+Btn_val shall be printed with print() function.
+
+For Python Language Users
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Step 2:** Go to the folder of the code.
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/python/
+
+**Step 3:** Run.
+
+.. code-block::
+
+    sudo python3 2.1.6_Joystick.py
+
+After the code runs, turn the Joystick, then the corresponding values of
+x, y, Btn are displayed on screen.
+
+**Code**
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import ADC0834
+    import time
+
+    BtnPin = 22
+
+    def setup():
+        # Set the GPIO modes to BCM Numbering
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(BtnPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        ADC0834.setup()
+
+    def destroy():
+        # Release resource
+        GPIO.cleanup()
+
+    def loop():
+        while True:
+            x_val = ADC0834.getResult(0)
+            y_val = ADC0834.getResult(1)
+            Btn_val = GPIO.input(BtnPin)
+            print ('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+            time.sleep(0.2)
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+            destroy()
+
+**Code Explanation**
+
+.. code-block:: python
+
+    def loop():
+        while True:
+            x_val = ADC0834.getResult(0)
+            y_val = ADC0834.getResult(1)
+            Btn_val = GPIO.input(BtnPin)
+            print ('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+            time.sleep(0.2)
+
+VRX and VRY of Joystick are connected to CH0, CH1 of ADC0834
+respectively. So the function getResult() is called to read the values
+of CH0 and CH1. Then the read values should be stored in the variables
+x_val and y_val. In addition, read the value of SW of joystick and store
+it into the variable Btn_val. Finally, the values of x_val, y_val and
+Btn_val shall be printed with print() function.
+
+Phenomenon Picture
+------------------
+
+.. image:: media/image194.jpeg
+
+

@@ -58,8 +58,8 @@ If you want to quit python CLI, type in:
 
 
 
-WiringPi
-------------
+Check and Install the WiringPi
+--------------------------------
 
 wiringPi is a C language GPIO library applied to the Raspberry Pi
 platform. It complies with GUN Lv3. The functions in wiringPi are
@@ -81,11 +81,12 @@ library is installed successfully or not by the following instructions.
 
 .. image:: media/image30.png
 
+.. note::
+    * If your Raspberry Pi OS is version 10.31 and above, there will be an error message: wiringPi.h: No such file or directory.
 
+    * If you are using Raspberry Pi 4B, but the GPIO version is 2.50, it will cause no response after the C language code is running, that is, GPIO pins do not work.
 
-
-If you are using Raspberry Pi 4B, but the GPIO version is **2.50**, it will cause no response after the C language code is running, that is, GPIO pins do not work. At this time, you need to manually update to version **2.52**, the update steps are as follows :
-
+At this time, you need to manually update to version 2.52, the update steps are as follows :
 
 .. raw:: html
 

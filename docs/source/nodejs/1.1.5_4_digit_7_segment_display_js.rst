@@ -1,0 +1,258 @@
+1.1.5 4-Digit 7-Segment Display
+====================================
+
+Introduction
+-----------------
+
+Next, follow me to try to control the 4-digit 7-segment dis.
+
+Components
+------------
+
+.. image:: img/list_4_digit.png
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`4-Digit 7-Segment Display`
+* :ref:`74HC595`
+
+.. note::
+    In this projiect, for the 4-Digit 7-Segment Display we should use BS model,if you use AS model it may not light up.
+
+Schematic Diagram
+--------------------
+
+.. image:: img/schmatic_4_digit.png
+
+
+Experimental Procedures
+-------------------------
+
+**Step 1**: Build the circuit.
+
+.. image:: img/image80.png
+
+**Step 2**: Go to the folder of the code.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/nodejs/
+
+**Step 3**: Run the code.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo node 4_digit_7_segment_display.js
+
+After the code runs, the program takes a count, increasing by 1 per second, and the 4-digit 7-segment display displays the count.
+ 
+**Code**
+
+.. code-block::
+
+    const Gpio = require('pigpio').Gpio;
+
+    var counter = 0;
+
+    const number = [0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90];
+    const SDI = new Gpio(24, {
+        mode: Gpio.OUTPUT,
+        pullUpDown: Gpio.PUD_DOWN,             
+    });
+    const RCLK = new Gpio(23, {
+        mode: Gpio.OUTPUT,
+        pullUpDown: Gpio.PUD_DOWN,             
+    });
+    const SRCLK = new Gpio(18, {
+        mode: Gpio.OUTPUT,
+        pullUpDown: Gpio.PUD_DOWN,             
+    });
+
+    const pin1 = new Gpio(10, {mode: Gpio.OUTPUT});
+    const pin2 = new Gpio(25, {mode: Gpio.OUTPUT});
+    const pin3 = new Gpio(27, {mode: Gpio.OUTPUT});
+    const pin4 = new Gpio(17, {mode: Gpio.OUTPUT});
+    const placePin = [pin1,pin2,pin3,pin4];
+
+    function delay(ms){
+        var start = new Date().getTime();	
+        while(true){
+            if(new Date().getTime() - start > ms){
+                break;		
+            }	  
+        }
+    }
+
+    function clearDisplay(){
+        for (var i=0;i<8;i++){
+            SDI.digitalWrite(1);
+            SRCLK.digitalWrite(1);
+            SRCLK.digitalWrite(0);
+        }    
+        RCLK.digitalWrite(1);
+        RCLK.digitalWrite(0);    
+    }
+
+    function hc595_shift(dat){
+        for (var j=0;j<8;j++){
+            var code = 0x80 & (dat << j);
+            if (code != 0){
+                code = 1;
+            }
+            SDI.digitalWrite(code);
+            SRCLK.digitalWrite(1);
+            SRCLK.digitalWrite(0);
+        }
+        RCLK.digitalWrite(1);
+        RCLK.digitalWrite(0);
+    }
+
+    function pickDigit(digit){
+        
+        pin1.digitalWrite(0);
+        pin2.digitalWrite(0);
+        pin3.digitalWrite(0);
+        pin4.digitalWrite(0);
+        placePin[digit].digitalWrite(1);
+    }
+
+    function A(){
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[Math.floor(counter%10)]);    
+        delay(1);
+        
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[Math.floor(counter%100/10)]);
+        delay(1);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[Math.floor(counter%1000/100)]);
+        delay(1);
+
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[Math.floor(counter%10000/1000)]);    
+        delay(1);    
+    }
+
+    var start = new Date().getTime()
+    setInterval(() => {
+
+        A();  
+        var now = new Date().getTime()
+        if (now - start >= 1000){
+            counter++
+            console.log(counter)
+            start = now
+        }
+    
+    }, 1);
+
+**Code Explanation**
+
+.. code-block:: python
+
+    const pin1 = new Gpio(10, {mode: Gpio.OUTPUT});
+    const pin2 = new Gpio(25, {mode: Gpio.OUTPUT});
+    const pin3 = new Gpio(27, {mode: Gpio.OUTPUT});
+    const pin4 = new Gpio(17, {mode: Gpio.OUTPUT});
+    const placePin = [pin1,pin2,pin3,pin4];    
+
+Initialize pins 10, 25, 27, and 17 as output modes and place them in the array ``placePin`` to facilitate control of the common anode of the four-digit 7-segment display.
+
+.. code-block:: python
+
+    const number = [0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90];
+
+Define a constant array ``number`` to represent the hexadecimal segment code from 0 to 9 (common anode).
+
+.. code-block:: python
+
+    function clearDisplay(){
+        for (var i=0;i<8;i++){
+            SDI.digitalWrite(1);
+            SRCLK.digitalWrite(1);
+            SRCLK.digitalWrite(0);
+        }    
+        RCLK.digitalWrite(1);
+        RCLK.digitalWrite(0);    
+    }
+
+Write "1" for eight times in SDI., so that the eight LEDs on the 7-segment Dispaly will turn off so as to clear the displayed content.
+
+.. code-block:: python
+
+    function pickDigit(digit){
+        pin1.digitalWrite(0);
+        pin2.digitalWrite(0);
+        pin3.digitalWrite(0);
+        pin4.digitalWrite(0);
+        placePin[digit].digitalWrite(1);
+    }
+
+Select the place of the value. there is only one place that should be enable each time. The enabled place will be written high.
+
+.. code-block::
+
+    function A(){
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[Math.floor(counter%10)]);    
+        delay(1);
+        
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[Math.floor(counter%100/10)]);
+        delay(1);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[Math.floor(counter%1000/100)]);
+        delay(1);
+
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[Math.floor(counter%10000/1000)]);    
+        delay(1);    
+    }
+
+The function is used to set the number displayed on the 4-digit 7-segment Dispaly.
+
+First, start the fourth segment display, write the single-digit number. Then start the third segment display, and type in the tens digit; after that, start the second and the first segment display respectively, and write the hundreds and thousands digits respectively. Because the refreshing speed is very fast, we see a complete four-digit display.
+
+.. code-block::
+
+    var start = new Date().getTime()
+    setInterval(() => {
+
+        A();  
+        var now = new Date().getTime()
+        if (now - start >= 1000){
+            counter++
+            console.log(counter)
+            start = now
+        }
+    
+    }, 1);
+
+Get the initial time outside the loop, detect and judge within the loop, add one to the ``counter`` (the four-digit digital tube displays the number plus one) every second that passes, and print the counter on the screen.
+
+Phenomenon Picture
+-------------------------
+
+.. image:: img/image81.jpeg
+
+
+

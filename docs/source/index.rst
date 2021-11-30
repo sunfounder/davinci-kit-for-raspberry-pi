@@ -31,6 +31,7 @@ Here is the Email: cs@sunfounder.com.
     2_input
     3_extension
     iot/4_iot_projects
+    nodejs/play_with_nodejs
     processing/play_with_processing
     scratch/play_with_scratch
     appendix/appendix

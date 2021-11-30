@@ -1,0 +1,202 @@
+1.1.4 7-segment Display
+=============================
+
+Introduction
+--------------
+
+Let's try to drive a 7-segment display to show a figure from 0 to 9 and
+A to F.
+
+Components
+----------------
+
+.. image:: img/list_7_segment.png
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`7-segment Display`
+* :ref:`74HC595`
+
+Schematic Diagram
+---------------------
+
+Connect pin ST_CP of 74HC595 to Raspberry Pi GPIO18, SH_CP to GPIO27, DS
+to GPIO17, parallel output ports to 8 segments of the LED segment
+display. Input data in DS pin to shift register when SH_CP (the clock
+input of the shift register) is at the rising edge, and to the memory
+register when ST_CP (the clock input of the memory) is at the rising
+edge. Then you can control the states of SH_CP and ST_CP via the
+Raspberry Pi GPIOs to transform serial data input into parallel data
+output so as to save Raspberry Pi GPIOs and drive the display.
+
+.. image:: img/schematic_7_segment.png
+
+Experimental Procedures
+--------------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: img/image73.png
+
+**Step 2:** Get into the folder of the code.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/nodejs/
+
+**Step 3:** Run the code.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo node 7-segment_display.js
+
+After the code runs, you'll see the 7-segment display display 0-9, A-F.
+
+**Code**
+
+.. code-block::
+
+    const Gpio = require('pigpio').Gpio;
+
+    const segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71];
+    const SDI = new Gpio(17, {
+        mode: Gpio.OUTPUT,
+        pullUpDown: Gpio.PUD_DOWN,             
+    });
+    const RCLK = new Gpio(18, {
+        mode: Gpio.OUTPUT,
+        pullUpDown: Gpio.PUD_DOWN,             
+    });
+    const SRCLK = new Gpio(27, {
+        mode: Gpio.OUTPUT,
+        pullUpDown: Gpio.PUD_DOWN,             
+    });
+
+    function delay(ms){
+        var start = new Date().getTime();	
+        while(true){
+            if(new Date().getTime() - start > ms){
+                break;		
+            }	  
+        }
+    }
+
+    function hc595_shift(dat){
+        for (var j=0;j<8;j++){
+            var code = 0x80 & (dat << j);
+            if (code != 0){
+                code = 1;
+            }
+            SDI.digitalWrite(code);
+            SRCLK.digitalWrite(1);
+            delay(1);
+            SRCLK.digitalWrite(0);
+        }
+        RCLK.digitalWrite(1);
+        delay(1);
+        RCLK.digitalWrite(0);
+    }
+
+    setInterval(() => {
+        for(var i=0;i<16;i++){
+            hc595_shift(segCode[i]);
+            delay(500);
+        }
+    }, 500);    
+
+**Code Explanation**
+
+.. code-block::
+
+    const segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71];
+
+Define a hexadecimal (common cathode) segment code array from 0 to F.   
+
+.. code-block::
+
+    const SDI = new Gpio(17, {
+        mode: Gpio.OUTPUT,
+        pullUpDown: Gpio.PUD_DOWN,             
+    });
+    const RCLK = new Gpio(18, {
+        mode: Gpio.OUTPUT,
+        pullUpDown: Gpio.PUD_DOWN,             
+    });
+    const SRCLK = new Gpio(27, {
+        mode: Gpio.OUTPUT,
+        pullUpDown: Gpio.PUD_DOWN,             
+    });
+
+Initialize pins 17, 18, and 27 as output mode, pull down the resistance (the initial level is low), and copy them to ``SDI``, ``RCLK``, and ``SRCLK`` respectively.
+
+.. code-block::
+
+    function hc595_shift(dat){
+        for (var j=0;j<8;j++){
+            var code = 0x80 & (dat << j);
+            if (code != 0){
+                code = 1;
+            }
+            SDI.digitalWrite(code);
+            SRCLK.digitalWrite(1);
+            delay(1);
+            SRCLK.digitalWrite(0);
+        }
+        RCLK.digitalWrite(1);
+        delay(1);
+        RCLK.digitalWrite(0);
+    }    
+
+Implement a hc595_shift function to convert the fields in the array segCode into numbers and display them on the digital tube.
+
+.. code-block::
+
+    var code = 0x80 & (dat << j);
+    if (code != 0){
+        code = 1;
+    }
+    SDI.digitalWrite(code);    
+
+Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 1111, when bit=2, 0x3f will shift right(<<) 2 bits. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
+
+.. code-block::
+
+    SRCLK.digitalWrite(1);
+
+The initial value of SRCLK is set to LOW, where it is set to HIGH, which is to generate a rising edge pulse, and then move the DS data to the shift register.
+
+.. code-block::
+
+    RCLK.digitalWrite(1);
+
+The initial value of RCLK is set to LOW, where it is set to HIGH, which is to generate a rising edge, and then move the data from the shift register to the storage register.
+
+.. code-block::
+
+    setInterval(() => {
+        for(var i=0;i<16;i++){
+            hc595_shift(segCode[i]);
+            delay(500);
+        }
+    }, 500);  
+
+Finally, use the function ``hc595_shift()`` to convert the fields in segCode and display them through the digital tube.   
+
+Phenomenon Picture
+---------------------------
+
+.. image:: img/image74.jpeg
+
+
+
+
+

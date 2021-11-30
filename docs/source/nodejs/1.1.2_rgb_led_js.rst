@@ -1,0 +1,164 @@
+1.1.2 RGB LED
+================
+
+Introduction
+--------------
+
+In this project, we will control an RGB LED to flash various colors.
+
+Components
+--------------
+
+.. image:: img/list_rgb_led.png
+    :align: center
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`RGB LED`
+
+Schematic Diagram
+-----------------------
+
+After connecting the pins of R, G, and B to a current limiting resistor,
+connect them to the GPIO17, GPIO18, and GPIO27 respectively. The longest
+pin (GND) of the LED connects to the GND of the Raspberry Pi. When the
+three pins are given different PWM values, the RGB LED will display
+different colors.
+
+.. image:: img/rgb_led_schematic.png
+
+Experimental Procedures
+----------------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: img/image61.png
+   :width: 6.59097in
+   :height: 4.29722in
+
+**Step 2:** Go to the folder of the code.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/nodejs/
+
+**Step 3:** Run the code.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo node rgb_led.js
+
+After the code runs, you will see that RGB displays red, green, blue, yellow, pink, and cyan.   
+
+**Code**
+
+.. code-block:: python
+
+    const Gpio = require('pigpio').Gpio;
+    const ledred = new Gpio(17,{mode: Gpio.OUTPUT});
+    const ledgreen = new Gpio(18,{mode: Gpio.OUTPUT});
+    const ledblue = new Gpio(27,{mode: Gpio.OUTPUT});
+
+    function colorset(r,g,b){
+        ledred.pwmWrite(r);
+        ledgreen.pwmWrite(g);
+        ledblue.pwmWrite(b);
+    }
+
+    function delay(ms){
+        var start = new Date().getTime();	
+        while(true){
+            if(new Date().getTime() - start > ms){
+            break;		
+            }	  
+        }
+    }
+
+    setInterval(() => {
+        colorset(0xff,0x00,0x00);
+        delay(500);
+        colorset(0x00,0xff,0x00);
+        delay(500);
+        colorset(0x00,0x00,0xff);
+        delay(500);
+        colorset(0xff,0xff,0x00);
+        delay(500);
+        colorset(0xff,0x00,0xff);
+        delay(500);
+        colorset(0xc0,0xff,0x3e);
+        delay(500);      
+    }, 500);    
+
+**Code Explanation**
+
+.. code-block::
+
+    const ledred = new Gpio(17,{mode: Gpio.OUTPUT});
+    const ledgreen = new Gpio(18,{mode: Gpio.OUTPUT});
+    const ledblue = new Gpio(27,{mode: Gpio.OUTPUT});
+
+Initialize pins 17, 18, and 27 to output mode, and assign them to the constants ``ledred``, ``ledgreen``, and ``ledblue`` respectively.
+
+.. code-block::
+
+    function colorset(r,g,b){
+        ledred.pwmWrite(r);
+        ledgreen.pwmWrite(g);
+        ledblue.pwmWrite(b);
+    }
+
+Implement a ``colorset(r,g,b)`` function, which is used to write pulse values to pins 17, 18, 27. The Gpio library encapsulates the function ``pwmWrite()`` to write to pins Pulse value, the value is 0x00 to 0xff. Then you can write RGB values to the RGB LED through the ``colorset(r,g,b)`` function, so that it can display a variety of colors. 
+
+.. note::
+    For questions about RGB, please refer to the website:https://www.rapidtables.com/web/color/RGB_Color.html
+
+.. code-block::
+
+    function delay(ms){
+        var start = new Date().getTime();	
+        while(true){
+            if(new Date().getTime() - start > ms){
+            break;		
+            }	  
+        }
+    }    
+
+Implement a delay(ms) function to make the program pause running for a period of time, in milliseconds, where new Date().getTime() is used to get the current time of the system.
+
+For the Date() class, please refer to the website :https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime
+
+.. code-block::
+
+    setInterval(() => {
+        colorset(0xff,0x00,0x00);
+        delay(500);
+        colorset(0x00,0xff,0x00);
+        delay(500);
+        colorset(0x00,0x00,0xff);
+        delay(500);
+        colorset(0xff,0xff,0x00);
+        delay(500);
+        colorset(0xff,0x00,0xff);
+        delay(500);
+        colorset(0xc0,0xff,0x3e);
+        delay(500);      
+    }, 500);
+
+Then cyclically write red (0xff, 0x00, 0x00), green (0x00, 0xff, 0x00), blue (0x00, 0x00, 0xff), yellow (0xff, 0xff, 0x00), pink (0xff, 0x00,0xff), cyan (0xc0,0xff,0x3e).
+
+Phenomenon Picture
+------------------------
+
+.. image:: img/image62.jpeg
+
+
+

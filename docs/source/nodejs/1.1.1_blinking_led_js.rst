@@ -50,7 +50,7 @@ Experimental Procedures
 
 .. code-block::
 
-   cd /home/pi/davinci-kit-for-raspberry-pi/nodejs
+   cd /home/pi/davinci-kit-for-raspberry-pi/nodejs/
 
 .. note::
     Change directory to the path of the code in this experiment via ``cd``.
@@ -97,37 +97,97 @@ see the effect after the change.
 
 The following is the program code:
 
-.. code-block:: python
+.. code-block:: js
 
    const Gpio = require('pigpio').Gpio;
    const led = new Gpio(17,{mode: Gpio.OUTPUT});
 
+   var led_state = 0;
+
+   function blink_led(){
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }
+
+   setInterval(blink_led,300);
+
+
+Alternatively, write the code as a more js-specific arrow function:
+
+.. code-block:: js
+
+   const Gpio = require('pigpio').Gpio;
+   const led = new Gpio(17,{mode: Gpio.OUTPUT});
+
+   var led_state = 0;
+
    setInterval(() => {
-      led.digitalWrite(led.digitalRead() ^ 1);
-   }, 500);
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }, 300);
+
 
 **Code Explanation**
 
-.. code-block:: python
+.. code-block:: js
 
    const Gpio = require('pigpio').Gpio;
 
-Import the Gpio constructor in the pigpio package in this way, and then define a constant ``Gpio`` to represent this constructor.
+Import the Gpio constructor in the pigpio package in this way, 
+and then define a constant ``Gpio`` to represent this constructor.
 
-.. code-block:: python
+With a variety of constructor, we can use js to control electronic devices.
+``pigpio`` can be used to implement fast GPIO, PWM, servo control, state change notification and interrupt handling.
+
+* `pigpio - github <https://github.com/fivdi/pigpio>`_
+
+.. A wrapper for the pigpio C library to enable fast GPIO, PWM, servo control, 
+.. state change notification and interrupt handling with JS on the Raspberry Pi Zero, 
+.. 1, 2, 3 or 4.
+
+.. code-block:: js
 
    const led = new Gpio(17,{mode: Gpio.OUTPUT});
 
-Connect the LED to the GPIO17 of the T-shaped expansion board, set the LedPin mode to output and assign it to the constant ``led``, that is, construct a GPIO17 object ``led``, and its mode is the output mode.
+The ``new`` keyword is used to construct instantiated objects of the class.
 
-There are two ways to number the IO pins on the Raspberry Pi: BOARD number and BCM number. In our project, we use the BCM number. You need to set each channel used as input or output.
-.. code-block:: python
+Connect the LED to the GPIO17 of the T-shaped expansion board, 
+set the LedPin mode to output and assign it to the constant ``led``, 
+that is, construct a GPIO17 object ``led``, and its mode is the output mode.
+
+There are two ways to number the IO pins on the Raspberry Pi: 
+BOARD number and BCM number. In our project, we use the BCM number. 
+You need to set each channel used as input or output.
+
+.. code-block:: js
+
+   function blink_led(){
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }
+
+   setInterval(blink_led,300);
+
+The ``setInterval()`` method can call functions or compute expressions with a specified period (in milliseconds).
+Here we change the operating state of the LED with a period of 300ms.
+
+*  `setInerval <https://developer.mozilla.org/en-US/docs/Web/API/setInterval>`_
+
+The ``gpio.digitalWrite(level)`` method sets the gpio level to 1 or 0.
+
+.. code-block:: js
+
+
+   var led_state = 0;
 
    setInterval(() => {
-      led.digitalWrite(led.digitalRead() ^ 1);
-   }, 500);
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }, 300);
 
-This statement means that `led.digitalWrite(led.digitalRead() ^ 1)` will be executed every 500ms, and the ping port level of the led will be written to 0 or 1 in a cycle, so that the led flashes (when led.digitalRead() =0, 0^1=1, when led.digitalRead()=1, 1^1=0).
+Rewrite the code as an arrow function to make the code shorter.
+
+* `Arrow Functions <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions>`_
 
 Phenomenon Picture
 -------------------------

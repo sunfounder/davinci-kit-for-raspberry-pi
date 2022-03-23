@@ -39,7 +39,7 @@ Experimental Procedures
 
 .. image:: img/image73.png
 
-**Step 2:** Get into the folder of the code.
+**Step 2:** Go to the folder of the code.
 
 .. raw:: html
 
@@ -63,133 +63,112 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
 
 **Code**
 
-.. code-block::
+.. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
 
-    const segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71];
-    const SDI = new Gpio(17, {
-        mode: Gpio.OUTPUT,
-        pullUpDown: Gpio.PUD_DOWN,             
-    });
-    const RCLK = new Gpio(18, {
-        mode: Gpio.OUTPUT,
-        pullUpDown: Gpio.PUD_DOWN,             
-    });
-    const SRCLK = new Gpio(27, {
-        mode: Gpio.OUTPUT,
-        pullUpDown: Gpio.PUD_DOWN,             
-    });
+    const segCode = [0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71];
 
-    function delay(ms){
-        var start = new Date().getTime();	
-        while(true){
-            if(new Date().getTime() - start > ms){
-                break;		
-            }	  
-        }
-    }
+    const SDI = new Gpio(17, { mode: Gpio.OUTPUT });
+    const RCLK = new Gpio(18, { mode: Gpio.OUTPUT });
+    const SRCLK = new Gpio(27, { mode: Gpio.OUTPUT });
 
-    function hc595_shift(dat){
-        for (var j=0;j<8;j++){
-            var code = 0x80 & (dat << j);
-            if (code != 0){
+    function hc595_shift(dat) {
+        for (let j = 0; j < 8; j++) {
+            let code = 0x80 & (dat << j);
+            if (code != 0) {
                 code = 1;
             }
             SDI.digitalWrite(code);
-            SRCLK.digitalWrite(1);
-            delay(1);
-            SRCLK.digitalWrite(0);
+            SRCLK.trigger(1,1);
         }
-        RCLK.digitalWrite(1);
-        delay(1);
-        RCLK.digitalWrite(0);
+        RCLK.trigger(1,1);
     }
 
+    let index = -1;
     setInterval(() => {
-        for(var i=0;i<16;i++){
-            hc595_shift(segCode[i]);
-            delay(500);
-        }
-    }, 500);    
+        index = (index+1)%16;
+        hc595_shift(segCode[index]);
+    }, 1000);
+
 
 **Code Explanation**
 
-.. code-block::
+.. code-block:: js
 
     const segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71];
 
 Define a hexadecimal (common cathode) segment code array from 0 to F.   
 
-.. code-block::
+.. code-block:: js
 
-    const SDI = new Gpio(17, {
-        mode: Gpio.OUTPUT,
-        pullUpDown: Gpio.PUD_DOWN,             
-    });
-    const RCLK = new Gpio(18, {
-        mode: Gpio.OUTPUT,
-        pullUpDown: Gpio.PUD_DOWN,             
-    });
-    const SRCLK = new Gpio(27, {
-        mode: Gpio.OUTPUT,
-        pullUpDown: Gpio.PUD_DOWN,             
-    });
+    const SDI = new Gpio(17, { mode: Gpio.OUTPUT });
+    const RCLK = new Gpio(18, { mode: Gpio.OUTPUT });
+    const SRCLK = new Gpio(27, { mode: Gpio.OUTPUT });
 
-Initialize pins 17, 18, and 27 as output mode, pull down the resistance (the initial level is low), and copy them to ``SDI``, ``RCLK``, and ``SRCLK`` respectively.
+Initialize pins 17, 18, and 27 as output mode, and copy them to ``SDI``, ``RCLK``, and ``SRCLK`` respectively.
 
-.. code-block::
+.. code-block:: js
 
-    function hc595_shift(dat){
-        for (var j=0;j<8;j++){
-            var code = 0x80 & (dat << j);
-            if (code != 0){
+    function hc595_shift(dat) {
+        for (let j = 0; j < 8; j++) {
+            let code = 0x80 & (dat << j);
+            if (code != 0) {
                 code = 1;
             }
             SDI.digitalWrite(code);
-            SRCLK.digitalWrite(1);
-            delay(1);
-            SRCLK.digitalWrite(0);
+            SRCLK.trigger(1,1);
         }
-        RCLK.digitalWrite(1);
-        delay(1);
-        RCLK.digitalWrite(0);
-    }    
+        RCLK.trigger(1,1);
+    }
 
-Implement a hc595_shift function to convert the fields in the array segCode into numbers and display them on the digital tube.
+Implement a ``hc595_shift`` function to convert the fields in the array ``segCode`` into numbers 
+and display them on the digital tube.
 
-.. code-block::
+.. code-block:: js
 
-    var code = 0x80 & (dat << j);
-    if (code != 0){
+    let code = 0x80 & (dat << j);
+    if (code != 0) {
         code = 1;
     }
-    SDI.digitalWrite(code);    
+    SDI.digitalWrite(code); 
 
-Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 1111, when bit=2, 0x3f will shift right(<<) 2 bits. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
+Assign the dat data to SDI(DS) by bits. 
+Here we assume dat=0x3f(0011 1111, when j=2, 0x3f will shift right(<<) 2 bits. 
+1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
+At this time, 1 is written to SDI.
 
-.. code-block::
+.. code-block:: js
 
-    SRCLK.digitalWrite(1);
+    SRCLK.trigger(1,1);
 
-The initial value of SRCLK is set to LOW, where it is set to HIGH, which is to generate a rising edge pulse, and then move the DS data to the shift register.
+Generate a rising edge pulse and move the DS data to the shift register.
 
-.. code-block::
 
-    RCLK.digitalWrite(1);
+``trigger(pulseLen, level)``
+    * pulseLen - pulse length in microseconds (1 - 100)
+    * level - 0 or 1
 
-The initial value of RCLK is set to LOW, where it is set to HIGH, which is to generate a rising edge, and then move the data from the shift register to the storage register.
+Sends a trigger pulse to the GPIO. 
+The GPIO is set to level for pulseLen microseconds and then reset to not level.
 
-.. code-block::
+.. code-block:: js
 
+    RCLK.trigger(1,1);
+
+Generate a rising edge pulse and move the data from the shift register to the storage register.
+
+
+.. code-block:: js
+
+    let index = -1;
     setInterval(() => {
-        for(var i=0;i<16;i++){
-            hc595_shift(segCode[i]);
-            delay(500);
-        }
-    }, 500);  
+        index = (index+1)%16;
+        hc595_shift(segCode[index]);
+    }, 1000);
 
-Finally, use the function ``hc595_shift()`` to convert the fields in segCode and display them through the digital tube.   
+Finally, use the function ``hc595_shift()`` to convert the fields in ``segCode`` 
+and display them through the digital tube.   
 
 Phenomenon Picture
 ---------------------------

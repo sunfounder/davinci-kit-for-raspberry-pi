@@ -61,46 +61,50 @@ After the code runs, you will see that RGB displays red, green, blue, yellow, pi
 
 **Code**
 
-.. code-block:: python
+.. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
-    const ledred = new Gpio(17,{mode: Gpio.OUTPUT});
-    const ledgreen = new Gpio(18,{mode: Gpio.OUTPUT});
-    const ledblue = new Gpio(27,{mode: Gpio.OUTPUT});
+    const ledred = new Gpio(17, { mode: Gpio.OUTPUT });
+    const ledgreen = new Gpio(18, { mode: Gpio.OUTPUT });
+    const ledblue = new Gpio(27, { mode: Gpio.OUTPUT });
 
-    function colorset(r,g,b){
+    function colorset(r, g, b) {
         ledred.pwmWrite(r);
         ledgreen.pwmWrite(g);
         ledblue.pwmWrite(b);
     }
 
-    function delay(ms){
-        var start = new Date().getTime();	
-        while(true){
-            if(new Date().getTime() - start > ms){
-            break;		
-            }	  
-        }
-    }
+    var color_index = -1;
 
     setInterval(() => {
-        colorset(0xff,0x00,0x00);
-        delay(500);
-        colorset(0x00,0xff,0x00);
-        delay(500);
-        colorset(0x00,0x00,0xff);
-        delay(500);
-        colorset(0xff,0xff,0x00);
-        delay(500);
-        colorset(0xff,0x00,0xff);
-        delay(500);
-        colorset(0xc0,0xff,0x3e);
-        delay(500);      
-    }, 500);    
+    color_index += 1;
+    switch (color_index) {
+        case 0:
+            colorset(0xff, 0x00, 0xFF);
+            break;
+        case 1:
+            colorset(0x00, 0xff, 0x00);
+            break;
+        case 2:
+            colorset(0x00, 0x00, 0xff);
+            break;
+        case 3:
+            colorset(0xff, 0xff, 0x00);
+            break;
+        case 4:
+            colorset(0xff, 0x00, 0xff);
+            break;
+        case 5:
+            colorset(0xc0, 0xff, 0x3e);
+            break;
+        default:
+            color_index=-1;
+        }
+    }, 500);  
 
 **Code Explanation**
 
-.. code-block::
+.. code-block:: js
 
     const ledred = new Gpio(17,{mode: Gpio.OUTPUT});
     const ledgreen = new Gpio(18,{mode: Gpio.OUTPUT});
@@ -108,7 +112,7 @@ After the code runs, you will see that RGB displays red, green, blue, yellow, pi
 
 Initialize pins 17, 18, and 27 to output mode, and assign them to the constants ``ledred``, ``ledgreen``, and ``ledblue`` respectively.
 
-.. code-block::
+.. code-block:: js
 
     function colorset(r,g,b){
         ledred.pwmWrite(r);
@@ -119,41 +123,42 @@ Initialize pins 17, 18, and 27 to output mode, and assign them to the constants 
 Implement a ``colorset(r,g,b)`` function, which is used to write pulse values to pins 17, 18, 27. The Gpio library encapsulates the function ``pwmWrite()`` to write to pins Pulse value, the value is 0x00 to 0xff. Then you can write RGB values to the RGB LED through the ``colorset(r,g,b)`` function, so that it can display a variety of colors. 
 
 .. note::
-    For questions about RGB, please refer to the website:https://www.rapidtables.com/web/color/RGB_Color.html
+    For questions about RGB, please refer to the website: https://www.rapidtables.com/web/color/RGB_Color.html
 
-.. code-block::
+.. code-block:: js
 
-    function delay(ms){
-        var start = new Date().getTime();	
-        while(true){
-            if(new Date().getTime() - start > ms){
-            break;		
-            }	  
-        }
-    }    
-
-Implement a delay(ms) function to make the program pause running for a period of time, in milliseconds, where new Date().getTime() is used to get the current time of the system.
-
-For the Date() class, please refer to the website :https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime
-
-.. code-block::
+    var color_index = -1;
 
     setInterval(() => {
-        colorset(0xff,0x00,0x00);
-        delay(500);
-        colorset(0x00,0xff,0x00);
-        delay(500);
-        colorset(0x00,0x00,0xff);
-        delay(500);
-        colorset(0xff,0xff,0x00);
-        delay(500);
-        colorset(0xff,0x00,0xff);
-        delay(500);
-        colorset(0xc0,0xff,0x3e);
-        delay(500);      
-    }, 500);
+    color_index += 1;
+    switch (color_index) {
+        case 0:
+            colorset(0xff, 0x00, 0xFF);
+            break;
+        case 1:
+            colorset(0x00, 0xff, 0x00);
+            break;
+        case 2:
+            colorset(0x00, 0x00, 0xff);
+            break;
+        case 3:
+            colorset(0xff, 0xff, 0x00);
+            break;
+        case 4:
+            colorset(0xff, 0x00, 0xff);
+            break;
+        case 5:
+            colorset(0xc0, 0xff, 0x3e);
+            break;
+        default:
+            color_index=-1;
+        }
+    }, 500);  
 
-Then cyclically write red (0xff, 0x00, 0x00), green (0x00, 0xff, 0x00), blue (0x00, 0x00, 0xff), yellow (0xff, 0xff, 0x00), pink (0xff, 0x00,0xff), cyan (0xc0,0xff,0x3e).
+The RGB LED is controlled by ``colorset()`` executed every 500ms.
+A switch case is used here to select the color emitted by the RGB LEDs.
+Since ``color_index`` is changed by one every cycle, the color of this one RGB LED will change in order.
+
 
 Phenomenon Picture
 ------------------------

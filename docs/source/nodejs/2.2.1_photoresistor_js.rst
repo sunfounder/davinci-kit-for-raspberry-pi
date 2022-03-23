@@ -1,0 +1,96 @@
+2.2.1 Photoresistor
+=========================
+
+Introduction
+------------
+
+Photoresistor is a commonly used component of ambient light intensity in
+life. It helps the controller to recognize day and night and realize
+light control functions such as night lamp. This project is very similar
+to potentiometer, and you might think it changing the voltage to sensing
+light.
+
+Components
+----------
+
+.. image:: ../media/list_2.2.1_photoresistor.png
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`ADC0834`
+* :ref:`Photoresistor`
+
+Schematic Diagram
+-----------------
+
+.. image:: ../media/image321.png
+
+
+.. image:: ../media/image322.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../media/image198.png
+
+**Step 2:** Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/nodejs/
+
+**Step 3:** Run the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node photoresistor.js
+
+When the code is running, 
+the brightness of the LED will change according to the light intensity sensed by the photoresistor.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+    exports.ADC0834 = ADC0834;
+
+    const adc = new ADC0834(17, 18, 27);
+
+    const led = new Gpio(22, {mode: Gpio.OUTPUT});
+
+    setInterval(() => {
+      adc.read(0).then((value) => {
+        console.log(value);
+        led.pwmWrite(value);
+      }, (error)=>{
+        console.log("Error: " + error);
+      });
+    }, 100);
+
+
+
+**Code Explanation**
+
+The codes here are the same as that in 2.1.4 Potentiometer. 
+Please check the code explanation of :ref:`2.1.4 Potentiometer` for details.
+
+Phenomenon Picture
+------------------
+
+.. image:: ../media/image199.jpeg

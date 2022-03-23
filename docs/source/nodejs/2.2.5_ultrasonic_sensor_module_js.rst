@@ -1,0 +1,138 @@
+2.2.5 Ultrasonic Sensor Module
+==============================
+
+Introduction
+--------------
+
+The ultrasonic sensor uses ultrasonic to accurately detect objects and
+measure distances. It sends out ultrasonic waves and converts them into
+electronic signals.
+
+Components
+----------
+
+.. image:: ../media/list_2.2.5.png
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Ultrasonic Module`
+
+Schematic Diagram
+-----------------
+
+.. image:: ../media/image329.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../media/image220.png
+
+**Step 2:** Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/nodejs/
+
+**Step 3:** Run the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node ultrasonic_sensor.js
+
+With the code run, the ultrasonic sensor module detects the distance
+between the obstacle ahead and the module itself, then the distance
+value will be printed on the screen.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    // The number of microseconds it takes sound to travel 1cm at 20 degrees celcius
+    const MICROSECDONDS_PER_CM = 1e6/34321;
+
+    const trigger = new Gpio(23, {mode: Gpio.OUTPUT});
+    const echo = new Gpio(24, {mode: Gpio.INPUT, alert: true});
+
+    trigger.digitalWrite(0); // Make sure trigger is low
+
+    const watchHCSR04 = () => {
+      let startTick;
+
+      echo.on('alert', (level, tick) => {
+        if (level === 1) {
+          startTick = tick;
+        } else {
+          const endTick = tick;
+          const diff = (endTick >> 0) - (startTick >> 0); // Unsigned 32 bit arithmetic
+          console.log(diff / 2 / MICROSECDONDS_PER_CM);
+        }
+      });
+    };
+
+    watchHCSR04();
+
+    // Trigger a distance measurement once per second
+    setInterval(() => {
+      trigger.trigger(10, 1); // Set trigger high for 10 microseconds
+    }, 1000);
+
+
+
+
+**Code Explanation**
+
+The ``trigger`` function can be used to generate a pulse on a GPIO and 
+``alerts`` can be used to determine the time of a GPIO state change 
+accurate to a few microseconds. 
+
+These two features can be combined to measure distance using a HC-SR04 
+ultrasonic sensor.
+
+.. code-block:: js
+
+    setInterval(() => {
+      trigger.trigger(10, 1); // Set trigger high for 10 microseconds
+    }, 1000);
+
+This is to periodically send out a 10us ultrasonic pulse.
+
+.. code-block:: js
+
+  const watchHCSR04 = () => {
+
+    echo.on('alert', (level, tick) => {
+        if (level === 1) {
+          startTick = tick;
+        } else {
+          const endTick = tick;
+          const diff = (endTick >> 0) - (startTick >> 0); // Unsigned 32 bit arithmetic
+          console.log(diff / 2 / MICROSECDONDS_PER_CM);
+        }    
+    });
+  };
+
+This function sets an alert that will record the time between sending the pulse (level is 1) and receiving the echo (level is 0).
+By multiplying the time difference by the speed of sound (and dividing by 2), you can get the distance to the obstacle ahead.
+
+
+
+.. https://github.com/fivdi/pigpio
+
+Phenomenon Picture
+------------------
+
+.. image:: ../media/image221.jpeg
+    

@@ -1,34 +1,38 @@
 const Gpio = require('pigpio').Gpio;
-const ledred = new Gpio(17,{mode: Gpio.OUTPUT});
-const ledgreen = new Gpio(18,{mode: Gpio.OUTPUT});
-const ledblue = new Gpio(27,{mode: Gpio.OUTPUT});
+const ledred = new Gpio(17, { mode: Gpio.OUTPUT });
+const ledgreen = new Gpio(18, { mode: Gpio.OUTPUT });
+const ledblue = new Gpio(27, { mode: Gpio.OUTPUT });
 
-function colorset(r,g,b){
-    ledred.pwmWrite(r);
-    ledgreen.pwmWrite(g);
-    ledblue.pwmWrite(b);
+function colorset(r, g, b) {
+  ledred.pwmWrite(r);
+  ledgreen.pwmWrite(g);
+  ledblue.pwmWrite(b);
 }
 
-function delay(ms){
-  var start = new Date().getTime();	
-  while(true){
-    if(new Date().getTime() - start > ms){
-      break;		
-	}	  
-  }
-}
+var color_index = -1;
 
 setInterval(() => {
-  colorset(0xff,0x00,0x00);
-  delay(500);
-  colorset(0x00,0xff,0x00);
-  delay(500);
-  colorset(0x00,0x00,0xff);
-  delay(500);
-  colorset(0xff,0xff,0x00);
-  delay(500);
-  colorset(0xff,0x00,0xff);
-  delay(500);
-  colorset(0xc0,0xff,0x3e);
-  delay(500);      
+  color_index += 1;
+  switch (color_index) {
+    case 0:
+      colorset(0xff, 0x00, 0xFF);
+      break;
+    case 1:
+      colorset(0x00, 0xff, 0x00);
+      break;
+    case 2:
+      colorset(0x00, 0x00, 0xff);
+      break;
+    case 3:
+      colorset(0xff, 0xff, 0x00);
+      break;
+    case 4:
+      colorset(0xff, 0x00, 0xff);
+      break;
+    case 5:
+      colorset(0xc0, 0xff, 0x3e);
+      break;
+    default:
+      color_index=-1;
+  }
 }, 500);

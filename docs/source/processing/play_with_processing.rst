@@ -21,23 +21,62 @@ Install the Processing
 
     Before you can use Processing, you need to access the Raspberry Pi desktop remotely (:ref:`Remote Desktop`) or connect a display for the Raspberry Pi.
 
-Run the following command in Terminal to install Processing.
+.. Run the following command in Terminal to install Processing.
 
-.. raw:: html
+.. .. raw:: html
 
-   <run></run>
+..    <run></run>
+
+.. .. code-block:: 
+
+..     curl https://processing.org/download/install-arm.sh | sudo sh
+
+.. Once the installation is complete, type ``processing`` to open it.
+
+
+.. .. image:: img/processing1.png
+
+
+.. For a detailed tutorial, please refer to `Pi Processing <https://pi.processing.org/>`_.
+
+Welcome to Machining! First visit https://processing.org/download and select the ``Linux ARM32-bit`` version
+
+You will then download to a ``.tar.gz`` file that should be familiar to most Linux users. 
+Download the file to your home directory, then open a terminal window and type:
 
 .. code-block:: 
 
-    curl https://processing.org/download/install-arm.sh | sudo sh
+    tar xvfz processing-xxxx.tgz
 
-Once the installation is complete, type ``processing`` to open it.
+(Replace xxxx with the rest of the file's name, which is the version number.) This will create a folder named processing-2.0 or something similar. Then change to that directory:
+
+.. code-block:: 
+
+    cd processing-xxxx
+
+and run it:
+
+.. code-block:: 
+
+    ./processing
+
+With any luck, the main Processing window will now be visible.
+
+.. image:: img/processing2.png
 
 
-.. image:: img/processing1.png
+Install Hardware I/O
+--------------------
 
+In order to use the Raspberry Pi's GPIO, you need to manually add a `Hardware I/O library <https://processing.org/reference/libraries/io/index.html>`_.
 
-For a detailed tutorial, please refer to `Pi Processing <https://pi.processing.org/>`_.
+Click ``Sketch`` -> ``Import Library`` -> ``Add Library...`` 
+
+.. image:: img/import-00.png
+
+Find Hardware I/O , select it, and then click Install. When done, a checkmark icon will appear.
+
+.. image:: img/import-02.png
 
 Projects
 ---------------

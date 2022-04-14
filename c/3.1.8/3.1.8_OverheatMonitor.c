@@ -45,9 +45,9 @@ uchar get_ADC_Result(uint channel)
     digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
     digitalWrite(ADC_CLK,1);
 
-    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
-    digitalWrite(ADC_CLK,0);
-    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+	delayMicroseconds(2);
+	digitalWrite(ADC_CLK,0);
+	delayMicroseconds(2);
 
     for(i=0;i<8;i++)
     {

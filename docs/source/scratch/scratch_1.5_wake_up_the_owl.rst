@@ -5,6 +5,11 @@ Today we are going to play a game of waking up the owl.
 
 When someone approaches the PIR sensor module, the owl will wake up from sleep.
 
+There are two potentiometers on
+the PIR module: one is to adjust sensitivity and the other is to adjust
+the detection distance. To make the PIR module work better, you
+You need to turn both of them counterclockwise to the end.
+
 .. image:: media/1.5_header.png
 
 Required Components

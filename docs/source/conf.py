@@ -48,20 +48,10 @@ exclude_patterns = []
 html_theme = 'sphinx_rtd_theme'
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-
-# SunFounder logo
-
-# html_js_files = [
-#     'https://ezblock.cc/readDocFile/topHead.js',
-# ]
-# html_css_files = [
-#     'https://ezblock.cc/readDocFile/topHead.css',
-# ]
-
 #### RTD+
 
 html_js_files = [
-    'https://ezblock.cc/readDocFile/topHead.js',
+    'https://ezblock.cc/readDocFile/custom.js',
     'https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js',
     'https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js',
     'https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js',
@@ -71,11 +61,10 @@ html_js_files = [
     'https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js',
     'https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js',
     'https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js',
-
 ]
 html_css_files = [
-    'https://ezblock.cc/readDocFile/topHead.css',
-    'https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css',
+    'https://ezblock.cc/readDocFile/custom.css',
+    'https://ezblock.cc/readDocFile/readTheDoc/src/css/index2.css',
     'https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css',
 ]
 

@@ -19,7 +19,7 @@
 import sphinx_rtd_theme
 
 project = 'SunFounder davinci-kit-for-raspberry-pi'
-copyright = '2021, SunFounder'
+copyright = '2022, SunFounder'
 author = 'www.sunfounder.com'
 
 
@@ -64,7 +64,7 @@ html_js_files = [
 ]
 html_css_files = [
     'https://ezblock.cc/readDocFile/custom.css',
-    'https://ezblock.cc/readDocFile/readTheDoc/src/css/index2.css',
+    'https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css',
     'https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css',
 ]
 

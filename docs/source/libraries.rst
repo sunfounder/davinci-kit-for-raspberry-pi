@@ -59,8 +59,7 @@ If you want to quit python CLI, type in:
 
 
 Install and Check the WiringPi
-------------------------------
-
+=======================================
 
 ``wiringPi`` is a C language GPIO library applied to the Raspberry Pi. It complies with GUN Lv3. The functions in wiringPi are
 similar to those in the wiring system of Arduino. They enable the users
@@ -70,7 +69,6 @@ familiar with Arduino to use wiringPi more easily.
 kinds of interfaces on Raspberry Pi. 
 
 Please run the following command to install ``wiringPi`` library.
-
 
 
 .. raw:: html
@@ -87,28 +85,28 @@ Please run the following command to install ``wiringPi`` library.
 You can test whether the wiringPi
 library is installed successfully or not by the following instruction.
 
+
 .. raw:: html
 
-   <run></run>
+    <run></run>
 
 .. code-block::
 
     gpio -v
 
-.. image:: ../img/image30.png
-
+.. image:: media/image30.png
 
 Check the GPIO with the following command:
 
 .. raw:: html
 
-   <run></run>
+    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     gpio readall
 
-.. image:: ../img/image31.png
+.. image:: media/image31.png
 
 
 For more details about wiringPi, you can refer to `WiringPi <https://github.com/WiringPi/WiringPi>`_.

@@ -30,9 +30,9 @@ void pickDigit(int digit)
 {
     for (int i = 0; i < 4; i++)
     {
-        digitalWrite(placePin[i], 1);
+        digitalWrite(placePin[i], 0);
     }
-    digitalWrite(placePin[digit], 0);
+    digitalWrite(placePin[digit], 1);
 }
 
 void hc595_shift(int8_t data)
@@ -67,21 +67,45 @@ void clearDisplay()
 
 void display()
 {
-    clearDisplay();
-    pickDigit(0);
-    hc595_shift(number[counter % 10]);
+    int a,b,c;
+    
+    a = counter % 10000 / 1000 + counter % 1000 / 100;
+    b = counter % 10000 / 1000 + counter % 1000 / 100 + counter % 100 / 10;
+    c = counter % 10000 / 1000 + counter % 1000 / 100 + counter % 100 / 10 + counter % 10;
 
-    clearDisplay();
-    pickDigit(1);
-    hc595_shift(number[counter % 100 / 10]);
+    if (counter % 10000 / 1000 == 0){
+        clearDisplay();
+    }
+    else{
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+    }
+    if (a == 0){
+        clearDisplay();
+    }
+    else{
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+    }
+    if (b == 0){
+        clearDisplay();
+    }
+    else{
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+    }
+    if(c == 0){
+        clearDisplay();
+    }
 
-    clearDisplay();
-    pickDigit(2);
-    hc595_shift(number[counter % 1000 / 100]);
- 
-    clearDisplay();
-    pickDigit(3);
-    hc595_shift(number[counter % 10000 / 1000]);
+    else{
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+    }
 }
 
 void loop()

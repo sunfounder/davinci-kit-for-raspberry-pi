@@ -1,0 +1,372 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, SunFounder
+# This file is distributed under the same license as the SunFounder Davinci
+# Kit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: SunFounder Davinci Kit\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-19 18:22+0800\n"
+"PO-Revision-Date: 2021-05-28 07:22+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../2.1.4_potentiometer.rst:2
+msgid "2.1.4 Potentiometer"
+msgstr "2.1.4 ポテンショメータ"
+
+#: ../2.1.4_potentiometer.rst:5
+msgid "Introduction"
+msgstr "前書き"
+
+#: ../2.1.4_potentiometer.rst:7
+msgid ""
+"The ADC function can be used to convert analog signals to digital "
+"signals, and in this experiment, ADC0834 is used to get the function "
+"involving ADC. Here, we implement this process by using potentiometer. "
+"Potentiometer changes the physical quantity -- voltage, which is "
+"converted by the ADC function."
+msgstr "ADC機能を使用してアナログ信号をデジタル信号に変換でき、この実験では、ADC0834を使用してADCに関する関数を取得する。ここでは、ポテンショメータを使用してこのプロセスを実装する。ポテンショメーターはADC機能によって変換される物理量-電圧を変更する。"
+
+#: ../2.1.4_potentiometer.rst:14
+msgid "Components"
+msgstr "部品"
+
+#: ../2.1.4_potentiometer.rst:20
+msgid "Principle"
+msgstr "原理"
+
+#: ../2.1.4_potentiometer.rst:22
+msgid "**ADC0834**"
+msgstr "**ADC0834**"
+
+#: ../2.1.4_potentiometer.rst:24
+msgid ""
+"ADC0834 is an 8-bit `successive approximation "
+"<https://cn.bing.com/dict/search?q=successive "
+"approximations&FORM=BDVSP6&mkt=zh-cn>`__ analog-to-digital converter that"
+" is equipped with an input-configurable multichannel multi-plexer and "
+"serial input/output. The serial input/output is configured to interface "
+"with standard shift registers or microprocessors."
+msgstr ""
+"ADC0834は、8ビットの `successive approximation "
+"<https://cn.bing.com/dict/search?q=successive "
+"approximations&FORM=BDVSP6&mkt=zh-cn>`__ "
+"本製品は、入力設定可能なマルチチャンネル・マルチプレクサとシリアル入出力を備えたアナログ・デジタル・コンバータです。シリアル入出力は、標準的なシフトレジスターやマイクロプロセッサーとのインターフェースとして構成されています。"
+
+#: ../2.1.4_potentiometer.rst:34
+msgid "**Sequence of Operation**"
+msgstr "**操作の順序**"
+
+#: ../2.1.4_potentiometer.rst:36
+msgid ""
+"A conversion is initiated by setting CS low, which enables all logic "
+"circuits. CS must be held low for the complete conversion process. A "
+"clock input is then received from the processor. On each low-to-high "
+"transition of the clock input, the data on DI is clocked into the "
+"multiplexer address shift register. The first logic high on the input is "
+"the start bit. A 3- to 4-bit assignment word follows the start bit. On "
+"each successive low-to-high transition of the clock input, the start bit "
+"and assignment word are shifted through the shift register. When the "
+"start bit is shifted into the start location of the multiplexer register,"
+" the input channel is selected and conversion starts. The SAR Statu "
+"output (SARS) goes high to indicate that a conversion is in progress, and"
+" DI to the multiplexer shift register is disabled the duration of the "
+"conversion."
+msgstr ""
+"変換はCSをlowに設定することで開始され、論理回路がすべて有効になる。変換プロセスを完了するには、CSをlowに保持する必要がある。次に、プロセッサからクロック入力を受信する。クロック入力のLowからHighへの遷移ごとに、DI上のデータがマルチプレクサーアドレスシフトレジスタに入力される。入力の最初のロジックhighはスタートビットである。スタートビットの後に、3〜4ビットの割り当てワードが続く。クロック入力のLowからHighへの遷移ごとに、スタートビットと割り当てワードがシフトレジスターにシフトする。スタートビットがマルチプレクサレジスタの開始位置にシフトされると、入力チャネルが選択され、変換が開始される。SAR"
+" Statu出力（SARS）は、変換が進行中であることを示すために高レベルになり、マルチプレクサーシフトレジスタへのDIは変換中は無効になる。"
+
+#: ../2.1.4_potentiometer.rst:50
+msgid ""
+"An interval of one clock period is automatically inserted to allow the "
+"selected multiplexed channel to settle. The data output DO comes out of "
+"the high-impedance state and provides a leading low for this one clock "
+"period of multiplexer settling time. The SAR comparator compares "
+"successive outputs from the resistive ladder with the incoming analog "
+"signal. The comparator output indicates whether the analog input is "
+"greater than or less than the resistive ladder output. As the conversion "
+"proceeds, conversion data is simultaneously output from the DO output "
+"pin, with the most significant bit (MSB) first."
+msgstr "1クロック周期の間隔が自動的に挿入されて、選択されたマルチプレックスチャネルの安定化を実現する。データ出力DOは高インピーダンス状態から出て、マルチプレクサの整定時間のこの1クロック期間に先行するLowを提供する。SARコンパレータは、抵抗ラダーからの連続出力を入力アナログ信号と比較する。コンパレータ出力は、アナログ入力が抵抗ラダー出力より大きいか小さいかを示す。変換が進むと、変換データがDO出力ピンから同時に出力され、最上位ビット（MSB）が最初になる。"
+
+#: ../2.1.4_potentiometer.rst:60
+msgid ""
+"After eight clock periods, the conversion is complete and the SARS output"
+" goes low. Finally outputs the least-significant-bit-first data after the"
+" MSB-first data stream."
+msgstr "8クロック周期後、変換が完了し、SARS出力がLOWになる。最後に、MSBファーストデータストリームの後に最下位ビットファーストデータを出力する。"
+
+#: ../2.1.4_potentiometer.rst:69
+msgid "**ADC0834 MUX ADDRESS CONTROL LOGIC TABLE**"
+msgstr "**ADC0834 MUXアドレス制御論理表**"
+
+#: ../2.1.4_potentiometer.rst:76
+msgid "**Potentiometer**"
+msgstr "**ポテンショメータ**"
+
+#: ../2.1.4_potentiometer.rst:79
+msgid ""
+"Potentiometer is also a resistance component with 3 terminals and its "
+"resistance value can be adjusted according to some regular variation. "
+"Potentiometer usually consists of resistor and movable brush. When the "
+"brush is moving along the resistor, there is a certain resistance or "
+"voltage output depending on the displacement."
+msgstr "ポテンショメーターも3つの端子を持つ抵抗部品であり、その抵抗値は定期的な変動に応じて調整できる。ポテンショメータは通常、抵抗器と可動ブラシで構成されている。ブラシが抵抗に沿って移動しているとき、変位に応じて特定の抵抗または電圧出力が生成される。"
+
+#: ../2.1.4_potentiometer.rst:90
+msgid "The functions of the potentiometer in the circuit are as follows:"
+msgstr "回路内のポテンショメータの機能は次のとおりである："
+
+#: ../2.1.4_potentiometer.rst:92
+msgid "Serving as a voltage divider"
+msgstr "分圧器として機能する"
+
+#: ../2.1.4_potentiometer.rst:94
+msgid ""
+"Potentiometer is a continuously adjustable resistor. When you adjust the "
+"shaft or sliding handle of the potentiometer, the movable contact will "
+"slide on the resistor. At this point, a voltage can be output depending "
+"on the voltage applied onto the potentiometer and the angle the movable "
+"arm has rotated to or the distance it moves."
+msgstr "ポテンショメータは連続的に調整可能な抵抗器である。ポテンショメータのシャフトまたはスライドハンドルを調整すると、可動接点が抵抗器上でスライドする。この時点で、ポテンショメータに印加される電圧と、可動アームが回転した角度または移動距離に応じて、電圧を出力できる。"
+
+#: ../2.1.4_potentiometer.rst:101
+msgid "Schematic Diagram"
+msgstr "回路図"
+
+#: ../2.1.4_potentiometer.rst:110
+msgid "Experimental Procedures"
+msgstr "実験手順"
+
+#: ../2.1.4_potentiometer.rst:112
+msgid "**Step 1:** Build the circuit."
+msgstr "**ステップ1：** 回路を作る。"
+
+#: ../2.1.4_potentiometer.rst:120
+msgid ""
+"Please place the chip by referring to the corresponding position depicted"
+" in the picture. Note that the grooves on the chip should be on the left "
+"when it is placed."
+msgstr "写真に示されている対応する位置を参照して、チップを配置してください。配置するときにチップの溝は左側にあることに注意してください。"
+
+#: ../2.1.4_potentiometer.rst:125
+msgid "For C Language Users"
+msgstr "C言語ユーザー向け"
+
+#: ../2.1.4_potentiometer.rst:127
+msgid "**Step 2:** Open the code file."
+msgstr "**ステップ2：** コードファイルを開く。"
+
+#: ../2.1.4_potentiometer.rst:137
+msgid "**Step 3:** Compile the code."
+msgstr "**ステップ3：** コードをコンパイルする。"
+
+#: ../2.1.4_potentiometer.rst:147
+msgid "**Step 4:** Run."
+msgstr "**ステップ4：** 実行する。"
+
+#: ../2.1.4_potentiometer.rst:157 ../2.1.4_potentiometer.rst:473
+msgid ""
+"After the code runs, rotate the knob on the potentiometer, the intensity "
+"of LED will change accordingly."
+msgstr "コードの実行後、ポテンショメーターのノブを回すと、それに応じてLEDの輝度が変化する。"
+
+#: ../2.1.4_potentiometer.rst:162
+msgid ""
+"If it does not work after running, please refer to :ref:`C code is not "
+"working?`"
+msgstr "実行後に機能しない場合は、:ref:`C code is not working?` を参照してください。"
+
+#: ../2.1.4_potentiometer.rst:164 ../2.1.4_potentiometer.rst:476
+msgid "**Code**"
+msgstr "**コード**"
+
+#: ../2.1.4_potentiometer.rst:252 ../2.1.4_potentiometer.rst:524
+msgid "**Code Explanation**"
+msgstr "**コードの説明**"
+
+#: ../2.1.4_potentiometer.rst:261
+msgid ""
+"Define CS, CLK, DIO of ADC0834, and connect them to GPIO0, GPIO1 and "
+"GPIO2 respectively. Then attach LED to GPIO3."
+msgstr "ADC0834のCS、CLK、DIOを定義し、それぞれGPIO0、GPIO1、GPIO2に接続する。それから、GPIO3にLEDを取り付ける。"
+
+#: ../2.1.4_potentiometer.rst:316
+msgid ""
+"There is a function of ADC0834 to get Analog to Digital Conversion. The "
+"specific workflow is as follows:"
+msgstr "ADC0834 には、   アナログからデジタルへの変換を行う機能がある。特定の ワークフローは次のとおりです："
+
+#: ../2.1.4_potentiometer.rst:323
+msgid "Set CS to low level and start enabling AD conversion."
+msgstr "CSを低レベルに設定し、AD変換の有効化を開始する。"
+
+#: ../2.1.4_potentiometer.rst:332
+msgid ""
+"When the low-to-high transition of the clock input occurs at the first "
+"time, set DIO to 1 as Start bit. In the following three steps, there are "
+"3 assignment words."
+msgstr ""
+"クロック入力の lowからhighへの遷移が最初に発生したとき、 スタートビットとしてDIOを 1に設定する。次の三つのステップには "
+"、割り当て単語が3つある 。"
+
+#: ../2.1.4_potentiometer.rst:343
+msgid ""
+"As soon as the low-to-high transition of the clock input occurs for the "
+"second time, set DIO to 1 and choose SGL mode."
+msgstr "クロック入力のlowからhighへの遷移が二回発生したらすぐに、DIOを1に設定し、SGLモードを選択する。"
+
+#: ../2.1.4_potentiometer.rst:353
+msgid ""
+"Once occurs for the third time, the value of DIO is controlled by the "
+"variable **odd**."
+msgstr "三回目に発生すると、DIOの値は変数 **odd** によって制御される。"
+
+#: ../2.1.4_potentiometer.rst:363
+msgid ""
+"The pulse of CLK converted from low level to high level for the forth "
+"time, the value of DIO is controlled by the variable **sel**."
+msgstr "CLKのパルスが4番目に低レベルから高レベルに変換されると、DIOの値は変数 **sel** によって制御される。"
+
+#: ../2.1.4_potentiometer.rst:366
+msgid ""
+"Under the condition that channel=0, sel=0, odd=0, the operational "
+"formulas concerning **sel** and **odd** are as follows:"
+msgstr "channel = 0、sel = 0、odd = 0の条件下では、 **sel** および **odd** に関する演算式は次のとおりである："
+
+#: ../2.1.4_potentiometer.rst:374
+msgid ""
+"When the condition that channel=1, sel=0, odd=1 is met, please refer to "
+"the following address control logic table. Here CH1 is chosen, and the "
+"start bit is shifted into the start location of the multiplexer register "
+"and conversion starts."
+msgstr ""
+"channel = 1、sel = 0、odd = "
+"1という条件が満たされている場合、次のアドレス制御ロジックテーブルを参照してください。ここで、CH1が選択され、開始ビットがマルチプレクサレジスタの開始位置にシフトされ、変換が開始される。"
+
+#: ../2.1.4_potentiometer.rst:388
+msgid "Here, set DIO to 1 twice, please ignore it."
+msgstr "ここでは、DIOを1に二回設定し、それを無視してください。"
+
+#: ../2.1.4_potentiometer.rst:401
+msgid ""
+"In the first for() statement, as soon as the fifth pulse of CLK is "
+"converted from high level to low level, set DIO to input mode. Then the "
+"conversion starts and the converted value is stored in the variable dat1."
+" After eight clock periods, the conversion is complete."
+msgstr ""
+"最初のfor() "
+"statementで、CLKの五番目のパルスがHighレベルから低レベルに変換したらすぐに、DIOを入力モードに設定してください。それから、変換が開始され、変換された値が変数dat1に保存される。8クロック周期後、変換が完了する。"
+
+#: ../2.1.4_potentiometer.rst:415
+msgid ""
+"In the second for() statement, output the converted values via DO after "
+"other eight clock periods and store them in the variable dat2."
+msgstr "2番目最初のfor()statementdでは、他の最初の8つの後にDOを介して値を変換を出力し、変数dat2に保存する。"
+
+#: ../2.1.4_potentiometer.rst:424
+msgid ""
+"return(dat1==dat2) ? dat1 : 0 is used to compare the value gotten during "
+"the conversion and the output value. If they are equal to each other, "
+"output the converting value dat1; otherwise, output 0. Here, the workflow"
+" of ADC0834 is complete."
+msgstr ""
+"return（dat1 == dat2）？ "
+"dat1：0は、変換中に得られた値と出力値を比較するために使用される。それらが互いに等しい場合、変換値dat1を出力する。それ以外の場合は、0を出力する。これで、ADC0834の処理が完了した。"
+
+#: ../2.1.4_potentiometer.rst:433
+msgid ""
+"The function is to use software to create a PWM pin, LedPin, then the "
+"initial pulse width is set to 0, and the period of PWM is 100 x 100us."
+msgstr ""
+"この機能はソフトウェアを使用してPWMピンLedPinを作成し、初期パルス幅を0に設定し、PWMの周期を100 x "
+"100usにするために使用される。"
+
+#: ../2.1.4_potentiometer.rst:445
+msgid ""
+"In the main program, read the value of channel 0 that has been connected "
+"with a potentiometer. And store the value in the variable analogVal then "
+"write it in LedPin. Now you can see the brightness of LED changing with "
+"the value of the potentiometer."
+msgstr ""
+"メイ プログラムで、 ポテンショメーターに最初接続されているチャンネル0 0 の値 を 読み取る "
+"。そして、最初値を最初変数analogValに保存してから LedPinに書き込む。 "
+"これで、ポテンショメータの値によってLEDの輝度が変化することを見ることができる。"
+
+#: ../2.1.4_potentiometer.rst:451
+msgid "For Python Users"
+msgstr "Pythonユーザー向け"
+
+#: ../2.1.4_potentiometer.rst:453
+msgid "**Step 2:** Open the code file"
+msgstr "**ステップ2：** コードファイルを開く"
+
+#: ../2.1.4_potentiometer.rst:463
+msgid "**Step 3:** Run."
+msgstr "**ステップ3：** 実行する。"
+
+#: ../2.1.4_potentiometer.rst:480
+ 
+msgid ""
+"You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, "
+"you need to go to  source code path like ``davinci-kit-for-raspberry-"
+"pi/python``."
+msgstr ""
+"以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、 ``davinci-kit-for-raspberry-pi/python`` のようなソースコードパスに移動する必要があります。"
+
+#: ../2.1.4_potentiometer.rst:530
+msgid ""
+"import ADC0834 library. You can check the content of the library by "
+"calling the command nano ADC0834.py."
+msgstr "ADC0834ライブラリをインポートする。コマンドnano ADC0834.pyを呼び出して、ライブラリの内容を確認できる。"
+
+#: ../2.1.4_potentiometer.rst:548
+msgid ""
+"In setup(), define the naming method as BCM, set LedPin as PWM channel "
+"and render it a frequency of 2Khz."
+msgstr "setup()で、命名方法をBCMとして定義し、LedPinをPWMチャネルとして設定し、2Khzの周波数にレンダリングする。"
+
+#: ../2.1.4_potentiometer.rst:551
+msgid ""
+"**ADC0834.setup():** Initialize ADC0834, and connect the defined CS, CLK,"
+" DIO of ADC0834 to GPIO17, GPIO18 and GPIO27 respectively."
+msgstr ""
+"**ADC0834.setup()：** "
+"ADC0834を初期化し、ADC0834の定義されたCS、CLK、DIOをそれぞれGPIO17、GPIO18、GPIO27に接続する。"
+
+#: ../2.1.4_potentiometer.rst:564
+msgid ""
+"The function getResult() is used to read the analog values of the four "
+"channels of ADC0834. By default, the function reads the value of CH0, and"
+" if you want to read other channels, please input the channel number in "
+"**( )**, ex. getResult(1)."
+msgstr ""
+"関数getResult()はADC0834の4つのチャンネルのアナログ値を読み取るために使用される。デフォルトでは、関数はCH0の値を読み取り、他のチャネルを読み取りたい場合は、（"
+" ） にチャネル番号を入力してください(例えばex. getResult(1))。"
+
+#: ../2.1.4_potentiometer.rst:569
+msgid ""
+"The function loop() first reads the value of CH0, then assign the value "
+"to the variable res. After that, call the function MAP to map the read "
+"value of potentiometer to 0~100. This step is used to control the duty "
+"cycle of LedPin. Now, you may see that the brightness of LED is changing "
+"with the value of potentiometer."
+msgstr "関数loop()は最初にCH0の値を読み取り、それから変数resに値を割り当てる。その後、関数MAPを呼び出して、ポテンショメーターの読み取り値を0〜100にマッピングする。このステップはLedPinのデューティサイクルを制御するために使用される。これで、ポテンショメータの値によってLEDの輝度が変化していることがわかる。"
+
+#: ../2.1.4_potentiometer.rst:577
+msgid "Phenomenon Picture"
+msgstr "現象画像"
+
+#~ msgid ""
+#~ "If it does not work after running,"
+#~ " please refer to :ref:`C code is "
+#~ "not working?`."
+#~ msgstr ""
+

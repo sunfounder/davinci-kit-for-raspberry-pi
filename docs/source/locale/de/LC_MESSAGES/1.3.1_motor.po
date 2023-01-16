@@ -1,0 +1,316 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, SunFounder
+# This file is distributed under the same license as the SunFounder Davinci
+# Kit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: SunFounder Davinci Kit\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-19 18:22+0800\n"
+"PO-Revision-Date: 2021-05-31 21:17+0800\n"
+"Last-Translator: \n"
+"Language: de\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../1.3.1_motor.rst:2
+msgid "1.3.1 Motor"
+msgstr "1.3.1 Motor"
+
+#: ../1.3.1_motor.rst:5
+msgid "Introduction"
+msgstr "Einführung"
+
+#: ../1.3.1_motor.rst:7
+msgid ""
+"In this lesson, we will learn to how to use L293D to drive a DC motor and"
+" make it rotate clockwise and counterclockwise. Since the DC Motor needs "
+"a larger current, for safety purpose, here we use the Power Supply Module"
+" to supply motors."
+msgstr ""
+"In dieser Lektion lernen wir, mit L293D einen Gleichstrommotor antreiben "
+"und ihn im und gegen den Uhrzeigersinn drehen. Da der Gleichstrommotor "
+"aus Sicherheitsgründen einen größeren Strom benötigt, verwenden wir hier "
+"das Stromversorgungsmodul zur Versorgung der Motoren."
+
+#: ../1.3.1_motor.rst:13
+msgid "Components"
+msgstr "Komponenten"
+
+#: ../1.3.1_motor.rst:19
+msgid "Principle"
+msgstr "Prinzip"
+
+#: ../1.3.1_motor.rst:21
+msgid "**L293D**"
+msgstr "**L293D**"
+
+#: ../1.3.1_motor.rst:23
+msgid ""
+"L293D is a 4-channel motor driver integrated by chip with high voltage "
+"and high current. It's designed to connect to standard DTL, TTL logic "
+"level, and drive inductive loads (such as relay coils, DC, Stepper "
+"Motors) and power switching transistors etc. DC Motors are devices that "
+"turn DC electrical energy into mechanical energy. They are widely used in"
+" electrical drive for their superior speed regulation performance."
+msgstr ""
+"L293D ist ein 4-Kanal-Motortreiber, der durch einen Chip mit hoher "
+"Spannung und hohem Strom integriert ist. Es ist für den Anschluss an "
+"Standard-DTL-, TTL-Logikniveau und ansteuerungsinduktive Lasten (wie "
+"Relaisspulen, Gleichstrom-, Schrittmotoren) sowie "
+"Leistungsschalttransistoren usw. ausgelegt. Gleichstrommotoren sind "
+"Geräte, die elektrische Gleichstromenergie in mechanische Energie "
+"umwandeln. Sie werden im elektrischen Antrieb wegen ihrer überlegenen "
+"Geschwindigkeitsregelungsleistung häufig verwendet."
+
+#: ../1.3.1_motor.rst:30
+msgid ""
+"See the figure of pins below. L293D has two pins (Vcc1 and Vcc2) for "
+"power supply. Vcc2 is used to supply power for the motor, while Vcc1 to "
+"supply for the chip. Since a small-sized DC motor is used here, connect "
+"both pins to +5V."
+msgstr ""
+"Siehe die Abbildung der Pins unten. Der L293D verfügt über zwei Pins "
+"(Vcc1 und Vcc2) für die Stromversorgung. Vcc2 wird verwendet, um den "
+"Motor mit Strom zu versorgen, während Vcc1 dient, um den Chip zu "
+"versorgen. Da hier ein kleiner Gleichstrommotor verwendet wird, verbinden"
+" Sie beide Pins mit + 5V."
+
+#: ../1.3.1_motor.rst:38
+msgid ""
+"The following is the internal structure of L293D. Pin EN is an enable pin"
+" and only works with high level; A stands for input and Y for output. You"
+" can see the relationship among them at the right bottom. When pin EN is "
+"High level, if A is High, Y outputs high level; if A is Low, Y outputs "
+"Low level. When pin EN is Low level, the L293D does not work."
+msgstr ""
+"Das Folgende ist die interne Struktur von L293D. Pin EN ist ein "
+"Freigabepin und funktioniert nur mit hohem Niveau. A steht für Eingabe "
+"und Y für Ausgabe. Sie können die Beziehung zwischen ihnen unten rechts "
+"sehen. Wenn Pin EN auf Hohe Niveau steht und A auf High steht, gibt Y "
+"Hohe Niveau aus. Wenn A niedrig ist, gibt Y einen niedrigen Niveau aus. "
+"Wenn Pin EN auf niedgrigen Niveau steht, funktioniert der L293D nicht."
+
+#: ../1.3.1_motor.rst:47
+msgid "**DC Motor**"
+msgstr "**Gleichspannungs Motor**"
+
+#: ../1.3.1_motor.rst:52
+msgid ""
+"This is a 5V DC motor. It will rotate when you give the two terminals of "
+"the copper sheet one high and one low level. For convenience, you can "
+"weld the pins to it."
+msgstr ""
+"Dies ist ein 5V Gleichstrommotor. Es dreht sich, wenn Sie den beiden "
+"Anschlüssen des Kupferblechs einen hohen und einen niedrigen Niveau "
+"geben. Der Einfachheit halber können Sie die Pin daran schweißen."
+
+#: ../1.3.1_motor.rst:59
+msgid "**Power Supply Module**"
+msgstr "**Energieversorgung Modul**"
+
+#: ../1.3.1_motor.rst:61
+msgid ""
+"In this experiment, it needs large currents to drive the motor especially"
+" when it starts and stops, which will severely interfere with the normal "
+"work of Raspberry Pi. Therefore, we separately supply power for the motor"
+" by this module to make it run safely and steadily."
+msgstr ""
+"In diesem Experiment werden große Ströme benötigt, um den Motor "
+"anzutreiben, insbesondere wenn er startet und stoppt, was die normale "
+"Arbeit von Raspberry Pi stark beeinträchtigt. Da versorgen wir diesen "
+"Motor separat mit Strom, damit er sicher und gleichmäßig läuft."
+
+#: ../1.3.1_motor.rst:66
+msgid ""
+"You can just plug it in the breadboard to supply power. It provides a "
+"voltage of 3.3V and 5V, and you can connect either via a jumper cap "
+"included."
+msgstr ""
+"Sie können es einfach in das Steckbrett einstecken, um Strom zu liefern. "
+"Es liefert eine Spannung von 3,3V und 5V, und Sie können entweder über "
+"eine mitgelieferte Überbrückungskappe anschließen."
+
+#: ../1.3.1_motor.rst:74
+msgid "Schematic Diagram"
+msgstr "Schematische Darstellung"
+
+#: ../1.3.1_motor.rst:76
+msgid ""
+"Plug the power supply module in breadboard, and insert the jumper cap to "
+"pin of 5V, then it will output voltage of 5V. Connect pin 1 of L293D to "
+"GPIO22, and set it as high level. Connect pin2 to GPIO27, and pin7 to "
+"GPIO17, then set one pin high, while the other low. Thus you can change "
+"the motor’s rotation direction."
+msgstr ""
+"Stecken Sie das Netzteilmodul in das Steckbrett und setzen Sie die "
+"Überbrückungskappe auf 5V, dann wird eine Spannung von 5V ausgegeben. "
+"Verbinden Sie Pin 1 des L293D mit GPIO22 und stellen Sie ihn auf Hohe "
+"Niveau ein. Verbinden Sie Pin2 mit GPIO27 und Pin7 mit GPIO17 und setzen "
+"Sie dann einen Pin hoch, während der andere niedrig ist. So können Sie "
+"die Drehrichtung des Motors ändern."
+
+#: ../1.3.1_motor.rst:86
+msgid "Experimental Procedures"
+msgstr "Experimentelle Verfahren"
+
+#: ../1.3.1_motor.rst:88
+msgid "**Step 1:** Build the circuit."
+msgstr "**Schritt 1:** Bauen Sie die Schaltung auf."
+
+#: ../1.3.1_motor.rst:96
+msgid ""
+"The power module can apply a 9V battery with the 9V Battery Buckle in the"
+" kit. Insert the jumper cap of the power module into the 5V bus strips of"
+" the breadboard."
+msgstr ""
+"Das Leistungsmodul kann eine 9-V-Batterie mit der im Kit enthaltenen 9V-"
+"Batterieschnalle anlegen. Setzen Sie die Überbrückungskappe des "
+"Leistungsmoduls in die 5V-Busleisten des Steckbretts ein."
+
+#: ../1.3.1_motor.rst:104
+msgid "For C Language Users"
+msgstr "Für Benutzer in C-Sprache"
+
+#: ../1.3.1_motor.rst:106 ../1.3.1_motor.rst:244
+msgid "**Step 2**: Get into the folder of the code."
+msgstr "**Schritt 2**: Gehen Sie in den Ordner der Kode."
+
+#: ../1.3.1_motor.rst:116
+msgid "**Step 3**: Compile."
+msgstr "**Schritt 3**: Kompilieren."
+
+#: ../1.3.1_motor.rst:126
+msgid "**Step 4**: Run the executable file above."
+msgstr "**Schritt 4**: Führen Sie die obige ausführbare Datei aus."
+
+#: ../1.3.1_motor.rst:136 ../1.3.1_motor.rst:264
+msgid ""
+"As the code runs, the motor first rotates clockwise for 5s then stops for"
+" 5s, after that, it rotates anticlockwise for 5s; subsequently, the motor"
+" stops for 5s. This series of actions will be executed repeatedly."
+msgstr ""
+"Während die Kode läuft, dreht sich der Motor zuerst 5 Sekunden lang im "
+"Uhrzeigersinn und stoppt dann 5 Sekunden lang. Danach dreht er sich 5 "
+"Sekunden lang gegen den Uhrzeigersinn. Anschließend stoppt der Motor für "
+"5S. Diese Reihe von Aktionen wird wiederholt ausgeführt."
+
+#: ../1.3.1_motor.rst:142
+msgid ""
+"If it does not work after running, please refer to :ref:`C code is not "
+"working?`"
+msgstr ""
+"Wenn es nach dem Ausführen nicht funktioniert, lesen Sie bitte :ref:`C "
+"code is not working?`"
+
+#: ../1.3.1_motor.rst:144 ../1.3.1_motor.rst:268
+msgid "**Code**"
+msgstr "**Code**"
+
+#: ../1.3.1_motor.rst:201 ../1.3.1_motor.rst:404
+msgid "**Code Explanation**"
+msgstr "**Code Erklärung**"
+
+#: ../1.3.1_motor.rst:207
+msgid "Enable the L239D."
+msgstr "Aktivieren Sie den L239D."
+
+#: ../1.3.1_motor.rst:214
+msgid ""
+"Set a high level for 2A(pin 7); since 1,2EN(pin 1) is in high level, 2Y "
+"will output high level."
+msgstr ""
+"Stellen Sie einen hohen Niveau für 2A ein (Pin 7); Da sich 1,2EN (Pin 1) "
+"auf einem hohen Niveau befindet, gibt 2Y einen hohen Niveau aus."
+
+#: ../1.3.1_motor.rst:217
+msgid ""
+"Set a low level for 1A, then 1Y will output low level, and the motor will"
+" rotate."
+msgstr ""
+"Stellen Sie einen niedrigen Niveau für 1A ein, dann gibt 1Y einen "
+"niedrigen Niveau aus und der Motor dreht sich."
+
+#: ../1.3.1_motor.rst:226
+msgid "this loop is to delay for 3*1000ms."
+msgstr "Diese Schleife soll 3*1000ms verzögern."
+
+#: ../1.3.1_motor.rst:232
+msgid ""
+"If 1,2EN (pin1) is in low level, L293D does not work. Motor stops "
+"rotating."
+msgstr ""
+"Wenn sich 1,2EN (Pin1) auf einem niedrigen Niveau befindet, funktioniert "
+"L293D nicht. Motor stoppt sich zu drehen."
+
+#: ../1.3.1_motor.rst:239
+msgid ""
+"Reverse the current flow of the motor, then the motor will rotate "
+"reversely."
+msgstr "Den Stromfluss des Motors umkehren, dann dreht sich der Motor umgekehrt."
+
+#: ../1.3.1_motor.rst:242
+msgid "For Python Language Users"
+msgstr "Für Python-Sprachbenutzer"
+
+#: ../1.3.1_motor.rst:254
+msgid "**Step 3**: Run."
+msgstr "**Schritt 3**: Ausführen."
+
+#: ../1.3.1_motor.rst:272
+ 
+msgid ""
+"You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, "
+"you need to go to  source code path like ``davinci-kit-for-raspberry-"
+"pi/python``."
+msgstr ""
+"Sie können den folgenden Code **Ändern/Zurücksetzen/ "
+"Kopieren/Ausführen/Stoppen**. Zuvor müssen Sie jedoch zu einem "
+"Quellcodepfad wie ``davinci-kit-for-raspberry-pi/python`` gehen."
+
+#: ../1.3.1_motor.rst:419
+msgid ""
+"Create a function, **motor()** whose variable is direction. As the "
+"condition that direction=1 is met, the motor rotates clockwise; when "
+"direction=-1, the motor rotates anticlockwise; and under the condition "
+"that direction=0, it stops rotating."
+msgstr ""
+"Erstellen Sie eine Funktion, **motor()**, deren Variable die Richtung "
+"ist. Wenn die Bedingung erfüllt ist, dass Richtung = 1 erfüllt ist, dreht"
+" sich der Motor im Uhrzeigersinn. Wenn die Richtung = -1 ist, dreht sich "
+"der Motor gegen den Uhrzeigersinn. und unter der Bedingung, dass Richtung"
+" = 0 ist, hört es auf, sich zu drehen."
+
+#: ../1.3.1_motor.rst:444
+msgid ""
+"In the main（）function, create an array, directions[], in which CW is "
+"equal to 1, the value of CCW is -1, and the number 0 refers to Stop."
+msgstr ""
+"In der Hauptfunktion()-erstellen Sie ein Array, Richtungen[], in dem CW "
+"gleich 1 ist, der Wert von CCW -1 ist und die Nummer 0 auf Stop verweist."
+
+#: ../1.3.1_motor.rst:447
+msgid ""
+"As the code runs, the motor first rotates clockwise for 5s then stop for "
+"5s, after that, it rotates anticlockwise for 5s; subsequently, the motor "
+"stops for 5s. This series of actions will be executed repeatedly."
+msgstr ""
+"Während die Kode läuft, dreht sich der Motor zuerst 5 Sekunden lang im "
+"Uhrzeigersinn und stoppt dann 5 Sekunden lang. Danach dreht er sich 5 "
+"Sekunden lang gegen den Uhrzeigersinn. Anschließend stoppt der Motor für "
+"5s. Diese Reihe von Aktionen wird wiederholt ausgeführt."
+
+#: ../1.3.1_motor.rst:451
+msgid "Now, you should see the motor blade rotating."
+msgstr "Jetzt sollte sich das Motorblatt drehen."
+
+#: ../1.3.1_motor.rst:454
+msgid "Phenomenon Picture"
+msgstr "Phänomen Bild"
+

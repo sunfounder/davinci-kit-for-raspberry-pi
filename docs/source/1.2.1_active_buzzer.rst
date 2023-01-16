@@ -1,0 +1,240 @@
+1.2.1 アクティブブザー
+======================
+
+
+前書き
+------------
+
+このレッスンでは、PNPトランジスタでアクティブブザーを鳴らす方法を学習する。
+
+部品
+----------
+
+.. image:: media/list_1.2.1.png
+
+
+原理
+---------
+
+**ブザー**
+
+統合された構造を持つ電子ブザーの一種として、DC電源によって電圧供給されるブザーは、コンピューター、プリンター、コピー機、警報器、電子玩具、自動車用電子装置、電話、タイマー、その他の電子製品または音声装置で広く使用されている。ブザーは、アクティブとパッシブに分類できる（次の図を参照）。ピンが上を向くようにブザーを回し、緑色の回路基板を備えたブザーはパッシブブザーで、黒いテープで囲まれたブザーはアクティブである。
+
+アクティブブザーとパッシブブザーの違い：
+
+.. image:: media/image101.png
+    :width: 400
+    :align: center
+
+
+アクティブブザーとパッシブブザーの違いは次の通りである：アクティブブザーには振動源が内蔵されているため、通電すると音が鳴る。ただし、パッシブブザーにはそのような振動源がないため、DC信号が使用されてもビープ音は鳴らない。代わりに、周波数が2K〜5Kの方形波を使用して駆動する必要がある。アクティブブザーは、多くの場合、複数の発振回路が内蔵されているため、パッシブブザーよりも高価である。
+
+以下はブザーの電気記号である。両極の2つのピンが搭載されている。表面の+は陽極を表し、もう1つは陰極を表す。
+
+.. image:: media/image102.png
+    :width: 150
+    :align: center
+
+
+ブザーのピンをチェックすることができ、長い方が陽極で、短い方が陰極である。接続時にそれらを混同しないでください。混同すると、ブザーが鳴らない。
+
+回路図
+-----------------
+
+この実験では、アクティブブザー、PNPトランジスタ、および1k抵抗器をトランジスタのベースとGPIOの間に使用して、トランジスタを保護する。Raspberry Pi出力のGPIO17にプログラミングによって低レベル（0V）が供給されると、電流飽和のためトランジスタが導通し、ブザーが音を出す。しかし、Raspberry PiのIOに高レベルが供給されると、トランジスターが切断され、ブザーは音を出さない。
+
+.. image:: media/image332.png
+
+
+実験手順
+-----------------------
+
+ステップ1： 回路を作る。（ブザーの両極に注意してください：+ラベルが付いている方が正極で、もう一方が負極である。）
+
+.. image:: media/image104.png
+    :width: 800
+
+
+
+C言語ユーザー向け
+^^^^^^^^^^^^^^^^^^^^
+
+ステップ2： コードファイルを開く。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/1.2.1/
+
+ステップ3： コードをコンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.2.1_ActiveBuzzer.c -lwiringPi
+
+ステップ4： EXEファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードが実行されると、ブザーが鳴く。
+
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define BeepPin 0
+    int main(void){
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(BeepPin, OUTPUT);   //set GPIO0 output
+        while(1){
+            //beep on
+            printf("Buzzer on\n");
+            digitalWrite(BeepPin, LOW);
+            delay(100);
+            printf("Buzzer off\n");
+            //beep off
+            digitalWrite(BeepPin, HIGH);
+            delay(100);
+        }
+        return 0;
+    }
+
+**コードの説明**
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, LOW);
+
+この実験ではアクティブブザーを使用しているため、直流に接続すると自動的に音が鳴く。このスケッチは、I/Oポートを低レベル（0V）に設定して、トランジスタを管理し、ブザーを鳴らすためのものである。
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, HIGH);
+
+I/Oポートを高レベル（3.3V）に設定するため、トランジスターは通電されず、ブザーは鳴らない。
+
+Python言語ユーザー向け
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ステップ2： コードファイルを開く。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/python
+
+ステップ3： 実行する。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo python3 1.2.1_ActiveBuzzer.py
+
+コードが実行されると、ブザーが鳴く。
+
+**コード**
+
+.. note::
+
+   以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、 ``davinci-kit-for-raspberry-pi/python`` のようなソースコードパスに移動する必要があります。 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    # Set #17 as buzzer pin
+    BeepPin = 17
+
+    def setup():
+        # Set the GPIO modes to BCM Numbering
+        GPIO.setmode(GPIO.BCM)
+        # Set LedPin's mode to output, 
+        # and initial level to High(3.3v)
+        GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.HIGH)
+
+    def main():
+        while True:
+            # Buzzer on (Beep)
+            print ('Buzzer On')
+            GPIO.output(BeepPin, GPIO.LOW)
+            time.sleep(0.1)
+            # Buzzer off
+            print ('Buzzer Off')
+            GPIO.output(BeepPin, GPIO.HIGH)
+            time.sleep(0.1)
+
+    def destroy():
+        # Turn off buzzer
+        GPIO.output(BeepPin, GPIO.HIGH)
+        # Release resource
+        GPIO.cleanup()    
+
+    # If run this script directly, do:
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        # When 'Ctrl+C' is pressed, the program 
+        # destroy() will be  executed.
+        except KeyboardInterrupt:
+            destroy()
+
+**コードの説明**
+
+.. code-block:: python
+
+    GPIO.output(BeepPin, GPIO.LOW)
+
+ビープ音を鳴らすには、ブザーピンを低レベルに設定してください。
+
+.. code-block:: python
+
+    time.sleep(0.1)
+
+0.1秒待つ。このパラメーターを変更して、スイッチング周波数を変更する。
+
+.. note::
+    これは音の周波数ではない。アクティブブザーは音の周波数を変更できない。
+
+.. code-block:: python
+
+    GPIO.output(BeepPin, GPIO.HIGH)
+
+ブザーを閉じる。
+
+現象画像
+------------------
+
+.. image:: media/image105.jpeg

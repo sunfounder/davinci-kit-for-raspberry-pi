@@ -1,0 +1,444 @@
+3.1.8 過熱モニター
+~~~~~~~~~~~~~~~~~~~~~~
+
+前書き
+-------------------
+
+回路の過熱が発生したときに警報装置とタイムリーな自動電源切断を希望する場合は、
+工場などのさまざまな状況に適用される過熱監視装置を作成することができる。
+このレッスンでは、サーミスタ、ジョイスティック、ブザー、LED、とLCDを使用して、
+しきい値が調整可能なスマートな温度監視装置を作成する。
+
+部品
+-----------------
+
+.. image:: media/list_Overheat_Monitor.png
+    :align: center
+
+.. image:: media/list_Overheat_Monitor2.png
+    :align: center
+
+回路図
+--------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin15    3        22
+GPIO23       Pin16    4        23
+GPIO24       Pin18    5        24
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: media/Schematic_three_one8.png
+   :width: 700
+   :align: center
+
+実験手順
+-----------------------------
+
+ステップ1： 回路を作る。
+
+.. image:: media/image258.png
+   :alt: Overheat Monitor_bb
+   :width: 800
+
+C言語ユーザー向け
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ステップ2： コードのフォルダーに入る。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.8/
+
+ステップ3： コードをコンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.8_OverheatMonitor.c -lwiringPi -lm
+
+ステップ4： EXEファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+コードが実行されると、現在の温度と高温のしきい値 40 が I2C LCD1602 に表示される。
+現在の温度がしきい値よりも大きい場合、ブザーとLEDが起動して警告を発する。
+
+ここの ジョイスティック は高温のしきい値を調整するために使用される。 ジョイスティック をX軸とY軸の方向に切り替えると、現在の高温しきい値を調整できる(上/下)。 ジョイスティック をもう一度押して、しきい値を初期値にリセットする。
+
+**コードの説明**
+
+.. code-block:: c
+
+    int get_joystick_value(){
+        uchar x_val;
+        uchar y_val;
+        x_val = get_ADC_Result(1);
+        y_val = get_ADC_Result(2);
+        if (x_val > 200){
+            return 1;
+        }
+        else if(x_val < 50){
+            return -1;
+        }
+        else if(y_val > 200){
+            return -10;
+        }
+        else if(y_val < 50){
+            return 10;
+        }
+        else{
+            return 0;
+        }
+    }
+
+この関数は、XとYの値を読み取る。X>200 の場合、「1」が返される。 
+X<50 の場合、「-1」が返される。 y>200 の場合、「-10」を返し、 y<50 の場合、「10」を返す。
+
+.. code-block:: c
+
+    void upper_tem_setting(){
+        write(0, 0, "Upper Adjust:");
+        int change = get_joystick_value();
+        upperTem = upperTem + change;
+        char str[6];
+        snprintf(str,3,"%d",upperTem);
+    write(0,1,str);
+    int len;
+      len = strlen(str);
+      write(len,1,"             ");
+        delay(100);
+    }
+
+この機能は、しきい値を調整し、I2C LCD1602に表示するために使用される。
+
+.. code-block:: c
+
+    double temperature(){
+        unsigned char temp_value;
+        double Vr, Rt, temp, cel, Fah;
+        temp_value = get_ADC_Result(0);
+        Vr = 5 * (double)(temp_value) / 255;
+        Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+        temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+        cel = temp - 273.15;
+        Fah = cel * 1.8 +32;
+        return cel;
+    }
+
+ADC0834 の CH0 （サーミスタ）のアナログ値を読み取り、温度値に変換する。
+
+.. code-block:: c
+
+    void monitoring_temp(){
+        char str[6];
+        double cel = temperature();
+        snprintf(str,6,"%.2f",cel);
+        write(0, 0, "Temp: ");
+        write(6, 0, str);
+        snprintf(str,3,"%d",upperTem);
+        write(0, 1, "Upper: ");
+        write(7, 1, str);
+        delay(100);
+        if(cel >= upperTem){
+            digitalWrite(buzzPin, HIGH);
+            digitalWrite(LedPin, HIGH);
+        }
+        else if(cel < upperTem){
+            digitalWrite(buzzPin, LOW);
+            digitalWrite(LedPin, LOW);
+        }
+    }
+
+コードが実行されると、現在の温度と高温のしきい値 40 が I2C LCD1602 に表示される。
+現在の温度がしきい値よりも大きい場合、ブザーとLEDが起動して警告を発する。
+
+.. code-block:: c
+
+    int main(void)
+    {
+        setup();
+        int lastState =1;
+        int stage=0;
+        while (1)
+        {
+            int currentState = digitalRead(Joy_BtnPin);
+            if(currentState==1 && lastState == 0){
+                stage=(stage+1)%2;
+                delay(100);
+                lcd_clear();
+            }
+            lastState=currentState;
+            if (stage==1){
+                upper_tem_setting();
+            }
+            else{
+                monitoring_temp();
+            }
+        }
+        return 0;
+    }
+
+関数 ``main()`` には、次のようにプログラムプロセス全体が含まれる：
+
+* プログラムが開始すると、 ステージ の初期値は 0 になり、現在の温度と高温しきい値 40 が I2C LCD1602 に表示される。現在の温度がしきい値よりも大きい場合、ブザーとLEDが起動して警告を出す。
+
+* ジョイスティックを押すと、 ステージ が 1 になり、高温しきい値を調整できる。ジョイスティックをX軸とY軸の方向に切り替えると、現在のしきい値を調整（上下）できる。ジョイスティックをもう一度押して、しきい値を初期値にリセットする。
+
+Python言語ユーザー向け
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ステップ2： コードのフォルダーに入る。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/python/
+
+ステップ3： EXEファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 3.1.8_OverheatMonitor.py
+
+コードが実行されると、現在の温度と高温のしきい値 40 が I2C LCD1602 に表示される。
+現在の温度がしきい値よりも大きい場合、ブザーとLEDが起動して警告を発する。
+
+ここの ジョイスティック は高温のしきい値を調整するために使用される。 
+ジョイスティック をX軸とY軸の方向に切り替えると、現在の高温しきい値を調整できる(上/下)。 
+ジョイスティック をもう一度押して、しきい値を初期値にリセットする。
+
+
+
+**コード**
+
+.. note::
+
+   以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、 ``davinci-kit-for-raspberry-pi/python`` のようなソースコードパスに移動する必要があります。 
+   
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import LCD1602
+    import RPi.GPIO as GPIO
+    import ADC0834
+    import time
+    import math
+
+    Joy_BtnPin = 22
+    buzzPin = 23
+    ledPin = 24
+
+
+    upperTem = 40
+
+    def setup():
+        ADC0834.setup()
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(ledPin, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(buzzPin, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(Joy_BtnPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        LCD1602.init(0x27, 1)
+
+    def get_joystick_value():
+        x_val = ADC0834.getResult(1)
+        y_val = ADC0834.getResult(2)
+        if(x_val > 200):
+            return 1
+        elif(x_val < 50):
+            return -1
+        elif(y_val > 200):
+            return -10
+        elif(y_val < 50):
+            return 10
+        else:
+            return 0
+
+    def upper_tem_setting():
+        global upperTem
+        LCD1602.write(0, 0, 'Upper Adjust: ')
+        change = int(get_joystick_value())
+        upperTem = upperTem + change
+        strUpperTem = str(upperTem)
+        LCD1602.write(0, 1, strUpperTem)
+        LCD1602.write(len(strUpperTem),1, '              ')
+        time.sleep(0.1)
+
+    def temperature():
+        analogVal = ADC0834.getResult()
+        Vr = 5 * float(analogVal) / 255
+        Rt = 10000 * Vr / (5 - Vr)
+        temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
+        Cel = temp - 273.15
+        Fah = Cel * 1.8 + 32
+        return round(Cel,2)
+
+    def monitoring_temp():
+        global upperTem
+        Cel=temperature()
+        LCD1602.write(0, 0, 'Temp: ')
+        LCD1602.write(0, 1, 'Upper: ')
+        LCD1602.write(6, 0, str(Cel))
+        LCD1602.write(7, 1, str(upperTem))
+        time.sleep(0.1)
+        if Cel >= upperTem:
+            GPIO.output(buzzPin, GPIO.HIGH)
+            GPIO.output(ledPin, GPIO.HIGH)
+        else:
+            GPIO.output(buzzPin, GPIO.LOW)
+            GPIO.output(ledPin, GPIO.LOW)       
+
+    def loop():
+        lastState=1
+        stage=0
+        while True:
+            currentState=GPIO.input(Joy_BtnPin)
+            if currentState==1 and lastState ==0:
+                stage=(stage+1)%2
+                time.sleep(0.1)    
+                LCD1602.clear()
+            lastState=currentState
+            if stage == 1:
+                upper_tem_setting()
+            else:
+                monitoring_temp()
+        
+    def destroy():
+        LCD1602.clear() 
+        ADC0834.destroy()
+        GPIO.cleanup()
+
+    if __name__ == '__main__':     # Program start from here
+        try:
+            setup()
+            while True:
+                loop()
+        except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+            destroy()
+
+**コードの説明**
+
+.. code-block:: python
+
+    def get_joystick_value():
+        x_val = ADC0834.getResult(1)
+        y_val = ADC0834.getResult(2)
+        if(x_val > 200):
+            return 1
+        elif(x_val < 50):
+            return -1
+        elif(y_val > 200):
+            return -10
+        elif(y_val < 50):
+            return 10
+        else:
+            return 0
+
+この関数は、XとYの値を読み取る。
+X>200 の場合、「1」が返される。 
+X<50 の場合、「-1」が返される。 
+y>200 の場合、「-10」を返し、 y<50 の場合、「10」を返す。
+
+.. code-block:: python
+
+    def upper_tem_setting():
+        global upperTem
+        LCD1602.write(0, 0, 'Upper Adjust: ')
+        change = int(get_joystick_value())
+        upperTem = upperTem + change
+    LCD1602.write(0, 1, str(upperTem))
+    LCD1602.write(len(strUpperTem),1, '              ')
+        time.sleep(0.1)
+
+この機能は、しきい値を調整し、I2C LCD1602に表示するために使用される。
+
+.. code-block:: python
+
+    def temperature():
+        analogVal = ADC0834.getResult()
+        Vr = 5 * float(analogVal) / 255
+        Rt = 10000 * Vr / (5 - Vr)
+        temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
+        Cel = temp - 273.15
+        Fah = Cel * 1.8 + 32
+        return round(Cel,2)
+
+ADC0834 の CH0 （サーミスタ）のアナログ値を読み取り、温度値に変換する。
+
+.. code-block:: python
+
+    def monitoring_temp():
+        global upperTem
+        Cel=temperature()
+        LCD1602.write(0, 0, 'Temp: ')
+        LCD1602.write(0, 1, 'Upper: ')
+        LCD1602.write(6, 0, str(Cel))
+        LCD1602.write(7, 1, str(upperTem))
+        time.sleep(0.1)
+        if Cel >= upperTem:
+            GPIO.output(buzzPin, GPIO.HIGH)
+            GPIO.output(ledPin, GPIO.HIGH)
+        else:
+            GPIO.output(buzzPin, GPIO.LOW)
+            GPIO.output(ledPin, GPIO.LOW)
+
+コードが実行されると、現在の温度と高温のしきい値 40 が I2C LCD1602 に表示される。
+現在の温度がしきい値よりも大きい場合、ブザーとLEDが起動して警告を発する。
+
+.. code-block:: python
+
+    def loop():
+        lastState=1
+        stage=0
+        while True:
+            currentState=GPIO.input(Joy_BtnPin)
+            if currentState==1 and lastState ==0:
+                stage=(stage+1)%2
+                time.sleep(0.1)    
+                LCD1602.clear()
+            lastState=currentState
+            if stage == 1:
+                upper_tem_setting()
+            else:
+                monitoring_temp()
+
+関数 ``main()`` には、次のようにプログラムプロセス全体が含まれる：
+
+* プログラムが開始すると、 ステージ の初期値は 0 になり、現在の温度と高温しきい値 40 が I2C LCD1602 に表示される。現在の温度がしきい値よりも大きい場合、ブザーとLEDが起動して警告を出す。
+
+* ジョイスティックを押すと、ステージ が 1 になり、高温しきい値を調整できる。ジョイスティックをX軸とY軸の方向に切り替えると、現在の高温しきい値を調整（上下）できる。ジョイスティックをもう一度押して、しきい値を初期値にリセットする。
+
+現象画像
+-------------------------
+
+.. image:: media/image259.jpeg
+   :align: center

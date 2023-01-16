@@ -1,0 +1,272 @@
+1.3.4 リレー
+==============
+
+前書き
+------------
+
+このレッスンでは、リレーの使用方法を学習する。
+これは、自動制御システムで一般的に使用される部品の1つである。
+電圧、電流、温度、圧力などが所定の値に到達、超過、または低下すると、リレーは回路を接続または中断して、機器を制御したり保護したりする。
+
+部品
+----------
+
+.. image:: media/list_1.3.4.png
+
+
+原理
+---------
+
+**ダイオード**
+
+ダイオードは一方向に電流が流れる電子機器の2端子部品である。
+電流の流れる方向に低い抵抗を提供し、反対方向に高い抵抗を提供する。
+ダイオードは主に、通常は分極している回路の起電力による部品の損傷を防ぐために使用される。
+
+.. image:: media/image344.png
+
+
+ダイオードの2つの端子は極性があり、陽極と呼ばれる正の端と陰極と呼ばれる負の端がある。
+陰極は通常、銀でできているか、またあカラーバンドを持っている。
+電流の方向を制御することは、ダイオードの重要な機能の1つである。
+ダイオードの電流は陽極から陰極に流れる。ダイオードの動作は、逆止弁の動作に似ている。
+ダイオードの最も重要な特性の1つは、非線形電流電圧である。
+より高い電圧が陽極に接続されている場合、電流は陽極から陰極に流れ、プロセスは順方向バイアスと呼ばれる。
+ただし、より高い電圧が陰極に接続されている場合、ダイオードは電気を通さず、プロセスは逆方向バイアスと呼ばれる。
+
+**リレー**
+
+ご存知のように、リレーは、入力信号に応じて2つ以上のポイントまたはデバイス間の接続を提供するために使用されるデバイスである。
+つまり、デバイスはACとDCの両方で動作する可能性があるため、リレーはコントローラーとデバイスの間を分離する。
+しかしながら、DC上で動作するマイクロコントローラーから信号を受信するため、ギャップを埋めるためのリレーが必要である。
+小さな電気信号で大量の電流または電圧を制御する必要がある場合には、リレーは非常に有用である。
+
+すべてのリレーには5つのパーツがある：
+
+**電磁石** - ワイヤーのコイルで巻かれた鉄心で構成されている。通電させると、磁気になります。したがって、電磁石と呼ばれる。
+
+**電機子** - 可動磁気ストリップは電機子と呼ばれる。それらに電流が流れると、コイルが通電されて磁場が生成され、常開（N/O）または常閉（N/C）ポイントを作成したり切断したりするために使用される。また、電機子は直流（DC）と交流（AC）で移動できる。
+
+**スプリング** - 電磁石のコイルに電流が流れない場合、スプリングは電機子を引き離し、回路を完成できない。
+
+電気 **接点** のセット-2つの接点がある：
+
+* 通常開-リレーがアクティブなときに接続され、非アクティブなときに切断されます。
+
+* 常閉-リレーが作動している時に接続しなく、リ
+
+**成形フレーム** - 保護のため、リレーはプラスチックで覆われている。
+
+**リレーの動作**
+
+リレーの動作原理は非常に簡単である。リレーに電力が供給されると、制御コイルに電流が流れ始める。その結果、電磁石が通電を開始する。次に、電機子がコイルに引き付けられ、可動接点が一緒に引き下げられ、常開接点に接続される。したがって、負荷がかけられた回路が通電される。次に、可動接点がスプリングの力で常閉接点に引き上げられるため、回路を遮断することも同様のケースになる。このようにして、リレーのオンとオフの切り替えにより、負荷回路の状態を制御できる。
+
+.. image:: media/image142.jpeg
+
+
+回路図
+-----------------
+
+.. image:: media/image345.png
+
+
+実験手順
+-----------------------
+
+ステップ1： 回路を作る。
+
+.. image:: media/image144.png
+    :width: 800
+
+    
+
+C言語ユーザー向け
+^^^^^^^^^^^^^^^^^^^^
+
+ステップ2： コードファイルを開く。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/1.3.4
+
+ステップ3： コードをコンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.3.4_Relay.c -lwiringPi
+
+
+ステップ4： EXEファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードの実行後、LEDが点灯する。さらに、通常は閉じている接点を切断し、通常は開いている接点を閉じることによって発生するカチカチという声が聞こえる。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define RelayPin 0
+
+    int main(void){
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(RelayPin, OUTPUT);   //set GPIO17(GPIO0) output
+        while(1){
+            // Tick
+            printf("Relay Open......\n");
+            delay(100);
+            digitalWrite(RelayPin, LOW);
+            delay(1000);
+            // Tock
+            printf("......Relay Close\n");
+            delay(100);
+            digitalWrite(RelayPin, HIGH);
+            delay(1000);
+        }
+
+        return 0;
+    }
+
+**コードの説明**
+
+.. code-block:: c
+
+    digitalWrite(RelayPin, LOW);
+
+I/Oポートを低レベル（0V）に設定すると、トランジスタに通電されず、コイルに電力が供給されない。
+電磁力がないため、リレーが開き、LEDは点灯しない。
+
+.. code-block:: c
+
+    digitalWrite(RelayPin, HIGH);
+
+I/Oポートを高レベル（5V）に設定して、トランジスタに通電する。
+リレーのコイルに電力を供給し、電磁力が発生すると、リレーが閉じてLEDが点灯する。
+
+Pythonユーザーの場合
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ステップ2： コードファイルを開く。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/python
+
+
+ステップ3： 実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.4_Relay.py
+
+コードの実行中、LEDが点灯する。
+さらに、通常は閉じている接点を切断し、通常は開いている接点を閉じることによって発生するカチカチという声が聞こえる。
+
+**コード**
+
+
+.. note::
+
+   以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、 ``davinci-kit-for-raspberry-pi/python`` のようなソースコードパスに移動する必要があります。 
+   
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    # Set GPIO17 as control pin
+    relayPin = 17
+
+    # Define a setup function for some setup
+    def setup():
+        # Set the GPIO modes to BCM Numbering
+        GPIO.setmode(GPIO.BCM)
+        # Set relayPin's mode to output,
+        # and initial level to High(3.3v)
+        GPIO.setup(relayPin, GPIO.OUT, initial=GPIO.HIGH)
+
+    # Define a main function for main process
+    def main():
+        while True:
+            print ('Relay open...')
+            # Tick
+            GPIO.output(relayPin, GPIO.LOW)
+            time.sleep(1)
+            print ('...Relay close')
+            # Tock
+            GPIO.output(relayPin, GPIO.HIGH)
+            time.sleep(1)
+
+    # Define a destroy function for clean up everything after
+    # the script finished
+    def destroy():
+        # Turn off LED
+        GPIO.output(relayPin, GPIO.HIGH)
+        # Release resource
+        GPIO.cleanup()                    
+
+    # If run this script directly, do:
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        # When 'Ctrl+C' is pressed, the child program
+        # destroy() will be  executed.
+        except KeyboardInterrupt:
+            destroy()
+
+**コードの説明**
+
+.. code-block:: python
+
+    GPIO.output(relayPin, GPIO.LOW)
+
+トランジスタのピンを低レベルに設定して、リレーを開く。LEDは点灯しない。
+
+.. code-block:: python
+
+    time.sleep(1)
+
+1秒待つ。
+
+.. code-block:: python
+
+    GPIO.output(relayPin, GPIO.HIGH)
+
+トランジスタのピンを低レベルに設定してリレーを作動させ、LEDが点灯する。
+
+現象画像
+------------------
+
+.. image:: media/image145.jpeg

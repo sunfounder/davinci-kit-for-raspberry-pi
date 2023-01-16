@@ -1,0 +1,478 @@
+1.1.1 点滅LED
+=========================
+
+前書き
+-----------------
+
+このレッスンでは、プログラミングによってLEDを点滅させる方法を学習する。設定により、LEDは一連の興味深い現象を生成できる。今、行動しよう。
+
+部品
+------------------
+
+.. image:: media/blinking_led_list.png
+    :width: 800
+    :align: center
+
+
+.. note::
+    スムーズに進めるには、独自のRaspberry Pi、TFカード、およびRaspberry Piの電源を用意する必要がある。
+
+
+原理
+-----------
+
+**ブレッドボード**
+
+ブレッドボードは、電子装置のプロトタイピングの構築基盤である。それは回路設計を完了する前に、回路を迅速に作って、テストするために使用される。また、上記の部品をICや抵抗器、ジャンパー線などのように挿入できる多くの穴が搭載されている。ブレッドボードを使用すると、部品を簡単に差し込んだり、取り外したりすることができる。
+
+この写真は、full +ブレッドボードの内部構造を示している。ブレッドボード上のこれらの穴は互いに独立しているように見えるが、実際には内部で金属ストリップを介して互いに接続されている。
+
+.. image:: media/image41.png
+
+**LED**
+
+LEDは一種のダイオードである。LEDの長いピンが正極に接続され、短いピンが負極に接続されている場合にのみ、LEDが点灯する。
+
+.. |image42| image:: media/image42.png
+
+.. |image43| image:: media/image43.png
+
+|image42|\ |image43|
+
+LEDを電源に直接接続することはできないため、部品に損傷を与える可能性がある。160Ω以上の抵抗（5V動作電圧）は、LEDの回路に直列に接続する必要がある。
+
+
+
+**抵抗器**
+
+抵抗器は、分岐電流を制限できる電子素子である。固定抵抗器は抵抗値を変更できない抵抗器の一種であるが、ポテンショメータまたは可変抵抗器の抵抗値は調整できる。
+
+このキットには固定抵抗器が適用される。回路では、接続された部品を保護することは重要である。次の図は、実際の物体、220Ω抵抗器、および抵抗器汎用の二つの回路記号を示している。Ωは抵抗値の単位で、より大きな単位はKΩ、MΩなどである。それらの関係は次のように示している：1M= 1000KΩ、1KΩ=1000Ω。通常、抵抗値はマークされている。したがって、回路にこれらの記号が表示される場合、抵抗があることを意味する。
+
+.. image:: media/image44.png
+
+.. |image45| image:: media/image45.png
+
+.. |image46| image:: media/image46.png
+
+|image45|\ |image46|
+
+抵抗器を使用する場合、まず抵抗値を知る必要がある。以下の二つの方法がある：抵抗の帯域を観察すること、またはマルチメーターを使用して抵抗を測定すること。より便利で迅速なので、一番目の方法をお勧めする。値を測定するには、マルチメーターを使用してください。
+
+カードに示されているように、各色は数字を表している。
+
+.. image:: media/image47.jpeg
+
+回路図
+---------------------
+
+この実験では、まず220Ωの抵抗器を陽極（LEDの長いピン）に接続し、それから抵抗器を3.3 Vの電源に接続し、LEDの陰極（短いピン）をRaspberry PiのGPIO17に接続する。したがって、LEDをオンにするには、GPIO17を低（0V）レベルにする必要がある。プログラミングを通じてこの現象を取得できる
+
+.. note::
+
+    **Pin11** はRaspberry Piの左から11番目のピンを指し、それに対応する **wiringPi** と **BCM** のピン番号は以下の表の通りです。
+
+C言語関連のコンテンツでは、wiringPiでGPIO0を0と同等にする。Python言語関連のコンテンツの中で、BCM 17は次の表のBCM列の17である。同時に、それらはRaspberry Piの11番目のピン-ピン11と同じである。
+
+============ ======== ======== ====
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ====
+
+.. image:: media/image48.png
+    :width: 800
+    :align: center
+
+実験手順
+-----------------------------
+
+ステップ1: 回路を作る。
+
+.. image:: media/image49.png
+    :width: 800
+    :align: center
+
+
+C言語ユーザー向け
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ステップ2: コードのフォルダーに入る。
+
+1) モニターを使用する場合は、次の手順を実行することをお勧めする。
+
+``/home/pi/`` に入り、 ``davinci-kit-for-raspberry-pi`` フォルダーを見つけてください。
+
+フォルダー内で **C** を見つけて右クリックし、** Open in Terminal** を選択する。
+
+.. image:: media/image50.png
+    :width: 800
+    :align: center
+
+それから以下のようなウィンドウがポップアップされる。これで、コード ``1.1.1_BlinkingLed.c`` のパスに入っていた。
+
+.. image:: media/image51.png
+    :width: 800
+    :align: center
+
+次のレッスンでは、右クリックの代わりにコマンドを使用してコードファイルを入力する。ただし、お好みの方法を選択可能である。
+
+
+2) Raspberry Piにリモートでログインする場合、 ``cd`` を使用してディレクトリを変更する：
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   cd /home/pi/davinci-kit-for-raspberry-pi/c/1.1.1/
+
+.. note::
+    この実験では、cdを使用してディレクトリをコードのパスに変更します。
+
+どちらにしても、現在は C フォルダにいることになります。この2つの方法に基づくその後の手順は同じです。次に進みましょう。
+
+ステップ3: コードをコンパイルする.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   gcc 1.1.1_BlinkingLed.c -o BlinkingLed -lwiringPi
+
+.. note::
+    gcc は GNU Compiler Collection です。ここでは、C言語ファイル*1_BlinkingLed.c*をコンパイルし、実行ファイルを出力するような機能を持っています。
+
+コマンドでは、 ``-o`` は出力を意味し（ ``-o`` の直後の文字はコンパイル後のファイル名出力であり、 ``BlinkingLed`` という名前のEXEファイルがここで生成される）、 ``-lwiringPi`` はライブラリー
+のwiringPiをロードする（ ``l`` はlibraryの省略形である）。
+
+ステップ4: 前のステップで出力されたEXEファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo ./BlinkingLed
+
+.. note::
+
+   GPIOを制御するには、コマンド ``sudo`` （superuser do）でプログラムを実行してください。コマンド ``./`` は現在のディレクトリを示している。コマンド全体は、現在のディレクトリで ``BlinkingLed`` を実行することである。
+
+.. image:: media/image52.png
+    :width: 800
+    :align: center
+
+コードの実行後、LEDが点滅する。
+
+.. note::
+
+   実行しても動作しない場合、または「wiringPi.h: No such file or directory」というエラー プロンプトが表示される場合は、:ref:`faq_c_nowork` を参照してください。
+
+コードファイル ``1.1.1_BlinkingLed.c`` を編集する場合は、 ``Ctrl + C`` を押してコードの実行を停止する。次に、次のコマンドを入力してそれを開く：
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   nano 1.1.1_BlinkingLed.c
+
+.. note::
+    nanoはテキストエディターツールである。このコマンドは、このツールを通して、コードファイル ``1.1.1_BlinkingLed.c`` を開くために使用される。
+
+
+``Ctrl + X`` を押して終了する。コードを修正した場合、変更を保存するかどうかを尋ねるプロンプトが表示される。 ``Y`` （保存）または ``N`` （保存しない）を入力する。
+次に、 ``Enter`` キーを押して終了する。 ``ステップ3`` と ``ステップ4`` を繰り返して、修正後の効果を確認する。
+
+.. image:: media/image53.png
+    :width: 800
+    :align: center
+
+**コード**
+
+プログラムコードは次のように表示される：
+
+.. code-block:: c
+
+   #include <wiringPi.h>  
+   #include <stdio.h>
+   #define LedPin      0
+   int main(void)
+   {
+      // When initialize wiring failed, print message to screen
+      if(wiringPiSetup() == -1){
+         printf("setup wiringPi failed !");
+         return 1;
+      }
+      pinMode(LedPin, OUTPUT);// Set LedPin as output to write value to it.
+      while(1){
+         // LED on
+         digitalWrite(LedPin, LOW);
+         printf("...LED on\n");
+         delay(500);
+         // LED off
+         digitalWrite(LedPin, HIGH);
+         printf("LED off...\n");
+         delay(500);
+      }
+      return 0;
+   }
+
+**コードの説明**
+
+.. code-block:: c
+
+   include <wiringPi.h>
+
+ハードウェアドライブライブラリは、Raspberry PiのC言語用に設計されている。このライブラリを追加すると、ハードウェアの初期化、およびI/Oポート、PWMなどの出力に役立つ。
+
+.. code-block:: c
+
+   #include <stdio.h>
+
+標準I/Oライブラリ。画面に表示されるデータの印刷に使用されるpintf機能は、このライブラリによって実現される。他にも多くのパフォーマンス機能がある。
+
+.. code-block:: c
+
+   #define LedPin 0
+
+T_Extension BoardのGPIO17ピンは、wiringPiのGPIO0に対応している。GPIO0をLedPinに割り当て、LedPinは後のコードでGPIO0を表す。
+
+.. code-block:: c
+
+    if(wiringPiSetup() == -1){
+        printf("setup wiringPi failed !");
+        return 1;
+
+これにより、wiringPiが初期化され、呼び出しのプログラムがwiringPiピン番号スキームを使用することになると想定される。
+
+この関数を呼び出すには、ルート権限が必要である。配線の初期化に失敗すると、画面にメッセージが表示される。
+関数「return」は現在の関数から飛び出すために使用される。main()関数で関数「return」を使用すると、プログラムが終了する。
+
+.. code-block:: c
+
+   pinMode(LedPin, OUTPUT);
+
+LedPinを出力として設定し、値を書き込む。
+
+.. code-block:: c
+
+   digitalWrite(LedPin, LOW);
+
+GPIO0を0V（低レベル）に設定SURU。LEDの陰極はGPIO0に接続されているため、GPIO0が低レベルに設定されるとLEDが点灯する。
+それに反して、GPIO0を高レベルに設定すると（digitalWrite（LedPin、HIGH）)：LEDが消灯する。
+
+.. code-block:: c
+
+   printf("...LED off\n");
+
+printf関数は標準ライブラリ関数であり、その関数プロトタイプはヘッダーファイル「stdio.h」にあります。
+呼び出しの一般的な形式は次のとおりです。
+printf（"フォーマット制御文字列"、出力テーブルの列）。
+フォーマット制御文字列は、フォーマット文字列と非フォーマット文字列に分けられる出力フォーマットを指定するために使用されます。フォーマット文字列は「％」で始まり、
+10進整数出力の場合は「％d」などのフォーマット文字が続きます。 
+フォーマットされていない文字列はプロトタイプとして印刷されます。 
+ここで使用されているのは、フォーマットされていない文字列であり、その後に改行文字である 「\\n」 が続きます。これは、文字列を印刷した後の自動行折り返しを表します。
+
+.. code-block:: c
+
+   delay(500);
+
+Delay (500) は、現在のHIGHまたはLOW状態を500ms維持する。
+
+これは、プログラムを一定期間中断する機能である。また、プログラムの速度はハードウェアによって決まる。ここで、LEDをオンまたはオフにする。
+遅延機能がない場合、プログラムはプログラム全体を非常に高速で実行し、継続的にループする。そのため、プログラムの作成とデバッグに役立つ遅延機能が必要である。
+
+.. code-block:: c
+
+   return 0;
+
+通常、メイン関数の後ろに配置され、関数が正常に実行されると0を返すことを示す。
+
+Python言語ユーザー向け
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ステップ2: コードのフォルダーに入り、それを実行する。
+
+1. モニターを使用する場合は、次の手順を実行することをお勧めする。
+
+``1.1.1_BlinkingLed.py`` を見つけて、ダブルクリックして開く。今、ファイルに入った。
+
+ウィンドウで **Run ->Run Module** をクリックすると、次の内容が表示される。
+
+実行を停止するには、右上の「X」ボタンをクリックして閉じるだけで、コードに戻る。コードを変更する場合は、**Run Module (F5)** をクリックする前に、まず保存しなければならない。
+その後、結果を確認できる。
+
+2. Raspberry Piにリモートでログインする場合、次のコマンドを入力する:
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   cd /home/pi/davinci-kit-for-raspberry-pi/python
+
+.. note::
+    ``cd`` を使用して、この実験のコードのパスにディレクトリを変更できる。
+
+ステップ3: コードを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo python3 1.1.1_BlinkingLed.py
+
+.. note::
+    ここでは ``sudo`` - superuser doとpythonは、Pythonでファイルを実行することを意味する。
+
+コードの実行後、LEDが点滅する。
+
+ステップ4: コードファイル ``1.1.1_BlinkingLed.py`` を編集する場合は、 Ctrl + C を押してコードの実行を停止してください。それから次のコマンドを入力して1.1.1_BlinkingLed.pyを開く：
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   nano 1.1.1_BlinkingLed.py
+
+.. note::
+    nanoはテキストエディターツールである。このツールは、コマンドを使用してコードファイル1.1.1_BlinkingLed.pyを開く。
+
+``Ctrl + X`` を押して終了する。コードを修正した場合、変更を保存するかどうかを尋ねるプロンプトが表示される。 ``Y`` （保存）または ``N`` （保存しない）を入力する。
+
+次に、 ``Enter`` を押して終了する。変更後の効果を確認するには、 ``nano 1.1.1_BlinkingLed.py`` をもう一度入力してください。
+
+**コード**
+
+.. note::
+
+   以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、 ``davinci-kit-for-raspberry-pi/python`` のようなソースコードパスに移動する必要があります。
+   
+   
+.. raw:: html
+   
+   <run></run>
+
+.. code-block:: python
+
+   import RPi.GPIO as GPIO
+   import time
+   LedPin = 17
+   def setup():
+      # Set the GPIO modes to BCM Numbering
+      GPIO.setmode(GPIO.BCM)
+      # Set LedPin's mode to output,and initial level to High(3.3v)
+      GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
+   # Define a main function for main process
+   def main():
+      while True:
+         print ('...LED ON')
+         # Turn on LED
+         GPIO.output(LedPin, GPIO.LOW)
+         time.sleep(0.5)
+         print ('LED OFF...')
+         # Turn off LED
+         GPIO.output(LedPin, GPIO.HIGH)
+         time.sleep(0.5)
+   # Define a destroy function for clean up everything after the script finished
+   def destroy():
+      # Turn off LED
+      GPIO.output(LedPin, GPIO.HIGH)
+      # Release resource
+      GPIO.cleanup()                   
+   # If run this script directly, do:
+   if __name__ == '__main__':
+      setup()
+      try:
+         main()
+      # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
+      except KeyboardInterrupt:
+         destroy()
+
+**コードの説明**
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+システムがこれを検出すると、env設定でpythonの実装パスを検索し、対応するインタープリターを呼び出して操作を完了させる。
+その目的は、ユーザーがPythonを/usr/binのデフォルトパスに実装することを防止することである。
+
+.. code-block:: python
+
+   import RPi.GPIO as GPIO
+
+この方法で、RPi.GPIOライブラリをインポートし、変数GPIOを定義して、次のコードでRPI.GPIOを置き換える。
+
+.. code-block:: python
+
+   import time
+
+次のプログラムの時間遅延機能を行うために、時間パッケージをインポートしなければならない。
+
+.. code-block:: python
+
+   LedPin = 17
+
+LEDはT字型拡張ボードのGPIO17、つまりBCM 17に接続している。
+
+.. code-block:: python
+
+   def setup():
+      GPIO.setmode(GPIO.BCM)
+      GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
+
+LedPinのモードを出力に設定し、初期レベルを高（3.3v）に設定する。
+
+RPi.GPIO内のRaspberry PiのIOピンに番号を付けるには、BOARDとBCM二つの番号付与方法がある。レッスンでは、使用しているのはBCM番号である。入力または出力として使用しているチャンネルをすべて設定する必要がある。
+
+.. code-block:: python
+
+   GPIO.output(LedPin, GPIO.LOW)
+
+GPIO17（BCM17）を0V（低レベル）に設定する。LEDのカソードはGPIO17に接続されているため、LEDが点灯する。
+
+.. code-block:: python
+
+   time.sleep(0.5)
+
+0.5秒の遅延。ここで、ステートメントはC言語の遅延機能に似ており、単位は秒である。
+
+.. code-block:: python
+
+   def destroy():
+      GPIO.cleanup()  
+
+スクリプトの終了後にすべてを消去する破棄関数を定義する。
+
+.. code-block:: python
+
+   if __name__ == '__main__':
+      setup()
+      try:
+         main()
+      # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
+      except KeyboardInterrupt:
+         destroy()
+
+これは、コードの一般的な実行構造である。
+プログラムの実行が開始されると、 ``setup()`` を実行してピンを初期化し、 ``main()`` 関数でコードを実行してピンを高レベルと低レベルに設定する。
+「Ctrl + C」を押すと、プログラム ``destroy()`` が実行される。
+
+現象画像
+--------------------
+
+.. image:: media/image54.jpeg
+    :width: 800
+    :align: center

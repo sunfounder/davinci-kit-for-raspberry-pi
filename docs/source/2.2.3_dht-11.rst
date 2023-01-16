@@ -1,0 +1,465 @@
+2.2.3 DHT-11
+============
+
+前書き
+--------------
+
+デジタル温湿度センサーDHT11は、温度と湿度の校正済みデジタル信号出力を含む複合センサーである。専用のデジタルモジュールコレクションの技術と温湿度検知の技術を適用して、製品の高い信頼性と優れた安定性を確保している。
+
+センサーには、湿式素子抵抗センサーとNTC温度センサーが含まれており、高性能の8ビットマイクロコントローラーに接続されている。
+
+部品
+----------
+
+.. image:: media/list_2.2.3_dht-11.png
+
+
+原理
+---------
+
+DHT11は基本的な超低コストのデジタル温湿度センサーである。
+容量性湿度センサーとサーミスタを使用して周囲の空気を測定し、
+データピンにデジタル信号を出力する（アナログ入力ピンは不要）。
+
+.. image:: media/image205.png
+    :width: 200
+
+
+VCC、GND、とDATAの三つのピンのみが利用できる。
+通信プロセスは開始信号をDHT11に送信するDATAラインから始まり、
+DHT11は信号を受信して応答信号を返す。次に、ホストは応答信号を受信し、
+40ビットの湿度データ（8ビット湿度整数+ 8ビット湿度10進数+ 8ビット温度整数+ 8ビット温度10進数+ 8ビットチェックサム）の受信を開始する。
+詳細については、DHT11データシートを参照してください。
+
+回路図
+-----------------
+
+.. image:: media/image326.png
+
+
+実験手順
+-----------------------
+
+ステップ1： 回路を作る。
+
+.. image:: media/image207.png
+    :width: 800
+
+
+
+C言語ユーザー向け
+^^^^^^^^^^^^^^^^^^^^
+
+ステップ2： コードのフォルダーに入る。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/2.2.3/
+
+ステップ3： コードをコンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.3_DHT.c -lwiringPi
+
+ステップ4： EXEファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードの実行後、プログラムはDHT11によって検出された温度と湿度をコンピューター画面にプリントする。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <stdint.h>
+
+    #define maxTim 85
+    #define dhtPin 0
+
+    int dht11_dat[5] = {0,0,0,0,0};
+
+    void readDht11() {
+        uint8_t laststate = HIGH;
+        uint8_t counter = 0;
+        uint8_t j = 0, i;
+        float Fah; // fahrenheit
+        dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
+        // pull pin down for 18 milliseconds
+        pinMode(dhtPin, OUTPUT);
+        digitalWrite(dhtPin, LOW);
+        delay(18);
+        // then pull it up for 40 microseconds
+        digitalWrite(dhtPin, HIGH);
+        delayMicroseconds(40); 
+        // prepare to read the pin
+        pinMode(dhtPin, INPUT);
+
+        // detect change and read data
+        for ( i=0; i< maxTim; i++) {
+            counter = 0;
+            while (digitalRead(dhtPin) == laststate) {
+                counter++;
+                delayMicroseconds(1);
+                if (counter == 255) {
+                    break;
+                }
+            }
+            laststate = digitalRead(dhtPin);
+
+            if (counter == 255) break;
+            // ignore first 3 transitions
+            if ((i >= 4) && (i%2 == 0)) {
+                // shove each bit into the storage bytes
+                dht11_dat[j/8] <<= 1;
+                if (counter > 50)
+                    dht11_dat[j/8] |= 1;
+                j++;
+            }
+        }
+        // check we read 40 bits (8bit x 5 ) + verify checksum in the last byte
+        // print it out if data is good
+        if ((j >= 40) && 
+                (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) ) {
+            Fah = dht11_dat[2] * 9. / 5. + 32;
+            printf("Humidity = %d.%d %% Temperature = %d.%d *C (%.1f *F)\n", 
+                    dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], Fah);
+        }
+    }
+
+    int main (void) {
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        while (1) {
+            readDht11();
+            delay(500); // wait 1sec to refresh
+        }
+        return 0 ;
+    }
+
+**コードの説明**
+
+.. code-block:: c
+
+    void readDht11() {
+        uint8_t laststate = HIGH;
+        uint8_t counter = 0;
+        uint8_t j = 0, i;
+        float Fah; // fahrenheit
+        dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
+        // ...
+    }
+
+この機能はDHT11の機能を実現するために使用される。
+
+通常、次の3つの部分に分けることができる：
+
+1. ピンを読む準備ができた：
+
+.. code-block:: c
+
+    // pull pin down for 18 milliseconds
+    pinMode(dhtPin, OUTPUT);
+    digitalWrite(dhtPin, LOW);
+    delay(18);
+    // then pull it up for 40 microseconds
+    digitalWrite(dhtPin, HIGH);
+    delayMicroseconds(40); 
+    // prepare to read the pin
+    pinMode(dhtPin, INPUT);
+
+その通信フローは、作業のタイミングによって決まる。
+
+.. image:: media/image208.png
+    :width: 800
+
+DHT11が起動すると、MCUは低レベルの信号を送信し、40usの間信号を高レベルに保つ。
+その後、外部環境の状態の検出が開始される。
+
+2. データの読み取り：
+
+.. code-block:: c
+
+    // detect change and read data  
+    for ( i=0; i< maxTim; i++) {
+            counter = 0;
+            while (digitalRead(dhtPin) == laststate) {
+                counter++;
+                delayMicroseconds(1);
+                if (counter == 255) {
+                    break;
+                }
+            }
+            laststate = digitalRead(dhtPin);
+            if (counter == 255) break;
+            // ignore first 3 transitions
+            if ((i >= 4) && (i%2 == 0)) {
+                // shove each bit into the storage bytes
+                dht11_dat[j/8] <<= 1;
+                if (counter > 50)
+                    dht11_dat[j/8] |= 1;
+                j++;
+            }
+        }
+
+ループは検出されたデータを ``dht11_dat[]`` 配列に保存する。DHT11は一度に40ビットのデータを転送する。最初の16ビットは湿度に関連し、中央の16ビットは温度に関連し、最後の8ビットは検証に使用される。データ形式は次のとおりである：
+
+8ビット湿度整数データ + 8ビット湿度10進データ + 8ビット温度整数データ + 8ビット温度10進データ + 8ビットチェックビット。
+
+3. 湿度と温度をプリントする。
+
+.. code-block:: c
+
+    // check we read 40 bits (8bit x 5 ) + verify checksum in the last byte
+    // print it out if data is good
+    if ((j >= 40) && 
+            (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) ) {
+        Fah = dht11_dat[2] * 9. / 5. + 32;
+        printf("Humidity = %d.%d %% Temperature = %d.%d *C (%.1f *F)\n", 
+                dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], Fah);
+    }
+
+データストレージが最大40ビットの場合、 チェックビット ( ``dht11_dat[4]`` ) を通じてデータの有効性をチェックし、温度と湿度をプリントする。
+
+たとえば、受信データが00101011（湿度整数の8ビット値）00000000（湿度10進数の8ビット値）00111100（温度整数の8ビット値）00000000（温度10進数の8ビット値）01100111（チェックビット）の場合、
+
+**計算：**
+
+00101011+00000000+00111100+00000000=01100111.
+
+最終結果はチェックビットデータに等しく、受信データは正しいである：
+
+湿度= 43％、温度= 60 ℃。
+
+チェックビットデータと等しくない場合、データ送信は正常ではなく、データが再度受信される。
+
+Python言語ユーザー向け
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ステップ2： コードのフォルダーに入る。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/python/
+
+ステップ3： EXEファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.3_DHT.py
+
+コードの実行後、プログラムはDHT11によって検出された温度と湿度をコンピューター画面にプリントする。
+
+**コード**
+
+
+.. note::
+
+   以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、 ``davinci-kit-for-raspberry-pi/python`` のようなソースコードパスに移動する必要があります。 
+   
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    dhtPin = 17
+
+    GPIO.setmode(GPIO.BCM)
+
+    MAX_UNCHANGE_COUNT = 100
+
+    STATE_INIT_PULL_DOWN = 1
+    STATE_INIT_PULL_UP = 2
+    STATE_DATA_FIRST_PULL_DOWN = 3
+    STATE_DATA_PULL_UP = 4
+    STATE_DATA_PULL_DOWN = 5
+
+    def readDht11():
+        GPIO.setup(dhtPin, GPIO.OUT)
+        GPIO.output(dhtPin, GPIO.HIGH)
+        time.sleep(0.05)
+        GPIO.output(dhtPin, GPIO.LOW)
+        time.sleep(0.02)
+        GPIO.setup(dhtPin, GPIO.IN, GPIO.PUD_UP)
+
+        unchanged_count = 0
+        last = -1
+        data = []
+        while True:
+            current = GPIO.input(dhtPin)
+            data.append(current)
+            if last != current:
+                unchanged_count = 0
+                last = current
+            else:
+                unchanged_count += 1
+                if unchanged_count > MAX_UNCHANGE_COUNT:
+                    break
+
+        state = STATE_INIT_PULL_DOWN
+
+        lengths = []
+        current_length = 0
+
+        for current in data:
+            current_length += 1
+
+            if state == STATE_INIT_PULL_DOWN:
+                if current == GPIO.LOW:
+                    state = STATE_INIT_PULL_UP
+                else:
+                    continue
+            if state == STATE_INIT_PULL_UP:
+                if current == GPIO.HIGH:
+                    state = STATE_DATA_FIRST_PULL_DOWN
+                else:
+                    continue
+            if state == STATE_DATA_FIRST_PULL_DOWN:
+                if current == GPIO.LOW:
+                    state = STATE_DATA_PULL_UP
+                else:
+                    continue
+            if state == STATE_DATA_PULL_UP:
+                if current == GPIO.HIGH:
+                    current_length = 0
+                    state = STATE_DATA_PULL_DOWN
+                else:
+                    continue
+            if state == STATE_DATA_PULL_DOWN:
+                if current == GPIO.LOW:
+                    lengths.append(current_length)
+                    state = STATE_DATA_PULL_UP
+                else:
+                    continue
+        if len(lengths) != 40:
+            #print ("Data not good, skip")
+            return False
+
+        shortest_pull_up = min(lengths)
+        longest_pull_up = max(lengths)
+        halfway = (longest_pull_up + shortest_pull_up) / 2
+        bits = []
+        the_bytes = []
+        byte = 0
+
+        for length in lengths:
+            bit = 0
+            if length > halfway:
+                bit = 1
+            bits.append(bit)
+        #print ("bits: %s, length: %d" % (bits, len(bits)))
+        for i in range(0, len(bits)):
+            byte = byte << 1
+            if (bits[i]):
+                byte = byte | 1
+            else:
+                byte = byte | 0
+            if ((i + 1) % 8 == 0):
+                the_bytes.append(byte)
+                byte = 0
+        #print (the_bytes)
+        checksum = (the_bytes[0] + the_bytes[1] + the_bytes[2] + the_bytes[3]) & 0xFF
+        if the_bytes[4] != checksum:
+            #print ("Data not good, skip")
+            return False
+
+        return the_bytes[0], the_bytes[2]
+
+    def main():
+
+        while True:
+            result = readDht11()
+            if result:
+                humidity, temperature = result
+                print ("humidity: %s %%,  Temperature: %s C`" % (humidity, temperature))
+            time.sleep(1)
+
+    def destroy():
+        GPIO.cleanup()
+
+    if __name__ == '__main__':
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy() 
+
+**コードの説明**
+
+.. code-block:: python
+
+    def readDht11():
+        GPIO.setup(dhtPin, GPIO.OUT)
+        GPIO.output(dhtPin, GPIO.HIGH)
+        time.sleep(0.05)
+        GPIO.output(dhtPin, GPIO.LOW)
+        time.sleep(0.02)
+        GPIO.setup(dhtPin, GPIO.IN, GPIO.PUD_UP)
+        unchanged_count = 0
+        last = -1
+        data = []
+        #...
+
+この関数はDHT11の関数を実装するために使用される。それは検出されたデータを ``the_bytes[]`` 配列に保存する。
+DHT11は一度に40ビットのデータを点灯する。
+最初の16ビットは湿度に関連し、中央の16ビットは温度に関連し、最後の8ビットは検証に使用される。
+データ形式は次のとおりである：
+
+8ビット湿度整数データ +8ビット湿度10進データ +8ビット温度整数データ + 8ビット温度10進データ + 8ビットチェックビット。
+
+チェックビットを介して有効性が検出されると、関数は2つの結果を返す：1. エラー; 2.湿度と温度。
+
+.. code-block:: python
+
+    checksum = (the_bytes[0] + the_bytes[1] + the_bytes[2] + the_bytes[3]) & 0xFF
+    if the_bytes[4] != checksum:
+        #print ("Data not good, skip")
+        return False
+
+    return the_bytes[0], the_bytes[2]
+
+たとえば、受信した日付が00101011（湿度整数の8ビット値）00000000（湿度10進数の8ビット値）00111100（温度整数の8ビット値）00000000（温度10進数の8ビット値）01100111（チェックビット）の場合
+
+**計算:**
+
+00101011+00000000+00111100+00000000=01100111.
+
+最終結果がチェックビットデータと等しい場合、データ送信は異常である：Falseを返す。
+
+最終結果がチェックビットデータと等しく、受信データは正しい場合、
+``the_bytes[0]`` と ``the_bytes[2]`` が返され、「Humidity = 43％、Temperature= 60C」が出力される。
+
+現象画像
+------------------
+
+.. image:: media/image209.jpeg

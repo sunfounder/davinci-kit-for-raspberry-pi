@@ -1,0 +1,449 @@
+3.1.3 後退警報装置
+~~~~~~~~~~~~~~~~~~~~~
+
+前書き
+-------------
+
+このプロジェクトでは、LCD、ブザー、と超音波センサーを使用して、
+後退補助システムを作成する。それをリモートコントロール車両に置いて、
+車をガレージに後退する実際のプロセスをシミュレートできる。
+
+部品
+----------------
+
+.. image:: media/list_Reversing_Alarm.png
+    :align: center
+
+回路図
+--------------------
+
+超音波センサーは障害物との間の距離を検出し、コードの形式でLCDに表示する。
+同時に、超音波センサーにより、距離値に応じてブザーが異なる周波数の警告音を発する。
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO17       Pin 11   0        17
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: media/Schematic_three_one3.png
+    :width: 800
+    :align: center
+
+実験手順
+------------------------
+
+ステップ1： 回路を作る。
+
+.. image:: media/image242.png
+    :width: 800
+    :align: center
+
+C言語ユーザー向け
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ステップ2： ディレクトリを変更する。
+
+.. raw:: html
+
+    <run></run>
+ 
+.. code-block:: 
+ 
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.3/
+ 
+ステップ3： コンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.3_ReversingAlarm.c -lwiringPi
+
+ステップ4： 実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+コードが実行されると、超音波センサーモジュールが障害物までの距離を検出し、LCD1602に距離に関する情報を表示する。また、ブザーは距離とともに周波数が変化する警告音を発する。
+
+**コード**
+
+.. note::
+    次のコードは不完全である。完全なコードを確認する場合は、コマンド ``nano 3.1.1_ReversingAlarm.c`` を使用することをお勧めする。
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <sys/time.h>
+    #include <wiringPi.h>
+    #include <wiringPiI2C.h>
+    #include <string.h>
+
+    #define Trig    4
+    #define Echo    5
+    #define Buzzer  0
+
+    int LCDAddr = 0x27;
+    int BLEN = 1;
+    int fd;
+
+    //here is the function of LCD
+    void write_word(int data){...}
+
+    void send_command(int comm){...}
+
+    void send_data(int data){...}
+
+    void lcdInit(){...}
+
+    void clear(){...}
+
+    void write(int x, int y, char data[]){...}
+
+    //here is the function of Ultrasonic
+    void ultraInit(void){...}
+
+    float disMeasure(void){...}
+
+    //here is the main function
+    int main(void)
+    {
+        float dis;
+        char result[10];
+        if(wiringPiSetup() == -1){ 
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        pinMode(Buzzer,OUTPUT);
+        fd = wiringPiI2CSetup(LCDAddr);
+        lcdInit();
+        ultraInit();
+
+        clear();
+        write(0, 0, "Ultrasonic Starting"); 
+        write(1, 1, "By Sunfounder");   
+
+        while(1){
+            dis = disMeasure();
+            printf("%.2f cm \n",dis);
+            delay(100);
+            digitalWrite(Buzzer,LOW);
+            if (dis > 400){
+                clear();
+                write(0, 0, "Error");
+                write(3, 1, "Out of range");    
+                delay(500);
+            }
+            else
+            {
+                clear();
+                write(0, 0, "Distance is");
+                sprintf(result,"%.2f cm",dis);
+                write(5, 1, result);
+
+                if(dis>=50)
+                {delay(500);}
+                else if(dis<50 & dis>20) {
+                    for(int i=0;i<2;i++){
+                    digitalWrite(Buzzer,HIGH);
+                    delay(50);
+                    digitalWrite(Buzzer,LOW);
+                    delay(200);
+                    }
+                }
+                else if(dis<=20){
+                    for(int i=0;i<5;i++){
+                    digitalWrite(Buzzer,HIGH);
+                    delay(50);
+                    digitalWrite(Buzzer,LOW);
+                    delay(50);
+                    }
+                }
+            }   
+        }
+
+        return 0;
+    }
+
+**コードの説明**
+
+.. code-block:: c
+
+    pinMode(Buzzer,OUTPUT);
+    fd = wiringPiI2CSetup(LCDAddr);
+    lcdInit();
+    ultraInit();
+
+このプログラムでは、以前の部品を総合的に適用する。
+ここでは、ブザー、LCD、と超音波を使用する。
+以前と同じ方法で初期化できる。
+
+.. code-block:: c
+
+    dis = disMeasure();
+     printf("%.2f cm \n",dis);
+    digitalWrite(Buzzer,LOW);
+    if (dis > 400){
+         write(0, 0, "Error");
+         write(3, 1, "Out of range");    
+    }
+    else
+    {
+        write(0, 0, "Distance is");
+        sprintf(result,"%.2f cm",dis);
+        write(5, 1, result);
+	}
+
+ここで、超音波センサーの値を取得し、計算により距離を取得する。
+
+距離の値が検出される範囲の値より大きい場合、エラーメッセージがLCDに表示される。
+距離値が範囲内にある場合、対応する結果が出力される。
+
+.. code-block:: c
+
+    sprintf(result,"%.2f cm",dis);
+
+LCDの出力モードは文字型のみをサポートし、
+変数 ``dis`` はfloat型の値を保存するため、``sprintf()`` を使わなければならない。
+この関数はfloat型の値を文字に変換し、
+文字列変数 ``result[]`` に保存する。 ``%.2f`` は小数点以下2桁を保持することを意味する。
+
+.. code-block:: c
+
+    if(dis>=50)
+    {delay(500);}
+    else if(dis<50 & dis>20) {
+        for(int i=0;i<2;i++){
+        digitalWrite(Buzzer,HIGH);
+        delay(50);
+        digitalWrite(Buzzer,LOW);
+        delay(200);
+        }
+    }
+    else if(dis<=20){
+        for(int i=0;i<5;i++){
+        digitalWrite(Buzzer,HIGH);
+        delay(50);
+        digitalWrite(Buzzer,LOW);
+        delay(50);
+        }
+    }
+
+この判定条件でブザーの音をコントロールします。
+距離の違いにより、音の周波数が異なる3つのケースに分けられます。
+遅延の合計値は500なので、どのケースも超音波センサに500msの間隔を与えることができる。
+
+
+Python言語ユーザー向け
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ステップ2： ディレクトリを変更する。
+
+.. raw:: html
+
+    <run></run>
+ 
+.. code-block::
+ 
+    cd /home/pi/davinci-kit-for-raspberry-pi/python/
+ 
+ステップ3： 実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 3.1.3_ReversingAlarm.py
+
+コードが実行されると、超音波センサーモジュールが障害物までの距離を検出し、
+LCD1602に距離に関する情報を表示する。
+また、ブザーは距離とともに周波数が変化する警告音を発する。
+
+
+**コード**
+
+.. note::
+
+   以下のコードを **変更/リセット/コピー/実行/停止** できます。 ただし、その前に、 ``davinci-kit-for-raspberry-pi/python`` のようなソースコードパスに移動する必要があります。 
+   
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import LCD1602
+    import time
+    import RPi.GPIO as GPIO
+
+    TRIG = 16
+    ECHO = 18
+    BUZZER = 11
+
+    def lcdsetup():
+    LCD1602.init(0x27, 1)   # init(slave address, background light)
+    LCD1602.clear()   
+    LCD1602.write(0, 0, 'Ultrasonic Starting')
+    LCD1602.write(1, 1, 'By SunFounder')
+    time.sleep(2)
+
+    def setup():
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(TRIG, GPIO.OUT)
+    GPIO.setup(ECHO, GPIO.IN)
+    GPIO.setup(BUZZER, GPIO.OUT, initial=GPIO.LOW)
+    lcdsetup()
+
+    def distance():
+    GPIO.output(TRIG, 0)
+    time.sleep(0.000002)
+
+    GPIO.output(TRIG, 1)
+    time.sleep(0.00001)
+    GPIO.output(TRIG, 0)
+
+    while GPIO.input(ECHO) == 0:
+        a = 0
+    time1 = time.time()
+    while GPIO.input(ECHO) == 1:
+        a = 1
+    time2 = time.time()
+
+    during = time2 - time1
+    return during * 340 / 2 * 100
+
+    def destroy():
+    GPIO.output(BUZZER, GPIO.LOW)
+    GPIO.cleanup()
+    LCD1602.clear()
+
+    def loop():
+    while True:
+        dis = distance()
+        print (dis, 'cm')
+        print ('')
+        GPIO.output(BUZZER, GPIO.LOW)
+        if (dis > 400):
+            LCD1602.clear()
+            LCD1602.write(0, 0, 'Error')
+            LCD1602.write(3, 1, 'Out of range')
+            time.sleep(0.5)
+        else:
+            LCD1602.clear()
+            LCD1602.write(0, 0, 'Distance is')
+            LCD1602.write(5, 1, str(round(dis,2)) +' cm')
+            if(dis>=50):
+                time.sleep(0.5)
+            elif(dis<50 and dis>20):
+                for i in range(0,2,1):
+                    GPIO.output(BUZZER, GPIO.HIGH)
+                    time.sleep(0.05)
+                    GPIO.output(BUZZER, GPIO.LOW)
+                    time.sleep(0.2)
+            elif(dis<=20):
+                for i in range(0,5,1):
+                    GPIO.output(BUZZER, GPIO.HIGH)
+                    time.sleep(0.05)
+                    GPIO.output(BUZZER, GPIO.LOW)
+                    time.sleep(0.05)
+
+
+    if __name__ == "__main__":
+    setup()
+    try:       
+        loop()
+    except KeyboardInterrupt:
+        destroy()
+
+
+**コードの説明**
+
+.. code-block:: python
+
+    def lcdsetup():
+        LCD1602.init(0x27, 1)   # init(slave address, background light)
+
+    def setup():
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(TRIG, GPIO.OUT)
+        GPIO.setup(ECHO, GPIO.IN)
+        GPIO.setup(BUZZER, GPIO.OUT, initial=GPIO.LOW)
+        lcdsetup()
+
+このプログラムでは、以前に使用した部品を総合的に適用する。
+ここでは、ブザー、LCD、と超音波を使用する。以前と同じ方法で初期化できる。
+
+.. code-block:: python
+
+    dis = distance()
+    print (dis, 'cm')
+    print ('')
+    GPIO.output(BUZZER, GPIO.LOW)
+    if (dis > 400):
+        LCD1602.clear()
+        LCD1602.write(0, 0, 'Error')
+        LCD1602.write(3, 1, 'Out of range')
+        time.sleep(0.5)
+    else:
+        LCD1602.clear()
+        LCD1602.write(0, 0, 'Distance is')
+        LCD1602.write(5, 1, str(round(dis,2)) +' cm')
+
+
+ここで、超音波センサーの値を取得し、計算により距離を取得する。距離の値が検出される範囲の値より大きい場合、エラーメッセージがLCDに表示される。
+動作値が範囲内にある場合、対応する結果が出力される
+
+.. code-block:: python
+
+    LCD1602.write(5, 1, str(round(dis,2)) +' cm')
+
+LCD出力は文字タイプのみをサポートするため、 ``str()`` を使用して数値を文字に変換する必要がある。
+小数点以下2桁に丸める
+
+.. code-block:: python
+
+    if(dis>=50)
+    {delay(500);}
+    else if(dis<50 & dis>20) {
+        for(int i=0;i<2;i++){
+            digitalWrite(Buzzer,HIGH);
+            delay(50);
+            digitalWrite(Buzzer,LOW);
+            delay(200);
+            }
+        }
+        else if(dis<=20){
+            for(int i=0;i<5;i++){
+            digitalWrite(Buzzer,HIGH);
+            delay(50);
+            digitalWrite(Buzzer,LOW);
+            delay(50);
+            }
+        }
+
+この判定条件はブザーの音を制御するために使用される。
+距離の違いに応じて、3つのケースに分けることができる。
+この場合、音の周波数は異なる。遅延の合計値は500であるため、
+すべてのケースで超音波センサーに500msの間隔を提供できる。
+
+現象画像
+--------------------
+
+.. image:: media/image243.jpeg
+   :align: center

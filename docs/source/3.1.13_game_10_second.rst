@@ -1,0 +1,330 @@
+3.1.13 SPIEL - 10 Sekunden
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Einführung
+-------------------
+
+Als nächstes folge mir, um ein Spielgerät zu bauen, das deine Konzentration herausfordert. Binden Sie den Neigungsschalter an einen Stock, um einen Zauberstab herzustellen. Schütteln Sie den Stab, die 4-stellige Segmentanzeige beginnt zu zählen. Durch erneutes Schütteln wird die Zählung beendet. Wenn es Ihnen gelingt, die angezeigte Anzahl bei 10,00 zu halten, gewinnen Sie. Sie können das Spiel mit Ihren Freunden spielen, um zu sehen, wer der Zeitassistent ist.
+
+Komponenten
+----------------
+
+.. image:: media/list_GAME_10_Second.png
+    :align: center
+
+Schematische Darstellung
+-------------------------------
+
+============ ======== ======== ===
+T-Karte Name physisch wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: media/Schematic_three_one13.png
+   :align: center
+
+Experimentelle Verfahren
+---------------------------------
+
+Schritt 1: Bauen Sie die Schaltung auf.
+
+.. image:: media/image277.png
+   :alt: 10 second_bb
+   :width: 800
+
+Für Benutzer in C-Sprache
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Schritt 2: Gehen Sie zum Ordner der Kode.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.13/
+
+Schritt 3: Kompilieren Sie die Kode.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 3.1.13_GAME_10Second.c -lwiringPi
+
+Schritt 4: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Schütteln Sie den Stab, die 4-stellige Segmentanzeige beginnt zu zählen. 
+Durch erneutes Schütteln wird die Zählung beendet. Wenn es Ihnen gelingt, 
+die angezeigte Anzahl bei 10,00 zu halten, gewinnen Sie. 
+Schütteln Sie es noch einmal, um die nächste Runde des Spiels zu starten.
+
+**Code Erklärung**
+
+.. code-block:: c
+
+    void stateChange(){
+        if (gameState == 0){
+            counter = 0;
+            delay(1000);
+            ualarm(10000,10000); 
+        }else{
+            alarm(0);
+            delay(1000);
+        }
+        gameState = (gameState + 1)%2;
+    }
+
+Das Spiel ist in zwei Modi unterteilt:
+
+``gameState=0`` ist der „Start“ -Modus, in dem die Zeit zeitlich festgelegt und auf der Segmentanzeige angezeigt wird und der Kippschalter geschüttelt wird, um in den „Show“ -Modus zu wechseln.
+
+``gameState=1`` ist der „show“ -Modus, der das Timing stoppt und die Zeit auf der Segmentanzeige anzeigt. Durch erneutes Schütteln des Neigungsschalters wird der Timer zurückgesetzt und das Spiel neu gestartet.
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                stateChange();
+            }
+            lastState=currentState;
+        }
+    }
+
+
+``loop()`` ist die Hauptfunktion. Zunächst wird die Zeit auf der 
+4-Bit-Segmentanzeige angezeigt und der Wert des Neigungsschalters gelesen. 
+Wenn sich der Status des Neigungsschalters geändert hat, wird ``stateChange()`` aufgerufen.
+
+Für Python-Sprachbenutzer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Schritt 2: Gehen Sie zum Ordner der Kode.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/python/
+
+Schritt 3: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.13_GAME_10Second.py
+
+Schütteln Sie den Stab, die 4-stellige Segmentanzeige beginnt zu zählen. 
+Durch erneutes Schütteln wird die Zählung beendet. 
+Wenn es Ihnen gelingt, die angezeigte Anzahl bei 10,00 zu halten, 
+gewinnen Sie. Schütteln Sie es noch einmal, um die nächste Runde des Spiels zu starten.
+
+**Code**
+
+.. note::
+
+    Sie können den folgenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen** . Zuvor müssen Sie jedoch zu einem Quellcodepfad wie ``davinci-kit-for-raspberry-pi/python`` gehen.
+  
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+    import threading
+
+    sensorPin = 26
+
+    SDI = 24
+    RCLK = 23
+    SRCLK = 18
+
+    placePin = (10, 22, 27, 17)
+    number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+    counter = 0
+    timer =0
+    gameState =0
+
+    def clearDisplay():
+        for i in range(8):
+            GPIO.output(SDI, 1)
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        GPIO.output(RCLK, GPIO.LOW)    
+
+    def hc595_shift(data): 
+        for i in range(8):
+            GPIO.output(SDI, 0x80 & (data << i))
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        GPIO.output(RCLK, GPIO.LOW)
+
+    def pickDigit(digit):
+        for i in placePin:
+            GPIO.output(i,GPIO.LOW)
+        GPIO.output(placePin[digit], GPIO.HIGH)
+
+    def display():
+        global counter                    
+        clearDisplay() 
+        pickDigit(0)  
+        hc595_shift(number[counter % 10])
+
+        clearDisplay()
+        pickDigit(1)
+        hc595_shift(number[counter % 100//10])
+
+        clearDisplay()
+        pickDigit(2)
+        hc595_shift(number[counter % 1000//100]-0x80)
+
+        clearDisplay()
+        pickDigit(3)
+        hc595_shift(number[counter % 10000//1000])
+
+    def stateChange():
+        global gameState
+        global counter
+        global timer1
+        if gameState == 0:
+            counter = 0
+            time.sleep(1)
+            timer() 
+        elif gameState ==1:
+            timer1.cancel()
+            time.sleep(1)
+        gameState = (gameState+1)%2
+
+    def loop():
+        global counter
+        currentState = 0
+        lastState = 0
+        while True:
+            display()
+            currentState=GPIO.input(sensorPin)
+            if (currentState == 0) and (lastState == 1):
+                stateChange()
+            lastState=currentState
+
+    def timer():  
+        global counter
+        global timer1
+        timer1 = threading.Timer(0.01, timer) 
+        timer1.start()  
+        counter += 1
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(SDI, GPIO.OUT)
+        GPIO.setup(RCLK, GPIO.OUT)
+        GPIO.setup(SRCLK, GPIO.OUT)
+        for i in placePin:
+            GPIO.setup(i, GPIO.OUT)
+        GPIO.setup(sensorPin, GPIO.IN)
+
+    def destroy():   # When \"Ctrl+C\" is pressed, the function is executed.
+        GPIO.cleanup()
+        global timer1
+        timer1.cancel()
+
+    if __name__ == '__main__':  # Program starting from here
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt:
+            destroy()
+
+**Code Erklärung**
+
+.. code-block:: python
+
+    def stateChange():
+        global gameState
+        global counter
+        global timer1
+        if gameState == 0:
+            counter = 0
+            time.sleep(1)
+            timer() 
+        elif gameState ==1:
+            timer1.cancel()
+            time.sleep(1)
+        gameState = (gameState+1)%2
+
+Das Spiel ist in zwei Modi unterteilt:
+
+``gameState=0`` ist der „start“ -Modus, in dem die Zeit zeitlich festgelegt und auf der Segmentanzeige angezeigt wird und der Kippschalter geschüttelt wird, um in den „Show“ -Modus zu wechseln.
+
+``gameState=1`` ist der „show“ -Modus, der das Timing stoppt und die Zeit auf der Segmentanzeige anzeigt. Durch erneutes Schütteln des Neigungsschalters wird der Timer zurückgesetzt und das Spiel neu gestartet.
+
+.. code-block:: python
+
+    def loop():
+        global counter
+        currentState = 0
+        lastState = 0
+        while True:
+            display()
+            currentState=GPIO.input(sensorPin)
+            if (currentState == 0) and (lastState == 1):
+                stateChange()
+            lastState=currentState
+
+
+``loop()`` ist die Hauptfunktion. Zunächst wird die Zeit auf der 4-Bit-Segmentanzeige angezeigt und der Wert des Neigungsschalters gelesen. 
+Wenn sich der Status des Neigungsschalters geändert hat, wird ``stateChange()`` aufgerufen.
+
+.. code-block:: python
+
+    def timer():  
+        global counter
+        global timer1
+        timer1 = threading.Timer(0.01, timer) 
+        timer1.start()  
+        counter += 1
+
+Nachdem das Intervall 0,01 s erreicht hat, wird die Timerfunktion aufgerufen. 
+Addiere 1 zum Zähler und der Timer wird erneut verwendet, 
+um sich alle 0,01 Sekunden wiederholt auszuführen.
+
+Phänomen Bild
+-----------------------
+
+.. image:: media/image278.jpeg
+   :align: center
+
+
+

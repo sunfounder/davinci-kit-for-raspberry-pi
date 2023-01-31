@@ -1,0 +1,277 @@
+2.2.1 Fotowiderstand
+=================================
+
+Einführung
+------------
+
+Der Fotowiderstand ist eine häufig verwendete Komponente der Umgebungslichtintensität im Leben. 
+Es hilft dem Controller, Tag und Nacht zu erkennen und Lichtsteuerungsfunktionen wie Nachtlampen zu realisieren. 
+Dieses Projekt ist dem Potentiometer sehr ähnlich, und Sie könnten denken, es ändert die Spannung, 
+um Licht zu erfassen.
+
+Komponenten
+-----------------
+
+.. image:: media/list_2.2.1_photoresistor.png
+
+
+Prinzip
+---------
+
+Ein Fotowiderstand oder eine Fotozelle ist ein lichtgesteuerter variabler Widerstand. 
+Der Widerstand eines Fotowiderstands nimmt mit zunehmender Intensität des einfallenden Lichts ab; 
+mit anderen Worten, es zeigt Fotoleitfähigkeit. 
+Ein Fotowiderstand kann in lichtempfindlichen Detektorschaltungen sowie in licht- und dunkelheitsaktivierten Schaltkreisen eingesetzt werden.
+
+.. image:: media/image196.png
+    :width: 200
+    :align: center
+
+
+Schematische Darstellung
+-----------------------------
+
+.. image:: media/image321.png
+
+
+.. image:: media/image322.png
+
+
+Experimentelle Verfahren
+-----------------------------------
+
+Schritt 1: Bauen Sie die Schaltung auf.
+
+.. image:: media/image198.png
+    :width: 800
+
+
+
+Für Benutzer in C-Sprache
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Schritt 2: Gehen Sie zum Ordner der Kode.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/2.2.1/
+
+Schritt 3: Kompilieren Sie der Kode.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.1_Photoresistor.c -lwiringPi
+
+Schritt 4: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Wenn die Kode ausgeführt wird, variiert die Helligkeit der LED in Abhängigkeit von der Lichtintensität, die der Fotowiderstand erfasst.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <softPwm.h>
+
+    typedef unsigned char uchar;
+    typedef unsigned int uint;
+
+    #define     ADC_CS    0
+    #define     ADC_CLK   1
+    #define     ADC_DIO   2
+    #define     LedPin    3
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Start bit
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Single End mode
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // ODD
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Select
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+
+    int main(void)
+    {
+        uchar analogVal;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        softPwmCreate(LedPin,  0, 100);
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+
+        while(1){
+            analogVal = get_ADC_Result(0);
+            printf("Current analogVal : %d\n", analogVal);
+            delay(100);
+            softPwmWrite(LedPin, analogVal);
+            delay(100);
+        }
+        return 0;
+    }
+
+**Code Erklärung**
+
+Die Koden hier sind die gleichen wie in 2.1.4 Potentiometer. Wenn Sie weitere Fragen haben, lesen Sie bitte die Kode-Erklärung von :ref:`py_pot`  für Details.
+
+Für Python-Sprachbenutzer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Schritt 2: Gehen Sie zum Ordner der Kode.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/python/
+
+Schritt 3: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.1_Photoresistor.py
+
+Wenn die Kode ausgeführt wird, variiert die Helligkeit der LED in Abhängigkeit von der Lichtintensität, die der Fotowiderstand erfasst.
+
+**Code**
+
+
+.. note::
+
+    Sie können den folgenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen** . Zuvor müssen Sie jedoch zu einem Quellcodepfad wie ``davinci-kit-for-raspberry-pi/python`` gehen.
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import ADC0834
+    import time
+
+    LedPin = 22
+
+    def setup():
+        global led_val
+        # Set the GPIO modes to BCM Numbering
+        GPIO.setmode(GPIO.BCM)
+        # Set all LedPin's mode to output and initial level to High(3.3v)
+        GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
+        ADC0834.setup()
+        # Set led as pwm channel and frequece to 2KHz
+        led_val = GPIO.PWM(LedPin, 2000)
+
+        # Set all begin with value 0
+        led_val.start(0)
+
+    def destroy():
+        # Stop all pwm channel
+        led_val.stop()
+        # Release resource
+        GPIO.cleanup()
+
+    def loop():
+        while True:
+            analogVal = ADC0834.getResult()
+            print ('analog value = %d' % analogVal)
+            led_val.ChangeDutyCycle(analogVal*100/255)
+            time.sleep(0.2)
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+            destroy()
+
+**Code Erklärung**
+
+.. code-block:: python
+
+    def loop():
+        while True:
+            analogVal = ADC0834.getResult()
+            print ('analog value = %d' % analogVal)
+            led_val.ChangeDutyCycle(analogVal*100/255)
+            time.sleep(0.2)
+
+
+Lesen Sie den Analogwert von CH0 von ADC0834 ab. 
+Standardmäßig wird mit der Funktion ``getResult()`` der Wert von CH0 gelesen. 
+Wenn Sie also andere Kanäle lesen möchten, geben Sie bitte 1, 2 oder 3 in () der Funktion ``getResult()`` ein. 
+Als nächstes müssen Sie den Wert über die Druckfunktion drucken. 
+Da das sich ändernde Element das Tastverhältnis von LedPin ist, 
+wird die Berechnungsformel ``analogVal * 100/255`` benötigt, um analogVal in Prozent umzuwandeln. 
+Schließlich wird ``ChangeDutyCycle()`` aufgerufen, um den Prozentsatz in LedPin zu schreiben.
+
+Phänomen Bild
+------------------
+
+.. image:: media/image199.jpeg

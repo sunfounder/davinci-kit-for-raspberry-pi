@@ -1,20 +1,39 @@
-.. davinci-kit-for-raspberry-pi documentation master file, created by
-   sphinx-quickstart on Tue Jan 17 09:24:06 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
-Welcome to davinci-kit-for-raspberry-pi's documentation!
-========================================================
+SunFounder Da Vinci Kit for Raspberry Pi
+===========================================
+
+Über das Da Vinci Kit
+-------------------------
+
+Dieses Da Vinci-Kit gilt für den Raspberry Pi 4 Modell B, 3 Modell A +, 3 Modell B +, 3 Modell B, 2 Modell B, 1 Modell B +, 1 Modell A +, zero W and zero. Es enthält verschiedene Komponenten und Chips, die dazu beitragen können, verschiedene interessante Phänomene zu erzeugen, die Sie durch eiige Operationen unter Anleitung von Versuchsanweisungen erhalten können. In diesem Prozess können Sie einige Grundkenntnisse über Programmieren erlernen. Sie können auch mehrere Anwendungen selbst erkunden. Jetzt mach es!
+
+Wenn Sie andere Projekte kennenlernen möchten, die wir nicht haben, senden Sie bitte eine E-Mail und wir werden so schnell wie möglich auf unsere Online-Tutorials aktualisieren. Vorschläge sind willkommen.
+
+Hier ist die E-Mail: cs@sunfounder.com.
+
+
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 2
+
+    component_list
+    introduction
+    preparation
+    libraries
+    gpio_extension_board
+    download_the_code
+    1_output
+    2_input
+    3_extension
+    processing/play_with_processing
+    scratch/play_with_scratch
+    appendix/appendix
+    faq
 
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+Copyright Notice
+--------------------------
+
+All contents including but not limited to texts, images, and code in this manual are owned by the SunFounder Company. You should only use it for personal study,investigation, enjoyment, or other non-commercial or nonprofit purposes, under therelated regulations and copyrights laws, without infringing the legal rights of the author and relevant right holders. For any individual or organization that uses these for commercial profit without permission, the Company reserves the right to take legal action.

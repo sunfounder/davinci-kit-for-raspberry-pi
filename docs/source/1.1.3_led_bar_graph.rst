@@ -1,0 +1,319 @@
+1.1.3 LED-Balkendiagramm
+=============================
+
+Einführung
+-------------
+
+In diesem Projekt beleuchten wir nacheinander die Lichter auf dem LED-Balkendiagramm.
+
+Komponenten
+----------------
+
+.. image:: media/list_led_bar.png
+
+
+Prinzip
+--------------
+
+**LED-Balkendiagramm**
+
+LED-Balkendiagramm ist ein LED-Array, das zur Verbindung mit einer elektronischen Schaltung oder einem Mikrocontroller verwendet wird. 
+Es ist einfach, ein LED-Balkendiagramm mit der Schaltung zu verbinden, es ist wie 10 einzelne LEDs mit 10 Ausgangspins. 
+Im Allgemeinen können wir das LED-Balkendiagramm als Batteriestandsanzeige, Audiogeräte und industrielle Bedienfelder verwenden. 
+Es gibt viele andere Anwendungen von LED-Balkendiagrammen.
+
+.. image:: media/led_bar_sche.png
+
+Schematische Darstellung
+------------------------------
+
+============ ======== ======== ===
+T-Karte Name physisch wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SDA1         Pin 3    8        2
+SCL1         Pin 5    9        3
+SPICE0       Pin 24   10       8
+============ ======== ======== ===
+
+.. image:: media/schematic_led_bar.png
+
+
+Experimentelle Verfahren
+------------------------------
+
+Schritt 1: Bauen Sie die Schaltung auf.
+
+.. image:: media/image66.png
+    :width: 800
+    
+Für Benutzer in C-Sprache
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Schritt 2: Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/1.1.3/
+
+Schritt 3: Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.1.3_LedBarGraph.c -lwiringPi
+
+Schritt 4: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Nachdem die Kode ausgeführt wurde, werden die LEDs in der LED-Leiste regelmäßig ein- und ausgeschaltet.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    int pins[10] = {0,1,2,3,4,5,6,8,9,10};
+    void oddLedBarGraph(void){
+        for(int i=0;i<5;i++){
+            int j=i*2;
+            digitalWrite(pins[j],HIGH);
+            delay(300);
+            digitalWrite(pins[j],LOW);
+        }
+    }
+    void evenLedBarGraph(void){
+        for(int i=0;i<5;i++){
+            int j=i*2+1;
+            digitalWrite(pins[j],HIGH);
+            delay(300);
+            digitalWrite(pins[j],LOW);
+        }
+    }
+    void allLedBarGraph(void){
+        for(int i=0;i<10;i++){
+            digitalWrite(pins[i],HIGH);
+            delay(300);
+            digitalWrite(pins[i],LOW);
+        }
+    }
+    int main(void)
+    {
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        for(int i=0;i<10;i++){       //make led pins' mode is output
+            pinMode(pins[i], OUTPUT);
+            digitalWrite(pins[i],LOW);
+        }
+        while(1){
+            oddLedBarGraph();
+            delay(300);
+            evenLedBarGraph();
+            delay(300);
+            allLedBarGraph();
+            delay(300);
+        }
+        return 0;
+    }
+
+**Code Erklärung**
+
+.. code-block:: c
+
+    int pins[10] = {0,1,2,3,4,5,6,8,9,10};
+
+Erstellen Sie ein Array und weisen Sie es der Pin-Nummer zu, die dem LED-Balkendiagramm (0,1,2,3,4,5,6,8,9,10) entspricht. 
+Das Array wird zur Steuerung der LED verwendet.
+
+.. code-block:: c
+
+    void oddLedBarGraph(void){
+        for(int i=0;i<5;i++){
+            int j=i*2;
+            digitalWrite(pins[j],HIGH);
+            delay(300);
+            digitalWrite(pins[j],LOW);
+        }
+    }
+
+Lassen Sie die LED an der ungeraden Stelle des LED-Balkendiagramms der Reihe nach leuchten.
+
+.. code-block:: c
+
+    void evenLedBarGraph(void){
+        for(int i=0;i<5;i++){
+            int j=i*2+1;
+            digitalWrite(pins[j],HIGH);
+            delay(300);
+            digitalWrite(pins[j],LOW);
+        }
+    }
+
+Schalten Sie die LED auf der geraden Ziffer des LED-Balkendiagramms der Reihe nach ein.
+
+.. code-block:: c
+
+    void allLedBarGraph(void){
+        for(int i=0;i<10;i++){
+            digitalWrite(pins[i],HIGH);
+            delay(300);
+            digitalWrite(pins[i],LOW);
+        }
+    }
+
+Lassen Sie die LED auf dem LED-Balkendiagramm nacheinander leuchten.
+
+Für Python-Sprachbenutzer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Schritt 2: Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/python/
+
+Schritt 3: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.3_LedBarGraph.py
+
+Nachdem die Kode ausgeführt wurde, werden die LEDs in der LED-Leiste regelmäßig ein- und ausgeschaltet.
+
+**Code**
+
+.. note::
+
+    Sie können den folgenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen** . Zuvor müssen Sie jedoch zu einem Quellcodepfad wie ``davinci-kit-for-raspberry-pi/python`` gehen.
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    ledPins = [11, 12, 13, 15, 16, 18, 22, 3, 5, 24]
+
+    def oddLedBarGraph():
+        for i in range(5):
+            j = i*2
+            GPIO.output(ledPins[j],GPIO.HIGH)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.LOW)
+
+    def evenLedBarGraph():
+        for i in range(5):
+            j = i*2+1
+            GPIO.output(ledPins[j],GPIO.HIGH)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.LOW)
+
+    def allLedBarGraph():
+        for i in ledPins:
+            GPIO.output(i,GPIO.HIGH)
+            time.sleep(0.3)
+            GPIO.output(i,GPIO.LOW)
+
+    def setup():
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BOARD)        # Numbers GPIOs by physical location
+        for i in ledPins:
+            GPIO.setup(i, GPIO.OUT)   # Set all ledPins' mode is output
+            GPIO.output(i, GPIO.LOW) # Set all ledPins to high(+3.3V) to off led
+
+    def loop():
+        while True:
+            oddLedBarGraph()
+            time.sleep(0.3)
+            evenLedBarGraph()
+            time.sleep(0.3)
+            allLedBarGraph()
+            time.sleep(0.3)
+
+    def destroy():
+        for pin in ledPins:
+            GPIO.output(pin, GPIO.LOW)    # turn off all leds
+        GPIO.cleanup()                     # Release resource
+
+    if __name__ == '__main__':     # Program start from here
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
+            destroy()
+
+**Code Erklärung**
+
+``ledPins = [11, 12, 13, 15, 16, 18, 22, 3, 5, 24]`` 
+Erstellen Sie ein Array und weisen Sie es der Pin-Nummer zu, die dem LED-Balkendiagramm (11, 12, 13, 15, 16, 18, 22, 3, 5, 24) entspricht. Das Array wird zur Steuerung der LED verwendet.
+
+.. code-block:: python
+
+    def oddLedBarGraph():
+        for i in range(5):
+            j = i*2
+            GPIO.output(ledPins[j],GPIO.HIGH)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.LOW)
+
+Lassen Sie die LED an der ungeraden Stelle des LED-Balkendiagramms der Reihe nach leuchten.
+
+.. code-block:: python
+
+    def evenLedBarGraph():
+        for i in range(5):
+            j = i*2+1
+            GPIO.output(ledPins[j],GPIO.HIGH)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.LOW)
+
+Schalten Sie die LED auf der geraden Ziffer des LED-Balkendiagramms der Reihe nach ein.
+
+.. code-block:: python
+
+    def allLedBarGraph():
+        for i in ledPins:
+            GPIO.output(i,GPIO.HIGH)
+            time.sleep(0.3)
+            GPIO.output(i,GPIO.LOW)
+
+Lassen Sie die LED auf dem LED-Balkendiagramm nacheinander leuchten.
+
+Phänomen Bild
+-----------------------
+
+.. image:: media/image67.jpeg

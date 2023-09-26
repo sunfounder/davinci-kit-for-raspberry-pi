@@ -10,32 +10,46 @@ LCD1602 is a character type liquid crystal display, which can display 32
 Components
 -------------------
 
-.. image:: media/list_i2c_lcd.png
+.. image:: img/list_i2c_lcd.png
 
 Principle
 -----------
 
 **I2C LCD1602**
 
-As we all know, though LCD and some other displays greatly enrich the
-man-machine interaction, they share a common weakness. When they are
-connected to a controller, multiple IOs will be occupied of the
-controller which has no so many outer ports. Also it restricts other
-functions of the controller. Therefore, LCD1602 with an I2C bus is
-developed to solve the problem.
+.. image:: img/i2c_lcd1602.png
+    :width: 800
 
-.. image:: media/i2c_lcd.png
+* **GND**: Ground
+* **VCC**: Voltage supply, 5V.
+* **SDA**: Serial data line. Connect to VCC through a pullup resistor.
+* **SCL**: Serial clock line. Connect to VCC through a pullup resistor.
 
-**I2C communication**
+As we all know, though LCD and some other displays greatly enrich the man-machine interaction, they share a common weakness. When they are connected to a controller, multiple IOs will be occupied of the controller which has no so many outer ports. Also it restricts other functions of the controller. 
 
-I2C(Inter-Integrated Circuit) bus is a very popular and powerful bus for
-communication between a master device (or master devices) and a single
-or multiple slave devices.
+Therefore, LCD1602 with an I2C module is developed to solve the problem. The I2C module has a built-in PCF8574 I2C chip that converts I2C serial data to parallel data for the LCD display.        
 
-I2C main controller can be used to control IO expander, various sensors,
-EEPROM, ADC/DAC and so on. All of these are controlled only by the two
-pins of host, the serial data (SDA1) line and the serial clock
-line(SCL1).
+* `PCF8574 Datasheet <https://www.ti.com/lit/ds/symlink/pcf8574.pdf?ts=1627006546204&ref_url=https%253A%252F%252Fwww.google.com%252F>`_
+
+**I2C Address**
+
+The default address is basically 0x27, in a few cases it may be 0x3F.
+
+Taking the default address of 0x27 as an example, the device address can be modified by shorting the A0/A1/A2 pads; in the default state, A0/A1/A2 is 1, and if the pad is shorted, A0/A1/A2 is 0.
+
+.. image:: img/i2c_address.jpg
+    :width: 600
+
+**Backlight/Contrast**
+
+Backlight can be enabled by jumper cap, unplugg the jumper cap to disable the backlight. The blue potentiometer on the back is used to adjust the contrast (the ratio of brightness between the brightest white and the darkest black).
+
+
+.. image:: img/back_lcd1602.jpg
+
+* **Shorting Cap**: Backlight can be enabled by this cap，unplugg this cap to disable the backlight.
+* **Potentiometer**: It is used to adjust the contrast (the clarity of the displayed text), which is increased in the clockwise direction and decreased in the counterclockwise direction.
+
 
 Schematic Diagram
 ---------------------
@@ -46,7 +60,7 @@ SDA1         Pin 3
 SCL1         Pin 5
 ============ ========
 
-.. image:: media/schematic_i2c_lcd.png
+.. image:: img/schematic_i2c_lcd.png
 
 
 Experimental Procedures
@@ -54,7 +68,7 @@ Experimental Procedures
 
 **Step 1:** Build the circuit.
 
-.. image:: media/image96.png
+.. image:: img/image96.png
     :width: 800
 
 
@@ -72,7 +86,7 @@ For C Language Users
 
 .. code-block::
 
-    cd /home/pi/davinci-kit-for-raspberry-pi/c/1.1.7/
+    cd ~/davinci-kit-for-raspberry-pi/c/1.1.7/
 
 **Step 4:** Compile.
 
@@ -98,8 +112,9 @@ After the code runs, you can see \"Greetings\",\"From SunFounder\" displaying on
 
 .. note::
 
-    * If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-    * You can try screwing the potentiometer on the back if the code and wiring are fine, but the LCD still does not show the content.
+    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
+    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
+    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
 
 
 **Code**
@@ -248,7 +263,7 @@ For Python Language Users
 
 .. code-block::
 
-    cd /home/pi/davinci-kit-for-raspberry-pi/python/
+    cd ~/davinci-kit-for-raspberry-pi/python/
 
 **Step 4:** Run.
 
@@ -268,7 +283,6 @@ After the code runs, you can see \"Greetings\",\"From SunFounder\" displaying on
     * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
     * If the error ``OSError: [Errno 121] Remote I/O`` appears, it means the module is miswired or the module is broken.
     * You can try screwing the potentiometer on the back if the code and wiring are fine, but the LCD still does not show the content.
-
 
 **Code**
 
@@ -325,4 +339,4 @@ Now you can see \"Greetings! From SunFounder\" displayed on the LCD.
 Phenomenon Picture
 --------------------------
 
-.. image:: media/image97.jpeg
+.. image:: img/image97.jpeg

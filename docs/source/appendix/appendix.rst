@@ -7,3 +7,4 @@ Appendix
     i2c_configuration
     spi_configuration
     remote_desktop
+    get_ip

@@ -21,7 +21,7 @@ Open the code.
 
 .. code-block:: 
 
-    cd /home/pi/cloud4rpi-raspberrypi-python
+    cd ~/cloud4rpi-raspberrypi-python
     sudo nano attendance_system.py
 
 Find the line below and fill in the correct device token.
@@ -47,7 +47,7 @@ Go to Cloud4RPi, add a new control panel named **project5** and add 2 widgets (t
 
 Once added, you can view the clock-in records for different time periods on the Chart widget (when the value of LED ON is True, it means someone clocked in), and then view the number of people who clocked in on the Text widget.
 
-Also you can find the ``.csv`` file with the date under the path ``/home/pi/cloud4rpi-raspberrypi-python``.
+Also you can find the ``.csv`` file with the date under the path ``~/cloud4rpi-raspberrypi-python``.
 
 .. image:: img/rfid3.png
 	:align: center

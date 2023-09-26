@@ -2,54 +2,50 @@
 SunFounder Da Vinci Kit for Raspberry Pi
 ===========================================
 
-About the Da Vinci Kit
--------------------------
 
-This Da Vinci kit applies to the Raspberry Pi 4 Model B, 3 Model A+, 3
-Model B+, 3 Model B, 2 Model B, 1 Model B+, 1 Model A+, zero W and zero.
-It includes various components and chips that can help to create various
-interesting phenomena which you can get via some operation with the
-guidance of experiment instructions. In this process, you can learn some
-basic knowledge about programming. Also you can explore more application
-by yourself. Now go for it!
+Da Vinci Kit is a basic kit suitable to intelligent beginners who have
+project schedule. It contains 26 commonly used input and output
+components and modules and a number of basic electronic devices (such as
+resistors, capacitors) which can provide powerful assistance in your
+programming learning.
 
-If you want to learn another projects which we don't have, please feel free to send Email and we will update to our online tutorials as soon as possible, any suggestions are welcomed.
+In the light of the kit, you can learn some basic knowledge on Raspberry
+Pi, including the installation method of Raspberry Pi, knowledge of Bash
+shell and GPIO. Having understood these knowledge, you can start
+programming.
 
-Here is the Email: cs@sunfounder.com.
+If you have no knowledge background of hardware, this document about the
+Kit provides you with 30 lessons for reference and learning, including
+26 basic I/o lessons and 4 simple practical examples. It should be noted
+that the arrangement of these courses is not based on the degree of
+difficulty, but on the functions in practice. You can find corresponding
+courses in accordance with your needs. In other words, even if you
+haven't finished reading the entire course or mastered the use of the
+components mentioned, this document will play an important role in
+guiding you to complete practical projects in the future.
+
+We are looking forward to your projects and hope that you can share your
+achievements or creation on our forum while reading this document.
+
+If you have any questions, please send an email to service@sunfounder.com and we will respond as soon as possible.
 
 
 **About the display language**
 
-In addition to English, we are working on other languages for this course. Please contact service@sunfounder.com if you are interested in helping, and we will give you a free product in return. 
-In the meantime, we recommend using Google Translate to convert English to the language you want to see.
 
-The steps are as follows.
+This document is available in other languages as well. To switch the display language, kindly click on the Read the Docs icon located in the lower left corner of the page.
 
-* In this course page, right-click and select **Translate to xx**. If the current language is not what you want, you can change it later.
-
-.. image:: media/translate1.png
+.. image:: img/translation.png
     :align: center
 
-* There will be a language popup in the upper right corner. Click on the menu button to **choose another language**.
-
-.. image:: media/translate2.png
-    :align: center
-
-* Select the language from the inverted triangle box, and then click **Done**.
-
-.. image:: media/translate3.png
-    :align: center
-
+**Contents**
 
 .. toctree::
     :maxdepth: 2
 
+    About this Kit <self>
     component_list
-    introduction
-    preparation
-    libraries
-    gpio_extension_board
-    download_the_code
+    preparation/preparation
     1_output
     2_input
     3_extension

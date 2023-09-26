@@ -19,7 +19,7 @@ Open the code.
 
 .. code-block:: 
 
-    cd /home/pi/cloud4rpi-raspberrypi-python
+    cd ~/cloud4rpi-raspberrypi-python
     sudo nano remote_switch.py
 
 Find the line below and fill in the correct device token.

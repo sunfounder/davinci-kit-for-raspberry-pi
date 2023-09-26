@@ -21,7 +21,7 @@ Check if the library is installed successfully, change the directory and enter n
 
 .. code-block::
 
-    cd /home/pi/davinci-kit-for-raspberry-pi/nodejs
+    cd ~/davinci-kit-for-raspberry-pi/nodejs
     nodejs
 
 .. image:: img/pigpio1.png

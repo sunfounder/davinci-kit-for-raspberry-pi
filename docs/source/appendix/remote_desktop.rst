@@ -27,7 +27,7 @@ Input the following command:
 
    sudo raspi-config
 
-.. image:: media/image287.png
+.. image:: img/image287.png
    :align: center
 
 **Step 2**
@@ -35,21 +35,21 @@ Input the following command:
 Choose **3** **Interfacing Options** by press the down arrow key on your
 keyboard, then press the **Enter** key.
 
-.. image:: media/image282.png
+.. image:: img/image282.png
    :align: center
 
 **Step 3**
 
 **P3 VNC**
 
-.. image:: media/image288.png
+.. image:: img/image288.png
    :align: center
 
 **Step 4**
 
 Select **Yes -> OK -> Finish** to exit the configuration.
 
-.. image:: media/image289.png
+.. image:: img/image289.png
    :align: center
 
 **Login to VNC**
@@ -62,35 +62,35 @@ You need to download and install the `VNC Viewer <https://www.realvnc.com/en/con
 
 Then select \"**New connection**\".
 
-.. image:: media/image290.png
+.. image:: img/image290.png
    :align: center
 
 **Step 3**
 
 Input IP address of Raspberry Pi and any **Name**.
 
-.. image:: media/image291.png
+.. image:: img/image291.png
    :align: center
 
 **Step 4**
 
 Double click the **connection** just created:
 
-.. image:: media/image292.png
+.. image:: img/image292.png
    :align: center
 
 **Step 5**
 
 Enter Username (**pi**) and Password (**raspberry** by default).
 
-.. image:: media/image293.png
+.. image:: img/image293.png
    :align: center
 
 **Step 6**
 
 Now you can see the desktop of the Raspberry Pi:
 
-.. image:: media/image294.png
+.. image:: img/image294.png
    :align: center
 
 That's the end of the VNC part.
@@ -127,7 +127,7 @@ Later, the installation starts.
 
 Enter \"Y\", press key \"Enter\" to confirm.
 
-.. image:: media/image295.png
+.. image:: img/image295.png
    :align: center
 
 **Step 4**
@@ -150,7 +150,7 @@ Type in \"**mstsc**\" in Run (WIN+R) to open the Remote Desktop
 Connection, and input the IP address of Raspberry Pi, then click on
 \"Connect\".
 
-.. image:: media/image296.png
+.. image:: img/image296.png
    :align: center
 
 **Step 3**
@@ -159,14 +159,14 @@ Then the xrdp login page pops out. Please type in your username and
 password. After that, please click \"OK\". At the first time you log in,
 your username is \"pi\" and the password is \"raspberry\".
 
-.. image:: media/image297.png
+.. image:: img/image297.png
    :align: center
 
 **Step 4**
 
 Here, you successfully login to RPi by using the remote desktop.
 
-.. image:: media/image20.png
+.. image:: img/image20.png
    :align: center
 
 **Copyright Notice**

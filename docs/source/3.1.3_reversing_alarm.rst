@@ -11,7 +11,7 @@ simulate the actual process of reversing the car into the garage.
 Components
 ----------------
 
-.. image:: media/list_Reversing_Alarm.png
+.. image:: img/list_Reversing_Alarm.png
     :align: center
 
 Schematic Diagram
@@ -31,7 +31,7 @@ SDA1         Pin 3
 SCL1         Pin 5             
 ============ ======== ======== ===
 
-.. image:: media/Schematic_three_one3.png
+.. image:: img/Schematic_three_one3.png
     :width: 800
     :align: center
 
@@ -40,7 +40,7 @@ Experimental Procedures
 
 **Step 1:** Build the circuit.
 
-.. image:: media/image242.png
+.. image:: img/image242.png
     :width: 800
     :align: center
 
@@ -55,7 +55,7 @@ Experimental Procedures
  
 .. code-block:: 
  
-    cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.3/
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.3/
  
 **Step 3:** Compile.
 
@@ -84,13 +84,16 @@ the distance.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
+    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
+    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
 
 **Code**
 
 .. note::
     The following codes are incomplete. If you want to check the complete codes, 
-    you are suggested to use command nano 3.1.1_ReversingAlarm.c.
+    you are suggested to use command ``nano 3.1.1_ReversingAlarm.c``.
+
 
 .. code-block:: c
 
@@ -272,7 +275,7 @@ interval for the ultrasonic sensor.
  
 .. code-block::
  
-    cd /home/pi/davinci-kit-for-raspberry-pi/python/
+    cd ~/davinci-kit-for-raspberry-pi/python/
  
 **Step 3:** Run.
 
@@ -288,6 +291,14 @@ As the code runs, ultrasonic sensor module detects the distance to the
 obstacle and then displays the information about the distance on
 LCD1602; besides, buzzer emits warning tone whose frequency changes with
 the distance.
+
+.. note::
+
+    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
+    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
+    * If the error ``OSError: [Errno 121] Remote I/O`` appears, it means the module is miswired or the module is broken.
+    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+
 
 **Code**
 
@@ -462,5 +473,5 @@ for the ultrasonic sensor to work.
 Phenomenon Picture
 --------------------
 
-.. image:: media/image243.jpeg
+.. image:: img/image243.jpeg
    :align: center

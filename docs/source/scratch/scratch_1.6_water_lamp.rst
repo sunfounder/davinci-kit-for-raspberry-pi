@@ -6,17 +6,17 @@ Today, we will use LED Bar Graph, Raspberry Pi and scratch to make a Water Lamp.
 
 The LED Bar Graph will light up in order with the direction of the arrows on the stage.
 
-.. image:: media/1.12_header.png
+.. image:: img/1.12_header.png
 
 Required Components
 -------------------------
 
-.. image:: media/1.12_list.png
+.. image:: img/1.12_list.png
 
 Build the Circuit
 -----------------------
 
-.. image:: media/1.12_image66.png
+.. image:: img/1.12_image66.png
 
 Load the Code and See What Happens
 -----------------------------------------
@@ -30,52 +30,52 @@ Tips on Sprites
 
 Delete the default sprite and choose the **Arrow1** sprite.
 
-.. image:: media/1.12_graph1.png
+.. image:: img/1.12_graph1.png
 
 Here we will need 2 **Arrow1** sprites, which can be done with the duplicate button.
 
-.. image:: media/1.12_scratch_duplicate.png
+.. image:: img/1.12_scratch_duplicate.png
 
 Click on the **Arrow 2** sprite and change the direction of the arrow by selecting costume 2.
 
-.. image:: media/1.12_graph2.png
+.. image:: img/1.12_graph2.png
 
 
 Now let's make a variable.
 
-.. image:: media/1.12_graph3.png
+.. image:: img/1.12_graph3.png
 
 
 Name it as **num**.
 
-.. image:: media/1.12_graph4.png
+.. image:: img/1.12_graph4.png
 
 
 Follow the same method to create a list called **led**.
 
-.. image:: media/1.12_graph6.png
+.. image:: img/1.12_graph6.png
 
 
 After adding, you should see the **num** variable and the **led** list on the stage area. 
 
 Click **+** to add 10 list items and enter the pin numbers in order (17,18,27,22,23,24,25,2,3,8).
 
-.. image:: media/1.12_graph7.png
+.. image:: img/1.12_graph7.png
 
 Tips on Codes
 --------------
 
-.. image:: media/1.12_graph10.png
+.. image:: img/1.12_graph10.png
   :width: 300
 
 This is an event block that is triggered when the current sprite is clicked.
 
-.. image:: media/1.12_graph8.png
+.. image:: img/1.12_graph8.png
   :width: 300
 
 The initial value of the **num** variable determines which LED is lit first.
 
-.. image:: media/1.12_graph9.png
+.. image:: img/1.12_graph9.png
 
 
 Set the pin corresponding to **num** in the led list to low to light the LED, and then set the pin corresponding to **num-1** to high to turn off the previous LED.

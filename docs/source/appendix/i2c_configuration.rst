@@ -1,3 +1,5 @@
+.. _i2c_config:
+
 I2C Configuration
 -----------------------
 
@@ -15,17 +17,17 @@ not, please continue).
 
 **3 Interfacing options**
 
-.. image:: media/image282.png
+.. image:: img/image282.png
     :align: center
 
 **P5 I2C**
 
-.. image:: media/image283.png
+.. image:: img/image283.png
     :align: center
 
 **<Yes>, then <Ok> -> <Finish>**
 
-.. image:: media/image284.png
+.. image:: img/image284.png
     :align: center
 
 **Step 2:** Check whether the i2c modules are loaded and active.

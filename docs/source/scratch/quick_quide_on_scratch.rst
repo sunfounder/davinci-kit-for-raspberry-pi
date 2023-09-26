@@ -9,7 +9,7 @@ In addition, Scratch 3 needs at least 1GB of RAM to run, and we recommend a Rasp
 
 Install Scratch 3
 -------------------
-When installing Raspberry Pi OS (:ref:`Installing the OS`), you have to choose the version with desktop, either with desktop only or with desktop and recommended software.
+When installing Raspberry Pi OS (:ref:`install_os`), you have to choose the version with desktop, either with desktop only or with desktop and recommended software.
 
 If you install the version with the recommended software, you can see Scratch 3 in the system menu at **Programming**.
 
@@ -17,71 +17,71 @@ If you installed the desktop-only version, you will need to install Scratch 3 ma
 
 Open up the menu, click on **Preferences** -> **Recommended Software**.
 
-.. image:: media/quick_scratch1.png
+.. image:: img/quick_scratch1.png
 
 
 Find scratch 3 and check it, then click **Apply** and finally wait for the installation to finish.
 
-.. image:: media/quick_scratch2.png
+.. image:: img/quick_scratch2.png
 
 
 Once the installation is complete, you should see it on the **Programming** in the system menu.
 
-.. image:: media/quick_scratch3.png
+.. image:: img/quick_scratch3.png
 
 
 About Scratch 3's Interface
 ------------------------------
 
-Scratch 3 is designed to be fun, educational, and easy to learn. It has tools for creating interactive stories, games, art, simulations, and more, using block-based programming. Scratch also has its own paint editor and sound editor built-in.
+Scratch 3 is designed to be fun, educational, and easy to learn. It has tools for creating interactive stories, games, art, simulations, and more, using block-based programming. Scratch also has its own paint editor and sound editor built-in.
 
 The top of scratch 3 has some basic options, the first one from left to right is the language option, you can choose different languages for programming. The second one is the **File** option, you can create new files, read local files and save current files with this option. The third is the **Edit** option, which allows you to resume some deletion operations and enable the acceleration mode (in which the sprite movement becomes particularly fast). The fourth is the **Tutorials** option, which allows you to view tutorials for some projects. The fifth is the file naming option, where you can rename the project.
 
 
-.. image:: media/quick_scratch13.png
+.. image:: img/quick_scratch13.png
 
 **Code**
 
 It has three main sections: a stage area, block palette, and coding area. Programming by clicking and dragging the block on the block palette to the coding area, and finally your programming results will be displayed on the stage area.
 
-.. image:: media/quick_scratch4.png
+.. image:: img/quick_scratch4.png
 
 
 Here is the sprites area of Scratch 3. Above the area are the basic parameters of the sprites, you can add sprites that come with Scratch 3 or upload local sprites.
 
-.. image:: media/quick_scratch5.png
+.. image:: img/quick_scratch5.png
 
 
 Here is the Scratch 3 backdrop area, mainly to add a suitable backdrop for your stage, you can add the backdrop that comes with Scratch 3 or upload a local one.
 
-.. image:: media/quick_scratch6.png
+.. image:: img/quick_scratch6.png
 
 
 This is a **Add Extension** button.
 
-.. image:: media/quick_scratch7.png
+.. image:: img/quick_scratch7.png
 
 
 In Scratch 3, we can add all kinds of useful extensions, here we take **Video Sensing** as an example and click on it.
 
-.. image:: media/quick_scratch8.png
+.. image:: img/quick_scratch8.png
 
 
 You will see it on the block palette and you can use the functions associated with this extension. If you have a camera connected, you will see the camera screen on the stage area.
 
-.. image:: media/quick_scratch9.png
+.. image:: img/quick_scratch9.png
 
 **Costumes**
 
 Click on the **Costumes** option in the upper left corner to enter the costumes palette. Different costumes allow the sprites to have different static movements, and when these static movements are stitched together, they form a coherent dynamic movement.
 
-.. image:: media/quick_scratch10.png
+.. image:: img/quick_scratch10.png
 
 **Sounds**
 
 You may need to use some music clips to make your experiments more interesting. Click on the **Sounds** option in the upper left corner and you can edit the current sound or select/upload a new one.
 
-.. image:: media/quick_scratch11.png
+.. image:: img/quick_scratch11.png
 
 
 

@@ -1,6 +1,17 @@
-
 SunFounder Da Vinci Kit for Raspberry Pi
 ===========================================
+
+Danke, dass Sie sich für unser Vinci Kit entschieden haben.
+
+.. note::
+    Dieses Dokument ist in den folgenden Sprachen verfügbar.
+
+        * |link_german_tutorials|
+        * |link_jp_tutorials|
+        * |link_en_tutorials|
+    
+    Bitte klicken Sie auf die jeweiligen Links, um das Dokument in Ihrer bevorzugten Sprache aufzurufen.
+
 
 Über das Da Vinci Kit
 -------------------------

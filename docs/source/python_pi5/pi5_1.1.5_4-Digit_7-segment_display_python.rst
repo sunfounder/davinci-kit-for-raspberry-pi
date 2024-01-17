@@ -1,0 +1,267 @@
+.. _1.1.5_py_pi5:
+
+1.1.5 4-Digit 7-Segment Display
+====================================
+
+Introduction
+-----------------
+
+Next, follow me to try to control the 4-digit 7-segment display.
+
+Required Components
+------------------------------
+
+In this project, we need the following components. 
+
+.. image:: ../python_pi5/img/1.1.5_4_digit_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schematic Diagram
+--------------------------
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+GPIO27       Pin 13   27
+GPIO22       Pin 15   22
+SPIMOSI      Pin 19   10
+GPIO18       Pin 12   18
+GPIO23       Pin 16   23
+GPIO24       Pin 18   24
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.1.5_4_digit_schmatic.png
+
+
+Experimental Procedures
+-----------------------------------
+
+**Step 1**: Build the circuit.
+
+.. image:: ../python_pi5/img/1.1.5_4-Digit_circuit.png
+
+**Step 2:** Go to the folder of the code. 
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Step 3:** Run the executable file.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.5_4-Digit_zero.py
+
+After the code runs, the program takes a count, increasing by 1 per second, and the 4 digit display displays the count.
+
+**Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice
+   import time
+   import threading
+
+   # Define GPIO pins for the 74HC595 shift register
+   SDI = OutputDevice(24)   # Serial Data Input
+   RCLK = OutputDevice(23)  # Register Clock
+   SRCLK = OutputDevice(18) # Shift Register Clock
+
+   # Define GPIO pins for digit selection on the 7-segment display
+   placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+   # Define segment codes for numbers 0-9 for the 7-segment display
+   number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+   counter = 0  # Initialize counter for display
+   timer1 = 0   # Initialize timer for counter increment
+
+   def clearDisplay():
+       """ Clear the 7-segment display. """
+       for _ in range(8):
+           SDI.on()
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def hc595_shift(data):
+       """ Shift a byte of data to the 74HC595 shift register. """
+       for i in range(8):
+           SDI.value = 0x80 & (data << i)  # Set SDI high/low based on data bit
+           SRCLK.on()  # Pulse the Shift Register Clock
+           SRCLK.off()
+       RCLK.on()  # Latch data on the output by pulsing Register Clock
+       RCLK.off()
+
+   def pickDigit(digit):
+       """ Select a digit for display on the 7-segment display. """
+       for pin in placePin:
+           pin.off()  # Turn off all digit selection pins
+       placePin[digit].on()  # Turn on the selected digit
+
+   def timer():
+       """ Timer function to increment the counter every second. """
+       global counter, timer1
+       timer1 = threading.Timer(1.0, timer)  # Reset timer for next increment
+       timer1.start()
+       counter += 1  # Increment counter
+       print("%d" % counter)  # Print current counter value
+
+   def setup():
+       """ Setup initial state and start the timer. """
+       global timer1
+       timer1 = threading.Timer(1.0, timer)  # Initialize and start the timer
+       timer1.start()
+
+   def loop():
+       """ Main loop to update the 7-segment display with counter value. """
+       global counter
+       while True:
+           for i in range(4):  # Loop through each digit
+               clearDisplay()  # Clear display before setting new digit
+               pickDigit(i)    # Select digit for display
+
+               # Choose the digit of counter to display
+               digit = (counter // (10 ** i)) % 10
+
+               hc595_shift(number[digit])  # Shift digit value to 74HC595
+               time.sleep(0.001)  # Short delay for display stability
+
+   def destroy():
+       """ Cleanup GPIO resources and stop timer on exit. """
+       global timer1
+       timer1.cancel()  # Stop the timer
+       for device in [SDI, RCLK, SRCLK] + placePin:
+           device.close()  # Close GPIO devices
+
+   try:
+       setup()  # Initialize the setup
+       while True:
+           loop()  # Start the main loop
+           
+   except KeyboardInterrupt:
+       # Handle script interruption (e.g., Ctrl+C)
+       destroy()  # Cleanup resources on exit
+
+
+**Code Explanation**
+
+#. These four pins control the common anode pins of the four-digit 7-segment displays.
+
+   .. code-block:: python
+
+       # Define GPIO pins for digit selection on the 7-segment display
+       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+#. A segment code array from 0 to 9 in hexadecimal (common anode).
+
+   .. code-block:: python
+
+       # Define segment codes for numbers 0-9 for the 7-segment display
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+#. Initializes a timer that triggers the `timer` function every second. This sets up the recurring counter increment.
+
+   .. code-block:: python
+
+       def setup():
+           """ Setup initial state and start the timer. """
+           global timer1
+           timer1 = threading.Timer(1.0, timer)  # Initialize and start the timer
+           timer1.start()
+
+#. After Timer reaches 1.0s, the Timer function is called; add 1 to counter, and the Timer is used again to execute itself repeatedly every second.
+
+   .. code-block:: python
+
+       def timer():
+           """ Timer function to increment the counter every second. """
+           global counter, timer1
+           timer1 = threading.Timer(1.0, timer)  # Reset timer for next increment
+           timer1.start()
+           counter += 1  # Increment counter
+           print("%d" % counter)  # Print current counter value
+
+#. Shifts a byte of data into the 74HC595 shift register, controlling the display segments.
+
+   .. code-block:: python
+
+       def hc595_shift(data):
+           """ Shift a byte of data to the 74HC595 shift register. """
+           for i in range(8):
+               SDI.value = 0x80 & (data << i)  # Set SDI high/low based on data bit
+               SRCLK.on()  # Pulse the Shift Register Clock
+               SRCLK.off()
+           RCLK.on()  # Latch data on the output by pulsing Register Clock
+           RCLK.off()
+
+#. Continuously updates the display with the current counter value, showing each digit sequentially.
+
+   .. code-block:: python
+
+       def loop():
+           """ Main loop to update the 7-segment display with counter value. """
+           global counter
+           while True:
+               for i in range(4):  # Loop through each digit
+                   clearDisplay()  # Clear display before setting new digit
+                   pickDigit(i)    # Select digit for display
+                   digit = (counter // (10 ** i)) % 10
+                   hc595_shift(number[digit])  # Shift digit value to 74HC595
+                   time.sleep(0.001)  # Short delay for display stability
+
+
+#. Clears the 7-segment display by setting all segments off before displaying the next digit.
+
+   .. code-block:: python
+
+       def clearDisplay():
+           """ Clear the 7-segment display. """
+           for _ in range(8):
+               SDI.on()
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+
+#. Selects which digit of the 7-segment display to activate. Each digit is controlled by a separate GPIO pin.
+
+   .. code-block:: python
+
+       def pickDigit(digit):
+           """ Select a digit for display on the 7-segment display. """
+           for pin in placePin:
+               pin.off()  # Turn off all digit selection pins
+           placePin[digit].on()  # Turn on the selected digit
+
+
+
+#. Properly releases the GPIO resources and stops the timer when the program is interrupted.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Handle script interruption (e.g., Ctrl+C)
+           destroy()  # Cleanup resources on exit

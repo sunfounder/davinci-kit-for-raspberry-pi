@@ -1,0 +1,126 @@
+.. _2.2.8_py_pi5:
+
+2.2.2 Ultrasonic Sensor Module
+==============================
+
+Introduction
+--------------
+
+The ultrasonic sensor uses ultrasonic to accurately detect objects and
+measure distances. It sends out ultrasonic waves and converts them into
+electronic signals.
+
+Required Components
+------------------------------
+
+In this project, we need the following components. 
+
+.. image:: ../python_pi5/img/2.2.8_ultrasonic_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schematic Diagram
+-----------------
+
+.. image:: ../python_pi5/img/2.2.8_ultrasonic_schematic.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../python_pi5/img/2.2.8_ultrasonic_circuit.png
+
+**Step 2:** Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Step 3:** Run the executable file.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.8_Ultrasonic_zero.py
+
+With the code run, the ultrasonic sensor module detects the distance
+between the obstacle ahead and the module itself, then the distance
+value will be printed on the screen.
+
+**Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import DistanceSensor
+   from time import sleep
+
+   # Initialize the DistanceSensor using GPIO Zero library
+   # Trigger pin is connected to GPIO 23, Echo pin to GPIO 24
+   sensor = DistanceSensor(echo=24, trigger=23)
+
+   try:
+       # Main loop to continuously measure and report distance
+       while True:
+           dis = sensor.distance * 100  # Measure distance and convert from meters to centimeters
+           print('Distance: {:.2f} cm'.format(dis))  # Print the distance with two decimal precision
+           sleep(0.3)  # Wait for 0.3 seconds before the next measurement
+
+   except KeyboardInterrupt:
+       # Handle KeyboardInterrupt (Ctrl+C) to gracefully exit the loop
+       pass
+
+
+**Code Explanation**
+
+#. Imports the ``DistanceSensor`` class from the ``gpiozero`` library for distance measurement, and the ``sleep`` function from the ``time`` module for delays.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import DistanceSensor
+       from time import sleep
+
+#. Initializes the ultrasonic distance sensor with the Echo pin connected to GPIO 24 and the Trigger pin to GPIO 23.
+
+   .. code-block:: python
+
+       # Initialize the DistanceSensor using GPIO Zero library
+       # Trigger pin is connected to GPIO 23, Echo pin to GPIO 24
+       sensor = DistanceSensor(echo=24, trigger=23)
+
+#. The main loop continuously measures the distance, converts it from meters to centimeters, and prints it with two decimal precision. Then wait 0.3 seconds and re-measure the distance. Catches a KeyboardInterrupt (like Ctrl+C) to allow for a graceful exit from the script.
+
+   .. code-block:: python
+
+       try:
+           # Main loop to continuously measure and report distance
+           while True:
+               dis = sensor.distance * 100  # Measure distance and convert from meters to centimeters
+               print('Distance: {:.2f} cm'.format(dis))  # Print the distance with two decimal precision
+               sleep(0.3)  # Wait for 0.3 seconds before the next measurement
+
+       except KeyboardInterrupt:
+           # Handle KeyboardInterrupt (Ctrl+C) to gracefully exit the loop
+           pass
+

@@ -4,7 +4,7 @@ from time import sleep
 
 # Define a list of colors for the RGB LED in RGB format (Red, Green, Blue).
 # Each color component ranges from 0 (off) to 1 (full intensity).
-COLORS = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
+COLORS = [(1, 0, 0), (0, 1, 0), (0.2, 0.1, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
 
 # Initialize an RGB LED. Connect the red component to GPIO 17, green to GPIO 18, and blue to GPIO 27.
 rgb_led = RGBLED(red=17, green=18, blue=27)

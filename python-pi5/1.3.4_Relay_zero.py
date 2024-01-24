@@ -3,7 +3,7 @@ from gpiozero import OutputDevice  # Import the class for controlling GPIO pins
 from time import sleep  # Import the sleep function for delay
 
 # Initialize the relay connected to GPIO pin 17, starting in the 'off' state
-relay = OutputDevice(17, initial_value=True)
+relay = OutputDevice(17)
 
 try:
     # Loop to continuously toggle the relay's state every second

@@ -8,6 +8,10 @@ Play with Python (for Pi 5)
     pi5_output_python
     pi5_input_python
 
+.. toctree::
+    :maxdepth: 2
+
+    pi5_extension_python
 
 
 

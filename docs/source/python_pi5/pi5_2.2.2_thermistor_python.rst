@@ -1,0 +1,208 @@
+.. _2.2.2_py_pi5:
+
+2.2.2 Thermistor
+================
+
+Introduction
+------------
+
+Just like photoresistor can sense light, thermistor is a temperature
+sensitive electronic device that can be used for realizing functions of
+temperature control, such as making a heat alarm.
+
+Required Components
+------------------------------
+
+In this project, we need the following components. 
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_list.png
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`thermistor`
+..         - |link_thermistor_buy|
+..     *   - :ref:`adc0834`
+..         - \-
+
+Schematic Diagram
+-----------------
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_schematic_2.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_circuit.png
+
+**Step 2:** Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/python-pi5
+
+**Step 3:** Run the executable file
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.2.2_Thermistor_zero.py
+
+With the code run, the thermistor detects ambient temperature which will
+be printed on the screen once it finishes the program calculation.
+
+**Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   # -*- coding: utf-8 -*-
+
+   import ADC0834
+   import time
+   import math
+
+   # Initialize the ADC0834 module
+   ADC0834.setup()
+
+   # Run the process in a try-except block
+   try:
+       while True:
+           # Read the analog value from the sensor
+           analogVal = ADC0834.getResult()
+
+           # Convert the analog value to a voltage
+           Vr = 5 * float(analogVal) / 255
+
+           # Calculate the resistance of the thermistor
+           Rt = 10000 * Vr / (5 - Vr)
+
+           # Calculate the temperature in Kelvin
+           temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+
+           # Convert Kelvin to Celsius
+           Cel = temp - 273.15
+
+           # Convert Celsius to Fahrenheit
+           Fah = Cel * 1.8 + 32
+
+           # Print the temperature in both Celsius and Fahrenheit
+           print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
+
+           # Wait for 0.2 seconds before the next read
+           time.sleep(0.2)
+
+   # Handle KeyboardInterrupt for graceful termination
+   except KeyboardInterrupt:
+       # Clean up ADC0834 resources
+       ADC0834.destroy()
+
+
+**Code Explanation**
+
+#. This section imports the ADC0834 library for analog-to-digital conversion, the time library for implementing delays, and the math library for conducting mathematical operations.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       # -*- coding: utf-8 -*-
+
+       import ADC0834
+       import time
+       import math
+
+#. Initializes the ADC0834 module to enable reading of analog values.
+
+   .. code-block:: python
+
+       # Initialize the ADC0834 module
+       ADC0834.setup()
+
+#. Implements an infinite loop for continuous data reading. The loop reads the analog value from a thermistor, converts this value to voltage, calculates the thermistor's resistance, and then translates this resistance into temperature measurements in Kelvin, Celsius, and Fahrenheit. It also outputs the temperature readings in Celsius and Fahrenheit, pausing for 0.2 seconds between each reading.
+
+   .. code-block:: python
+
+       # Run the process in a try-except block
+       try:
+           while True:
+               # Read the analog value from the sensor
+               analogVal = ADC0834.getResult()
+
+               # Convert the analog value to a voltage
+               Vr = 5 * float(analogVal) / 255
+
+               # Calculate the resistance of the thermistor
+               Rt = 10000 * Vr / (5 - Vr)
+
+               # Calculate the temperature in Kelvin
+               temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+
+               # Convert Kelvin to Celsius
+               Cel = temp - 273.15
+
+               # Convert Celsius to Fahrenheit
+               Fah = Cel * 1.8 + 32
+
+               # Print the temperature in both Celsius and Fahrenheit
+               print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
+
+               # Wait for 0.2 seconds before the next read
+               time.sleep(0.2)
+
+#. Catches a KeyboardInterrupt exception to gracefully terminate the program and includes clean-up instructions for the ADC0834 resources upon termination.
+
+   .. code-block:: python
+
+       # Handle KeyboardInterrupt for graceful termination
+       except KeyboardInterrupt:
+           # Clean up ADC0834 resources
+           ADC0834.destroy()

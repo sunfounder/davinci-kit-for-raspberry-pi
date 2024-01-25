@@ -1,0 +1,369 @@
+.. _py_pi5_10s:
+
+3.1.13 GAME - 10 Second
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Introduction
+-------------------
+
+Next, follow me to make a game device to challenge your concentration.
+Tie the tilt switch to a stick to make a magic wand. Shake the wand, the
+4-digit segment display will start counting, shake again will let it
+stop counting. If you succeed in keeping the displayed count at
+**10.00**, then you win. You can play the game with your friends to see
+who is the time wizard.
+
+Required Components
+------------------------------
+
+In this project, we need the following components.
+
+.. image:: ../python_pi5/img/4.1.18_game_10_second_list.png
+    :width: 800
+    :align: center
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`4_digit`
+..         - \-
+..     *   - :ref:`74hc595`
+..         - |link_74hc595_buy|
+..     *   - :ref:`tilt_switch`
+..         - \-
+
+Schematic Diagram
+------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.18_game_10_second_schematic.png
+   :align: center
+
+Experimental Procedures
+---------------------------------
+
+**Step 1**: Build the circuit.
+
+.. image:: ../python_pi5/img/4.1.18_game_10_second_circuit.png
+
+**Step 2**: Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Step 3**: Run the executable file.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.13_GAME_10Second_zero.py
+
+Shake the wand, the 4-digit segment display will start counting, shake
+again will let it stop counting. If you succeed in keeping the displayed
+count at **10.00**, then you win. Shake it one more time to start the
+next round of the game.
+
+**Code**
+
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    from gpiozero import OutputDevice, Button
+    import time
+    import threading
+
+    # Initialize the button connected to GPIO 26
+    sensorPin = Button(26)
+
+    # Define GPIO pins connected to the 74HC595 shift register
+    SDI = OutputDevice(24)   # Serial Data Input
+    RCLK = OutputDevice(23)  # Register Clock
+    SRCLK = OutputDevice(18) # Shift Register Clock
+
+    # Define GPIO pins for digit selection on the 7-segment display
+    placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+    # Define segment codes for numbers 0 to 9 on the 7-segment display
+    number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+    # Counter and timer variables
+    counter = 0
+    timer1 = None
+    gameState = 0
+
+    def clearDisplay():
+        """ Clear all segments on the 7-segment display. """
+        for _ in range(8):
+            SDI.on()
+            SRCLK.on()
+            SRCLK.off()
+        RCLK.on()
+        RCLK.off()
+
+    def hc595_shift(data):
+        """ Shift data to the 74HC595 shift register to display a digit. """
+        for i in range(8):
+            SDI.value = 0x80 & (data << i)
+            SRCLK.on()
+            SRCLK.off()
+        RCLK.on()
+        RCLK.off()
+
+    def pickDigit(digit):
+        """ Select which digit to display on the 7-segment display. """
+        for pin in placePin:
+            pin.off()
+        placePin[digit].on()
+
+    def display():
+        """ Display the current counter value on the 7-segment display. """
+        global counter
+        clearDisplay()
+        pickDigit(0)
+        hc595_shift(number[counter % 10])
+
+        clearDisplay()
+        pickDigit(1)
+        hc595_shift(number[counter % 100 // 10])
+
+        clearDisplay()
+        pickDigit(2)
+        hc595_shift(number[counter % 1000 // 100] - 0x80)
+
+        clearDisplay()
+        pickDigit(3)
+        hc595_shift(number[counter % 10000 // 1000])
+
+    def stateChange():
+        """ Handle state changes for the counter based on button presses. """
+        global gameState, counter, timer1
+        if gameState == 0:
+            counter = 0
+            time.sleep(1)
+            timer()
+        elif gameState == 1 and timer1 is not None:
+            timer1.cancel()
+            time.sleep(1)
+        gameState = (gameState + 1) % 2
+
+    def loop():
+        """ Main loop to check for button presses and update the display. """
+        global counter
+        currentState = 0
+        lastState = 0
+        while True:
+            display()
+            currentState = sensorPin.value
+            if (currentState == 0) and (lastState == 1):
+                stateChange()
+            lastState = currentState
+
+    def timer():
+        """ Timer function that increments the counter every 0.01 second. """
+        global counter, timer1
+        timer1 = threading.Timer(0.01, timer)
+        timer1.start()
+        counter += 1
+
+    try:
+        loop()
+    except KeyboardInterrupt:
+        if timer1:
+            timer1.cancel()
+
+
+**Code Explanation**
+
+#. The script begins by importing necessary modules. The ``gpiozero`` library is used for interfacing with GPIO devices like buttons, and ``time`` and ``threading`` modules may be used for handling timing-related tasks or concurrent operations.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       from gpiozero import OutputDevice, Button
+       import time
+       import threading
+
+#. Initializes a ``Button`` object from the GPIO Zero library, connecting it to GPIO pin 26. This setup allows for the detection of button presses.
+
+   .. code-block:: python
+
+       # Initialize the button connected to GPIO 26
+       sensorPin = Button(26)
+
+#. Initializes GPIO pins connected to the shift register's Serial Data Input (SDI), Register Clock Input (RCLK), and Shift Register Clock Input (SRCLK).
+
+   .. code-block:: python
+
+       # Define GPIO pins connected to the 74HC595 shift register
+       SDI = OutputDevice(24)   # Serial Data Input
+       RCLK = OutputDevice(23)  # Register Clock
+       SRCLK = OutputDevice(18) # Shift Register Clock
+
+#. Initializes the pins for each digit of the 7-segment display and defines the binary codes for displaying numbers 0-9.
+
+   .. code-block:: python
+
+       # Define GPIO pins for digit selection on the 7-segment display
+       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+       # Define segment codes for numbers 0 to 9 on the 7-segment display
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+#. Functions to control the 7-segment display. ``clearDisplay`` turns off all segments, ``hc595_shift`` shifts data into the shift register, and ``pickDigit`` activates a specific digit on the display.
+
+   .. code-block:: python
+
+       def clearDisplay():
+           """ Clear all segments on the 7-segment display. """
+           for _ in range(8):
+               SDI.on()
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+       def hc595_shift(data):
+           """ Shift data to the 74HC595 shift register to display a digit. """
+           for i in range(8):
+               SDI.value = 0x80 & (data << i)
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+       def pickDigit(digit):
+           """ Select which digit to display on the 7-segment display. """
+           for pin in placePin:
+               pin.off()
+           placePin[digit].on()
+
+#. Function to display the current value of the counter on the 7-segment display.
+
+   .. code-block:: python
+
+       def display():
+           """ Display the current counter value on the 7-segment display. """
+           global counter
+           clearDisplay()
+           pickDigit(0)
+           hc595_shift(number[counter % 10])
+
+           clearDisplay()
+           pickDigit(1)
+           hc595_shift(number[counter % 100 // 10])
+
+           clearDisplay()
+           pickDigit(2)
+           hc595_shift(number[counter % 1000 // 100] - 0x80)
+
+           clearDisplay()
+           pickDigit(3)
+           hc595_shift(number[counter % 10000 // 1000])
+
+#. Function to handle state changes (start/stop) of the counter based on button presses.
+
+   .. code-block:: python
+
+       def stateChange():
+           """ Handle state changes for the counter based on button presses. """
+           global gameState, counter, timer1
+           if gameState == 0:
+               counter = 0
+               time.sleep(1)
+               timer()
+           elif gameState == 1 and timer1 is not None:
+               timer1.cancel()
+               time.sleep(1)
+           gameState = (gameState + 1) % 2
+
+#. Main loop that continuously checks the button state and updates the display. It calls ``stateChange`` when the button state changes.
+
+   .. code-block:: python
+
+       def loop():
+           """ Main loop to check for button presses and update the display. """
+           global counter
+           currentState = 0
+           lastState = 0
+           while True:
+               display()
+               currentState = sensorPin.value
+               if (currentState == 0) and (lastState == 1):
+                   stateChange()
+               lastState = currentState
+
+#. Timer function that increments the counter at a regular interval (every 0.01 second).
+
+   .. code-block:: python
+
+       def timer():
+           """ Timer function that increments the counter every 0.01 second. """
+           global counter, timer1
+           timer1 = threading.Timer(0.01, timer)
+           timer1.start()
+           counter += 1
+
+#. Executes the main loop and allows for a clean exit from the program using a keyboard interrupt (Ctrl+C).
+
+   .. code-block:: python
+
+       try:
+           loop()
+       except KeyboardInterrupt:
+           if timer1:
+               timer1.cancel()

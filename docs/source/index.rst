@@ -58,7 +58,6 @@ This document is available in other languages as well. To switch the display lan
     1_output
     2_input
     3_extension
-    iot/4_iot_projects
     python_pi5/play_with_python_pi5
     nodejs/play_with_nodejs
     processing/play_with_processing

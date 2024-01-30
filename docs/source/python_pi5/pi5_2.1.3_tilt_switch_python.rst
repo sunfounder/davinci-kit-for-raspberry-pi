@@ -1,0 +1,157 @@
+.. _2.1.3_py_pi5:
+
+2.1.3 傾斜スイッチ
+==================================
+
+はじめに
+------------
+
+これは内部に金属のボールが入ったボール傾斜スイッチです。小さな角度の傾斜を検出するために使用されます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/2.1.3_tilt_switch_list.png
+
+.. raw:: html
+
+   <br/>
+
+回路図
+-----------------
+
+.. image:: ../python_pi5/img/2.1.3_tilt_switch_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.1.3_tilt_switch_schematic_2.png
+
+
+実験手順
+-----------------------
+
+**ステップ1**: 回路を組み立てます。
+
+.. image:: ../python_pi5/img/2.1.3_tilt_switch_circuit.png
+
+**ステップ2**: ディレクトリを変更します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ3**: 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.1.3_Tilt_zero.py
+
+傾けて垂直に置くと、緑のLEDが点灯します。傾けると、画面に「傾けました！」と表示され、赤いLEDが点灯します。再び垂直に置くと、緑のLEDが点灯します。
+
+**コード**
+
+.. note::
+
+    以下のコードを **変更/リセット/コピー/実行/停止** できます。ただし、それに先立ち、``davinci-kit-for-raspberry-pi/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、効果を直接確認するために実行できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button
+
+   # GPIO Zeroを使用して傾斜センサーとLEDを初期化します
+   TiltPin = Button(17, pull_up=False)  # プルアップ抵抗が無効化されたGPIOピン17に接続された傾斜センサーを初期化
+   green_led = LED(27)  # GPIOピン27に接続された緑色のLEDを初期化
+   red_led = LED(22)   # GPIOピン22に接続された赤色のLEDを初期化
+
+   def detect():
+       """
+       傾斜センサーの状態を検出し、LEDを制御します。
+       傾けた場合、赤いLEDを点灯し、緑のLEDを消灯します。
+       傾けていない場合、その逆を行います。
+       """
+       if TiltPin.is_pressed:  # センサーが傾いているかどうかを確認
+           print('    *************')
+           print('    *   傾けました！   *')
+           print('    *************')
+           red_led.on()   # 赤いLEDを点灯
+           green_led.off()  # 緑のLEDを消灯
+       else:  # センサーが傾いていない場合
+           red_led.off()  # 赤いLEDを消灯
+           green_led.on()  # 緑のLEDを点灯
+
+   try:
+       while True:
+           # 傾斜センサーの状態を継続的に確認し、LEDを更新します
+           TiltPin.when_pressed = detect
+           TiltPin.when_released = detect
+
+   except KeyboardInterrupt:
+       # キーボード割り込み（Ctrl+C）を処理してループをきれいに終了します
+       pass
+
+
+**コードの説明**
+
+#. この行はスクリプトをPython 3で実行するように設定し、 ``gpiozero`` からGPIOデバイスを制御するために ``LED`` と ``Button`` をインポートします。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button
+
+#. プルアップ抵抗が無効化されたGPIOピン17に接続された傾斜センサーと、GPIOピン27および22に接続された2つのLEDを初期化します。
+
+   .. code-block:: python
+
+       # GPIO Zeroを使用して傾斜センサーとLEDを初期化します
+       TiltPin = Button(17, pull_up=False)  # プルアップ抵抗が無効化されたGPIOピン17に接続された傾斜センサーを初期化
+       green_led = LED(27)  # GPIOピン27に接続された緑色のLEDを初期化
+       red_led = LED(22)   # GPIOピン22に接続された赤色のLEDを初期化
+
+#. ``detect`` 関数を定義し、傾斜センサーの状態をチェックします。傾けた場合、赤いLEDを点灯し、緑のLEDを消灯します。傾けていない場合、その逆を行います。
+
+   .. code-block:: python
+
+       def detect():
+           """
+           傾斜センサーの状態を検出し、LEDを制御します。
+           傾けた場合、赤いLEDを点灯し、緑のLEDを消灯します。
+           傾けていない場合、その逆を行います。
+           """
+           if TiltPin.is_pressed:  # センサーが傾いているかどうかを確認
+               print('    *************')
+               print('    *   傾けました！   *')
+               print('    *************')
+               red_led.on()   # 赤いLEDを点灯
+               green_led.off()  # 緑のLEDを消灯
+           else:  # センサーが傾いていない場合
+               red_led.off()  # 赤いLEDを消灯
+               green_led.on()  # 緑のLEDを点灯
+
+#. メインループは傾斜センサーの ``when_pressed`` と ``when_released`` イベントに ``detect`` 関数を割り当てます。 ``try-except`` ブロックは優雅な終了のためにキーボード割り込みを処理します。
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # 傾斜センサーの状態を継続的に確認し、LEDを更新します
+               TiltPin.when_pressed = detect
+               TiltPin.when_released = detect
+
+       except KeyboardInterrupt:
+           # キーボード割り込み（Ctrl+C）を処理してループをきれいに終了します
+           pass

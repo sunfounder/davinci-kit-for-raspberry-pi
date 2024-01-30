@@ -1,0 +1,327 @@
+.. _py_pi5_10s:
+
+3.1.13 GAME - 10秒間
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+はじめに
+-------------------
+
+次に、集中力を試すゲームデバイスを作ってみましょう。
+傾きスイッチを棒に結び付けて、魔法の杖を作ります。杖を振ると、
+4桁のセグメント表示がカウントを開始し、もう一度振るとカウントが停止します。表示されたカウントを
+**10.00** で停止させることができれば、あなたの勝利です。友達とこのゲームをして、
+誰が時間の魔法使いかを競い合うことができます。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトには以下のコンポーネントが必要です。
+
+.. image:: ../python_pi5/img/4.1.18_game_10_second_list.png
+    :width: 800
+    :align: center
+
+回路図
+------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.18_game_10_second_schematic.png
+   :align: center
+
+実験手順
+---------------------------------
+
+**ステップ1**: 回路を組み立てる。
+
+.. image:: ../python_pi5/img/4.1.18_game_10_second_circuit.png
+
+**ステップ2**: コードのフォルダに移動する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ3**: 実行可能ファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.13_GAME_10Second_zero.py
+
+杖を振ると、4桁のセグメント表示がカウントを開始し、もう一度振るとカウントが停止します。表示されたカウントを **10.00** で停止させることができれば、あなたの勝利です。もう一度振ると、ゲームの次のラウンドが始まります。
+
+**コード**
+
+.. note::
+    下記のコードは **変更/リセット/コピー/実行/停止** が可能です。しかし、それを行う前に、 ``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を確認することができます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    from gpiozero import OutputDevice, Button
+    import time
+    import threading
+
+    # GPIO 26に接続されたボタンを初期化
+    sensorPin = Button(26)
+
+    # 74HC595シフトレジスタに接続されたGPIOピンを定義
+    SDI = OutputDevice(24)   # シリアルデータ入力
+    RCLK = OutputDevice(23)  # レジスタクロック
+    SRCLK = OutputDevice(18) # シフトレジスタクロック
+
+    # 7セグメント表示の各桁の選択用のGPIOピンを定義
+    placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+    # 7セグメント表示で0〜9の数字を表示するためのセグメントコードを定義
+    number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+    # カウンターとタイマー変数
+    counter = 0
+    timer1 = None
+    gameState = 0
+
+    def clearDisplay():
+        """ 7セグメント表示の全セグメントを消去します。 """
+        for _ in range(8):
+            SDI.on()
+            SRCLK.on()
+            SRCLK.off()
+        RCLK.on()
+        RCLK.off()
+
+    def hc595_shift(data):
+        """ デジットを表示するために74HC595シフトレジスタにデータをシフトします。 """
+        for i in range(8):
+            SDI.value = 0x80 & (data << i)
+            SRCLK.on()
+            SRCLK.off()
+        RCLK.on()
+        RCLK.off()
+
+    def pickDigit(digit):
+        """ 7セグメント表示でどの桁を表示するかを選択します。 """
+        for pin in placePin:
+            pin.off()
+        placePin[digit].on()
+
+    def display():
+        """ 現在のカウンター値を7セグメント表示に表示します。 """
+        global counter
+        clearDisplay()
+        pickDigit(0)
+        hc595_shift(number[counter % 10])
+
+        clearDisplay()
+        pickDigit(1)
+        hc595_shift(number[counter % 100 // 10])
+
+        clearDisplay()
+        pickDigit(2)
+        hc595_shift(number[counter % 1000 // 100] - 0x80)
+
+        clearDisplay()
+        pickDigit(3)
+        hc595_shift(number[counter % 10000 // 1000])
+
+    def stateChange():
+        """ ボタン押下に基づいてカウンターの状態を変更します。 """
+        global gameState, counter, timer1
+        if gameState == 0:
+            counter = 0
+            time.sleep(1)
+            timer()
+        elif gameState == 1 and timer1 is not None:
+            timer1.cancel()
+            time.sleep(1)
+        gameState = (gameState + 1) % 2
+
+    def loop():
+        """ ボタンの状態をチェックし、表示を更新するメインループです。 """
+        global counter
+        currentState = 0
+        lastState = 0
+        while True:
+            display()
+            currentState = sensorPin.value
+            if (currentState == 0) and (lastState == 1):
+                stateChange()
+            lastState = currentState
+
+    def timer():
+        """ 0.01秒ごとにカウンターを増加させるタイマー関数です。 """
+        global counter, timer1
+        timer1 = threading.Timer(0.01, timer)
+        timer1.start()
+        counter += 1
+
+    try:
+        loop()
+    except KeyboardInterrupt:
+        if timer1:
+            timer1.cancel()
+
+**コードの説明**
+
+#. 必要なモジュールをインポートしてスクリプトを開始します。 ``gpiozero`` ライブラリはボタンなどのGPIOデバイスとのインターフェースに使用され、 ``time`` および ``threading`` モジュールはタイミング関連のタスクや並行操作を扱うために使用されるかもしれません。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       from gpiozero import OutputDevice, Button
+       import time
+       import threading
+
+#. GPIOピン26に接続された``Button``オブジェクトを初期化します。このセットアップにより、ボタン押下を検出することができます。
+
+   .. code-block:: python
+
+       # GPIO 26に接続されたボタンを初期化
+       sensorPin = Button(26)
+
+#. シフトレジスタのシリアルデータ入力（SDI）、レジスタクロック入力（RCLK）、シフトレジスタクロック入力（SRCLK）に接続されたGPIOピンを初期化します。
+
+   .. code-block:: python
+
+       # 74HC595シフトレジスタに接続されたGPIOピンを定義
+       SDI = OutputDevice(24)   # シリアルデータ入力
+       RCLK = OutputDevice(23)  # レジスタクロック
+       SRCLK = OutputDevice(18) # シフトレジスタクロック
+
+#. 7セグメント表示の各桁の選択用のピンを初期化し、0〜9の数字を表示するためのバイナリコードを定義します。
+
+   .. code-block:: python
+
+       # 7セグメント表示の各桁の選択用のGPIOピンを定義
+       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+       # 7セグメント表示で0〜9の数字を表示するためのセグメントコードを定義
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+#. 7セグメント表示を制御するための関数です。 ``clearDisplay`` はすべてのセグメントをオフにし、 ``hc595_shift`` はシフトレジスタにデータをシフトし、 ``pickDigit`` は表示上の特定の桁をアクティブにします。
+
+   .. code-block:: python
+
+       def clearDisplay():
+           """ 7セグメント表示の全セグメントを消去します。 """
+           for _ in range(8):
+               SDI.on()
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+       def hc595_shift(data):
+           """ デジットを表示するために74HC595シフトレジスタにデータをシフトします。 """
+           for i in range(8):
+               SDI.value = 0x80 & (data << i)
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+       def pickDigit(digit):
+           """ 7セグメント表示でどの桁を表示するかを選択します。 """
+           for pin in placePin:
+               pin.off()
+           placePin[digit].on()
+
+#. 現在のカウンター値を7セグメント表示に表示する関数です。
+
+   .. code-block:: python
+
+       def display():
+           """ 現在のカウンター値を7セグメント表示に表示します。 """
+           global counter
+           clearDisplay()
+           pickDigit(0)
+           hc595_shift(number[counter % 10])
+
+           clearDisplay()
+           pickDigit(1)
+           hc595_shift(number[counter % 100 // 10])
+
+           clearDisplay()
+           pickDigit(2)
+           hc595_shift(number[counter % 1000 // 100] - 0x80)
+
+           clearDisplay()
+           pickDigit(3)
+           hc595_shift(number[counter % 10000 // 1000])
+
+#. ボタン押下に基づいてカウンターの状態を変更する関数です。
+
+   .. code-block:: python
+
+       def stateChange():
+           """ ボタン押下に基づいてカウンターの状態を変更します。 """
+           global gameState, counter, timer1
+           if gameState == 0:
+               counter = 0
+               time.sleep(1)
+               timer()
+           elif gameState == 1 and timer1 is not None:
+               timer1.cancel()
+               time.sleep(1)
+           gameState = (gameState + 1) % 2
+
+#. ボタンの状態を継続的にチェックし、表示を更新するメインループです。ボタンの状態が変わると、 ``stateChange`` を呼び出します。
+
+   .. code-block:: python
+
+       def loop():
+           """ ボタンの状態をチェックし、表示を更新するメインループです。 """
+           global counter
+           currentState = 0
+           lastState = 0
+           while True:
+               display()
+               currentState = sensorPin.value
+               if (currentState == 0) and (lastState == 1):
+                   stateChange()
+               lastState = currentState
+
+#. 0.01秒ごとにカウンターを増加させるタイマー関数です。
+
+   .. code-block:: python
+
+       def timer():
+           """ 0.01秒ごとにカウンターを増加させるタイマー関数です。 """
+           global counter, timer1
+           timer1 = threading.Timer(0.01, timer)
+           timer1.start()
+           counter += 1
+
+#. メインループを実行し、キーボード割り込み（Ctrl+C）を使用してプログラムからクリーンに終了することができます。
+
+   .. code-block:: python
+
+       try:
+           loop()
+       except KeyboardInterrupt:
+           if timer1:
+               timer1.cancel()

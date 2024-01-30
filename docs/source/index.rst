@@ -58,6 +58,7 @@ Da Vinciキットについて
     1_output
     2_input
     3_extension
+    python_pi5/play_with_python_pi5
     processing/play_with_processing
     scratch/play_with_scratch
     appendix/appendix

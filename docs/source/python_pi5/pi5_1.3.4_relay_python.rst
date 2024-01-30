@@ -1,0 +1,129 @@
+1.3.4 リレー
+==============================
+
+はじめに
+------------
+
+このプロジェクトでは、リレーの使用方法を学びます。リレーは、自動制御システムで一般的に使用されるコンポーネントの1つです。電圧、電流、温度、圧力などが予め設定された値に達したり、超えたり、低下したりした場合、リレーは回路を接続または切断して、機器を制御および保護します。
+
+必要な部品
+------------------------------
+
+このプロジェクトでは、次の部品が必要です。
+
+.. image:: ../python_pi5/img/1.3.4_relay_list.png
+
+.. raw:: html
+
+   <br/>
+
+回路図
+-----------------
+
+.. image:: ../python_pi5/img/1.3.4_relay_schematic.png
+
+実験手順
+-----------------------
+
+**ステップ1：** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/1.3.4_relay_circuit.png
+
+**ステップ2：** コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ3：** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.4_Relay_zero.py
+
+コードが実行されている間、LEDが点灯します。さらに、通常閉じている接点が切断され、通常開いている接点が閉じることによるチクタク音が聞こえます。
+
+**コード**
+
+.. note::
+
+    以下のコードを変更、リセット、コピー、実行、停止することができます。ただし、それを行う前に、ソースコードのパスである ``davinci-kit-for-raspberry-pi/python-pi5`` に移動する必要があります。コードを変更した後、その効果を確認するために直接実行できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice  # GPIOピンを制御するためのクラスをインポート
+   from time import sleep  # 遅延用にsleep関数をインポート
+
+   # GPIOピン17に接続されたリレーを初期化します
+   relay = OutputDevice(17)
+
+   try:
+       # リレーの状態を1秒ごとに切り替え続けるループ
+       while True:
+           print('リレーをオープンにします...')  # リレーがアクティブ化されていることを通知
+           relay.on()  # リレーをオンにします（アクティブロー構成を想定）
+           sleep(1)   # リレーを1秒間オンの状態に保持
+
+           print('...リレーをクローズにします')  # リレーが非アクティブ化されていることを通知
+           relay.off()  # リレーをオフにします
+           sleep(1)   # リレーを1秒間オフの状態に保持
+
+   except KeyboardInterrupt:
+       # キーボード割り込み（Ctrl+Cなど）を処理してループを終了
+       relay.off()  # スクリプトを終了する前にリレーをオフにする
+       pass
+
+
+**コードの説明**
+
+1. このセクションでは、必要なライブラリをインポートしています。GPIOピンを制御するために ``gpiozero`` から ``OutputDevice`` を、時間制御のために ``time`` から ``sleep`` をインポートしています。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice  # GPIOピンを制御するためのクラスをインポート
+       from time import sleep  # 遅延用にsleep関数をインポート
+
+2. GPIOピン17に接続されたリレーを制御するための ``OutputDevice`` オブジェクトを初期化しています。
+
+   .. code-block:: python
+
+       # GPIOピン17に接続されたリレーを初期化します
+       relay = OutputDevice(17)
+
+3. ``try`` ブロック内で、無限ループ ``while True`` がリレーの状態を繰り返し切り替えます。リレーは、各状態の間に1秒の遅延があり、コンソールにプリントされたステートメントが表示されます。
+
+   .. code-block:: python
+
+       try:
+           # リレーの状態を1秒ごとに切り替え続けるループ
+           while True:
+               print('リレーをオープンにします...')  # リレーがアクティブ化されていることを通知
+               relay.on()  # リレーをオンにします（アクティブロー構成を想定）
+               sleep(1)   # リレーを1秒間オンの状態に保持
+
+               print('...リレーをクローズにします')  # リレーが非アクティブ化されていることを通知
+               relay.off()  # リレーをオフにします
+               sleep(1)   # リレーを1秒間オフの状態に保持
+
+4. KeyboardInterrupt（Ctrl+Cなど）をキャッチして、スクリプトを正常に終了する前にリレーをオフにします。
+
+   .. code-block:: python
+
+      except KeyboardInterrupt:
+        # キーボード割り込み（Ctrl+Cなど）を処理してループを終了
+        relay.off()  # スクリプトを終了する前にリレーをオフにする
+        pass

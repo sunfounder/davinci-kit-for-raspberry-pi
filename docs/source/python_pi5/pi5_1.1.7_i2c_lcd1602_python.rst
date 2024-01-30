@@ -1,0 +1,132 @@
+.. _1.1.7_py_pi5:
+
+1.1.7 I2C LCD1602
+======================
+
+はじめに
+------------------
+
+LCD1602は文字型液晶ディスプレイで、同時に32（16*2）文字を表示できます。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../python_pi5/img/1.1.7_i2c_lcd_list.png
+
+.. raw:: html
+
+   <br/>
+
+回路図
+---------------------
+
+
+============ ========
+T-Board Name physical
+SDA1         Pin 3
+SCL1         Pin 5
+============ ========
+
+.. image:: ../python_pi5/img/1.1.7_i2c_lcd_schematic.png
+
+
+実験手順
+-----------------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/1.1.7_i2c_lcd1602_circuit.png
+
+
+**ステップ2:** I2Cをセットアップします（ :ref:`i2c_config` を参照してください。I2Cを設定済みの場合は、このステップをスキップしてください。）
+
+**ステップ3:** ディレクトリを変更します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ4:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.7_Lcd1602_zero.py
+
+コードの実行後、LCDに「Greetings!、From SunFounder」と表示されます。
+
+.. note::
+
+    * 「FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'」というエラーが表示された場合、I2Cを有効にするには :ref:`i2c_config` を参照してください。
+    * 「ModuleNotFoundError: No module named 'smbus2'」エラーが表示された場合、 ``sudo pip3 install smbus2`` を実行してください。
+    * エラー「OSError: [Errno 121] Remote I/O error」が表示された場合、モジュールの配線が誤っているか、モジュールが壊れていることを意味します。
+    * コードと配線が正常であるが、LCDにコンテンツが表示されない場合、背面のポテンショメータを回してコントラストを上げることができます。
+
+
+
+**コード**
+
+.. note::
+
+    以下のコードは変更/リセット/コピー/実行/停止ができます。ただし、コードを変更する前に``davinci-kit-for-raspberry-pi/python-pi5``のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を確認できます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   import LCD1602  # LCD1602とのインターフェースを行うモジュールをインポート
+   import time     # タイミング関数のモジュールをインポート
+
+   def setup():
+       # I2Cアドレス0x27およびバックライトを有効にしてLCDを初期化
+       LCD1602.init(0x27, 1) 
+       # メッセージ 'Greetings!' を左上隅（行0、列0）に表示
+       LCD1602.write(0, 0, 'Greetings!') 
+       # メッセージ 'From SunFounder' を2行目（行1、列1）に表示
+       LCD1602.write(1, 1, 'From SunFounder') 
+       time.sleep(2)  # メッセージを2秒間表示
+
+   try:
+       setup()  # LCDの初期化およびメッセージの表示のためのセットアップ関数を実行します
+       
+   except KeyboardInterrupt:
+       # キーボードの割り込み（例：Ctrl+C）が発生した場合、LCDディスプレイをクリアします
+       LCD1602.clear()
+       pass  # それ以上のアクションは不要です
+
+**コードの説明**
+
+1. このファイルはI2C LCD1602を制御するためのオープンソースファイルです。これを使用すると、I2C LCD1602を簡単に使用できます。
+
+   .. code-block:: python
+
+       import LCD1602  # LCD1602とのインターフェースを行うモジュールをインポート
+
+2. この関数は指定されたデバイスシンボルを使用してI2Cシステムを初期化します。最初のパラメータはI2Cデバイスのアドレスで、i2cdetectコマンドを使用して検出できます（詳細は付録を参照）。I2C LCD1602のアドレスは通常0x27です。
+
+   .. code-block:: python
+
+       # I2Cアドレス0x27およびバックライトを有効にしてLCDを初期化
+       LCD1602.init(0x27, 1) 
+
+3. ``LCD1602.write`` はLCDにメッセージを表示するために使用されます。最初の2つのパラメータは行と列の位置で、3番目はメッセージです。これでLCDに "Greetings!! From SunFounder" と表示されるようになります。
+
+   .. code-block:: python
+
+       # メッセージ 'Greetings!' を左上隅（行0、列0）に表示
+       LCD1602.write(0, 0, 'Greetings!') 
+       # メッセージ 'From SunFounder' を2行目（行1、列1）に表示
+       LCD1602.write(1, 1, 'From SunFounder') 

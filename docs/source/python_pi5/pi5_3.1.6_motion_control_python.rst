@@ -1,0 +1,316 @@
+.. _3.1.6_py_pi5:
+
+3.1.6 モーションコントロール
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+はじめに
+-----------------
+
+このレッスンでは、シンプルなモーションセンシングおよびコントロールデバイスを作成します。センサーとしてMPU6050を使用し、制御デバイスとしてステッパーモータを使用します。MPU6050を手袋に取り付けることで、手首を回転させることでステッパーモータを制御できます。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトには、以下のコンポーネントが必要です。
+
+.. image:: ../python_pi5/img/3.1.6_motion_list.png
+    :width: 800
+    :align: center
+
+回路図
+--------------------------
+
+
+
+.. image:: ../python_pi5/img/3.1.6_motion_schematic.png
+   :align: center
+
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/3.1.6_motion_control_circuit.png
+
+**ステップ 2:** コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+
+**ステップ 3:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.6_MotionControl_zero.py
+
+コードが実行されると、 **mpu6050** の `Y軸` の傾斜角が **45** ℃ より大きい場合、ステッパーモータは反時計回りに回転し、 **-45** ℃ より小さい場合、ステッパーモータは時計回りに回転します。
+
+**コード**
+
+.. note::
+
+    以下のコードは、 **変更/リセット/コピー/実行/停止** ができます。ただし、それに先立ち、 ``davinci-kit-for-raspberry-pi/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、効果を確認するために直接実行できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice
+   import smbus
+   import math
+   import time
+
+   # MPU6050の電源管理レジスタを初期化
+   power_mgmt_1 = 0x6b
+   power_mgmt_2 = 0x6c
+
+   # MPU6050とのI2C通信の設定
+   bus = smbus.SMBus(1)  # SMBusの初期化
+   address = 0x68        # MPU6050のI2Cアドレス
+   bus.write_byte_data(address, power_mgmt_1, 0)  # MPU6050を起動
+
+   # ステッパーモータのピンをGPIOピン18, 23, 24, 25に初期化
+   motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
+
+   # モーターの回転速度パラメータを設定
+   rolePerMinute = 15
+   stepsPerRevolution = 2048
+   # 希望のRPMを達成するためのステップ間の遅延を計算
+   stepSpeed = (60 / rolePerMinute) / stepsPerRevolution
+
+   # 指定されたI2Cアドレスから1バイトを読み取る
+   def read_byte(adr):
+       return bus.read_byte_data(address, adr)
+
+   # 指定されたI2Cアドレスからワード（2バイト）を読み取る
+   def read_word(adr):
+       high = bus.read_byte_data(address, adr)
+       low = bus.read_byte_data(address, adr + 1)
+       val = (high << 8) + low
+       return val
+
+   # 2の補数形式でワードを読み取る
+   def read_word_2c(adr):
+       val = read_word(adr)
+       if val >= 0x8000:
+           return -((65535 - val) + 1)
+       else:
+           return val
+
+   # 2点間のユークリッド距離を計算
+   def dist(a, b):
+       return math.sqrt((a * a) + (b * b))
+
+   # Y軸回転を計算
+   def get_y_rotation(x, y, z):
+       radians = math.atan2(x, dist(y, z))
+       return -math.degrees(radians)
+
+   # X軸回転を計算
+   def get_x_rotation(x, y, z):
+       radians = math.atan2(y, dist(x, z))
+       return math.degrees(radians)
+
+   # MPU6050からの傾斜角を取得
+   def mpu6050():
+       accel_xout = read_word_2c(0x3b)
+       accel_yout = read_word_2c(0x3d)
+       accel_zout = read_word_2c(0x3f)
+       accel_xout_scaled = accel_xout / 16384.0
+       accel_yout_scaled = accel_yout / 16384.0
+       accel_zout_scaled = accel_zout / 16384.0
+       angle = get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
+       return angle
+
+   # ステッパーモータの回転を制御
+   def rotary(direction):
+       if direction == 'c':
+           # 時計回りの回転シーケンス
+           for j in range(4):
+               for i in range(4):
+                   if 0x99 >> j & (0x08 >> i):
+                       motorPin[i].on()
+                   else:
+                       motorPin[i].off()
+                   time.sleep(stepSpeed)
+       elif direction == 'a':
+           # 反時計回りの回転シーケンス
+           for j in range(4):
+               for i in range(4):
+                   if 0x99 << j & (0x08 >> i):
+                       motorPin[i].on()
+                   else:
+                       motorPin[i].off()
+                   time.sleep(stepSpeed)
+
+   # 傾斜角を連続的に読み取り、モーターを制御するためのメインループ
+   try:
+       while True:
+           angle = mpu6050()
+           if angle >= 45:
+               rotary('a')  # 正の傾斜の場合、反時計回りに回転
+           elif angle <= -45:
+               rotary('c')  # 負の傾斜の場合、時計回りに回転
+   except KeyboardInterrupt:
+       # キーボード割り込み時にすべてのモーターピンをオフにする
+       for pin in motorPin:
+           pin.off()
+
+
+**コードの説明**
+
+#. スクリプトは、必要なライブラリをインポートすることから始まります。GPIOピンを制御するための「gpiozero」、I2C通信用の「smbus」、数学的な操作に「math」、遅延を制御するための「time」をインポートします。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice
+       import smbus
+       import math
+       import time
+
+#. MPU6050センサーとのI2C通信をセットアップします。「power_mgmt_1」と「power_mgmt_2」はセンサーの電源を管理するためのレジスタです。「power_mgmt_1」に書き込むことで、センサーは「起動」状態になります。
+
+   .. code-block:: python
+
+       # MPU6050の電源管理レジスタを初期化
+       power_mgmt_1 = 0x6b
+       power_mgmt_2 = 0x6c
+
+       # MPU6050とのI2C通信のセットアップ
+       bus = smbus.SMBus(1)  # SMBusの初期化
+       address = 0x68        # MPU6050のI2Cアドレス
+       bus.write_byte_data(address, power_mgmt_1, 0)  # MPU6050を起動
+
+#. Raspberry Pi上のGPIOピンを初期化して、ステッパーモータを制御します。各ピンはモーターのコイルに関連付けられています。
+
+   .. code-block:: python
+
+       # ステッパーモータのピンをGPIOピン18, 23, 24, 25に初期化
+       motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
+
+#. モーターの回転数（RPM）と1回転あたりのステップ数を設定します。「stepSpeed」は、希望のRPMを達成するためのステップ間の遅延を計算し、スムーズなモーターの動作を確保します。
+
+   .. code-block:: python
+
+       # モーターの回転速度パラメータを設定
+       rolePerMinute = 15
+       stepsPerRevolution = 2048
+       # 希望のRPMを達成するためのステップ間の遅延を計算
+       stepSpeed = (60 / rolePerMinute) / stepsPerRevolution
+
+#. これらの関数はI2C通信に使用されます。「read_byte」は指定されたアドレスから1バイトを読み取り、「read_word」は2バイト（ワード）を読み取り、ビット演算（ ``<<`` および ``+`` ）を使用してそれらを単一の値に結合します。
+
+   .. code-block:: python
+
+       # 指定されたI2Cアドレスから1バイトを読み取る
+       def read_byte(adr):
+           return bus.read_byte_data(address, adr)
+
+       # 指定されたI2Cアドレスからワード（2バイト）を読み取る
+       def read_word(adr):
+           high = bus.read_byte_data(address, adr)
+           low = bus.read_byte_data(address, adr + 1)
+           val = (high << 8) + low
+           return val
+
+#. この関数は、読み取ったワードを2の補数形式に変換し、センサーデータから符号付きの値を解釈するために使用されます。この変換は、負のセンサー値を処理するために必要です。
+
+   .. code-block:: python
+
+       # 2の補数形式でワードを読み取る
+       def read_word_2c(adr):
+           val = read_word(adr)
+           if val >= 0x8000:
+               return -((65535 - val) + 1)
+           else:
+               return val
+
+#. 「dist」は2つのポイント間のユークリッド距離を計算し、回転計算に使用されます。「get_y_rotation」と「get_x_rotation」は「math」ライブラリの「atan2」関数を使用してY軸とX軸の回転角度を計算し、結果を度に変換します。
+
+   .. code-block:: python
+
+       # 2点間のユークリッド距離を計算
+       def dist(a, b):
+           return math.sqrt((a * a) + (b * b))
+
+       # Y軸回転を計算
+       def get_y_rotation(x, y, z):
+           radians = math.atan2(x, dist(y, z))
+           return -math.degrees(radians)
+
+       # X軸回転を計算
+       def get_x_rotation(x, y, z):
+           radians = math.atan2(y, dist(x, z))
+           return math.degrees(radians)
+
+#. この関数はMPU6050センサーから加速度計データを読み取り、読み取り値をスケーリングし、 ``get_y_rotation`` 関数を使用して傾斜角を計算します。「read_word_2c」関数は2の補数形式でセンサーデータを読み取り、負の値を処理するために必要です。
+
+   .. code-block:: python
+
+       # MPU6050からの傾斜角を取得
+       def mpu6050():
+           accel_xout = read_word_2c(0x3b)
+           accel_yout = read_word_2c(0x3d)
+           accel_zout = read_word_2c(0x3f)
+           accel_xout_scaled = accel_xout / 16384.0
+           accel_yout_scaled = accel_yout / 16384.0
+           accel_zout_scaled = accel_zout / 16384.0
+           angle = get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
+           return angle
+
+#. 「rotary」関数はステッパーモーターの回転を制御します。指定された「direction」に基づいて時計回りまたは反時計回りの回転を実行し、特定のモーターピンをパターンに従ってオンまたはオフにします。
+
+   .. code-block:: python
+
+       # ステッパーモーターの回転を制御
+       def rotary(direction):
+           if direction == 'c':
+               # 時計回りの回転シーケンス
+               for j in range(4):
+                   for i in range(4):
+                       if 0x99 >> j & (0x08 >> i):
+                           motorPin[i].on()
+                       else:
+                           motorPin[i].off()
+                       time.sleep(stepSpeed)
+           elif direction == 'a':
+               # 反時計回りの回転シーケンス
+               for j in range(4):
+                   for i in range(4):
+                       if 0x99 << j & (0x08 >> i):
+                           motorPin[i].on()
+                       else:
+                           motorPin[i].off()
+                       time.sleep(stepSpeed)
+
+#. メインループはMPU6050センサーから傾斜角を連続して読み取り、角度に基づいてモーターの回転方向を制御します。プログラムが中断された場合（キーボード割り込みなど）、安全のためにすべてのモーターピンをオフにします。
+
+   .. code-block:: python
+
+       # 傾斜角を連続的に読み取り、モーターを制御するためのメインループ
+       try:
+           while True:
+               angle = mpu6050()
+               if angle >= 45:
+                   rotary('a')  # 正の傾斜の場合、反時計回りに回転
+               elif angle <= -45:
+                   rotary('c')  # 負の傾斜の場合、時計回りに回転
+       except KeyboardInterrupt:
+           # キーボード割り込み時にすべてのモーターピンをオフにする
+           for pin in motorPin:
+               pin.off()

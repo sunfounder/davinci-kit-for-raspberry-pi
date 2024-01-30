@@ -1,0 +1,142 @@
+.. _1.2.1_py_pi5:
+
+1.2.1 アクティブブザー
+==================================
+
+はじめに
+------------
+
+このプロジェクトでは、PNPトランジスタを使用してアクティブブザーを鳴らす方法を学びます。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../python_pi5/img/1.2.1_active_buzzer_list.png
+
+.. raw:: html
+
+   <br/>
+
+回路図
+-----------------
+
+この実験では、アクティブブザー、PNPトランジスタ、および1kΩの抵抗器が、トランジスタのベースとGPIOの間に使用されてトランジスタを保護します。 Raspberry PiのGPIO17の出力に高い電圧（3.3V）が供給されると、トランジスタは電流飽和のために導通し、ブザーは音を鳴らします。しかし、Raspberry PiのIOに低い電圧が供給されると、トランジスタは遮断され、ブザーは音を鳴らしません。
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.2.1_active_buzzer_schematic.png
+
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を組み立てます（アクティブブザーには表面に白いテーブルステッカーがあり、裏面は黒です）。
+
+.. image:: ../python_pi5/img/1.2.1_ActiveBuzzer_circuit.png
+
+**ステップ2**: コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ3**: 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.2.1_ActiveBuzzer_zero.py
+
+コードを実行すると、ブザーが鳴ります。
+
+**コード**
+
+.. note::
+
+    以下のコードは変更/リセット/コピー/実行/停止ができます。ただし、コードを変更する前に``davinci-kit-for-raspberry-pi/python-pi5``のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を確認できます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Buzzer
+   from time import sleep
+
+   # GPIOピン17に接続されたBuzzerオブジェクトを初期化します
+   buzzer = Buzzer(17)
+
+   try:
+       while True:
+           # ブザーをオンにする
+           print('ブザーオン')
+           buzzer.on()
+           sleep(0.1)  # ブザーを0.1秒間オンにします
+
+           # ブザーをオフにする
+           print('ブザーオフ')
+           buzzer.off()
+           sleep(0.1)  # ブザーを0.1秒間オフにします
+
+   except KeyboardInterrupt:
+       # キーボードの割り込み（Ctrl+C）を処理してスクリプトをきれいに終了します
+       pass
+
+
+**コードの説明**
+
+1. これらのステートメントは``gpiozero``ライブラリから``Buzzer``クラスと``time``モジュールから``sleep``関数をインポートします。
+
+   .. code-block:: python
+       
+       #!/usr/bin/env python3
+       from gpiozero import Buzzer
+       from time import sleep
+
+
+2. この行は、Raspberry PiのGPIOピン17に接続された``Buzzer``オブジェクトを作成します。
+    
+   .. code-block:: python
+       
+       # GPIOピン17に接続されたBuzzerオブジェクトを初期化します
+       buzzer = Buzzer(17)
+        
+
+3. 無限ループ（ ``while True`` ）内で、ブザーは0.1秒ごとにオンとオフになります。 ``print`` ステートメントは各アクションに対するコンソール出力を提供します。
+      
+   .. code-block:: python
+       
+       try:
+           while True:
+               # ブザーをオンにする
+               print('ブザーオン')
+               buzzer.on()
+               sleep(0.1)  # ブザーを0.1秒間オンにします
+
+               # ブザーをオフにする
+               print('ブザーオフ')
+               buzzer.off()
+               sleep(0.1)  # ブザーを0.1秒間オフにします
+
+4. このセグメントは、キーボード割り込み（Ctrl+C）を使用してプログラムを安全に終了できるようにします。
+      
+   .. code-block:: python
+       
+       except KeyboardInterrupt:
+       # キーボードの割り込み（Ctrl+C）を処理してスクリプトをきれいに終了します
+       pass

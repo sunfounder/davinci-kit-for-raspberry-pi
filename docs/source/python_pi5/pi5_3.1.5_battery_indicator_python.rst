@@ -1,0 +1,156 @@
+.. _py_pi5_btr_indicator:
+
+3.1.5 バッテリーインジケータ
+===================================
+
+はじめに
+--------------
+
+このプロジェクトでは、LED バーグラフ上にバッテリーの電力レベルを視覚的に表示できるバッテリーインジケータデバイスを作成します。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトには、以下のコンポーネントが必要です。
+
+.. image:: ../python_pi5/img/4.1.11_battery_indicator_list.png
+    :align: center
+
+回路図
+-------------------
+
+.. image:: ../python_pi5/img/4.1.11_battery_indicator_schematic.png
+   :align: center
+
+実験手順
+-------------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/4.1.11_battery_indicator_circuit.png
+
+**ステップ 2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 3:** 実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.5_BatteryIndicator_zero.py
+
+プログラムが実行されたら、ADC0834の3番ピンとGNDにそれぞれリードアウトワイヤーを接続し、それらを別々のバッテリーの2極にリードアウトしてください。対応するLEDバーグラフのLEDが点灯し、電力レベルが表示されます（測定範囲：0-5V）。
+
+**コード**
+
+.. note::
+    以下のコードは、 **変更/リセット/コピー/実行/停止** ができます。ただし、それに先立ち、 ``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、効果を確認するために直接実行できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED
+   import ADC0834
+   import time
+
+   # LEDが接続されたGPIOピンのリスト
+   ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
+   # リスト内の各ピンに対してLEDオブジェクトを初期化
+   leds = [LED(pin) for pin in ledPins]
+
+   # ADC0834モジュールのセットアップ
+   ADC0834.setup()
+
+   def LedBarGraph(value):
+       # すべてのLEDをオフにする
+       for i in range(10):
+           leds[i].off()
+       # 指定された値までLEDを点灯させる
+       for i in range(value):
+           leds[i].on()
+
+   try:
+       # LEDバーグラフを連続的に更新するためのメインループ
+       while True:
+           # ADC0834からアナログ値を読み取る
+           analogVal = ADC0834.getResult()
+           # アナログ値をLEDバーグラフのレベルに変換
+           LedBarGraph(int(analogVal/25))
+   except KeyboardInterrupt: 
+       # プログラムが中断されたときにすべてのLEDをオフにする
+       for i in range(10):
+           leds[i].off()
+
+**コードの説明**
+
+#. このセクションは必要なライブラリをインポートしています。 ``gpiozero`` はLEDを制御するため、 ``ADC0834`` はADCモジュールとのインターフェース、 ``time`` は時間に関連する操作に使用されます。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED
+       import ADC0834
+       import time
+
+#. LEDが接続されたGPIOピンを定義し、各ピンに対してLEDオブジェクトの配列を初期化します。これにより、配列内の各LEDを簡単に制御できます。
+
+   .. code-block:: python
+
+       # LEDが接続されたGPIOピンのリスト
+       ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
+       # リスト内の各ピンに対してLEDオブジェクトを初期化
+       leds = [LED(pin) for pin in ledPins]
+
+#. アナログからデジタルへの変換のためにADC0834モジュールを初期化します。
+
+   .. code-block:: python
+
+       # ADC0834モジュールのセットアップ
+       ADC0834.setup()
+
+#. この関数はすべてのLEDをオフにし、指定された値に基づいてLEDをオンにして、バーグラフの表現を作成します。
+
+   .. code-block:: python
+
+       def LedBarGraph(value):
+           # すべてのLEDをオフにする
+           for i in range(10):
+               leds[i].off()
+           # 指定された値までLEDを点灯させる
+           for i in range(value):
+               leds[i].on()
+
+#. ADC0834からアナログ値を連続的に読み取り、この値に基づいてLEDバーグラフを更新します。アナログ値は0から10の範囲にスケールダウンされます。
+
+   .. code-block:: python
+
+       try:
+           # LEDバーグラフを連続的に更新するためのメインループ
+           while True:
+               # ADC0834からアナログ値を読み取る
+               analogVal = ADC0834.getResult()
+               # アナログ値をLEDバーグラフのレベルに変換
+               LedBarGraph(int(analogVal/25))
+
+#. プログラムが中断された場合（たとえば、Ctrl+Cを押した場合）、すべてのLEDがオフになるようにします。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt: 
+           # プログラムが中断されたときにすべてのLEDをオフにする
+           for i in range(10):
+               leds[i].off()

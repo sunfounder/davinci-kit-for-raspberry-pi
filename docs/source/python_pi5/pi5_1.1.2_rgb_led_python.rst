@@ -1,0 +1,156 @@
+.. _1.1.2_py_pi5:
+
+1.1.2 RGB LED
+====================
+
+概要
+--------------
+
+このプロジェクトでは、RGB LEDを制御してさまざまな色を点滅させます。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトには、次のコンポーネントが必要です。 
+
+.. image:: ../python_pi5/img/1.1.2_rgb_led_list.png
+    :align: center
+
+.. raw:: html
+
+   <br/>
+
+回路図
+-----------------------
+
+R、G、およびBのピンを電流制限抵抗に接続した後、それぞれをGPIO17、GPIO18、GPIO27に接続します。LEDの最長のピン（GND）をRaspberry PiのGNDに接続します。これらの3つのピンに異なるPWM値を与えると、RGB LEDは異なる色を表示します。
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+GPIO18       Pin 12   18
+GPIO27       Pin 13   27
+============ ======== ===
+
+
+.. image:: ../python_pi5/img/1.1.2_rgb_led_schematic.png
+
+実験手順
+----------------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/1.1.2_rgbLed_circuit.png
+
+**ステップ2:** コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ3:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.2_rgbLed_zero.py
+
+コードを実行した後、RGB LEDが赤、緑、青、黄、ピンク、シアンを表示するのを確認できます。
+
+**コード**
+
+.. note::
+
+    以下のコードは **変更/リセット/コピー/実行/停止** することができます。ただし、それを行う前に「davinci-kit-for-raspberry-pi/python-pi5」というソースコードのパスに移動する必要があります。コードを変更した後、そのまま実行して効果を確認できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import RGBLED
+   from time import sleep
+
+   # RGB形式（赤、緑、青）でRGB LEDの色のリストを定義します。
+   # 各色成分は0（オフ）から1（フル強度）までの範囲です。
+   COLORS = [(1, 0, 0), (0, 1, 0), (0.2, 0.1, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
+
+   # RGB LEDを初期化します。赤の成分をGPIO 17に、緑をGPIO 18に、青をGPIO 27に接続します。
+   rgb_led = RGBLED(red=17, green=18, blue=27)
+
+   try:
+       # 定義した色を連続してサイクルします。
+       while True:
+           for color in COLORS:
+               # RGB LEDを現在の色に設定します。
+               rgb_led.color = color
+               # 現在の色をコンソールに出力します。
+               print(f"Color set to: {color}")
+               # 次の色に切り替える前に1秒待ちます。
+               sleep(1)
+
+   except KeyboardInterrupt:
+       # キーボードインタラプト（Ctrl+Cを押すなど）を優雅に処理してループを終了します。
+       # GPIOのクリーンアップは、スクリプトの終了時にGPIO Zeroによって自動的に管理されます。
+       pass
+
+**コードの説明**
+
+#. これはRGB LEDを制御するための ``gpiozero`` ライブラリから ``RGBLED`` クラスをインポートし、コード内で遅延を実装するための ``time`` ライブラリをインポートしています。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import RGBLED
+       from time import sleep
+
+       # RGB LEDのRGB形式で異なる色を表すタプルを含むCOLORSリストを定義します。
+       # 各色成分は0から1までの範囲で、0はオフ、1は各色成分のフル強度を表します。
+    
+#. ``COLORS`` リストにはRGB形式で異なる色を表すタプルが含まれています。R、G、Bピンに異なるパルス幅変調（PWM）値を ``rgb_led.color`` 属性を介して割り当てることにより、LEDはさまざまな色を生成できます。PWM値は0から1までの範囲で、0は無強度（オフ）を表し、各色成分のフル強度を表すのは1です。
+#. 例えば、``rgb_led.color = (1, 0, 0)`` を設定すると、LEDは赤に点灯します。これは赤成分にフル強度を設定し、緑と青をオフにしています。同様に、これらの値の異なる組み合わせによって異なる色が表示されます。PWMを介した色の混合は、RGB LEDで幅広い色の範囲を作成するための技術です。
+
+   .. code-block:: python    
+       
+       COLORS = [(1, 0, 0), (0, 1, 0), (0.2, 0.1, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
+
+#. RGB LEDは、その赤、緑、青の成分をそれぞれGPIOピン17、18、27に接続して初期化されます。
+
+   .. code-block:: python
+
+       # RGB LEDを初期化します。赤の成分をGPIO 17に、緑をGPIO 18に、青をGPIO 27に接続します。
+       rgb_led = RGBLED(red=17, green=18, blue=27)
+
+#. ``while True:`` ループは ``COLORS`` で定義された色を連続してサイクルします。各色に対して、``rgb_led.color = color`` はLEDをその色に設定し、``sleep(1)`` は1秒間の一時停止を行います。
+
+   .. code-block:: python
+
+       try:
+           # 定義した色を連続してサイクルします。
+           while True:
+               for color in COLORS:
+                   # RGB LEDを現在の色に設定します。
+                   rgb_led.color = color
+                   # 現在の色をコンソールに出力します。
+                   print(f"Color set to: {color}")
+                   # 次の色に切り替える前に1秒待ちます。
+                   sleep(1)
+
+#. このセクションは ``KeyboardInterrupt``（Ctrl+Cを押すなど）を優雅に処理します。 ``pass`` ステートメントは、中断時に特定のアクションを指定しないことを示すプレースホルダとして使用され、GPIO ZeroはGPIOのクリーンアップを自動的に処理します。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # キーボードインタラプト（Ctrl+Cを押すなど）を優雅に処理してループを終了します。
+           # GPIOのクリーンアップは、スクリプトの終了時にGPIO Zeroによって自動的に管理されます。
+           pass
+

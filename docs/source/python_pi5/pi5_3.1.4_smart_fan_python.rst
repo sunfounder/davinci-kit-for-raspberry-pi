@@ -1,0 +1,297 @@
+.. _py_pi5_fan:
+
+3.1.4 スマートファン
+=========================
+
+はじめに
+-----------------
+
+このプロジェクトでは、モーター、ボタン、サーミスタを使用して、風速調節可能なマニュアル+自動スマートファンを作成します。
+
+必要な部品
+------------------------------
+
+このプロジェクトで必要な部品は次のとおりです。
+
+.. image:: ../python_pi5/img/4.1.10_smart_fan_list.png
+    :width: 800
+    :align: center
+
+
+回路図
+------------------------
+
+
+.. image:: ../python_pi5/img/4.1.10_smart_fan_schematic.png
+   :align: center
+
+実験手順
+-----------------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/4.1.10_smart_fan_circuit.png
+
+.. note::
+    電源モジュールにはキット内の9Vバッテリーと9Vバッテリーバックルを使用できます。電源モジュールのジャンパーキャップを、ブレッドボードの5Vバスストリップに挿入します。
+
+.. image:: ../python_pi5/img/4.1.10_smart_fan_battery.jpeg
+   :align: center
+
+**ステップ2**: コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ3**: 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 3.1.4_SmartFan_zero.py
+
+コードが実行されると、ボタンを押してファンを起動します。ボタンを押すたびに、風速が1段階上下に調節されます。風速は **0〜4** の **5つ** の段階があります。4番目の風速に設定されており、ボタンを押すと風速 **0** でファンが停止します。
+
+温度が2℃以上上昇または下降すると、速度は自動的に1段階高くまたは低くなります。
+
+コード
+--------
+
+.. note::
+    以下のコードを **変更/リセット/コピー/実行/停止** することができます。ただし、変更する前に ``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、効果を確認するために直接実行できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   from gpiozero import Motor, Button
+   from time import sleep
+   import ADC0834
+   import math
+
+   # ボタンとモーター制御のためのGPIOピンを初期化します
+   BtnPin = Button(22)
+   motor = Motor(forward=5, backward=6, enable=13)
+
+   # 温度センシング用にADC0834モジュールを初期化します
+   ADC0834.setup()
+
+   # モーター速度レベルと温度を追跡するための変数を初期化します
+   level = 0
+   currentTemp = 0
+   markTemp = 0
+
+   def temperature():
+       """
+       センサーから現在の温度を読み取り、計算します。
+       戻り値:
+           float: 摂氏での現在の温度。
+       """
+       # ADC0834モジュールからアナログ値を読み取ります
+       analogVal = ADC0834.getResult()
+       # アナログ値を電圧に変換し、抵抗に変換します
+       Vr = 5 * float(analogVal) / 255
+       Rt = 10000 * Vr / (5 - Vr)
+       # 摂氏での温度を計算します
+       temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+       Cel = temp - 273.15
+       return Cel
+
+   def motor_run(level):
+       """
+       指定されたレベルに基づいてモーターの速度を調整します。
+       引数:
+           level (int): 望ましいモーター速度レベル。
+       戻り値:
+           int: 調整されたモーター速度レベル。
+       """
+       # レベルが0の場合、モーターを停止します
+       if level == 0:
+           motor.stop()
+           return 0
+       # 最大速度のためにレベルを4で制限します
+       if level >= 4:
+           level = 4
+       # モーターの速度を設定します
+       motor.forward(speed=float(level / 4))
+       return level
+
+   def changeLevel():
+       """
+       ボタンが押されたときにモーターの速度レベルを手動で変更し、参照温度を更新します。
+       """
+       global level, currentTemp, markTemp
+       print("ボタンが押されました")
+       # レベルを0から4までサイクルさせます
+       level = (level + 1) % 5
+       # 参照温度を更新します
+       markTemp = currentTemp
+
+   # ボタンの押下イベントをchangeLevel関数にバインドします
+   BtnPin.when_pressed = changeLevel
+
+   def main():
+       """
+       温度変化に連続的に監視し、応答するためのメイン関数。
+       """
+       global level, currentTemp, markTemp
+       # 初期参照温度を設定します
+       markTemp = temperature()
+       while True:
+           # 現在の温度を連続して読み取ります
+           currentTemp = temperature()
+           # 温度差に基づいてモーターのレベルを調整します
+           if level != 0:
+               if currentTemp - markTemp <= -2:
+                   level -= 1
+                   markTemp = currentTemp
+               elif currentTemp - markTemp >= 2:
+                   if level < 4:
+                       level += 1
+                   markTemp = currentTemp
+           # 調整されたレベルでモーターを実行します
+           level = motor_run(level)
+
+   # メイン関数を実行し、キーボード割り込みを処理します
+   try:
+       main()
+   except KeyboardInterrupt:
+       # スクリプトが中断された場合、モーターを停止します
+       motor.stop()
+
+
+コードの説明
+---------------------
+
+#. モーターやボタンの管理用クラス、一時停止を導入するための sleep 関数、温度センシングのための ADC0834 ライブラリ、数学的な計算のための math ライブラリをインポートします。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       from gpiozero import Motor, Button
+       from time import sleep
+       import ADC0834
+       import math
+
+#. ボタンを GPIO ピン 22 に設定し、モーターの制御に特定の GPIO ピンを設定します。温度測定用に ADC0834 モジュールを初期化します。また、モーター速度レベルと温度を監視するための変数を初期化します。
+
+   .. code-block:: python
+
+       # ボタンとモーター制御のための GPIO ピンを初期化
+       BtnPin = Button(22)
+       motor = Motor(forward=5, backward=6, enable=13)
+
+       # 温度センシングのために ADC0834 モジュールを初期化
+       ADC0834.setup()
+
+       # モーター速度レベルと温度を追跡するための変数を初期化
+       level = 0
+       currentTemp = 0
+       markTemp = 0
+
+#. センサーから温度を読み取り、摂氏に変換するための関数を定義します。
+
+   .. code-block:: python
+
+       def temperature():
+           """
+           センサーから現在の温度を読み取り、計算します。
+           戻り値:
+               float: 摂氏での現在の温度。
+           """
+           # ADC0834 モジュールからアナログ値を取得
+           analogVal = ADC0834.getResult()
+           # アナログ値を電圧に変換し、抵抗に変換
+           Vr = 5 * float(analogVal) / 255
+           Rt = 10000 * Vr / (5 - Vr)
+           # 摂氏での温度を計算
+           temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+           Cel = temp - 273.15
+           return Cel
+
+#. 指定したレベルに基づいてモーターの速度を調整する関数を実装します。
+
+   .. code-block:: python
+
+       def motor_run(level):
+           """
+           指定されたレベルに基づいてモーターの速度を調整します。
+           引数:
+               level (int): 望ましいモーター速度レベル。
+           戻り値:
+               int: 調整されたモーター速度レベル。
+           """
+           # レベルが0の場合、モーターを停止
+           if level == 0:
+               motor.stop()
+               return 0
+           # レベルを最大4に制限
+           if level >= 4:
+               level = 4
+           # モーター速度を設定
+           motor.forward(speed=float(level / 4))
+           return level
+
+#. ボタンを使用してモーターの速度レベルを手動で変更し、この関数をボタンのプレスイベントにバインドします。
+
+   .. code-block:: python
+
+       def changeLevel():
+           """
+           ボタンが押されたときにモーターの速度レベルを手動で変更し、参照温度を更新します。
+           """
+           global level, currentTemp, markTemp
+           print("ボタンが押されました")
+           # レベルを0から4までサイクル
+           level = (level + 1) % 5
+           # 参照温度を更新
+           markTemp = currentTemp
+
+       # ボタンのプレスイベントを changeLevel 関数にバインド
+       BtnPin.when_pressed = changeLevel
+
+#. 温度変化に応じてモーターの速度を連続的に調整するメイン関数を実装することが残っています。
+
+   .. code-block:: python
+
+       def main():
+           """
+           温度変化に連続的に監視し、応答するためのメイン関数。
+           """
+           global level, currentTemp, markTemp
+           # 初期参照温度を設定
+           markTemp = temperature()
+           while True:
+               # 現在の温度を連続して読み取ります
+               currentTemp = temperature()
+               # レベルが0でない場合、温度差に基づいてモーターレベルを調整します
+               if level != 0:
+                   if currentTemp - markTemp <= -2:
+                       level -= 1
+                       markTemp = currentTemp
+                   elif currentTemp - markTemp >= 2:
+                       if level < 4:
+                           level += 1
+                       markTemp = currentTemp
+               # 調整されたレベルでモーターを実行します
+               level = motor_run(level)
+
+       # メイン関数を実行し、キーボード割り込みを処理します
+       try:
+           main()
+       except KeyboardInterrupt:
+           # スクリプトが中断された場合、モーターを停止します
+           motor.stop()

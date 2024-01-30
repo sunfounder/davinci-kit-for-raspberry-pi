@@ -1,0 +1,230 @@
+.. _py_pi5_morse_code:
+
+3.1.11 モールス信号ジェネレータ
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+はじめに
+-----------------
+
+このプロジェクトでは、Raspberry Piに英字のシリーズを入力し、それをモールス信号として表示するモールス信号ジェネレータを作成します。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../python_pi5/img/4.1.16_morse_code_generator_list.png
+    :width: 800
+    :align: center
+
+回路図
+-----------------------
+
+
+.. image:: ../python_pi5/img/4.1.16_morse_code_generator_schematic.png
+   :align: center
+
+実験手順
+----------------------------
+
+**ステップ1：** 回路を組み立てます。（ブザーの極性に注意してください：+ラベルのある方が正極で、もう一方が負極です。）
+
+.. image:: ../python_pi5/img/4.1.16_morse_code_generator_circuit.png
+
+**ステップ2：** コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ3：** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.11_MorseCodeGenerator_zero.py
+
+プログラムが実行されたら、一連の文字列を入力し、ブザーとLEDが対応するモールス信号を送信します。
+
+**コード**
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Buzzer, LED
+   import time
+
+   # ブザーとLEDをGPIOピンに初期化
+   BeepPin = Buzzer(22)
+   ALedPin = LED(17)
+
+   # 文字のモールス信号表現
+   MORSECODE = {
+       'A': '01', 'B': '1000', 'C': '1010', 'D': '100', 'E': '0', 'F': '0010', 'G': '110',
+       'H': '0000', 'I': '00', 'J': '0111', 'K': '101', 'L': '0100', 'M': '11', 'N': '10',
+       'O': '111', 'P': '0110', 'Q': '1101', 'R': '010', 'S': '000', 'T': '1',
+       'U': '001', 'V': '0001', 'W': '011', 'X': '1001', 'Y': '1011', 'Z': '1100',
+       '1': '01111', '2': '00111', '3': '00011', '4': '00001', '5': '00000',
+       '6': '10000', '7': '11000', '8': '11100', '9': '11110', '0': '11111',
+       '?': '001100', '/': '10010', ',': '110011', '.': '010101', ';': '101010',
+       '!': '101011', '@': '011010', ':': '111000',
+   }
+
+   def on():
+       """ ブザーとLEDをオンにします。"""
+       BeepPin.on()
+       ALedPin.on()
+
+   def off():
+       """ ブザーとLEDをオフにします。"""
+       BeepPin.off()
+       ALedPin.off()
+
+   def beep(dt):  # dtは遅延時間用です。
+       """
+       指定された時間のブザー音とLEDフラッシュを生成します。
+       :param dt: ブザー音とフラッシュのための期間。
+       """
+       on()
+       time.sleep(dt)
+       off()
+       time.sleep(dt)
+
+   def morsecode(code):
+       """
+       入力されたコードをモールス信号に変換し、ブザーとLEDを使用して信号化します。
+       :param code: モールス信号に変換するテキスト。
+       """
+       pause = 0.25
+       for letter in code:
+           for tap in MORSECODE[letter]:
+               if tap == '0':
+                   beep(pause / 2)  # 短いビープ音
+               if tap == '1':
+                   beep(pause)      # 長いビープ音
+           time.sleep(pause)  # 文字間の休憩
+
+   def destroy():
+       """ スクリプトの終了時にリソースをクリーンアップします。"""
+       print("")
+       BeepPin.off()
+       ALedPin.off()
+
+   try:
+       while True:
+           code = input("メッセンジャーを入力してください：")
+           code = code.upper()  # モールス信号検索用に大文字に変換
+           print(code)
+           morsecode(code)
+   except KeyboardInterrupt:
+       destroy()
+
+**コードの説明**
+
+#. このコードは、gpiozeroライブラリからBuzzerおよびLEDクラスをインポートしています。これらのクラスは、Raspberry Pi上の対応するGPIOデバイスを制御するために必要です。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import Buzzer, LED
+       import time
+
+#. GPIOピン22のブザーとGPIOピン17のLEDを初期化して、これらのコンポーネントを制御するのに役立てます。
+
+   .. code-block:: python
+
+       # ブザーとLEDをGPIOピンに初期化
+       BeepPin = Buzzer(22)
+       ALedPin = LED(17)
+
+#. ``MORSECODE`` 構造を定義します。これは、AからZまでの文字、0から9までの数字、および「?」、「/」、「:」、「,」、「.」、「;」、「!」、「@」などの記号のモールス信号表現を含む辞書です。ここで、 ``0`` はドットを示し、 ``1`` はダッシュを示します。
+
+   .. code-block:: python
+
+       # 文字のモールス信号表現
+       MORSECODE = {
+           'A': '01', 'B': '1000', 'C': '1010', 'D': '100', 'E': '0', 'F': '0010', 'G': '110',
+           'H': '0000', 'I': '00', 'J': '0111', 'K': '101', 'L': '0100', 'M': '11', 'N': '10',
+           'O': '111', 'P': '0110', 'Q': '1101', 'R': '010', 'S': '000', 'T': '1',
+           'U': '001', 'V': '0001', 'W': '011', 'X': '1001', 'Y': '1011', 'Z': '1100',
+           '1': '01111', '2': '00111', '3': '00011', '4': '00001', '5': '00000',
+           '6': '10000', '7': '11000', '8': '11100', '9': '11110', '0': '11111',
+           '?': '001100', '/': '10010', ',': '110011', '.': '010101', ';': '101010',
+           '!': '101011', '@': '011010', ':': '111000',
+       }
+
+#. ``on()`` 関数はブザーとLEDをオンにします。 ``off()`` 関数はブザーとLEDをオフにします。
+
+   .. code-block:: python
+
+       def on():
+           """ ブザーとLEDをオンにします。"""
+           BeepPin.on()
+           ALedPin.on()
+
+       def off():
+           """ ブザーとLEDをオフにします。"""
+           BeepPin.off()
+           ALedPin.off()
+
+#. ``beep()`` 関数は、ブザーとLEDを指定された時間間隔で音を鳴らし、点滅させるために使用されます。
+
+   .. code-block:: python
+
+       def beep(dt):  # dtは遅延時間用です。
+           """
+           指定された時間のブザー音とLEDフラッシュを生成します。
+           :param dt: ブザー音とフラッシュのための期間。
+           """
+           on()
+           time.sleep(dt)
+           off()
+           time.sleep(dt)
+
+#. ``morsecode()`` 関数は、入力された文字のモールス信号を処理し、ブザーとLEDを使用してそれを示します。
+
+   .. code-block:: python
+
+       def morsecode(code):
+           """
+           入力されたコードをモールス信号に変換し、ブザーとLEDを使用して信号化します。
+           :param code: モールス信号に変換するテキスト。
+           """
+           pause = 0.25
+           for letter in code:
+               for tap in MORSECODE[letter]:
+                   if tap == '0':
+                       beep(pause / 2)  # 短いビープ音
+                   if tap == '1':
+                       beep(pause)      # 長いビープ音
+               time.sleep(pause)  # 文字間の休憩
+
+#. ``destroy()`` 関数は、スクリプトが終了したときにブザーとLEDの両方をオフにするようにします。これにより、GPIOピンがアクティブな状態にならないようになります。
+
+   .. code-block:: python
+
+       def destroy():
+           """ スクリプトの終了時にリソースをクリーンアップします。"""
+           print("")
+           BeepPin.off()
+           ALedPin.off()
+
+#. キーボードで関連する文字を入力すると、 ``upper()`` が入力文字を大文字に変換します。 ``printf()`` はコンピュータ画面にクリアテキストを表示し、 ``morsecode()`` 関数はブザーとLEDにモールス信号を出力させます。
+
+   .. code-block:: python
+
+       try:
+           while True:
+               code = input("メッセンジャーを入力してください：")
+               code = code.upper()  # モールス信号検索用に大文字に変換
+               print(code)
+               morsecode(code)
+       except KeyboardInterrupt:
+           destroy()

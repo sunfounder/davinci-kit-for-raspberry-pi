@@ -1,0 +1,166 @@
+.. _2.1.4_py_pi5:
+
+2.1.4 ポテンショメータ
+====================================
+
+はじめに
+------------
+
+ADC（アナログデジタルコンバータ）機能は、アナログ信号をデジタル信号に変換するために使用できます。この実験では、ADC0834を使用してADCに関連する機能を取得します。ここでは、ポテンショメータを使用してこのプロセスを実装します。ポテンショメータは物理的な量である電圧を変化させ、ADC機能によって変換されます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_list.png
+
+
+回路図
+-----------------
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_second_1.png
+
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_second_2.png
+
+実験手順
+-----------------------
+
+**ステップ1**: 回路を組み立てます。
+
+.. image:: ../python_pi5/img/2.1.7_Potentiometer_circuit.png
+
+
+.. note::
+    画像に示されている対応する位置を参照して、チップを配置してください。チップの溝は左側にある必要があります。
+
+**ステップ2**: コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ3**: 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.4_Potentiometer_zero.py
+
+コードが実行されたら、ポテンショメータのつまみを回すと、LEDの輝度がそれに応じて変化します。
+
+**コード**
+
+.. note::
+
+    以下のコードを **変更/リセット/コピー/実行/停止** できます。ただし、それに先立ち、``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、効果を直接確認するために実行できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   from gpiozero import PWMLED
+   import ADC0834
+   import time
+
+   # Initialize a PWM LED on GPIO pin 22
+   led = PWMLED(22)
+
+   # Set up the ADC0834 module
+   ADC0834.setup()
+
+   def MAP(x, in_min, in_max, out_min, out_max):
+       """
+       Map a value from one range to another.
+       :param x: The value to be mapped.
+       :param in_min: The lower bound of the value's current range.
+       :param in_max: The upper bound of the value's current range.
+       :param out_min: The lower bound of the value's target range.
+       :param out_max: The upper bound of the value's target range.
+       :return: The mapped value.
+       """
+       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+   try:
+       while True:
+           # Get the current reading from the ADC0834 module
+           res = ADC0834.getResult()
+           print('res = %d' % res)
+
+           # Map the ADC value to a range suitable for setting LED brightness
+           R_val = MAP(res, 0, 255, 0, 100)
+
+           # Set the LED brightness
+           led.value = float(R_val / 100)
+
+           # Wait for 0.2 seconds before reading again
+           time.sleep(0.2)
+
+   # Graceful exit when 'Ctrl+C' is pressed
+   except KeyboardInterrupt: 
+       led.value = 0  # Turn off the LED
+
+
+**コードの説明**
+
+#. PWM LEDの制御には「gpiozero」、アナログからデジタルへの変換には「ADC0834」、遅延の実装には「time」が使用されています。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       from gpiozero import PWMLED
+       import ADC0834
+       import time
+
+#. GPIOピン22に接続されたPWMLEDオブジェクトを初期化し、ADC0834コンバータをセットアップします。
+
+   .. code-block:: python
+
+       # GPIOピン22にPWM LEDを初期化します
+       led = PWMLED(22)
+
+       # ADC0834モジュールをセットアップします
+       ADC0834.setup()
+
+#. 1つの範囲の値を別の範囲に変換するための「MAP」という名前の関数を定義し、ADCの値を適切なLEDの明るさにマッピングするのに役立ちます。
+
+   .. code-block:: python
+
+       def MAP(x, in_min, in_max, out_min, out_max):
+           return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+#. ループ内でADC値を連続して読み取り、ADCの読み取り値（0-255）をLEDの明るさ（0-100）にマッピングします。このマップされた値に基づいてLEDの明るさを調整します。視認性と安定性を向上させるために0.2秒の遅延を実装します。
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # ADC0834モジュールから現在の読み取り値を取得します
+               res = ADC0834.getResult()
+               print('res = %d' % res)
+
+               # ADCの値をLEDの明るさを設定するための適切な範囲にマップします
+               R_val = MAP(res, 0, 255, 0, 100)
+
+               # LEDの明るさを設定します
+               led.value = float(R_val / 100)
+
+               # 再度読み取る前に0.2秒待機します
+               time.sleep(0.2)
+
+       # 'Ctrl+C'が押されたときの優雅な終了
+       except KeyboardInterrupt: 
+           led.value = 0  # LEDをオフにする

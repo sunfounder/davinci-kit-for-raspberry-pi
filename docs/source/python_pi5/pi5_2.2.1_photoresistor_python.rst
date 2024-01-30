@@ -1,0 +1,163 @@
+.. _2.2.1_py_pi5:
+
+2.2.1 フォトレジスタ
+===============================
+
+はじめに
+------------
+
+フォトレジスタは、日常生活で環境光の強度を測定するためによく使用されるコンポーネントです。これにより、コントローラは昼と夜を認識し、ナイトランプなどの光制御機能を実現します。このプロジェクトはポテンショメーターに非常に似ており、電圧を変化させて光を検出します。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_list.png
+
+
+
+回路図
+--------------------
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_schematic_2.png
+
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_circuit.png
+
+**ステップ 2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 3:** 実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.1_Photoresistor_zero.py
+
+コードが実行されていると、フォトレジスタで検出された光の強度に応じてLEDの明るさが変化します。
+
+**コード**
+
+.. note::
+
+    以下のコードを **変更/リセット/コピー/実行/停止** することができます。ただし、その前に ``raphael-kit/python-pi5`` のソースコードパスに移動する必要があります。コードを変更した後、効果を確認するために直接実行できます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import PWMLED
+   import ADC0834
+   import time
+
+   # GPIOピン22に接続されたPWM LEDを初期化
+   led = PWMLED(22)
+
+   # ADC0834モジュールをセットアップ
+   ADC0834.setup()
+
+   # 値を別の範囲にマップするための関数を定義
+   def MAP(x, in_min, in_max, out_min, out_max):
+       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+   # ADC値を読み取り、LEDの明るさを制御するメインループ
+   def loop():
+       while True:
+           # ADCからアナログ値を読み取る
+           analogVal = ADC0834.getResult()
+           print('value = %d' % analogVal)
+
+           # ADCの値をPWM値にマップしてLEDの明るさを設定
+           led.value = float(analogVal/255)
+
+           # 0.2秒待つ
+           time.sleep(0.2)
+
+   # メインループを実行し、KeyboardInterruptに対応して正常なシャットダウンを処理
+   try:
+       loop()
+   except KeyboardInterrupt: 
+       # プログラムが停止したときにLEDをオフにする
+       led.value = 0
+
+
+**コードの説明**
+
+1. このセクションでは、 ``gpiozero`` ライブラリから PWMLED クラスをインポートして、PWM LED の制御に必要です。また、アナログ-デジタルコンバータとのインタフェースのために ADC0834 モジュールを含み、sleep などの時間ベースの関数を実行するために time モジュールもインポートしています。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import PWMLED
+       import ADC0834
+       import time
+
+2. GPIOピン22に接続されたPWM LEDを初期化し、ADC0834モジュールをセットアップしてプロジェクトで使用する準備を行います。
+
+   .. code-block:: python
+
+       # GPIOピン22に接続されたPWM LEDを初期化
+       led = PWMLED(22)
+
+       # ADC0834モジュールをセットアップ
+       ADC0834.setup()
+
+3. 1つの範囲から別の範囲への値をマップするための関数を定義します。この関数は、ADCの読み取りをPWM制御に適した範囲に変換するために重要です。
+
+   .. code-block:: python
+
+       # 値を別の範囲にマップするための関数を定義
+       def MAP(x, in_min, in_max, out_min, out_max):
+           return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+4. このセクションには、アナログ値をADC0834から連続して読み取り、対応するPWM値にマップし、LEDの明るさを調整するループが含まれています。変更を可視化し、CPUへの負荷を軽減するために短い遅延（`time.sleep(0.2)`）が含まれています。
+
+   .. code-block:: python
+
+       # ADC値を読み取り、LEDの明るさを制御するメインループ
+       def loop():
+           while True:
+               # ADCからアナログ値を読み取る
+               analogVal = ADC0834.getResult()
+               print('value = %d' % analogVal)
+
+               # ADCの値をPWM値にマップしてLEDの明るさを設定
+               led.value = float(analogVal/255)
+
+               # 0.2秒待つ
+               time.sleep(0.2)
+
+5. loop 関数を実行し、KeyboardInterrupt に対応して正常なシャットダウンを行います。プログラムが停止すると、LEDがオフになるようにします。
+
+   .. code-block:: python
+
+       # メインループを実行し、KeyboardInterruptに対応して正常なシャットダウンを処理
+       try:
+           loop()
+       except KeyboardInterrupt: 
+           # プログラムが停止したときにLEDをオフにする
+           led.value = 0
+

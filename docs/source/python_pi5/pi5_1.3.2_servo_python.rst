@@ -1,0 +1,170 @@
+.. _1.3.2_py_pi5:
+
+1.3.2 サーボ
+=======================
+
+はじめに
+-----------------
+
+このプロジェクトでは、サーボを回転させる方法を学びます。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../python_pi5/img/1.3.2_servo_list.png
+
+
+
+回路図
+--------------------
+
+.. image:: ../python_pi5/img/1.3.2_servo_schematic.png
+
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/1.3.2_Servo_circuit.png
+
+**ステップ2**: コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ3**: 実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.2_Servo_zero.py
+
+プログラムが実行されると、サーボは0度から90度、180度まで回転し、次に180度から90度、0度まで回転します。これが繰り返されます。
+
+コード
+
+.. note::
+
+    以下のコードは変更/リセット/コピー/実行/停止ができます。ただし、コードを変更する前に``davinci-kit-for-raspberry-pi/python-pi5``のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を確認できます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Servo
+   from time import sleep
+
+   # サーボモーターを接続するGPIOピン番号を設定
+   myGPIO = 18
+
+   # サーボのパルス幅を微調整するための補正係数を定義し、それを使用して最大および最小パルス幅を計算します
+   myCorrection = 0.45
+   maxPW = (2.0 + myCorrection) / 1000  # 最大パルス幅を計算
+   minPW = (1.0 - myCorrection) / 1000  # 最小パルス幅を計算
+
+   # カスタムパルス幅でサーボオブジェクトを初期化
+   servo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
+
+   try:
+       while True:
+           # サーボを中央に位置させて待機
+           servo.mid()
+           print("mid")  # 現在の位置を表示
+           sleep(0.5)    # 0.5秒の一時停止
+
+           # サーボを最小位置に移動させて待機
+           servo.min()
+           print("min")  # 現在の位置を表示
+           sleep(1)      # 1秒間位置を保持
+
+           # サーボを中央の位置に戻して待機
+           servo.mid()
+           print("mid")  # 現在の位置を表示
+           sleep(0.5)    # 0.5秒の一時停止
+
+           # サーボを最大位置に移動させて待機
+           servo.max()
+           print("max")  # 現在の位置を表示
+           sleep(1)      # 1秒間位置を保持
+
+   except KeyboardInterrupt:
+       # キーボード割り込み（Ctrl+C）でスクリプトを正常に終了する
+       pass
+
+**コードの説明**
+
+1. これらのインポート文は、サーボ制御のための ``Servo`` クラスとタイミングのための ``sleep`` 関数を取り込みます。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import Servo
+       from time import sleep
+
+2. サーボモーターを接続するためのGPIOピン番号を18に設定します。
+
+   .. code-block:: python
+
+       # サーボモーターが接続されているGPIOピン番号を設定します
+       myGPIO = 18
+
+3. これらの行は、補正係数を定義し、それを使用してサーボの最大および最小パルス幅を計算します。これにより、サーボの動きの範囲を微調整できます。
+
+   .. code-block:: python
+
+       # サーボのパルス幅を微調整するための補正係数を定義し、最大パルス幅と最小パルス幅を計算します
+       myCorrection = 0.45
+       maxPW = (2.0 + myCorrection) / 1000  # 最大パルス幅を計算
+       minPW = (1.0 - myCorrection) / 1000  # 最小パルス幅を計算
+
+4. カスタムパルス幅でサーボオブジェクトを初期化します。
+
+   .. code-block:: python
+
+       # カスタムパルス幅でサーボオブジェクトを初期化します
+       servo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
+
+5. ``try`` ブロックには、サーボを連続的に動かすための ``while True`` ループが含まれています。サーボは中間位置、最小位置、最大位置に配置され、各位置が表示され、指定された期間保持されます。
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # サーボを中間位置に配置し、待機
+               servo.mid()
+               print("mid")  # 現在の位置を表示
+               sleep(0.5)    # 0.5秒の短い休憩
+
+               # サーボを最小位置に移動し、待機
+               servo.min()
+               print("min")  # 現在の位置を表示
+               sleep(1)      # 1秒間位置を保持
+
+               # サーボを中間位置に戻し、待機
+               servo.mid()
+               print("mid")  # 現在の位置を表示
+               sleep(0.5)    # 0.5秒の短い休憩
+
+               # サーボを最大位置に移動し、待機
+               servo.max()
+               print("max")  # 現在の位置を表示
+               sleep(1)      # 1秒間位置を保持
+
+       except KeyboardInterrupt:
+           # キーボード割り込み（Ctrl+Cなど）でスクリプトを正常に終了します
+           pass

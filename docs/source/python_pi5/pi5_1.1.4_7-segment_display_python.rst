@@ -1,0 +1,203 @@
+.. _1.1.4_py_pi5:
+
+1.1.4 7セグメントディスプレイ
+=============================
+
+概要
+-----------------
+
+7セグメントディスプレイを制御して、0から9およびAからFまでの数字を表示してみましょう。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトには、次のコンポーネントが必要です。 
+
+.. image:: ../python_pi5/img/1.1.4_7_segment_list.png
+
+.. raw:: html
+
+   <br/>
+
+回路図
+---------------------
+
+74HC595のST_CPピンをRaspberry PiのGPIO18に、SH_CPをGPIO27に、DSをGPIO17に接続し、LEDセグメントディスプレイの8つのセグメントに並列出力ポートを接続します。
+
+SH_CP（シフトレジスタのクロック入力）が立ち上がりエッジのときにDSピンへデータを入力し、ST_CP（メモリのクロック入力）が立ち上がりエッジのときにメモリレジスタにデータを入力します。その後、Raspberry PiのGPIOを介してSH_CPとST_CPの状態を制御して、シリアルデータ入力を並列データ出力に変換し、Raspberry PiのGPIOを節約してディスプレイを駆動できます。
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+GPIO18       Pin 12   18
+GPIO27       Pin 13   27
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.1.4_7_segment_schematic.png
+
+
+実験手順
+------------------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/1.1.4_7-Segment_circuit.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ3:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.4_7-Segment_zero.py
+
+コードを実行した後、7セグメントディスプレイが0から9、AからFまで表示されるのを確認できます。
+
+**コード**
+
+.. note::
+    以下のコードは **変更/リセット/コピー/実行/停止** することができます。ただし、それを行う前に「davinci-kit-for-raspberry-pi/python-pi5」というソースコードのパスに移動する必要があります。コードを変更した後、そのまま実行して効果を確認できます。問題がないことを確認したら、修正されたコードをコピーするためのCopyボタンを使用し、ターミナルで「nano」コマンドを使用してソースコードを開き、コードを貼り付けることができます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice
+   from time import sleep
+
+   # 74HC595シフトレジスタに接続されたGPIOピン
+   SDI = OutputDevice(17)   # シリアルデータ入力
+   RCLK = OutputDevice(18)  # メモリクロック入力（レジスタクロック）
+   SRCLK = OutputDevice(27) # シフトレジスタクロック
+
+   # 7セグメントディスプレイの共通陰極の16進数デジットコード
+   segCode = [
+       0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
+       0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+   ]
+
+   def hc595_shift(data):
+       # 74HC595に8ビットのデータをシフト
+       for bit in range(8):
+           # データビットに基づいてSDIを高または低に設定
+           SDI.value = 0x80 & (data << bit)
+           # シフトレジスタクロックをトリガ
+           SRCLK.on()
+           sleep(0.001)
+           SRCLK.off()
+       # メモリクロックをトリガしてデータを出力にラッチ
+       RCLK.on()
+       sleep(0.001)
+       RCLK.off()
+
+   def display_all_on():
+       # すべてのセグメントをオンにする関数（共通陰極の7セグメントディスプレイ用）
+       all_on_code = 0x3f
+       hc595_shift(all_on_code)
+       print("Displaying all segments on")
+
+   try:
+       while True:
+           # 7セグメントディスプレイに各16進数デジットを表示
+           for code in segCode:
+               hc595_shift(code)  # コードを74HC595にシフト
+               # 表示されたセグメントコードを表示
+               print(f"segCode[{segCode.index(code)}]: 0x{code:02X}")
+               sleep(0.5)  # 各デジットを表示する間の一時停止
+
+   except KeyboardInterrupt:
+       # スクリプトの中断（例：Ctrl+C）を優雅に処理
+       pass
+
+**コードの説明**
+
+#. このスニペットはプロジェクトに必要なクラスをインポートします。 ``gpiozero`` から ``OutputDevice`` は、GPIOピンに接続されたハードウェアコンポーネントを制御するために、 ``time`` から ``sleep`` は遅延を追加するために使用されます。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice
+       from time import sleep
+
+#. SDI、RCLK、SRCLKは、74HC595のシリアルデータ入力、メモリクロック入力（レジスタクロック）、シフトレジスタクロックピンに対応しています。
+
+   .. code-block:: python
+
+       # 74HC595シフトレジスタに接続されたGPIOピン
+       SDI = OutputDevice(17)   # シリアルデータ入力
+       RCLK = OutputDevice(18)  # メモリクロック入力（レジスタクロック）
+       SRCLK = OutputDevice(27) # シフトレジスタクロック
+
+#. ``segCode`` は、7セグメントディスプレイに表示する各デジットの16進数コードを含む配列です。
+
+   .. code-block:: python
+
+       # 一般陰極型7セグメントディスプレイ用の16進数のデジットコード
+       segCode = [
+           0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
+           0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+       ]
+
+#. この関数は、データを74HC595に8ビットシフトします。それは各ビットを ``SDI`` に連続的に入力し、ビットをシフトするために ``SRCLK`` をトグルし、データを出力にラッチするために ``RCLK`` を使用します。
+
+   .. code-block:: python
+
+       def hc595_shift(data):
+           # 74HC595に8ビットのデータをシフトします
+           for bit in range(8):
+               # データビットに基づいてSDIを高または低に設定します
+               SDI.value = 0x80 & (data << bit)
+               # シフトレジスタクロックをトリガします
+               SRCLK.on()
+               sleep(0.001)
+               SRCLK.off()
+           # データをアウトプットにラッチするためにメモリクロックをトリガします
+           RCLK.on()
+           sleep(0.001)
+           RCLK.off()
+
+#. この関数は、ディスプレイのすべてのセグメントをオンにします。これは、共通カソードの7セグメントディスプレイ用です。
+
+   .. code-block:: python
+
+       def display_all_on():
+           # すべてのセグメントをオンにするための関数（一般陰極型7セグメントディスプレイ用）
+           all_on_code = 0x3f
+           hc595_shift(all_on_code)
+           print("Displaying all segments on")
+
+#. メインループでは、 ``segCode`` の各コードが順番にディスプレイに送られ、各コードの間に遅延があります。
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # 7セグメントディスプレイに各16進数のデジットを表示します
+               for code in segCode:
+                   hc595_shift(code)  # コードを74HC595にシフト
+                   # 表示されているセグメントコードを表示
+                   print(f"segCode[{segCode.index(code)}]: 0x{code:02X}")
+                   sleep(0.5)  # 各デジットの表示間に一時停止
+
+#. この部分のコードは、スクリプトの中断（Ctrl+Cなど）を優雅に処理します。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # スクリプトの中断を優雅に処理します（例：Ctrl+C）
+           pass

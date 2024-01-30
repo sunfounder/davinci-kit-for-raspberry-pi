@@ -1,0 +1,127 @@
+.. _2.1.1_py_pi5:
+
+2.1.1 ボタン
+===============
+
+はじめに
+-----------------
+
+このプロジェクトでは、ボタンを使用してLEDをオンまたはオフにする方法を学びます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/2.1.1_Button_list.png
+
+.. raw:: html
+
+   <br/>
+
+回路図
+---------------------
+
+Raspberry Piの入力として通常開放ボタンを使用し、接続は以下の回路図に示す通りです。ボタンが押されると、GPIO18は高レベル（3.3V）になります。プログラムを介してGPIO18の状態を検出できます。つまり、GPIO18が高レベルになると、ボタンが押されたことを意味します。ボタンが押されたときに対応するコードを実行し、LEDが点灯します。
+
+.. note::
+    LEDの長いピンが陽極であり、短いピンが陰極です。
+
+.. image:: ../python_pi5/img/2.1.1_Button_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.1.1_Button_schematic_2.png
+
+
+実験手順
+---------------------------
+
+**ステップ1**: 回路を組み立てます。
+
+.. image:: ../python_pi5/img/2.1.1_Button_circuit.png
+
+**ステップ2**: コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ3**: コードを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.1_Button_zero.py
+
+ボタンを押すとLEDが点灯し、ボタンを離すとLEDが消灯します。
+
+**コード**
+
+.. note::
+    以下のコードを **変更/リセット/コピー/実行/停止** できます。ただし、それに先立ち、``davinci-kit-for-raspberry-pi/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、効果を直接確認するために実行できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button  # gpiozeroからLEDとButtonクラスをインポート
+   from signal import pause  # signalモジュールからpause関数をインポート
+
+   # GPIOピン17に接続されたLEDオブジェクトを初期化
+   led = LED(17)
+   # GPIOピン18に接続されたButtonオブジェクトを初期化
+   button = Button(18)
+
+   # ボタンの「when_pressed」イベントをLEDの「on()」メソッドにリンク
+   button.when_pressed = led.on
+   # ボタンの「when_released」イベントをLEDの「off()」メソッドにリンク
+   button.when_released = led.off
+
+   # ボタンのイベントを待ち続け、スクリプトを実行し続けるイベントループを実行
+   pause()
+
+
+**コードの説明**
+
+#. このスクリプトはPython3で書かれており、 ``gpiozero`` ライブラリから ``LED`` および ``Button`` クラス、 ``signal`` モジュールから ``pause`` をインポートしています。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button  # gpiozeroからLEDとButtonクラスをインポート
+       from signal import pause  # signalモジュールからpause関数をインポート
+
+#. GPIOピン17に接続されたLEDオブジェクトとGPIOピン18に接続されたボタンオブジェクトを初期化します。
+
+   .. code-block:: python
+
+       # GPIOピン17に接続されたLEDオブジェクトを初期化
+       led = LED(17)
+       # GPIOピン18に接続されたButtonオブジェクトを初期化
+       button = Button(18)
+
+#. ボタンが押されたときにLEDが点灯し、ボタンが離されたときにLEDが消灯するようにイベントハンドラを設定します。
+
+   .. code-block:: python
+
+       # ボタンの「when_pressed」イベントをLEDの「on()」メソッドにリンク
+       button.when_pressed = led.on
+       # ボタンの「when_released」イベントをLEDの「off()」メソッドにリンク
+       button.when_released = led.off
+
+#. ボタンの押下およびリリースイベントを待ち続けるために、スクリプトをイベントループ内で実行し続けます。
+
+   .. code-block:: python
+       
+       # ボタンのイベントを待ち続け、スクリプトを実行し続けるイベントループを実行
+       pause()

@@ -1,0 +1,235 @@
+1.3.3 ステッパーモーター
+=====================================
+
+はじめに
+------------
+
+ステッパーモーターは、その独自の設計により、フィードバックメカニズムなしで高い精度で制御できます。ステッパーモーターのシャフトは、一連の磁石で取り付けられ、正および負に充電される一連の電磁コイルによって制御され、特定の順序で正確に前方または後方に小さな「ステップ」で移動します。
+
+必要な部品
+------------------------------
+
+このプロジェクトでは、次の部品が必要です。
+
+.. image:: ../python_pi5/img/1.3.3_stepper_motor_list.png
+
+.. raw:: html
+
+   <br/>
+
+回路図
+-----------------
+
+.. image:: /python_pi5/img/1.3.3_stepper_motor_schematic.png
+
+実験手順
+-----------------------
+
+**ステップ1：** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/1.3.3_stepper_motor_circuit.png
+
+**ステップ2：** コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ3：** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.3_StepperMotor_zero.py
+
+コードが実行されると、ステッパーモーターは、 'a' または 'c' の入力に応じて時計回りまたは反時計回りに回転します。
+
+**コード**
+
+.. note::
+
+    以下のコードを変更、リセット、コピー、実行、停止することができます。ただし、それを行う前に、ソースコードのパスである ``davinci-kit-for-raspberry-pi/python-pi5`` に移動する必要があります。コードを変更した後、その効果を確認するために直接実行できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice
+   from time import sleep
+
+   # ステッパーモーターを制御するためにGPIOピン18、23、24、25を初期化します
+   motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
+
+   # モーターの回転速度パラメーターを設定し、スムーズなモーター動作のための各ステップ間の待ち時間を計算します
+   rotationPerMinute = 15
+   stepsPerRevolution = 2048
+   stepSpeed = (60 / rotationPerMinute) / stepsPerRevolution
+
+   def rotary(direction):
+       """
+       指定された方向に基づいてモーターの回転を制御します。
+       
+       :param direction: 時計回りの場合は 'c'、反時計回りの場合は 'a'
+       """
+       if direction == 'c':
+           # 時計回りの回転のステップシーケンスを実行します
+           for j in range(4):
+               for i in range(4):
+                   if 0x99 << j & (0x08 >> i):
+                       motorPin[i].on()
+                   else:
+                       motorPin[i].off()
+                   sleep(stepSpeed)
+       elif direction == 'a':
+           # 反時計回りの回転のステップシーケンスを実行します
+           for j in range(4):
+               for i in range(4):
+                   if 0x99 >> j & (0x08 >> i):
+                       motorPin[i].on()
+                   else:
+                       motorPin[i].off()
+                   sleep(stepSpeed)
+
+   def loop():
+       """
+       ユーザーにモーターの回転方向を選択させ続け、この入力に基づいてモーターを制御します。
+       """
+       while True:
+           direction = input('モーターの回転方向を選択してください a=反時計回り、c=時計回り: ')
+           if direction == 'c':
+               print('モーターは時計回りに動作します\n')
+               break
+           elif direction == 'a':
+               print('モーターは反時計回りに動作します\n')
+               break
+           else:
+               print('入力エラー、もう一度やり直してください！')
+
+       # 選択した方向でモーターを連続的に回転させます
+       while True:
+           rotary(direction)
+
+   def destroy():
+       """
+       安全にすべてのモーターピンをオフにし、クリーンなシャットダウンに使用します。
+       """
+       for pin in motorPin:
+           pin.off()
+
+   # メインプログラムの実行
+   try:
+       loop()
+   except KeyboardInterrupt:
+       destroy()  # キーボード割り込みを処理してモーターを安全にシャットダウン
+
+
+コードの説明
+---------------------------
+
+1. このセクションでは、必要なライブラリをインポートしています。GPIOピンの制御には「gpiozero」、タイミング制御には「time」を使用しています。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice
+       from time import sleep
+
+2. ステッパーモータを制御するためにGPIOピン18、23、24、25を初期化します。
+
+   .. code-block:: python
+
+       # ステッパーモータのモーターピンを初期化します
+       motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
+
+3. モーターの回転速度を設定し、スムーズな動作のために各ステップ間の時間間隔を計算します。
+
+   .. code-block:: python
+
+       # モーターの回転速度パラメータを設定します
+       rotationPerMinute = 15
+       stepsPerRevolution = 2048
+       # スムーズなモーター動作のための各ステップの間隔を計算します
+       stepSpeed = (60 / rotationPerMinute) / stepsPerRevolution
+
+4. 「rotary」関数は、モーターの回転を制御します。ビット操作とステッピングシーケンスを使用して、時計回りまたは反時計回りの回転に適した順序でモーターピンをアクティブにします。
+
+   .. code-block:: python
+
+       def rotary(direction):
+           """
+           指定された方向に基づいてモーターの回転を制御します。
+           
+           :param direction: 'c' は時計回り、'a' は反時計回り
+           """
+           if direction == 'c':
+               # 時計回りの回転用のステッピングシーケンスを実行します
+               for j in range(4):
+                   for i in range(4):
+                       if 0x99 << j & (0x08 >> i):
+                           motorPin[i].on()
+                       else:
+                           motorPin[i].off()
+                       sleep(stepSpeed)
+           elif direction == 'a':
+               # 反時計回りの回転用のステッピングシーケンスを実行します
+               for j in range(4):
+                   for i in range(4):
+                       if 0x99 >> j & (0x08 >> i):
+                           motorPin[i].on()
+                       else:
+                           motorPin[i].off()
+                       sleep(stepSpeed)
+
+5. 「loop」関数はユーザーにモーターの回転方向を選択するように継続的にプロンプトを表示し、入力に基づいてモーターを制御します。
+
+   .. code-block:: python
+
+       def loop():
+           """
+           ユーザーにモーターの回転方向を選択するように継続的にプロンプトを表示し、この入力に基づいてモーターを制御します。
+           """
+           while True:
+               direction = input('モーターの方向を選択してください。a=反時計回り、c=時計回り：')
+               if direction == 'c':
+                   print('モーターが時計回りに動作中\n')
+                   break
+               elif direction == 'a':
+                   print('モーターが反時計回りに動作中\n')
+                   break
+               else:
+                   print('入力エラー、もう一度やり直してください！')
+
+           # 選択した方向にモーターを継続的に回転させます
+           while True:
+               rotary(direction)
+
+6. 「destroy」関数はすべてのモーターピンをオフにします。これはクリーンなシャットダウンのために使用され、プログラムが終了したときにモーターが安全に停止することを保証します。
+
+   .. code-block:: python
+
+       def destroy():
+           """
+           クリーンなシャットダウンに使用される、すべてのモーターピンを安全にオフにします。
+           """
+           for pin in motorPin:
+               pin.off()
+
+7. メインプログラムは「loop」を呼び出し、キーボード割り込み（Ctrl+Cなど）を処理して「destroy」を使用してモーターを安全にシャットダウンします。
+
+   .. code-block:: python
+
+       # メインプログラムの実行
+       try:
+           loop()
+       except KeyboardInterrupt:
+           destroy()  # キーボード割り込みを処理してモーターを安全にシャットダウンします

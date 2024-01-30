@@ -1,0 +1,176 @@
+.. _1.2.2_py_pi5:
+
+1.2.2 パッシブブザー
+=====================
+
+はじめに
+------------
+
+このプロジェクトでは、パッシブブザーを使用して音楽を演奏する方法を学びます。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../python_pi5/img/1.2.2_passive_buzzer_list.png
+
+.. raw:: html
+
+   <br/>
+
+回路図
+-----------------
+
+この実験では、パッシブブザー、PNPトランジスタ、および1kΩの抵抗器が、トランジスタのベースとGPIOの間に使用されてトランジスタを保護します。
+
+GPIO17に異なる周波数が供給されると、パッシブブザーは異なる音を鳴らします。これにより、ブザーは音楽を演奏します。
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.2.2_passive_buzzer_schematic.png
+
+
+実験手順
+-----------------------
+
+**ステップ1**: 回路を組み立てます（パッシブブザーは裏面に緑の回路基板があります）。
+
+.. image:: ../python_pi5/img/1.2.2_PassiveBuzzer_circuit.png
+
+**ステップ2: ディレクトリを変更します。**
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ3: 実行します。**
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.2.2_PassiveBuzzer_zero.py
+
+コードを実行すると、ブザーが音楽を演奏します。
+
+**コード**
+
+.. note::
+
+    以下のコードは変更/リセット/コピー/実行/停止ができます。ただし、コードを変更する前に``davinci-kit-for-raspberry-pi/python-pi5``のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を確認できます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import TonalBuzzer
+   from time import sleep
+
+   # GPIOピン17に接続されたTonalBuzzerオブジェクトを初期化します
+   tb = TonalBuzzer(17)  # ご使用のセットアップに基づいてこのピン番号を更新します
+
+   def play(tune):
+       """
+       ブザーを使用して音楽を演奏します。
+       :param tune: ノートとその持続時間を表すタプル（ノート、持続時間）のリスト
+       """
+       for note, duration in tune:
+           print(note)  # 現在再生中の音符を出力
+           tb.play(note)  # ブザーで音符を演奏
+           sleep(float(duration))  # 音符の持続時間待ち
+       tb.stop()  # 曲が終わった後に演奏を停止します
+
+   # 音楽チューンをノートと持続時間のシーケンスとして定義します
+   tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
+       ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
+       ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
+       ('Eb4', 0.2), ('E4', 0.2), (None, 0.2),
+       ('F#4', 0.2), ('G4', 0.2), (None, 0.2),
+       ('C4', 0.2), ('B4', 0.2), (None, 0.2),
+       ('F#4', 0.2), ('G4', 0.2), (None, 0.2),
+       ('B4', 0.2), ('Bb4', 0.5), (None, 0.6),
+       ('A4', 0.2), ('G4', 0.2), ('E4', 0.2), 
+       ('D4', 0.2), ('E4', 0.2)]  
+
+   try:
+       play(tune)  # 演奏を開始するためにplay関数を実行します
+
+   except KeyboardInterrupt:
+       # キーボード割り込みをスムーズに処理
+       pass
+
+
+**コードの説明**
+
+1. これらの行はブザーの制御のために``gpiozero``ライブラリから``TonalBuzzer``クラス、待機を作成するために``time``モジュールから``sleep``関数をインポートします。
+
+   .. code-block:: python
+       
+       #!/usr/bin/env python3
+       from gpiozero import TonalBuzzer
+       from time import sleep
+
+
+2. この行はGPIOピン17に接続された``TonalBuzzer``オブジェクトを初期化します。
+    
+   .. code-block:: python
+       
+       # GPIOピン17に接続されたTonalBuzzerオブジェクトを初期化します
+       tb = TonalBuzzer(17)  # お使いのセットアップに基づいてこのピン番号を更新してください
+        
+
+3. ``play`` 関数は、音楽のノートとその持続時間を表すタプルのリストを繰り返し処理します。各ノートは指定された持続時間だけ演奏され、曲が終了するとブザーが停止します。
+    
+   .. code-block:: python  
+
+       def play(tune):
+           """
+           ブザーを使って音楽を演奏します。
+           :param tune: ノートとその持続時間を表すタプル（ノート、持続時間）のリスト。
+           """
+           for note, duration in tune:
+               print(note)  # 現在演奏されているノートを出力
+               tb.play(note)  # ブザーでノートを演奏
+               sleep(float(duration))  # ノートの持続時間分遅延
+           tb.stop()  # 曲が完了した後に演奏を停止
+
+4. メロディは音符（周波数）と持続時間（秒）のシーケンスとして定義されています。
+    
+   .. code-block:: python
+
+       # ノートと持続時間（秒）のシーケンスとして音楽のメロディを定義します
+       tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
+           ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
+           ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
+           ('Eb4', 0.2), ('E4', 0.2), (None, 0.2),
+           ('F#4', 0.2), ('G4', 0.2), (None, 0.2),
+           ('C4', 0.2), ('B4', 0.2), (None, 0.2),
+           ('F#4', 0.2), ('G4', 0.2), (None, 0.2),
+           ('B4', 0.2), ('Bb4', 0.5), (None, 0.6),
+           ('A4', 0.2), ('G4', 0.2), ('E4', 0.2), 
+           ('D4', 0.2), ('E4', 0.2)]  
+
+5. ``play(tune)`` 関数は ``try`` ブロック内で呼び出されます。 ``KeyboardInterrupt`` （Ctrl+Cのような）はプログラムを正常に停止します。
+    
+   .. code-block:: python  
+       
+       try:
+           play(tune)  # 曲を演奏を開始するためにplay関数を実行します
+
+       except KeyboardInterrupt:
+           # Ctrl+Cのようなキーボード割り込みを処理してプログラムをきれいに終了します
+           pass

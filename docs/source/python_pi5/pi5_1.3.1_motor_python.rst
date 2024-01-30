@@ -1,0 +1,137 @@
+.. _1.3.1_py_pi5:
+
+1.3.1 モーター
+===================================
+
+はじめに
+-----------------
+
+このプロジェクトでは、L293Dを使用してDCモーターを制御し、時計回りと反時計回りに回転させる方法を学びます。 DCモーターはより大きな電流が必要ですので、安全のためにここでは電源供給モジュールを使用してモーターに電力を供給します。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../python_pi5/img/1.3.1_motor_list.png
+
+回路図
+------------------
+
+.. image:: ../python_pi5/img/1.3.1_motor_schematic.png
+
+
+実験手順
+---------------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/1.3.1_motor_circuit.png
+
+.. note::
+    電源モジュールには、キットに含まれている9Vバッテリーと9Vバッテリーバックルを使用できます。 電源モジュールのジャンパーキャップをブレッドボードの5Vバスストリップに挿入してください。
+
+.. image:: ../python_pi5/img/1.3.1_motor_battery.jpeg
+
+**ステップ2**: コードのフォルダに入ります。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ3: 実行します。**
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.1_Motor_zero.py
+
+コードが実行されると、モーターは最初に時計回りに5秒間回転し、5秒間停止し、その後、反時計回りに5秒間回転し、その後、モーターは5秒間停止します。この一連の動作は繰り返し実行されます。
+
+**コード**
+
+.. note::
+
+    以下のコードは変更/リセット/コピー/実行/停止ができます。ただし、コードを変更する前に``davinci-kit-for-raspberry-pi/python-pi5``のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を確認できます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Motor
+   from time import sleep
+
+   # GPIO Zeroを使用してモーターを初期化し、前進（17）、後退（27）、および有効（22）制御のためのGPIOピンを指定します。
+   motor = Motor(forward=17, backward=27, enable=22)
+
+   try:
+       # モーターの方向と動きを制御するためのメイン関数です。
+       # モーターの回転を時計回りと反時計回りに交互に切り替えます。
+       actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # 読みやすさのためにモーターアクションを定義
+       
+       while True:
+           # モーターの方向を制御するために定義されたアクションをループします
+           for action in ['CW', 'STOP', 'CCW', 'STOP']:
+               actions[action]()  # 現在のアクション（前進、停止、後退、停止）を実行
+               print(f"{action}")  # コンソールに現在のアクションを表示
+               sleep(5)  # 次のアクションに進む前に5秒間停止
+
+   except KeyboardInterrupt:
+       # プログラムを停止するためのキーボード割り込み（Ctrl+Cなど）を正常に処理します
+       pass
+
+
+**コードの説明**
+
+1. これらのインポートステートメントは、 ``gpiozero`` ライブラリから ``Motor`` クラスと、 ``time`` モジュールから ``sleep`` 関数を取り込みます。
+    
+   .. code-block:: python  
+
+       #!/usr/bin/env python3
+       from gpiozero import Motor
+       from time import sleep
+      
+
+2. この行は、前進（17）、後退（27）、および有効（22）制御のためのGPIOピンを指定して``Motor``オブジェクトを初期化します。
+    
+   .. code-block:: python
+       
+       # Initialize the Motor with GPIO Zero, specifying GPIO pins for forward (17), backward (27), and enable (22) control
+       motor = Motor(forward=17, backward=27, enable=22)
+      
+
+3. モーター制御のアクションは、可読性のために辞書で定義されています。無限ループ（`while True`）がこれらのアクションを繰り返し、各アクションを5秒間実行します。
+    
+   .. code-block:: python
+       
+       try:
+           # モーターの方向と動きを制御するメイン関数。
+           # 時計回りと反時計回りのモーターの回転を交互に行い、間に停止します。
+           actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # 可読性のためにモーターアクションを定義
+           
+           while True:
+               # ループを使用して定義されたアクションを制御してモーターの方向を切り替えます
+               for action in ['CW', 'STOP', 'CCW', 'STOP']:
+                   actions[action]()  # 現在のアクション（前進、停止、後退、停止）を実行します
+                   print(f"{action}")  # 現在のアクションをコンソールに表示します
+                   sleep(5)  # 次のアクションに進む前に5秒間一時停止します
+      
+
+4. このセグメントは、キーボード割り込み（Ctrl+Cなど）を使用してプログラムを安全に終了できるようにします。
+    
+   .. code-block:: python
+       
+       except KeyboardInterrupt:
+       # キーボード割り込み（e.g., Ctrl+C）をスムーズに処理してプログラムを停止します
+       pass

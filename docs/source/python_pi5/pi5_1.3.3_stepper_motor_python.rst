@@ -1,0 +1,242 @@
+.. _1.3.3_py_pi5:
+
+1.3.3 Schrittmotor
+====================
+
+Einführung
+------------
+
+Schrittmotoren können aufgrund ihrer einzigartigen Konstruktion genau gesteuert werden, ohne Rückkopplungsmechanismen zu benötigen. Die Welle eines Schrittmotors, die mit einer Reihe von Magneten versehen ist, wird von einer Reihe von elektromagnetischen Spulen gesteuert, die in einer bestimmten Sequenz positiv und negativ aufgeladen werden und sie präzise vorwärts oder rückwärts in kleinen "Schritten" bewegen.
+
+Erforderliche Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten. 
+
+.. image:: ../python_pi5/img/1.3.3_stepper_motor_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schaltplan
+-----------------
+
+.. image:: /python_pi5/img/1.3.3_stepper_motor_schematic.png
+
+
+Versuchsdurchführung
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung.
+
+.. image:: ../python_pi5/img/1.3.3_stepper_motor_circuit.png
+
+**Schritt 2:** Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.3_StepperMotor_zero.py
+
+Während der Ausführung des Codes wird der Schrittmotor im Uhrzeigersinn oder gegen den Uhrzeigersinn gedreht, abhängig von Ihrer Eingabe 'a' oder 'c'.
+
+**Code**
+
+.. note::
+
+    Sie können den folgenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcodepfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nach der Änderung des Codes können Sie ihn direkt ausführen, um die Wirkung zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice
+   from time import sleep
+
+   # Initialisieren Sie die Motorpins mit GPIO-Pins 18, 23, 24, 25
+   motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
+
+   # Setzen Sie die Motor-Drehgeschwindigkeitsparameter
+   UmdrehungenProMinute = 15
+   SchritteProUmdrehung = 2048
+   # Berechnen Sie die Wartezeit zwischen jedem Schritt für einen sanften Motorbetrieb
+   Schrittgeschwindigkeit = (60 / UmdrehungenProMinute) / SchritteProUmdrehung
+
+   def Schrittmotor(direction):
+       """
+       Steuert die Rotation des Motors basierend auf der angegebenen Richtung.
+       
+       :param direction: 'c' für im Uhrzeigersinn, 'a' für gegen den Uhrzeigersinn
+       """
+       if direction == 'c':
+           # Führen Sie die Schrittsequenz für die Rotation im Uhrzeigersinn aus
+           for j in range(4):
+               for i in range(4):
+                   if 0x99 << j & (0x08 >> i):
+                       motorPin[i].on()
+                   else:
+                       motorPin[i].off()
+                   sleep(Schrittgeschwindigkeit)
+       elif direction == 'a':
+           # Führen Sie die Schrittsequenz für die Rotation gegen den Uhrzeigersinn aus
+           for j in range(4):
+               for i in range(4):
+                   if 0x99 >> j & (0x08 >> i):
+                       motorPin[i].on()
+                   else:
+                       motorPin[i].off()
+                   sleep(Schrittgeschwindigkeit)
+
+   def Schleife():
+       """
+       Fordert den Benutzer kontinuierlich auf, die Motor-Richtung auszuwählen
+       und steuert den Motor basierend auf dieser Eingabe.
+       """
+       while True:
+           direction = input('Wählen Sie die Motorrichtung a=gegen den Uhrzeigersinn, c=im Uhrzeigersinn: ')
+           if direction == 'c':
+               print('Motor läuft im Uhrzeigersinn\n')
+               break
+           elif direction == 'a':
+               print('Motor läuft gegen den Uhrzeigersinn\n')
+               break
+           else:
+               print('Eingabefehler, bitte erneut versuchen!')
+
+       # Halten Sie den Motor in der ausgewählten Richtung in Bewegung
+       while True:
+           Schrittmotor(direction)
+
+   def beenden():
+       """
+       Schaltet alle Motorpins sicher aus, wird für das ordnungsgemäße Herunterfahren verwendet.
+       """
+       for pin in motorPin:
+           pin.off()
+
+   # Hauptprogrammausführung
+   try:
+       Schleife()
+   except KeyboardInterrupt:
+       beenden()  # Behandeln Sie die Tastaturunterbrechung, um den Motor sicher herunterzufahren
+
+
+**Code-Erklärung**
+
+#. Dieser Abschnitt importiert die notwendigen Bibliotheken. ``gpiozero`` für die Steuerung der GPIO-Pins und ``time`` für die in der Zeitsteuerung verwendete Funktion ``sleep``.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice
+       from time import sleep
+
+#. Initialisiert die GPIO-Pins 18, 23, 24 und 25 als Ausgabegeräte zur Steuerung des Schrittmotors.
+
+   .. code-block:: python
+
+       # Initialisieren Sie die Motorpins mit GPIO-Pins 18, 23, 24, 25
+       motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
+
+#. Legt die Drehgeschwindigkeit des Motors fest und berechnet das Zeitintervall zwischen jedem Schritt für einen sanften Betrieb.
+
+   .. code-block:: python
+
+       # Setzen Sie die Motor-Drehgeschwindigkeitsparameter
+       UmdrehungenProMinute = 15
+       SchritteProUmdrehung = 2048
+       # Berechnen Sie die Wartezeit zwischen jedem Schritt für einen sanften Motorbetrieb
+       Schrittgeschwindigkeit = (60 / UmdrehungenProMinute) / SchritteProUmdrehung
+
+#. Die Funktion ``Schrittmotor`` steuert die Rotation des Motors. Sie verwendet Bit-Manipulation und eine Schrittsequenz, um die Motorpins in der richtigen Reihenfolge für die Rotation im Uhrzeigersinn oder gegen den Uhrzeigersinn zu aktivieren.
+
+   .. code-block:: python
+
+       def Schrittmotor(direction):
+           """
+           Steuert die Rotation des Motors basierend auf der angegebenen Richtung.
+           
+           :param direction: 'c' für im Uhrzeigersinn, 'a' für gegen den Uhrzeigersinn
+           """
+           if direction == 'c':
+               # Führen Sie die Schrittsequenz für die Rotation im Uhrzeigersinn aus
+               for j in range(4):
+                   for i in range(4):
+                       if 0x99 << j & (0x08 >> i):
+                           motorPin[i].on()
+                       else:
+                           motorPin[i].off()
+                       sleep(Schrittgeschwindigkeit)
+           elif direction == 'a':
+               # Führen Sie die Schrittsequenz für die Rotation gegen den Uhrzeigersinn aus
+               for j in range(4):
+                   for i in range(4):
+                       if 0x99 >> j & (0x08 >> i):
+                           motorPin[i].on()
+                       else:
+                           motorPin[i].off()
+                       sleep(Schrittgeschwindigkeit)
+
+#. Diese Funktion fordert den Benutzer kontinuierlich auf, die Richtung der Motorrotation auszuwählen, und steuert den Motor basierend auf der Eingabe.
+
+   .. code-block:: python
+
+       def Schleife():
+           """
+           Fordert den Benutzer kontinuierlich auf, die Motorrichtung auszuwählen
+           und steuert den Motor basierend auf dieser Eingabe.
+           """
+           while True:
+               direction = input('Wählen Sie die Motorrichtung a=gegen den Uhrzeigersinn, c=im Uhrzeigersinn: ')
+               if direction == 'c':
+                   print('Motor läuft im Uhrzeigersinn\n')
+                   break
+               elif direction == 'a':
+                   print('Motor läuft gegen den Uhrzeigersinn\n')
+                   break
+               else:
+                   print('Eingabefehler, bitte erneut versuchen!')
+
+           # Halten Sie den Motor in der ausgewählten Richtung in Bewegung
+           while True:
+               Schrittmotor(direction)
+
+#. Die ``beenden`` Funktion schaltet alle Motorpins aus. Sie wird für einen sauberen Shutdown verwendet, um sicherzustellen, dass der Motor sicher stoppt, wenn das Programm endet.
+
+   .. code-block:: python
+
+       def beenden():
+           """
+           Schaltet alle Motorpins sicher aus, wird für das ordnungsgemäße Herunterfahren verwendet.
+           """
+           for pin in motorPin:
+               pin.off()
+
+#. Das Hauptprogramm ruft ``Schleife`` auf und behandelt Tastaturunterbrechungen (wie Ctrl+C), um den Motor sicher mit ``beenden`` herunterzufahren.
+
+   .. code-block:: python
+
+       # Hauptprogrammausführung
+       try:
+           Schleife()
+       except KeyboardInterrupt:
+           beenden()  # Behandeln Sie die Tastaturunterbrechung, um den Motor sicher herunterzufahren

@@ -1,0 +1,173 @@
+.. _2.2.2_py_pi5:
+
+2.2.2 Thermistor
+================
+
+Einführung
+------------
+
+Wie ein Fotowiderstand Licht erkennen kann, ist ein Thermistor ein temperatur-
+empfindliches elektronisches Bauteil, das zur Realisierung von Temperatursteuerungsfunktionen
+wie einem Hitzemelder verwendet werden kann.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_list.png
+
+Schaltplan
+-----------------
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_schematic_2.png
+
+
+Experimentelle Verfahren
+------------------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_circuit.png
+
+**Schritt 2:** Wechseln Sie in den Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.2.2_Thermistor_zero.py
+
+Wenn der Code ausgeführt wird, erkennt der Thermistor die Umgebungstemperatur,
+die auf dem Bildschirm angezeigt wird, sobald das Programm die Berechnung abschließt.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Auswirkungen zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   # -*- coding: utf-8 -*-
+
+   import ADC0834
+   import time
+   import math
+
+   # Richten Sie das ADC0834-Modul ein
+   ADC0834.setup()
+
+   # Führen Sie den Prozess in einem try-except-Block aus
+   try:
+       while True:
+           # Lesen Sie den analogen Wert vom Sensor
+           analogVal = ADC0834.getResult()
+
+           # Wandeln Sie den analogen Wert in eine Spannung um
+           Vr = 5 * float(analogVal) / 255
+
+           # Berechnen Sie den Widerstand des Thermistors
+           Rt = 10000 * Vr / (5 - Vr)
+
+           # Berechnen Sie die Temperatur in Kelvin
+           temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+
+           # Wandeln Sie Kelvin in Celsius um
+           Cel = temp - 273.15
+
+           # Wandeln Sie Celsius in Fahrenheit um
+           Fah = Cel * 1.8 + 32
+
+           # Drucken Sie die Temperatur in Celsius und Fahrenheit aus
+           print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
+
+           # Warten Sie 0,2 Sekunden vor dem nächsten Lesen
+           time.sleep(0.2)
+
+   # Behandeln Sie KeyboardInterrupt für einen eleganten Abschluss
+   except KeyboardInterrupt:
+       # Ressourcen des ADC0834 aufräumen
+       ADC0834.destroy()
+
+
+**Code-Erklärung**
+
+#. Dieser Abschnitt importiert die ADC0834-Bibliothek für die Analog-Digital-Umwandlung, die time-Bibliothek für die Implementierung von Verzögerungen und die math-Bibliothek für mathematische Operationen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       # -*- coding: utf-8 -*-
+
+       import ADC0834
+       import time
+       import math
+
+#. Initialisiert das ADC0834-Modul, um das Lesen von Analogwerten zu ermöglichen.
+
+   .. code-block:: python
+
+       # Richten Sie das ADC0834-Modul ein
+       ADC0834.setup()
+
+#. Implementiert eine Endlosschleife für kontinuierliche Datenablesung. Die Schleife liest den Analogwert von einem Thermistor, wandelt diesen Wert in eine Spannung um, berechnet den Widerstand des Thermistors und übersetzt diesen Widerstand in Temperaturmessungen in Kelvin, Celsius und Fahrenheit. Sie gibt auch die Temperaturwerte in Celsius und Fahrenheit aus und legt eine Pause von 0,2 Sekunden zwischen jeder Ablesung ein.
+
+   .. code-block:: python
+
+       # Führen Sie den Prozess in einem try-except-Block aus
+       try:
+           while True:
+               # Lesen Sie den analogen Wert vom Sensor
+               analogVal = ADC0834.getResult()
+
+               # Wandeln Sie den analogen Wert in eine Spannung um
+               Vr = 5 * float(analogVal) / 255
+
+               # Berechnen Sie den Widerstand des Thermistors
+               Rt = 10000 * Vr / (5 - Vr)
+
+               # Berechnen Sie die Temperatur in Kelvin
+               temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+
+               # Wandeln Sie Kelvin in Celsius um
+               Cel = temp - 273.15
+
+               # Wandeln Sie Celsius in Fahrenheit um
+               Fah = Cel * 1.8 + 32
+
+               # Drucken Sie die Temperatur in Celsius und Fahrenheit aus
+               print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
+
+               # Warten Sie 0,2 Sekunden vor dem nächsten Lesen
+               time.sleep(0.2)
+
+#. Fängt eine KeyboardInterrupt-Ausnahme ab, um das Programm elegant zu beenden, und enthält Anweisungen zur Bereinigung der ADC0834-Ressourcen bei Beendigung.
+
+   .. code-block:: python
+
+       # Behandeln Sie KeyboardInterrupt für einen eleganten Abschluss
+       except KeyboardInterrupt:
+           # Ressourcen des ADC0834 aufräumen
+           ADC0834.destroy()

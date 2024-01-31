@@ -1,0 +1,148 @@
+.. _1.2.1_py_pi5:
+
+1.2.1 Aktiver Summer
+=================================
+
+Einführung
+------------
+
+In diesem Projekt werden wir lernen, wie man einen aktiven Summer mit
+einem PNP-Transistor zum Piepen bringt.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.2.1_active_buzzer_list.png
+
+
+Schaltplan
+-----------------
+
+In diesem Experiment wird ein aktiver Summer, ein PNP-Transistor und ein 1k-Widerstand
+zwischen der Basis des Transistors und GPIO verwendet, um den
+Transistor zu schützen. Wenn der GPIO17 des Raspberry Pi mit High-Level (3,3V) durch
+Programmierung versorgt wird, leitet der Transistor wegen
+Stromsättigung und der Summer gibt Töne ab. Wenn jedoch ein Low-Level
+an den IO des Raspberry Pi geliefert wird, ist der Transistor gesperrt
+und der Summer gibt keine Töne von sich.
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/1.2.1_active_buzzer_schematic.png
+
+
+Experimentelle Verfahren
+------------------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf. (Der aktive Summer hat einen weißen Tischetikettaufkleber auf der Oberfläche und eine schwarze Rückseite.)
+
+.. image:: ../python_pi5/img/1.2.1_ActiveBuzzer_circuit.png
+
+**Schritt 2:** Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.2.1_ActiveBuzzer_zero.py
+
+Wenn der Code ausgeführt wird, piept der Summer.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Auswirkungen zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Buzzer
+   from time import sleep
+
+   # Initialisieren Sie ein Buzzer-Objekt am GPIO-Pin 17
+   buzzer = Buzzer(17)
+
+   try:
+       while True:
+           # Summer einschalten
+           print('Summer An')
+           buzzer.on()
+           sleep(0.1)  # Summer für 0,1 Sekunden eingeschaltet lassen
+
+           # Summer ausschalten
+           print('Summer Aus')
+           buzzer.off()
+           sleep(0.1)  # Summer für 0,1 Sekunden ausgeschaltet lassen
+
+   except KeyboardInterrupt:
+       # Tastaturunterbrechung (Ctrl+C) sauber behandeln
+       pass
+
+
+**Code-Erklärung**
+
+#. Diese Anweisungen importieren die Klasse ``Buzzer`` aus der Bibliothek ``gpiozero`` und die Funktion ``sleep`` aus dem Modul ``time``.
+
+   .. code-block:: python
+       
+       #!/usr/bin/env python3
+       from gpiozero import Buzzer
+       from time import sleep
+
+
+#. Diese Zeile erstellt ein ``Buzzer``-Objekt, das an GPIO-Pin 17 am Raspberry Pi angeschlossen ist.
+    
+   .. code-block:: python
+       
+       # Initialisieren Sie ein Buzzer-Objekt am GPIO-Pin 17
+       buzzer = Buzzer(17)
+        
+      
+
+#. In einer unendlichen Schleife (``while True``) wird der Summer alle 0,1 Sekunden ein- und ausgeschaltet. ``print``-Anweisungen bieten eine Konsolenausgabe für jede Aktion.
+      
+   .. code-block:: python
+       
+       try:
+           while True:
+               # Summer einschalten
+               print('Summer An')
+               buzzer.on()
+               sleep(0.1)  # Summer für 0,1 Sekunden eingeschaltet lassen
+
+               # Summer ausschalten
+               print('Summer Aus')
+               buzzer.off()
+               sleep(0,1)  # Summer für 0,1 Sekunden ausgeschaltet lassen
+
+#. Dieser Abschnitt stellt sicher, dass das Programm mit einer Tastaturunterbrechung (Ctrl+C) sicher beendet werden kann, ohne einen Fehler zu verursachen.
+      
+   .. code-block:: python
+       
+       except KeyboardInterrupt:
+       # Tastaturunterbrechung (Ctrl+C) sauber behandeln
+       pass
+      

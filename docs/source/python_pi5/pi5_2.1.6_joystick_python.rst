@@ -1,0 +1,151 @@
+.. _2.1.6_py_pi5:
+
+2.1.6 Joystick
+==============
+
+Einführung
+------------
+
+In diesem Projekt werden wir lernen, wie ein Joystick funktioniert. Wir bedienen
+den Joystick und zeigen die Ergebnisse auf dem Bildschirm an.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/2.1.9_joystick_list.png
+
+Schaltplan
+-----------------
+
+Wenn die Daten des Joysticks gelesen werden, gibt es einige Unterschiede zwischen
+den Achsen: Daten der X- und Y-Achse sind analog, wofür der ADC0834 benötigt wird, um
+den analogen Wert in einen digitalen Wert umzuwandeln. Daten der Z-Achse sind digital, also
+können Sie diese direkt mit dem GPIO lesen, oder Sie können auch den ADC verwenden, um zu lesen.
+
+.. image:: ../python_pi5/img/2.1.9_joystick_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.1.9_joystick_schematic_2.png
+
+
+Experimentelle Verfahren
+-----------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/2.1.9_Joystick_circuit.png
+
+**Schritt 2:** Wechseln Sie in den Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.6_Joystick_zero.py
+
+Nachdem der Code ausgeführt wurde, drehen Sie den Joystick, dann werden die entsprechenden Werte von
+x, y, Btn auf dem Bildschirm angezeigt.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Auswirkungen zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Button
+   import ADC0834
+   import time
+
+   # Initialisieren Sie den Button, der mit GPIO-Pin 22 verbunden ist
+   BtnPin = Button(22)
+
+   # Richten Sie den ADC0834-ADC ein
+   ADC0834.setup()
+
+   try:
+       # Hauptschleife zum Lesen und Anzeigen der ADC-Werte und des Knopfzustands
+       while True:
+           # Lesen Sie die X- und Y-Werte von den ADC-Kanälen 0 und 1
+           x_val = ADC0834.getResult(0)
+           y_val = ADC0834.getResult(1)
+
+           # Lesen Sie den Zustand des Knopfes (gedrückt oder nicht)
+           Btn_val = BtnPin.value
+
+           # Drucken Sie die X-, Y- und Knopfwerte aus
+           print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+
+           # Verzögerung von 0,2 Sekunden vor dem nächsten Lesen
+           time.sleep(0.2)
+
+   # Eleganter Ausstieg bei Skriptbeendigung (z. B. durch KeyboardInterrupt)
+   except KeyboardInterrupt: 
+       pass
+
+
+**Code-Erklärung**
+
+#. Dieser Abschnitt importiert die Klasse Button aus der Bibliothek ``gpiozero`` zur Verwaltung eines Buttons, der mit einem GPIO-Pin verbunden ist. Es importiert auch die Bibliothek ``ADC0834`` für die Schnittstelle mit dem ADC0834-ADC (Analog-Digital-Umwandler) Modul.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import Button
+       import ADC0834
+       import time
+
+#. Initialisiert einen Button, der mit GPIO-Pin 22 verbunden ist, und richtet das ADC0834-Modul zur Verwendung ein.
+
+   .. code-block:: python
+
+       # Initialisieren Sie den Button, der mit GPIO-Pin 22 verbunden ist
+       BtnPin = Button(22)
+
+       # Richten Sie den ADC0834-ADC ein
+       ADC0834.setup()
+
+#. Die VRX- und VRY-Verbindungen des Joysticks sind mit CH0 bzw. CH1 des ADC0834 verbunden. Diese Einrichtung ermöglicht das Lesen der Werte von CH0 und CH1, die dann in den Variablen ``x_val`` und ``y_val`` gespeichert werden. Zusätzlich wird der SW-Wert des Joysticks gelesen und der Variablen ``Btn_val`` zugewiesen. Die abgerufenen Werte von ``x_val``, ``y_val`` und ``Btn_val`` werden anschließend mit der Funktion ``print()`` angezeigt.
+
+   .. code-block:: python
+
+       try:
+           # Hauptschleife zum Lesen und Anzeigen der ADC-Werte und des Knopfzustands
+           while True:
+               # Lesen Sie die X- und Y-Werte von den ADC-Kanälen 0 und 1
+               x_val = ADC0834.getResult(0)
+               y_val = ADC0834.getResult(1)
+
+               # Lesen Sie den Zustand des Knopfes (gedrückt oder nicht)
+               Btn_val = BtnPin.value
+
+               # Drucken Sie die X-, Y- und Knopfwerte aus
+               print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+
+               # Verzögerung von 0,2 Sekunden vor dem nächsten Lesen
+               time.sleep(0.2)
+
+       # Eleganter Ausstieg bei Skriptbeendigung (z. B. durch KeyboardInterrupt)
+       except KeyboardInterrupt: 
+           pass

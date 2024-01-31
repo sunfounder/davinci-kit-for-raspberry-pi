@@ -1,0 +1,148 @@
+.. _1.3.1_py_pi5:
+
+1.3.1 Motor
+=============
+
+Einführung
+-----------------
+
+In diesem Projekt werden wir lernen, wie man einen Gleichstrommotor mit einem L293D antreibt
+und ihn im Uhrzeigersinn und gegen den Uhrzeigersinn drehen lässt. Da der Gleichstrommotor
+einen größeren Strom benötigt, verwenden wir aus Sicherheitsgründen das Power Supply
+Modul, um die Motoren zu versorgen.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.3.1_motor_list.png
+
+
+
+Schaltplan
+------------------
+
+.. image:: ../python_pi5/img/1.3.1_motor_schematic.png
+
+
+Experimentelle Verfahren
+---------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/1.3.1_motor_circuit.png
+
+.. note::
+    Das Power-Modul kann eine 9V-Batterie mit dem 9V-Batterie
+    Schnalle im Kit anwenden. Stecken Sie die Jumperkappe des Power-Moduls in die 5V
+    Busleisten des Steckbretts.
+
+.. image:: ../python_pi5/img/1.3.1_motor_battery.jpeg
+
+**Schritt 2:** Wechseln Sie in den Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.1_Motor_zero.py
+
+Wenn der Code ausgeführt wird, dreht sich der Motor zuerst 5 Sekunden lang im Uhrzeigersinn, dann stoppt er für 5 Sekunden,
+danach dreht er sich 5 Sekunden lang gegen den Uhrzeigersinn; anschließend stoppt der Motor
+für 5 Sekunden. Diese Serie von Aktionen wird wiederholt ausgeführt.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Auswirkungen zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Motor
+   from time import sleep
+
+   # Initialisieren Sie den Motor mit GPIO Zero, indem Sie GPIO-Pins für Vorwärts (17), Rückwärts (27) und Enable (22) Kontrolle angeben
+   motor = Motor(forward=17, backward=27, enable=22)
+
+   try:
+       # Hauptfunktion zur Steuerung der Richtung und Bewegung des Motors.
+       # Wechselt die Drehrichtung des Motors zwischen im Uhrzeigersinn und gegen den Uhrzeigersinn mit Stopps dazwischen.
+       actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Motoraktionen für Lesbarkeit definieren
+       
+       while True:
+           # Durch die definierten Aktionen zyklen, um die Motordrehrichtung zu steuern
+           for action in ['CW', 'STOP', 'CCW', 'STOP']:
+               actions[action]()  # Führen Sie die aktuelle Aktion aus (vorwärts, stoppen, rückwärts, stoppen)
+               print(f"{action}")  # Zeigen Sie die aktuelle Aktion in der Konsole an
+               sleep(5)  # Pause für 5 Sekunden, bevor Sie zur nächsten Aktion übergehen
+
+   except KeyboardInterrupt:
+       # Tastaturunterbrechung (z. B. Ctrl+C) sauber behandeln
+       pass
+
+
+**Code-Erklärung**
+
+#. Diese Importanweisungen holen die Klasse ``Motor`` aus der Bibliothek ``gpiozero`` und die Funktion ``sleep`` aus dem Modul ``time``.
+    
+   .. code-block:: python  
+
+       #!/usr/bin/env python3
+       from gpiozero import Motor
+       from time import sleep
+      
+
+#. Diese Zeile initialisiert ein ``Motor``-Objekt und gibt die GPIO-Pins für Vorwärts (17), Rückwärts (27) und Enable (22) Kontrolle an.
+    
+   .. code-block:: python
+       
+       # Initialisieren Sie den Motor mit GPIO Zero, indem Sie GPIO-Pins für Vorwärts (17), Rückwärts (27) und Enable (22) Kontrolle angeben
+       motor = Motor(forward=17, backward=27, enable=22)
+      
+
+#. Die Aktionen zur Motorsteuerung sind in einem Wörterbuch für die Lesbarkeit definiert. Eine unendliche Schleife (`while True`) iteriert durch diese Aktionen und führt jede für 5 Sekunden aus.
+    
+   .. code-block:: python
+       
+       try:
+           # Hauptfunktion zur Steuerung der Richtung und Bewegung des Motors.
+           # Wechselt die Drehrichtung des Motors zwischen im Uhrzeigersinn und gegen den Uhrzeigersinn mit Stopps dazwischen.
+           actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Motoraktionen für Lesbarkeit definieren
+           
+           while True:
+               # Durch die definierten Aktionen zyklen, um die Motordrehrichtung zu steuern
+               for action in ['CW', 'STOP', 'CCW', 'STOP']:
+                   actions[action]()  # Führen Sie die aktuelle Aktion aus (vorwärts, stoppen, rückwärts, stoppen)
+                   print(f"{action}")  # Zeigen Sie die aktuelle Aktion in der Konsole an
+                   sleep(5)  # Pause für 5 Sekunden, bevor Sie zur nächsten Aktion übergehen
+      
+
+#. Dieser Abschnitt ermöglicht es, das Programm sicher mit einer Tastaturunterbrechung (Ctrl+C) zu beenden, ohne Fehler zu verursachen.
+    
+   .. code-block:: python
+       
+       except KeyboardInterrupt:
+           # Tastaturunterbrechung (z. B. Ctrl+C) sauber behandeln
+           pass
+      
+

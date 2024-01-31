@@ -1,0 +1,170 @@
+.. _py_pi5_btr_indicator:
+
+3.1.5 Batterieanzeige
+===================================
+
+Einführung
+--------------
+
+In diesem Projekt werden wir ein Batterieanzeigegerät erstellen, das den Batteriestand auf dem LED-Bargraphen visuell anzeigen kann.
+
+Erforderliche Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../python_pi5/img/4.1.11_battery_indicator_list.png
+    :align: center
+
+Schaltplan
+-------------------
+
+============ ======== ======== ===
+T-Karte Name physisch wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO25       Pin 22   6        25
+GPIO12       Pin 32   26       12
+GPIO16       Pin 36   27       16
+GPIO20       Pin 38   28       20
+GPIO21       Pin 40   29       21
+GPIO5        Pin 29   21       5
+GPIO6        Pin 31   22       6
+GPIO13       Pin 33   23       13
+GPIO19       Pin 35   24       19
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.11_battery_indicator_schematic.png
+   :align: center
+
+Versuchsdurchführung
+-------------------------
+
+**Schritt 1:** Bauen Sie die Schaltung.
+
+.. image:: ../python_pi5/img/4.1.11_battery_indicator_circuit.png
+
+**Schritt 2:** Wechseln Sie in den Ordner mit dem Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.5_BatteryIndicator_zero.py
+
+Nachdem das Programm ausgeführt wurde, führen Sie das dritte Pin des ADC0834 und die GND separat heraus und führen Sie sie dann separat zu den beiden Polen einer Batterie. Sie können sehen, dass die entsprechende LED auf dem LED-Bargraphen aufleuchtet, um den Energiepegel anzuzeigen (Messbereich: 0-5V).
+
+**Code**
+
+.. note::
+    Sie können den folgenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Wirkung zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED
+   import ADC0834
+   import time
+
+   # Liste der GPIO-Pins, an die LEDs angeschlossen sind
+   ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
+   # Initialisieren von LED-Objekten für jeden Pin in der Liste
+   leds = [LED(pin) for pin in ledPins]
+
+   # Setup des ADC0834-Moduls
+   ADC0834.setup()
+
+   def LedBarGraph(value):
+       # Schalte alle LEDs aus
+       for i in range(10):
+           leds[i].off()
+       # Schalte LEDs bis zum angegebenen Wert ein
+       for i in range(value):
+           leds[i].on()
+
+   try:
+       # Hauptschleife zur kontinuierlichen Aktualisierung des LED-Bargraphen
+       while True:
+           # Lese den analogen Wert von ADC0834 aus
+           analogVal = ADC0834.getResult()
+           # Konvertiere den analogen Wert in den LED-Bargraphen-Level
+           LedBarGraph(int(analogVal/25))
+   except KeyboardInterrupt: 
+       # Schalte alle LEDs aus, wenn das Programm unterbrochen wird
+       for i in range(10):
+           leds[i].off()
+
+
+**Code-Erklärung**
+
+#. Dieser Abschnitt importiert die erforderlichen Bibliotheken. ``gpiozero`` dient zur Steuerung der LEDs, ``ADC0834`` zur Kommunikation mit dem ADC-Modul und ``time`` für zeitbezogene Operationen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED
+       import ADC0834
+       import time
+
+#. Definiert die GPIO-Pins, an die die LEDs angeschlossen sind, und initialisiert ein Array von LED-Objekten für jeden Pin. Dadurch wird eine einfache Steuerung jeder LED im Array ermöglicht.
+
+   .. code-block:: python
+
+       # Liste der GPIO-Pins, an die die LEDs angeschlossen sind
+       ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
+       # Initialisieren von LED-Objekten für jeden Pin in der Liste
+       leds = [LED(pin) for pin in ledPins]
+
+#. Initialisiert das ADC0834-Modul für die analog-digital-Umwandlung.
+
+   .. code-block:: python
+
+       # Setup des ADC0834-Moduls
+       ADC0834.setup()
+
+#. Diese Funktion schaltet zunächst alle LEDs aus und schaltet dann basierend auf dem Eingangswert eine bestimmte Anzahl von LEDs ein, um effektiv eine Balkendiagrammdarstellung zu erstellen.
+
+   .. code-block:: python
+
+       def LedBalkenDiagramm(wert):
+           # Schalte alle LEDs aus
+           for i in range(10):
+               leds[i].off()
+           # Schalte LEDs bis zum angegebenen Wert ein
+           for i in range(wert):
+               leds[i].on()
+
+#. Liest kontinuierlich den analogen Wert aus dem ADC0834 aus und aktualisiert das LED-Balkendiagramm basierend auf diesem Wert. Der analoge Wert wird auf einen Bereich von 0 bis 10 für die 10 LEDs skaliert.
+
+   .. code-block:: python
+
+        try:
+            # Hauptschleife zur kontinuierlichen Aktualisierung des LED-Bargraphen
+            while True:
+                # Lese den analogen Wert von ADC0834 aus
+                analogVal = ADC0834.getResult()
+                # Konvertiere den analogen Wert in den LED-Bargraphen-Level
+                LedBalkenDiagramm(int(analogVal/25))
+                
+        except KeyboardInterrupt: 
+            # Schalte alle LEDs aus, wenn das Programm unterbrochen wird
+            for i in range(10):
+                leds[i].off()

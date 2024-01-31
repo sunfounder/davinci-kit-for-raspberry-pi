@@ -1,0 +1,125 @@
+.. _2.2.4_py_pi5:
+
+2.2.4 Ultraschall-Sensormodul
+==============================
+
+Einführung
+--------------
+
+Der Ultraschallsensor verwendet Ultraschall, um Objekte genau zu erkennen und
+Distanzen zu messen. Er sendet Ultraschallwellen aus und wandelt sie in
+elektronische Signale um.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/2.2.5_ultrasonic_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schaltplan
+-----------------
+
+.. image:: ../python_pi5/img/2.2.5_ultrasonic_schematic.png
+
+
+Experimentelle Verfahren
+---------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/2.2.5_ultrasonic_circuit.png
+
+**Schritt 2:** Wechseln Sie in den Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Schritt 3:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.5_Ultrasonic_zero.py
+
+Wenn der Code ausgeführt wird, erfasst das Ultraschall-Sensormodul den Abstand
+zwischen dem Hindernis vor dem Modul und dem Modul selbst, und der Abstandswert
+wird auf dem Bildschirm angezeigt.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Auswirkungen zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import DistanceSensor
+   from time import sleep
+
+   # Initialisieren Sie das Ultraschall-Distanzsensor mit der GPIO Zero-Bibliothek
+   # Der Trigger-Pin ist an GPIO 23 angeschlossen, der Echo-Pin an GPIO 24
+   sensor = DistanceSensor(echo=24, trigger=23)
+
+   try:
+       # Hauptschleife zur kontinuierlichen Messung und Anzeige der Distanz
+       while True:
+           dis = sensor.distance * 100  # Messung der Distanz und Umrechnung von Metern in Zentimeter
+           print('Distanz: {:.2f} cm'.format(dis))  # Anzeige der Distanz mit zwei Dezimalstellen
+           sleep(0.3)  # Warten Sie 0,3 Sekunden vor der nächsten Messung
+
+   except KeyboardInterrupt:
+       # Behandeln Sie KeyboardInterrupt (Ctrl+C) zum eleganten Beenden der Schleife
+       pass
+
+
+**Code-Erklärung**
+
+#. Importiert die Klasse ``DistanceSensor`` aus der GPIO Zero-Bibliothek zur Distanzmessung und die ``sleep``-Funktion aus dem ``time``-Modul für Verzögerungen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import DistanceSensor
+       from time import sleep
+
+#. Initialisiert das Ultraschall-Distanzsensor mit dem Echo-Pin an GPIO 24 und dem Trigger-Pin an GPIO 23.
+
+   .. code-block:: python
+
+       # Initialisieren Sie das Ultraschall-Distanzsensor mit der GPIO Zero-Bibliothek
+       # Der Trigger-Pin ist an GPIO 23 angeschlossen, der Echo-Pin an GPIO 24
+       sensor = DistanceSensor(echo=24, trigger=23)
+
+#. Die Hauptschleife misst kontinuierlich die Distanz, konvertiert sie von Metern in Zentimeter und gibt sie mit zwei Dezimalstellen aus. Dann wartet die Schleife 0,3 Sekunden und misst die Distanz erneut. Eine KeyboardInterrupt (wie Ctrl+C) ermöglicht ein elegantes Beenden des Skripts.
+
+   .. code-block:: python
+
+       try:
+           # Hauptschleife zur kontinuierlichen Messung und Anzeige der Distanz
+           while True:
+               dis = sensor.distance * 100  # Messung der Distanz und Umrechnung von Metern in Zentimeter
+               print('Distanz: {:.2f} cm'.format(dis))  # Anzeige der Distanz mit zwei Dezimalstellen
+               sleep(0.3)  # Warten Sie 0,3 Sekunden vor der nächsten Messung
+
+       except KeyboardInterrupt:
+           # Behandeln Sie KeyboardInterrupt (Ctrl+C) zum eleganten Beenden der Schleife
+           pass

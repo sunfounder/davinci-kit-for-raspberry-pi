@@ -1,0 +1,171 @@
+.. _1.3.2_py_pi5:
+
+1.3.2 Servo
+============
+
+Einführung
+--------------
+
+In diesem Projekt lernen wir, wie man den Servomotor rotieren lässt.
+
+Erforderliche Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../python_pi5/img/1.3.2_servo_list.png
+
+
+
+Schaltplan
+--------------------
+
+.. image:: ../python_pi5/img/1.3.2_servo_schematic.png
+
+
+Versuchsdurchführung
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung.
+
+.. image:: ../python_pi5/img/1.3.2_Servo_circuit.png
+
+**Schritt 2**: Gehen Sie in den Ordner mit dem Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Schritt 3**: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.2_Servo_zero.py
+
+Nach Ausführung des Programms wird der Servomotor sich von 0 Grad auf 90 Grad bis 180 Grad drehen und dann von 180 Grad auf 90 Grad bis 0 Grad, in einem Kreis.
+
+**Code**
+
+.. note::
+
+    Sie können den folgenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcodepfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nach der Änderung des Codes können Sie ihn direkt ausführen, um die Wirkung zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Servo
+   from time import sleep
+
+   # Legen Sie die GPIO-Pin-Nummer fest, an die der Servomotor angeschlossen ist
+   myGPIO = 18
+
+   # Definieren Sie einen Korrekturfaktor, um die Pulsbreite des Servos feinzutunen
+   myCorrection = 0.45
+   maxPW = (2.0 + myCorrection) / 1000  # Berechnen Sie die maximale Pulsbreite
+   minPW = (1.0 - myCorrection) / 1000  # Berechnen Sie die minimale Pulsbreite
+
+   # Initialisieren Sie das Servo-Objekt mit benutzerdefinierten Pulsbreiten
+   servo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
+
+   try:
+       while True:
+           # Positionieren Sie den Servo in der Mitte und warten Sie
+           servo.mid()
+           print("Mitte")  # Aktuelle Position anzeigen
+           sleep(0.5)    # Kurze Pause für 0,5 Sekunden
+
+           # Bewegen Sie den Servo in die Minimalposition und warten Sie
+           servo.min()
+           print("Minimal")  # Aktuelle Position anzeigen
+           sleep(1)      # Position für 1 Sekunde halten
+
+           # Bringen Sie den Servo in die Mitte zurück und warten Sie
+           servo.mid()
+           print("Mitte")  # Aktuelle Position anzeigen
+           sleep(0.5)    # Kurze Pause für 0,5 Sekunden
+
+           # Bewegen Sie den Servo in die Maximalposition und warten Sie
+           servo.max()
+           print("Maximal")  # Aktuelle Position anzeigen
+           sleep(1)      # Position für 1 Sekunde halten
+
+   except KeyboardInterrupt:
+       # Beenden Sie das Skript ordnungsgemäß bei einer Tastaturunterbrechung (Strg+C)
+       pass
+
+
+**Code Erklärung**
+
+#. Diese Import-Anweisungen bringen die ``Servo`` Klasse für die Servosteuerung und die Funktion ``sleep`` für die Zeitmessung.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import Servo
+       from time import sleep
+
+#. Legt die GPIO-Pin-Nummer 18 für den Anschluss des Servomotors fest.
+
+   .. code-block:: python
+
+       # Legen Sie die GPIO-Pin-Nummer fest, an die der Servomotor angeschlossen ist
+       myGPIO = 18
+
+#. Diese Zeilen definieren einen Korrekturfaktor und verwenden ihn, um die maximale und minimale Pulsbreite für den Servo zu berechnen, um seinen Bewegungsbereich fein abzustimmen.
+
+   .. code-block:: python
+
+       # Definieren Sie einen Korrekturfaktor, um die Pulsbreite des Servos feinzutunen
+       myCorrection = 0.45
+       maxPW = (2.0 + myCorrection) / 1000  # Berechnen Sie die maximale Pulsbreite
+       minPW = (1.0 - myCorrection) / 1000  # Berechnen Sie die minimale Pulsbreite
+
+#. Initialisiert das Servo-Objekt mit dem angegebenen GPIO-Pin und benutzerdefinierten Pulsbreiten.
+
+   .. code-block:: python
+
+       # Initialisieren Sie das Servo-Objekt mit benutzerdefinierten Pulsbreiten
+       servo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
+
+#. Der `try`-Block enthält eine `while True`-Schleife, um den Servo kontinuierlich zu bewegen. Der Servo wird in den Positionen Mitte, Minimal und Maximal positioniert, wobei jede Position gedruckt und für eine bestimmte Dauer gehalten wird.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # Positionieren Sie den Servo in der Mitte und warten Sie
+               servo.mid()
+               print("Mitte")  # Aktuelle Position anzeigen
+               sleep(0.5)    # Kurze Pause für 0,5 Sekunden
+
+               # Bewegen Sie den Servo in die Minimalposition und warten Sie
+               servo.min()
+               print("Minimal")  # Aktuelle Position anzeigen
+               sleep(1)      # Position für 1 Sekunde halten
+
+               # Bringen Sie den Servo in die Mitte zurück und warten Sie
+               servo.mid()
+               print("Mitte")  # Aktuelle Position anzeigen
+               sleep(0.5)    # Kurze Pause für 0,5 Sekunden
+
+               # Bewegen Sie den Servo in die Maximalposition und warten Sie
+               servo.max()
+               print("Maximal")  # Aktuelle Position anzeigen
+               sleep(1)      # Position für 1 Sekunde halten
+
+       except KeyboardInterrupt:
+           # Beenden Sie das Skript ordnungsgemäß bei einer Tastaturunterbrechung (Strg+C)
+           pass

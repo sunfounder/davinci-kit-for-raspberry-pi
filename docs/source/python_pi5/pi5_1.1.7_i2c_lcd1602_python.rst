@@ -1,0 +1,131 @@
+.. _1.1.7_py_pi5:
+
+1.1.7 I2C LCD1602
+======================
+
+Einführung
+------------------
+
+Das LCD1602 ist ein Zeichentyp-Flüssigkristalldisplay, das gleichzeitig 32
+(16*2) Zeichen anzeigen kann.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.1.7_i2c_lcd_list.png
+
+
+
+Schaltplan
+---------------------
+
+============ ========
+T-Board Name physical
+SDA1         Pin 3
+SCL1         Pin 5
+============ ========
+
+.. image:: ../python_pi5/img/1.1.7_i2c_lcd_schematic.png
+
+
+Experimentelle Verfahren
+-----------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/1.1.7_i2c_lcd1602_circuit.png
+
+
+**Schritt 2:** I2C einrichten (siehe :ref:`i2c_config`. Wenn Sie I2C bereits eingerichtet haben, überspringen Sie diesen Schritt.)
+
+**Schritt 3:** Verzeichnis wechseln.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Schritt 4:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.7_Lcd1602_zero.py
+
+Nachdem der Code ausgeführt wurde, können Sie auf dem LCD sehen, dass „Greetings!, From SunFounder“ angezeigt wird.
+
+.. note::
+
+    * Wenn Sie den Fehler „FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'“ erhalten, müssen Sie :ref:`i2c_config` beachten, um das I2C zu aktivieren.
+    * Wenn Sie den Fehler „ModuleNotFoundError: No module named 'smbus2'“ erhalten, führen Sie bitte „sudo pip3 install smbus2“ aus.
+    * Wenn der Fehler „OSError: [Errno 121] Remote I/O error“ auftritt, bedeutet dies, dass das Modul falsch verkabelt ist oder das Modul defekt ist.
+    * Wenn der Code und die Verkabelung in Ordnung sind, das LCD jedoch immer noch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
+
+
+**Code** 
+
+.. note::
+
+    Sie können den unten stehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Auswirkungen zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   import LCD1602  # Modul für die Schnittstelle mit LCD1602 importieren
+   import time     # Modul für Timing-Funktionen importieren
+
+   def setup():
+       # LCD mit I2C-Adresse 0x27 initialisieren und Hintergrundbeleuchtung aktivieren
+       LCD1602.init(0x27, 1) 
+       # Die Nachricht 'Greetings!' in der oberen linken Ecke anzeigen (Zeile 0, Spalte 0)
+       LCD1602.write(0, 0, 'Greetings!') 
+       # Die Nachricht 'From SunFounder' in der zweiten Zeile anzeigen (Zeile 1, Spalte 1)
+       LCD1602.write(1, 1, 'From SunFounder') 
+       time.sleep(2)  # Nachrichten für 2 Sekunden anzeigen
+
+   try:
+       setup()  # Setup-Funktion ausführen, um das LCD zu initialisieren und Nachrichten anzuzeigen
+       
+   except KeyboardInterrupt:
+       # LCD-Display löschen, wenn eine Tastaturunterbrechung (z. B. Ctrl+C) auftritt
+       LCD1602.clear()
+       pass  # Ohne weitere Aktion fortfahren
+
+
+**Code-Erklärung**
+
+1. Diese Datei ist eine Open-Source-Datei zur Steuerung des I2C LCD1602. Sie ermöglicht uns, das I2C LCD1602 einfach zu verwenden.
+
+   .. code-block:: python
+
+       import LCD1602  # Modul für die Schnittstelle mit LCD1602 importieren
+
+2. Die Funktion initialisiert das I2C-System mit dem festgelegten Gerätesymbol. Der erste Parameter ist die Adresse des I2C-Geräts, die über den Befehl i2cdetect ermittelt werden kann (siehe Anhang für Details). Die Adresse des I2C LCD1602 ist in der Regel 0x27.
+
+   .. code-block:: python
+
+       # LCD mit I2C-Adresse 0x27 initialisieren und Hintergrundbeleuchtung aktivieren
+       LCD1602.init(0x27, 1) 
+
+3. ``LCD1602.write`` wird verwendet, um Nachrichten auf dem LCD anzuzeigen. Die ersten beiden Parameter sind die Positionen von Zeile und Spalte, der dritte ist die Nachricht. Jetzt können Sie „Greetings!! From SunFounder“ auf dem LCD angezeigt sehen.
+
+   .. code-block:: python
+
+       # Die Nachricht 'Greetings!' in der oberen linken Ecke anzeigen (Zeile 0, Spalte 0)
+       LCD1602.write(0, 0, 'Greetings!') 
+       # Die Nachricht 'From SunFounder' in der zweiten Zeile anzeigen (Zeile 1, Spalte 1)
+       LCD1602.write(1, 1, 'From SunFounder') 
+

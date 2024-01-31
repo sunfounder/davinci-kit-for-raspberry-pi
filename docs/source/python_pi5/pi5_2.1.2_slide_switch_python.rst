@@ -1,0 +1,102 @@
+.. _2.1.2_py_pi5:
+
+2.1.2 Schiebeschalter
+====================================
+
+Einführung
+------------
+
+In diesem Projekt lernen wir, wie man einen Schiebeschalter verwendet. Normalerweise wird der Schiebeschalter als Netzschalter auf einer Leiterplatte (PCB) gelötet, aber hier müssen wir ihn in das Steckbrett einsetzen, daher kann er möglicherweise nicht befestigt werden. Und wir verwenden ihn auf dem Steckbrett, um seine Funktion zu zeigen.
+
+Erforderliche Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten. 
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schaltplan
+-----------------
+
+Verbinden Sie den mittleren Stift des Schiebeschalters mit GPIO17 und zwei LEDs mit den Pins GPIO22 und GPIO27. Wenn Sie den Schieber ziehen, sehen Sie, dass die beiden LEDs abwechselnd aufleuchten.
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_schematic_2.png
+
+
+Versuchsdurchführung
+-----------------------
+
+**Schritt 1**: Bauen Sie die Schaltung.
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_circuit.png
+
+**Schritt 2**: Wechseln Sie in den Ordner mit dem Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Schritt 3**: Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.2_Slider_zero.py
+
+Während der Code ausgeführt wird, schließen Sie den Schalter an die linke Seite an, dann leuchtet die gelbe LED auf; schließen Sie ihn an die rechte Seite an, dann leuchtet die rote LED auf.
+
+**Code**
+
+.. note::
+
+    Sie können den folgenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcodepfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nach der Änderung des Codes können Sie ihn direkt ausführen, um die Wirkung zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button  # Importieren Sie die Klassen LED und Button für die GPIO-Steuerung
+   from time import sleep  # Importieren Sie die Funktion sleep für Verzögerungen
+
+   # Initialisieren Sie den Mikroschalter am GPIO-Pin 17 mit deaktiviertem Pull-up-Widerstand
+   micro_switch = Button(17, pull_up=False)
+   # Initialisieren Sie LED1 am GPIO-Pin 22
+   led1 = LED(22)
+   # Initialisieren Sie LED2 am GPIO-Pin 27
+   led2 = LED(27)
+
+   try:
+       # Hauptschleife zur Steuerung der LED-Zustände basierend auf dem Zustand des Mikroschalters
+       while True:
+           if micro_switch.is_pressed:  # Überprüfen Sie, ob der Mikroschalter gedrückt ist
+               print('    LED1 AN    ')  # Statusmeldung drucken
+               led1.on()   # Schalten Sie LED1 ein
+               led2.off()  # Schalten Sie LED2 aus
+           else:  # Wenn der Mikroschalter nicht gedrückt ist
+               print('    LED2 AN    ')  # Statusmeldung drucken
+               led1.off()  # Schalten Sie LED1 aus
+               led2.on()   # Schalten Sie LED2 ein
+
+           sleep(0.5)  # Warten Sie 0,5 Sekunden, bevor Sie den Schalterzustand erneut überprüfen
+
+   except KeyboardInterrupt:
+       # Behandeln Sie eine Tastaturunterbrechung (Strg+C) für einen sauberen Ausstieg aus der Schleife
+       pass

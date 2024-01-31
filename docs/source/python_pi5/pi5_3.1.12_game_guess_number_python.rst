@@ -1,0 +1,413 @@
+.. _py_pi5_guess_num:
+
+3.1.12 SPIEL – Zahl raten
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Einführung
+------------------
+
+"Zahl raten" ist ein unterhaltsames Partyspiel, bei dem Sie und Ihre Freunde abwechselnd eine Zahl (0~99) eingeben. Der Bereich wird mit der Eingabe der Zahl kleiner, bis ein Spieler das Rätsel richtig beantwortet. Dann wird dieser Spieler besiegt und bestraft. Zum Beispiel, wenn die Glückszahl 51 ist, die die Spieler nicht sehen können, und Spieler ① gibt 50 ein, ändert sich der Bereich der Zahlen zu 50~99; gibt Spieler ② 70 ein, kann der Bereich der Zahlen 50~70 sein; gibt Spieler ③ 51 ein, ist dieser Spieler der Pechvogel. Hier verwenden wir ein Keypad zur Eingabe von Zahlen und ein LCD zur Ausgabe von Ergebnissen.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../python_pi5/img/4.1.17_game_guess_number_list.png
+    :width: 800
+    :align: center
+
+Schaltplan
+-----------------------
+
+============ ======== ======== =======
+T-Board Name physisch wiringPi BCM
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SPIMOSI      Pin 19   12       10
+GPIO22       Pin 15   3        22
+GPIO27       Pin 13   2        27
+GPIO17       Pin 11   0        17
+SDA1         Pin 3    SDA1(8)  SDA1(2)
+SCL1         Pin 5    SCL1(9)  SDA1(3)
+============ ======== ======== =======
+
+.. image:: ../python_pi5/img/4.1.17_game_guess_number_schematic.png
+   :align: center
+
+Experimentelle Verfahren
+-----------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis.
+
+.. image:: ../python_pi5/img/4.1.17_game_guess_number_circuit.png
+
+**Schritt 2**: Einrichten von I2C (siehe :ref:`i2c_config`.)
+
+**Schritt 3**: Wechseln Sie das Verzeichnis.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 4**: Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 3.1.12_GAME_GuessNumber_zero.py
+
+Nachdem das Programm ausgeführt wurde, erscheint die Startseite auf dem LCD:
+
+.. code-block:: 
+
+   Willkommen!
+   Drücken Sie A, um zu starten!
+
+Drücken Sie „A“, und das Spiel beginnt und die Spielseite erscheint auf dem LCD.
+
+.. code-block:: 
+
+   Zahl eingeben:
+   0 ‹Punkt‹ 99
+
+Eine zufällige Zahl „\ **Punkt**\ “ wird erzeugt, aber nicht auf dem LCD angezeigt, wenn das Spiel beginnt, und Ihre Aufgabe ist es, sie zu erraten. Die von Ihnen eingegebene Zahl erscheint am Ende der ersten Zeile, bis die endgültige Berechnung abgeschlossen ist. (Drücken Sie „D“, um den Vergleich zu starten, und wenn die eingegebene Zahl größer als **10** ist, startet der automatische Vergleich.)
+
+Der Zahlenbereich von „Punkt“ wird in der zweiten Zeile angezeigt. Und Sie müssen die Zahl innerhalb des Bereichs eingeben. Wenn Sie eine Zahl eingeben, wird der Bereich enger; wenn Sie die Glückszahl glücklicherweise oder unglücklicherweise erraten, erscheint „Sie haben es geschafft!“
+
+.. note::
+
+    * Wenn Sie den Fehler „FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'“ erhalten, beziehen Sie sich bitte auf :ref:`i2c_config`, um den I2C zu aktivieren.
+    * Bei dem Fehler „ModuleNotFoundError: No module named 'smbus2'“ führen Sie bitte „sudo pip3 install smbus2“ aus.
+    * Wenn der Fehler „OSError: [Errno 121] Remote I/O error“ auftritt, bedeutet dies, dass das Modul falsch verkabelt ist oder defekt ist.
+    * Wenn der Code und die Verkabelung in Ordnung sind, das LCD jedoch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
+
+**Code**
+
+.. note::
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Bevor Sie dies tun, sollten Sie jedoch zum Quellcodepfad wie ``raphael-kit/python-pi5`` wechseln. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   from gpiozero import DigitalOutputDevice, Button
+   from time import sleep
+   import LCD1602
+   import random
+
+   class Keypad:
+      def __init__(self, rows_pins, cols_pins, keys):
+         """
+         Initialisiert das Keypad mit den angegebenen Reihen- und Spalten-Pins und dem Tastaturlayout.
+         :param rows_pins: Liste der GPIO-Pins für die Reihen.
+         :param cols_pins: Liste der GPIO-Pins für die Spalten.
+         :param keys: Layout der Tasten auf dem Keypad.
+         """
+         self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]  # Reihen-Pins einrichten
+         self.cols = [Button(pin, pull_up=False) for pin in cols_pins]  # Spalten-Pins einrichten
+         self.keys = keys  # Tastaturlayout definieren
+
+      def read(self):
+         """
+         Liest und gibt die derzeit gedrückten Tasten zurück.
+         :return: Liste der gedrückten Tasten.
+         """
+         pressed_keys = []
+         for i, row in enumerate(self.rows):
+               row.on()  # Aktiviere aktuelle Reihe
+               for j, col in enumerate(self.cols):
+                  if col.is_pressed:
+                     index = i * len(self.cols) + j
+                     pressed_keys.append(self.keys[index])  # Gedrückte Taste hinzufügen
+               row.off()  # Deaktiviere Reihe
+         return pressed_keys
+
+   # Spielbezogene Variablen
+   count = 0
+   pointValue = 0
+   upper = 99
+   lower = 0
+
+   def setup():
+      """
+      Einrichtungsfunktion zum Initialisieren des Keypads und des LCD-Displays.
+      """
+      global keypad, last_key_pressed, keys
+      rowsPins = [18, 23, 24, 25]
+      colsPins = [10, 22, 27, 17]
+      keys = ["1", "2", "3", "A",
+               "4", "5", "6", "B",
+               "7", "8", "9", "C",
+               "*", "0", "#", "D"]
+      keypad = Keypad(rowsPins, colsPins, keys)
+      last_key_pressed = []
+      LCD1602.init(0x27, 1)  # LCD initialisieren
+      LCD1602.clear()
+      LCD1602.write(0, 0, 'Willkommen!')
+      LCD1602.write(0, 1, 'Drücken Sie A zum Starten!')
+
+   def init_new_value():
+      """
+      Initialisiert einen neuen Zielwert und setzt die Spielparameter zurück.
+      """
+      global pointValue, upper, lower, count
+      pointValue = random.randint(0, 99)
+      upper = 99
+      lower = 0
+      count = 0
+      print('Punkt ist %d' % pointValue)
+
+   def detect_point():
+      """
+      Überprüft, ob die geratene Zahl das Ziel ist, zu hoch oder zu niedrig ist.
+      :return: 1, wenn die Vermutung korrekt ist, 0 andernfalls.
+      """
+      global count, upper, lower
+      if count > pointValue and count < upper:
+         upper = count
+      elif count < pointValue and count > lower:
+         lower = count
+      elif count == pointValue:
+         count = 0
+         return 1
+      count = 0
+      return 0
+
+   def lcd_show_input(result):
+      """
+      Zeigt den aktuellen Spielstand und die Ergebnisse auf dem LCD an.
+      :param result: Ergebnis der letzten Vermutung (0 oder 1).
+      """
+      LCD1602.clear()
+      if result == 1:
+         LCD1602.write(0, 1, 'Sie haben es geschafft!')
+         sleep(5)
+         init_new_value()
+         lcd_show_input(0)
+      else:
+         LCD1602.write(0, 0, 'Zahl eingeben:')
+         LCD1602.write(13, 0, str(count))
+         LCD1602.write(0, 1, str(lower))
+         LCD1602.write(3, 1, ' < Punkt < ')
+         LCD1602.write(13, 1, str(upper))
+
+   def loop():
+      """
+      Hauptschleife für die Behandlung der Keypad-Eingabe und die Aktualisierung des Spielstands.
+      """
+      global keypad, last_key_pressed, count
+      while True:
+         result = 0
+         pressed_keys = keypad.read()
+         if pressed_keys and pressed_keys != last_key_pressed:
+               if pressed_keys == ["A"]:
+                  init_new_value()
+                  lcd_show_input(0)
+               elif pressed_keys == ["D"]:
+                  result = detect_point()
+                  lcd_show_input(result)
+               elif pressed_keys[0] in keys:
+                  if pressed_keys[0] in ["A", "B", "C", "D", "#", "*"]:
+                     continue
+                  count = count * 10 + int(pressed_keys[0])
+                  if count >= 10:
+                     result = detect_point()
+                  lcd_show_input(result)
+               print(pressed_keys)
+         last_key_pressed = pressed_keys
+         sleep(0.1)
+
+   try:
+      setup()
+      loop()
+   except KeyboardInterrupt:
+      LCD1602.clear()  # LCD bei Unterbrechung löschen
+
+
+
+**Code-Erklärung**
+
+#. Dieser Abschnitt importiert wesentliche Klassen aus der GPIO Zero-Bibliothek, um digitale Ausgabegeräte und Tasten zu verwalten. Darüber hinaus beinhaltet er die Sleep-Funktion aus dem Time-Modul, um Verzögerungen im Skript zu ermöglichen. Die LCD1602-Bibliothek wird für den Betrieb des LCD-Displays importiert, was nützlich ist, um Text oder Datenausgaben anzuzeigen. Außerdem wird die Random-Bibliothek integriert, die Funktionen zur Generierung von Zufallszahlen bietet, was für verschiedene Aspekte des Projekts vorteilhaft sein kann.
+
+   .. code-block:: python
+
+      #!/usr/bin/env python3
+
+      from gpiozero import DigitalOutputDevice, Button
+      from time import sleep
+      import LCD1602
+      import random
+
+#. Definiert eine Klasse für das Keypad, initialisiert es mit Reihen- und Spalten-Pins und definiert eine Methode, um gedrückte Tasten zu lesen.
+
+   .. code-block:: python
+
+      class Keypad:
+         def __init__(self, rows_pins, cols_pins, keys):
+            """
+            Initialisiert das Keypad mit den angegebenen Reihen- und Spalten-Pins und dem Tastaturlayout.
+            :param rows_pins: Liste der GPIO-Pins für die Reihen.
+            :param cols_pins: Liste der GPIO-Pins für die Spalten.
+            :param keys: Layout der Tasten auf dem Keypad.
+            """
+            self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]  # Reihen-Pins einrichten
+            self.cols = [Button(pin, pull_up=False) for pin in cols_pins]  # Spalten-Pins einrichten
+            self.keys = keys  # Tastaturlayout definieren
+
+         def read(self):
+            """
+            Liest und gibt die derzeit gedrückten Tasten zurück.
+            :return: Liste der gedrückten Tasten.
+            """
+            pressed_keys = []
+            for i, row in enumerate(self.rows):
+                  row.on()  # Aktiviere aktuelle Reihe
+                  for j, col in enumerate(self.cols):
+                     if col.is_pressed:
+                        index = i * len(self.cols) + j
+                        pressed_keys.append(self.keys[index])  # Gedrückte Taste hinzufügen
+                  row.off()  # Deaktiviere Reihe
+            return pressed_keys
+
+#. Initialisiert eine Variable „count“ als null, die möglicherweise für die Verfolgung von Versuchen oder bestimmten Werten im Spiel verwendet wird. Konfiguriert das Keypad und das LCD-Display mit einer Willkommensnachricht und Anweisungen. Initialisiert die Variable „pointValue“ auf null, die möglicherweise einen Zielpunktestand oder -wert im Spiel darstellt. Definiert eine „upper“-Grenze für das Spiel, die zunächst auf 99 festgelegt wird, was in einem Zahlraten-Spiel das Maximum sein könnte. Setzt die „lower“-Grenze beginnend von null, die wahrscheinlich als minimale Grenze im Spiel verwendet wird.
+
+   .. code-block:: python
+
+      # Spielbezogene Variablen
+      count = 0
+      pointValue = 0
+      upper = 99
+      lower = 0
+
+#. Richtet das Keypad und das LCD-Display ein, zeigt eine Willkommensnachricht und Anweisungen an.
+
+   .. code-block:: python
+
+      def setup():
+         """
+         Einrichtungsfunktion zum Initialisieren des Keypads und des LCD-Displays.
+         """
+         global keypad, last_key_pressed, keys
+         rowsPins = [18, 23, 24, 25]
+         colsPins = [10, 22, 27, 17]
+         keys = ["1", "2", "3", "A",
+                  "4", "5", "6", "B",
+                  "7", "8", "9", "C",
+                  "*", "0", "#", "D"]
+         keypad = Keypad(rowsPins, colsPins, keys)
+         last_key_pressed = []
+         LCD1602.init(0x27, 1)  # LCD initialisieren
+         LCD1602.clear()
+         LCD1602.write(0, 0, 'Willkommen!')
+         LCD1602.write(0, 1, 'Drücken Sie A zum Starten!')
+
+#. Initialisiert einen neuen Zielwert für das Spiel und setzt die Spielparameter zurück.
+
+   .. code-block:: python
+
+      def init_new_value():
+         """
+         Initialisiert einen neuen Zielwert und setzt die Spielparameter zurück.
+         """
+         global pointValue, upper, lower, count
+         pointValue = random.randint(0, 99)
+         upper = 99
+         lower = 0
+         count = 0
+         print('Punkt ist %d' % pointValue)
+
+#. Überprüft, ob die geratene Zahl mit dem Ziel übereinstimmt, und aktualisiert entsprechend den Bereich der Vermutungen.
+
+   .. code-block:: python
+
+      def detect_point():
+         """
+         Überprüft, ob die geratene Zahl das Ziel ist, zu hoch oder zu niedrig ist.
+         :return: 1, wenn die Vermutung korrekt ist, 0 andernfalls.
+         """
+         global count, upper, lower
+         if count > pointValue and count < upper:
+            upper = count
+         elif count < pointValue und count > lower:
+            lower = count
+         elif count == pointValue:
+            count = 0
+            return 1
+         count = 0
+         return 0
+
+#. Zeigt den Spielstand auf dem LCD an, zeigt die aktuelle Vermutung, den Bereich und das Ergebnis an.
+
+   .. code-block:: python
+
+      def lcd_show_input(result):
+         """
+         Zeigt den aktuellen Spielstand und die Ergebnisse auf dem LCD an.
+         :param result: Ergebnis der letzten Vermutung (0 oder 1).
+         """
+         LCD1602.clear()
+         if result == 1:
+            LCD1602.write(0, 1, 'Sie haben es geschafft!')
+            sleep(5)
+            init_new_value()
+            lcd_show_input(0)
+         else:
+            LCD1602.write(0, 0, 'Zahl eingeben:')
+            LCD1602.write(13, 0, str(count))
+            LCD1602.write(0, 1, str(lower))
+            LCD1602.write(3, 1, ' < Punkt < ')
+            LCD1602.write(13, 1, str(upper))
+
+#. Die Hauptschleife für die Handhabung der Keypad-Eingabe, die Aktualisierung des Spielstands und die Anzeige der Ergebnisse auf dem LCD.
+
+   .. code-block:: python
+
+      def loop():
+         """
+         Hauptschleife für die Behandlung der Keypad-Eingabe und die Aktualisierung des Spielstands.
+         """
+         global keypad, last_key_pressed, count
+         while True:
+            result = 0
+            pressed_keys = keypad.read()
+            if pressed_keys and pressed_keys != last_key_pressed:
+                  if pressed_keys == ["A"]:
+                     init_new_value()
+                     lcd_show_input(0)
+                  elif pressed_keys == ["D"]:
+                     result = detect_point()
+                     lcd_show_input(result)
+                  elif pressed_keys[0] in keys:
+                     if pressed_keys[0] in ["A", "B", "C", "D", "#", "*"]:
+                        continue
+                     count = count * 10 + int(pressed_keys[0])
+                     if count >= 10:
+                        result = detect_point()
+                     lcd_show_input(result)
+                  print(pressed_keys)
+            last_key_pressed = pressed_keys
+            sleep(0.1)
+
+#. Führt die Einrichtung aus und betritt die Hauptschleife des Spiels, ermöglicht einen sauberen Ausstieg mit einem Tastaturinterrupt.
+
+   .. code-block:: python
+
+      try:
+         setup()
+         loop()
+      except KeyboardInterrupt:
+         LCD1602.clear()  # LCD bei Unterbrechung löschen

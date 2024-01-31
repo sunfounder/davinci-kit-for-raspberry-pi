@@ -1,0 +1,149 @@
+.. _1.1.2_py_pi5:
+
+1.1.2 RGB-LED
+====================
+
+Einführung
+--------------
+
+In diesem Projekt werden wir eine RGB-LED steuern, um verschiedene Farben blinken zu lassen.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.1.2_rgb_led_list.png
+    :align: center
+
+Schaltplan
+-----------------------
+
+Nachdem die Pins von R, G und B mit einem Strombegrenzungswiderstand verbunden sind, verbinden Sie diese mit GPIO17, GPIO18 und GPIO27. Der längste Pin (GND) der LED verbindet sich mit dem GND des Raspberry Pi. Wenn den drei Pins unterschiedliche PWM-Werte gegeben werden, zeigt die RGB-LED verschiedene Farben an.
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+GPIO18       Pin 12   18
+GPIO27       Pin 13   27
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.1.2_rgb_led_schematic.png
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/1.1.2_rgbLed_circuit.png
+
+**Schritt 2:** Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.2_rgbLed_zero.py
+
+Nachdem der Code ausgeführt wurde, sehen Sie, dass RGB rot, grün, blau,
+gelb, rosa und cyan anzeigt.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Auswirkungen zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import RGBLED
+   from time import sleep
+
+   # Definieren Sie eine Liste von Farben für die RGB-LED im RGB-Format (Rot, Grün, Blau).
+   # Jede Farbkomponente reicht von 0 (aus) bis 1 (volle Intensität).
+   COLORS = [(1, 0, 0), (0, 1, 0), (0.2, 0.1, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
+
+   # Initialisieren Sie eine RGB-LED. Verbinden Sie die rote Komponente mit GPIO 17, grün mit GPIO 18 und blau mit GPIO 27.
+   rgb_led = RGBLED(red=17, green=18, blue=27)
+
+   try:
+       # Kontinuierlich durch die definierten Farben durchlaufen.
+       while True:
+           for color in COLORS:
+               # Stellen Sie die RGB-LED auf die aktuelle Farbe ein.
+               rgb_led.color = color
+               # Geben Sie die aktuelle Farbe auf der Konsole aus.
+               print(f"Farbe eingestellt auf: {color}")
+               # Warten Sie 1 Sekunde, bevor Sie zur nächsten Farbe wechseln.
+               sleep(1)
+
+   except KeyboardInterrupt:
+       # Behandeln Sie ein KeyboardInterrupt (Ctrl+C) um die Schleife elegant zu beenden.
+       # Die GPIO-Bereinigung wird automatisch von GPIO Zero bei Beendigung des Skripts verwaltet.
+       pass
+
+
+**Code-Erklärung**
+
+#. Hier werden die Klasse ``RGBLED`` aus der Bibliothek ``gpiozero`` zum Steuern einer RGB-LED und die Bibliothek ``time`` für Verzögerungen im Code importiert.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import RGBLED
+       from time import sleep
+
+#. Die Liste ``COLORS`` enthält Tupel, die verschiedene Farben im RGB-Format darstellen. Durch Zuweisen unterschiedlicher Pulsweitenmodulations- (PWM-) Werte an jeden der R-, G- und B-Pins über das Attribut ``rgb_led.color`` kann die LED eine Vielzahl von Farben erzeugen. Die PWM-Werte reichen von 0 bis 1, wobei 0 keine Intensität (aus) und 1 volle Intensität für jede Farbkomponente darstellt.
+#. Beispielsweise führt das Einstellen von ``rgb_led.color = (1, 0, 0)`` dazu, dass die LED rot leuchtet, da volle Intensität für die rote Komponente eingestellt wird, während Grün und Blau ausgeschaltet bleiben. Verschiedene Kombinationen dieser Werte führen zu unterschiedlichen Farben. Diese Technik der Farbmischung durch PWM ermöglicht die Erstellung einer breiten Palette von Farben auf der RGB-LED.
+
+   .. code-block:: python    
+       
+       COLORS = [(1, 0, 0), (0, 1, 0), (0.2, 0.1, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
+
+#. Eine RGB-LED wird initialisiert, wobei ihre roten, grünen und blauen Komponenten jeweils an die GPIO-Pins 17, 18 und 27 angeschlossen sind.
+
+   .. code-block:: python
+
+       # Initialisieren Sie eine RGB-LED. Verbinden Sie die rote Komponente mit GPIO 17, grün mit GPIO 18 und blau mit GPIO 27.
+       rgb_led = RGBLED(red=17, green=18, blue=27)
+
+#. Die Schleife ``while True:`` durchläuft kontinuierlich die in ``COLORS`` definierten Farben. Für jede Farbe setzt ``rgb_led.color = color`` die LED auf diese Farbe, und ``sleep(1)`` pausiert für 1 Sekunde.
+
+   .. code-block:: python
+
+       try:
+           # Kontinuierlich durch die definierten Farben durchlaufen.
+           while True:
+               for color in COLORS:
+                   # Stellen Sie die RGB-LED auf die aktuelle Farbe ein.
+                   rgb_led.color = color
+                   # Geben Sie die aktuelle Farbe auf der Konsole aus.
+                   print(f"Farbe eingestellt auf: {color}")
+                   # Warten Sie 1 Sekunde, bevor Sie zur nächsten Farbe wechseln.
+                   sleep(1)
+
+#. Dieser Abschnitt behandelt ein ``KeyboardInterrupt`` (zum Beispiel das Drücken von Ctrl+C) auf elegante Weise. Das ``pass``-Statement wird als Platzhalter verwendet, um anzuzeigen, dass bei einer Unterbrechung keine spezifische Aktion unternommen wird, da GPIO Zero die GPIO-Bereinigung automatisch handhabt.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Behandeln Sie ein KeyboardInterrupt (Ctrl+C) um die Schleife elegant zu beenden.
+           # Die GPIO-Bereinigung wird automatisch von GPIO Zero bei Beendigung des Skripts verwaltet.
+           pass

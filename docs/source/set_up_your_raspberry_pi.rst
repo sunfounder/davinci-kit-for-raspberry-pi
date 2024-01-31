@@ -25,7 +25,7 @@ Raspberry Pi       1 \* Netzteil
 
     .. note::
 
-        Hinweis: Wenn Sie einen Raspberry Pi 4 verwenden, müssen Sie den Bildschirm an den HDMI0 anschließen (der dem Stromanschluss am nächsten liegt).
+        note: Wenn Sie einen Raspberry Pi 4 verwenden, müssen Sie den Bildschirm an den HDMI0 anschließen (der dem Stromanschluss am nächsten liegt).
 
 #. Verwenden Sie das Netzteil und versorgen den Raspberry Pi mit Strom. Nach einigen Sekunden wird der Raspberry Pi OS-Bildschirm angezeigt.
 

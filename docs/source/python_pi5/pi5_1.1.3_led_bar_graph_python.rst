@@ -1,0 +1,209 @@
+.. _1.1.3_py_pi5:
+
+1.1.3 LED-Balkendiagramm
+==============================================
+
+Einführung
+-------------
+
+In diesem Projekt beleuchten wir die Lichter des LED-Balkendiagramms nacheinander.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.1.3_led_bar_list.png
+
+
+Schaltplan
+-------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SPICE0       Pin 24   10       8
+SPICE1       Pin 26   11       7
+GPIO12       Pin 32   26       12
+GPIO16       Pin 36   27       16
+GPIO20       Pin 38   28       22
+GPIO21       Pin 40   29       21
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/1.1.3_LedBarGraph_schematic.png
+
+Experimentelle Verfahren
+------------------------------
+
+**Schritt 1**: Bauen Sie den Schaltkreis auf.
+
+.. note::
+
+    Achten Sie auf die Richtung beim Anschließen. Wenn Sie es verkehrt herum anschließen, wird es nicht leuchten.
+
+.. image:: ../python_pi5/img/1.1.3_LedBarGraph_circuit.png
+
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Schritt 3**: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.3_LedBarGraph_zero.py
+
+Nachdem der Code ausgeführt wurde, sehen Sie, dass die LEDs auf dem LED-Balken regelmäßig ein- und ausschalten.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Auswirkungen zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED
+   from time import sleep
+
+   # Definieren Sie die GPIO-Pins, an denen die LEDs angeschlossen sind
+   led_pins = [18, 23, 24, 25, 8, 7, 12, 16, 20, 21]
+
+   # Erstellen Sie LED-Objekte für jeden Pin
+   leds = [LED(pin) for pin in led_pins]
+
+   def odd_led_bar_graph():
+       # Nacheinander die ungerade nummerierten LEDs beleuchten (Index 0, 2, 4, usw.)
+       for i in range(5):
+           j = i * 2  # Ungerade Index berechnen
+           leds[j].on()  # Ungerade nummerierte LED einschalten
+           sleep(0.3)    # Verzögerung für visuellen Effekt
+           leds[j].off() # LED ausschalten
+
+   def even_led_bar_graph():
+       # Nacheinander die gerade nummerierten LEDs beleuchten (Index 1, 3, 5, usw.)
+       for i in range(5):
+           j = i * 2 + 1  # Gerade Index berechnen
+           leds[j].on()   # Gerade nummerierte LED einschalten
+           sleep(0.3)     # Verzögerung für visuellen Effekt
+           leds[j].off()  # LED ausschalten
+
+   def all_led_bar_graph():
+       # Nacheinander alle LEDs einzeln beleuchten
+       for led in leds:
+           led.on()       # LED einschalten
+           sleep(0.3)     # Verzögerung für visuellen Effekt
+           led.off()      # LED ausschalten
+
+   def turn_off_all_leds():
+       # Alle LEDs auf einmal ausschalten
+       for led in leds:
+           led.off()
+
+   try:
+       # Hauptloop zum Durchlaufen der LED-Muster
+       while True:
+           odd_led_bar_graph()   # Ungerade nummerierte LEDs aktivieren
+           sleep(0.3)            # Pause zwischen den Mustern
+           even_led_bar_graph()  # Gerade nummerierte LEDs aktivieren
+           sleep(0.3)            # Pause zwischen den Mustern
+           all_led_bar_graph()   # Alle LEDs aktivieren
+           sleep(0.3)            # Pause vor Neustart
+
+   except KeyboardInterrupt:
+       # Unterbrechung (Ctrl+C) auf elegante Weise behandeln
+       turn_off_all_leds()      # Sicherstellen, dass alle LEDs beim Beenden ausgeschaltet sind
+       pass
+
+
+**Code-Erklärung**
+
+#. Diese Zeilen importieren die notwendigen Klassen und Funktionen. ``LED`` aus ``gpiozero`` zur LED-Steuerung und ``sleep`` aus ``time`` für Verzögerungen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED
+       from time import sleep
+
+#. Die Liste ``led_pins`` enthält die GPIO-Pinnummern. ``leds`` ist eine Liste von ``LED``-Objekten, von denen jedes einem Pin in ``led_pins`` entspricht.
+
+   .. code-block:: python
+
+       # Definieren Sie die GPIO-Pins, an denen die LEDs angeschlossen sind
+       led_pins = [18, 23, 24, 25, 8, 7, 12, 16, 20, 21]
+
+       # Erstellen Sie LED-Objekte für jeden Pin
+       leds = [LED(pin) for pin in led_pins]
+
+#. Lassen Sie die LED an der ungeraden Ziffer des LED-Balkendiagramms nacheinander aufleuchten.
+
+   .. code-block:: python
+
+       def odd_led_bar_graph():
+           # Nacheinander die ungerade nummerierten LEDs beleuchten (Index 0, 2, 4, usw.)
+           for i in range(5):
+               j = i * 2  # Ungerade Index berechnen
+               leds[j].on()  # Ungerade nummerierte LED einschalten
+               sleep(0.3)    # Verzögerung für visuellen Effekt
+               leds[j].off() # LED ausschalten
+
+#. Lassen Sie die LED an der geraden Ziffer des LED-Balkendiagramms nacheinander aufleuchten.
+
+   .. code-block:: python
+
+       def even_led_bar_graph():
+           # Nacheinander die gerade nummerierten LEDs beleuchten (Index 1, 3, 5, usw.)
+           for i in range(5):
+               j = i * 2 + 1  # Gerade Index berechnen
+               leds[j].on()   # Gerade nummerierte LED einschalten
+               sleep(0.3)     # Verzögerung für visuellen Effekt
+               leds[j].off()  # LED ausschalten
+
+#. Lassen Sie die LED am LED-Balkendiagramm nacheinander aufleuchten.
+
+   .. code-block:: python
+
+       def all_led_bar_graph():
+           # Nacheinander alle LEDs einzeln beleuchten
+           for led in leds:
+               led.on()       # LED einschalten
+               sleep(0.3)     # Verzögerung für visuellen Effekt
+               led.off()      # LED ausschalten
+
+#. Die Schleife ``while True`` durchläuft kontinuierlich die LED-Muster. Der ``except``-Block behandelt ein KeyboardInterrupt (Ctrl+C) und stellt sicher, dass alle LEDs beim Beenden ausgeschaltet sind.
+
+   .. code-block:: python
+
+       try:
+           # Hauptloop zum Durchlaufen der LED-Muster
+           while True:
+               odd_led_bar_graph()   # Ungerade nummerierte LEDs aktivieren
+               sleep(0.3)            # Pause zwischen den Mustern
+               even_led_bar_graph()  # Gerade nummerierte LEDs aktivieren
+               sleep(0.3)            # Pause zwischen den Mustern
+               all_led_bar_graph()   # Alle LEDs aktivieren
+               sleep(0.3)            # Pause vor Neustart
+
+       except KeyboardInterrupt:
+           # Unterbrechung (Ctrl+C) auf elegante Weise behandeln
+           turn_off_all_leds()      # Sicherstellen, dass alle LEDs beim Beenden ausgeschaltet sind
+           pass

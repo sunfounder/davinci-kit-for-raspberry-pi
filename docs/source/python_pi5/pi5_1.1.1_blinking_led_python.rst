@@ -1,0 +1,214 @@
+.. _1.1.1_py_pi5:
+
+1.1.1 Blinkende LED
+=========================
+
+Einführung
+-----------------
+
+In diesem Projekt lernen wir, wie man eine LED blinken lässt, indem wir sie programmieren.
+Durch Ihre Einstellungen kann Ihre LED eine Reihe von interessanten
+Phänomenen erzeugen. Jetzt legen Sie los.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten:
+
+.. image:: ../python_pi5/img/1.1.1_blinking_led_list.png
+    :width: 800
+    :align: center
+
+
+Schaltplan
+---------------------
+
+In diesem Experiment verbinden wir den GPIO-Pin 17 des Raspberry Pi mit der Anode (langer Pin) der LED, dann die Kathode (kurzer Pin) der LED mit einem Widerstand und schließlich das andere Ende des Widerstands mit dem GND-Pin des Raspberry Pi. Um die LED einzuschalten, müssen wir GPIO17 auf hoch (3,3 V) setzen. Dieses Phänomen können wir durch Programmierung erreichen.
+
+.. note::
+
+    **Pin11** bezieht sich auf den 11. Pin des Raspberry Pi von links nach rechts, und die entsprechenden **BCM**-Pinnummern sind in der folgenden Tabelle angegeben.
+
+Unter den mit der Python-Sprache zusammenhängenden Inhalten ist BCM 17 die Nummer 17 in der
+Spalte BCM der folgenden Tabelle. Gleichzeitig entspricht dies dem
+11. Pin am Raspberry Pi, Pin 11.
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.1.1_blinking_led_schematic.png
+    :width: 800
+    :align: center
+
+Experimentelle Verfahren
+-----------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/1.1.1_blinking_led_circuit.png
+    :width: 800
+    :align: center
+
+**Schritt 2:** Gehen Sie zum Ordner des Codes und führen Sie ihn aus.
+
+1. Wenn Sie einen Bildschirm verwenden, wird empfohlen, die folgenden Schritte zu befolgen.
+
+Finden Sie `1.1.1_BlinkingLed_zero.py` und doppelklicken Sie darauf, um es zu öffnen. Jetzt befinden Sie sich in der
+Datei.
+
+Klicken Sie auf **Run** ->\ **Run Module** im Fenster, und die folgenden
+Inhalte erscheinen.
+
+Um das Ausführen zu stoppen, klicken Sie einfach auf das X oben rechts,
+um es zu schließen und dann gelangen Sie zurück zum Code. Wenn Sie den Code ändern,
+müssen Sie ihn zuerst speichern, bevor Sie auf **Run Module (F5)** klicken. Dann können
+Sie die Ergebnisse sehen.
+
+2. Wenn Sie sich remote in den Raspberry Pi einloggen, geben Sie den Befehl ein:
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+.. note::
+    Wechseln Sie über ``cd`` in das Verzeichnis des Codes in diesem Experiment.
+
+**Schritt 3:** Führen Sie den Code aus
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo python3 1.1.1_BlinkingLed_zero.py
+
+.. note::
+    Hier bedeutet sudo - superuser do, und python bedeutet, die Datei mit Python auszuführen.
+
+Nachdem der Code ausgeführt wurde, sehen Sie, wie die LED blinkt.
+
+**Schritt 4:** Wenn Sie die Code-Datei `1.1.1_BlinkingLed_zero.py` bearbeiten möchten,
+drücken Sie ``Ctrl + C``, um die Ausführung des Codes zu stoppen. Geben Sie dann den folgenden
+Befehl ein, um `1.1.1_BlinkingLed_zero.py` zu öffnen:
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   nano 1.1.1_BlinkingLed_zero.py
+
+.. note::
+    nano ist ein Texteditor-Tool. Der Befehl wird verwendet, um die
+    Code-Datei `1.1.1_BlinkingLed_zero.py` mit diesem Tool zu öffnen.
+
+Drücken Sie ``Ctrl+X``, um zu beenden. Wenn Sie den Code geändert haben, erscheint eine
+Aufforderung, ob die Änderungen gespeichert werden sollen oder nicht. Geben Sie ``Y`` (speichern)
+oder ``N`` (nicht speichern) ein.
+
+Drücken Sie dann ``Enter``, um zu beenden. Geben Sie nano `1.1.1_BlinkingLed_zero.py` erneut ein, um
+die Auswirkungen nach der Änderung zu sehen.
+
+**Code**
+
+Das Folgende ist der Programmkode:
+
+.. note::
+
+   Sie können den unten stehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Auswirkungen zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED
+   from time import sleep
+
+   # Initialisieren Sie eine LED, die mit GPIO-Pin 17 verbunden ist, unter Verwendung der GPIO Zero-Bibliothek.
+   led = LED(17)
+
+   try:
+      # Beginnen Sie eine unendliche Schleife, um den LED-Zustand zu wechseln.
+      while True:
+         # Schalten Sie die LED ein und geben Sie eine Nachricht auf der Konsole aus.
+         led.on()
+         print('...LED EIN')
+
+         # Warten Sie 0,5 Sekunden mit eingeschalteter LED.
+         sleep(0.5)
+
+         # Schalten Sie die LED aus und geben Sie eine Nachricht auf der Konsole aus.
+         led.off()
+         print('LED AUS...')
+
+         # Warten Sie 0,5 Sekunden mit ausgeschalteter LED.
+         sleep(0.5)
+
+   except KeyboardInterrupt:
+      # Behandeln Sie eine Tastaturunterbrechung (Ctrl+C) auf elegante Weise, indem Sie die Schleife beenden.
+      # GPIO Zero kümmert sich beim Beenden automatisch um die Bereinigung der GPIO-Einstellungen.
+      pass
+
+
+**Code-Erklärung**
+
+#. Wenn das System dies erkennt, sucht es den Installationspfad von python in der env-Einstellung und ruft den entsprechenden Interpreter auf, um die Operation abzuschließen. Es dient dazu, zu verhindern, dass der Benutzer python nicht auf den Standardpfad ``/usr/bin`` installiert hat.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+#. Diese Zeilen importieren die notwendigen Klassen und Funktionen. ``LED`` von ``gpiozero`` zur LED-Steuerung und ``sleep`` von ``time`` für Verzögerungen.
+
+   .. code-block:: python
+
+       from gpiozero import LED
+       from time import sleep
+
+#. Diese Zeile erstellt ein LED-Objekt, das mit dem GPIO-Pin 17 verbunden ist.
+
+   .. code-block:: python
+
+       # Initialisieren Sie eine LED, die mit GPIO-Pin 17 verbunden ist, unter Verwendung der GPIO Zero-Bibliothek.
+       led = LED(17)
+
+#. Eine unendliche Schleife wird mit ``while True:`` gestartet. Innerhalb der Schleife wird die LED eingeschaltet (``led.on()``) und eine Nachricht wird ausgegeben. Das Programm pausiert dann für 0,5 Sekunden (``sleep(0.5)``). Danach wird die LED ausgeschaltet (``led.off()``), eine weitere Nachricht wird ausgegeben, und das Programm pausiert erneut für 0,5 Sekunden.
+
+   .. code-block:: python
+
+       try:
+           # Beginnen Sie eine unendliche Schleife, um den LED-Zustand zu wechseln.
+           while True:
+               # Schalten Sie die LED ein und geben Sie eine Nachricht auf der Konsole aus.
+               led.on()
+               print('...LED EIN')
+
+               # Warten Sie 0,5 Sekunden mit eingeschalteter LED.
+               sleep(0.5)
+
+               # Schalten Sie die LED aus und geben Sie eine Nachricht auf der Konsole aus.
+               led.off()
+               print('LED AUS...')
+
+               # Warten Sie 0,5 Sekunden mit ausgeschalteter LED.
+               sleep(0.5)
+
+#. Der ``except``-Block fängt eine ``KeyboardInterrupt``-Ausnahme (wie das Drücken von Ctrl+C) ab und beendet die Schleife sicher. Das ``pass``-Statement wird hier als Platzhalter verwendet, um anzuzeigen, dass bei einer Unterbrechung keine spezifische Aktion unternommen wird.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Behandeln Sie eine Tastaturunterbrechung (Ctrl+C) auf elegante Weise, indem Sie die Schleife beenden.
+           # GPIO Zero kümmert sich beim Beenden automatisch um die Bereinigung der GPIO-Einstellungen.
+           pass

@@ -1,5 +1,5 @@
-3 Extension (for Pi 4)
-========================
+3 Extension (not for Pi 5)
+===================================
 
 .. toctree::
     :maxdepth: 1

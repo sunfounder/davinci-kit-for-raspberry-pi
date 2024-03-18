@@ -1,5 +1,5 @@
-2 Input (for Pi 4)
-====================
+2 Input (not for Pi 5)
+=========================
 
 **2.1 Controllers**
 

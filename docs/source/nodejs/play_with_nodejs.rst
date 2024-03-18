@@ -1,5 +1,5 @@
-Play with Nodejs (for Pi 4)
-============================
+Play with Nodejs (not for Pi 5)
+=====================================
 
 
 .. toctree::

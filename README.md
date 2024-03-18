@@ -18,6 +18,8 @@ In the 3-in-1 starter kit, you will find a complete Arduino course to help begin
 
 <a id="update"></a>
 ## Update:
+2024-03-18:
+- Add the video courses
 
 2023-09-20:
 - Modified the code and code analysis in ar_calibration.rst and ar_reversing_aid.rst.

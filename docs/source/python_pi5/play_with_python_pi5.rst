@@ -1,5 +1,7 @@
-Play with Python (for Pi 5) 
-============================
+Play with Python (for All Pi Models)  
+======================================
+
+If you are a Raspberry Pi 5 Python user, you can program GPIOs with API provided by ``GPIO Zero``.
 
 .. toctree::
     :maxdepth: 3

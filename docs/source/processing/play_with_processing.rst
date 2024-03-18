@@ -1,5 +1,5 @@
-Play with Processing (for Pi 4)
-=================================
+Play with Processing (not for Pi 5)
+=====================================
 
 What is Processing？
 ---------------------------

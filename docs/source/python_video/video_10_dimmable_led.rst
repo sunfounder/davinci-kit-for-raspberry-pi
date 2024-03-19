@@ -1,0 +1,20 @@
+Video 10: 2つのプッシュボタンで調光可能なLEDを作る
+=======================================================================================
+
+在本教程中，我们将使用 Raspberry Pi 的 GPIO 引脚构建一个可调光 LED 电路，以实现平滑的亮度控制。Paul McQuarter 逐步演示了从电路设置到编码实现的过程。
+
+1. **回路セットアップ**: Raspberry PiのGPIOピンを使用して調光可能なLED回路を構築し、制御のためにプッシュボタンを利用する方法の説明とデモンストレーション。
+2. **Pythonコーディング**: PWM制御とLEDの明るさ制御のための指数スケールをそれぞれ実装するPythonコードのウォークスルー。
+3. **PWMの原理**: PWMデューティサイクルの理解とLEDの明るさ制御への応用。
+4. **指数スケール**: コーディングにおいてスムーズかつ線形な明るさ制御を実現するために指数スケールを利用する。
+5. **対数概念**: 明るさ調整のための特定のボタン押下数に必要な定数を決定するために対数を適用する。
+6. **非線形の明るさ調整**: スムーズな明るさの遷移のためのデューティサイクルの非線形変化を探る。
+7. **同期問題**: PWM周波数とカメラのスキャンレート間の同期問題に対処する。
+8. **トラブルシューティングと洗練**: LEDの調光機能を最適化するためのコードのデバッグと洗練技術。
+
+**ビデオ**
+
+.. raw:: html
+    
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/2QAn1e8U5ho?si=1aWOugdV2_4pIO9N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+

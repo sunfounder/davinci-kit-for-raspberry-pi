@@ -38,6 +38,7 @@ Windowsユーザーの場合は **Windows PowerShell** を利用できます。
         :width: 550
         :align: center
 
+.. _remote_desktop:
 
 リモート・デスクトップ 
 -----------------------------

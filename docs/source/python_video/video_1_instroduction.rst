@@ -1,0 +1,25 @@
+Video 1: 最初の起動
+=========================================================================================
+
+この動画では、基本的なセットアップから高度なプロジェクトまで、あらゆることを網羅するRaspberry Piチュートリアルシリーズを紹介しています。
+回路、センサー、GPIOピンに焦点を当てた徹底的な学習アプローチを強調しています。SunFounderがこのシリーズをスポンサーしており、
+包括的で手頃な価格のRaspberry Piキットを提供しています。これからのレッスンには、Raspberry Piのセットアップ、
+基本的なLinuxの使用、Pythonの概要、GPIOピンの使用が含まれます。また、必要なハードウェアについても議論しており、
+Raspberry Piモデル、SDカード、電源、HDMIアダプターが含まれます。
+別の動画では、Raspberry Piデスクトップインターフェースのカスタマイズに焦点を当て、
+パネル構成、アプレット管理、テーマ設定、トラブルシューティングのヒントをカバーしています。
+
+1. 体系的な教育リソースへの需要に応えるためのRaspberry Piチュートリアルシリーズの紹介。
+2. プロジェクトベースの学習ではなく、包括的な学習に重点を置く。
+3. Arduinoとの差別化のため、回路、センサー、GPIOピンに焦点を当てる。
+4. SunFounderのスポンサーシップにより、包括的で手頃な価格のRaspberry Piキットを提供。
+5. 基本的なセットアップ、Linuxの使用、Python、GPIOピンを含む今後のレッスンの概要。
+6. Raspberry Piモデル、SDカード、電源、HDMIアダプターなど、必要なハードウェアの説明。
+7. パネルレイアウト、アプレット、スペーサー、テーマなど、Raspberry Piデスクトップインターフェースのカスタマイズオプション。
+8. アイコンの欠如やパネル要素の誤配置など、一般的な問題に対するトラブルシューティングのヒント。
+
+**動画**
+
+.. raw:: html
+
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/1WDagiA8fdU?si=o9Q1tTC1X1B9teef" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

@@ -1,0 +1,18 @@
+Video 30: Raspberry Piで光を検出するフォトレジスターの使用
+=======================================================================================
+
+Raspberry Piプロジェクトにフォトレジスターを組み込んで光の強度を測定し、明るさに基づいてアクションを制御する方法を学びましょう。
+
+1. **フォトレジスターの紹介**: 光の強度に応じてフォトレジスターの抵抗がどのように変化するかを学びます。
+2. **フォトレジスターの物理学**: フォトレジスターの動作に基づく固体物理学の原理を理解します。
+3. **回路の構築**: フォトレジスターと負荷抵抗器を使用して電圧分割回路を作成する方法を発見します。
+4. **Raspberry Piのプログラミング**: ADC0834モジュールを使用してフォトレジスターからアナログ値を読み取るPythonコードを書きます。
+5. **回路のテスト**: 回路が照明条件の変化にどのように反応するかを見て、抵抗と電圧の変化を示します。
+6. **実用的な応用**: 自動照明システムなどのプロジェクトでフォトレジスターを使用する潜在的な用途を探索します。
+
+**ビデオ**
+
+.. raw:: html
+
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/LLYJsXEQueM?si=S8H16QtaW122F_sC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+

@@ -1,0 +1,22 @@
+Video 46: BullseyeとOpenCVを使用したRaspberry Piカメラの活用
+=======================================================================================
+
+このチュートリアルでは、Raspberry Piカメラモジュールのセットアップから使用まで、モジュールの取り扱いからカメラとの対話のためのPythonコードの書き方まで、必要なステップをカバーします。様々な目的のためのカメラの設定方法、OpenCVを使用したライブビデオの表示、クリーンな終了メカニズムの実装方法を学びます。
+
+1. 静電気による損傷を防ぐため、カメラモジュールを慎重に取り扱う。
+2. リボンケーブルの正しい向きを確認して、カメラモジュールをRaspberry PiのCSIコネクタに適切に接続する。
+3. CSIコネクタ上の黒いプラスチック部品を持ち上げる際は損傷を避けるため注意する。
+4. カメラモジュールを取り付けた後、電源が接続されていない状態でRaspberry Piを起動する。
+5. 新機能との互換性のため、Bullseye 64ビットオペレーティングシステムへの移行を理解する。
+6. カメラプレビュー設定をセットアップする。
+7. 異なる目的（プレビュー、ビデオ録画、静止画像）のためにカメラを設定する。
+8. OpenCVを使用してカメラプレビューを開始し表示する。
+9. 画像をピクセル値の配列として理解し、画像処理のためにOpenCVを使用する。
+10. キーボード入力によるクリーンな終了メカニズムを実装する。
+11. フレームの取得と表示の間での高度な画像処理の可能性を探る。
+
+**ビデオ**
+
+.. raw:: html
+
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/kuJpdAf07WQ?si=Txv85bAdLCvTRtlQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

@@ -9,13 +9,20 @@ C-Sprache
 
 Die Implementierung in C-Sprache stützt sich auf die wiringPi-Bibliothek. Jedoch ist die wiringPi-Community-Bibliothek nun archiviert und erhält keine Updates mehr, was sie für Projekte mit dem Raspberry Pi 5 ungeeignet macht. Für weitere Informationen siehe: https://github.com/WiringPi/WiringPi
 
+.. image:: media/pi5_c_language.png
+
 Processing
 -------------
 Beim Einsatz von Processing 4 auf dem Raspberry Pi 5 stoßen GPIO-Programmierungen auf Herausforderungen. Fehler wie "Invalid argument" und "GPIO pin 17 seems to be unavailable on your platform" treten während der Ausführung von GPIO-bezogenem Code auf (wie im beigefügten Bild dargestellt). Für weitere Details besuchen Sie: https://github.com/benfry/processing4/issues/807
 
+.. image:: media/pi5_processing.png
+
 Node.js
 --------------
 Node.js nutzt die pigpio-Bibliothek, die bislang den Raspberry Pi 5 nicht unterstützt. Für mehr Einblicke besuchen Sie: https://github.com/joan2937/pigpio/issues/589
+
+.. image:: media/pi5_nodejs.png
+    :width: 700
 
 Scratch
 --------------

@@ -57,7 +57,7 @@ Wenn Sie die Python-CLI beenden möchten, geben Sie ein:
 .. _install_wiringpi:
 
 Installieren und überprüfen Sie das WiringPi
-==============================================
+-------------------------------------------------
 
 
 ``wiringPi`` ist eine GPIO-Bibliothek in C, die auf den Raspberry Pi angewendet wird. Es entspricht GUN Lv3. Die Funktionen in wiringPi ähneln denen im Verdrahtungssystem von Arduino. Sie ermöglichen den mit Arduino vertrauten Benutzern, wiringPi einfacher zu verwenden.

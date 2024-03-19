@@ -16,7 +16,7 @@ Danke, dass Sie sich für unser Vinci Kit entschieden haben.
 Über das Da Vinci Kit
 -------------------------
 
-Dieses Da Vinci-Kit gilt für den Raspberry Pi 4 Modell B, 3 Modell A +, 3 Modell B +, 3 Modell B, 2 Modell B, 1 Modell B +, 1 Modell A +, zero W and zero. Es enthält verschiedene Komponenten und Chips, die dazu beitragen können, verschiedene interessante Phänomene zu erzeugen, die Sie durch eiige Operationen unter Anleitung von Versuchsanweisungen erhalten können. In diesem Prozess können Sie einige Grundkenntnisse über Programmieren erlernen. Sie können auch mehrere Anwendungen selbst erkunden. Jetzt mach es!
+Dieses Da Vinci-Kit gilt für den Raspberry Pi 5/4 Modell B, 3 Modell A +, 3 Modell B +, 3 Modell B, 2 Modell B, 1 Modell B +, 1 Modell A +, zero W and zero. Es enthält verschiedene Komponenten und Chips, die dazu beitragen können, verschiedene interessante Phänomene zu erzeugen, die Sie durch eiige Operationen unter Anleitung von Versuchsanweisungen erhalten können. In diesem Prozess können Sie einige Grundkenntnisse über Programmieren erlernen. Sie können auch mehrere Anwendungen selbst erkunden. Jetzt mach es!
 
 Wenn Sie andere Projekte kennenlernen möchten, die wir nicht haben, senden Sie bitte eine E-Mail und wir werden so schnell wie möglich auf unsere Online-Tutorials aktualisieren. Vorschläge sind willkommen.
 
@@ -36,9 +36,11 @@ Hier ist die E-Mail: cs@sunfounder.com.
     1_output
     2_input
     3_extension
+    python_video/python_video
     python_pi5/play_with_python_pi5
     processing/play_with_processing
     scratch/play_with_scratch
+    pi5_other_languages
     appendix/appendix
     faq
 

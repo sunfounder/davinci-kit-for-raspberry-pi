@@ -1,5 +1,5 @@
-Spielen Sie mit der Processing
-====================================
+Spielen Sie mit der Processing (nicht für Pi 5)
+=================================================
 
 Was ist Processing?
 ---------------------------

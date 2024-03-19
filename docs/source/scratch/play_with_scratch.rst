@@ -1,5 +1,5 @@
-Spielen mit Scratch
-=========================
+Spielen mit Scratch (nicht für Pi 5)
+==========================================
 
 Scratch ist eine blockbasierte visuelle Programmiersprache und Website, 
 die sich in erster Linie an Kinder von 8 bis 16 Jahren als pädagogisches Werkzeug zum Programmieren richtet. 

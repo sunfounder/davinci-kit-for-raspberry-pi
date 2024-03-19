@@ -1,5 +1,5 @@
-2 Eingabe
-=============
+2 Eingabe (nicht für Pi 5)
+=================================
 
 **2.1 Steuerungen**
 

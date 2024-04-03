@@ -101,7 +101,30 @@ C言語をお使いの方へ： libi2c-devをインストールしてくださ�
 
     sudo apt-get install libi2c-dev 
 
-Pythonユーザーの場合： I2C用のsmbusをインストールします。
+Pythonユーザーの場合： 
+
+**For Python users:**
+
+1. 仮想環境の有効化。
+
+.. note::
+    
+    * 有効化する前に、仮想環境を作成していることを確認してください。詳細はこちらを参照してください: :ref:`create_virtual`.
+
+    * Raspberry Piを再起動するたびや、新しいターミナルを開くたびに、仮想環境を有効化するために次のコマンドを再度実行する必要があります。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: shell
+
+    source myenv/bin/activate
+
+仮想環境が有効化されると、コマンドラインのプロンプトの前に環境名が表示され、仮想環境内で作業していることが示されます。
+
+
+2. I2Cのためのsmbusのインストール。
 
 .. raw:: html
 
@@ -110,3 +133,18 @@ Pythonユーザーの場合： I2C用のsmbusをインストールします。
 .. code-block:: 
 
     sudo pip3 install smbus2
+
+
+3.  仮想環境からの退出。
+
+作業を完了し、仮想環境から退出したい場合は、単純に次のコマンドを実行します:
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: shell
+
+    deactivate
+
+これにより、システムのグローバルPython環境に戻ります。

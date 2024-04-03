@@ -6,3 +6,5 @@
 
     i2c_configuration
     spi_configuration
+    create_virtual_environment
+    

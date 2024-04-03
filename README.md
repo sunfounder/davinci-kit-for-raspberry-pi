@@ -18,6 +18,8 @@ In the 3-in-1 starter kit, you will find a complete Arduino course to help begin
 
 <a id="update"></a>
 ## Update:
+2024-04-03:
+- Add the tutorial on installing a virtual environment
 
 2023-09-20:
 - Modified the code and code analysis in ar_calibration.rst and ar_reversing_aid.rst.

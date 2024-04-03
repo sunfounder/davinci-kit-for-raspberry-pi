@@ -18,6 +18,9 @@ In the 3-in-1 starter kit, you will find a complete Arduino course to help begin
 
 <a id="update"></a>
 ## Update:
+2024-04-03:
+- Add the tutorial on installing a virtual environment
+
 2024-03-18:
 - Add the video courses
 

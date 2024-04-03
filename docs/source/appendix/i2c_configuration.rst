@@ -103,7 +103,29 @@ If there is an I2C device connected, the address of the device will be displayed
 
     sudo apt-get install libi2c-dev 
 
-**For Python users:** Install smbus for I2C.
+**For Python users:**
+
+1. Activating the Virtual Environment.
+
+.. note::
+    
+    * Before activation, you need to ensure that you have created a virtual environment, please refer to: :ref:`create_virtual`.
+
+    * Each time you restart the Raspberry Pi, or open a new terminal, you will need to run the following command again to activate the virtual environment.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: shell
+
+    source myenv/bin/activate
+
+Once the virtual environment is activated, you will see the environment name before the command line prompt, indicating you are working within the virtual environment.
+
+
+
+2. Install smbus for I2C.
 
 .. raw:: html
 
@@ -112,3 +134,18 @@ If there is an I2C device connected, the address of the device will be displayed
 .. code-block:: 
 
     sudo pip3 install smbus2
+
+
+3. Exiting the Virtual Environment.
+
+When you have completed your work and wish to exit the virtual environment, simply run:
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: shell
+
+    deactivate
+
+This will return you to the system's global Python environment.

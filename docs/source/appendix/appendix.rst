@@ -8,3 +8,4 @@ Appendix
     spi_configuration
     remote_desktop
     get_ip
+    create_virtual_environment

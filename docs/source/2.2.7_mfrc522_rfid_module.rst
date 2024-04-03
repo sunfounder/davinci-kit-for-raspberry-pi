@@ -161,7 +161,27 @@ to the card.
 
 For Python Language Users
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-**Step 2:** Install the libraries.
+
+**Step 2**: Activating the Virtual Environment.
+
+.. note::
+    
+    * Before activation, you need to ensure that you have created a virtual environment, please refer to: :ref:`create_virtual`.
+
+    * Each time you restart the Raspberry Pi, or open a new terminal, you will need to run the following command again to activate the virtual environment.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: shell
+
+    source myenv/bin/activate
+
+Once the virtual environment is activated, you will see the environment name before the command line prompt, indicating you are working within the virtual environment.
+
+
+**Step 3:** Install the libraries.
 
 The ``spidev`` library helps handle interactions with the SPI and is a key component to this tutorial as we need it for the Raspberry Pi to interact with the RFID RC522.
 
@@ -191,8 +211,21 @@ Among them ``MFRC522.py`` is the realization of RFID RC522 interface, this libra
     sudo pip3 install mfrc522
 
 
+**Step 4**: Exiting the Virtual Environment.
 
-**Step 3:** Go to the folder of the code.
+When you have completed your work and wish to exit the virtual environment, simply run:
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: shell
+
+    deactivate
+
+This will return you to the system's global Python environment.
+
+**Step 5:** Go to the folder of the code.
 
 .. raw:: html
 
@@ -202,7 +235,7 @@ Among them ``MFRC522.py`` is the realization of RFID RC522 interface, this libra
 
     cd ~/davinci-kit-for-raspberry-pi/python/2.2.7
 
-**Step 4:** Run the executable file.
+**Step 6:** Run the executable file.
 
 .. raw:: html
 
@@ -313,6 +346,6 @@ This function is used to read card data. If the reading is successful, id and te
 This function is used to write information to the card, press ``Enter`` key to finish writing. ``text`` is the information to be written to the card.
 
 Phenomenon Picture
-------------------
+---------------------
 
 .. image:: img/image233.jpeg

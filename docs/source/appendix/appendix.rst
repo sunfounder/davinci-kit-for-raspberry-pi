@@ -9,3 +9,4 @@ Anhang
     i2c_configuration
     spi_configuration
     remote_desktop
+    create_virtual_environment

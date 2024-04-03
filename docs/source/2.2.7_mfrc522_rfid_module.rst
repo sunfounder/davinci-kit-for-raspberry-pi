@@ -120,12 +120,30 @@ Diese Funktion wird verwendet, um die Daten der Karte zu schreiben und gibt „1
 Für Python-Sprachbenutzer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Schritt 2: Installieren Sie die Bibliotheken.
+**Schritt 2**: Aktivierung der virtuellen Umgebung.
 
-Die ``spidev``-Bibliothek hilft bei der Handhabung von Interaktionen mit dem SPI und ist eine Schlüsselkomponente für dieses Tutorial, da wir sie für die Interaktion des Raspberry Pi mit dem RFID RC522 benötigen.
+.. note::
+    
+    * Bevor Sie die Aktivierung durchführen, müssen Sie sicherstellen, dass Sie eine virtuelle Umgebung erstellt haben. Bitte beachten Sie: :ref:`create_virtual`.
+
+    * Jedes Mal, wenn Sie den Raspberry Pi neu starten oder ein neues Terminal öffnen, müssen Sie erneut den folgenden Befehl ausführen, um die virtuelle Umgebung zu aktivieren.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: shell
+
+    source myenv/bin/activate
+
+Nachdem die virtuelle Umgebung aktiviert ist, sehen Sie den Umgebungsnamen vor dem Befehlszeilen-Prompt, was darauf hinweist, dass Sie innerhalb der virtuellen Umgebung arbeiten.
+
+
+**Schritt 3**: Installation der Bibliotheken.
+
+Die ``spidev``-Bibliothek hilft bei der Handhabung von Interaktionen mit SPI und ist ein Schlüsselelement dieses Tutorials, da wir sie für den Raspberry Pi benötigen, um mit dem RFID RC522 zu interagieren.
 
 Führen Sie den folgenden Befehl aus, um ``spidev`` über ``pip`` auf Ihrem Raspberry Pi zu installieren.
-
 
 .. raw:: html
 
@@ -136,12 +154,11 @@ Führen Sie den folgenden Befehl aus, um ``spidev`` über ``pip`` auf Ihrem Rasp
     sudo pip3 install spidev
 
 
-Fahren Sie mit der Installation der MFRC522-Bibliothek fort. 
-Die MFRC522-Bibliothek enthält zwei Dateien: ``MFRC522.py`` und ``SimpleMFRC522.py``. 
+Fahren Sie mit der Installation der MFRC522-Bibliothek fort. Die MFRC522-Bibliothek enthält zwei Dateien: ``MFRC522.py`` und ``SimpleMFRC522.py``.
 
-Unter ihnen ist ``MFRC522.py`` die Realisierung der RFID-RC522-Schnittstelle, diese Bibliothek übernimmt die gesamte schwere Arbeit der Kommunikation mit RFID über die SPI-Schnittstelle von Pi.
+Dabei ist ``MFRC522.py`` die Realisierung der RFID-RC522-Schnittstelle, diese Bibliothek übernimmt alle schweren Arbeiten bei der Kommunikation mit RFID über die SPI-Schnittstelle des Pi.
 
-``SimpleMFRC522.py`` nimmt die Datei ``MFRC522.py`` und vereinfacht sie stark, indem es Ihnen erlaubt, nur wenige Funktionen anstelle von wenigen Funktionen zu bearbeiten.
+``SimpleMFRC522.py`` nimmt die Datei ``MFRC522.py`` und vereinfacht sie erheblich, indem sie es Ihnen ermöglicht, nur mit einigen Funktionen anstatt mit einigen Funktionen umzugehen.
 
 .. raw:: html
 
@@ -152,7 +169,23 @@ Unter ihnen ist ``MFRC522.py`` die Realisierung der RFID-RC522-Schnittstelle, di
     sudo pip3 install mfrc522
 
 
-Schritt 3: Gehen Sie zum Ordner der Kode.
+**Schritt 4**: Beenden der virtuellen Umgebung.
+
+Wenn Sie Ihre Arbeit abgeschlossen haben und die virtuelle Umgebung verlassen möchten, führen Sie einfach folgenden Befehl aus:
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: shell
+
+    deactivate
+
+Damit kehren Sie zur globalen Python-Umgebung des Systems zurück.
+
+
+
+**Schritt 5**: Gehen Sie zum Ordner der Kode.
 
 .. raw:: html
 
@@ -162,7 +195,7 @@ Schritt 3: Gehen Sie zum Ordner der Kode.
 
     cd /home/pi/davinci-kit-for-raspberry-pi/python/2.2.7
 
-Schritt 4: Führen Sie die ausführbare Datei aus.
+**Schritt 6**: Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 

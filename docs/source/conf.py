@@ -95,6 +95,8 @@ rst_epilog = """
 
     <a href="https://docs.sunfounder.com/projects/davinci-kit/en/latest/" target="_blank">English Online-tutorials</a>
 
+.. |link_sf_facebook| raw:: html
 
+    <a href="https://bit.ly/3V481Xs" target="_blank">ここ</a>
 
 """

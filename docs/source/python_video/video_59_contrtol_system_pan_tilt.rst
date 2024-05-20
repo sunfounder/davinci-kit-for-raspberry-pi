@@ -1,3 +1,17 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
 Video 59: Steuerungssystem für Schwenk-/Neige-Kamerahalterung für die RPi-Kamera
 =======================================================================================
 In diesem Tutorial, präsentiert von SunFounder, erfahren Sie, wie man ein Schwenk-/Neige-Verfolgungssystem mit einem Raspberry Pi und Kamera einrichtet. Nach einer Einführung in die Grundlagen und eine Rückblick auf vorherige Lektionen, wird ein Dual-Modus-System vorgestellt, das zwischen Training und aktiver Verfolgung wechselt. Es wird gezeigt, wie man Servos basierend auf Benutzereingaben steuert und wie Neigungsfehler korrigiert werden, um den Kamerawinkel optimal anzupassen. Zudem werden Sicherheitsmechanismen erläutert, die eine Überneigung der Kamera verhindern und so die Sicherheit gewährleisten.

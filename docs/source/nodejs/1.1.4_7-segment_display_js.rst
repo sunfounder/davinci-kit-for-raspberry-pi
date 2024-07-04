@@ -1,0 +1,169 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebookへようこそ！Raspberry Pi、Arduino、ESP32を愛好する仲間たちと一緒に、これらの技術を深く探求しましょう。
+
+    **参加する理由は？**
+
+    - **専門家のサポート**：購入後の問題や技術的な課題を、コミュニティやチームの助けを借りて解決します。
+    - **学びと共有**：スキルを向上させるためのヒントやチュートリアルを交換します。
+    - **独占プレビュー**：新製品の発表やプレビューに早期アクセスできます。
+    - **特別割引**：最新の製品に対する独占割引を楽しめます。
+    - **フェスティブプロモーションとギブアウェイ**：ギブアウェイやフェスティブプロモーションに参加できます。
+
+    👉 私たちと一緒に探索と創造を始める準備はできましたか？[|link_sf_facebook|]をクリックして、今日参加しましょう！
+
+1.1.4 7セグメントディスプレイ
+===============================
+
+イントロダクション
+------------------
+
+このプロジェクトでは、0から9およびAからFの数字と文字を表示するために7セグメントディスプレイを駆動します。
+
+コンポーネント
+-------------------
+
+.. image:: img/list_7_segment.png
+
+
+回路図
+----------------------
+
+74HC595のST_CPをRaspberry PiのGPIO18に、SH_CPをGPIO27に、DSをGPIO17に接続し、パラレル出力ポートをLEDセグメントディスプレイの8つのセグメントに接続します。SH_CP（シフトレジスタのクロック入力）が立ち上がりエッジにあるときにDSピンにデータを入力し、ST_CP（メモリのクロック入力）が立ち上がりエッジにあるときにメモリレジスタにデータを入力します。その後、Raspberry PiのGPIOを介してSH_CPとST_CPの状態を制御し、シリアルデータ入力をパラレルデータ出力に変換してRaspberry PiのGPIOを節約し、ディスプレイを駆動することができます。
+
+.. image:: img/schematic_7_segment.png
+
+実験手順
+--------------------------
+
+**ステップ1:** 回路を構築します。
+
+.. image:: img/image73.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**ステップ3:** コードを実行します。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo node 7-segment_display.js
+
+コードが実行されると、7セグメントディスプレイに0-9、A-Fが表示されます。
+
+**コード**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    const segCode = [0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71];
+
+    const SDI = new Gpio(17, { mode: Gpio.OUTPUT });
+    const RCLK = new Gpio(18, { mode: Gpio.OUTPUT });
+    const SRCLK = new Gpio(27, { mode: Gpio.OUTPUT });
+
+    function hc595_shift(dat) {
+        for (let j = 0; j < 8; j++) {
+            let code = 0x80 & (dat << j);
+            if (code != 0) {
+                code = 1;
+            }
+            SDI.digitalWrite(code);
+            SRCLK.trigger(1,1);
+        }
+        RCLK.trigger(1,1);
+    }
+
+    let index = -1;
+    setInterval(() => {
+        index = (index+1)%16;
+        hc595_shift(segCode[index]);
+    }, 1000);
+
+
+**コードの説明**
+
+.. code-block:: js
+
+    const segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71];
+
+0からFまでの16進数（共通カソード）のセグメントコード配列を定義します。   
+
+.. code-block:: js
+
+    const SDI = new Gpio(17, { mode: Gpio.OUTPUT });
+    const RCLK = new Gpio(18, { mode: Gpio.OUTPUT });
+    const SRCLK = new Gpio(27, { mode: Gpio.OUTPUT });
+
+ピン17、18、27を出力モードとして初期化し、それぞれを ``SDI`` 、 ``RCLK`` 、 ``SRCLK`` にコピーします。
+
+.. code-block:: js
+
+    function hc595_shift(dat) {
+        for (let j = 0; j < 8; j++) {
+            let code = 0x80 & (dat << j);
+            if (code != 0) {
+                code = 1;
+            }
+            SDI.digitalWrite(code);
+            SRCLK.trigger(1,1);
+        }
+        RCLK.trigger(1,1);
+    }
+
+``hc595_shift``関数を実装して、 ``segCode`` 配列のフィールドを数字に変換し、デジタルチューブに表示します。
+
+.. code-block:: js
+
+    let code = 0x80 & (dat << j);
+    if (code != 0) {
+        code = 1;
+    }
+    SDI.digitalWrite(code); 
+
+datデータをビットごとにSDI(DS)に割り当てます。ここでdat=0x3f（0011 1111）、j=2の場合、0x3fは2ビット右シフトします（<<）。1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000、これはtrueです。この時点で、1がSDIに書き込まれます。
+
+.. code-block:: js
+
+    SRCLK.trigger(1,1);
+
+立ち上がりエッジパルスを生成し、DSデータをシフトレジスタに移動します。
+
+``trigger(pulseLen, level)``
+    * pulseLen - マイクロ秒単位のパルス長（1 - 100）
+    * level - 0または1
+
+GPIOにトリガーパルスを送信します。GPIOはpulseLenマイクロ秒間levelに設定され、その後levelでない状態にリセットされます。
+
+.. code-block:: js
+
+    RCLK.trigger(1,1);
+
+立ち上がりエッジパルスを生成し、データをシフトレジスタからストレージレジスタに移動します。
+
+.. code-block:: js
+
+    let index = -1;
+    setInterval(() => {
+        index = (index+1)%16;
+        hc595_shift(segCode[index]);
+    }, 1000);
+
+最後に、 ``hc595_shift()`` 関数を使用して ``segCode`` のフィールドを変換し、デジタルチューブを通じて表示します。
+
+現象の写真
+---------------------------
+
+.. image:: img/image74.jpeg

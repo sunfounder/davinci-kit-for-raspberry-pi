@@ -1,0 +1,158 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebookへようこそ！Raspberry Pi、Arduino、ESP32を愛好する仲間たちと一緒に、これらの技術を深く探求しましょう。
+
+    **参加する理由**
+
+    - **専門家のサポート**: コミュニティやチームの助けを借りて、購入後の問題や技術的な課題を解決します。
+    - **学びと共有**: スキルを向上させるためのヒントやチュートリアルを交換します。
+    - **独占プレビュー**: 新製品の発表やプレビューに早期アクセスできます。
+    - **特別割引**: 最新の製品に対する独占割引を楽しめます。
+    - **フェスティブプロモーションとギブアウェイ**: ギブアウェイやフェスティブプロモーションに参加できます。
+
+    👉 私たちと一緒に探索と創造を始める準備はできましたか？[|link_sf_facebook|]をクリックして、今日参加しましょう！
+
+2.2.2 サーミスタ
+================
+
+イントロダクション
+-------------------
+
+フォトレジスタが光を感知するのと同様に、サーミスタは温度に敏感な電子デバイスで、温度制御の機能を実現するために使用できます。例えば、熱警報を作成することができます。
+
+
+コンポーネント
+-----------------
+
+.. image:: ../img/list_2.2.2_thermistor.png
+
+
+
+回路図
+------------------
+
+.. image:: ../img/image323.png
+
+
+.. image:: ../img/image324.png
+
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を構築します。
+
+.. image:: ../img/image202.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**ステップ3:** コードを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node thermistor.js
+
+コードが実行されると、サーミスタが周囲の温度を検出し、プログラムの計算が終了すると画面に温度が表示されます。
+
+**コード**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+    exports.ADC0834 = ADC0834;
+
+    const adc = new ADC0834(17, 18, 27);
+
+    setInterval(() => {
+      adc.read(0).then((value) => {
+        var Vr = 5 * value / 255;
+        var Rt = 10000 * Vr / (5 - Vr);
+        var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));
+        var cel = (temp - 273.15).toFixed(2);
+        var Fah = (cel * 1.8 + 32).toFixed(2);
+        console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
+      }, (error)=>{
+        console.log("Error: " + error);
+      });
+    }, 1000);
+
+**コードの説明**
+
+.. code-block:: js
+
+    setInterval(() => {
+      adc.read(0).then((value) => {
+        var Vr = 5 * value / 255;
+        var Rt = 10000 * Vr / (5 - Vr);
+        var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));
+        var cel = (temp - 273.15).toFixed(2);
+        var Fah = (cel * 1.8 + 32).toFixed(2);
+        console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
+      }, (error)=>{
+        console.log("Error: " + error);
+      });
+    }, 1000);
+
+``adc.read(0).then((value) => {...})``の文を使用して、サーミスタの ``value`` を読み取ることができます。
+
+.. code-block:: js
+
+    var Vr = 5 * value / 255;
+    var Rt = 10000 * Vr / (5 - Vr);
+    var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));
+    var cel = (temp - 273.15).toFixed(2);
+    var Fah = (cel * 1.8 + 32).toFixed(2);
+    console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
+
+これらの操作により、サーミスタの値が摂氏温度値に変換されます。
+
+.. code-block:: js
+
+    var Vr = 5 * value / 255;
+    var Rt = 10000 * Vr / (5 - Vr);
+
+これらの2行のコードは、読み取った値から電圧分布を計算し、Rt（サーミスタの抵抗値）を求めるために使用されます。
+
+.. code-block:: js
+
+    var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));  
+
+このコードは、Rtを式**TK=1/(ln(RT/RN)/B+1/TN)**に代入して、ケルビン温度を取得します。
+
+.. code-block:: js
+
+    var cel = (temp - 273.15).toFixed(2);
+
+この段落では、ケルビン温度を小数点以下2桁の摂氏温度に変換します。
+
+.. code-block:: js
+
+    var Fah = (cel * 1.8 + 32).toFixed(2);
+
+この段落は、摂氏温度を小数点以下2桁の華氏温度に変換します。
+
+.. code-block:: js
+
+    console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
+
+摂氏温度、華氏温度、およびその単位を端末に出力します。  
+
+現象の写真
+------------------
+
+.. image:: ../img/image203.jpeg
+    

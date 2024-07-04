@@ -1,0 +1,116 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebookへようこそ！Raspberry Pi、Arduino、ESP32を愛好する仲間たちと一緒に、これらの技術を深く探求しましょう。
+
+    **参加する理由**
+
+    - **専門家のサポート**: コミュニティやチームの助けを借りて、購入後の問題や技術的な課題を解決します。
+    - **学びと共有**: スキルを向上させるためのヒントやチュートリアルを交換します。
+    - **独占プレビュー**: 新製品の発表やプレビューに早期アクセスできます。
+    - **特別割引**: 最新の製品に対する独占割引を楽しめます。
+    - **フェスティブプロモーションとギブアウェイ**: ギブアウェイやフェスティブプロモーションに参加できます。
+
+    👉 私たちと一緒に探索と創造を始める準備はできましたか？[|link_sf_facebook|]をクリックして、今日参加しましょう！
+
+1.3.3 リレー
+================
+
+イントロダクション
+--------------------
+
+このプロジェクトでは、リレーの使用方法を学びます。リレーは自動制御システムでよく使用されるコンポーネントの一つです。電圧、電流、温度、圧力などが設定値に達すると、または超えると、リレーは回路を接続または切断し、機器を制御および保護します。
+
+
+コンポーネント
+---------------
+
+.. image:: ../img/list_1.3.4.png
+
+
+
+回路図
+-------------------
+
+.. image:: ../img/image345.png
+
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を構築します。
+
+.. image:: ../img/image144.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+
+**ステップ3:** コードを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node relay.js
+
+コードが実行されると、LEDが点灯します。また、常閉接点が開き、常開接点が閉じる音が聞こえます。
+
+**コード**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const relay = new Gpio(17,{mode: Gpio.OUTPUT});
+
+    setInterval(() => {
+        relay.digitalWrite(!relay.digitalRead());
+    }, 500);
+
+    process.on('SIGINT',function(){
+        relay.digitalWrite(0);
+        process.exit();
+    });
+
+
+**コードの説明**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const relay = new Gpio(17,{mode: Gpio.OUTPUT});
+
+pigpioモジュールをインポートし、Gpioクラスのオブジェクトであるrelayをインスタンス化してGpio17のIOポートを制御し、出力モードに設定します。
+
+
+.. code-block:: js
+
+    setInterval(() => {
+        relay.digitalWrite(!relay.digitalRead());
+    }, 500);
+
+リレーが連続して開閉され、500msの間隔でLEDも連続して点灯および消灯します。
+
+
+.. code-block:: js
+
+    process.on('SIGINT',function(){
+        relay.digitalWrite(0);
+        process.exit();
+    });
+
+ctrl+cが検出されると、リレーが開きます。
+
+現象の写真
+------------------
+
+.. image:: ../img/image145.jpeg
+

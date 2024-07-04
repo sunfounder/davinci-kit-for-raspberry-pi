@@ -12,7 +12,7 @@
 
     👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
 
-Python ビデオコース (Pi 5用ではない)
+Python ビデオコース 
 =======================================
 
 この簡潔なPythonビデオコースで、ラズベリーパイの世界に飛び込みましょう。初心者から趣味人まで、どなたでも最適です。
@@ -76,6 +76,31 @@ LEDやLCDディスプレイなどの主要部品を探索するインタラク�
     video_42_send_data
     video_43_simple_client_server
     video_44_improved_client_server
+    video_45_camera
+    video_46_opencv
+    video_47_fps
+    video_48_annotating_opencv
+    video_49_bouncing_box_opencv
+    video_50_image_array
+    video_51_modify_opencv_image
+    video_52_hsv
+    video_53_trackbars
+    video_54_trackbars_color
+    video_55_track_object
+    video_56_pan_tilt
+    video_57_assemble_pan_tilt
+    video_58_track_pan_tilt
+    video_59_contrtol_system_pan_tilt
+    video_60_improved_pan_tilt
+    video_61_cascades
+    video_62_face_opencv
+    video_63_track_face_opencv
+    video_64_tensorflow
+    video_65_tensorflow_data_structure
+    video_66_tensorflow_speed
+    video_67_cap_touch
+    video_68_rgb_cap_touch
     video_69_mfrc522
     video_70_rgb_rfid
+    video_71_ir_proximity
 

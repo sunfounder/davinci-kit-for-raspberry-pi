@@ -1,0 +1,119 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebookへようこそ！Raspberry Pi、Arduino、ESP32を愛好する仲間たちと一緒に、これらの技術を深く探求しましょう。
+
+    **参加する理由**
+
+    - **専門家のサポート**: コミュニティやチームの助けを借りて、購入後の問題や技術的な課題を解決します。
+    - **学びと共有**: スキルを向上させるためのヒントやチュートリアルを交換します。
+    - **独占プレビュー**: 新製品の発表やプレビューに早期アクセスできます。
+    - **特別割引**: 最新の製品に対する独占割引を楽しめます。
+    - **フェスティブプロモーションとギブアウェイ**: ギブアウェイやフェスティブプロモーションに参加できます。
+
+    👉 私たちと一緒に探索と創造を始める準備はできましたか？[|link_sf_facebook|]をクリックして、今日参加しましょう！
+
+2.2.3 DHT-11
+================
+
+イントロダクション
+--------------------
+
+デジタル温湿度センサDHT11は、温度と湿度の較正されたデジタル信号出力を含む複合センサです。専用のデジタルモジュール収集技術と温湿度検知技術を適用し、高い信頼性と優れた安定性を保証しています。
+
+センサには湿度抵抗センサとNTC温度センサが含まれており、これらは高性能8ビットマイクロコントローラに接続されています。
+
+コンポーネント
+----------------
+
+.. image:: ../img/list_2.2.3_dht-11.png
+
+回路図
+--------------------
+
+.. image:: ../img/image326.png
+
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を構築します。
+
+.. image:: ../img/image207.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**ステップ3:** 依存関係をインストールします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo npm install node-dht-sensor
+
+**ステップ4:** コードを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node dht11.js
+
+コードが実行されると、プログラムはDHT11が検出した温度と湿度をコンピュータ画面に表示します。
+
+**コード**
+
+.. code-block:: js
+
+    var sensor = require("node-dht-sensor");
+
+    setInterval(function(){ 
+      sensor.read(11, 17, function(err, temperature, humidity) {
+        if (!err) {
+          console.log(`temp: ${temperature}\`C, humidity: ${humidity}%`);
+        }
+      });
+    },1000);
+
+**コードの説明**
+
+.. code-block:: js
+
+    var sensor = require("node-dht-sensor");
+
+モジュール ``node-dht-sensor`` をインポートし、DHT-11の値を読み取るための関数を提供します。
+
+.. note::
+  詳細については、https://www.npmjs.com/package/node-dht-sensor を参照してください。
+
+.. code-block:: js
+
+    sensor.read(11, 17, function(err, temperature, humidity){...})
+
+モジュール ``node-dht-sensor`` は、測定された温度と湿度を読み取るための ``read()`` 関数を提供します。
+ここで **11** はDHT-11を意味し、 **17** はGPIO17に接続されていることを意味します。
+
+.. code-block:: js
+
+    if (!err) {
+      console.log(`temp: ${temperature}\`C, humidity: ${humidity}%`);
+    }    
+
+読み取りにエラーがない場合、温度と湿度の値が端末に表示されます。
+
+現象の写真
+------------------
+
+.. image:: ../img/image209.jpeg
+    

@@ -1,0 +1,116 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebookへようこそ！Raspberry Pi、Arduino、ESP32を愛好する仲間たちと一緒に、これらの技術を深く探求しましょう。
+
+    **参加する理由**
+
+    - **専門家のサポート**: コミュニティやチームの助けを借りて、購入後の問題や技術的な課題を解決します。
+    - **学びと共有**: スキルを向上させるためのヒントやチュートリアルを交換します。
+    - **独占プレビュー**: 新製品の発表やプレビューに早期アクセスできます。
+    - **特別割引**: 最新の製品に対する独占割引を楽しめます。
+    - **フェスティブプロモーションとギブアウェイ**: ギブアウェイやフェスティブプロモーションに参加できます。
+
+    👉 私たちと一緒に探索と創造を始める準備はできましたか？[|link_sf_facebook|]をクリックして、今日参加しましょう！
+
+1.2.1 アクティブブザー
+===========================
+
+イントロダクション
+---------------------
+
+このプロジェクトでは、PNPトランジスタを使用してアクティブブザーを鳴らす方法を学びます。
+
+コンポーネント
+-------------------
+
+.. image:: ../img/list_1.2.1.png
+
+
+
+回路図
+-----------------
+
+この実験では、トランジスタのベースとGPIOの間にアクティブブザー、PNPトランジスタ、および1k抵抗を使用してトランジスタを保護します。Raspberry PiのGPIO17がプログラムによって低レベル（0V）を出力すると、トランジスタが飽和し、導通してブザーが鳴ります。しかし、Raspberry PiのIOに高レベルが供給されると、トランジスタは遮断され、ブザーは鳴りません。
+
+.. image:: ../img/image332.png
+
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を構築します。（アクティブブザーには表面に白いテーブルステッカーがあり、背面は黒色です。）
+
+.. image:: ../img/image104.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**ステップ3:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node active_buzzer.js
+
+コードが実行されると、ブザーが鳴ります。
+
+**コード**
+
+.. code-block:: js
+
+  const Gpio = require('pigpio').Gpio;
+  const active = new Gpio(17,{mode: Gpio.OUTPUT});
+
+  setInterval(() => {
+    active.digitalWrite(!active.digitalRead());
+  }, 500);
+
+  process.on('SIGINT',function(){
+    active.digitalWrite(1);
+    process.exit();
+  });
+
+**コードの説明**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const active = new Gpio(17,{mode: Gpio.OUTPUT});
+
+``pigpio``モジュールをインポートし、IOポートGpio17を制御するオブジェクトactiveをインスタンス化し、モードを出力モードに設定します。
+
+.. code-block:: js
+
+  setInterval(() => {
+    active.digitalWrite(!active.digitalRead());
+  }, 500);
+
+アクティブブザーはLEDに似ており、 ``digitalWrite()`` で制御できます。 ``digitalRead()`` は現在のピンレベルを読み取るために使用されます。
+ここでは、アクティブブザーが500msごとに動作状態を変更するようにします。
+
+.. code-block:: js
+
+  process.on('SIGINT', function() {
+      /* DO SOME STUFF HERE */
+
+      process.exit()
+  })
+
+Ctrl+Cを処理します。ここでは、プログラムを終了する際にブザーの鳴動を停止するために使用します。
+
+`Process - NodeJS <https://nodejs.org/api/process.html>`_
+
+現象の写真
+------------------
+
+.. image:: ../img/image105.jpeg

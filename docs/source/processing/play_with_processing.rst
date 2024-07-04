@@ -12,7 +12,7 @@
 
     👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
 
-Processingで遊ぶ (Pi 5用ではない)
+Processingで遊ぶ 
 =====================================
 
 Processingとは？
@@ -32,7 +32,7 @@ Processingをインストールする
     Processingを使用する前に、Raspberry Piデスクトップにリモートでアクセスするか( :ref:`set_up_raspberrypi` ) 、RaspberryPiのディスプレイを接続する必要があります。
 
 
-最初に https://processing.org/download にアクセスし、``Linux ARM32-bit`` バージョンを選択します。
+最初に https://processing.org/download にアクセスし、 ``Linux ARM32-bit``  バージョンを選択します。
 
 次に、ほとんどの Linux ユーザーになじみのある ``.tar.gz`` ファイルにダウンロードします。
 ファイルをホーム ディレクトリにダウンロードし、ターミナル ウィンドウを開いて次のように入力します。

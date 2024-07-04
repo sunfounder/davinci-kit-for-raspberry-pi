@@ -1,0 +1,146 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebookへようこそ！Raspberry Pi、Arduino、ESP32を愛好する仲間たちと一緒に、これらの技術を深く探求しましょう。
+
+    **参加する理由**
+
+    - **専門家のサポート**: コミュニティやチームの助けを借りて、購入後の問題や技術的な課題を解決します。
+    - **学びと共有**: スキルを向上させるためのヒントやチュートリアルを交換します。
+    - **独占プレビュー**: 新製品の発表やプレビューに早期アクセスできます。
+    - **特別割引**: 最新の製品に対する独占割引を楽しめます。
+    - **フェスティブプロモーションとギブアウェイ**: ギブアウェイやフェスティブプロモーションに参加できます。
+
+    👉 私たちと一緒に探索と創造を始める準備はできましたか？[|link_sf_facebook|]をクリックして、今日参加しましょう！
+
+1.3.2 サーボモーター
+=====================
+
+イントロダクション
+-------------------
+
+このプロジェクトでは、サーボモーターを回転させる方法を学びます。
+
+
+コンポーネント
+-----------------
+
+.. image:: ../img/list_1.3.2.png
+
+
+回路図
+-----------------
+
+.. image:: ../img/image337.png
+
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を構築します。
+
+.. image:: ../img/image125.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**ステップ3:** コードを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node servo.js
+
+プログラムが実行されると、サーボは0度から180度まで回転し、その後180度から0度まで回転を繰り返します。
+
+**コード**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    SERVO_MIN_ANGLE = 0
+    SERVO_MAX_ANGLE = 180
+    SERVO_MIN_PULSE = 500
+    SERVO_MAX_PULSE = 2500
+
+    ServoPin = new Gpio(18,{mode: Gpio.OUTPUT})
+
+    function map(value, inMin, inMax, outMin, outMax){
+        return (outMax - outMin) * (value - inMin) / (inMax - inMin) + outMin
+    }
+
+    function angle2pulse(angle){
+        return Math.floor(map(angle,SERVO_MIN_ANGLE,SERVO_MAX_ANGLE,SERVO_MIN_PULSE ,SERVO_MAX_PULSE))
+    }
+
+    let angle=90;
+    let step=5;
+    setInterval(() => {
+        if(angle>=180||angle<=0){
+            step=-step
+        }
+        angle+=step;
+        ServoPin.servoWrite(angle2pulse(angle));
+    }, 20);
+
+
+**コードの説明**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    ServoPin = new Gpio(18,{mode: Gpio.OUTPUT})
+
+pigpioモジュールをインポートし、GpioクラスのオブジェクトであるServoPinを作成して、Gpio18の出力を制御します。    
+  
+
+.. code-block:: js
+
+    SERVO_MIN_ANGLE = 0
+    SERVO_MAX_ANGLE = 180
+    SERVO_MIN_PULSE = 500
+    SERVO_MAX_PULSE = 2500
+
+    function map(value, inMin, inMax, outMin, outMax){
+        return (outMax - outMin) * (value - inMin) / (inMax - inMin) + outMin
+    }
+
+    function angle2pulse(angle){
+        return Math.floor(map(angle,SERVO_MIN_ANGLE,SERVO_MAX_ANGLE,SERVO_MIN_PULSE ,SERVO_MAX_PULSE))
+    }
+
+ここでは、角度をパルス幅にマップする関数を定義しています。
+これは、Gpioクラスにカプセル化されたサーボ制御関数 ``servoWrite(pulseWidth)`` が角度ではなくパルス幅を書き込む必要があるためです。
+使用しているサーボの角度範囲は0〜180で、パルス幅の範囲500〜2500にマップする必要があります。
+
+.. code-block:: js
+
+    let angle=90;
+    let step=5;
+    setInterval(() => {
+        if(angle>=180||angle<=0){
+            step=-step
+        }
+        angle+=step;
+        ServoPin.servoWrite(angle2pulse(angle));
+    }, 20);
+
+サーボの角度を0から180の間で往復させます。
+
+
+現象の写真
+------------------
+
+.. image:: ../img/image126.jpeg
+

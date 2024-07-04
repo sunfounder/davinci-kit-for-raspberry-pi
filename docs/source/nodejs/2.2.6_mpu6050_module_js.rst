@@ -1,0 +1,156 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebookへようこそ！Raspberry Pi、Arduino、ESP32を愛好する仲間たちと一緒に、これらの技術を深く探求しましょう。
+
+    **参加する理由**
+
+    - **専門家のサポート**: コミュニティやチームの助けを借りて、購入後の問題や技術的な課題を解決します。
+    - **学びと共有**: スキルを向上させるためのヒントやチュートリアルを交換します。
+    - **独占プレビュー**: 新製品の発表やプレビューに早期アクセスできます。
+    - **特別割引**: 最新の製品に対する独占割引を楽しめます。
+    - **フェスティブプロモーションとギブアウェイ**: ギブアウェイやフェスティブプロモーションに参加できます。
+
+    👉 私たちと一緒に探索と創造を始める準備はできましたか？[|link_sf_facebook|]をクリックして、今日参加しましょう！
+
+2.2.6 MPU6050モジュール
+=========================
+
+イントロダクション
+-------------------
+
+MPU-6050は、スマートフォン、タブレット、ウェアラブルセンサー向けに設計された世界初の6軸モーショントラッキングデバイスです（3軸ジャイロスコープおよび3軸加速度計）。これには、低消費電力、低コスト、および高性能の要件が含まれます。
+
+この実験では、I2Cを使用してMPU6050の三軸加速度センサーと三軸ジャイロスコープの値を取得し、画面に表示します。
+
+
+コンポーネント
+-----------------
+
+.. image:: ../img/list_2.2.6.png
+
+
+
+回路図
+-----------------
+
+MPU6050はI2Cバスインターフェースを介してマイクロコントローラーと通信します。SDA1とSCL1は対応するピンに接続する必要があります。
+
+.. image:: ../img/image330.png
+
+
+実験手順
+-------------------------------
+
+**ステップ1:** 回路を構築します。
+
+.. image:: ../img/image227.png
+
+
+**ステップ2:** I2Cの設定を行います（「I2Cの設定」参照。I2Cを設定済みの場合、このステップはスキップしてください）。
+
+**ステップ3:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**ステップ4:** 依存関係をインストールします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo npm install mpu6050-gyro
+
+**ステップ5:** コードを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node mpu6050_module.js
+
+コードが実行されると、MPU6050によって読み取られたx軸とy軸の傾斜角、および各軸の加速度、角速度が画面に表示されます。
+
+**コード**
+
+.. code-block:: js
+
+    var gyro = require("mpu6050-gyro");
+    
+    var address = 0x68; //MPU6050のアドレス
+    var bus = 1; //使用するi2cバス   
+    var gyro = new gyro( bus, address );
+    
+    async function update_telemetry() {
+        
+        var gyro_xyz = gyro.get_gyro_xyz();
+        var accel_xyz = gyro.get_accel_xyz();
+        
+        var gyro_data = {
+            gyro_xyz: gyro_xyz,
+            accel_xyz: accel_xyz,
+            rollpitch: gyro.get_roll_pitch( gyro_xyz, accel_xyz )
+        }
+        
+        console.log(gyro_data);
+        
+        setTimeout(update_telemetry, 500);
+    }
+    
+    if ( gyro ) {
+        update_telemetry();
+    }
+
+**コードの説明**
+
+.. code-block:: js
+
+    var gyro = require("mpu6050-gyro");
+    
+    var address = 0x68; //MPU6050のアドレス
+    var bus = 1; //使用するi2cバス   
+    var gyro = new gyro( bus, address );
+
+``mpu6050-gyro`` モジュールをインポートし、MPU6050のアドレスとバスを指定してオブジェクトgyroを作成します。
+これにより、モジュール内の関数を呼び出すことができます。
+
+.. note:: 
+    このモジュールについての詳細は、https://www.npmjs.com/package/mpu6050-gyro を参照してください。
+
+.. code-block:: js
+
+    var gyro_xyz = gyro.get_gyro_xyz();
+    var accel_xyz = gyro.get_accel_xyz();
+    
+    var gyro_data = {
+        gyro_xyz: gyro_xyz,
+        accel_xyz: accel_xyz,
+        rollpitch: gyro.get_roll_pitch( gyro_xyz, accel_xyz )
+    }
+    
+    console.log(gyro_data);
+    
+    setTimeout(update_telemetry, 500);
+
+モジュールには3つの利用可能な関数がカプセル化されています：
+
+``gyro.get_gyro_xyz()`` : ジャイロスコープからの生のx, y, zデータを含むJSONオブジェクトを返します。
+
+``gyro.get_accel_xyz()`` : 加速度計からの生のx, y, zデータを含むJSONオブジェクトを返します。
+
+``gyro.get_roll_pitch( gyro_xyz, accel_xyz )`` : ロールとピッチを度単位で含むJSONオブジェクトを返します。
+
+現象の写真
+------------------
+
+.. image:: ../img/image228.jpeg
+

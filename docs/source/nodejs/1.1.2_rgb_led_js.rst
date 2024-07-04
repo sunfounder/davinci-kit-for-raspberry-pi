@@ -1,0 +1,170 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebookへようこそ！ラズベリーパイ、Arduino、ESP32について、他の愛好者と一緒に深く探求しましょう。
+
+    **参加する理由**
+
+    - **専門家のサポート**：購入後の問題や技術的な課題を、コミュニティとチームの助けを借りて解決します。
+    - **学習と共有**：スキルを向上させるためのヒントやチュートリアルを交換します。
+    - **独占プレビュー**：新製品の発表やプレビューに早期アクセスできます。
+    - **特別割引**：最新製品に対する独占割引を楽しめます。
+    - **フェスティブプロモーションとギブアウェイ**：ギブアウェイやフェスティブプロモーションに参加できます。
+
+    👉 私たちと一緒に探索と創造を始める準備はできていますか？[|link_sf_facebook|]をクリックして、今日参加しましょう！
+
+1.1.2 RGB LED
+================
+
+イントロダクション
+--------------
+
+このプロジェクトでは、RGB LEDを制御してさまざまな色を点滅させます。
+
+コンポーネント
+--------------
+
+.. image:: img/list_rgb_led.png
+    :align: center
+
+回路図
+-----------------------
+
+R、G、Bのピンに電流制限抵抗を接続した後、それぞれGPIO17、GPIO18、GPIO27に接続します。LEDの最長のピン（GND）は、Raspberry PiのGNDに接続します。3つのピンに異なるPWM値を与えると、RGB LEDは異なる色を表示します。
+
+.. image:: img/rgb_led_schematic.png
+
+実験手順
+----------------------------
+
+**ステップ1:** 回路を構築します。
+
+.. image:: img/image61.png
+   :width: 6.59097in
+   :height: 4.29722in
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**ステップ3:** コードを実行します。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo node rgb_led.js
+
+コードが実行された後、RGB LEDが赤、緑、青、黄色、ピンク、シアンを表示するのが見えます。   
+
+**コード**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ledred = new Gpio(17, { mode: Gpio.OUTPUT });
+    const ledgreen = new Gpio(18, { mode: Gpio.OUTPUT });
+    const ledblue = new Gpio(27, { mode: Gpio.OUTPUT });
+
+    function colorset(r, g, b) {
+        ledred.pwmWrite(r);
+        ledgreen.pwmWrite(g);
+        ledblue.pwmWrite(b);
+    }
+
+    var color_index = -1;
+
+    setInterval(() => {
+    color_index += 1;
+    switch (color_index) {
+        case 0:
+            colorset(0xff, 0x00, 0xFF);
+            break;
+        case 1:
+            colorset(0x00, 0xff, 0x00);
+            break;
+        case 2:
+            colorset(0x00, 0x00, 0xff);
+            break;
+        case 3:
+            colorset(0xff, 0xff, 0x00);
+            break;
+        case 4:
+            colorset(0xff, 0x00, 0xff);
+            break;
+        case 5:
+            colorset(0xc0, 0xff, 0x3e);
+            break;
+        default:
+            color_index=-1;
+        }
+    }, 500);  
+
+**コードの説明**
+
+.. code-block:: js
+
+    const ledred = new Gpio(17,{mode: Gpio.OUTPUT});
+    const ledgreen = new Gpio(18,{mode: Gpio.OUTPUT});
+    const ledblue = new Gpio(27,{mode: Gpio.OUTPUT});
+
+ピン17、18、27を出力モードに初期化し、それぞれを定数 ``ledred`` 、 ``ledgreen`` 、 ``ledblue`` に割り当てます。
+
+.. code-block:: js
+
+    function colorset(r,g,b){
+        ledred.pwmWrite(r);
+        ledgreen.pwmWrite(g);
+        ledblue.pwmWrite(b);
+    }
+
+``colorset(r,g,b)``関数を実装し、ピン17、18、27にパルス値を書き込みます。Gpioライブラリは関数 ``pwmWrite()`` をカプセル化してピンにパルス値を書き込みます。値は0x00から0xffです。次に、 ``colorset(r,g,b)`` 関数を使用してRGB LEDにRGB値を書き込み、さまざまな色を表示できるようにします。 
+
+.. note::
+    RGBに関する質問については、以下のウェブサイトを参照してください: https://www.rapidtables.com/web/color/RGB_Color.html
+
+.. code-block:: js
+
+    var color_index = -1;
+
+    setInterval(() => {
+    color_index += 1;
+    switch (color_index) {
+        case 0:
+            colorset(0xff, 0x00, 0xFF);
+            break;
+        case 1:
+            colorset(0x00, 0xff, 0x00);
+            break;
+        case 2:
+            colorset(0x00, 0x00, 0xff);
+            break;
+        case 3:
+            colorset(0xff, 0xff, 0x00);
+            break;
+        case 4:
+            colorset(0xff, 0x00, 0xff);
+            break;
+        case 5:
+            colorset(0xc0, 0xff, 0x3e);
+            break;
+        default:
+            color_index=-1;
+        }
+    }, 500);  
+
+RGB LEDは、 ``colorset()`` によって500msごとに制御されます。
+ここではswitch文を使用して、RGB LEDが発する色を選択します。
+``color_index``はサイクルごとに1ずつ変わるため、このRGB LEDの色は順番に変わります。
+
+現象の写真
+------------------------
+
+.. image:: img/image62.jpeg

@@ -1,0 +1,123 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebookへようこそ！Raspberry Pi、Arduino、ESP32を愛好する仲間たちと一緒に、これらの技術を深く探求しましょう。
+
+    **参加する理由**
+
+    - **専門家のサポート**: コミュニティやチームの助けを借りて、購入後の問題や技術的な課題を解決します。
+    - **学びと共有**: スキルを向上させるためのヒントやチュートリアルを交換します。
+    - **独占プレビュー**: 新製品の発表やプレビューに早期アクセスできます。
+    - **特別割引**: 最新の製品に対する独占割引を楽しめます。
+    - **フェスティブプロモーションとギブアウェイ**: ギブアウェイやフェスティブプロモーションに参加できます。
+
+    👉 私たちと一緒に探索と創造を始める準備はできましたか？[|link_sf_facebook|]をクリックして、今日参加しましょう！
+
+1.1.6 I2C LCD1602
+=======================
+
+イントロダクション
+------------------
+
+LCD1602はキャラクター型液晶ディスプレイで、同時に32文字（16*2）を表示できます。
+
+コンポーネント
+-------------------
+
+.. image:: ../img/list_i2c_lcd.png
+
+
+回路図
+---------------------
+
+============ ========
+T-Board Name physical
+SDA1         Pin 3
+SCL1         Pin 5
+============ ========
+
+.. image:: ../img/schematic_i2c_lcd.png
+
+
+実験手順
+-----------------------------
+
+**ステップ1:** 回路を構築します。
+
+.. image:: ../img/image96.png
+
+**ステップ2:** I2Cの設定を行います（I2C設定を参照してください。既に設定済みの場合、このステップはスキップしてください。）
+
+**ステップ3:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**ステップ4:** 依存関係をインストールします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo npm install @oawu/lcd1602
+
+**ステップ5:** コードを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node i2c_lcd1602.js
+
+コードが実行されると、LCDに「Greetings!!, From SunFounder」と表示されます。
+
+**コード**
+
+.. code-block:: js
+
+    const LCD = require('@oawu/lcd1602');
+    const lcd = new LCD();
+
+    lcd.text(0, 0, 'Greetings!!');
+    lcd.text(1, 1, 'from SunFounder');
+
+**コードの説明**
+
+.. code-block:: js
+
+    const LCD = require('@oawu/lcd1602');
+    const lcd = new LCD();
+
+``lcd1602``モジュールをインポートし、 ``lcd`` として表現します。
+
+.. note::
+    lcd1602モジュールの詳細については、次を参照してください：https://www.npmjs.com/package/@oawu/lcd1602
+
+   
+.. code-block:: js
+
+    lcd.text(0, 0, 'Greetings!!');
+    lcd.text(1, 1, 'from SunFounder');
+
+``LCD``クラスのカプセル化された ``text()`` 関数を呼び出すことで、lcd1602に表示したいテキストを表示できます。
+
+``text()``関数は3つのパラメータを受け取ります。 
+最初のパラメータはlcd1602の行を指定し、 
+2番目のパラメータは表示位置を示し、 
+3番目のパラメータは表示したいテキストを指定します。
+
+LCDモデルの **1602** という数字は、それが2行で各行16セルを持つことを意味します。
+
+現象の写真
+--------------------------
+
+.. image:: ../img/image97.jpeg
+

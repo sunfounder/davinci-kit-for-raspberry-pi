@@ -1,0 +1,215 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebookへようこそ！Raspberry Pi、Arduino、ESP32を愛好する仲間たちと一緒に、これらの技術を深く探求しましょう。
+
+    **参加する理由は？**
+
+    - **専門家のサポート**：購入後の問題や技術的な課題を、コミュニティやチームの助けを借りて解決します。
+    - **学びと共有**：スキルを向上させるためのヒントやチュートリアルを交換します。
+    - **独占プレビュー**：新製品の発表やプレビューに早期アクセスできます。
+    - **特別割引**：最新の製品に対する独占割引を楽しめます。
+    - **フェスティブプロモーションとギブアウェイ**：ギブアウェイやフェスティブプロモーションに参加できます。
+
+    👉 私たちと一緒に探索と創造を始める準備はできましたか？[|link_sf_facebook|]をクリックして、今日参加しましょう！
+
+1.1.5 4桁7セグメントディスプレイ
+====================================
+
+イントロダクション
+---------------------
+
+次に、4桁の7セグメントディスプレイを制御してみましょう。
+
+コンポーネント
+-----------------
+
+.. image:: img/list_4_digit.png
+
+
+
+.. note::
+    このプロジェクトでは、4桁7セグメントディスプレイにBSモデルを使用する必要があります。ASモデルを使用すると点灯しない可能性があります。
+
+回路図
+----------------------
+
+.. image:: img/schmatic_4_digit.png
+
+
+実験手順
+-------------------------
+
+**ステップ1**: 回路を構築します。
+
+.. image:: img/image80.png
+
+**ステップ2**: コードのフォルダに移動します。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**ステップ3**: コードを実行します。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo node 4_digit_7_segment_display.js
+
+コードが実行されると、プログラムはカウントを取り、1秒ごとに1ずつ増加し、4桁の7セグメントディスプレイにカウントが表示されます。
+ 
+**コード**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    var counter = 0;
+
+    const number = [0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90]; //for BS
+    
+    const SDI = new Gpio(24, { mode: Gpio.OUTPUT });
+    const RCLK = new Gpio(23, { mode: Gpio.OUTPUT });
+    const SRCLK = new Gpio(18, { mode: Gpio.OUTPUT });
+
+    const pin1 = new Gpio(10, { mode: Gpio.OUTPUT });
+    const pin2 = new Gpio(22, { mode: Gpio.OUTPUT });
+    const pin3 = new Gpio(27, { mode: Gpio.OUTPUT });
+    const pin4 = new Gpio(17, { mode: Gpio.OUTPUT });
+    const placePin = [pin1, pin2, pin3, pin4];
+
+    function clearDisplay() {
+        hc595_shift(0xff); //for BS
+    }
+
+    function hc595_shift(dat) {
+        for (let j = 0; j < 8; j++) {
+            let code = 0x80 & (dat << j);
+            if (code != 0) {
+                code = 1;
+            }
+            SDI.digitalWrite(code);
+            SRCLK.trigger(1,1);
+        }
+        RCLK.trigger(1,1);
+    }
+
+    function pickDigit(digit) {
+        for(let i=0;i<4;i++){
+            placePin[i].digitalWrite(0);
+        }
+        placePin[digit].digitalWrite(1);
+    }
+
+
+    let digit = -1
+    setInterval(() => {
+        digit = (digit +1)% 4
+        clearDisplay();
+        pickDigit(digit);
+        switch(digit){
+            case 0:
+                hc595_shift(number[Math.floor(counter % 10)]);  
+                break;
+            case 1:
+                hc595_shift(number[Math.floor(counter % 100 / 10)]);
+                break;        
+            case 2:
+                hc595_shift(number[Math.floor(counter % 1000 / 100)]);
+                break;        
+            case 3:
+                hc595_shift(number[Math.floor(counter % 10000 / 1000)]);
+                break;
+        }
+    }, 5);
+
+    setInterval(() => {
+        counter++;
+    }, 1000);
+
+**コードの説明**
+
+.. code-block:: js
+
+    const pin1 = new Gpio(10, {mode: Gpio.OUTPUT});
+    const pin2 = new Gpio(25, {mode: Gpio.OUTPUT});
+    const pin3 = new Gpio(27, {mode: Gpio.OUTPUT});
+    const pin4 = new Gpio(17, {mode: Gpio.OUTPUT});
+    const placePin = [pin1,pin2,pin3,pin4];    
+
+ピン10、25、27、および17を出力モードとして初期化し、それらを ``placePin`` 配列に配置して、4桁の7セグメントディスプレイの共通アノードを制御しやすくします。
+
+.. code-block:: js
+
+    const number = [0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90];
+
+16進数セグメントコード0から9（共通アノード）を表す定数配列 ``number`` を定義します。
+
+.. code-block:: js
+
+    function clearDisplay() {
+        hc595_shift(0xff); 
+    }
+
+デジタルチューブを消灯するには、0xffを書き込みます。
+
+.. code-block:: js
+
+    function pickDigit(digit) {
+        for(let i=0;i<4;i++){
+            placePin[i].digitalWrite(0);
+        }
+        placePin[digit].digitalWrite(1);
+    }
+
+値の桁を選択します。各桁は一度に1つだけ有効にする必要があります。有効にする桁には高レベルが書き込まれます。
+
+.. code-block:: js
+
+    let digit = -1
+    setInterval(() => {
+        digit = (digit +1)% 4
+        clearDisplay();
+        pickDigit(digit);
+        switch(digit){
+            case 0:
+                hc595_shift(number[Math.floor(counter % 10)]);  
+                break;
+            case 1:
+                hc595_shift(number[Math.floor(counter % 100 / 10)]);
+                break;        
+            case 2:
+                hc595_shift(number[Math.floor(counter % 1000 / 100)]);
+                break;        
+            case 3:
+                hc595_shift(number[Math.floor(counter % 10000 / 1000)]);
+                break;
+        }
+    }, 5);
+
+このコードは、4桁の7セグメントディスプレイに表示される数字を設定するためのものです。
+
+最初に、4番目のセグメントディスプレイを開始し、一桁の数字を書き込みます。
+次に3番目のセグメントディスプレイを開始し、十の位を入力します。
+その後、2番目と1番目のセグメントディスプレイをそれぞれ開始し、百の位と千の位をそれぞれ書き込みます。
+リフレッシュ速度が非常に速いため、完全な4桁のディスプレイが表示されます。
+
+.. code-block:: js
+
+    setInterval(() => {
+        counter++;
+    }, 1000);
+
+``counter``を1秒ごとに1ずつ増加させます（4桁のデジタルチューブに表示される数字が1ずつ増加します）。
+
+現象の写真
+-------------------------
+
+.. image:: img/image81.jpeg

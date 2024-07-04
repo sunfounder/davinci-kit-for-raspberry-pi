@@ -1,0 +1,107 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+1.3.3 Relais
+=============
+
+Einführung
+------------
+
+In diesem Projekt lernen wir, wie man ein Relais verwendet. Es ist eine der häufig verwendeten Komponenten in automatischen Steuerungssystemen. Wenn die Spannung, der Strom, die Temperatur, der Druck usw. einen bestimmten Wert erreichen, überschreiten oder unterschreiten, schaltet das Relais den Stromkreis ein oder aus, um das Gerät zu steuern und zu schützen.
+
+Komponenten
+----------
+
+.. image:: ../img/list_1.3.4.png
+
+Schaltplan
+-----------------
+
+.. image:: ../img/image345.png
+
+Experimentelle Vorgehensweise
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image144.png
+
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node relay.js
+
+Während der Code läuft, leuchtet die LED auf. Außerdem hören Sie ein Ticken, das durch das Öffnen des normalerweise geschlossenen Kontakts und das Schließen des normalerweise offenen Kontakts verursacht wird.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const relay = new Gpio(17,{mode: Gpio.OUTPUT});
+
+    setInterval(() => {
+        relay.digitalWrite(!relay.digitalRead());
+    }, 500);
+
+    process.on('SIGINT',function(){
+        relay.digitalWrite(0);
+        process.exit();
+    });
+
+**Code Erklärung**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const relay = new Gpio(17,{mode: Gpio.OUTPUT});
+
+Importieren Sie das ``pigpio``-Modul und instanziieren Sie ein Objekt relay von Gpio, um den IO-Port Gpio17 zu steuern und auf den Ausgabemodus einzustellen.
+
+.. code-block:: js
+
+    setInterval(() => {
+        relay.digitalWrite(!relay.digitalRead());
+    }, 500);
+
+Das Relais wird kontinuierlich geöffnet und geschlossen, und die LEDs werden auch in Intervallen von 500 ms kontinuierlich ein- und ausgeschaltet.
+
+.. code-block:: js
+
+    process.on('SIGINT',function(){
+        relay.digitalWrite(0);
+        process.exit();
+    });
+
+Wenn ctrl+c erkannt wird, wird das Relais geöffnet.
+
+Phänomenbild
+------------------
+
+.. image:: ../img/image145.jpeg

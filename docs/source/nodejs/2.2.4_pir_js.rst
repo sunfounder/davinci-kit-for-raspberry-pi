@@ -1,0 +1,138 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+2.2.4 PIR
+=========
+
+Einführung
+------------
+
+In diesem Projekt werden wir ein Gerät mit einem passiven Infrarot-Bewegungssensor (PIR) bauen. Wenn sich jemand der LED nähert, wird sie automatisch eingeschaltet. Andernfalls wird das Licht ausgeschaltet. Dieser Infrarot-Bewegungssensor kann die von Menschen und Tieren abgegebene Infrarotstrahlung erkennen.
+
+Komponenten
+----------
+
+.. image:: ../img/list_2.2.4_pir2.png
+
+Schaltplan
+-----------------
+
+.. image:: ../img/image327.png
+
+Experimentelle Vorgehensweise
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image214.png
+
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node pir.js
+
+Nachdem der Code ausgeführt wurde, erkennt der PIR die Umgebung und lässt die RGB-LED gelb leuchten, wenn er jemanden in der Nähe erkennt. Es gibt zwei Potentiometer auf dem PIR-Modul: eines zur Einstellung der Empfindlichkeit und das andere zur Einstellung der Erkennungsentfernung. Um das PIR-Modul optimal zu nutzen, müssen Sie diese beiden Potentiometer anpassen.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    const pirPin = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,
+        edge: Gpio.EITHER_EDGE
+    })    // der PIR ist mit Pin 17 verbunden
+
+    const redPin = new Gpio(18, { mode: Gpio.OUTPUT, })
+    const greenPin = new Gpio(27, { mode: Gpio.OUTPUT, })
+    const bluePin = new Gpio(22, { mode: Gpio.OUTPUT, })
+    //'Rot':18, 'Grün':27, 'Blau':22
+
+    var p_R, p_G, p_B
+
+    // Setze alle LEDs als PWM-Kanäle und die Frequenz auf 2 kHz
+    p_R = redPin.pwmFrequency(2000)
+    p_G = greenPin.pwmFrequency(2000)
+    p_B = bluePin.pwmFrequency(2000)
+
+    // Initialisiere alle LEDs mit dem Wert 0
+    p_R.pwmWrite(0)
+    p_G.pwmWrite(0)
+    p_B.pwmWrite(0)
+
+    // Definiere eine MAP-Funktion zum Zuordnen von Werten, z.B. von 0~255 auf 0~100
+    function MAP(x, in_min, in_max, out_min, out_max) {
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+    }
+
+    // Definiere eine Funktion zur Farbauswahl
+    function setColor(color) {
+        // konfiguriert die Helligkeit der drei LEDs mit dem übergebenen Farbwert.
+        // Unterteile die Farben aus der Variable 'color'
+        R_val = (color & 0xFF0000) >> 16
+        G_val = (color & 0x00FF00) >> 8
+        B_val = (color & 0x0000FF) >> 0
+        // Ordne die Farbwerte von 0~255 auf 0~100 zu
+        R_val = MAP(R_val, 0, 255, 0, 100)
+        G_val = MAP(G_val, 0, 255, 0, 100)
+        B_val = MAP(B_val, 0, 255, 0, 100)
+
+        // Weise den zugeordneten Tastverhältniswert dem entsprechenden PWM-Kanal zu, um die Helligkeit zu ändern.
+        p_R.pwmWrite(R_val)
+        p_G.pwmWrite(G_val)
+        p_B.pwmWrite(B_val)
+        //print ("color_msg: R_val = %s, G_val = %s, B_val = %s"%(R_val, G_val, B_val))
+    }
+
+    pirPin.on('interrupt', (level) => {
+        if (level) {
+            setColor(0xFFFF00)
+        }else{
+            setColor(0x0000FF)
+        }
+    });
+
+    process.on('SIGINT', function () {
+        p_R.pwmWrite(0)
+        p_G.pwmWrite(0)
+        p_B.pwmWrite(0)
+        process.exit();
+    })
+
+**Code Erklärung**
+
+Der Code für dieses Beispiel ist eine Kombination aus :ref:`2.1.1 Button` und :ref:`1.1.2 RGB LED`, daher sind keine weiteren Details erforderlich.
+
+Phänomenbild
+------------------
+
+.. image:: ../img/image215.jpeg
+

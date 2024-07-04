@@ -12,7 +12,7 @@
 
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
-Spielen Sie mit der Processing (nicht für Pi 5)
+Spielen Sie mit der Processing 
 =================================================
 
 Was ist Processing?

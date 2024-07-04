@@ -1,0 +1,185 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+1.3.1 Motor
+=================
+
+Einführung
+-----------------
+
+In diesem Projekt lernen wir, wie man mit dem L293D einen Gleichstrommotor antreibt und ihn im und gegen den Uhrzeigersinn drehen lässt. Da der Gleichstrommotor einen höheren Strom benötigt, verwenden wir hier aus Sicherheitsgründen das Power Supply Module, um die Motoren zu versorgen.
+
+Komponenten
+-----------
+
+.. image:: ../img/list_1.3.1.png
+
+Schaltplan
+------------------
+
+Stecken Sie das Netzteilmodul in das Steckbrett und stecken Sie die Brücke auf den 5V-Pin, dann wird es eine Spannung von 5V ausgeben. Verbinden Sie Pin 1 des L293D mit GPIO22 und setzen Sie ihn auf hohes Niveau. Verbinden Sie Pin 2 mit GPIO27 und Pin 7 mit GPIO17 und setzen Sie einen Pin auf high, während der andere auf low steht. So können Sie die Drehrichtung des Motors ändern.
+
+.. image:: ../img/image336.png
+
+Experimentelle Vorgehensweise
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image117.png
+
+.. note::
+    Das Netzteilmodul kann mit der 9V-Batterie und dem 9V-Batterieclip aus dem Kit betrieben werden. Stecken Sie die Brücke des Netzteilmoduls in die 5V-Busleisten des Steckbretts.
+
+.. image:: ../img/image118.jpeg
+
+**Schritt 2**: Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3**: Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node motor.js
+
+Wenn der Code ausgeführt wird, dreht sich der Motor zuerst 1 Sekunde im Uhrzeigersinn, dann stoppt er für 1 Sekunde, danach dreht er sich 1 Sekunde gegen den Uhrzeigersinn; anschließend stoppt der Motor für 1 Sekunde. Diese Abfolge von Aktionen wird wiederholt ausgeführt.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    MotorPin1 = new Gpio(17, { mode: Gpio.OUTPUT });
+    MotorPin2 = new Gpio(27, { mode: Gpio.OUTPUT });
+    MotorEnable = new Gpio(22, { mode: Gpio.OUTPUT });
+
+    // Definieren Sie eine Motorfunktion, um den Motor zu drehen
+    // Richtung sollte sein
+    // 2(Uhrzeigersinn), 1(Gegenuhrzeigersinn), 0(Stopp)
+    function motor(direction) {
+        switch (direction) {
+            case 2: // Uhrzeigersinn
+                // Richtung setzen
+                MotorPin1.digitalWrite(1)
+                MotorPin2.digitalWrite(0)
+                // Motor aktivieren
+                MotorEnable.digitalWrite(1)
+                console.log('Uhrzeigersinn')
+                break;
+            case 1:  // Gegenuhrzeigersinn
+                // Richtung setzen
+                MotorPin1.digitalWrite(0)
+                MotorPin2.digitalWrite(1)
+                // Motor aktivieren
+                MotorEnable.digitalWrite(1)
+                console.log('Gegenuhrzeigersinn')
+                break;
+            case 0: // Stopp
+                // Motor deaktivieren
+                MotorEnable.digitalWrite(0)
+                console.log('Stopp')
+
+        }
+    }
+
+    process.on('SIGINT', function () {
+        MotorEnable.digitalWrite(0)
+        process.exit();
+    })
+
+    let index=-1
+    setInterval(() => {
+        index=(index+1)%3
+        motor(index)
+    }, 1000)
+
+ 
+**Code Erklärung**
+
+.. code-block:: js
+
+    MotorPin1 = new Gpio(17, { mode: Gpio.OUTPUT });
+    MotorPin2 = new Gpio(27, { mode: Gpio.OUTPUT });
+    MotorEnable = new Gpio(22, { mode: Gpio.OUTPUT });
+
+Importieren Sie das pigpio-Modul und erstellen Sie drei Gpio-Klassenobjekte, um die drei IO-Ports Gpio17, Gpio27 und Gpio22 zu steuern.
+
+.. code-block:: js
+
+    function motor(direction) {
+        switch (direction) {
+            case 2: // Im Uhrzeigersinn
+                // Richtung setzen
+                MotorPin1.digitalWrite(1)
+                MotorPin2.digitalWrite(0)
+                // Motor aktivieren
+                MotorEnable.digitalWrite(1)
+                console.log('Im Uhrzeigersinn')
+                break;
+            case 1:  // Gegen den Uhrzeigersinn
+                // Richtung setzen
+                MotorPin1.digitalWrite(0)
+                MotorPin2.digitalWrite(1)
+                // Motor aktivieren
+                MotorEnable.digitalWrite(1)
+                console.log('Gegen den Uhrzeigersinn')
+                break;
+            case 0: // Stopp
+                // Motor deaktivieren
+                MotorEnable.digitalWrite(0)
+                console.log('Stopp')
+        }
+    }
+
+Definieren Sie eine motor()-Funktion zur Steuerung des Motors,
+
+#. Wenn die Richtung gleich 2 ist, schreibt der MotorPin1-Port ein hohes Niveau, der MotorPin2-Port schreibt ein niedriges Niveau und der Enable-Port MotorEnable schreibt ein hohes Niveau, und der Motor dreht sich im Uhrzeigersinn.
+#. Wenn die Richtung gleich 1 ist, schreibt der MotorPin1-Port ein niedriges Niveau, der MotorPin2-Port schreibt ein hohes Niveau und der Enable-Port MotorEnable schreibt ein hohes Niveau, und der Motor dreht sich gegen den Uhrzeigersinn.
+#. Wenn die Richtung gleich 0 ist, wird der Enable-Port MotorEnable auf ein niedriges Niveau geschrieben und der Motor stoppt die Rotation.
+
+.. code-block:: js
+
+    let index=-1
+    setInterval(() => {
+        index=(index+1)%3
+        motor(index)
+    }, 1000)    
+
+Lassen Sie den Motor abwechselnd im und gegen den Uhrzeigersinn drehen, mit einem Intervall von 1 Sekunde.
+
+.. code-block:: js
+
+    process.on('SIGINT', function () {
+        MotorEnable.digitalWrite(0)
+        process.exit();
+    })
+
+Wenn erkannt wird, dass **ctrl+c** gedrückt wird, wird MotorEnable auf low geschrieben, um den Motor zu stoppen.
+
+Phänomenbild
+------------------
+
+.. image:: ../img/image119.jpeg

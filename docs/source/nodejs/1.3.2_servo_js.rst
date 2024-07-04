@@ -1,0 +1,136 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+1.3.2 Servo
+============
+
+Einführung
+--------------
+
+In diesem Projekt lernen wir, wie man den Servo zum Drehen bringt.
+
+Komponenten
+----------
+
+.. image:: ../img/list_1.3.2.png
+
+Schaltplan
+-----------------
+
+.. image:: ../img/image337.png
+
+Experimentelle Vorgehensweise
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image125.png
+
+**Schritt 2**: Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3**: Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node servo.js
+
+Nach der Ausführung des Programms dreht sich der Servo von 0 Grad auf 180 Grad und dann von 180 Grad auf 0 Grad, zyklisch.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    SERVO_MIN_ANGLE = 0
+    SERVO_MAX_ANGLE = 180
+    SERVO_MIN_PULSE = 500
+    SERVO_MAX_PULSE = 2500
+
+    ServoPin = new Gpio(18,{mode: Gpio.OUTPUT})
+
+    function map(value, inMin, inMax, outMin, outMax){
+        return (outMax - outMin) * (value - inMin) / (inMax - inMin) + outMin
+    }
+
+    function angle2pulse(angle){
+        return Math.floor(map(angle,SERVO_MIN_ANGLE,SERVO_MAX_ANGLE,SERVO_MIN_PULSE ,SERVO_MAX_PULSE))
+    }
+
+    let angle=90;
+    let step=5;
+    setInterval(() => {
+        if(angle>=180||angle<=0){
+            step=-step
+        }
+        angle+=step;
+        ServoPin.servoWrite(angle2pulse(angle));
+    }, 20);
+
+**Code Erklärung**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    ServoPin = new Gpio(18,{mode: Gpio.OUTPUT})
+
+Importieren Sie das pigpio-Modul und erstellen Sie ein Objekt der Klasse Gpio, ServoPin, um die Ausgabe von Gpio18 zu steuern.
+
+.. code-block:: js
+
+    SERVO_MIN_ANGLE = 0
+    SERVO_MAX_ANGLE = 180
+    SERVO_MIN_PULSE = 500
+    SERVO_MAX_PULSE = 2500
+
+    function map(value, inMin, inMax, outMin, outMax){
+        return (outMax - outMin) * (value - inMin) / (inMax - inMin) + outMin
+    }
+
+    function angle2pulse(angle){
+        return Math.floor(map(angle,SERVO_MIN_ANGLE,SERVO_MAX_ANGLE,SERVO_MIN_PULSE ,SERVO_MAX_PULSE))
+    }
+
+Die Funktion, die den Winkel in die Impulsbreite umwandelt, ist hier definiert. Dies liegt daran, dass die Servo-Steuerungsfunktion ``servoWrite(pulseWidth)`` in der Gpio-Klasse die Impulsbreite anstelle des Winkels schreiben muss. Der Winkelbereich des von uns verwendeten Servos beträgt 0~180 und muss in den Bereich der Impulsbreite, 500~2500, umgewandelt werden.
+
+.. code-block:: js
+
+    let angle=90;
+    let step=5;
+    setInterval(() => {
+        if(angle>=180||angle<=0){
+            step=-step
+        }
+        angle+=step;
+        ServoPin.servoWrite(angle2pulse(angle));
+    }, 20);
+
+Lassen Sie den Servowinkel hin und her von 0 bis 180 Grad abweichen.
+
+Phänomenbild
+------------------
+
+.. image:: ../img/image126.jpeg

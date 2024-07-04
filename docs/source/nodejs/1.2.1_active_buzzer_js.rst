@@ -1,0 +1,112 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+1.2.1 Aktiver Summer
+====================
+
+Einführung
+------------
+
+In diesem Projekt lernen wir, wie man einen aktiven Summer mit einem PNP-Transistor zum Piepen bringt.
+
+Komponenten
+----------
+
+.. image:: ../img/list_1.2.1.png
+
+Schaltplan
+-----------------
+
+In diesem Experiment werden ein aktiver Summer, ein PNP-Transistor und ein 1k-Widerstand zwischen der Basis des Transistors und GPIO verwendet, um den Transistor zu schützen. Wenn GPIO17 des Raspberry Pi durch Programmierung auf ein niedriges Niveau (0V) gebracht wird, leitet der Transistor aufgrund der Stromsättigung und der Summer erzeugt Töne. Wenn jedoch ein hohes Niveau an den IO des Raspberry Pi angelegt wird, wird der Transistor unterbrochen und der Summer erzeugt keine Töne.
+
+.. image:: ../img/image332.png
+
+Experimentelle Vorgehensweise
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf. (Der aktive Summer hat einen weißen Aufkleber auf der Oberfläche und einen schwarzen Rücken.)
+
+.. image:: ../img/image104.png
+
+**Schritt 2**: Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3**: Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node active_buzzer.js
+
+Nach dem Ausführen des Codes piept der Summer.
+
+**Code**
+
+.. code-block:: js
+
+  const Gpio = require('pigpio').Gpio;
+  const active = new Gpio(17,{mode: Gpio.OUTPUT});
+
+  setInterval(() => {
+    active.digitalWrite(!active.digitalRead());
+  }, 500);
+
+  process.on('SIGINT',function(){
+    active.digitalWrite(1);
+    process.exit();
+  });
+
+**Code Erklärung**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const active = new Gpio(17,{mode: Gpio.OUTPUT});
+
+Importieren Sie das ``pigpio``-Modul und instanziieren Sie ein Objekt, um den IO-Port Gpio17 zu steuern, wobei der Modus auf Ausgabemodus eingestellt ist.
+
+.. code-block:: js
+
+  setInterval(() => {
+    active.digitalWrite(!active.digitalRead());
+  }, 500);
+
+Der aktive Summer ist in der Verwendung ähnlich wie die LED und kann mit ``digitalWrite()`` gesteuert werden. ``digitalRead()`` wird verwendet, um den aktuellen Pegel des Pins zu lesen. Hier lassen wir den aktiven Summer alle 500 ms seinen Betriebszustand ändern.
+
+.. code-block:: js
+
+  process.on('SIGINT', function() {
+      /* DO SOME STUFF HERE */
+
+      process.exit()
+  })
+
+Behandeln Sie Ctrl+C, hier wird verwendet, um den Summer beim Beenden des Programms zu stoppen.
+
+`Process - NodeJS <https://nodejs.org/api/process.html>`_
+
+Phänomenbild
+------------------
+
+.. image:: ../img/image105.jpeg

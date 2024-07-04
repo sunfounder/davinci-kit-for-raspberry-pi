@@ -1,0 +1,144 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+2.1.3 Neigungsschalter
+=============================
+
+Einführung
+------------
+
+Dies ist ein Kugelneigungsschalter mit einer Metallkugel im Inneren. Er wird verwendet, um Neigungen in einem kleinen Winkel zu erkennen.
+
+Komponenten
+----------
+
+.. image:: ../img/list_2.1.3_tilt_switch.png
+
+Schaltplan
+-----------------
+
+.. image:: ../img/image307.png
+
+.. image:: ../img/image308.png
+
+Experimentelle Vorgehensweise
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image169.png
+
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node tilt_switch.js
+
+Stellen Sie den Neigungsschalter vertikal auf, und die grüne LED leuchtet auf. 
+Wenn Sie ihn neigen, leuchtet die rote LED auf. 
+Stellen Sie ihn wieder vertikal auf, und die grüne LED leuchtet wieder auf.
+
+**Code**
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    const led1 = new Gpio(22, { mode: Gpio.OUTPUT });
+    const led2 = new Gpio(27, { mode: Gpio.OUTPUT });
+
+    const tilt = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+    tilt.on('interrupt', (level) => {  
+        if (level) {
+            console.log("Horizontal");
+        }
+        else {
+            console.log("Vertikal");
+        }
+        led1.digitalWrite(level);
+        led2.digitalWrite(!level);    
+    });
+
+**Code Erklärung**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    const led1 = new Gpio(22, { mode: Gpio.OUTPUT });
+    const led2 = new Gpio(27, { mode: Gpio.OUTPUT });
+
+    const tilt = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    }); 
+
+Importieren Sie das pigpio-Modul und erstellen Sie drei Objekte: led1, led2, und tilt, um durch das Lesen des Pegels des Tilt-IO-Ports das Ein- und Ausschalten von led1 und led2 zu steuern.
+
+.. code-block:: js
+
+    const tilt = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE       
+    });
+
+Erstellen Sie ein tilt-Objekt, um den IO-Port Gpio17 zu steuern, setzen Sie ihn auf Eingabemodus und aktivieren Sie den Pull-Down-Widerstand (initial niedriges Niveau).
+Setzen Sie die Interrupt-Funktion, der Modus ist EITHER_EDGE, das heißt, sowohl steigende als auch fallende Flanken lösen die Interrupt-Funktion aus.
+
+.. code-block:: js
+
+    tilt.on('interrupt', (level) => {  
+        if (level) {
+            console.log("Horizontal");
+        }
+        else {
+            console.log("Vertikal");
+        }
+        led1.digitalWrite(level);
+        led2.digitalWrite(!level);    
+    });
+
+Wenn der Interrupt ausgelöst wird, schreiben Sie den gleichen Pegel auf led1 und den entgegengesetzten Pegel auf led2.
+Wenn der Tilt-IO-Port hoch ist, druckt das Terminal "Horizontal";
+Wenn der Tilt-IO-Port niedrig ist, druckt das Terminal "Vertikal".
+
+Phänomenbild
+------------------
+
+.. image:: ../img/image170.jpeg

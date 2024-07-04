@@ -1,0 +1,153 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+2.2.2 Thermistor
+================
+
+Einführung
+------------
+
+Genauso wie ein Fotowiderstand Licht erkennen kann, ist der Thermistor ein temperaturabhängiges elektronisches Bauteil, das zur Realisierung von Temperaturregelungsfunktionen, wie beispielsweise einem Hitzewarnmelder, verwendet werden kann.
+
+Komponenten
+----------
+
+.. image:: ../img/list_2.2.2_thermistor.png
+
+Schaltplan
+------------------
+
+.. image:: ../img/image323.png
+
+.. image:: ../img/image324.png
+
+Experimentelle Vorgehensweise
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image202.png
+
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node thermistor.js
+
+Wenn der Code ausgeführt wird, erkennt der Thermistor die Umgebungstemperatur, die nach Abschluss der Programmberechnung auf dem Bildschirm angezeigt wird.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+    exports.ADC0834 = ADC0834;
+
+    const adc = new ADC0834(17, 18, 27);
+
+    setInterval(() => {
+      adc.read(0).then((value) => {
+        var Vr = 5 * value / 255;
+        var Rt = 10000 * Vr / (5 - Vr);
+        var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));
+        var cel = (temp - 273.15).toFixed(2);
+        var Fah = (cel * 1.8 + 32).toFixed(2);
+        console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
+      }, (error)=>{
+        console.log("Error: " + error);
+      });
+    }, 1000);
+
+**Code Erklärung**
+
+.. code-block:: js
+
+    setInterval(() => {
+      adc.read(0).then((value) => {
+        var Vr = 5 * value / 255;
+        var Rt = 10000 * Vr / (5 - Vr);
+        var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));
+        var cel = (temp - 273.15).toFixed(2);
+        var Fah = (cel * 1.8 + 32).toFixed(2);
+        console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
+      }, (error)=>{
+        console.log("Error: " + error);
+      });
+    }, 1000);
+
+Wir können den ``value`` des Thermistors durch die Anweisung ``adc.read(0).then((value) => {...})`` lesen.
+
+.. code-block:: js
+
+    var Vr = 5 * value / 255;
+    var Rt = 10000 * Vr / (5 - Vr);
+    var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));
+    var cel = (temp - 273.15).toFixed(2);
+    var Fah = (cel * 1.8 + 32).toFixed(2);
+    console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
+
+Diese Operationen konvertieren den Thermistorwert in einen Celsius-Temperaturwert.
+
+.. code-block:: js
+
+    var Vr = 5 * value / 255;
+    var Rt = 10000 * Vr / (5 - Vr);
+
+Diese zwei Zeilen Code dienen dazu, die Spannungsteilung aus den gelesenen Werten zu berechnen, was zu Rt (Widerstand des Thermistors) führt.
+
+.. code-block:: js
+
+    var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));  
+
+Dieser Code bezieht sich auf das Einsetzen von Rt in die Formel **TK=1/(ln(RT/RN)/B+1/TN)**, um die Temperatur in Kelvin zu erhalten.
+
+.. code-block:: js
+
+    var cel = (temp - 273.15).toFixed(2);
+
+Dieser Absatz dient dazu, die Kelvin-Temperatur in Celsius mit zwei Dezimalstellen umzuwandeln.
+
+.. code-block:: js
+
+    var Fah = (cel * 1.8 + 32).toFixed(2);
+
+Dieser Absatz wandelt Celsius in Fahrenheit mit zwei Dezimalstellen um.
+
+.. code-block:: js
+
+    console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
+
+Drucke Celsius, Fahrenheit und ihre Einheiten auf dem Terminal.
+
+Phänomenbild
+------------------
+
+.. image:: ../img/image203.jpeg
+

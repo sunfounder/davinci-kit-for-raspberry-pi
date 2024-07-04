@@ -1,0 +1,116 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+2.1.2 Schiebeschalter
+==================
+
+Einführung
+------------
+
+In diesem Projekt lernen wir, wie man einen Schiebeschalter verwendet. Üblicherweise wird der Schiebeschalter auf einer Leiterplatte (PCB) als Netzschalter verlötet, aber hier müssen wir ihn in das Steckbrett einstecken, wodurch er möglicherweise nicht fest sitzt. Wir verwenden ihn auf dem Steckbrett, um seine Funktion zu zeigen.
+
+Komponenten
+----------
+
+.. image:: ../img/list_2.1.2_slide_switch.png
+
+Schaltplan
+-----------------
+
+Verbinden Sie den mittleren Pin des Schiebeschalters mit GPIO17 und zwei LEDs mit den Pins GPIO22 und GPIO27. Wenn Sie den Schalter betätigen, sehen Sie, wie die beiden LEDs abwechselnd aufleuchten.
+
+.. image:: ../img/image305.png
+
+.. image:: ../img/image306.png
+
+Experimentelle Vorgehensweise
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image161.png
+
+**Schritt 2**: Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3**: Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node slide_switch.js
+
+Während der Code läuft, verbinden Sie den Schalter nach links, dann leuchtet die gelbe LED auf; nach rechts, dann leuchtet die rote LED auf.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
+    const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
+
+    const slideSwitch = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+    slideSwitch.on('interrupt', (level) => {  
+        led1.digitalWrite(level);   
+        led2.digitalWrite(!level);       
+    });
+
+**Code Erklärung**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
+    const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
+
+    const slideSwitch = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+Importieren Sie das pigpio-Modul und erstellen Sie drei Objekte led1, led2 und slideSwitch, um die LEDs led1 und led2 ein- und auszuschalten, indem Sie den Pegel des slideSwitch-IO-Ports lesen.
+
+.. code-block:: js
+
+    slideSwitch.on('interrupt', (level) => {  
+        led1.digitalWrite(level);   
+        led2.digitalWrite(!level);       
+    });
+
+Wenn sich der gelesene Pegel des slideSwitch-IO-Ports ändert,
+schreiben Sie den gleichen Pegel auf led1 und den entgegengesetzten Pegel auf led2.
+
+Phänomenbild
+------------------
+
+.. image:: ../img/image162.jpeg

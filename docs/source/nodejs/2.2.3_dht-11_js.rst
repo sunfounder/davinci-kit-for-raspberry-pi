@@ -1,0 +1,117 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+2.2.3 DHT-11
+============
+
+Einführung
+--------------
+
+Der digitale Temperatur- und Feuchtigkeitssensor DHT11 ist ein zusammengesetzter Sensor, der ein kalibriertes digitales Signal für Temperatur und Feuchtigkeit ausgibt. Die Technologie der dedizierten digitalen Modulsammlung und die Technologie der Temperatur- und Feuchtigkeitserfassung werden angewendet, um eine hohe Zuverlässigkeit und hervorragende Stabilität des Produkts zu gewährleisten.
+
+Die Sensoren umfassen einen resistiven Feuchtigkeitssensor und einen NTC-Temperatursensor, die mit einem leistungsstarken 8-Bit-Mikrocontroller verbunden sind.
+
+Komponenten
+----------
+
+.. image:: ../img/list_2.2.3_dht-11.png
+
+Schaltplan
+-----------------
+
+.. image:: ../img/image326.png
+
+Experimentelle Vorgehensweise
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image207.png
+
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3:** Installieren Sie die Abhängigkeiten.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo npm install node-dht-sensor
+
+**Schritt 4:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node dht11.js
+
+Nachdem der Code ausgeführt wurde, druckt das Programm die vom DHT11 erfasste Temperatur und Feuchtigkeit auf dem Computerbildschirm aus.
+
+**Code**
+
+.. code-block:: js
+
+    var sensor = require("node-dht-sensor");
+
+    setInterval(function(){ 
+      sensor.read(11, 17, function(err, temperature, humidity) {
+        if (!err) {
+          console.log(`temp: ${temperature}\`C, humidity: ${humidity}%`);
+        }
+      });
+    },1000);
+
+**Code Erklärung**
+
+.. code-block:: js
+
+    var sensor = require("node-dht-sensor");
+
+Importieren Sie das Modul ``node-dht-sensor``, das Funktionen zum Lesen der Werte des DHT-11 bereitstellt.
+
+.. note::
+  Weitere Informationen finden Sie unter: https://www.npmjs.com/package/node-dht-sensor
+
+.. code-block:: js
+
+    sensor.read(11, 17, function(err, temperature, humidity){...})
+
+Das Modul ``node-dht-sensor`` bietet die Funktion ``read()``, mit der wir die gemessene Temperatur und Luftfeuchtigkeit auslesen können, wobei **11** für DHT-11 steht und **17** für die Verbindung mit GPIO17.
+
+.. code-block:: js
+
+    if (!err) {
+      console.log(`temp: ${temperature}\`C, humidity: ${humidity}%`);
+    }    
+
+Wenn beim Lesen keine Fehler auftreten, werden die Temperatur- und Feuchtigkeitswerte im Terminal ausgegeben.
+
+Phänomenbild
+------------------
+
+.. image:: ../img/image209.jpeg
+    

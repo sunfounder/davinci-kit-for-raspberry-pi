@@ -1,0 +1,127 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+2.1.1 Schalter
+===============
+
+Einführung
+-----------------
+
+In diesem Projekt lernen wir, wie man eine LED mit einem Schalter ein- und ausschaltet.
+
+Komponenten
+---------------
+
+.. image:: ../img/list_2.1.1_Button.png
+
+Schaltplan
+---------------------
+
+Verwenden Sie einen normalerweise offenen Schalter als Eingang für den Raspberry Pi, die Verbindung ist im folgenden Schaltplan dargestellt. Wenn der Schalter gedrückt wird, wird GPIO18 auf ein niedriges Niveau (0V) gesetzt. Wir können den Zustand von GPIO18 durch Programmierung erkennen. Das heißt, wenn GPIO18 auf ein niedriges Niveau gesetzt wird, bedeutet dies, dass der Schalter gedrückt wurde. Sie können den entsprechenden Code ausführen, wenn der Schalter gedrückt wird, und dann wird die LED leuchten.
+
+.. note::
+    Der längere Pin der LED ist die Anode und der kürzere ist die Kathode.
+
+.. image:: ../img/image302.png
+
+.. image:: ../img/image303.png
+
+Experimentelle Vorgehensweise
+---------------------------
+
+**Schritt 1**: Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image152.png
+
+**Schritt 2**: Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3**: Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node button.js
+
+Drücken Sie nun den Schalter und die LED leuchtet auf; 
+lassen Sie den Schalter los und die LED erlischt.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    
+    const led = new Gpio(17, {mode: Gpio.OUTPUT});
+   
+    const button = new Gpio(18, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_DOWN,     
+      edge: Gpio.EITHER_EDGE        
+    });
+
+    
+    button.on('interrupt', (level) => {  
+      led.digitalWrite(level);          
+    });
+
+**Code Erklärung**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;    
+
+    const led = new Gpio(17, {mode: Gpio.OUTPUT});
+
+Importieren Sie das ``pigpio``-Modul, erstellen Sie ein led-Objekt zur Steuerung des IO-Ports Gpio17 und setzen Sie es auf den Ausgabemodus.
+
+.. code-block:: js
+
+    const button = new Gpio(18, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_DOWN,     
+      edge: Gpio.EITHER_EDGE       
+    });
+
+Erstellen Sie ein button-Objekt zur Steuerung des IO-Ports Gpio18, setzen Sie es auf den Eingabemodus,
+ziehen Sie nach unten (niedrig, wenn der Schalter nicht gedrückt ist, hoch, wenn der Schalter gedrückt ist).
+Und setzen Sie die Interrupt-Funktion, der Modus ist EITHER_EDGE, das heißt, sowohl steigende als auch fallende Flanken lösen die Interrupt-Funktion aus.
+
+.. code-block:: js
+
+    button.on('interrupt', (level) => {  
+      led.digitalWrite(level);          
+    });
+
+Schreiben Sie eine Interrupt-Funktion, wenn der Schalter gedrückt wird, ist es eine fallende Flanke, die die Interrupt-Funktion auslöst,
+zu diesem Zeitpunkt schreiben Sie den niedrigen Pegel des Schalter-IO-Ports an den IO-Port der LED und die LED leuchtet auf.
+
+Wenn der Schalter losgelassen wird, ist es eine steigende Flanke, die die Interrupt-Funktion auslöst,
+zu diesem Zeitpunkt wird der hohe Pegel des Schalter-IO-Ports an den IO-Port der LED geschrieben und die LED erlischt.
+
+Phänomenbild
+^^^^^^^^^^^^^^^^^^
+
+.. image:: ../img/image153.jpeg

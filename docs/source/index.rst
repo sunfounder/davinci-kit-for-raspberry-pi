@@ -41,21 +41,17 @@ Hier ist die E-Mail: cs@sunfounder.com.
 .. toctree::
     :maxdepth: 2
 
+    About this Kit <self>
     component_list
     introduction
-    preparation
     libraries
     gpio_extension_board
-    download_the_code
-    1_output
-    2_input
-    3_extension
+    preparation/preparation
+    for_pi5
+    for_other_models
     python_video/python_video
-    python_pi5/play_with_python_pi5
-    processing/play_with_processing
-    scratch/play_with_scratch
-    pi5_other_languages
     appendix/appendix
+    thank-learning
     faq
 
 

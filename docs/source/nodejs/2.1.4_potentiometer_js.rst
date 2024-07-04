@@ -1,0 +1,128 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+2.1.4 Potentiometer
+=====================
+
+Einführung
+------------
+
+Die ADC-Funktion kann verwendet werden, um analoge Signale in digitale Signale umzuwandeln. In diesem Experiment wird ADC0834 verwendet, um die Funktion der ADC zu realisieren. Hier setzen wir diesen Prozess mithilfe eines Potentiometers um. Das Potentiometer verändert die physikalische Größe – die Spannung, die durch die ADC-Funktion umgewandelt wird.
+
+Komponenten
+----------
+
+.. image:: ../img/list_2.1.4_potentiometer.png
+
+Schaltplan
+-----------------
+
+.. image:: ../img/image311.png
+
+.. image:: ../img/image312.png
+
+Experimentelle Vorgehensweise
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image180.png
+
+.. note::
+    Bitte platzieren Sie den Chip gemäß der entsprechenden Position, die im Bild dargestellt ist. Beachten Sie, dass die Kerben auf dem Chip links sein sollten, wenn er platziert wird.
+
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node potentionmeter.js
+
+Nach dem Ausführen des Codes, drehen Sie den Knopf des Potentiometers, die Intensität der LED wird sich entsprechend ändern.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+    const adc = new ADC0834(17, 18, 27);
+    const led = new Gpio(22, {mode: Gpio.OUTPUT});
+
+    setInterval(() => {
+        adc.read(0).then((value) => {
+            console.log(`Current analogVal: ${value}\n`);
+            led.pwmWrite(value);
+        }, (error)=>{
+            console.log("Error: " + error);
+        });
+    }, 100);
+
+**Code Erklärung**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+Importieren Sie das ``pigpio``-Modul.
+
+.. code-block:: js
+
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+Wir importieren einen ``ADC0834``-Konstruktor, um das adc0834-Modul zu verwenden.
+
+.. code-block:: js
+
+   const adc = new ADC0834(17, 18, 27);
+
+Instanziieren Sie ein ADC0834-Objekt, die drei Parameter sind seine drei Pins.
+
+Dies ist ein Promise-Objekt, Sie müssen möglicherweise das Konzept aus dem folgenden Link verstehen.
+
+* `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+
+.. code-block:: js
+
+    setInterval(() => {
+        adc.read(0).then((value) => {
+            console.log(`Current analogVal: ${value}\n`);
+            led.pwmWrite(value);
+        }, (error)=>{
+            console.log("Error: " + error);
+        });
+    }, 100);
+
+Der Wert des ADC0834-Kanals 0 (Kanal 0 ist mit dem Potentiometer verbunden) wird alle 100 ms ausgelesen und der Wert wird in ``value`` gespeichert.
+
+Drucken Sie ``value`` und verwenden Sie es zur Steuerung der Helligkeit der LED. Nun können Sie sehen, dass sich die Helligkeit der LED mit dem Wert des Potentiometers ändert.
+
+Phänomenbild
+------------------
+
+.. image:: ../img/image181.jpeg

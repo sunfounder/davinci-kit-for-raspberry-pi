@@ -1,0 +1,136 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.
+
+    👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+2.2.5 Ultraschallsensor-Modul
+==============================
+
+Einführung
+--------------
+
+Der Ultraschallsensor nutzt Ultraschall, um Objekte präzise zu erkennen und Entfernungen zu messen. Er sendet Ultraschallwellen aus und wandelt diese in elektronische Signale um.
+
+Komponenten
+----------
+
+.. image:: ../img/list_2.2.5.png
+
+Schaltplan
+-----------------
+
+.. image:: ../img/image329.png
+
+Experimentelle Vorgehensweise
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image220.png
+
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node ultrasonic_sensor.js
+
+Nachdem der Code ausgeführt wurde, misst das Ultraschallsensor-Modul den Abstand zwischen dem Hindernis und dem Modul selbst. Der Wert der Entfernung wird auf dem Bildschirm angezeigt.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    // Die Zeit in Mikrosekunden, die Schall benötigt, um bei 20 Grad Celsius 1 cm zurückzulegen
+    const MICROSECDONDS_PER_CM = 1e6/34321;
+
+    const trigger = new Gpio(23, {mode: Gpio.OUTPUT});
+    const echo = new Gpio(24, {mode: Gpio.INPUT, alert: true});
+
+    trigger.digitalWrite(0); // Sicherstellen, dass der Trigger niedrig ist
+
+    const watchHCSR04 = () => {
+      let startTick;
+
+      echo.on('alert', (level, tick) => {
+        if (level === 1) {
+          startTick = tick;
+        } else {
+          const endTick = tick;
+          const diff = (endTick >> 0) - (startTick >> 0); // Unsigned 32 bit arithmetic
+          console.log(diff / 2 / MICROSECDONDS_PER_CM);
+        }
+      });
+    };
+
+    watchHCSR04();
+
+    // Einmal pro Sekunde eine Distanzmessung auslösen
+    setInterval(() => {
+      trigger.trigger(10, 1); // Setze den Trigger für 10 Mikrosekunden auf hoch
+    }, 1000);
+
+**Code Erklärung**
+
+Die ``trigger``-Funktion kann verwendet werden, um einen Impuls auf einem GPIO zu erzeugen, und 
+``alerts`` können verwendet werden, um den Zeitpunkt einer GPIO-Zustandsänderung 
+auf einige Mikrosekunden genau zu bestimmen.
+
+Diese beiden Funktionen können kombiniert werden, um die Entfernung mit einem HC-SR04-Ultraschallsensor zu messen.
+
+.. code-block:: js
+
+    setInterval(() => {
+      trigger.trigger(10, 1); // Setze den Trigger für 10 Mikrosekunden auf hoch
+    }, 1000);
+
+Dies dient dazu, periodisch einen 10us-Ultraschallimpuls zu senden.
+
+.. code-block:: js
+
+  const watchHCSR04 = () => {
+
+    echo.on('alert', (level, tick) => {
+        if (level === 1) {
+          startTick = tick;
+        } else {
+          const endTick = tick;
+          const diff = (endTick >> 0) - (startTick >> 0); // Unsigned 32 bit arithmetic
+          console.log(diff / 2 / MICROSECDONDS_PER_CM);
+        }    
+    });
+  };
+
+Diese Funktion setzt einen Alarm, der die Zeit zwischen dem Senden des Impulses (Level ist 1) und dem Empfangen des Echos (Level ist 0) aufzeichnet. Durch Multiplikation der Zeitdifferenz mit der Schallgeschwindigkeit (und Division durch 2) kann die Entfernung zum Hindernis berechnet werden.
+
+.. https://github.com/fivdi/pigpio
+
+Phänomenbild
+------------------
+
+.. image:: ../img/image221.jpeg
+    

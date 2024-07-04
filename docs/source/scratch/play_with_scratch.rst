@@ -12,7 +12,7 @@
 
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
-Spielen mit Scratch (nicht für Pi 5)
+Spielen mit Scratch 
 ==========================================
 
 Scratch ist eine blockbasierte visuelle Programmiersprache und Website, 

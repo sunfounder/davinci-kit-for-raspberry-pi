@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-Play with Processing (not for Pi 5)
+Play with Processing 
 =====================================
 
 What is Processing？

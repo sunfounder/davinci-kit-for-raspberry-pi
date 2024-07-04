@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-Play with Python (for All Pi Models)  
+Play with Python 
 ======================================
 
 If you are a Raspberry Pi 5 Python user, you can program GPIOs with API provided by ``GPIO Zero``.

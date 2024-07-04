@@ -69,15 +69,9 @@ This document is available in other languages as well. To switch the display lan
     About this Kit <self>
     component_list
     preparation/preparation
-    1_output
-    2_input
-    3_extension
+    for_pi5
+    for_other_models
     python_video/python_video
-    python_pi5/play_with_python_pi5
-    nodejs/play_with_nodejs
-    processing/play_with_processing
-    scratch/play_with_scratch
-    pi5_other_languages
     appendix/appendix
     faq
     thank-learning

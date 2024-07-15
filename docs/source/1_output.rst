@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-1 Output (not for Pi 5)
+1 Output 
 ==========================
 
 **1.1 Displays**

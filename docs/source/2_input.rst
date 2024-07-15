@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-2 Input (not for Pi 5)
+2 Input
 =========================
 
 **2.1 Controllers**

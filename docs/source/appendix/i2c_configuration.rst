@@ -15,7 +15,7 @@
 .. _i2c_config:
 
 I2C Configuration
-===================
+-----------------------
 
 **Step 1**: Enable the I2C port of your Raspberry Pi (If you have
 enabled it, skip this; if you do not know whether you have done that or
@@ -23,7 +23,7 @@ not, please continue).
 
 .. raw:: html
 
-    <run></run>
+   <run></run>
  
 .. code-block:: 
 
@@ -34,9 +34,9 @@ not, please continue).
 .. image:: img/image282.png
     :align: center
 
-**P5 I2C**
+**I4 I2C**
 
-.. image:: img/image283.png
+.. image:: img/I4i2c.jpeg
     :align: center
 
 **<Yes>, then <Ok> -> <Finish>**
@@ -48,13 +48,13 @@ not, please continue).
 
 .. raw:: html
 
-    <run></run>
+   <run></run>
  
 .. code-block:: 
 
     lsmod | grep i2c
 
-Then the following codes will appear (the number may be different).
+Then the following codes will appear (the number may be different), if it does not appear, please reboot the Raspberry Pi with ``sudo reboot``.
 
 .. code-block:: 
 
@@ -65,7 +65,7 @@ Then the following codes will appear (the number may be different).
 
 .. raw:: html
 
-    <run></run>
+   <run></run>
  
 .. code-block:: 
 
@@ -73,18 +73,21 @@ Then the following codes will appear (the number may be different).
 
 **Step 4:** Check the address of the I2C device.
 
+
 .. raw:: html
 
     <run></run>
-
+  
 .. code-block:: 
 
     i2cdetect -y 1      # For Raspberry Pi 2 and higher version
 
+
+
 .. raw:: html
 
    <run></run>
-
+ 
 .. code-block:: 
 
     i2cdetect -y 0      # For Raspberry Pi 1
@@ -111,7 +114,7 @@ If there is an I2C device connected, the address of the device will be displayed
 
 .. raw:: html
 
-    <run></run>
+   <run></run>
  
 .. code-block:: 
 
@@ -136,7 +139,6 @@ If there is an I2C device connected, the address of the device will be displayed
     source myenv/bin/activate
 
 Once the virtual environment is activated, you will see the environment name before the command line prompt, indicating you are working within the virtual environment.
-
 
 
 2. Install smbus for I2C.

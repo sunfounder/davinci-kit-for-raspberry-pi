@@ -68,7 +68,6 @@ This document is available in other languages as well. To switch the display lan
 
     About this Kit <self>
     component_list
-    introduction
     libraries
     gpio_extension_board
     download_the_code

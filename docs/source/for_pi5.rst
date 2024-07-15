@@ -26,6 +26,7 @@ specifically focused on this library.
     :maxdepth: 1
     
     python_pi5/play_with_python_pi5
+    scratch_pi5/play_with_scratch
 
 
 For compatibility issues with other programming languages, please see the detailed information below:
@@ -43,13 +44,6 @@ Node.js utilizes the pigpio library, which, as of now, does not support Raspberr
 
 .. image:: img/pi5_nodejs.png
     :width: 700
-
-**Scratch**
-
-.. note::
- 
-    * Version 3.30.8 of Scratch 3 is now compatible with the Raspberry Pi 5. 
-    * We are also in the process of updating our courses to be compatible with the Raspberry Pi 5. Please wait for these updates.
 
 
 On a 64-bit system, the importation of the Raspberry Pi GPIO library faces issues, leading to unresponsiveness. For more information, visit: https://github.com/raspberrypi/bookworm-feedback/issues/91.

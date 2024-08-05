@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-3 Extension (not for Pi 5)
+3 Extension
 ===================================
 
 .. toctree::

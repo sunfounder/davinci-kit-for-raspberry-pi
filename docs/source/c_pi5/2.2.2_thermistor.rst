@@ -107,11 +107,6 @@ Experimental Procedures
     :width: 800
 
 
-
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
-
-
 **Step 2:** Go to the folder of the code.
 
 .. raw:: html
@@ -176,6 +171,11 @@ be printed on the screen once it finishes the program calculation.
         int sel = channel > 1 & 1;
         int odd = channel & 1;
 
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
         // Start bit
@@ -223,7 +223,7 @@ be printed on the screen once it finishes the program calculation.
     int main(void)
     {
         unsigned char analogVal;
-    double Vr, Rt, temp, cel, Fah;
+        double Vr, Rt, temp, cel, Fah;
         if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
             printf("setup wiringPi failed !");
             return 1;
@@ -303,133 +303,3 @@ Convert degree Celsius into Fahrenheit.
 
 Print centigrade degree, Fahrenheit degree and their units on the
 display.
-
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Step 2:** Go to the folder of the code.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block::
-
-    cd ~/davinci-kit-for-raspberry-pi/python/
-
-**Step 3:** Run the executable file
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block::
-
-    sudo python3 2.2.2_Thermistor.py
-
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
-
-**Code**
-
-.. note::
-
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
-.. raw:: html
-
-    <run></run>
-
-.. code-block:: python
-
-    import RPi.GPIO as GPIO
-    import ADC0834
-    import time
-    import math
-
-    def init():
-        ADC0834.setup()
-
-    def loop():
-        while True:
-            analogVal = ADC0834.getResult()
-            Vr = 5 * float(analogVal) / 255
-            Rt = 10000 * Vr / (5 - Vr)
-            temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
-            Cel = temp - 273.15
-            Fah = Cel * 1.8 + 32
-            print ('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
-            time.sleep(0.2)
-
-    if __name__ == '__main__':
-        init()
-        try:
-            loop()
-        except KeyboardInterrupt:
-            ADC0834.destroy()
-
-**Code Explanation**
-
-.. code-block:: python
-
-    import math
-
-There is a numerics library which declares a set of functions to compute
-common mathematical operations and transformations.
-
-.. code-block:: python
-
-    analogVal = ADC0834.getResult()
-
-This function is used to read the value of the thermistor.
-
-.. code-block:: python
-
-    Vr = 5 * float(analogVal) / 255
-    Rt = 10000 * Vr / (5 - Vr)
-    temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
-    Cel = temp - 273.15
-    Fah = Cel * 1.8 + 32
-    print ('Celsius: %.2f °C  Fahrenheit: %.2f ℉' % (Cel, Fah))
-
-These calculations convert the thermistor values into centigrade degree
-and Fahrenheit degree.
-
-.. code-block:: python
-
-    Vr = 5 * float(analogVal) / 255
-    Rt = 10000 * Vr / (5 - Vr)
-
-These two lines of codes are calculating the voltage distribution with
-the read value analog so as to get Rt (resistance of thermistor).
-
-.. code-block:: python
-
-    temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
-
-This code refers to plugging Rt into the formula
-**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** to get Kelvin temperature.
-
-.. code-block:: python
-
-    temp = temp - 273.15
-
-Convert Kelvin temperature into centigrade degree.
-
-.. code-block:: python
-
-    Fah = Cel * 1.8 + 32
-
-Convert the centigrade degree into Fahrenheit degree.
-
-.. code-block:: python
-
-    print ('Celsius: %.2f °C  Fahrenheit: %.2f ℉' % (Cel, Fah))
-
-Print centigrade degree, Fahrenheit degree and their units on the
-display.
-
-Phenomenon Picture
-------------------
-
-.. image:: img/image203.jpeg

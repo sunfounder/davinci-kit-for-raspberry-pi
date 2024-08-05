@@ -128,15 +128,10 @@ Experimental Procedures
 .. image:: img/image180.png
     :width: 800
 
-
-
 .. note::
     Please place the chip by referring to the corresponding position
     depicted in the picture. Note that the grooves on the chip should be on
     the left when it is placed.
-
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
 
 **Step 2:** Open the code file.
 
@@ -198,13 +193,18 @@ of LED will change accordingly.
         int sel = channel > 1 & 1;
         int odd = channel & 1;
 
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
         // Start bit
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-    //Single End mode
+        //Single End mode
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
@@ -284,13 +284,18 @@ GPIO2 respectively. Then attach LED to GPIO3.
         int sel = channel > 1 & 1;
         int odd = channel & 1;
 
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
         // Start bit
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-    //Single End mode
+        //Single End mode
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
@@ -460,136 +465,4 @@ In the main program, read the value of channel 0 that has been connected
 with a potentiometer. And store the value in the variable analogVal then
 write it in LedPin. Now you can see the brightness of LED changing with
 the value of the potentiometer.
-
-For Python Users
-^^^^^^^^^^^^^^^^
-
-**Step 2:** Open the code file
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block::
-
-    cd ~/davinci-kit-for-raspberry-pi/python/
-
-**Step 3:** Run.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block::
-
-    sudo python3 2.1.4_Potentiometer.py
-
-After the code runs, rotate the knob on the potentiometer, the intensity
-of LED will change accordingly.
-
-**Code**
-
-.. note::
-
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
-.. raw:: html
-
-    <run></run>
-
-.. code-block:: python
-
-    import RPi.GPIO as GPIO
-    import ADC0834
-    import time
-
-    LedPin = 22
-
-    def setup():
-        global led_val
-        # Set the GPIO modes to BCM Numbering
-        GPIO.setmode(GPIO.BCM)
-        # Set all LedPin's mode to output and initial level to High(3.3v)
-        GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
-        ADC0834.setup()
-        # Set led as pwm channel and frequece to 2KHz
-        led_val = GPIO.PWM(LedPin, 2000)
-        # Set all begin with value 0
-        led_val.start(0)
-
-    def destroy():
-        # Stop all pwm channel
-        led_val.stop()
-        # Release resource
-        GPIO.cleanup()
-    def loop():
-        while True:
-            analogVal = ADC0834.getResult()
-            print ('analog value = %d' % analogVal)
-            led_val.ChangeDutyCycle(analogVal*100/255)
-            time.sleep(0.2)
-    if __name__ == '__main__':
-        setup()
-        try:
-            loop()
-        except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
-            destroy()
-
-**Code Explanation**
-
-.. code-block:: python
-
-    import ADC0834
-
-import ADC0834 library. You can check the content of the library by
-calling the command nano ADC0834.py.
-
-.. code-block:: python
-
-    def setup():
-        global led_val
-        # Set the GPIO modes to BCM Numbering
-        GPIO.setmode(GPIO.BCM)
-        # Set all LedPin's mode to output and initial level to High(3.3v)
-        GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
-        ADC0834.setup()
-        # Set led as pwm channel and frequece to 2KHz
-        led_val = GPIO.PWM(LedPin, 2000)
-
-        # Set all begin with value 0
-        led_val.start(0)
-
-In setup(), define the naming method as BCM, set LedPin as PWM channel
-and render it a frequency of 2Khz.
-
-**ADC0834.setup():** Initialize ADC0834, and connect the defined CS,
-CLK, DIO of ADC0834 to GPIO17, GPIO18 and GPIO27 respectively.
-
-.. code-block:: python
-
-    def loop():
-        while True:
-            res = ADC0834.getResult()
-            print ('res = %d' % res)
-            R_val = MAP(res, 0, 255, 0, 100)
-            led_val.ChangeDutyCycle(R_val)
-            time.sleep(0.2)
-
-The function getResult() is used to read the analog values of the four
-channels of ADC0834. By default, the function reads the value of CH0,
-and if you want to read other channels, please input the channel number
-in **( )**, ex. getResult(1).
-
-The function loop() first reads the value of CH0, then assign the value
-to the variable res. After that, call the function MAP to map the read
-value of potentiometer to 0~100. This step is used to control the duty
-cycle of LedPin. Now, you may see that the brightness of LED is changing
-with the value of potentiometer.
-
-
-Phenomenon Picture
-------------------
-
-.. image:: img/image181.jpeg
-
 

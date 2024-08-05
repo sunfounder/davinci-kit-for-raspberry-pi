@@ -89,9 +89,6 @@ Experimental Procedures
 
 **Step 2**: Setup I2C (see :ref:`I2C Configuration`. If you have set I2C, skip this step.)
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
 **Step 3:** Change directory.
 
 .. raw:: html
@@ -265,92 +262,3 @@ Parameters devId is the address of the I2C device, it can be found through the i
     void write(int x, int y, char data[]){}
 
 In this function, data[] is the character to be printed on the LCD, and the parameters x and y determine the printing position (line y+1, column x+1 is the starting position of the character to be printed).
-
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Step 3:** Change directory.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block::
-
-    cd ~/davinci-kit-for-raspberry-pi/python/
-
-**Step 4:** Run.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block::
-
-    sudo python3 1.1.7_Lcd1602.py
-
-After the code runs, you can see \"Greetings\",\"From SunFounder\" displaying on the LCD.
-
-.. note::
-
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O`` appears, it means the module is miswired or the module is broken.
-    * You can try screwing the potentiometer on the back if the code and wiring are fine, but the LCD still does not show the content.
-
-**Code**
-
-.. note::
-
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
-.. raw:: html
-
-    <run></run>
-
-.. code-block:: python
-
-    import LCD1602
-    import time
-
-    def setup():
-        LCD1602.init(0x27, 1)	# init(slave address, background light)
-        LCD1602.write(0, 0, 'Greetings!!')
-        LCD1602.write(1, 1, 'from SunFounder')
-        time.sleep(2)
-
-    def destroy():
-        LCD1602.clear()
-
-    if __name__ == "__main__":
-        try:
-            setup()
-        except KeyboardInterrupt:
-            destroy()
-
-
-**Code Explanation**
-
-.. code-block:: python
-
-    import LCD1602
-
-This file is an open source file for controlling I2C LCD1602. It allows us to easily use I2C LCD1602.
-
-.. code-block:: python
-
-    LCD1602.init(0x27, 1) 
-
-The function initializes the I2C system with the designated device symbol. The first parameter is the address of the I2C device, which can be detected through the i2cdetect command (see Appendix for details). The address of I2C LCD1602 is generally 0x27.
-
-.. code-block:: python
-
-    LCD1602.write(0, 0, 'Greetings!!')
-
-Within this function, \'Greetings!!\' is the character to be printed on the Row 0+1, column 0+1 on LCD. 
-Now you can see \"Greetings! From SunFounder\" displayed on the LCD.
-
-Phenomenon Picture
---------------------------
-
-.. image:: img/image97.jpeg

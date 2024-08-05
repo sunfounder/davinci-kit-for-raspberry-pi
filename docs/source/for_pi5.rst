@@ -26,6 +26,7 @@ specifically focused on this library.
     :maxdepth: 1
     
     python_pi5/play_with_python_pi5
+    c_pi5/play_with_c
     scratch_pi5/play_with_scratch
 
 

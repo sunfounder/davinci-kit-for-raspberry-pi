@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-2.2.5 Ultrasonic Sensor Module
+2.2.4 Ultrasonic Sensor Module
 ==============================
 
 Introduction
@@ -91,10 +91,6 @@ Experimental Procedures
 .. image:: img/image220.png
     :width: 800
 
-
-
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
 
 **Step 2:** Go to the folder of the code.
 
@@ -276,142 +272,3 @@ Convert the time stored by struct timeval into a full microsecond time.
 The distance is calculated by the time interval and the speed of sound
 propagation. The speed of sound in the air: 34000cm/s.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Step 2:** Go to the folder of the code.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block::
-
-    cd ~/davinci-kit-for-raspberry-pi/python/
-
-**Step 3:** Run the executable file.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block::
-
-    sudo python3 2.2.5_Ultrasonic.py
-
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
-
-
-
-**Code**
-
-.. note::
-
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
-.. raw:: html
-
-    <run></run>
-
-.. code-block:: python
-
-    import RPi.GPIO as GPIO
-    import time
-
-    TRIG = 16
-    ECHO = 18
-
-    def setup():
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(TRIG, GPIO.OUT)
-        GPIO.setup(ECHO, GPIO.IN)
-
-    def distance():
-        GPIO.output(TRIG, 0)
-        time.sleep(0.000002)
-
-        GPIO.output(TRIG, 1)
-        time.sleep(0.00001)
-        GPIO.output(TRIG, 0)
-
-        
-        while GPIO.input(ECHO) == 0:
-            a = 0
-        time1 = time.time()
-        while GPIO.input(ECHO) == 1:
-            a = 1
-        time2 = time.time()
-
-        during = time2 - time1
-        return during * 340 / 2 * 100
-
-    def loop():
-        while True:
-            dis = distance()
-            print ('Distance: %.2f' % dis)
-            time.sleep(0.3)
-
-    def destroy():
-        GPIO.cleanup()
-
-    if __name__ == "__main__":
-        setup()
-        try:
-            loop()
-        except KeyboardInterrupt:
-            destroy()
-
-**Code Explanation**
-
-.. code-block:: python
-
-    def distance():
-
-This function is used to realize the function of ultrasonic sensor by
-calculating the return detection distance.
-
-.. code-block:: python
-
-    GPIO.output(TRIG, 1)
-    time.sleep(0.00001)
-    GPIO.output(TRIG, 0)
-
-This is sending out a 10us ultrasonic pulse.
-
-.. code-block:: python
-
-    while GPIO.input(ECHO) == 0:
-        a = 0
-    time1 = time.time()
-
-This empty loop is used to ensure that when the trigger signal is sent,
-there is no interfering echo signal and then get the current time.
-
-.. code-block:: python
-
-    while GPIO.input(ECHO) == 1:
-        a = 1
-    time2 = time.time()
-
-This empty loop is used to ensure that the next step is not performed
-until the echo signal is received and then get the current time.
-
-.. code-block:: python
-
-    during = time2 - time1
-
-Execute the interval calculation.
-
-.. code-block:: python
-
-    return during * 340 / 2 * 100
-
-The distance is calculated in the light of time interval and the speed
-of sound propagation. The speed of sound in the air: 340m/s.
-
-Phenomenon Picture
-------------------
-
-.. image:: img/image221.jpeg

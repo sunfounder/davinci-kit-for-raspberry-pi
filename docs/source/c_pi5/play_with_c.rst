@@ -16,7 +16,7 @@ Play with C
 =============================
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 2
     
     1_output
     2_input

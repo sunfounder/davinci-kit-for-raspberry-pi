@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-2 Input (not for Pi 5)
+2 Input
 =========================
 
 **2.1 Controllers**
@@ -34,8 +34,6 @@
 
     2.2.1_photoresistor
     2.2.2_thermistor
-    2.2.3_dht-11
     2.2.4_pir
     2.2.5_ultrasonic_sensor_module
     2.2.6_mpu6050_module
-    2.2.7_mfrc522_rfid_module

@@ -134,15 +134,13 @@ GPIO27       Pin 13   2        27
 Experimental Procedures
 ------------------------------
 
-**Step 1:** Build the circuit.
+**Step 1**: Build the circuit.
 
 .. image:: img/image73.png
     :width: 800
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Step 2: Get into the folder of the code.
+**Step 2**: Get into the folder of the code.
 
 .. raw:: html
 
@@ -152,7 +150,7 @@ Step 2: Get into the folder of the code.
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.1.4/
 
-Step 3: Compile.
+**Step 3**: Compile.
 
 .. raw:: html
 
@@ -162,7 +160,7 @@ Step 3: Compile.
 
     gcc 1.1.4_7-Segment.c -lwiringPi
 
-Step 4: Run the executable file above.
+**Step 4**: Run the executable file above.
 
 .. raw:: html
 
@@ -277,134 +275,3 @@ RCLK's initial value was set to 0, and here it's set to 1, which is to generate 
         }
 
 In this for loop, we use \"%1X\" to output i as a hexadecimal number. Apply i to find the corresponding segment code in the SegCode[] array, and employ hc595_shift() to pass the SegCode into 74HC595's shift register.
-
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Step 2: Get into the folder of the code.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block::
-
-    cd ~/davinci-kit-for-raspberry-pi/python/
-
-Step 3: Run.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block::
-
-    sudo python3 1.1.4_7-Segment.py
-
-After the code runs, you'll see the 7-segment display display 0-9, A-F.
-
-**Code**
-
-
-.. note::
-
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
-.. raw:: html
-
-    <run></run>
-
-.. code-block:: python
-
-    import RPi.GPIO as GPIO
-    import time
-
-    # Set up pins
-    SDI   = 17
-    RCLK  = 18
-    SRCLK = 27
-
-    # Define a segment code from 0 to F in Hexadecimal
-    # Common cathode
-    segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71]
-
-    def setup():
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(SDI, GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)
-
-    # Shift the data to 74HC595
-    def hc595_shift(dat):
-        for bit in range(0, 8):	
-            GPIO.output(SDI, 0x80 & (dat << bit))
-            GPIO.output(SRCLK, GPIO.HIGH)
-            time.sleep(0.001)
-            GPIO.output(SRCLK, GPIO.LOW)
-        GPIO.output(RCLK, GPIO.HIGH)
-        time.sleep(0.001)
-        GPIO.output(RCLK, GPIO.LOW)
-
-    def main():
-        while True:
-            # Shift the code one by one from segCode list
-            for code in segCode:
-                hc595_shift(code)
-                print ("segCode[%s]: 0x%02X"%(segCode.index(code), code)) # %02X means double digit HEX to print
-                time.sleep(0.5)
-
-    def destroy():
-        GPIO.cleanup()
-
-    if __name__ == '__main__':
-        setup()
-        try:
-            main()
-        except KeyboardInterrupt:
-            destroy()
-
-**Code Explanation**
-
-.. code-block:: python
-
-    segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71]
-
-A segment code array from 0 to F in Hexadecimal (Common cathode). 
-
-.. code-block:: python
-
-    def setup():
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(SDI, GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)
-
-Set ds, st_cp, sh_cp three pins to output and the initial state as low level.
-
-.. code-block:: python
-
-    GPIO.output(SDI, 0x80 & (dat << bit))
-
-Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 1111, when bit=2, 0x3f will shift right(<<) 2 bits. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
-
-.. code-block:: python
-
-    GPIO.output(SRCLK, GPIO.HIGH)
-
-SRCLK's initial value was set to LOW, and here it's set to HIGH, which is to generate a rising edge pulse, then shift the DS date to shift register.
-
-.. code-block:: python
-
-    GPIO.output(RCLK, GPIO.HIGH)
-
-RCLK's initial value was set to LOW, and here it's set to HIGH, which is to generate a rising edge, then shift data from shift register to storage register.
-
-.. note::
-    The hexadecimal format of number 0~15 are (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
-
-Phenomenon Picture
--------------------------
-
-.. image:: img/image74.jpeg
-
-

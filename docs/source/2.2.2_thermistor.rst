@@ -176,6 +176,11 @@ be printed on the screen once it finishes the program calculation.
         int sel = channel > 1 & 1;
         int odd = channel & 1;
 
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
         // Start bit
@@ -223,7 +228,7 @@ be printed on the screen once it finishes the program calculation.
     int main(void)
     {
         unsigned char analogVal;
-    double Vr, Rt, temp, cel, Fah;
+        double Vr, Rt, temp, cel, Fah;
         if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
             printf("setup wiringPi failed !");
             return 1;

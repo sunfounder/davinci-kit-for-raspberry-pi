@@ -52,14 +52,18 @@ achievements or creation on our forum while reading this document.
 
 If you have any questions, please send an email to service@sunfounder.com and we will respond as soon as possible.
 
+**Purchase link**
 
-**About the display language**
+It's definitely convenient to buy a whole kit, here's the link: 
 
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-This document is available in other languages as well. To switch the display language, kindly click on the Read the Docs icon located in the lower left corner of the page.
-
-.. image:: img/translation.png
-    :align: center
+    *   - Name	
+        - LINK
+    *   - DaVinci Kit
+        - |link_DaVinci_kit|
 
 **Contents**
 

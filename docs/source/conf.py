@@ -107,6 +107,10 @@ rst_epilog = """
 
     <a href="https://github.com/adafruit/Adafruit_CircuitPython_DHT" target="_blank">adafruit/Adafruit_CircuitPython_DHT</a>   
     
+.. |link_DaVinci_kit| raw:: html
 
+    <a href="https://www.sunfounder.com/collections/raspberry-pi-kits-bundles/products/sunfounder-davinci-kit" target="_blank">DaVinci Kit</a>
+
+     
 """
 

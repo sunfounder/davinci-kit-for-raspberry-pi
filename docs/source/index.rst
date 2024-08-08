@@ -36,6 +36,16 @@ Wenn Sie andere Projekte kennenlernen möchten, die wir nicht haben, senden Sie 
 
 Hier ist die E-Mail: cs@sunfounder.com.
 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - LINK
+    *   - DaVinci Kit
+        - |link_DaVinci_kit|
 
 
 .. toctree::

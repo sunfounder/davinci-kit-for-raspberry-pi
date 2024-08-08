@@ -17,9 +17,10 @@
 
 # -- Project information -----------------------------------------------------
 import sphinx_rtd_theme
+import time  ###
 
 project = 'SunFounder davinci-kit-for-raspberry-pi'
-copyright = '2022, SunFounder'
+copyright = f'{time.localtime().tm_year} SunFounder'
 author = 'www.sunfounder.com'
 
 
@@ -28,7 +29,9 @@ author = 'www.sunfounder.com'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autosectionlabel'
+extensions = [
+    'sphinx.ext.autosectionlabel',
+    'sphinx_copybutton'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -100,7 +103,10 @@ rst_epilog = """
 
     <a href="https://docs.sunfounder.com/projects/davinci-kit/en/latest/" target="_blank">English Online-tutorials</a>
 
+.. |Adafruit_CircuitPython_DHT| raw:: html
 
+    <a href="https://github.com/adafruit/Adafruit_CircuitPython_DHT" target="_blank">adafruit/Adafruit_CircuitPython_DHT</a>   
+    
 
 """
 

@@ -32,9 +32,9 @@ Schritt 1: Aktivieren Sie den I2C-Port Ihres Raspberry Pi (Wenn Sie ihn aktivier
 .. image:: media/image282.png
     :align: center
 
-**P5 I2C**
+**I4 I2C**
 
-.. image:: media/image283.png
+.. image:: img/I4i2c.jpeg
     :align: center
 
 **<Yes>, dann  <Ok> -> <Finish>**
@@ -52,7 +52,10 @@ Schritt 2: Prüfen Sie, ob die i2c-Module geladen und aktiv sind.
 
     lsmod | grep i2c
 
-Dann erscheinen die folgenden Codes (die Nummer kann unterschiedlich sein).
+Dann erscheinen die folgenden Codes 
+(die Nummer kann unterschiedlich sein), 
+falls diese nicht erscheinen, 
+starten Sie den Raspberry Pi bitte mit ``sudo reboot`` neu.
 
 .. code-block:: 
 

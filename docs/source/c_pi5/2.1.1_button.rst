@@ -1,0 +1,204 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+2.1.1 Taste
+============
+
+Einführung
+-----------------
+
+In dieser Lektion lernen wir, wie Sie die LED mit einer Taste ein- oder ausschalten.
+
+Komponenten
+---------------
+
+.. image:: ../img/list_2.1.1_Button.png
+
+
+Prinzip
+-------------
+
+**Taste**
+
+
+Die Taste ist eine übliche Komponente zur Steuerung elektronischer Geräte. Es wird normalerweise als Schalter zum Anschließen oder Unterbrechen von Stromkreisen verwendet. Obwohl die Tasten in verschiedenen Größen und Formen erhältlich sind, wird hier ein 6-mm-Miniknopf verwendet, wie in den folgenden Bildern gezeigt.
+
+Zwei Pins auf der linken Seite sind verbunden, und der eine auf der rechten Seite ähnelt dem linken, der unten gezeigt wird:
+
+.. image:: ../img/image148.png
+    :width: 400
+    :align: center
+
+Das unten gezeigte Symbol wird normalerweise verwendet, um eine Schaltfläche in Schaltkreisen darzustellen.
+
+
+.. image:: ../img/image301.png
+    :width: 400
+    :align: center
+
+
+Wenn die Taste gedrückt wird, werden die 4 Pins verbunden, wodurch der Stromkreis geschlossen wird.
+
+Schematische Darstellung
+---------------------------------
+
+Verwenden Sie eine normalerweise geöffnete Taste als Eingang für Raspberry Pi. 
+Die Verbindung ist in der folgenden schematischen Darstellung dargestellt. Wenn die Taste gedrückt wird, 
+wird der GPIO18 auf einen niedrigen Niveau (0V) eingestellt. 
+Wir können den Zustand des GPIO18 durch Programmierung erkennen. 
+Das heißt, wenn der GPIO18 auf einen niedrigen Niveau wechselt, bedeutet dies, dass die Taste gedrückt wird. 
+Sie können den entsprechenden Kode ausführen, wenn die Taste gedrückt wird, und dann leuchtet die LED auf.
+
+.. note::
+    Der längere Pin der LED ist die Anode und der kürzere ist die Kathode.
+
+.. image:: ../img/image302.png
+    :width: 600
+    :align: center
+
+
+.. image:: ../img/image303.png
+    :width: 400
+    :align: center
+
+
+Experimentelle Verfahren
+---------------------------
+
+Schritt 1: Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image152.png
+    :width: 800
+
+Schritt 2: Öffnen Sie die Kodedatei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/2.1.1/
+
+.. note::
+    Wechseln Sie in diesem Experiment in den Pfad der Kode mit ``cd``.
+
+Schritt 3: Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.1_Button.c -lwiringPi
+
+Schritt 4: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Nachdem der Code ausgeführt wurde, drücken Sie die Taste, die LED leuchtet auf; andernfalls erlischt.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define LedPin      0
+    #define ButtonPin   1
+
+    int main(void){
+        // When initialize wiring failed, print message to screen
+        if(wiringPiSetup() == -1){
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(LedPin, OUTPUT);
+        pinMode(ButtonPin, INPUT);
+        digitalWrite(LedPin, HIGH);
+        
+        while(1){
+            // Indicate that button has pressed down
+            if(digitalRead(ButtonPin) == 0){
+                // Led on
+                digitalWrite(LedPin, LOW);
+            //  printf("...LED on\n");
+            }
+            else{
+                // Led off
+                digitalWrite(LedPin, HIGH);
+            //  printf("LED off...\n");
+            }
+        }
+        return 0;
+    }
+
+**Code Erklärung**
+
+.. code-block:: 
+
+    #define LedPin      0
+
+Der Pin GPIO17 in der T_Extension-Karte entspricht dem GPIO0 im wiringPi.
+
+.. code-block:: 
+
+    #define ButtonPin   1
+
+ButtonPin ist mit GPIO1 verbunden.
+
+.. code-block:: 
+
+    pinMode(LedPin, OUTPUT);
+
+Stellen Sie LedPin als Ausgabe ein, um ihm einen Wert zuzuweisen.
+
+.. code-block:: 
+
+    pinMode(ButtonPin, INPUT);
+
+Legen Sie ButtonPin als Eingabe fest, um den Wert von ButtonPin zu lesen.
+
+.. code-block:: C
+
+    while(1){
+            // Indicate that button has pressed down
+            if(digitalRead(ButtonPin) == 0){
+                // Led on
+                digitalWrite(LedPin, LOW);
+            //  printf("...LED on\n");
+            }
+            else{
+                // Led off
+                digitalWrite(LedPin, HIGH);
+            //  printf("LED off...\n");
+            }
+        }
+
+
+``if (digitalRead (ButtonPin)) == 0`` : Überprüfen Sie, ob die Taste gedrückt wurde. 
+Führen Sie ``digitalWrite(LedPin, LOW)`` aus, wenn die Taste gedrückt wird, um die LED zu leuchten.
+
+
+
+

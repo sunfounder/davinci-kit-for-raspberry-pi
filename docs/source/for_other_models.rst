@@ -16,7 +16,7 @@ Für Pi 4, 3 und alle anderen Pi-Modelle
 ==========================================
 
 .. toctree::
-    :maxdepth: 4
+    :maxdepth: 2
 
     1_output
     2_input

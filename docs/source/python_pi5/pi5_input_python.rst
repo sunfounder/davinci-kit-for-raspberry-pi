@@ -36,6 +36,7 @@
 
     pi5_2.2.1_photoresistor_python
     pi5_2.2.2_thermistor_python
+    pi5_2.2.3_dht_python
     pi5_2.2.4_pir_python
     pi5_2.2.5_ultrasonic_sensor_module_python
     pi5_2.2.6_mpu6050_module_python

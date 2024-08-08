@@ -34,9 +34,9 @@ wenn Sie nicht wissen, ob Sie das getan haben oder nicht, fahren Sie bitte fort)
 .. image:: media/image282.png
    :align: center
 
-**P4 SPI**
+**I3 SPI**
 
-.. image:: media/image285.png
+.. image:: img/i3spi.png
    :align: center
 
 **<YES>**, dann auf **<OK>** und **<Finish>** klicken. Jetzt können Sie den Raspberry Pi mit dem Befehl ``sudo reboot`` neu starten.

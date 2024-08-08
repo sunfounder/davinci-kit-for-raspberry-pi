@@ -1,0 +1,282 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+
+3.1.14 SPIEL - Nicht nicht
+===============================
+
+Einführung
+--------------------
+
+In dieser Lektion werden wir ein interessantes Spielgerät herstellen und es „Nicht nicht“ nennen.
+
+Während des Spiels aktualisiert die Punktmatrix einen Pfeil nach dem Zufallsprinzip. Sie müssen die Taste innerhalb einer begrenzten Zeit in die entgegengesetzte Richtung des Pfeils drücken. Wenn die Zeit abgelaufen ist oder wenn die Taste in die gleiche Richtung wie der Pfeil gedrückt wird, sind Sie raus.
+
+Dieses Spiel kann wirklich Ihr umgekehrtes Denken üben, und jetzt sollen wir es versuchen?
+
+Komponenten
+---------------
+
+.. image:: ../img/list_GAME_Not_Not.png
+    :align: center
+
+Schematische Darstellung
+----------------------------------
+
+============ ======== ======== ===
+T-Karte Name physisch wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO20       Pin 38   28       20
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one14.png
+   :align: center
+
+Experimentelle Verfahren
+-----------------------------
+
+Schritt 1: Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image280.png
+    :width: 800
+
+
+Schritt 2: Gehen Sie zum Code-Ordner.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.14/
+
+Schritt 3: Kompilieren.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 3.1.14_GAME_NotNot.c -lwiringPi
+
+Schritt 4: Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+     sudo ./a.out
+
+Nach dem Start des Programms wird ein Pfeil nach links oder rechts in der Punktmatrix nach dem Zufallsprinzip aktualisiert. Sie müssen die Taste innerhalb einer begrenzten Zeit in die entgegengesetzte Richtung des Pfeils drücken. Dann erscheint „√“ auf der Punktmatrix. Wenn die Zeit abgelaufen ist oder wenn die Taste in die gleiche Richtung wie der Pfeil gedrückt wird, sind Sie ausgeschaltet und die Punktmatrix zeigt „x“ an. Sie können auch 2 neue Schaltflächen hinzufügen oder durch Joystick-Tasten für Auf, Ab, Links und Rechts ersetzen - 4 Richtungen, 
+um die Schwierigkeit des Spiels zu erhöhen.
+
+**Code Erklärung**
+
+Basierend auf 1.1.6 LED Dot Matrix fügt diese Lektion 2 Tasten hinzu, um ein amüsantes Spielgerät zu erstellen. Wenn Sie mit der Punktmatrix nicht sehr vertraut sind, lesen Sie bitte :ref:`py_matrix`.
+
+Der gesamte Programmprozess ist wie folgt:
+
+1. Wählen Sie zufällig eine Pfeilrichtung und generieren Sie Timer 1.
+
+#. Zeigen Sie das Pfeilbild auf der Punktmatrix an.
+
+#. Beurteilen Sie die Tasteneingabe. Wenn die Taste gedrückt wird oder Timer 1 daran erinnert, dass die Zeit abgelaufen ist, beginnt die Beurteilung.
+
+#. Zeigen Sie das Bild anhand eines Bewertungsergebnisses an. In der Zwischenzeit Timer 2 generieren.
+
+#. Führen Sie Schritt 1 erneut aus, wenn Timer 2 daran erinnert, dass die Zeit abgelaufen ist.
+
+.. code-block:: c
+
+    struct GLYPH{
+        char *word;
+        unsigned char code[8];
+    };
+
+    struct GLYPH arrow[2]=
+    {
+        {"right",{0xFF,0xEF,0xDF,0x81,0xDF,0xEF,0xFF,0xFF}},
+        // {"down",{0xFF,0xEF,0xC7,0xAB,0xEF,0xEF,0xEF,0xFF}},
+        // {"up",{0xFF,0xEF,0xEF,0xEF,0xAB,0xC7,0xEF,0xFF}},    
+        {"left",{0xFF,0xF7,0xFB,0x81,0xFB,0xF7,0xFF,0xFF}}
+    };
+
+    struct GLYPH check[2]=
+    {
+        {"wrong",{0xFF,0xBB,0xD7,0xEF,0xD7,0xBB,0xFF,0xFF}},
+        {"right",{0xFF,0xFF,0xF7,0xEB,0xDF,0xBF,0xFF,0xFF}}
+    };
+
+Die GLYPH-Struktur funktioniert wie ein Wörterbuch: Das Wort Attribut entspricht dem Schlüssel im Wörterbuch. Das Kode-Attribut entspricht dem Wert.
+
+Hier wird Kode verwendet, um ein Array für die Punktmatrix zum Anzeigen von Bildern zu speichern (ein 8x8-Bit-Array).
+
+Hier kann der Array-Pfeil verwendet werden, um das Pfeilmuster in Aufwärts-, Abwärts-, Links- und Rechtsrichtung auf der LED-Punktmatrix anzuzeigen.
+
+Jetzt werden unten und oben kommentiert und bei Bedarf auskommentiert.
+
+Die Array-Prüfung wird verwendet, um diese beiden Bilder anzuzeigen: „×“ und „√“.
+
+.. code-block:: c
+
+    char *lookup(char *key,struct GLYPH *glyph,int length){
+        for (int i=0;i<length;i++)
+        {
+            if(strcmp(glyph[i].word,key)==0){
+                return glyph[i].code;
+            }
+        }    
+    }
+
+
+Die Funktion ``lookup()`` funktioniert durch „Überprüfen des Wörterbuchs“. Definieren Sie einen ``key`` , 
+suchen Sie die gleichen Wörter wie der ``key`` in der Struktur ``GLYPH * glyph`` und geben Sie die entsprechenden Informationen zurück - „kode“ des bestimmten Wortes.
+
+Die Funktion ``strcmp()`` wird verwendet, 
+um die Identität von zwei Zeichenfolgen ``glyph[i].word`` und ``key`` zu vergleichen; 
+Wenn die Identität beurteilt wird, geben Sie den ``glyph[i].code`` zurück (wie gezeigt).
+
+.. code-block:: c
+
+    void display(char *glyphCode){
+        for(int i;i<8;i++){
+            hc595_in(glyphCode[i]);
+            hc595_in(0x80>>i);
+            hc595_out();
+        }
+    }
+
+Zeigen Sie das angegebene Muster in der Punktmatrix an.
+
+.. code-block:: c
+
+    void createGlyph(){
+        srand(time(NULL));
+        int i=rand()%(sizeof(arrow)/sizeof(arrow[0]));
+        waypoint=arrow[i].word;
+        stage="PLAY";
+        alarm(2);
+    }
+
+
+Mit der Funktion ``createGlyph()`` wird zufällig eine Richtung ausgewählt (das Wortattribut eines Elements im array arrow[]: „left“, „right“…). Stellen Sie die Bühne auf „PLAY“ und starten Sie eine 2-Sekunden-Weckerfunktion.
+
+``srand(time(NULL))`` : Initialisiert zufällige Seeds, die von der Systemuhr stammen.
+
+``(sizeof(arrow)/sizeof(arrow[0]))`` : Ermittelt die Länge des Arrays, das Ergebnis ist 2.
+
+``rand()%2`` : Der Rest ist 0 oder 1, erhalten durch Teilen einer generierten Zufallsnummer durch 2.
+
+``waypoint=arrow[i].word`` : Das Ergebnis sollte ``right`` oder ``left`` sein.
+
+.. code-block:: c
+
+    void checkPoint(char *inputKey){
+        alarm(0)==0;
+        if(inputKey==waypoint||inputKey=="empty")
+        {
+            waypoint="wrong";
+        }
+        else{
+            waypoint="right";
+        }
+        stage="CHECK";
+        alarm(1);
+    }
+
+
+Mit ``checkPoint()`` wird die Tasteneingabe überprüft. 
+Wenn die Taste nicht gedrückt wird oder die Taste in die gleiche Richtung wie der Pfeil gedrückt wird, 
+ist das Ergebnis des Wegpunkts falsch und auf der Punktmatrix wird „x“ angezeigt. 
+Andernfalls ist der Wegpunkt richtig und die Punktmatrix zeigt „√“ an. 
+Hier ist die Stufe CHECK und es kann eine 1-Sekunden-Weckerfunktion eingestellt werden.
+
+``alarm()`` wird auch als „Wecker“ bezeichnet, bei dem ein Timer eingestellt werden kann, 
+und sendet SIGALRM-Signale an den Fortschritt, wenn die definierte Zeit abgelaufen ist.
+
+.. code-block:: c
+
+    void getKey(){
+        if (digitalRead(AButtonPin)==1&&digitalRead(BButtonPin)==0)
+        {checkPoint("right");}
+        else if (digitalRead(AButtonPin)==0&&digitalRead(BButtonPin)==1)
+        {checkPoint("left");}
+    }
+
+
+``getKey()`` liest die Zustände dieser beiden Schaltflächen; 
+Wenn die rechte Taste gedrückt wird, ist der Parameter der Funktion ``checkPoint()``
+rechts und wenn die linke Taste gedrückt wird, bleibt der Parameter links.
+
+.. code-block:: c
+
+    void timer(){
+        if (stage=="PLAY"){
+            checkPoint("empty");
+        }
+        else if(stage=="CHECK"){
+            createGlyph();
+        }
+    }
+
+Previously, timer() was called when set as the alarm() time’s up. Then
+under the \"PLAY\" mode, checkPoint() is to be called to judge the
+outcome. If the program is set to \"CHECK\" mode, the function
+createGlyph() should be called to select new patterns.
+
+
+Zuvor wurde ``timer()`` aufgerufen, 
+wenn die Alarmzeit abgelaufen ist. 
+Im Modus „PLAY“ soll dann ``checkPoint()`` aufgerufen werden, 
+um das Ergebnis zu beurteilen. 
+Wenn das Programm auf den Modus „CHECK“ eingestellt ist, sollte die Funktion ``createGlyph()`` aufgerufen werden, 
+um neue Muster auszuwählen.
+
+
+.. code-block:: c
+
+    void main(){
+        setup();
+        signal(SIGALRM,timer);
+        createGlyph();
+        char *code = NULL;
+        while(1){
+            if (stage == "PLAY")
+            {
+                code=lookup(waypoint,arrow,sizeof(arrow)/sizeof(arrow[0]));
+                display(code);
+                getKey();
+            }
+            else if(stage == "CHECK")
+            {
+                code = lookup(waypoint,check,sizeof(check)/sizeof(check[0]));
+                display(code);
+            }
+        }
+    }
+
+
+Die Funktionsweise des Funktions ``signal(SIGALRM,timer)`` : Aufruf der Funktion ``timer()``, 
+wenn ein ``SIGALRM`` -Signal (vom Weckerfunktions ``alarm()`` erzeugt) empfangen wird.
+
+Wenn das Programm startet, rufen Sie zunächst einmal ``createGlyph()`` auf und starten Sie dann die Schleife.
+
+In der Schleife: Im PLAY-Modus zeigt die Punktmatrix Pfeilmuster an und überprüft den Schaltflächenstatus. Im CHECK-Modus wird „x“ oder „√“ angezeigt.

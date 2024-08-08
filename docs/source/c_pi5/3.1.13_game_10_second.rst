@@ -1,0 +1,133 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+
+3.1.13 SPIEL - 10 Sekunden
+============================
+
+Einführung
+-------------------
+
+Als nächstes folge mir, um ein Spielgerät zu bauen, das deine Konzentration herausfordert. Binden Sie den Neigungsschalter an einen Stock, um einen Zauberstab herzustellen. Schütteln Sie den Stab, die 4-stellige Segmentanzeige beginnt zu zählen. Durch erneutes Schütteln wird die Zählung beendet. Wenn es Ihnen gelingt, die angezeigte Anzahl bei 10,00 zu halten, gewinnen Sie. Sie können das Spiel mit Ihren Freunden spielen, um zu sehen, wer der Zeitassistent ist.
+
+Komponenten
+----------------
+
+.. image:: ../img/list_GAME_10_Second.png
+    :align: center
+
+Schematische Darstellung
+-------------------------------
+
+============ ======== ======== ===
+T-Karte Name physisch wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one13.png
+   :align: center
+
+Experimentelle Verfahren
+---------------------------------
+
+Schritt 1: Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image277.png
+   :alt: 10 second_bb
+   :width: 800
+
+
+Schritt 2: Gehen Sie zum Ordner der Kode.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.13/
+
+Schritt 3: Kompilieren Sie die Kode.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 3.1.13_GAME_10Second.c -lwiringPi
+
+Schritt 4: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Schütteln Sie den Stab, die 4-stellige Segmentanzeige beginnt zu zählen. 
+Durch erneutes Schütteln wird die Zählung beendet. Wenn es Ihnen gelingt, 
+die angezeigte Anzahl bei 10,00 zu halten, gewinnen Sie. 
+Schütteln Sie es noch einmal, um die nächste Runde des Spiels zu starten.
+
+**Code Erklärung**
+
+.. code-block:: c
+
+    void stateChange(){
+        if (gameState == 0){
+            counter = 0;
+            delay(1000);
+            ualarm(10000,10000); 
+        }else{
+            alarm(0);
+            delay(1000);
+        }
+        gameState = (gameState + 1)%2;
+    }
+
+Das Spiel ist in zwei Modi unterteilt:
+
+``gameState=0`` ist der „Start“ -Modus, in dem die Zeit zeitlich festgelegt und auf der Segmentanzeige angezeigt wird und der Kippschalter geschüttelt wird, um in den „Show“ -Modus zu wechseln.
+
+``gameState=1`` ist der „show“ -Modus, der das Timing stoppt und die Zeit auf der Segmentanzeige anzeigt. Durch erneutes Schütteln des Neigungsschalters wird der Timer zurückgesetzt und das Spiel neu gestartet.
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                stateChange();
+            }
+            lastState=currentState;
+        }
+    }
+
+
+``loop()`` ist die Hauptfunktion. Zunächst wird die Zeit auf der 
+4-Bit-Segmentanzeige angezeigt und der Wert des Neigungsschalters gelesen. 
+Wenn sich der Status des Neigungsschalters geändert hat, wird ``stateChange()`` aufgerufen.

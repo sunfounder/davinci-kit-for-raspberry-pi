@@ -1,0 +1,294 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _2.2.3_py_pi5:
+
+2.2.3 DHT-11
+===================================
+
+Einführung
+--------------
+
+In dieser Lektion lernen Sie, wie Sie einen DHT11 Temperatur- und Feuchtigkeitssensor mit einem Raspberry Pi verbinden und Daten davon ablesen. Sie werden erfahren, wie Sie den Sensor einrichten, die Temperatur sowohl in Celsius als auch in Fahrenheit ablesen und Feuchtigkeitsmessungen durchführen können. Dieses Projekt führt Sie in die Arbeit mit externen Sensoren, die Handhabung von Echtzeitdaten und die Grundlagen der Ausnahmebehandlung in Python ein.
+
+Erforderliche Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../img/list_2.2.3_dht-11.png
+
+Schaltplan
+-----------------
+
+.. image:: ../img/image326.png
+
+Installation von ``Adafruit_Blinka`` (CircuitPython)
+----------------------------------------------------------------
+
+Die Bibliothek adafruit-circuitpython-dht basiert auf Blinka. Bitte installieren Sie zuerst Blinka.
+
+Das besondere Merkmal von Blinka ist seine Fähigkeit, Code, der für CircuitPython geschrieben wurde, nahtlos und mühelos auf Linux-Computern wie dem Raspberry Pi laufen zu lassen.
+
+Diese Bibliothek vereinfacht die Nutzung komplexer Module wie BMP280, VL53L0X und OLED und beschleunigt den Entwicklungsprozess Ihrer Projekte. Mit CircuitPython wird das Programmieren zugänglicher, sodass Sie sich auf die Erstellung robuster Anwendungen konzentrieren können, ohne umfangreiches Hardwarewissen zu benötigen.
+
+Zusätzlich profitieren Sie von einer großen Unterstützungsgemeinschaft und einer Vielzahl von Ressourcen, die Ihre Lern- und Entwicklungsprozesse unterstützen.
+
+Wir führen Sie durch den einfachen Prozess der Installation von Adafruit_Blinka, um Ihnen einen schnellen Start in Ihre Projekte zu ermöglichen.
+
+**Aktualisieren Sie Ihren Raspberry Pi und Python**
+
+Bevor Sie Blinka installieren, verwenden Sie bitte die folgenden Befehle, um sicherzustellen, dass Ihr Raspberry Pi und Ihre Python-Versionen auf dem neuesten Stand sind:
+
+.. code-block:: bash
+
+   sudo apt-get update
+   sudo apt-get upgrade
+
+**Einrichtung der virtuellen Umgebung**
+
+Ab Bookworm (Betriebssystemversion) müssen mit ``pip`` installierte Pakete in einer Python-Virtualumgebung mit ``venv`` installiert werden. Eine virtuelle Umgebung ist ein sicherer Behälter, in dem Sie Drittanbietermodule installieren können, ohne Ihr System-Python zu beeinträchtigen oder zu stören.
+
+Der folgende Befehl erstellt ein Verzeichnis "env" in Ihrem Benutzerverzeichnis (``~``) für die virtuelle Python-Umgebung.
+
+.. code-block:: bash
+
+   cd ~
+   python -m venv env --system-site-packages
+
+Sie müssen die virtuelle Umgebung jedes Mal aktivieren, wenn der Pi neu gestartet wird. Um sie zu aktivieren:
+
+.. code-block:: bash
+
+   source ~/env/bin/activate
+
+Sie werden sehen, dass Ihre Eingabeaufforderung jetzt mit (env) vorangestellt ist, um anzuzeigen, dass Sie nicht mehr das System-Python verwenden, sondern die Python-Version in Ihrer virtuellen Umgebung. Änderungen, die Sie hier vornehmen, verursachen keine Probleme für Ihr System-Python; auch neue Module, die Sie in Ihre Umgebung installieren, werden Ihr System nicht beeinträchtigen.
+
+.. image:: ../img/07_activate_env.png
+
+Zum Deaktivieren können Sie ``deactivate`` verwenden, aber lassen Sie es vorerst aktiv.
+
+**Automatische Installation**
+
+Wenn sie in der virtuellen Umgebung aktiviert ist (Sie sehen ``(env)`` am Anfang der Terminalbefehle), führen Sie den folgenden Code der Reihe nach aus. Dieser Code führt das Installations-Skript von adafruit aus und vervollständigt automatisch die verbleibenden Installationsschritte.
+
+.. code-block:: bash
+
+   pip3 install --upgrade adafruit-python-shell
+
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
+
+
+.. code-block:: bash
+
+   sudo -E env PATH=$PATH python3 raspi-blinka.py
+
+Die Ausführung kann einige Minuten dauern. Nach Abschluss wird gefragt, ob Sie neu starten möchten. Drücken Sie direkt Enter, um neu zu starten, oder wenn Sie später neu starten möchten, geben Sie "n" ein und drücken Sie Enter. Wenn Sie bereit sind, starten Sie Ihren Raspberry Pi manuell neu.
+
+.. image:: ../img/07_after_install_blinka.png
+
+Nach dem Neustart wird die Verbindung geschlossen. Nach ein paar Minuten können Sie sich wieder verbinden.
+
+Bibliothek installieren
+---------------------------
+
+Bevor Sie die Bibliothek installieren, stellen Sie bitte sicher, dass die virtuelle Python-Umgebung aktiviert ist.
+
+.. code-block:: bash
+
+   source ~/env/bin/activate
+
+Installieren Sie die adafruit-circuitpython-dht-Bibliothek:
+
+.. code-block:: bash
+
+   pip install adafruit-circuitpython-dht
+
+Experimentelle Verfahren
+--------------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis.
+
+.. image:: ../img/image207.png
+
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Schritt 2:** Bevor Sie den Code ausführen, stellen Sie bitte sicher, dass Sie die virtuelle Python-Umgebung mit installiertem Blinka aktiviert haben.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    source ~/env/bin/activate
+
+**Schritt 3:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    python3 2.2.3_DHT.py
+
+Nachdem der Code ausgeführt wurde, wird das Programm die von DHT11 erkannte Temperatur und Feuchtigkeit auf dem Computerbildschirm anzeigen.
+
+**Code**
+
+.. note::
+
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcodepfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+.. code-block:: python
+
+    import time
+    import board
+    import adafruit_dht
+
+    # Initialisiere das dht-Gerät mit dem Datenpin verbunden zu:
+    dhtDevice = adafruit_dht.DHT11(board.D17)
+
+    while True:
+        try:
+            # Die Werte auf die serielle Schnittstelle drucken
+            temperature_c = dhtDevice.temperature
+            temperature_f = temperature_c * (9 / 5) + 32
+            humidity = dhtDevice.humidity
+            print(
+                "Temp: {:.1f} F / {:.1f} C    Feuchtigkeit: {}% ".format(
+                    temperature_f, temperature_c, humidity
+                )
+            )
+
+        except RuntimeError as error:
+            # Fehler treten recht häufig auf, DHTs sind schwer zu lesen, einfach weitermachen
+            print(error.args[0])
+            time.sleep(2.0)
+            continue
+        except Exception as error:
+            dhtDevice.exit()
+            raise error
+
+        time.sleep(2.0)
+
+
+
+
+**Codeerklärung**
+
+#. Bibliotheken importieren:
+
+   Der Code beginnt mit dem Import der notwendigen Bibliotheken. ``time`` für das Handling von Verzögerungen, ``board`` für den Zugriff auf die GPIO-Pins des Raspberry Pi und ``adafruit_dht`` für die Interaktion mit dem DHT11-Sensor. Für weitere Informationen zur Bibliothek ``adafruit_dht``, siehe |Adafruit_CircuitPython_DHT|.
+
+   .. code-block:: python
+    
+      import time
+      import board
+      import adafruit_dht
+
+#. Sensor initialisieren:
+
+   Der DHT11-Sensor wird mit dem Datenpin, der mit GPIO 17 des Raspberry Pi verbunden ist, initialisiert. Diese Konfiguration ist entscheidend für die Kommunikation des Sensors mit dem Raspberry Pi.
+
+   .. code-block:: python
+
+      dhtDevice = adafruit_dht.DHT11(board.D17)
+
+#. Sensordaten in einer Schleife lesen:
+
+   Die Schleife ``while True`` ermöglicht es dem Programm, kontinuierlich den Sensor auf neue Daten zu überprüfen.
+
+   .. code-block:: python
+
+      while True:
+
+#. Try-Except-Blöcke:
+
+   Innerhalb der Schleife wird ein Try-Except-Block verwendet, um mögliche Laufzeitfehler zu behandeln. Das Lesen von DHT-Sensoren kann oft aufgrund von Timing-Problemen oder Eigenarten des Sensors zu Fehlern führen.
+
+   .. code-block:: python
+
+      try:
+          # Hier steht der Code zum Lesen der Sensordaten
+      except RuntimeError as error:
+          # Behandlung häufiger Sensorlesefehler
+          print(error.args[0])
+          time.sleep(2.0)
+          continue
+      except Exception as error:
+          # Behandlung anderer Ausnahmen und Beenden
+          dhtDevice.exit()
+          raise error
+
+#. Sensordaten lesen und drucken:
+
+   Die Temperatur und Feuchtigkeit werden vom Sensor gelesen und in lesbare Formate umgewandelt. Die Temperatur wird auch von Celsius in Fahrenheit umgerechnet.
+
+   .. code-block:: python
+
+      temperature_c = dhtDevice.temperature
+      temperature_f = temperature_c * (9 / 5) + 32
+      humidity = dhtDevice.humidity
+      print("Temp: {:.1f} F / {:.1f} C    Feuchtigkeit: {}% ".format(temperature_f, temperature_c, humidity))
+
+#. Lesefehler behandeln:
+
+   Der DHT11-Sensor kann oft Fehler zurückgeben, daher verwendet der Code einen Try-Except-Block, um diese zu behandeln. Tritt ein Fehler auf, wartet das Programm 2 Sekunden, bevor es erneut versucht, vom Sensor zu lesen.
+
+   .. code-block:: python
+
+      except RuntimeError as error:
+          print(error.args[0])
+          time.sleep(2.0)
+          continue
+
+#. Allgemeine Ausnahmebehandlung:
+
+   Alle anderen möglichen Ausnahmen werden durch sicheres Beenden des Sensors und erneutes Auslösen des Fehlers behandelt. Dies stellt sicher, dass das Programm nicht in einem instabilen Zustand weiterläuft.
+
+   .. code-block:: python
+
+      except Exception as error:
+          dhtDevice.exit()
+          raise error
+
+#. Verzögerung zwischen den Ablesungen:
+
+   Am Ende der Schleife wird eine 2-sekündige Verzögerung hinzugefügt, um ständiges Abfragen des Sensors zu vermeiden, was zu fehlerhaften Ablesungen führen kann.
+
+   .. code-block:: python
+
+      time.sleep(2.0)
+
+
+
+.. Reference
+.. -----------------------
+
+.. - |link_adafruit_blinka_guide|
+
+.. - |link_python_on_raspberry_pi|

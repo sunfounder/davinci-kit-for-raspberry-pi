@@ -1,0 +1,226 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+1.2.2 Passiver Summer
+=========================
+
+Einführung
+---------------
+
+In dieser Lektion lernen wir, wie man einen passiven Summer dazu bringt, Musik zu spielen.
+
+Komponenten
+----------------
+
+.. image:: ../img/list_1.2.2.png
+
+
+Schematische Darstellung
+--------------------------
+
+In diesem Experiment werden ein passiver Summer, ein PNP-Transistor und ein 1k-Widerstand zwischen der Basis des Transistors und GPIO verwendet, um den Transistor zu schützen.
+
+Wenn GPIO17 unterschiedliche Frequenzen erhält, gibt der passive Summer unterschiedliche Töne aus. Auf diese Weise spielt der Summer Musik.
+
+.. image:: ../img/image333.png
+
+
+Experimentelle Verfahren
+----------------------------------
+
+Schritt 1: Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image106.png
+    :width: 800
+
+
+Schritt 2: Verzeichnis wechseln.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/1.2.2/
+
+Schritt 3: Kompilieren.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.2.2_PassiveBuzzer.c -lwiringPi
+
+Schritt 4: Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Die Kode läuft, der Summer spielt ein Musikstück.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <softTone.h>
+    #include <stdio.h>
+
+    #define BuzPin    0
+
+    #define  CL1  131
+    #define  CL2  147
+    #define  CL3  165
+    #define  CL4  175
+    #define  CL5  196
+    #define  CL6  221
+    #define  CL7  248
+
+    #define  CM1  262
+    #define  CM2  294
+    #define  CM3  330
+    #define  CM4  350
+    #define  CM5  393
+    #define  CM6  441
+    #define  CM7  495
+
+    #define  CH1  525
+    #define  CH2  589
+    #define  CH3  661
+    #define  CH4  700
+    #define  CH5  786
+    #define  CH6  882
+    #define  CH7  990
+
+    int song_1[] = {CM3,CM5,CM6,CM3,CM2,CM3,CM5,CM6,CH1,CM6,CM5,CM1,CM3,CM2,
+                    CM2,CM3,CM5,CM2,CM3,CM3,CL6,CL6,CL6,CM1,CM2,CM3,CM2,CL7,
+                    CL6,CM1,CL5};
+
+    int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
+                    1,1,1,1,1,1,3};
+
+
+    int song_2[] = {CM1,CM1,CM1,CL5,CM3,CM3,CM3,CM1,CM1,CM3,CM5,CM5,CM4,CM3,CM2,
+                    CM2,CM3,CM4,CM4,CM3,CM2,CM3,CM1,CM1,CM3,CM2,CL5,CL7,CM2,CM1
+                    };
+
+    int beat_2[] = {1,1,1,3,1,1,1,3,1,1,1,1,1,1,3,1,1,1,2,1,1,1,3,1,1,1,3,3,2,3};
+
+    int main(void)
+    {
+        int i, j;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+        }
+
+        while(1){
+            printf("music is being played...\n");
+            delay(100);
+            for(i=0;i<sizeof(song_1)/4;i++){
+                softToneWrite(BuzPin, song_1[i]);   
+                delay(beat_1[i] * 500);
+            }
+
+            for(i=0;i<sizeof(song_2)/4;i++){
+                softToneWrite(BuzPin, song_2[i]);   
+                delay(beat_2[i] * 500);
+            }   
+        }
+
+        return 0;
+    }
+
+**Code Erklärung**
+
+.. code-block:: c
+
+    #define  CL1  131
+    #define  CL2  147
+    #define  CL3  165
+    #define  CL4  175
+    #define  CL5  196
+    #define  CL6  221
+    #define  CL7  248
+
+    #define  CM1  262
+    #define  CM2  294
+
+
+Diese Frequenzen jeder Note sind wie gezeigt. 
+CL bezieht sich auf tiefe Note, CM mittlere Note, 
+CH hohe Note, 1-7 entsprechen den Noten C, D, E, F, G, A, B.
+
+.. code-block:: c
+
+    int song_1[] = {CM3,CM5,CM6,CM3,CM2,CM3,CM5,CM6,CH1,CM6,CM5,CM1,CM3,CM2,
+                    CM2,CM3,CM5,CM2,CM3,CM3,CL6,CL6,CL6,CM1,CM2,CM3,CM2,CL7,
+                    CL6,CM1,CL5};
+    int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
+                    1,1,1,1,1,1,3};
+
+Das Array ``song_1[]`` speichert eine Musikpartitur eines Gelieds, 
+in der sich ``beat_1[]`` auf der Schlage jeder Note im Gelied bezieht (0,5 S für jeder Schlage).
+
+.. code-block:: c
+
+    if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+        
+Dadurch wird ein softwaregesteuerter Ton Pin erstellt. 
+Sie können einen beliebigen GPIO-Pin verwenden. 
+Die Pin-Nummerierung entspricht der von Ihnen verwendeten Funktion ``wiringPiSetup()`` . 
+Der Rückgabewert ist 0 für Erfolg. Alles andere und Sie sollten die globale Fehlerbehebung überprüfen, 
+um festzustellen, was schief gelaufen ist.
+
+.. code-block:: c
+
+    for(i=0;i<sizeof(song_1)/4;i++){
+        softToneWrite(BuzPin, song_1[i]);   
+        delay(beat_1[i] * 500);
+    }
+
+
+Verwenden Sie eine for-Anweisung, um ``song_1`` abzuspielen.
+
+In der Urteilsbedingung wird ``i<sizeof(song_1)/4`` , „devide by 4“ verwendet, 
+da das Array ``song_1[]`` ein Array des Datentyps ganzer Nummer ist und jedes Element vier Bytes in Anspruch nimmt.
+
+Die Anzahl der Elemente in ``song_1`` (die Anzahl der Noten) wird erhalten, 
+indem ``sizeof(song_4)`` um 4 geteilt wird.
+
+Damit jede Note für ``beat * 500ms`` gespielt werden kann, wird die ``delay(beat_1[i]*500)`` aufgerufen.
+
+Der Prototyp von ``softToneWrite(BuzPin, song_1[i])`` :
+
+.. code-block:: c
+
+    void softToneWrite (int pin, int freq);
+
+Dadurch wird der Tonfrequenzwert am angegebenen Pin aktualisiert. Der Ton hört erst auf zu spielen, wenn Sie die Frequenz auf 0 eingestellen.
+

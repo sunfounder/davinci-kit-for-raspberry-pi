@@ -1,0 +1,215 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+3.1.10 Alarmglocke
+====================
+
+Einführung
+-----------------
+
+In diesem Kurs erstellen wir ein manuelles Alarmgerät. 
+Sie können den Kippschalter durch einen Thermistor oder einen lichtempfindlichen Sensor ersetzen, 
+um einen Temperaturalarm oder einen Lichtalarm auszulösen.
+
+Komponenten
+---------------
+
+.. image:: ../img/list_Alarm_Bell.png
+    :align: center
+
+Schematische Darstellung
+-------------------------
+
+============ ======== ======== ===
+T-Karte Name physisch wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one10.png
+   :align: center
+
+Experimentelle Verfahren
+-----------------------------
+
+Schritt 1: Bauen Sie die Schaltung auf.
+
+.. image:: ../img/image266.png
+   :alt: Alarm Bell_bb
+   :width: 800
+
+Schritt 2: Verzeichnis wechseln.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.10/
+
+Schritt 3: Kompilieren.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 3.1.10_AlarmBell.c -lwiringPi -lpthread
+
+Schritt 4: Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Nach dem Start des Programms wird der Kippschalter nach rechts umgeschaltet und der Summer gibt Alarmtöne aus. 
+Gleichzeitig blinken die roten und grünen LEDs mit einer bestimmten Frequenz.
+
+**Code Erklärung**
+
+.. code-block:: c
+
+    #include <pthread.h>
+
+In dieser Kode verwenden Sie eine neue Bibliothek, ``pthread.h`` , 
+die aus einer Reihe allgemeiner Thread-Bibliotheken besteht und Multithreading realisieren kann. 
+Wir fügen den Parameter ``-lpthread`` zur Kompilierungszeit hinzu, 
+damit die LED und der Summer unabhängig voneinander arbeiten können.
+
+.. code-block:: c
+
+    void *ledWork(void *arg){       
+        while(1)    
+        {   
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            digitalWrite(ALedPin,HIGH);
+            delay(500);
+            digitalWrite(ALedPin,LOW);
+            digitalWrite(BLedPin,HIGH);
+            delay(500);
+            digitalWrite(BLedPin,LOW);
+        }
+    }
+
+Die Funktion ``ledWork()`` hilft beim Einstellen des Arbeitszustands dieser beiden LEDs: Sie leuchtet die grüne LED 0,5 Sekunden lang auf und erlischt dann. In ähnlicher Weise leuchtet die rote LED 0,5 Sekunden lang auf und erlischt dann.
+
+.. code-block:: c
+
+    void *buzzWork(void *arg){
+        while(1)
+        {
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            if((note>=800)||(note<=130)){
+                pitch = -pitch;
+            }
+            note=note+pitch;
+            softToneWrite(BeepPin,note);
+            delay(10);
+        }
+    }
+
+
+Mit der Funktion ``buzzWork()`` wird der Arbeitszustand des Summers eingestellt. 
+Hier stellen wir die Frequenz zwischen 130 und 800 ein, 
+um sie in einem Intervall von 20 zu akkumulieren oder abzunehmen.
+
+.. code-block:: c
+
+    void on(){
+        flag = 1;
+        if(softToneCreate(BeepPin) == -1){
+            printf("setup softTone failed !");
+            return; 
+        }    
+        pthread_t tLed;     
+        pthread_create(&tLed,NULL,ledWork,NULL);    
+        pthread_t tBuzz;  
+        pthread_create(&tBuzz,NULL,buzzWork,NULL);      
+    }
+
+In der Funktion ``on()``:
+
+1. Definieren Sie die Markierung „flag = 1“, die das Ende des Kontrollthreads angibt.
+#. Erstellen Sie einen softwaregesteuerten Ton-Pin ``BeepPin``.
+#. Erstellen Sie zwei separate Threads, damit die LED und der Summer gleichzeitig arbeiten können.
+
+``pthread_t tLed`` : Deklariert einen Thread tLed.
+
+``pthread_create(&tLed,NULL,ledWork,NULL)`` : Erstellen Sie den Thread und sein Prototyp lautet wie folgt:
+
+    .. code-block:: c
+
+        int pthread_create(pthread_t *restrict tidp,const pthread_attr_t *restrict_attr,void*(*start_rtn)(void*),void *restrict arg);
+
+**Geben Sie den Wert zurück**
+
+Wenn dies erfolgreich ist, geben Sie „0“ zurück. Andernfalls geben Sie die Fallzahl „-1“ zurück.
+
+Parameter
+
+| Der erste Parameter ist ein Zeiger auf die Thread-ID.
+| Der zweite wird verwendet, um das Thread-Attribut festzulegen.
+| Die dritte ist die Startadresse der Thread-Running-Funktion.
+| Der letzte ist derjenige, der die Funktion ausführt.
+
+.. code-block:: c
+
+    void off(){
+        flag = 0;
+        softToneStop(BeepPin);
+        digitalWrite(ALedPin,LOW);
+        digitalWrite(BLedPin,LOW);
+    }
+
+
+Die Funktion ``off()`` definiert „flag=0“, 
+um die Threads ledWork und BuzzWork zu verlassen und dann den Summer und die LED auszuschalten.
+
+.. code-block:: c
+
+    int main(){       
+        setup(); 
+        int lastState = 0;
+        while(1){
+            int currentState = digitalRead(switchPin);
+            if ((currentState == 1)&&(lastState==0)){
+                on();
+            }
+            else if((currentState == 0)&&(lastState==1)){
+                off();
+            }
+            lastState=currentState;
+        }
+        return 0;
+    }
+
+
+``main()`` enthält den gesamten Prozess des Programms: 
+Lesen Sie zuerst den Wert des Schiebeschalters; 
+Wenn der Kippschalter nach rechts umgeschaltet ist (der Messwert ist 1), 
+wird die Funktion ``on()`` aufgerufen, 
+der Summer wird zur Ausgabe von Tönen angesteuert und die rote und die grüne LED blinken. 
+Andernfalls funktionieren der Summer und die LED nicht.

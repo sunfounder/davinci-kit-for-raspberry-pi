@@ -1,0 +1,144 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+3.1.1 計数装置
+================
+
+前書き
+-----------------
+
+ここでは、PIRセンサーと4桁のセグメントディスプレイで構成される数字表示カウンターシステムを作成する。
+PIRが誰かが通り過ぎていることを検出すると、4桁のセグメントディスプレイの数字に1が加算される。
+このカウンターを使用して、通路を歩いている人の数をカウントできる。
+
+部品
+---------------
+
+.. image:: ../img/list_Counting_Device1.png
+    :align: center
+
+.. image:: ../img/list_Counting_Device2.png
+    :align: center
+
+回路図
+----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one1.png
+   :align: center
+
+実験手順
+-----------------------------
+
+ステップ1： 回路を作る。
+
+.. image:: ../img/image235.png
+   :alt: 计数器_bb
+   :width: 800
+
+
+ステップ2： コードのフォルダーに入る。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.1/
+
+ステップ3： コードをコンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.1_CountingDevice.c -lwiringPi
+
+ステップ4： EXEファイルを実行する。
+
+.. raw:: html
+
+    <run></run>
+ 
+.. code-block:: 
+ 
+    sudo ./a.out
+ 
+コードの実行後、PIRが誰かが通り過ぎていることを検出すると、4桁のセグメントディスプレイの数字に1が加算される。
+
+PIR モジュールには 2 つのポテンショメータがあり、
+1 つは感度を調整するためのもので、もう 1 つは検出距離を調整するためのものです。 
+PIR モジュールがうまく機能するためには、両方を完全に反時計回りに回す必要があります。
+
+
+
+**コードの説明**
+
+.. code-block:: c
+
+    void display()
+    {
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+     
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+    }
+
+まず、4番目のセグメントディスプレイを開始し、1桁の数字を書き込む。
+次に、3番目のセグメントディスプレイを開始し、10桁の数字を入力する。
+その後、2番目と1番目のセグメントディスプレイをそれぞれ開始し、それぞれ数百桁と数千桁を書き込む。
+リフレッシュ速度が非常に速いため、完全な4桁のディスプレイが表示される。
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                counter +=1;
+            }
+            lastState=currentState;
+        }
+    }
+
+これが主な機能である：4桁のセグメントディスプレイに数字を表示し、PIR値を読み取る。
+PIRが誰かが通り過ぎていることを検出すると、4桁のセグメントディスプレイの数字に1が加算される。

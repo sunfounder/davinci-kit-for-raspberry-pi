@@ -1,0 +1,147 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+3.1.6 モーション制御
+======================
+
+前書き
+-----------------
+
+このレッスンでは、簡単なモーション検知と制御装置を作成する。
+MPU6050はセンサーとして使用され、ステッピングモーターは制御装置として使用される。
+MPU6050をグローブに取り付けた状態で、手首を回すことでステッピングモーターを制御できる。
+
+部品
+---------------
+
+.. image:: ../img/list_Motion_Control.png
+    :align: center
+
+回路図
+--------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one6.png
+   :align: center
+
+実験手順
+------------------------------
+
+ステップ1： 回路を作る。
+
+.. image:: ../img/image251.png
+   :alt: 3.1.6 Motion Control_bb
+   :width: 800
+   :align: center
+
+ステップ2： コードのフォルダーに入る。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.6/
+
+ステップ3： コードをコンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.6_MotionControl.c -lwiringPi -lm
+
+ステップ4： EXEファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+コードが実行されている間、もし mpu6050 のチルト角度が Y-axis 45 ℃より大きい場合、
+ステッピングモーターは反時計回りに回転します。 
+-45 ℃未満の場合、ステッピングモーターは時計回りに回転します。
+
+**コードの説明**
+
+.. code-block:: c
+
+    double mpu6050(){
+        acclX = read_word_2c(0x3B);
+        acclY = read_word_2c(0x3D);
+        acclZ = read_word_2c(0x3F);
+        acclX_scaled = acclX / 16384.0;
+        acclY_scaled = acclY / 16384.0;
+        acclZ_scaled = acclZ / 16384.0;
+        double angle=get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled);
+        return angle;
+    }
+
+mpu6050はY軸の方向の傾斜角を取得する。
+
+.. code-block:: c
+
+    void rotary(char direction){
+        if(direction == 'c'){
+            for(int j=0;j<4;j++){
+                for(int i=0;i<4;i++)
+                    {digitalWrite(motorPin[i],0x99>>j & (0x08>>i));}
+                delayMicroseconds(stepSpeed);
+            }        
+        }
+        else if(direction =='a'){
+            for(int j=0;j<4;j++){
+                for(int i=0;i<4;i++)
+                    {digitalWrite(motorPin[i],0x99<<j & (0x80>>i));}
+                delayMicroseconds(stepSpeed);
+            }   
+        }
+    }
+
+受信方向 キー が「c」の場合、ステッピングモーターは時計回りに回転します。 キー が「a 」の場合、
+モーターは反時計回りに回転します。
+ステッピングモーターの回転方向の計算の詳細については :ref:`1.3.3_stepper_motor` を参照してください。
+
+.. code-block:: c
+
+    int main()
+    {
+        setup();
+        double angle;
+        while(1) {
+            angle = mpu6050();
+            if (angle >=45){rotary('a');}
+            else if (angle<=-45){rotary('c');}
+        }
+        return 0;
+    }
+
+Y軸方向の傾斜角は mpu6050 から読み取られ、45 ℃より大きい場合、
+ステッピングモーターは反時計回りに回転する。
+-45 ℃未満の場合、ステッピングモーターは時計回りに回転する。

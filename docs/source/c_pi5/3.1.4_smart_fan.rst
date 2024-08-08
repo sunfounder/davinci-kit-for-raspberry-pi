@@ -1,0 +1,185 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+3.1.4 スマートファン
+========================
+
+前書き
+-----------------
+
+このコースでは、モーター、ボタン、サーミスターを使用して、
+風速が調整可能な手動+自動のスマートファンを作成する。
+
+部品
+------------------
+
+.. image:: ../img/list_Smart_Fan.png
+    :align: center
+
+回路図
+------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+GPIO5        Pin 29   21       5
+GPIO6        Pin 31   22       6
+GPIO13       Pin 33   23       13
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one4.png
+    :width: 500
+    :align: center
+
+実験手順
+-----------------------------
+
+ステップ1： 回路を作る。
+
+.. image:: ../img/image245.png
+   :alt: Smart Fan_bb
+   :width: 800
+   :align: center
+
+.. note::
+    電源モジュールはキットの9Vバッテリーバックルで9Vバッテリーを適用できる。
+    電源モジュールのジャンパキャップをブレッドボードの5Vバスストリップに挿入する。
+
+.. image:: ../img/image118.jpeg
+   :alt: \_MG_2084
+   :width: 2.80694in
+   :height: 0.94375in
+   :align: center
+
+
+ステップ2： コードのフォルダーに入る。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.4/
+
+ステップ3： コンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.4_SmartFan.c -lwiringPi -lm
+
+ステップ4： EXEファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+コードが実行された後、ボタンを押してファンを起動する。
+押すたびに、1つのレベルが上下に調整される。5 種類のレベルがある：0〜4。
+4番目のレベルに設定してボタンを押すと、ファンの風速が **0** で動作が停止する。
+
+温度が2℃以上上昇または下降すると、速度は自動的に1グレード速くまたは遅くなる。
+
+
+**コードの説明**
+
+.. code-block:: c
+
+    int temperture(){
+        unsigned char analogVal;
+        double Vr, Rt, temp, cel, Fah;
+        analogVal = get_ADC_Result(0);
+        Vr = 5 * (double)(analogVal) / 255;
+        Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+        temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+        cel = temp - 273.15;
+        Fah = cel * 1.8 +32;
+        int t=cel;
+        return t;
+    }
+
+``Temperature()`` は、ADC0834によって読み取られたサーミスタ値を温度値に変換することによって機能します。 詳細については、 :ref:`2.2.2_thermistor` を参照してください。
+
+.. code-block:: c
+
+    int motor(int level){
+        if(level==0){
+            digitalWrite(MotorEnable,LOW);
+            return 0;
+        }
+        if (level>=4){
+            level =4;
+        }
+        digitalWrite(MotorEnable,HIGH);
+        softPwmWrite(MotorPin1, level*25);
+        return level;    
+    }
+
+この機能は、モーターの回転速度を制御する。
+レベル の範囲：0〜4 （レベル 0 は動作中のモーターを停止する）。
+1つのレベル調整は風速の 25％ の変化を表す。
+
+.. code-block:: c
+
+    int main(void)
+    {
+        setup();
+        int currentState,lastState=0;
+        int level = 0;
+        int currentTemp,markTemp=0;
+        while(1){
+            currentState=digitalRead(BtnPin);
+            currentTemp=temperture();
+            if (currentTemp<=0){continue;}
+            if (currentState==1&&lastState==0){
+                level=(level+1)%5;
+                markTemp=currentTemp;
+                delay(500);
+            }
+            lastState=currentState;
+            if (level!=0){
+                if (currentTemp-markTemp<=-2){
+                    level=level-1;
+                    markTemp=currentTemp;
+                }
+                if (currentTemp-markTemp>=2){
+                    level=level+1;
+                    markTemp=currentTemp;
+                }
+            }
+            level=motor(level);
+        }
+        return 0;
+    }
+
+関数 ``main()`` 上 には、次のようにプログラムプロセス全体が含まれている：
+
+1. ボタンの状態と現在の温度を常に読み取る。
+
+#. ボタンを押すごとに、レベル+1 になり、同時に温度が更新される。レ れベル 範囲 1〜4 。
+
+#. ファンが作動すると（レベルは 0ではない ）、温度は検出中である。2℃+ 以上変更すると、レベルが上下に変化する。
+
+#. モーターは レベル に応じて回転速度を変更する。

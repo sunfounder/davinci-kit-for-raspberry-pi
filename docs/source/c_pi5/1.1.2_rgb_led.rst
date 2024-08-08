@@ -1,0 +1,240 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+1.1.2 RGB LED
+====================
+
+前書き
+--------------
+
+このレッスンでは、これを使用してRGB LEDを制御し、さまざまな種類の色を点滅させる。
+
+部品
+--------------
+
+.. image:: ../img/list_rgb_led.png
+    :align: center
+
+原理
+--------------
+
+**PWM**
+
+パルス幅変調（PWM）は、デジタル手段でアナログ結果を取得するための技術である。
+デジタル制御は、オンとオフを切り替える信号である方形波を作成するために使用される。
+このオン/オフパターンは、信号がオンになる時間と信号がオフになる時間の部分を変更することにより、完全にオン（5ボルト）である時と完全にオフ（0ボルト）である時の間の電圧をシミュレートできる。
+「オンタイム」の期間はパルス幅と呼ばれる。さまざまなアナログ値を取得するには、その幅を変更または変調できる。
+このオン/オフパターンを何らかのデバイス、たとえばLEDで十分に速く繰り返すと、結果は次のようになる：信号はLEDの輝度を制御する0〜5vの安定した電圧である。
+
+**デューティサイクル**
+
+デューティサイクルは、信号が有効である1周期の割合である。期間とは、信号がオンとオフのサイクルを完了するのにかかる時間である。式として、デューティサイクルは次のように表示される：
+
+.. image:: ../img/image56.png
+   :width: 1.16667in
+   :height: 0.36458in
+   :align: center
+
+ここで、 **D** はデューティサイクル、 **T** は信号がアクティブな時間、 **P** は信号の合計周期です。 
+したがって、60％のデューティサイクルは、信号が60％の時間オンであるが、40％の時間オフであることを意味します。 
+60％のデューティサイクルの「定刻」は、期間の長さに応じて、数分の1秒、1日、または1週間になることもあります。
+
+.. image:: ../img/image57.jpeg
+   :width: 4.325in
+   :height: 5.49167in
+   :align: center
+
+**RGB LED**
+
+.. image:: ../img/rgb_led_sch.png
+    :width: 500
+    :align: center
+
+
+
+RGB LEDの3つの原色は、輝度によってさまざまな色に混ぜることができる。
+LEDの輝度はPWMで調整可能である。Raspberry PiにはハードウェアPWM出力用のチャネルが1つしかないが、RGB LEDを制御するには3つのチャネルが必要である。
+つまり、Raspberry PiのハードウェアPWMでRGB LEDを制御することは困難である。
+幸いなことに、softPwmライブラリはプログラミングによってPWM（softPwm）をシミュレートする。
+ヘッダーファイルsoftPwm.h（C言語ユーザー向け）をインクルードし、提供されるAPIを呼び出して、マルチチャネルPWM出力によってRGB LEDを簡単に制御するだけで、あらゆる種類の色を表示できる。
+
+回路図
+-----------------------
+
+R、G、およびBのピンを電流制限抵抗器に接続した後、それぞれGPIO17、GPIO18、およびGPIO27に接続してください。LEDの最も長いピン（GND）は、Raspberry Piの接地に接続する。3つのピンに異なるPWM値が与えられると、RGB LEDは異なる色を表示する。
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+============ ======== ======== ===
+
+.. image:: ../img/rgb_led_schematic.png
+
+実験手順
+----------------------------
+
+ステップ1: 回路を作る。
+
+.. image:: ../img/image61.png
+   :width: 6.59097in
+   :height: 4.29722in
+
+
+ステップ2: コードのフォルダーに入る。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/1.1.2/
+
+ステップ3: コードをコンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.1.2_rgbLed.c -lwiringPi
+
+.. note::
+
+    命令「gcc」が実行されるときに「-o」が呼び出されない場合、EXEファイルは「a.out」と命名する。
+
+ステップ4: EXEファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+
+コードを実行すると、RGBが赤、緑、青、黄色、ピンク、およびシアンを表示する。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <softPwm.h>
+    #include <stdio.h>
+    #define uchar unsigned char
+    #define LedPinRed    0
+    #define LedPinGreen  1
+    #define LedPinBlue   2
+
+    void ledInit(void){
+        softPwmCreate(LedPinRed,  0, 100);
+        softPwmCreate(LedPinGreen,0, 100);
+        softPwmCreate(LedPinBlue, 0, 100);
+    }
+
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val){
+        softPwmWrite(LedPinRed,   r_val);
+        softPwmWrite(LedPinGreen, g_val);
+        softPwmWrite(LedPinBlue,  b_val);
+    }
+
+    int main(void){
+
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, printf messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        ledInit();
+        while(1){
+            printf("Red\n");
+            ledColorSet(0xff,0x00,0x00);   //red     
+            delay(500);
+            printf("Green\n");
+            ledColorSet(0x00,0xff,0x00);   //green
+            delay(500);
+            printf("Blue\n");
+            ledColorSet(0x00,0x00,0xff);   //blue
+            delay(500);
+            printf("Yellow\n");
+            ledColorSet(0xff,0xff,0x00);   //yellow
+            delay(500);
+            printf("Purple\n");
+            ledColorSet(0xff,0x00,0xff);   //purple
+            delay(500);
+            printf("Cyan\n");
+            ledColorSet(0xc0,0xff,0x3e);   //cyan
+            delay(500);
+        }
+        return 0;
+    }
+
+**コードの説明**
+
+.. code-block:: c
+
+    #include <softPwm.h>
+
+ソフトウェアのpwm機能を実現するために使用されるライブラリ。
+
+.. code-block:: c
+
+    void ledInit(void){
+        softPwmCreate(LedPinRed,  0, 100);
+        softPwmCreate(LedPinGreen,0, 100);
+        softPwmCreate(LedPinBlue, 0, 100);
+    }
+
+この機能は、ソフトウェアを使用してPWMピンを作成し、その周期を0x100us〜100x100usに設定することである。
+
+関数 ``softPwmCreate(LedPinRed、0、100)`` のプロトタイプは次のとおりである：
+
+.. code-block:: c
+
+    int softPwmCreate(int pin,int initialValue,int pwmRange);
+
+* **pin:** ラズベリーパイの任意のGPIOピンは、PWMピンとして設定することができます。
+* **initialValue:** 初期パルス幅はinitialValueに100usを掛けたものである。
+* **pwmRange:** PWMの周期は、pwmRangeに100usを掛けたものである。
+
+.. code-block:: c
+
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val){
+        softPwmWrite(LedPinRed,   r_val);
+        softPwmWrite(LedPinGreen, g_val);
+        softPwmWrite(LedPinBlue,  b_val);
+    }
+
+この機能はLEDの色を設定する。RGBを使用すると、仮パラメータは赤の輝度の r_val 、緑の輝度の g_val 、青の輝度の b_val を表す。
+
+関数 ``softPwmWrite(LedPinBlue, b_val)`` のプロトタイプは次のとおりである：
+
+.. code-block:: c
+
+    void softPwmWrite (int pin, int value) ;
+
+* **pin:** ラズベリーパイの任意のGPIOピンは、PWMピンとして設定することができます。
+* **Value:** PWMのパルス幅は、値の100usの倍数です。値は、以前に定義された pwmRange より小さく、pwmRange より大きい場合、値には固定値 pwmRange が与えられることに注意してください。
+
+.. code-block:: c
+
+    ledColorSet(0xff,0x00,0x00);
+
+前に定義した関数を呼び出す。 ``LedPinRed`` に0xffを、 ``LedPinGreen`` と ``LedPinBlue`` に0x00を書き込む。
+このコードを実行すると、赤色のLEDのみが点灯する。他の色のLEDを点灯させる場合は、パラメーターを変更するだけである。

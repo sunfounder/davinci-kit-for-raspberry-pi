@@ -1,0 +1,289 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.2.3_py_pi5:
+
+2.2.3 DHT-11
+================
+
+はじめに
+--------------
+
+このレッスンでは、ラズベリーパイを使用してDHT11温湿度センサからデータを読み取る方法を学びます。センサーの設定、摂氏及び華氏での温度読み取り、湿度の取得方法について説明します。このプロジェクトでは、外部センサーの使用、リアルタイムデータの取り扱い、Pythonにおける基本的な例外処理について学ぶことができます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには以下の部品が必要です。
+
+.. image:: ../img/list_2.2.3_dht-11.png
+
+回路図
+-----------------
+
+.. image:: ../img/image326.png
+
+「Adafruit_Blinka」のインストール
+----------------------------------------------------------------
+
+adafruit-circuitpython-dhtライブラリはBlinkaに依存しているため、先にBlinkaをインストールしてください。
+
+Blinkaのユニークな特徴は、CircuitPythonで書かれたコードをラズベリーパイのようなLinuxコンピュータで簡単に実行できることです。
+
+このライブラリは、BMP280、VL53L0X、OLEDなどの複雑なモジュールの使用を簡単にし、プロジェクト開発プロセスを合理化します。CircuitPythonを使うことで、プログラミングがよりアクセスしやすくなり、広範なハードウェア知識を必要とせずに堅牢なアプリケーションの作成に集中できます。
+
+また、学習と開発を支援する大きなサポートコミュニティと多様なリソースの利点も得られます。
+
+Adafruit_Blinkaのインストールプロセスをガイドし、プロジェクトにすぐに取り組めるようにします。
+
+**ラズベリーパイとPythonのアップデート**
+
+Blinkaをインストールする前に、以下のコマンドを使用してラズベリーパイとPythonのバージョンを最新にしてください：
+
+.. code-block:: bash
+
+   sudo apt-get update
+   sudo apt-get upgrade
+
+**仮想環境の設定**
+
+Bookworm（OSバージョン）からは、「pip」を使用してインストールしたパッケージをPythonの仮想環境「venv」にインストールする必要があります。仮想環境は、サードパーティのモジュールをシステムのPythonに影響を与えることなくインストールできる安全なコンテナです。
+
+以下のコマンドでユーザーディレクトリ（ ``~`` ）に「env」というディレクトリを作成し、Pythonの仮想環境を作成します。
+
+.. code-block:: bash
+
+   cd ~
+   python -m venv env --system-site-packages
+
+Piを再起動するたびに仮想環境を有効にする必要があります。有効にするには：
+
+.. code-block:: bash
+
+   source ~/env/bin/activate
+
+プロンプトの先頭に（env）が追加されていることを確認してください。これは、システムのPythonではなく、仮想環境内のPythonを使用していることを意味します。ここで行う変更はシステムPythonに問題を引き起こすことはなく、環境にインストールされた新しいモジュールも問題を引き起こしません。
+
+.. image:: ../img/07_activate_env.png
+
+無効にするには「deactivate」を使用しますが、今はそのままにしてください。
+
+**自動インストール**
+
+仮想環境が有効になっている（ターミナルコマンドの始めに ``(env)`` が表示されている）とき、以下のコードを順番に実行してください。このコードは、adafruit提供のインストールスクリプトを実行し、残りのインストールステップを自動で完了します。
+
+.. code-block:: bash
+
+   pip3 install --upgrade adafruit-python-shell
+
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
+
+
+.. code-block:: bash
+
+   sudo -E env PATH=$PATH python3 raspi-blinka.py
+
+数分かかることがあります。完了すると、再起動するかどうかを尋ねられます。すぐに再起動する場合はEnterを押し、後で再起動する場合は「n」と入力してからEnterを押してください。準備ができたら、手動でラズベリーパイを再起動してください。
+
+.. image:: ../img/07_after_install_blinka.png
+
+再起動すると、接続が切断されます。数分後に再接続できます。
+
+ライブラリのインストール
+---------------------------
+
+ライブラリをインストールする前に、仮想Python環境が有効であることを確認してください。
+
+.. code-block:: bash
+
+   source ~/env/bin/activate
+
+adafruit-circuitpython-dhtライブラリをインストール：
+
+.. code-block:: bash
+
+   pip install adafruit-circuitpython-dht
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/image207.png
+
+**ステップ 2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ 3:** コードを実行する前に、blinkaがインストールされている仮想Python環境が有効であることを確認してください。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    source ~/env/bin/activate
+
+**ステップ 4:** 実行ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    python3 2.2.3_DHT.py
+
+プログラムを実行すると、DHT11によって検出された温度と湿度がコンピュータ画面に表示されます。
+
+**コード**
+
+.. note::
+
+    下記のコードを **変更/リセット/コピー/実行/停止** することができます。ただし、その前に ``davinci-kit-for-raspberry-pi/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を確認できます。
+
+.. code-block:: python
+
+    import time
+    import board
+    import adafruit_dht
+
+    # データピンが接続されたdhtデバイスを初期化します。
+    dhtDevice = adafruit_dht.DHT11(board.D17)
+
+    while True:
+        try:
+            # シリアルポートに値を出力します
+            temperature_c = dhtDevice.temperature
+            temperature_f = temperature_c * (9 / 5) + 32
+            humidity = dhtDevice.humidity
+            print(
+                "温度: {:.1f} F / {:.1f} C    湿度: {}% ".format(
+                    temperature_f, temperature_c, humidity
+                )
+            )
+
+        except RuntimeError as error:
+            # DHTの読み取りは頻繁にエラーが発生しますが、続けてください
+            print(error.args[0])
+            time.sleep(2.0)
+            continue
+        except Exception as error:
+            dhtDevice.exit()
+            raise error
+
+        time.sleep(2.0)
+
+
+**コード説明**
+
+#. ライブラリのインポート:
+
+   必要なライブラリをインポートします。「time」は遅延の処理、「board」はRaspberry PiのGPIOピンへのアクセス、「adafruit_dht」はDHT11センサーとの対話に使用します。「adafruit_dht」ライブラリについての詳細は |Adafruit_CircuitPython_DHT| を参照してください。
+
+   .. code-block:: python
+    
+      import time
+      import board
+      import adafruit_dht
+
+#. センサーの初期化:
+
+   DHT11センサーはRaspberry PiのGPIO 17ピンに接続されたデータピンで初期化されます。この設定は、センサーがRaspberry Piと通信するために重要です。
+
+   .. code-block:: python
+
+      dhtDevice = adafruit_dht.DHT11(board.D17)
+
+
+#. ループ内でセンサーデータを読み取り:
+
+   ``while True`` ループは、プログラムがセンサーから新しいデータを継続的にチェックすることを可能にします。
+
+   .. code-block:: python
+
+      while True:
+
+
+#. try-exceptブロック:
+
+   ループ内では、try-exceptブロックを使用して潜在的なランタイムエラーを処理します。DHTセンサーからの読み取りは、タイミングの問題やセンサーのクセのためにエラーが発生することがよくあります。
+
+   .. code-block:: python
+
+      try:
+          # Sensor data reading code here
+      except RuntimeError as error:
+          # Handling common sensor reading errors
+          print(error.args[0])
+          time.sleep(2.0)
+          continue
+      except Exception as error:
+          # Handling other exceptions and exiting
+          dhtDevice.exit()
+          raise error
+
+#. センサーデータの読み取りと出力:
+
+   センサーから温度と湿度を読み取り、人が読める形式に変換します。温度は摂氏から華氏にも変換されます。
+
+
+   .. code-block:: python
+
+      temperature_c = dhtDevice.temperature
+      temperature_f = temperature_c * (9 / 5) + 32
+      humidity = dhtDevice.humidity
+      print("Temp: {:.1f} F / {:.1f} C    Humidity: {}% ".format(temperature_f, temperature_c, humidity))
+
+
+#. 読み取りエラーの処理:
+
+   DHT11センサーは頻繁にエラーを返すことがありますので、プログラムはこれを処理するためにtry-exceptブロックを使用します。エラーが発生した場合、プログラムは2秒間待ってから再度センサーからの読み取りを試みます。
+
+   .. code-block:: python
+
+      except RuntimeError as error:
+          print(error.args[0])
+          time.sleep(2.0)
+          continue
+
+
+#. 一般的な例外の処理:
+
+   発生する可能性のある他の例外は、安全にセンサーを終了させて再発生させることによって処理されます。これにより、プログラムが不安定な状態で続行されることがないようにします。
+
+   .. code-block:: python
+
+      except Exception as error:
+          dhtDevice.exit()
+          raise error
+
+#. 読み取り間の遅延:
+
+   ループの最後に2秒間の遅延が追加されます。これにより、センサーを継続的にポーリングすることが避けられ、誤読が生じる可能性が低くなります。
+
+   .. code-block:: python
+
+      time.sleep(2.0)
+

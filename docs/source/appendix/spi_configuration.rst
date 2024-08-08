@@ -32,9 +32,9 @@ SPI構成
 .. image:: media/image282.png
    :align: center
 
-**P4 SPI**
+**I3 SPI**
 
-.. image:: media/image285.png
+.. image:: img/i3spi.png
    :align: center
 
 <YES> をクリックし、<OK> と <Finish> をクリックします。 これで、 ``sudo reboot`` コマンドを使用してRaspberryPiを再起動できます。

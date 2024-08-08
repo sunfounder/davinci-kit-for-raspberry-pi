@@ -1,0 +1,163 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+3.1.2 いらっしゃいませ
+======================
+
+前書き
+-------------
+
+このプロジェクトでは、PIRを使用して歩行者の動きを検知し、サーボ、LED、ブザーを使用してコンビニのセンサードアの動作をシミュレートする。歩行者がPIRの検知範囲内に現れると、インジケータライトが点灯し、ドアが開き、ブザーがオープニングベルを鳴らす。
+
+部品
+---------------
+
+.. image:: ../img/list_Welcome.png
+    :align: center
+
+回路図
+-------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO18       Pin 12   1        18
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one2.png
+   :align: center
+
+実験手順
+-------------------------
+
+ステップ1： 回路を作る。
+
+.. image:: ../img/image239.png
+    :alt: C:\Users\sunfounder\Desktop\3.1.4_Welcome_bb.png3.1.4_Welcome_bb
+    :width: 800
+    :align: center
+
+
+ステップ2： ディレクトリを変更する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/c/3.1.2/
+
+ステップ3： コンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.2_Welcome.c -lwiringPi
+
+ステップ4： 実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+コードの実行後、PIRセンサーが通り過ぎる人を検出すると、
+ドアが自動的に開き（サーボによってシミュレートされる）、
+インジケーターをオンにして、ドアベルの音楽を再生する。ドアベルの音楽が再生されると、
+システムは自動的にドアを閉じてインジケータライトをオフにし、次に誰かが通り過ぎることを待つ。
+
+PIR モジュールには 2 つのポテンショメータがあり、
+1 つは感度を調整するためのもので、もう 1 つは検出距離を調整するためのものです。 
+PIR モジュールがうまく機能するためには、両方を完全に反時計回りに回す必要があります。
+
+
+**コードの説明**
+
+.. code-block:: c
+
+    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+        if(angle < 0)
+            angle = 0;
+        if(angle > 180)
+            angle = 180;
+        softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
+    } 
+
+0〜180の角度をサーボに書き込むための関数、 ``setAngle`` を作成する。
+
+.. code-block:: c
+
+    void doorbell(){
+    for(int i=0;i<sizeof(song)/4;i++){
+            softToneWrite(BuzPin, song[i]); 
+            delay(beat[i] * 250);
+        }
+
+ブザーで音楽を再生できるようにする関数、 ``doorbell`` を作成する。
+
+.. code-block:: c
+
+    void closedoor(){
+    digitalWrite(ledPin, LOW);   //led off
+    for(int i=180;i>-1;i--){  //make servo rotate from maximum angle to minimum angle
+        setAngle(servoPin,i);
+        delay(1);
+        }
+    }
+
+ドアの閉鎖をシミュレートする関数 ``closedoor`` を作成し、
+LEDをオフにし、サーボを180度から0度に回転させる。
+
+.. code-block:: c
+
+    void opendoor(){
+        digitalWrite(ledPin, HIGH);   //led on
+        for(int i=0;i<181;i++){  //make servo rotate from minimum angle to maximum angle
+            setAngle(servoPin,i);
+            delay(1);
+        }
+        doorbell();
+        closedoor();
+    }
+
+関数 ``opendoor()`` にはいくつかの部分が含まれている：インジケータライトをオンにし、
+サーボを回転させ（ドアを開く動作をシミュレートする）、
+コンビニのドアベル音楽を再生し、音楽を再生した後に関数 ``closedoor()`` を呼び出す。
+
+.. code-block:: c
+
+        int main(void)
+    {
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+    ......
+
+関数 ``main()`` で、ライブラリー ``wiringPi`` を初期化し、
+``softTone`` をセットアップしてから、 ``ledPin`` を出力状態に、
+``pirPin`` を入力状態に設定する。PIRセンサーが通り過ぎる人を検出すると、
+ドアを開くことをシミュレートするために関数 ``opendoor`` が呼び出される。

@@ -32,9 +32,9 @@ I2C構成
 .. image:: media/image282.png
     :align: center
 
-**P5 I2C**
+**I4 I2C**
 
-.. image:: media/image283.png
+.. image:: img/I4i2c.jpeg
     :align: center
 
 **<Yes>、次に<Ok> -> <Finish>**
@@ -53,6 +53,9 @@ I2C構成
     lsmod | grep i2c
 
 すると、次のようなコードが表示されます（番号は異なる場合があります）。
+これらが表示されない場合は、
+``sudo reboot`` でRaspberry Piを再起動してください。
+
 
 .. code-block:: 
 

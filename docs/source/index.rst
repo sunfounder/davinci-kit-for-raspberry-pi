@@ -36,29 +36,18 @@ Da Vinciキットについて
 
 電子メール：cs@sunfounder.com。
 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. **About the display language**
+.. list-table::
+    :widths: 20 20
+    :header-rows: 1
 
-.. In addition to English, we are working on other languages for this course. Please contact service@sunfounder.com if you are interested in helping, and we will give you a free product in return. 
-.. In the meantime, we recommend using Google Translate to convert English to the language you want to see.
+    *   - 名前	
+        - リンク
+    *   - DaVinci Kit
+        - |link_DaVinci_kit|
 
-.. The steps are as follows.
-
-.. * In this course page, right-click and select **Translate to xx**. If the current language is not what you want, you can change it later.
-
-.. .. image:: media/translate1.png
-..     :align: center
-
-.. * There will be a language popup in the upper right corner. Click on the menu button to **choose another language**.
-
-.. .. image:: media/translate2.png
-..     :align: center
-
-.. * Select the language from the inverted triangle box, and then click **Done**.
-
-.. .. image:: media/translate3.png
-..     :align: center
-
+**目次**
 
 .. toctree::
     :maxdepth: 2
@@ -73,7 +62,6 @@ Da Vinciキットについて
     for_pi5
     for_other_models
     python_video/python_video
-    
     appendix/appendix
     faq
     thank-learning

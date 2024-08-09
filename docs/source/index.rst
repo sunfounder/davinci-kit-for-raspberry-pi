@@ -12,10 +12,10 @@
 
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
-SunFounder Da Vinci Kit for Raspberry Pi
-===========================================
+SunFounder |link_DaVinci_kit| for Raspberry Pi
+=========================================================
 
-Danke, dass Sie sich für unser Vinci Kit entschieden haben.
+Danke, dass Sie sich für |link_DaVinci_kit| entschieden haben.
 
 .. note::
     Dieses Dokument ist in den folgenden Sprachen verfügbar.
@@ -27,25 +27,14 @@ Danke, dass Sie sich für unser Vinci Kit entschieden haben.
     Bitte klicken Sie auf die jeweiligen Links, um das Dokument in Ihrer bevorzugten Sprache aufzurufen.
 
 
-Über das Da Vinci Kit
--------------------------
 
-Dieses Da Vinci-Kit gilt für den Raspberry Pi 5/4 Modell B, 3 Modell A +, 3 Modell B +, 3 Modell B, 2 Modell B, 1 Modell B +, 1 Modell A +, zero W and zero. Es enthält verschiedene Komponenten und Chips, die dazu beitragen können, verschiedene interessante Phänomene zu erzeugen, die Sie durch eiige Operationen unter Anleitung von Versuchsanweisungen erhalten können. In diesem Prozess können Sie einige Grundkenntnisse über Programmieren erlernen. Sie können auch mehrere Anwendungen selbst erkunden. Jetzt mach es!
+Dieses |link_DaVinci_kit| gilt für den Raspberry Pi 5/4 Modell B, 3 Modell A +, 3 Modell B +, 3 Modell B, 2 Modell B, 1 Modell B +, 1 Modell A +, zero W and zero. Es enthält verschiedene Komponenten und Chips, die dazu beitragen können, verschiedene interessante Phänomene zu erzeugen, die Sie durch eiige Operationen unter Anleitung von Versuchsanweisungen erhalten können. In diesem Prozess können Sie einige Grundkenntnisse über Programmieren erlernen. Sie können auch mehrere Anwendungen selbst erkunden. Jetzt mach es!
 
 Wenn Sie andere Projekte kennenlernen möchten, die wir nicht haben, senden Sie bitte eine E-Mail und wir werden so schnell wie möglich auf unsere Online-Tutorials aktualisieren. Vorschläge sind willkommen.
 
-Hier ist die E-Mail: cs@sunfounder.com.
+Hier ist die E-Mail: service@sunfounder.com.
 
-Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
-.. list-table::
-    :widths: 20 20 20
-    :header-rows: 1
-
-    *   - Name	
-        - LINK
-    *   - DaVinci Kit
-        - |link_DaVinci_kit|
 
 
 .. toctree::

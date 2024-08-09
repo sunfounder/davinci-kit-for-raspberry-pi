@@ -12,8 +12,8 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-SunFounder Da Vinci Kit for Raspberry Pi
-===========================================
+SunFounder |link_DaVinci_kit| for Raspberry Pi
+========================================================
 
 Thanks for choosing our Vinci Kit.
 
@@ -52,18 +52,8 @@ achievements or creation on our forum while reading this document.
 
 If you have any questions, please send an email to service@sunfounder.com and we will respond as soon as possible.
 
-**Purchase link**
 
-It's definitely convenient to buy a whole kit, here's the link: 
 
-.. list-table::
-    :widths: 20 20 20
-    :header-rows: 1
-
-    *   - Name	
-        - LINK
-    *   - DaVinci Kit
-        - |link_DaVinci_kit|
 
 **Contents**
 

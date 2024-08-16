@@ -16,7 +16,9 @@
 SunFounder |link_DaVinci_kit| for Raspberry Pi
 =====================================================
 
-SunFounder Vinci Kitをお選びいただき、ありがとうございます。
+|link_DaVin_kit|
+
+|link_DaVinci_kit|をお選びいただき、ありがとうございます。
 
 .. note::
     このドキュメントは以下の言語で利用可能です。

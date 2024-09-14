@@ -111,6 +111,9 @@ rst_epilog = """
 
     <a href="https://www.sunfounder.com/collections/raspberry-pi-kits-bundles/products/sunfounder-davinci-kit" target="_blank">DaVinci Kit</a>
 
-     
+.. |link_DaVin_kit| raw:: html
+
+    <a href="https://www.sunfounder.com/collections/raspberry-pi-kits-bundles/products/sunfounder-davinci-kit" target="_blank">Kauflink für DaVinci Kit</a>
+
 """
 

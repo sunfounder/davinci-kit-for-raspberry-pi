@@ -1,52 +1,51 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté Facebook des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 ! Plongez dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Assistance d'experts** : Résolvez vos problèmes après-vente et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des conseils et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Profitez d'un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Bénéficiez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 2.2.3 DHT-11
-============
+==============
 
 Introduction
 --------------
 
-The digital temperature and humidity sensor DHT11 is a composite sensor
-that contains a calibrated digital signal output of temperature and
-humidity. The technology of a dedicated digital modules collection and
-the technology of the temperature and humidity sensing are applied to
-ensure that the product has high reliability and excellent stability.
+Le capteur numérique de température et d'humidité DHT11 est un capteur 
+composite qui contient un signal de sortie numérique calibré pour la 
+température et l'humidité. La technologie de collecte des modules numériques 
+dédiés ainsi que la technologie de détection de température et d'humidité sont 
+appliquées pour garantir une haute fiabilité et une excellente stabilité.
 
-The sensors include a wet element resistive sensor and a NTC temperature
-sensor and they are connected to a high performance 8-bit
-microcontroller.
+Le capteur comprend un capteur résistif d'humidité et un capteur de température 
+NTC, tous deux connectés à un microcontrôleur haute performance 8 bits.
 
-Components
-----------
+Composants
+-------------
 
 .. image:: ../img/list_2.2.3_dht-11.png
 
-Schematic Diagram
------------------
+Schéma de câblage
+--------------------
 
 .. image:: ../img/image326.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Montez le circuit.
 
 .. image:: ../img/image207.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au répertoire du code.
 
 .. raw:: html
 
@@ -56,7 +55,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Install dependencies.
+**Étape 3 :** Installez les dépendances.
 
 .. raw:: html
 
@@ -66,18 +65,18 @@ Experimental Procedures
 
     sudo npm install node-dht-sensor
 
-**Step 4:** Run the code.
+**Étape 4 :** Exécutez le code.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     sudo node dht11.js
 
-After the code runs, the program will print the temperature and humidity
-detected by DHT11 on the computer screen.
+Une fois le programme exécuté, la température et l'humidité détectées par le 
+DHT11 seront affichées sur l'écran de l'ordinateur.
 
 **Code**
 
@@ -93,23 +92,24 @@ detected by DHT11 on the computer screen.
       });
     },1000);
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: js
 
     var sensor = require("node-dht-sensor");
 
-Import the module ``node-dht-sensor`` module, which provides functions for us to read the value of DHT-11.
+Importe le module ``node-dht-sensor``, qui fournit des fonctions pour lire les valeurs du DHT-11.
 
 .. note::
-  For more details, please refer to: https://www.npmjs.com/package/node-dht-sensor
+  Pour plus de détails, veuillez consulter : https://www.npmjs.com/package/node-dht-sensor
 
 .. code-block:: js
 
     sensor.read(11, 17, function(err, temperature, humidity){...})
 
-The ``node-dht-sensor`` module provides the ``read()`` function for us to read the measured temperature and humidity, 
-where **11** means DHT-11, **17** means and its connected to GPIO17.
+Le module ``node-dht-sensor`` fournit la fonction ``read()`` pour lire les températures 
+et humidités mesurées, où **11** indique le modèle DHT-11 et **17** désigne la broche 
+GPIO17 connectée.
 
 .. code-block:: js
 
@@ -117,11 +117,10 @@ where **11** means DHT-11, **17** means and its connected to GPIO17.
       console.log(`temp: ${temperature}\`C, humidity: ${humidity}%`);
     }    
 
-When there is no error in the reading, the temperature and humidity values are printed on the terminal.
+Lorsque la lecture se fait sans erreur, les valeurs de température et d'humidité sont affichées sur le terminal.
 
 
-Phenomenon Picture
-------------------
+Image du phénomène
+---------------------
 
 .. image:: ../img/image209.jpeg
-    

@@ -1,34 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, d'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez & Partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et aux avant-goûts exclusifs.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos derniers produits.
+    - **Promotions et concours festifs** : Participez à des concours et à des promotions spéciales pour les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd'hui !
 
 .. _2.1.2_py_pi5:
 
-2.1.2 Slide Switch
-==================
+2.1.2 Interrupteur à glissière
+=================================
 
 Introduction
-------------
+----------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+Dans ce projet, nous allons apprendre à utiliser un interrupteur à glissière. 
+Habituellement, l'interrupteur à glissière est soudé sur un circuit imprimé (PCB) 
+en tant qu'interrupteur d'alimentation, mais ici nous allons l'insérer dans une 
+plaque de prototypage (breadboard), même si cela peut le rendre moins stable. 
+Nous l'utiliserons sur la breadboard pour illustrer son fonctionnement.
 
-Required Components
-------------------------------
+Composants nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous aurons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/2.1.2_slide_switch_list.png
 
@@ -36,27 +37,26 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
------------------
+Schéma de circuit
+--------------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Connectez la broche centrale de l'interrupteur à glissière au GPIO17, 
+et deux LEDs respectivement aux broches GPIO22 et GPIO27. Ainsi, lorsque 
+vous basculez l'interrupteur, vous verrez les deux LEDs s'allumer en alternance.
 
 .. image:: ../python_pi5/img/2.1.2_slide_switch_schematic_1.png
-
 
 .. image:: ../python_pi5/img/2.1.2_slide_switch_schematic_2.png
 
 
-Experimental Procedures
------------------------
+Procédure expérimentale
+---------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Montez le circuit.
 
 .. image:: ../python_pi5/img/2.1.2_slide_switch_circuit.png
 
-**Step 2**: Get into the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -66,7 +66,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3**: Run.
+**Étape 3 :** Exécutez le code.
 
 .. raw:: html
 
@@ -76,19 +76,18 @@ Experimental Procedures
 
     sudo python3 2.1.2_Slider_zero.py
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Lorsque le code s'exécute, placez l'interrupteur à gauche : la LED jaune s'allumera ; 
+placez-le à droite : la LED rouge s'allumera.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    En cas d'erreur « RuntimeError: Cannot determine SOC peripheral base address », veuillez consulter :ref:`faq_soc`.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source, tel que ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification, vous pouvez exécuter le code pour observer le résultat.
 
 .. raw:: html
 
@@ -97,75 +96,74 @@ the yellow LED lights up; to the right, the red light turns on.
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import LED, Button  # Import LED and Button classes for GPIO control
-   from time import sleep  # Import sleep function for adding delays
+   from gpiozero import LED, Button  # Importer les classes LED et Button pour le contrôle GPIO
+   from time import sleep  # Importer la fonction sleep pour ajouter des délais
 
-   # Initialize the micro switch on GPIO pin 17 with the pull-up resistor disabled
+   # Initialiser l'interrupteur micro sur la broche GPIO 17 sans résistance pull-up
    micro_switch = Button(17, pull_up=False)
-   # Initialize LED1 on GPIO pin 22
+   # Initialiser la LED1 sur la broche GPIO 22
    led1 = LED(22)
-   # Initialize LED2 on GPIO pin 27
+   # Initialiser la LED2 sur la broche GPIO 27
    led2 = LED(27)
 
    try:
-       # Main loop to control LED states based on the micro switch's state
+       # Boucle principale pour contrôler l'état des LEDs en fonction de l'état de l'interrupteur
        while True:
-           if micro_switch.is_pressed:  # Check if the micro switch is pressed
-               print('    LED1 ON    ')  # Print status message
-               led1.on()   # Turn on LED1
-               led2.off()  # Turn off LED2
-           else:  # If the micro switch is not pressed
-               print('    LED2 ON    ')  # Print status message
-               led1.off()  # Turn off LED1
-               led2.on()   # Turn on LED2
+           if micro_switch.is_pressed:  # Vérifier si l'interrupteur est pressé
+               print('    LED1 ON    ')  # Afficher le message de statut
+               led1.on()   # Allumer la LED1
+               led2.off()  # Éteindre la LED2
+           else:  # Si l'interrupteur n'est pas pressé
+               print('    LED2 ON    ')  # Afficher le message de statut
+               led1.off()  # Éteindre la LED1
+               led2.on()   # Allumer la LED2
 
-           sleep(0.5)  # Wait for 0.5 seconds before rechecking the switch state
+           sleep(0.5)  # Attendre 0,5 seconde avant de vérifier à nouveau l'état de l'interrupteur
 
    except KeyboardInterrupt:
-       # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
+       # Gérer une interruption clavier (Ctrl+C) pour une sortie propre de la boucle
        pass
- 
 
-**Code Explanation**
 
-#. This line sets the script to run with Python 3. It imports ``LED`` and ``Button`` from ``gpiozero`` for controlling GPIO devices, and ``sleep`` from ``time`` for delays.
+**Explication du code**
+
+#. Cette ligne définit le script pour être exécuté avec Python 3. Elle importe les classes ``LED`` et ``Button`` de ``gpiozero`` pour le contrôle des appareils GPIO, ainsi que ``sleep`` du module ``time`` pour ajouter des délais.
 
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import LED, Button  # Import LED and Button classes for GPIO control
-       from time import sleep  # Import sleep function for adding delays
+       from gpiozero import LED, Button  # Importer les classes LED et Button pour le contrôle GPIO
+       from time import sleep  # Importer la fonction sleep pour ajouter des délais
 
-#. Initializes a micro switch connected to GPIO pin 17 with the pull-up resistor disabled, and two LEDs connected to GPIO pins 22 and 27.
+#. Initialise un micro-interrupteur connecté à la broche GPIO 17 sans résistance pull-up, et deux LEDs connectées aux broches GPIO 22 et 27.
 
    .. code-block:: python
 
-       # Initialize the micro switch on GPIO pin 17 with the pull-up resistor disabled
+       # Initialiser l'interrupteur micro sur la broche GPIO 17 sans résistance pull-up
        micro_switch = Button(17, pull_up=False)
-       # Initialize LED1 on GPIO pin 22
+       # Initialiser la LED1 sur la broche GPIO 22
        led1 = LED(22)
-       # Initialize LED2 on GPIO pin 27
+       # Initialiser la LED2 sur la broche GPIO 27
        led2 = LED(27)
 
-#. The main loop checks the state of the micro switch. If pressed, LED1 turns on and LED2 off; if not pressed, LED1 off and LED2 on. The loop repeats every 0.5 seconds. Catches a KeyboardInterrupt (like Ctrl+C) to allow for graceful script termination.
+#. La boucle principale vérifie l'état du micro-interrupteur. Si pressé, la LED1 s'allume et la LED2 s'éteint ; si relâché, la LED1 s'éteint et la LED2 s'allume. La boucle se répète toutes les 0,5 seconde. Capture un ``KeyboardInterrupt`` (comme Ctrl+C) pour une terminaison propre du script.
 
    .. code-block:: python
 
        try:
-       # Main loop to control LED states based on the micro switch's state
+       # Boucle principale pour contrôler l'état des LEDs en fonction de l'état de l'interrupteur
        while True:
-           if micro_switch.is_pressed:  # Check if the micro switch is pressed
-               print('    LED1 ON    ')  # Print status message
-               led1.on()   # Turn on LED1
-               led2.off()  # Turn off LED2
-           else:  # If the micro switch is not pressed
-               print('    LED2 ON    ')  # Print status message
-               led1.off()  # Turn off LED1
-               led2.on()   # Turn on LED2
+           if micro_switch.is_pressed:  # Vérifier si l'interrupteur est pressé
+               print('    LED1 ON    ')  # Afficher le message de statut
+               led1.on()   # Allumer la LED1
+               led2.off()  # Éteindre la LED2
+           else:  # Si l'interrupteur n'est pas pressé
+               print('    LED2 ON    ')  # Afficher le message de statut
+               led1.off()  # Éteindre la LED1
+               led2.on()   # Allumer la LED2
 
-           sleep(0.5)  # Wait for 0.5 seconds before rechecking the switch state
+           sleep(0.5)  # Attendre 0,5 seconde avant de vérifier à nouveau l'état de l'interrupteur
 
        except KeyboardInterrupt:
-           # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
+           # Gérer une interruption clavier (Ctrl+C) pour une sortie propre de la boucle
            pass
-       

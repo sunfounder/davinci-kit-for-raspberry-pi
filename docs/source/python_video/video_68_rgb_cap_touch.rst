@@ -1,33 +1,34 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez au cœur de l'univers du Raspberry Pi, d'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Assistance d'experts** : Résolvez vos problèmes post-achat et surmontez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez astuces et tutoriels pour développer vos compétences.
+    - **Avant-premières exclusives** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et à leurs avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos dernières innovations.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales pour les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Video 68: Controlling an RGB LED With A Capacitive Touch Sensor
+
+Vidéo 68 : Contrôler une LED RGB avec un Capteur Tactile Capacitif
 =======================================================================================
 
+Rejoignez-nous pour une nouvelle série de tutoriels Raspberry Pi sponsorisée par 
+SunFounder, où nous explorons des projets passionnants et des solutions innovantes. 
+Dans cette vidéo, nous introduisons la série et proposons une solution à l'exercice 
+pratique de la leçon précédente.
 
-Join us in our new Raspberry Pi tutorial series sponsored by SunFounder, 
-where we explore exciting projects and solutions. In this video, we introduce the series and showcase a solution to a previous lesson's homework assignment.
+1. **Introduction** : Bienvenue dans notre nouvelle série de tutoriels Raspberry Pi, présentée par SunFounder.
+2. **Présentation du Kit** : Découvrez le kit Raspberry Pi utilisé dans la série et ses composants.
+3. **Acquisition du Matériel** : Assurez-vous de disposer du même matériel pour suivre les tutoriels plus facilement.
+4. **Revue de l'Exercice Pratique** : Récapitulatif de l'exercice pratique précédent impliquant un capteur tactile capacitif et le contrôle d'une LED RGB.
+5. **Implémentation du Code** : Démonstration pas à pas du codage pour obtenir la fonctionnalité souhaitée.
+6. **Explication du Code** : Explication détaillée des segments de code, couvrant la configuration des broches GPIO, l'intégration du capteur, le contrôle de la LED et la gestion des erreurs.
 
-
-1. **Introduction**: Welcome to our new Raspberry Pi tutorial series, brought to you by SunFounder.
-2. **Kit Overview**: Learn about the Raspberry Pi kit used in the series and its components.
-3. **Hardware Acquisition**: Ensure you have the same hardware to follow along easily with the tutorials.
-4. **Homework Assignment Review**: Recap of a previous lesson's homework task involving a capacitive touch sensor and RGB LED control.
-5. **Code Implementation**: Step-by-step demonstration of coding to achieve the desired functionality.
-6. **Code Explanation**: Detailed explanation of code segments covering GPIO pin setup, sensor integration, LED control, and error handling.
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 

@@ -1,70 +1,68 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez et partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions exclusives** : Profitez de réductions sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des promotions et à des cadeaux lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-1.5 Wake up the Owl
-====================
+1.5 Réveiller le hibou
+======================
 
-Today we are going to play a game of waking up the owl.
+Aujourd'hui, nous allons jouer à un jeu pour réveiller le hibou.
 
-When someone approaches the PIR sensor module, the owl will wake up from sleep.
+Lorsque quelqu'un s'approche du module capteur PIR, le hibou se réveillera de son sommeil.
 
-There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
+Le module PIR comporte deux potentiomètres : l'un sert à ajuster la sensibilité et 
+l'autre à régler la distance de détection. Pour que le module PIR fonctionne de manière 
+optimale, vous devez tourner les deux boutons à fond dans le sens antihoraire.
 
 .. image:: img/1.5_header.png
 
-Required Components
------------------------
+Composants nécessaires
+--------------------------
 
 .. image:: img/1.5_component.png
 
-Build the Circuit
----------------------
+Construire le circuit
+------------------------
 
 .. image:: img/1.5_fritzing.png
 
-Load the Code and See What Happens
----------------------------------------
+Charger le code et voir ce qui se passe
+-------------------------------------------
 
-Load the code file (``1.5_wake_up_the_owl.sb3``) to Scratch 3.
+Chargez le fichier de code (``1.5_wake_up_the_owl.sb3``) dans Scratch 3.
 
-When you approach the PIR sensor module, you will see the owl on the stage area open its wings and wake up, and when you leave, the owl will go back to sleep again.
+Lorsque vous vous approchez du module capteur PIR, vous verrez le hibou dans la zone de scène déployer ses ailes et se réveiller. Lorsque vous vous éloignez, le hibou retournera à son état de sommeil.
 
 
-Tips on Sprite
-----------------
+Conseils sur le sprite
+------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **owl1.png** and **owl2.png** from the ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **owl**.
+Sélectionnez **Sprite1** et cliquez sur **Costumes** en haut à gauche ; téléversez **owl1.png** et **owl2.png** depuis le chemin ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` via le bouton **Téléverser un costume** ; supprimez les 2 costumes par défaut et renommez le sprite en **hibou**.
 
 .. image:: img/1.5_pir1.png
 
-Tips on Codes
---------------
+Conseils sur le code
+------------------------
 
 .. image:: img/1.3_title2.png
 
-
-When the green flag is clicked, the initial state of gpio17 is set to low.
+Lorsque le drapeau vert est cliqué, l'état initial de gpio17 est défini sur bas.
 
 .. image:: img/1.5_owl1.png
   :width: 400
 
-When pin17 is low (no one is approaching), switch the costume of the owl sprite to owl1 (sleeping state).
+Lorsque gpio17 est bas (personne ne s'approche), changez le costume du sprite hibou en owl1 (état de sommeil).
 
 .. image:: img/1.5_owl2.png
   :width: 400
 
-When pin17 is high (someone is approaching), we switch the costume of owl sprite to owl2 (wake up state).
+Lorsque gpio17 est haut (quelqu'un s'approche), changez le costume du sprite hibou en owl2 (état éveillé).

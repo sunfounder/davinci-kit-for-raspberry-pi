@@ -1,34 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d’experts** : Résolvez les problèmes après-vente et surmontez les défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour enrichir vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et profitez d’aperçus exclusifs.
+    - **Réductions spéciales** : Bénéficiez de remises exclusives sur nos nouveaux produits.
+    - **Promotions et concours festifs** : Participez à des concours et à des promotions spéciales lors des événements festifs.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd’hui !
 
 
-Video 28: Understanding and Using Active and Passive Buzzers
+Vidéo 28 : Comprendre et utiliser les buzzers actifs et passifs
 =======================================================================================
 
-Learn how to integrate buzzers into Raspberry Pi projects and create a temperature sensor alarm system in this comprehensive tutorial, covering hardware setup, programming, testing, and community engagement.
+Apprenez à intégrer des buzzers dans vos projets Raspberry Pi et créez un système d'alarme pour capteur de température grâce à ce tutoriel complet, qui couvre l’installation matérielle, la programmation, les tests et l'engagement communautaire.
 
-1. **Active vs. Passive Buzzers**: Understand the differences and characteristics of active and passive buzzers.
-2. **Hardware Setup**: Follow a schematic to correctly connect buzzers, transistors, resistors, and GPIO pins.
-3. **Programming**: Explore Python code for controlling buzzers and implementing temperature sensor functionalities.
-4. **Mode Transition**: Implement a push button for transitioning between program mode and monitor mode.
-5. **Community Engagement**: Share project solutions on YouTube and engage with the community.
-6. **Skill Integration**: Apply previously learned concepts to develop a comprehensive project.
-
-
+1. **Buzzers actifs vs passifs** : Comprenez les différences et les caractéristiques des buzzers actifs et passifs.
+2. **Installation matérielle** : Suivez le schéma pour connecter correctement les buzzers, les transistors, les résistances et les broches GPIO.
+3. **Programmation** : Découvrez le code Python permettant de contrôler les buzzers et d’implémenter les fonctionnalités du capteur de température.
+4. **Transition de mode** : Implémentez un bouton poussoir pour passer du mode programme au mode surveillance.
+5. **Engagement communautaire** : Partagez vos solutions de projet sur YouTube et échangez avec la communauté.
+6. **Intégration de compétences** : Appliquez les concepts précédemment acquis pour développer un projet complet.
 
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

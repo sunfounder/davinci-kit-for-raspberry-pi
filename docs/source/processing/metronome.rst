@@ -1,34 +1,33 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, Arduino et ESP32 avec d’autres amateurs.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d’experts** : Résolvez vos problèmes après-vente et relevez des défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et bénéficiez d’aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et cadeaux** : Participez à des promotions spéciales et à des tirages au sort.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
 
 Metronome
 ====================
 
-Here we will make a metronome, the metronome is divided into 5 levels, the higher the level, the more urgent the buzzer call.
+Dans ce projet, nous allons créer un métronome, qui est divisé en 5 niveaux. Plus le niveau est élevé, plus le signal sonore du buzzer est rapide.
 
 .. image:: img/metronome.png
 
-
-**Wiring**
+**Câblage**
 
 .. image:: img/image106.png
 
 .. note::
 
-    An active buzzer is used here, and it has a white sticker on it.
-    
-**Sketch**
+    Un buzzer actif est utilisé ici, identifiable par un autocollant blanc sur sa surface.
+
+**Code**
 
 .. code-block:: Arduino
 
@@ -109,23 +108,21 @@ Here we will make a metronome, the metronome is divided into 5 levels, the highe
         }
     }
 
-**How it works?**
+**Comment ça fonctionne ?**
 
-
-Here, we created a ``Slider`` class and made it act as **WIDGET**.
+Ici, nous avons créé une classe ``Slider`` qui agit comme un **widget**.
 
 .. code-block:: arduino
 
     Slider(ax, ay, bx, by, min, max, v)
 
-In the declaration, it needs to be passed in 7 parameters.
+Lors de la déclaration, sept paramètres doivent être passés.
 
-The first four parameters determine the size of the widget, followed by the coordinates (x1, y1) of the starting point in the upper left corner and (x2, y2) in the lower right corner.
+Les quatre premiers déterminent la taille du widget, correspondant aux coordonnées (x1, y1) du point de départ en haut à gauche et (x2, y2) du point en bas à droite.
 
-The last three parameters determine its numerical range (min to max) and initial value.
+Les trois derniers définissent la plage de valeurs (min à max) et la valeur initiale.
 
-It has two methods, the effect of ``dragPoint()`` is to make the slider draggable and return the slider's current position value.
-
+La classe dispose de deux méthodes principales. La première, ``dragPoint()``, permet de rendre le curseur glissable et de renvoyer la valeur actuelle de la position du curseur.
 
 .. code-block:: arduino
 
@@ -137,7 +134,7 @@ It has two methods, the effect of ``dragPoint()`` is to make the slider draggabl
         return value;
     }
 
-Another method ``show()`` is to show the Slider. At the same time, the range value and current value are displayed in the corresponding position.
+La seconde méthode, ``show()``, affiche le curseur, tout en indiquant la plage de valeurs et la valeur actuelle.
 
 .. code-block:: arduino
 
@@ -155,4 +152,4 @@ Another method ``show()`` is to show the Slider. At the same time, the range val
         text(value, linePoint, slotPointAY);
     }
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+Pour plus d'informations, veuillez consulter la `Processing Reference <https://processing.org/reference/>`_.

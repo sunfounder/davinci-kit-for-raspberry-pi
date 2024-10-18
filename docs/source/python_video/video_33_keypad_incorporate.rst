@@ -1,30 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez au cœur des projets Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes post-achat et surmontez les défis techniques grâce à notre communauté et à notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Soyez parmi les premiers à découvrir les nouvelles annonces de produits et à profiter d’avant-premières.
+    - **Remises spéciales** : Bénéficiez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions et concours festifs** : Participez à des concours et à des promotions spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd'hui !
 
 
-Video 33: How to Incorporate a Keypad into a Raspberry Pi Project
+Vidéo 33 : Comment intégrer un pavé numérique dans un projet Raspberry Pi
 =======================================================================================
 
-This video demonstrates how to read keypad input using a Raspberry Pi, covering the circuit setup, Python code implementation, and addressing the "sticky button" issue.
+Cette vidéo montre comment lire les entrées d'un pavé numérique à l'aide d'un Raspberry Pi. Elle couvre la configuration du circuit, l'implémentation du code Python et la gestion du problème de "bouton collant".
 
-1. **Keypad Scanning Method**: Understanding the concept of keypad scanning with rows and columns.
-2. **Circuit Setup**: Configuring GPIO pins for rows and columns, including the use of internal pull-down resistors.
-3. **Python Code Implementation**: Step-by-step walkthrough of Python code to read keypad input by activating rows and reading columns.
-4. **"Sticky Button" Problem**: Identifying and solving the issue of repeated button presses.
+1. **Méthode de balayage du pavé numérique** : Comprendre le concept de balayage des entrées à l'aide de lignes et colonnes.
+2. **Configuration du circuit** : Configurer les broches GPIO pour les lignes et colonnes, en utilisant les résistances internes pull-down.
+3. **Implémentation du code Python** : Guide étape par étape du code Python pour lire les entrées du pavé en activant les lignes et en lisant les colonnes.
+4. **Problème de "bouton collant"** : Identifier et résoudre le problème des appuis répétitifs involontaires.
 
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 

@@ -1,48 +1,48 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d’experts** : Résolvez les problèmes post-achat et les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour enrichir vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d’un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et promotions spéciales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
 
-2.2.5 Ultrasonic Sensor Module
-==============================
+2.2.5 Module Capteur à Ultrasons
+==================================
 
 Introduction
 --------------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+Le capteur ultrasonique utilise des ultrasons pour détecter avec précision des 
+objets et mesurer des distances. Il émet des ondes ultrasonores et les convertit 
+en signaux électroniques.
 
-Components
-----------
+Composants
+-------------
 
 .. image:: ../img/list_2.2.5.png
 
 
 
-Schematic Diagram
------------------
+Schéma de câblage
+---------------------
 
 .. image:: ../img/image329.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+-----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Montez le circuit.
 
 .. image:: ../img/image220.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au répertoire du code.
 
 .. raw:: html
 
@@ -52,7 +52,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Run the code.
+**Étape 3 :** Exécutez le code.
 
 .. raw:: html
 
@@ -62,9 +62,9 @@ Experimental Procedures
 
     sudo node ultrasonic_sensor.js
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+Une fois le code exécuté, le module capteur ultrasonique détecte la 
+distance entre l’obstacle devant lui et le module lui-même, puis la 
+valeur de cette distance est affichée sur l’écran.
 
 **Code**
 
@@ -72,13 +72,13 @@ value will be printed on the screen.
 
     const Gpio = require('pigpio').Gpio;
 
-    // The number of microseconds it takes sound to travel 1cm at 20 degrees celcius
+    // Le nombre de microsecondes nécessaires pour que le son parcoure 1 cm à 20 degrés Celsius
     const MICROSECDONDS_PER_CM = 1e6/34321;
 
     const trigger = new Gpio(23, {mode: Gpio.OUTPUT});
     const echo = new Gpio(24, {mode: Gpio.INPUT, alert: true});
 
-    trigger.digitalWrite(0); // Make sure trigger is low
+    trigger.digitalWrite(0); // S'assurer que le déclencheur est bas
 
     const watchHCSR04 = () => {
       let startTick;
@@ -88,7 +88,7 @@ value will be printed on the screen.
           startTick = tick;
         } else {
           const endTick = tick;
-          const diff = (endTick >> 0) - (startTick >> 0); // Unsigned 32 bit arithmetic
+          const diff = (endTick >> 0) - (startTick >> 0); // Calcul arithmétique non signé sur 32 bits
           console.log(diff / 2 / MICROSECDONDS_PER_CM);
         }
       });
@@ -96,30 +96,28 @@ value will be printed on the screen.
 
     watchHCSR04();
 
-    // Trigger a distance measurement once per second
+    // Déclenche une mesure de distance une fois par seconde
     setInterval(() => {
-      trigger.trigger(10, 1); // Set trigger high for 10 microseconds
+      trigger.trigger(10, 1); // Déclencher pendant 10 microsecondes
     }, 1000);
 
+**Explication du code**
 
+La fonction ``trigger`` peut être utilisée pour générer une impulsion sur un 
+GPIO et ``alerts`` peut être employé pour déterminer le temps d’un changement 
+d’état du GPIO avec une précision de quelques microsecondes.
 
-
-**Code Explanation**
-
-The ``trigger`` function can be used to generate a pulse on a GPIO and 
-``alerts`` can be used to determine the time of a GPIO state change 
-accurate to a few microseconds. 
-
-These two features can be combined to measure distance using a HC-SR04 
-ultrasonic sensor.
+Ces deux caractéristiques peuvent être combinées pour mesurer la distance avec 
+un capteur ultrasonique HC-SR04.
 
 .. code-block:: js
 
     setInterval(() => {
-      trigger.trigger(10, 1); // Set trigger high for 10 microseconds
+      trigger.trigger(10, 1); // Déclencher pendant 10 microsecondes
     }, 1000);
 
-This is to periodically send out a 10us ultrasonic pulse.
+Cette commande permet d’envoyer périodiquement une impulsion ultrasonique de 10 
+microsecondes.
 
 .. code-block:: js
 
@@ -130,21 +128,18 @@ This is to periodically send out a 10us ultrasonic pulse.
           startTick = tick;
         } else {
           const endTick = tick;
-          const diff = (endTick >> 0) - (startTick >> 0); // Unsigned 32 bit arithmetic
+          const diff = (endTick >> 0) - (startTick >> 0); // Calcul arithmétique non signé sur 32 bits
           console.log(diff / 2 / MICROSECDONDS_PER_CM);
         }    
     });
   };
 
-This function sets an alert that will record the time between sending the pulse (level is 1) and receiving the echo (level is 0).
-By multiplying the time difference by the speed of sound (and dividing by 2), you can get the distance to the obstacle ahead.
-
-
+Cette fonction configure une alerte qui enregistre le temps entre l’émission de l’impulsion (niveau 1) et la réception de l’écho (niveau 0).
+En multipliant la différence de temps par la vitesse du son (et en divisant par 2), vous pouvez calculer la distance jusqu’à l’obstacle.
 
 .. https://github.com/fivdi/pigpio
 
-Phenomenon Picture
-------------------
+Image du phénomène
+--------------------
 
 .. image:: ../img/image221.jpeg
-    

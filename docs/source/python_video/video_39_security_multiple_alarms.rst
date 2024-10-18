@@ -1,30 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez au cœur de l'univers Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes post-achat et surmontez les défis techniques grâce à notre communauté et à notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et découvrez des aperçus inédits.
+    - **Remises spéciales** : Bénéficiez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales lors d'événements festifs.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Video 39: Raspberry Pi Security System
+
+Vidéo 39 : Système de sécurité Raspberry Pi
 =======================================================================================
 
-In this Raspberry Pi tutorial, learn how to customize alarm sounds for a home security system using a PIR motion sensor, keypad, and LCD display.
+Dans ce tutoriel dédié au Raspberry Pi, découvrez comment personnaliser les sons d'alarme pour un système de sécurité domestique en utilisant un capteur de mouvement PIR, un clavier numérique et un écran LCD.
 
-1. Introduction to the tutorial series sponsored by SunFounder, focusing on Raspberry Pi projects.
-2. Overview of building a home security system with Raspberry Pi, including the integration of an LCD, PIR motion sensor, and keypad.
-3. Explanation of the Python code for arming, disarming, changing passwords, and selecting alarm sounds.
-4. Step-by-step guide on connecting and configuring the hardware components, such as the keypad, LCD, and PIR sensor.
-5. Demonstration of programming multiple alarm sounds based on user input, with troubleshooting tips for common errors.
+1. Introduction à la série de tutoriels sponsorisée par SunFounder, axée sur les projets Raspberry Pi.
+2. Vue d'ensemble de la création d'un système de sécurité domestique avec Raspberry Pi, comprenant l'intégration d'un écran LCD, d'un capteur de mouvement PIR et d'un clavier numérique.
+3. Explication du code Python pour l'activation, la désactivation, le changement de mot de passe et la sélection des sons d'alarme.
+4. Guide pas à pas pour connecter et configurer les composants matériels, tels que le clavier, l'écran LCD et le capteur PIR.
+5. Démonstration de la programmation de plusieurs sons d'alarme en fonction des entrées utilisateur, avec des conseils de dépannage pour les erreurs courantes.
 
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 

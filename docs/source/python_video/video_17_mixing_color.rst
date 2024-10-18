@@ -1,38 +1,38 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez au cœur du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et bénéficiez de contenus exclusifs.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos dernières nouveautés.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions spéciales lors des périodes festives.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-Video 17: Mixing Any Color on an RGB LED
+Vidéo 17 : Mélange de toutes les couleurs sur une LED RVB
 =======================================================================================
 
-The video discusses the process of building and mastering RGB LED control with Raspberry Pi and an ADC0834 chip. It begins with an introduction to the tutorial series, sponsored by SunFounder, focusing on Raspberry Pi projects. The previous episode's task involved creating a dimmable LED, and now the focus shifts to replacing it with an RGB LED.
+Cette vidéo aborde la construction et la maîtrise du contrôle d'une LED RVB à l'aide d'un Raspberry Pi et d'une puce ADC0834. Elle commence par une introduction à la série de tutoriels, sponsorisée par SunFounder, mettant l'accent sur les projets Raspberry Pi. Dans l'épisode précédent, la tâche consistait à créer une LED dimmable, et l'objectif est maintenant de la remplacer par une LED RVB.
 
-The circuit overview includes the utilization of an ADC0834 chip, potentiometers, and resistors for the RGB LED setup. Wiring instructions emphasize the importance of using straight jumper wires for a clean build and GPIO pin assignments. Moving on to coding RGB LED control, Python and Thonny IDE are used to modify the LED control program for PWM control of each color channel.
+Le récapitulatif du circuit comprend l'utilisation de la puce ADC0834, de potentiomètres et de résistances pour la configuration de la LED RVB. Les instructions de câblage soulignent l'importance d'utiliser des fils de connexion droits pour une installation propre et assigner correctement les broches GPIO. Ensuite, la vidéo se concentre sur la programmation de la LED RVB en Python avec Thonny IDE, en modifiant le programme pour un contrôle PWM de chaque canal de couleur.
 
-1. Tutorial series introduction sponsored by SunFounder for Raspberry Pi projects.
-2. Previous episode's task involved creating a dimmable LED; now, it's about replacing it with an RGB LED.
-3. Circuit overview includes ADC0834 chip, potentiometers, and resistors for RGB LED setup.
-4. Importance of using straight jumper wires for clean build and GPIO pin assignments.
-5. Coding RGB LED control using Python and Thonny IDE for PWM control of each color channel.
-6. PWM setup on Raspberry Pi for controlling the RGB LED.
-7. ADC0834 initialization for analog input readings.
-8. Reading analog values from ADC0834 chip to determine LED brightness.
-9. Duty cycle conversion to convert analog values to duty cycles for accurate PWM control.
-10. Dynamically adjusting LED brightness based on analog input values.
-11. Code organization and troubleshooting for efficient LED control.
+1. Introduction de la série de tutoriels sponsorisée par SunFounder pour les projets Raspberry Pi.
+2. La tâche de l'épisode précédent était de créer une LED dimmable ; maintenant, il s'agit de la remplacer par une LED RVB.
+3. Vue d'ensemble du circuit incluant la puce ADC0834, des potentiomètres et des résistances pour la configuration de la LED RVB.
+4. Importance d'utiliser des fils de connexion droits pour une installation soignée et assignation des broches GPIO.
+5. Programmation du contrôle de la LED RVB en utilisant Python et Thonny IDE pour la gestion PWM de chaque canal de couleur.
+6. Configuration PWM sur le Raspberry Pi pour contrôler la LED RVB.
+7. Initialisation de l'ADC0834 pour les lectures d'entrée analogique.
+8. Lecture des valeurs analogiques de la puce ADC0834 pour déterminer la luminosité de la LED.
+9. Conversion des valeurs analogiques en cycles de travail (duty cycle) pour un contrôle PWM précis.
+10. Ajustement dynamique de la luminosité de la LED en fonction des valeurs d'entrée analogique.
+11. Organisation du code et dépannage pour un contrôle efficace de la LED.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

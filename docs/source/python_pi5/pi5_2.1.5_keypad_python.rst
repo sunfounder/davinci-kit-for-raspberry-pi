@@ -1,32 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Explorez en profondeur les possibilités offertes par ces technologies avec d'autres amateurs éclairés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des concours et des promotions spéciales à l'occasion des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd'hui !
 
 .. _py_pi5_keypad:
 
-2.1.5 Keypad
-============
+2.1.5 Pavé numérique
+========================
 
 Introduction
-------------
+-----------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Un pavé numérique est un tableau rectangulaire de boutons. Dans ce projet, 
+nous allons l'utiliser pour saisir des caractères.
 
-Required Components
-------------------------------
+Composants nécessaires
+-------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous aurons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/2.1.5_keypad_list.png
 
@@ -34,23 +34,22 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
------------------
+Schéma de circuit
+---------------------
 
 .. image:: ../python_pi5/img/2.1.5_keypad_chematic_1.png
-
 
 .. image:: ../python_pi5/img/2.1.5_keypad_chematic_2.png
 
 
-Experimental Procedures
------------------------
+Procédure expérimentale
+--------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../python_pi5/img/2.1.5_keypad_circuit.png
 
-**Step 2:** Open the code file.
+**Étape 2 :** Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -60,7 +59,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez le code.
 
 .. raw:: html
 
@@ -70,19 +69,18 @@ Experimental Procedures
 
     sudo python3 2.1.5_Keypad_zero.py
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Une fois le code lancé, les valeurs des boutons pressés sur le pavé 
+numérique (valeur des boutons) s'afficheront à l'écran.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    En cas d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`. 
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source, tel que ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification, vous pouvez exécuter le code pour observer le résultat.
 
 .. raw:: html
 
@@ -102,11 +100,11 @@ Value) will be printed on the screen.
            :param cols_pins: List of GPIO pins for the columns.
            :param keys: List of keys in the keypad layout.
            """
-           # Initialize row pins as DigitalOutputDevice
+           # Initialisation des broches de lignes comme DigitalOutputDevice
            self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]
-           # Initialize column pins as Buttons
+           # Initialisation des broches de colonnes comme Boutons
            self.cols = [Button(pin, pull_up=False) for pin in cols_pins]
-           self.keys = keys  # Set the keypad layout
+           self.keys = keys  # Définir la disposition des touches du pavé
 
        def read(self):
            """
@@ -114,19 +112,19 @@ Value) will be printed on the screen.
            :return: A list of pressed keys.
            """
            pressed_keys = []
-           # Scan each row and column to identify pressed keys
+           # Parcourt chaque ligne et colonne pour identifier les touches pressées
            for i, row in enumerate(self.rows):
-               row.on()  # Enable the current row
+               row.on()  # Activer la ligne actuelle
                for j, col in enumerate(self.cols):
-                   if col.is_pressed:  # Check if the column button is pressed
-                       # Calculate the key index based on row and column
+                   if col.is_pressed:  # Vérifier si le bouton de la colonne est pressé
+                       # Calculer l'index de la touche en fonction de la ligne et de la colonne
                        index = i * len(self.cols) + j
                        pressed_keys.append(self.keys[index])
-               row.off()  # Disable the current row
+               row.off()  # Désactiver la ligne actuelle
            return pressed_keys
 
    try:
-       # Configure rows, columns, and keypad layout
+       # Configuration des broches de lignes, colonnes et disposition des touches
        rows_pins = [18, 23, 24, 25]
        cols_pins = [10, 22, 27, 17]
        keys = ["1", "2", "3", "A",
@@ -134,26 +132,26 @@ Value) will be printed on the screen.
                "7", "8", "9", "C",
                "*", "0", "#", "D"]
 
-       # Create an instance of the Keypad class
+       # Crée une instance de la classe Keypad
        keypad = Keypad(rows_pins, cols_pins, keys)
        last_key_pressed = []
 
-       # Continuously read the keypad and print newly pressed keys
+       # Lecture continue du pavé et affichage des touches nouvellement pressées
        while True:
            pressed_keys = keypad.read()
            if pressed_keys and pressed_keys != last_key_pressed:
-               print(pressed_keys)  # Print the list of pressed keys
+               print(pressed_keys)  # Afficher la liste des touches pressées
                last_key_pressed = pressed_keys
-           sleep(0.1)  # Short delay to reduce CPU load
+           sleep(0.1)  # Petite pause pour réduire la charge du CPU
 
    except KeyboardInterrupt:
-       # Handle a keyboard interrupt (Ctrl+C) for a clean exit
+       # Gérer une interruption clavier (Ctrl+C) pour une sortie propre
        pass
 
 
-**Code Explanation**
+**Explication du code**
 
-#. Imports the ``DigitalOutputDevice`` and ``Button`` classes from the ``gpiozero`` library, and the ``sleep`` function for delays.
+#. Importation des classes ``DigitalOutputDevice`` et ``Button`` de la bibliothèque ``gpiozero`` et de la fonction ``sleep`` pour les temporisations.
 
    .. code-block:: python
 
@@ -161,7 +159,7 @@ Value) will be printed on the screen.
        from gpiozero import DigitalOutputDevice, Button
        from time import sleep
 
-#. Defines the ``Keypad`` class. The ``__init__`` method initializes the keypad with given row and column pins and keys. The ``read`` method scans the keypad and returns a list of pressed keys.
+#. Définition de la classe ``Keypad``. La méthode ``__init__`` initialise le pavé avec les broches de lignes, de colonnes et les touches spécifiées. La méthode ``read`` parcourt le pavé et retourne la liste des touches pressées.
 
    .. code-block:: python
 
@@ -173,11 +171,9 @@ Value) will be printed on the screen.
                :param cols_pins: List of GPIO pins for the columns.
                :param keys: List of keys in the keypad layout.
                """
-               # Initialize row pins as DigitalOutputDevice
                self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]
-               # Initialize column pins as Buttons
                self.cols = [Button(pin, pull_up=False) for pin in cols_pins]
-               self.keys = keys  # Set the keypad layout
+               self.keys = keys
 
            def read(self):
                """
@@ -196,7 +192,7 @@ Value) will be printed on the screen.
                    row.off()  # Disable the current row
                return pressed_keys
 
-#. Sets up the GPIO pins for rows and columns and defines the keypad layout.
+#. Configure les broches GPIO pour les lignes et les colonnes, et définit la disposition du pavé.
 
    .. code-block:: python
 
@@ -209,7 +205,7 @@ Value) will be printed on the screen.
                    "7", "8", "9", "C",
                    "*", "0", "#", "D"]
 
-#. Creates an instance of the ``Keypad`` class with the specified configuration.
+#. Crée une instance de la classe ``Keypad`` avec la configuration spécifiée.
 
    .. code-block:: python
 
@@ -220,7 +216,7 @@ Value) will be printed on the screen.
            keypad = Keypad(rows_pins, cols_pins, keys)
            last_key_pressed = []
 
-#. Continuously reads the keypad for pressed keys, prints any changes in the key state, and introduces a short delay to reduce CPU load. Catches a KeyboardInterrupt (like Ctrl+C) to allow for a graceful exit from the script.
+#. Lecture continue du pavé pour détecter les nouvelles touches pressées et affichage des changements d'état des touches. Le script s'arrête proprement lors d'une interruption clavier (Ctrl+C).
 
    .. code-block:: python
 

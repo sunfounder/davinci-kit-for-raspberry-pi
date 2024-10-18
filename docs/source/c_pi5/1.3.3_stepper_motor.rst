@@ -1,131 +1,128 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans le Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes post-vente et relevez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et promotions spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-1.3.3 Stepper Motor
-====================
+1.3.3 Moteur Pas à Pas
+=========================
 
 Introduction
-------------
+--------------
 
-Stepper motors, due to their unique design, can be controlled to a high
-degree of accuracy without any feedback mechanisms. The shaft of a
-stepper, mounted with a series of magnets, is controlled by a series of
-electromagnetic coils that are charged positively and negatively in a
-specific sequence, precisely moving it forward or backward in small
-\"steps\".
+Les moteurs pas à pas, grâce à leur conception unique, peuvent être contrôlés 
+avec une grande précision sans nécessiter de mécanismes de rétroaction. L'arbre 
+d'un moteur pas à pas, équipé d'une série d'aimants, est contrôlé par une série 
+de bobines électromagnétiques chargées positivement et négativement dans un ordre 
+spécifique, le déplaçant ainsi précisément vers l'avant ou vers l'arrière par 
+petites « étapes ».
 
-Components
-----------
+Composants
+-----------
 
 .. image:: img/list_1.3.3.png
 
 
-Principle
----------
+Principe
+-----------
 
-**Stepper Motor**
+**Moteur Pas à Pas**
 
-There are two types of steppers, unipolars and bipolars, and it is very
-important to know which type you are working with. In this experiment,
-we will use a unipolar stepper.
+Il existe deux types de moteurs pas à pas, unipolaires et bipolaires, et il est très 
+important de connaître le type de moteur avec lequel vous travaillez. Dans cette expérience, 
+nous utiliserons un moteur pas à pas unipolaire.
 
-The stepper motor is a four-phase one, which uses a unipolarity DC power
-supply. As long as you electrify all phase windings of the motor by an
-appropriate timing sequence, you can make it rotate step by step. The
-schematic diagram of a four-phase reactive stepper motor:
+Le moteur pas à pas utilisé ici est un moteur à quatre phases qui utilise une 
+alimentation DC unipolaire. Tant que vous alimentez les enroulements de chaque 
+phase du moteur selon une séquence temporelle appropriée, vous pouvez le faire 
+tourner étape par étape. Le schéma d'un moteur pas à pas réactif à quatre phases 
+est illustré ci-dessous :
 
 .. image:: img/image129.png
 
 
-In the figure, in the middle of the motor is a rotor - a gear-shaped
-permanent magnet. Around the rotor, 0 to 5 are teeth. Then more outside,
-there are 8 magnetic poles, with each two opposite ones connected by
-coil winding. So they form four pairs from A to D, which is called a
-phase. It has four lead wires to be connected with switches SA, SB, SC,
-and SD. Therefore, the four phases are in parallel in the circuit, and
-the two magnetic poles in one phase are in series.
+Dans cette figure, au centre du moteur se trouve un rotor - un aimant permanent en 
+forme d'engrenage. Autour du rotor, de 0 à 5, se trouvent les dents. Plus à l'extérieur, 
+il y a 8 pôles magnétiques, chacun connecté par un enroulement de bobine avec son opposé. 
+Ils forment ainsi quatre paires de A à D, appelées « phases ». Chaque phase possède quatre 
+fils à connecter à des commutateurs SA, SB, SC et SD. Ainsi, les quatre phases sont 
+connectées en parallèle dans le circuit, et les deux pôles magnétiques d'une même phase 
+sont en série.
 
-**Here's how a 4-phase stepper motor works:**
+**Fonctionnement d'un moteur pas à pas à 4 phases :**
 
-When switch SB is power on, switch SA, SC, and SD is power off, and
-B-phase magnetic poles align with tooth 0 and 3 of the rotor. At the
-same time, tooth 1 and 4 generate staggered teeth with C- and D-phase
-poles. Tooth 2 and 5 generate staggered teeth with D- and A-phase poles.
-When switch SC is power on, switch SB, SA, and SD is power off, the
-rotor rotates under magnetic field of C-phase winding and that between
-tooth 1 and 4. Then tooth 1 and 4 align with the magnetic poles of
-C-phase winding. While tooth 0 and 3 generate staggered teeth with A-
-and B-phase poles, and tooth 2 and 5 generate staggered teeth with the
-magnetic poles of A- and D-phase poles. The similar situation goes on
-and on. Energize the A, B, C and D phases in turn, and the rotor will
-rotate in the order of A, B, C and D.
+Lorsque l'interrupteur SB est alimenté, et que SA, SC et SD sont désactivés, les pôles 
+magnétiques de la phase B s'alignent avec les dents 0 et 3 du rotor. En même temps, les 
+dents 1 et 4 se désalignent avec les pôles des phases C et D. Les dents 2 et 5 se 
+désalignent avec les pôles des phases D et A. Lorsque SC est alimenté, et que SA, SB et SD 
+sont désactivés, le rotor tourne sous l'effet du champ magnétique de l'enroulement de phase 
+C entre les dents 1 et 4. Les dents 1 et 4 s'alignent alors avec les pôles magnétiques de la 
+phase C, tandis que les dents 0 et 3 se désalignent avec les pôles des phases A et B, et les 
+dents 2 et 5 se désalignent avec les pôles magnétiques des phases A et D. Ce schéma se répète 
+de manière continue. En alimentant successivement les phases A, B, C et D, le rotor tournera 
+dans l'ordre A, B, C et D.
 
 .. image:: img/image130.png
 
 
-The four-phase stepper motor has three operating modes: single
-four-step, double four-step, and eight-step. The step angle for the
-single four-step and double four-step are the same, but the driving
-torque for the single four-step is smaller. The step angle of the
-eight-step is half that of the single four-step and double four-step.
-Thus, the eight-step operating mode can keep high driving torque and
-improve control accuracy.
+Le moteur pas à pas à quatre phases dispose de trois modes de fonctionnement : le mode « simple 
+à quatre pas », le mode « double à quatre pas » et le mode « huit pas ». L'angle de pas pour les 
+modes simple et double à quatre pas est le même, mais le couple de rotation pour le mode simple à 
+quatre pas est plus faible. L'angle de pas du mode huit pas est la moitié de celui des modes simple 
+et double à quatre pas. Ainsi, le mode de fonctionnement à huit pas permet de maintenir un couple 
+élevé tout en améliorant la précision du contrôle.
 
-The stator of Stepper Motor we use has 32 magnetic poles, so a circle
-needs 32 steps. The output shaft of the Stepper Motor is connected with
-a reduction gear set, and the reduction ratio is 1/64. So the final
-output shaft rotates a circle requiring a 32*64=2048 step.
+Le stator du moteur pas à pas que nous utilisons a 32 pôles magnétiques, ce qui signifie 
+qu'il faut 32 pas pour faire un tour complet. L'arbre de sortie du moteur pas à pas est 
+relié à un réducteur, avec un rapport de réduction de 1/64. Ainsi, pour un tour complet 
+de l'arbre de sortie, il faut 32*64=2048 pas.
 
 **ULN2003**
 
-To apply the motor in the circuit, a driver board needs to be used. Stepper Motor Driver-ULN2003 is a 7-channel inverter circuit. That is, when the input pin is at high level, the output pin of ULN2003 is at low level, and vice versa. If we supply high level to IN1, and low level to IN2, IN3 and IN4, then the output end OUT1 is at low level, and all the other output ends are at high level.
- The internal structure of the chip is shown as below.
+Pour utiliser le moteur dans le circuit, une carte pilote est nécessaire. Le pilote de moteur pas à pas ULN2003 est un circuit inverseur à 7 canaux. Cela signifie que lorsque la broche d'entrée est à un niveau haut, la broche de sortie de l'ULN2003 est à un niveau bas, et vice versa. Si nous alimentons IN1 à un niveau haut et IN2, IN3 et IN4 à un niveau bas, alors la sortie OUT1 sera à un niveau bas, et toutes les autres sorties seront à un niveau haut. 
+La structure interne de la puce est illustrée ci-dessous.
 
 .. image:: img/image338.png
 
 
-The stepper motor driver constituted by ULN2003 chip and 4 LEDs is shown
-as follows. On the board, IN1,IN2,IN3 and IN4 work as input and the four
-LEDs, A, B, C, D are the indicators of input pin. In addition,
-OUT1,OUT2, OUT3 and OUT4 are connected to SA, SB, SC and SD on the
-stepper motor driver. When the value of IN1 is set to a high level, A
-lights up; switch SA is power on, and the stepper motor rotates one
-step. The similar case repeats on and on. Therefore, just give the
-stepper motor a specific timing sequence, it will rotate step by step.
-The ULN2003 here is used to provide particular timing sequences for the
-stepper motor.
+Le pilote de moteur pas à pas constitué par la puce ULN2003 et les 4 LED est présenté 
+comme suit. Sur la carte, IN1, IN2, IN3 et IN4 fonctionnent comme entrées, et les quatre 
+LED A, B, C, D indiquent les états des broches d'entrée. De plus, OUT1, OUT2, OUT3 et OUT4 
+sont connectés à SA, SB, SC et SD sur le pilote du moteur pas à pas. Lorsque la valeur de 
+IN1 est réglée à un niveau haut, la LED A s'allume, l'interrupteur SA est activé, et le 
+moteur pas à pas tourne d'un pas. Ce même schéma se répète pour les autres LED. Ainsi, en 
+appliquant une séquence temporelle spécifique, le moteur pas à pas tournera étape par étape. 
+L'ULN2003 est utilisé ici pour fournir des séquences temporelles particulières au moteur 
+pas à pas.
 
 .. image:: img/image132.png
 
 
-Schematic Diagram
------------------
+Schéma de câblage
+--------------------
 
 
 .. image:: img/image339.png
 
 
-Experimental Procedures
------------------------
+Procédures Expérimentales
+-------------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Montez le circuit.
 
 .. image:: img/image134.png
     :width: 800
 
 
-**Step 2**: Go to the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -135,7 +132,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.3.3/
 
-**Step 3**: Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -145,7 +142,7 @@ Experimental Procedures
 
     gcc 1.3.3_StepperMotor.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Étape 4 :** Exécutez le fichier compilé.
 
 .. raw:: html
 
@@ -155,12 +152,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, the stepper motor will rotate clockwise or
-anticlockwise according to your input \'a\' or \'c\'.
+Lorsque le programme s'exécute, le moteur pas à pas tourne dans le sens horaire 
+ou antihoraire selon votre saisie : 'a' pour antihoraire et 'c' pour horaire.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si le programme ne fonctionne pas après l'exécution ou s'il y a un message d'erreur : \"wiringPi.h: No such file or directory\", veuillez vous référer à la section :ref:`C code is not working?`.
+
 
 **Code**
 
@@ -238,7 +236,7 @@ anticlockwise according to your input \'a\' or \'c\'.
         loop();
     }
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
@@ -246,15 +244,15 @@ anticlockwise according to your input \'a\' or \'c\'.
     int stepsPerRevolution = 2048;
     int stepSpeed = 0;
 
-**rolePerMinute:** revolutions per minute, the RPM of the stepper motor
-used in this kit should be 0~17.
+**rolePerMinute :** Révolutions par minute, la vitesse de rotation (RPM) du moteur pas 
+à pas utilisée dans ce kit doit être comprise entre 0 et 17.
 
-**stepPerRevolution:** the number of steps for each turn, and the
-stepper motor used in this kit needs 2048 steps per revolution.
+**stepsPerRevolution :** Le nombre de pas par tour, le moteur pas à pas utilisé dans ce 
+kit nécessite 2048 pas par révolution.
 
-**stepSpeed:** the time used for each step, and in main(), we assign the
-values to them:「(60000000 / rolePerMinute) /
-stepsPerRevolution」(60,000,000 us=1minute)
+**stepSpeed :** Le temps utilisé pour chaque pas, et dans main(), nous attribuons les 
+valeurs de cette manière :「(60000000 / rolePerMinute) / stepsPerRevolution」
+(60 000 000 us = 1 minute)
 
 .. code-block:: c
 
@@ -286,11 +284,11 @@ stepsPerRevolution」(60,000,000 us=1minute)
         }
     }
 
-The loop() function is roughly divided into two parts (located between two while(1)) :
+La fonction `loop()` est divisée en deux parties (situées entre deux `while(1)`) :
 
-The first part is to get the key value. When \'a\' or \'c\' is obtained, exit the loop and stop the input.
+La première partie consiste à obtenir la valeur de la touche. Lorsque \'a\' ou \'c\' est reçu, le programme sort de la boucle et arrête la saisie.
 
-The second part calls rotary(direction) to make the stepper motor run.
+La deuxième partie appelle `rotary(direction)` pour faire fonctionner le moteur pas à pas.
 
 .. code-block:: c
 
@@ -311,14 +309,12 @@ The second part calls rotary(direction) to make the stepper motor run.
         }
     }
 
-To make stepper motor **rotate clockwise**, level status of motorPin
-should is shown in the table below:
+Pour faire tourner le **moteur dans le sens horaire**, le statut de niveau des broches `motorPin` est affiché dans le tableau ci-dessous :
 
 .. image:: img/image340.png
 
 
-Therefore, potential write of MotorPin is implemented by using a
-two-layer of for loop.
+Ainsi, l'écriture des potentiels des broches du moteur est implémentée en utilisant une double boucle `for`.
 
 In Step1, j=0, i=0~4.
 
@@ -336,10 +332,10 @@ motorPin[0] will be written in the high level（01001100&00001000=1）
 
 motorPin[1] will be written in the low level（01001100&00000100=1）
 
-and so on.
+et ainsi de suite.
 
-And to make the stepper motor rotate **anti-clockwise**, the level
-status of motorPin is shown in the following table.
+Et pour faire tourner le moteur pas à pas **dans le sens antihoraire**, le statut 
+de niveau des broches `motorPin` est affiché dans le tableau suivant.
 
 .. image:: img/image341.png
 
@@ -356,6 +352,5 @@ motorPin[0] will be written in the high level（00110010&10000000=0）
 
 motorPin[1] will be written in the low level（00110010&01000000=0）
 
-and so on.
-
+et ainsi de suite.
 

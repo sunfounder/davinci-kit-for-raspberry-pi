@@ -1,25 +1,25 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez au cœur des projets avec Raspberry Pi, Arduino et ESP32 aux côtés d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprenez & Partagez** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux nouvelles annonces de produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et tirages au sort** : Participez à des concours et à des promotions pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt(e) à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Projects
+Projets
 =============
 
-In this section, you will start learning to create IoT projects.
+Dans cette section, vous commencerez à apprendre à créer des projets IoT.
 
-Before starting the project, you should have downloaded the code we provided (:ref:`Download the Code`).
+Avant de commencer le projet, assurez-vous d'avoir téléchargé le code que nous avons fourni (:ref:`Download the Code`).
 
-Then copy the codes from the ``iot`` folder to the ``cloud4rpi-raspberrypi-python`` folder.
+Ensuite, copiez les codes du dossier ``iot`` vers le dossier ``cloud4rpi-raspberrypi-python``.
 
 .. raw:: html
 

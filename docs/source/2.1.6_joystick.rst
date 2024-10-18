@@ -1,83 +1,81 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez au cœur de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes techniques et questions après-vente avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions pour les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 2.1.6 Joystick
-==============
+=================
 
 Introduction
-------------
+---------------
 
-In this project, We're going to learn how joystick works. We manipulate
-the Joystick and display the results on the screen.
+Dans ce projet, nous allons apprendre comment fonctionne un joystick. 
+Nous allons manipuler le joystick et afficher les résultats à l'écran.
 
-Components
-----------
+Composants
+---------------
 
 .. image:: img/image317.png
 
 
-Principle
----------
+Principe
+-----------
 
 **Joystick**
 
-The basic idea of a joystick is to translate the movement of a stick
-into electronic information that a computer can process.
+L'idée de base d'un joystick est de traduire le mouvement d'un manche en 
+informations électroniques que l'ordinateur peut traiter.
 
-In order to communicate a full range of motion to the computer, a
-joystick needs to measure the stick's position on two axes -- the X-axis
-(left to right) and the Y-axis (up and down). Just as in basic geometry,
-the X-Y coordinates pinpoint the stick's position exactly.
+Pour communiquer toute l'amplitude des mouvements à l'ordinateur, un joystick 
+doit mesurer la position du manche sur deux axes : l'axe X (gauche-droite) et 
+l'axe Y (haut-bas). Comme en géométrie de base, les coordonnées X-Y déterminent 
+précisément la position du manche.
 
-To determine the location of the stick, the joystick control system
-simply monitors the position of each shaft. The conventional analog
-joystick design does this with two potentiometers, or variable
-resistors.
+Pour déterminer la position du manche, le système de contrôle du joystick surveille 
+simplement la position de chaque axe. Le joystick analogique conventionnel le fait 
+avec deux potentiomètres, ou résistances variables.
 
-The joystick also has a digital input that is actuated when the joystick
-is pressed down.
+Le joystick dispose également d'une entrée numérique qui est activée lorsque l'on 
+appuie sur le joystick.
 
 .. image:: img/image318.png
 
-Schematic Diagram
------------------
+Schéma de câblage
+--------------------
 
-When the data of joystick is read, there are some differents between
-axis: data of X and Y axis is analog, which need to use ADC0834 to
-convert the analog value to digital value. Data of Z axis is digital, so
-you can directly use the GPIO to read, or you can also use ADC to read.
+Lorsque les données du joystick sont lues, il y a quelques différences entre les axes : 
+les données des axes X et Y sont analogiques, et nécessitent donc l'utilisation de 
+l'ADC0834 pour convertir la valeur analogique en valeur numérique. Les données de 
+l'axe Z sont numériques, vous pouvez donc directement utiliser le GPIO pour les lire, 
+ou également utiliser l'ADC.
 
 .. image:: img/image319.png
-
 
 .. image:: img/image320.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+---------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: img/image193.png
     :width: 800
 
 
+Pour les utilisateurs du langage C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
-
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Aller dans le répertoire du code.
 
 .. raw:: html
 
@@ -87,7 +85,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.1.6/
 
-**Step 3:** Compile the code.
+**Étape 3 :** Compiler le code.
 
 .. raw:: html
 
@@ -97,7 +95,7 @@ For C Language Users
 
     gcc 2.1.6_Joystick.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Étape 4 :** Exécuter le fichier exécutable.
 
 .. raw:: html
 
@@ -107,14 +105,12 @@ For C Language Users
 
     sudo ./a.out
 
-After the code runs, turn the Joystick, then the corresponding values of
-x, y, Btn are displayed on screen.
-
+Après avoir exécuté le code, tournez le joystick, et les valeurs correspondantes 
+de x, y et Btn seront affichées à l'écran.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-    
+    Si cela ne fonctionne pas après exécution ou si une erreur « wiringPi.h: Aucun fichier ou répertoire de ce type » apparaît, veuillez vous référer à :ref:`C code is not working?`.
 **Code**
 
 .. code-block:: c
@@ -145,11 +141,11 @@ x, y, Btn are displayed on screen.
 
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
-        // Start bit
+        // Bit de démarrage
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        //Single End mode
+        // Mode Single End
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
@@ -157,7 +153,7 @@ x, y, Btn are displayed on screen.
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        //Select
+        // Sélection
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);
@@ -188,7 +184,7 @@ x, y, Btn are displayed on screen.
         uchar x_val;
         uchar y_val;
         uchar btn_val;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+        if(wiringPiSetup() == -1){ // lorsque l'initialisation de wiring échoue, afficher un message à l'écran
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -206,8 +202,7 @@ x, y, Btn are displayed on screen.
         }
         return 0;
     }
-
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
@@ -225,17 +220,17 @@ x, y, Btn are displayed on screen.
 
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
-        // Start bit
+        // Bit de démarrage
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        //Single End mode
+        // Mode Single End
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
         ......
 
-The working process of the function is detailed in 2.1.4 Potentiometer.
+Le processus de fonctionnement de cette fonction est détaillé dans la section 2.1.4 Potentiomètre.
 
 .. code-block:: c
 
@@ -247,17 +242,17 @@ The working process of the function is detailed in 2.1.4 Potentiometer.
             delay(100);
         }
 
-VRX and VRY of Joystick are connected to CH0, CH1 of ADC0834
-respectively. So the function getResult() is called to read the values
-of CH0 and CH1. Then the read values should be stored in the variables
-x_val and y_val. In addition, read the value of SW of joystick and store
-it into the variable Btn_val. Finally, the values of x_val, y_val and
-Btn_val shall be printed with print() function.
+Les broches VRX et VRY du joystick sont connectées respectivement aux canaux 
+CH0 et CH1 de l'ADC0834. La fonction getResult() est donc appelée pour lire 
+les valeurs de CH0 et CH1, qui sont ensuite stockées dans les variables x_val 
+et y_val. De plus, la valeur de SW du joystick est lue et stockée dans la 
+variable btn_val. Enfin, les valeurs de x_val, y_val et btn_val sont imprimées 
+à l'écran grâce à la fonction print().
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Pour les utilisateurs Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -267,7 +262,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -277,15 +272,15 @@ For Python Language Users
 
     sudo python3 2.1.6_Joystick.py
 
-After the code runs, turn the Joystick, then the corresponding values of
-x, y, Btn are displayed on screen.
+Après l'exécution du code, tournez le joystick, puis les valeurs correspondantes 
+de x, y, Btn s'affichent à l'écran.
 
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin du code source tel que ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -300,13 +295,13 @@ x, y, Btn are displayed on screen.
     BtnPin = 22
 
     def setup():
-        # Set the GPIO modes to BCM Numbering
+        # Configure les modes GPIO en mode BCM
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(BtnPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         ADC0834.setup()
 
     def destroy():
-        # Release resource
+        # Libère les ressources
         GPIO.cleanup()
 
     def loop():
@@ -321,10 +316,10 @@ x, y, Btn are displayed on screen.
         setup()
         try:
             loop()
-        except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt: # Lorsque 'Ctrl+C' est pressé, le programme destroy() sera exécuté.
             destroy()
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
@@ -336,16 +331,14 @@ x, y, Btn are displayed on screen.
             print ('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
             time.sleep(0.2)
 
-VRX and VRY of Joystick are connected to CH0, CH1 of ADC0834
-respectively. So the function getResult() is called to read the values
-of CH0 and CH1. Then the read values should be stored in the variables
-x_val and y_val. In addition, read the value of SW of joystick and store
-it into the variable Btn_val. Finally, the values of x_val, y_val and
-Btn_val shall be printed with print() function.
+Les broches VRX et VRY du joystick sont connectées respectivement aux canaux CH0 et 
+CH1 de l'ADC0834. La fonction getResult() est donc appelée pour lire les valeurs de 
+CH0 et CH1. Ces valeurs sont ensuite stockées dans les variables x_val et y_val. 
+De plus, la valeur de SW du joystick est lue et stockée dans la variable btn_val. 
+Enfin, les valeurs de x_val, y_val et btn_val sont imprimées à l'écran avec la fonction print().
 
-Phenomenon Picture
-------------------
+Image du phénomène
+---------------------
 
 .. image:: img/image194.jpeg
-
 

@@ -1,33 +1,33 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et relevez vos défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et des promotions pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. _py_pi5_ultrasonic:
 
-2.2.4 Ultrasonic Sensor Module
-==============================
+2.2.4 Module Capteur Ultrasonique
+=====================================
 
 Introduction
---------------
+---------------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+Le capteur ultrasonique utilise des ultrasons pour détecter des objets et mesurer 
+des distances avec précision. Il émet des ondes ultrasoniques et les convertit en 
+signaux électroniques.
 
-Required Components
-------------------------------
+Composants nécessaires
+------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../python_pi5/img/2.2.5_ultrasonic_list.png
 
@@ -35,20 +35,21 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
------------------
+
+Schéma de câblage
+--------------------
 
 .. image:: ../python_pi5/img/2.2.5_ultrasonic_schematic.png
 
 
-Experimental Procedures
------------------------
+Procédure expérimentale
+----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Montez le circuit.
 
 .. image:: ../python_pi5/img/2.2.5_ultrasonic_circuit.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -58,7 +59,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3:** Run the executable file.
+**Étape 3 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -68,20 +69,19 @@ Experimental Procedures
 
     sudo python3 2.2.5_Ultrasonic_zero.py
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+Lorsque le code s'exécute, le module de capteur ultrasonique détecte la distance 
+entre l'obstacle devant lui et le module. La valeur de la distance est ensuite 
+affichée à l'écran.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    En cas de message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin source du code, comme ``davinci-kit-for-raspberry-pi/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -93,25 +93,25 @@ value will be printed on the screen.
    from gpiozero import DistanceSensor
    from time import sleep
 
-   # Initialize the DistanceSensor using GPIO Zero library
-   # Trigger pin is connected to GPIO 23, Echo pin to GPIO 24
+   # Initialiser le capteur de distance avec la bibliothèque GPIO Zero
+   # Le pin Trigger est connecté à GPIO 23, le pin Echo à GPIO 24
    sensor = DistanceSensor(echo=24, trigger=23)
 
    try:
-       # Main loop to continuously measure and report distance
+       # Boucle principale pour mesurer et afficher la distance en continu
        while True:
-           dis = sensor.distance * 100  # Measure distance and convert from meters to centimeters
-           print('Distance: {:.2f} cm'.format(dis))  # Print the distance with two decimal precision
-           sleep(0.3)  # Wait for 0.3 seconds before the next measurement
+           dis = sensor.distance * 100  # Mesurer la distance et la convertir de mètres en centimètres
+           print('Distance: {:.2f} cm'.format(dis))  # Afficher la distance avec une précision de deux décimales
+           sleep(0.3)  # Attendre 0,3 seconde avant la prochaine mesure
 
    except KeyboardInterrupt:
-       # Handle KeyboardInterrupt (Ctrl+C) to gracefully exit the loop
+       # Gérer l'interruption clavier (Ctrl+C) pour quitter la boucle proprement
        pass
 
 
-**Code Explanation**
+**Explication du code**
 
-#. Imports the ``DistanceSensor`` class from the ``gpiozero`` library for distance measurement, and the ``sleep`` function from the ``time`` module for delays.
+#. Importe la classe ``DistanceSensor`` de la bibliothèque ``gpiozero`` pour la mesure de distance, ainsi que la fonction ``sleep`` du module ``time`` pour introduire des pauses.
 
    .. code-block:: python
 
@@ -119,26 +119,25 @@ value will be printed on the screen.
        from gpiozero import DistanceSensor
        from time import sleep
 
-#. Initializes the ultrasonic distance sensor with the Echo pin connected to GPIO 24 and the Trigger pin to GPIO 23.
+#. Initialise le capteur de distance ultrasonique avec le pin Echo connecté à GPIO 24 et le pin Trigger à GPIO 23.
 
    .. code-block:: python
 
-       # Initialize the DistanceSensor using GPIO Zero library
-       # Trigger pin is connected to GPIO 23, Echo pin to GPIO 24
+       # Initialiser le capteur de distance avec la bibliothèque GPIO Zero
+       # Le pin Trigger est connecté à GPIO 23, le pin Echo à GPIO 24
        sensor = DistanceSensor(echo=24, trigger=23)
 
-#. The main loop continuously measures the distance, converts it from meters to centimeters, and prints it with two decimal precision. Then wait 0.3 seconds and re-measure the distance. Catches a KeyboardInterrupt (like Ctrl+C) to allow for a graceful exit from the script.
+#. La boucle principale mesure en continu la distance, la convertit de mètres en centimètres et l'affiche avec deux décimales de précision. Ensuite, il attend 0,3 seconde avant de refaire une mesure. L'instruction ``KeyboardInterrupt`` (comme Ctrl+C) permet une sortie propre du script.
 
    .. code-block:: python
 
        try:
-           # Main loop to continuously measure and report distance
+           # Boucle principale pour mesurer et afficher la distance en continu
            while True:
-               dis = sensor.distance * 100  # Measure distance and convert from meters to centimeters
-               print('Distance: {:.2f} cm'.format(dis))  # Print the distance with two decimal precision
-               sleep(0.3)  # Wait for 0.3 seconds before the next measurement
+               dis = sensor.distance * 100  # Mesurer la distance et la convertir de mètres en centimètres
+               print('Distance: {:.2f} cm'.format(dis))  # Afficher la distance avec une précision de deux décimales
+               sleep(0.3)  # Attendre 0,3 seconde avant la prochaine mesure
 
        except KeyboardInterrupt:
-           # Handle KeyboardInterrupt (Ctrl+C) to gracefully exit the loop
+           # Gérer l'interruption clavier (Ctrl+C) pour quitter la boucle proprement
            pass
-

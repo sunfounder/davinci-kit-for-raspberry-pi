@@ -1,30 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, Arduino et ESP32 avec d’autres amateurs.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d’experts** : Résolvez vos problèmes après-vente et relevez des défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et bénéficiez d’aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et cadeaux** : Participez à des promotions spéciales et à des tirages au sort.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
 
-Inflating the Dot
+Gonfler le point
 ===========================
 
-Next, let's build a circuit that allows the button to control the size of the dot.
-When we press the button, the dot will quickly get bigger; when we release the button, the dot will gradually get smaller, which makes the dot look like a balloon being inflated.
+Nous allons maintenant construire un circuit permettant de contrôler la taille d’un point à l’aide d’un bouton.  
+Lorsque nous appuyons sur le bouton, le point grossit rapidement ; lorsque nous le relâchons, le point diminue progressivement, donnant l’impression qu’un ballon se gonfle.
 
 .. image:: img/dot_size.png
 
-**Wiring**
+**Câblage**
 
 .. image:: img/button_pressed.png
 
-**Sketch**
+**Code**
 
 .. code-block:: arduino
 
@@ -50,12 +50,13 @@ When we press the button, the dot will quickly get bigger; when we release the b
         ellipse(width/2, height/2,diameter, diameter);
     }
 
-**How it works?**
+**Comment ça fonctionne ?**
 
-This project uses the input function compared to the previous 2 projects that used the output function of the GPIO.
 
-The ``GPIO.pinMode()`` function is used to set ``buttonPin`` to pull-up input mode, which makes the pin get high automatically in the default state.
+Contrairement aux deux projets précédents qui utilisaient la fonction de sortie du GPIO, ce projet exploite la fonction d'entrée.
 
-Then use the ``GPIO.digitalRead()`` function to read the value of ``buttonPin``. When the value is LOW, it means the button is pressed, at which point let the diameter of the dot increase by 5; if the button is released, then the diameter of the dot will decrease by 1.
+La fonction ``GPIO.pinMode()`` est utilisée pour configurer ``buttonPin`` en mode entrée avec résistance pull-up, ce qui force automatiquement la broche à un état HAUT par défaut.
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+Ensuite, la fonction ``GPIO.digitalRead()`` permet de lire la valeur de ``buttonPin``. Lorsque cette valeur est BAS, cela signifie que le bouton est enfoncé ; dans ce cas, le diamètre du point augmente de 5. Si le bouton est relâché, le diamètre du point diminue de 1.
+
+Pour plus de détails, consultez la `Processing Reference <https://processing.org/reference/>`_.

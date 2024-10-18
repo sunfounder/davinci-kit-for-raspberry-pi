@@ -1,45 +1,45 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, d'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et profitez d'aperçus exclusifs.
+    - **Réductions spéciales** : Bénéficiez de remises exclusives sur nos produits les plus récents.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-Video 15: Analog Input on the Raspberry Pi Using the ADC0834
+Vidéo 15 : Entrée analogique sur le Raspberry Pi avec l'ADC0834
 =======================================================================================
 
-Learn how to enable analog input on your Raspberry Pi using the ADC0834 analog-to-digital converter, including hardware setup, library installation, 
-and transitioning to the Thonny IDE for Python development.
+Apprenez à activer les entrées analogiques sur votre Raspberry Pi à l'aide du convertisseur 
+analogique-numérique ADC0834, en abordant l'installation matérielle, l'intégration de la 
+bibliothèque et l'utilisation de l'IDE Thonny pour le développement en Python.
 
 
-1. Introduction to analog input and the need for an ADC on the Raspberry Pi.
-2. Hardware setup and GPIO pin connections for the ADC0834 chip.
-3. Establishing proper power and ground connections for components.
-4. Installation and usage of the ADC0834 library for Python.
-5. Transitioning to Thonny as a modern IDE for clean and efficient coding.
-6. Best practices for troubleshooting and verifying connections before programming.
-7. Library installation: Install the ADC library for Raspberry Pi.
-8. Python setup: Save the library code in a Python file and move it to the correct directory.
-9. GPIO usage: Set up Python program to read analog input using GPIO pins.
-10. Analog reading: Write a Python script to continuously read analog values from the potentiometer.
-11. Channel switching: Demonstrate switching between different channels of the ADC chip.
-12. Homework assignment: Create a dimmable LED controlled by the potentiometer position.
-
-
-
-
+1. Introduction aux entrées analogiques et à l'utilisation d'un ADC sur le Raspberry Pi.
+2. Configuration matérielle et connexions des broches GPIO pour le circuit ADC0834.
+3. Établissement des connexions adéquates d'alimentation et de mise à la terre pour les composants.
+4. Installation et utilisation de la bibliothèque ADC0834 pour Python.
+5. Passage à Thonny en tant qu'IDE moderne pour un développement propre et efficace.
+6. Bonnes pratiques pour le dépannage et la vérification des connexions avant de commencer la programmation.
+7. Installation de la bibliothèque : Installez la bibliothèque ADC pour Raspberry Pi.
+8. Configuration Python : Enregistrez le code de la bibliothèque dans un fichier Python et placez-le dans le répertoire approprié.
+9. Utilisation des GPIO : Configurez le programme Python pour lire les entrées analogiques via les broches GPIO.
+10. Lecture analogique : Écrivez un script Python pour lire continuellement les valeurs analogiques du potentiomètre.
+11. Changement de canal : Montrez comment basculer entre différents canaux du circuit ADC.
+12. Devoir pratique : Créez une LED dimmable contrôlée par la position du potentiomètre.
 
 
 
-**Video**
+
+
+
+**Vidéo**
 
 .. raw:: html
 

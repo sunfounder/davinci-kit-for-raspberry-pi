@@ -1,35 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Approfondissez vos connaissances en matière de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Assistance d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Profitez d'un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-3.1.10 Alarm Bell
+3.1.10 Alarme Sonore
 =====================
 
 Introduction
 -----------------
 
-In this course, we will make a manual alarm device. You can replace the
-toggle switch with a thermistor or a photosensitive sensor to make a
-temperature alarm or a light alarm.
+Dans ce cours, nous allons créer un dispositif d'alarme manuel. Vous pouvez 
+remplacer l'interrupteur à bascule par un thermistor ou un capteur photosensible 
+pour en faire une alarme de température ou une alarme de lumière.
 
-Components
----------------
+Composants
+-----------------
 
 .. image:: img/list_Alarm_Bell.png
     :align: center
 
-Schematic Diagram
--------------------------
+Schéma de câblage
+---------------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -42,19 +42,19 @@ GPIO22       Pin 15   3        22
 .. image:: img/Schematic_three_one10.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procédures expérimentales
+--------------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1** : Construisez le circuit.
 
 .. image:: img/image266.png
    :alt: Alarm Bell_bb
    :width: 800
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Pour les utilisateurs du langage C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Change directory.
+**Étape 2** : Changez de répertoire.
 
 .. raw:: html
 
@@ -64,7 +64,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.10/
 
-**Step 3**: Compile.
+**Étape 3** : Compilez.
 
 .. raw:: html
 
@@ -74,7 +74,7 @@ Experimental Procedures
 
     gcc 3.1.10_AlarmBell.c -lwiringPi -lpthread
 
-**Step 4**: Run.
+**Étape 4** : Exécutez.
 
 .. raw:: html
 
@@ -84,25 +84,25 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the program starts, the toggle switch will be toggled to the
-right, and the buzzer will give out alarm sounds. At the same time, the
-red and green LEDs will flash at a certain frequency.
+Après le démarrage du programme, l'interrupteur à bascule sera basculé vers la 
+droite, et le buzzer émettra des sons d'alarme. En même temps, les LEDs rouge 
+et verte clignoteront à une certaine fréquence.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution ou si un message d'erreur apparaît : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`C code is not working?`.
 
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: c
 
     #include <pthread.h>
 
-In this code, you'll use a new library, pthread.h, which is a set of
-common thread libraries and can realize multithreading. We add the
-**-lpthread** parameter at compile time for the independent working of
-the LED and the buzzer.
+Dans ce code, vous utiliserez une nouvelle bibliothèque, pthread.h, qui est un 
+ensemble de bibliothèques de threads courantes permettant de réaliser le 
+multithreading. Nous ajoutons le paramètre **-lpthread** lors de la compilation 
+pour que les LED et le buzzer puissent fonctionner indépendamment.
 
 .. code-block:: c
 
@@ -121,9 +121,9 @@ the LED and the buzzer.
         }
     }
 
-The function ledWork() helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+La fonction ledWork() permet de définir l'état de fonctionnement des 2 LEDs : la 
+LED verte reste allumée pendant 0,5s puis s'éteint ; de même, la LED rouge s'allume 
+pendant 0,5s puis s'éteint.
 
 .. code-block:: c
 
@@ -142,9 +142,9 @@ similarly, keeps the red LED lighting up for 0.5s and then turns off.
         }
     }
 
-The function buzzWork() is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+La fonction buzzWork() sert à configurer l'état de fonctionnement du buzzer. 
+Ici, nous définissons la fréquence entre 130 et 800, en l'augmentant ou la 
+diminuant par intervalles de 20.
 
 .. code-block:: c
 
@@ -160,35 +160,30 @@ at an interval of 20.
         pthread_create(&tBuzz,NULL,buzzWork,NULL);      
     }
 
-In the function on():
+Dans la fonction on() :
 
-1) Define the mark \"flag=1\", indicating the ending of the control
-   thread.
+1) Définir le marqueur \"flag=1\", indiquant la fin du contrôle du thread.
 
-2) Create a software-controlled tone pin **BeepPin**.
+2) Créer un pin de tonalité contrôlé par logiciel **BeepPin**.
 
-3) Create two separate threads so that the LED and the buzzer can work
-   at the same time.
+3) Créer deux threads séparés pour que les LEDs et le buzzer puissent fonctionner simultanément.
 
-**pthread_t tLed:** Declare a thread **tLed**.
+**pthread_t tLed:** Déclare un thread **tLed**.
 
-**pthread_create(&tLed,NULL,ledWork,NULL)：** Create the thread and its
-prototype is as follows:
+**pthread_create(&tLed,NULL,ledWork,NULL) :** Créez le thread avec le prototype suivant :
 
-int pthread_create(pthread_t \*restrict tidp,const pthread_attr_t
-\*restrict_attr,void*（*start_rtn)(void*),void \*restrict arg);
+int pthread_create(pthread_t \*restrict tidp, const pthread_attr_t \*restrict_attr, void*（*start_rtn)(void*), void \*restrict arg);
 
-**Return the Value**
+**Valeur de retour**
 
-If successful, return \"**0**\"；otherwise, return the **fall number**
-\"**-1**\".
+Si la création est réussie, retourne \"**0**\" ; sinon, retourne le **numéro d'erreur** \"**-1**\".
 
-**Parameter**
+**Paramètres**
 
-| The first parameter is a pointer to the thread identifier.
-| The second one is used to set the thread attribute.
-| The third one is the starting address of the thread running function.
-| The last one is the one that runs the function.
+| Le premier paramètre est un pointeur vers l'identifiant du thread.
+| Le deuxième paramètre est utilisé pour définir l'attribut du thread.
+| Le troisième paramètre est l'adresse de départ de la fonction de thread.
+| Le dernier paramètre est l'argument passé à la fonction.
 
 .. code-block:: c
 
@@ -199,9 +194,8 @@ If successful, return \"**0**\"；otherwise, return the **fall number**
         digitalWrite(BLedPin,LOW);
     }
 
-
-The function Off() defines \"flag=0\" so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+La fonction off() définit \"flag=0\" pour arrêter les threads **ledWork** et 
+**buzzWork**, puis désactive le buzzer et les LEDs.
 
 .. code-block:: c
 
@@ -221,16 +215,15 @@ The function Off() defines \"flag=0\" so as to exit the threads
         return 0;
     }
 
-Main() contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function on() is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+La fonction main() contient l'ensemble du processus du programme : elle lit 
+d'abord la valeur de l'interrupteur à bascule ; si celui-ci est basculé vers 
+la droite (lecture à 1), la fonction on() est appelée, le buzzer émet des sons 
+et les LEDs rouge et verte clignotent. Sinon, le buzzer et les LEDs restent éteints.
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Pour les utilisateurs de Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Change directory.
+**Étape 2 :** Changez de répertoire.
 
 .. raw:: html
 
@@ -240,7 +233,7 @@ and the LED don’t work.
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -250,15 +243,15 @@ and the LED don’t work.
 
     sudo python3 3.1.10_AlarmBell.py
 
-After the program starts, the toggle switch will be toggled to the
-right, and the buzzer will give out alarm sounds. At the same time, the
-red and green LEDs will flash at a certain frequency.
+Après le démarrage du programme, l'interrupteur à bascule sera positionné à 
+droite, et le buzzer émettra des sons d'alarme. En même temps, les LEDs rouge 
+et verte clignoteront à une certaine fréquence.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre dans le chemin source du code comme ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -336,7 +329,7 @@ red and green LEDs will flash at a certain frequency.
                 off()
             lastState=currentState
 
-    
+
     def destroy():
         off()
         GPIO.cleanup()
@@ -349,16 +342,16 @@ red and green LEDs will flash at a certain frequency.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
     import threading
 
-Here, we import the **Threading** module and it allows you to do
-multiple things at once, while normal programs can only execute code
-from top to bottom. With **Threading** modules, the LED and the buzzer
-can work separately.
+Ici, nous importons le module **Threading** qui permet d'exécuter plusieurs 
+tâches simultanément, tandis que les programmes normaux ne peuvent exécuter 
+le code que de haut en bas. Avec les modules **Threading**, les LED et le 
+buzzer peuvent fonctionner indépendamment.
 
 .. code-block:: python
 
@@ -371,9 +364,9 @@ can work separately.
             time.sleep(0.5)
             GPIO.output(BLedPin,GPIO.LOW)
 
-The function ledWork() helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+La fonction ledWork() permet de régler l'état de fonctionnement des 2 LEDs : 
+elle maintient la LED verte allumée pendant 0,5s puis l'éteint ; de même, la LED 
+rouge s'allume pendant 0,5s puis s'éteint.
 
 .. code-block:: python
 
@@ -387,9 +380,8 @@ similarly, keeps the red LED lighting up for 0.5s and then turns off.
             Buzz.ChangeFrequency(note)
             time.sleep(0.01)
 
-The function buzzWork() is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+La fonction buzzWork() sert à régler l'état de fonctionnement du buzzer. Ici, 
+la fréquence est réglée entre 130 et 800, augmentant ou diminuant par intervalles de 20.
 
 .. code-block:: python
 
@@ -402,28 +394,26 @@ at an interval of 20.
         tLed = threading.Thread(target=ledWork) 
         tLed.start()  
 
-In the function on():
+Dans la fonction on() :
 
-1) Define the mark \"flag=1\", indicating the ending of the control
-   thread.
+1) Définissez le marqueur \"flag=1\", indiquant le démarrage du thread de contrôle.
 
-2) Start the Buzz, and set the duty cycle to 50%.
+2) Lancez Buzz et définissez le cycle de service à 50 %.
 
-3) Create **2** separate threads so that the LED and the buzzer can work
-   at the same time.
+3) Créez **2** threads séparés pour que la LED et le buzzer puissent fonctionner 
+   en même temps.
 
-   tBuzz = threading.Thread(target=buzzerWork) **:** Create the
-   thread and its prototype is as follows:
+   tBuzz = threading.Thread(target=buzzerWork) **:** Créez le thread avec le 
+   prototype suivant :
 
 
 class threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, \*, daemon=None)
 
-Among the construction methods, the principal parameter is **target**,
-we need to assign a callable object (here are the functions **ledWork**
-and **BuzzWork** ) to **target**.
+Parmi les méthodes de construction, le principal paramètre est **target**, auquel 
+nous devons assigner un objet exécutable (ici, les fonctions **ledWork** et **BuzzWork**).
 
-Next **start()** is called to start the thread object, ex.,
-tBuzz.start() is used to start the newly installed tBuzz thread.
+Ensuite, on appelle **start()** pour lancer l'objet thread, ex., tBuzz.start() est 
+utilisé pour démarrer le thread tBuzz nouvellement créé.
 
 .. code-block:: python
 
@@ -434,8 +424,8 @@ tBuzz.start() is used to start the newly installed tBuzz thread.
         GPIO.output(ALedPin,GPIO.LOW)
         GPIO.output(BLedPin,GPIO.LOW)
 
-The function Off() defines \"flag=0\" so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+La fonction off() définit \"flag=0\" pour arrêter les threads **ledWork** et
+ **BuzzWork**, puis désactive le buzzer et les LEDs.
 
 .. code-block:: python
 
@@ -449,14 +439,14 @@ The function Off() defines \"flag=0\" so as to exit the threads
                 off()
             lastState=currentState
 
-Main() contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function on() is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+La fonction main() contient tout le processus du programme : elle lit d'abord la 
+valeur de l'interrupteur à bascule ; si celui-ci est basculé vers la droite 
+(lecture à 1), la fonction on() est appelée, entraînant l'activation du buzzer 
+et le clignotement des LEDs rouge et verte. Sinon, le buzzer et les LEDs restent 
+inactifs.
 
-Phenomenon Picture
-------------------------
+Image illustrant le phénomène
+--------------------------------
 
 .. image:: img/image267.jpeg
    :align: center

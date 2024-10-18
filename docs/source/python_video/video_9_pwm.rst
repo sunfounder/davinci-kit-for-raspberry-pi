@@ -1,36 +1,34 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez & Partagez** : Échangez des conseils et des tutoriels pour enrichir vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et à des avant-premières exclusives.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos produits les plus récents.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales lors d'événements festifs.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-
-Video 9: Using GPIO Pins for PWM to Simulate Analog Output
-=======================================================================================
-
-This video guides you through the basics of PWM (Pulse Width Modulation) using the Raspberry Pi GPIO pins, demonstrating LED brightness control and real-time frequency adjustment.
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
+Vidéo 9 : Utilisation des broches GPIO pour le PWM afin de simuler une sortie analogique
+===========================================================================================
 
-1. Introduction to PWM and its role in simulating analog signals.
-2. Understanding duty cycle and its significance in PWM signals.
-3. Hands-on demonstration of LED brightness control using PWM with Raspberry Pi GPIO pins.
-4. Utilizing an oscilloscope to visualize PWM signals, verifying duty cycle and frequency.
-5. Explanation of frequency and its impact on PWM signals.
-6. Real-time demonstration of changing duty cycle and frequency using Python commands in the Raspberry Pi terminal.
-7. Homework assignment involving precise LED brightness control using push buttons, fostering hands-on learning and experimentation.
-8. Importance of GPIO pins in controlling various components such as LEDs, motors, and sensors.
+Cette vidéo vous guide à travers les bases de la modulation de largeur d'impulsion (PWM) en utilisant les broches GPIO du Raspberry Pi, en démontrant le contrôle de la luminosité des LED et l'ajustement de la fréquence en temps réel.
+
+1. Introduction à la modulation de largeur d'impulsion (PWM) et son rôle dans la simulation de signaux analogiques.
+2. Compréhension du cycle de rapport (duty cycle) et de son importance dans les signaux PWM.
+3. Démonstration pratique du contrôle de la luminosité des LED via PWM avec les broches GPIO du Raspberry Pi.
+4. Utilisation d'un oscilloscope pour visualiser les signaux PWM et vérifier le cycle de rapport et la fréquence.
+5. Explication de la fréquence et de son impact sur les signaux PWM.
+6. Démonstration en temps réel de la modification du cycle de rapport et de la fréquence à l'aide de commandes Python dans le terminal du Raspberry Pi.
+7. Exercice pratique consistant à contrôler précisément la luminosité des LED en utilisant des boutons-poussoirs, encourageant l'apprentissage pratique et l'expérimentation.
+8. Importance des broches GPIO pour contrôler divers composants tels que les LED, les moteurs et les capteurs.
 
 
-**Video**
+**Vidéo**
 
 .. raw:: html
     

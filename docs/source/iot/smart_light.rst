@@ -1,31 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez dans l’univers du Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et surmontez vos défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des conseils et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et à des démonstrations exclusives.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions et cadeaux festifs** : Participez à des concours et des promotions durant les périodes festives.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Smart Light
-=================
+Lumière Intelligente
+=======================
 
-In this project, we will learn to control the brightness of LED with Cloud4RPi's Silder widget.
+Dans ce projet, nous allons apprendre à contrôler la luminosité d'une LED en utilisant le widget curseur de Cloud4RPi.
 
-Experimental Procedures
--------------------------
+Procédures expérimentales
+----------------------------
 
-Build the circuit.
+Construisez le circuit.
 
 .. image:: img/led1.png
   :align: center
 
-Open the code.
+Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -36,13 +36,13 @@ Open the code.
     cd ~/cloud4rpi-raspberrypi-python
     sudo nano smart_light.py
 
-Find the line below and fill in the correct device token.
+Trouvez la ligne ci-dessous et complétez-la avec le bon token de l'appareil.
 
 .. code-block:: python
 
     DEVICE_TOKEN = '__YOUR_DEVICE_TOKEN__'
 
-Run the code.
+Exécutez le code.
 
 .. raw:: html
 
@@ -52,31 +52,31 @@ Run the code.
 
     sudo python3 smart_light.py
 
-Go to Cloud4RPi, add a new Control Panel named project3, and click **Add Widget** to add a **Slider** widget.
+Accédez à Cloud4RPi, ajoutez un nouveau panneau de contrôle nommé **project3**, et cliquez sur **Add Widget** pour ajouter un widget de type **Slider**.
 
 .. image:: img/led2.png
     :align: center
 
-Once added, you can use the Slider widget to control the brightness of the LED.
+Une fois ajouté, vous pouvez utiliser le widget curseur pour contrôler la luminosité de la LED.
 
 .. image:: img/led3.png
     :align: center
 
-Code Explanation
-----------------------
+Explication du code
+-----------------------
 
 .. code-block:: python
 
     led_val = GPIO.PWM(LED_PIN, 2000)
     led_val.start(0)
 
-Call the ``GPIO.PWM()`` function to define ``LED_PIN`` as PWM pin and set the frequency of PWM pin to 2000Hz, then use the ``start()`` function to set the initial duty cycle to 0.
+Appelez la fonction ``GPIO.PWM()`` pour définir ``LED_PIN`` comme une broche PWM et définissez la fréquence de la broche PWM à 2000Hz. Ensuite, utilisez la fonction ``start()`` pour définir le cycle de travail initial à 0.
 
 .. code-block:: python
 
     led_val.ChangeDutyCycle(value)
 
-The value sent by Slider widget to Raspberry Pi is used as PWM duty cycle to change the brightness of the LED.
+La valeur envoyée par le widget curseur au Raspberry Pi est utilisée comme cycle de travail PWM pour ajuster la luminosité de la LED.
 
 .. code-block:: python
 
@@ -88,5 +88,5 @@ The value sent by Slider widget to Raspberry Pi is used as PWM duty cycle to cha
         },
     }
 
-By setting the value of the ``'value'`` key, we can set the initial value of the Slider widget, then always read the value of the ``'value'`` key and send the current level of ``LED_PIN`` (the value returned by the function ``led_control``) to Cloud4RPi.
+En définissant la valeur de la clé ``'value'``, nous pouvons définir la valeur initiale du widget curseur, puis lire en continu la valeur de la clé ``'value'`` et envoyer le niveau actuel de ``LED_PIN`` (la valeur retournée par la fonction ``led_control``) à Cloud4RPi.
 

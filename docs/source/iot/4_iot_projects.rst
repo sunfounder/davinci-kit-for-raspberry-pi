@@ -1,25 +1,25 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Rejoignez d'autres amateurs pour explorer plus en profondeur le monde du Raspberry Pi, de l'Arduino et de l'ESP32.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Assistance d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Profitez d'un accès anticipé aux nouvelles annonces de produits et avant-premières.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et cadeaux** : Participez à nos concours et promotions saisonnières.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-4 IOT (for Pi 4)
+4 IOT (pour Pi 4)
 ==================
 
-The Internet of things (IoT) describes the network of physical objects—a.k.a. "things"—that are embedded with sensors, software, and other technologies for the purpose of connecting and exchanging data with other devices and systems over the Internet.
+L'Internet des objets (IoT) désigne le réseau d'objets physiques—également appelés "objets connectés"—qui sont équipés de capteurs, de logiciels et d'autres technologies pour se connecter et échanger des données avec d'autres appareils et systèmes via Internet.
 
-Cloud4RPi is a cloud-based control panel for IoT projects. Cloud4RPi uses dashboard widgets to control IoT devices remotely and show real-time device data.
+Cloud4RPi est un tableau de bord basé sur le cloud pour les projets IoT. Il utilise des widgets de tableau de bord pour contrôler les appareils IoT à distance et afficher les données des appareils en temps réel.
 
-In this chapter, we combine some components with Cloud4RPi to do some interesting IOT projects.
+Dans ce chapitre, nous allons combiner certains composants avec Cloud4RPi pour réaliser des projets IoT intéressants.
 
 .. toctree::
     :maxdepth: 2

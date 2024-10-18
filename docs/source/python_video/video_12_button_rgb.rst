@@ -1,36 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, d’Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes post-achat et surmontez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et bénéficiez de présentations exclusives.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos tout derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales lors d'événements festifs.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-Video 12: Pushbutton Control of RGB LED
+Vidéo 12 : Contrôle d'une LED RVB avec un bouton-poussoir
 =======================================================================================
 
-Explore how to control RGB LEDs using Raspberry Pi platforms, 
-covering hardware setup, code organization, GPIO pin configuration, color mixing, dimmable LED control, debugging, and project extension possibilities.
+Découvrez comment contrôler des LEDs RVB à l'aide des plateformes Raspberry Pi, en abordant l'installation matérielle, l'organisation du code, la configuration des broches GPIO, le mélange des couleurs, le contrôle de la luminosité, le débogage et les possibilités d'extension du projet.
 
-1. **Hardware setup**: Configure RGB LEDs, buttons, and GPIO connections.
-2. **Code organization**: Organize code systematically for easier maintenance.
-3. **GPIO pin setup**: Configure GPIO pins for input and output functionalities.
-4. **Main loop implementation**: Create a main loop to monitor button states and update LED states.
-5. **Debugging and testing**: Ensure proper hardware and software functionality through debugging procedures.
-6. **RGB LED color mixing**: Experiment with color combinations using red, green, and blue.
-7. **Dimmable LED control**: Explore dimming LEDs for precise color and brightness adjustments.
-8. **Circuit troubleshooting**: Identify and resolve circuit issues like poor connections.
-9. **Programming logic**: Develop code logic for controlling RGB LED behavior.
-10. **Project extension**: Consider expanding the project with advanced features like dimmable LED control.
+1. **Installation matérielle** : Configurez les LEDs RVB, les boutons et les connexions GPIO.
+2. **Organisation du code** : Structurez le code de manière systématique pour faciliter la maintenance.
+3. **Configuration des broches GPIO** : Définissez les broches GPIO pour les fonctions d'entrée et de sortie.
+4. **Implémentation de la boucle principale** : Créez une boucle principale pour surveiller l'état des boutons et mettre à jour les états des LEDs.
+5. **Débogage et tests** : Assurez-vous du bon fonctionnement matériel et logiciel en suivant des procédures de débogage.
+6. **Mélange des couleurs des LEDs RVB** : Expérimentez les combinaisons de couleurs en utilisant le rouge, le vert et le bleu.
+7. **Contrôle de la luminosité** : Explorez le contrôle de la luminosité pour des ajustements précis des couleurs et de l'intensité lumineuse.
+8. **Dépannage des circuits** : Identifiez et résolvez les problèmes de circuit, comme les mauvaises connexions.
+9. **Logique de programmation** : Développez la logique de programmation pour contrôler le comportement de la LED RVB.
+10. **Extension du projet** : Envisagez d'élargir le projet avec des fonctionnalités avancées telles que le contrôle de la luminosité variable.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

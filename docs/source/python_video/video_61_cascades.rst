@@ -1,33 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez au cœur de l'univers du Raspberry Pi, d'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes post-achat et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Profitez d'un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à nos tirages au sort et à nos promotions spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Video 61: Finding and Tracking Faces In OpenCV with Haar Cascades
+
+Vidéo 61 : Détection et Suivi de Visages avec OpenCV et les Haar Cascades
 =======================================================================================
 
-
-Learn how to implement face detection using OpenCV on a Raspberry Pi, from accessing pre-trained models to optimizing code for real-time performance.
-
+Apprenez à mettre en œuvre la détection de visages à l'aide d'OpenCV sur un Raspberry Pi, depuis l'accès aux modèles pré-entraînés jusqu'à l'optimisation du code pour une performance en temps réel.
 
 
-1. Introduction to SunFounder Raspberry Pi kit sponsored by SunFounder.
-2. Overview of previous lessons on OpenCV and color-based object tracking.
-3. Explanation of OpenCV's pre-trained face detection models (Haar Cascades).
-4. Demonstrating how to find and access the pre-trained models within the OpenCV library.
-5. Implementing face detection in Python code using OpenCV on a Raspberry Pi.
-6. Optimizing the face detection program for performance by resizing frames.
+1. **Présentation du kit Raspberry Pi sponsorisé par SunFounder**.
+2. **Rappel des leçons précédentes** sur OpenCV et le suivi d'objets basé sur la couleur.
+3. **Explication des modèles de détection de visages pré-entraînés** (Haar Cascades) d'OpenCV.
+4. **Démonstration** sur la façon de localiser et d'utiliser ces modèles dans la bibliothèque OpenCV.
+5. **Implémentation** de la détection de visages en Python sur un Raspberry Pi à l'aide d'OpenCV.
+6. **Optimisation** du programme de détection de visages pour de meilleures performances en redimensionnant les images.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

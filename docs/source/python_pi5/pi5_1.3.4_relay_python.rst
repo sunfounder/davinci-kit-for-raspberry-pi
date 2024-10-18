@@ -1,35 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi, Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans le monde du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Assistance d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et aux avant-goûts des nouveautés.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales pour les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. _1.3.4_py_pi5:
 
-1.3.4 Relay
-===========
+1.3.4 Relais
+==============
 
 Introduction
-------------
+---------------
 
-In this project, we will learn to use a relay. It is one of the commonly
-used components in automatic control system. When the voltage, current,
-temperature, pressure, etc., reaches, exceeds or is lower than the
-predetermined value, the relay will connect or interrupt the circuit, to
-control and protect the equipment.
+Dans ce projet, nous allons apprendre à utiliser un relais. C'est l'un des 
+composants les plus couramment utilisés dans les systèmes de contrôle automatique. 
+Lorsque la tension, le courant, la température, la pression, etc., atteignent, dépassent 
+ou sont inférieurs à une valeur prédéterminée, le relais va connecter ou interrompre 
+le circuit pour contrôler et protéger l'équipement.
 
-Required Components
-------------------------------
+Composants nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous aurons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/1.3.4_relay_list.png
 
@@ -37,20 +37,20 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
------------------
+Schéma de circuit
+------------------
 
 .. image:: ../python_pi5/img/1.3.4_relay_schematic.png
 
 
-Experimental Procedures
------------------------
+Procédure expérimentale
+---------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../python_pi5/img/1.3.4_relay_circuit.png
 
-**Step 2:** Open the code file.
+**Étape 2 :** Ouvrir le fichier de code.
 
 .. raw:: html
 
@@ -60,8 +60,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-
-**Step 3:** Run.
+**Étape 3 :** Exécuter.
 
 .. raw:: html
 
@@ -71,19 +70,18 @@ Experimental Procedures
 
     sudo python3 1.3.4_Relay_zero.py
 
-While the code is running, the LED lights up. In addition, you can hear
-a ticktock caused by breaking normally close contact and closing
-normally open contact.
+Pendant l'exécution du code, la LED s'allume. De plus, vous entendrez un 
+bruit de "tic-tac" provoqué par l'ouverture et la fermeture des contacts du relais.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    En cas d'erreur « RuntimeError: Cannot determine SOC peripheral base address », veuillez consulter :ref:`faq_soc`
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source, par exemple ``davinci-kit-for-raspberry-pi/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour observer le résultat.
 
 
 .. raw:: html
@@ -93,67 +91,67 @@ normally open contact.
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import OutputDevice  # Import the class for controlling GPIO pins
-   from time import sleep  # Import the sleep function for delay
+   from gpiozero import OutputDevice  # Importer la classe pour contrôler les broches GPIO
+   from time import sleep  # Importer la fonction sleep pour les temporisations
 
-   # Initialize the relay connected to GPIO pin 17
-   relay = OutputDevice(17)
+   # Initialiser le relais connecté à la broche GPIO 17
+   relais = OutputDevice(17)
 
    try:
-       # Loop to continuously toggle the relay's state every second
+       # Boucle pour basculer continuellement l'état du relais toutes les secondes
        while True:
-           print('Relay open...')  # Inform that the relay is being activated
-           relay.on()  # Turn on the relay (assuming active low configuration)
-           sleep(1)   # Maintain the relay in the on state for 1 second
+           print('Relay open...')  # Indiquer que le relais est activé
+           relais.on()  # Allumer le relais (configuration active low présumée)
+           sleep(1)   # Maintenir le relais en position allumée pendant 1 seconde
 
-           print('...Relay close')  # Inform that the relay is being deactivated
-           relay.off()  # Turn off the relay
-           sleep(1)   # Maintain the relay in the off state for 1 second
+           print('...Relay close')  # Indiquer que le relais est désactivé
+           relais.off()  # Éteindre le relais
+           sleep(1)   # Maintenir le relais en position éteinte pendant 1 seconde
 
    except KeyboardInterrupt:
-       # Handle a keyboard interrupt (Ctrl+C) to exit the loop
-       relay.off()  # Ensure the relay is turned off before exiting
+       # Gérer une interruption clavier (Ctrl+C) pour quitter la boucle
+       relais.off()  # S'assurer que le relais est éteint avant de quitter
        pass
 
 
-**Code Explanation**
+**Explication du code**
 
-#. It imports ``OutputDevice`` from ``gpiozero`` for controlling GPIO pins and ``sleep`` from ``time`` for adding delays.
+#. Cela importe ``OutputDevice`` de la bibliothèque ``gpiozero`` pour contrôler les broches GPIO et ``sleep`` de la bibliothèque ``time`` pour ajouter des temporisations.
 
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import OutputDevice  # Import the class for controlling GPIO pins
-       from time import sleep  # Import the sleep function for delay
+       from gpiozero import OutputDevice  # Importer la classe pour contrôler les broches GPIO
+       from time import sleep  # Importer la fonction sleep pour les temporisations
 
-#. Initializes an ``OutputDevice`` object for the relay connected to GPIO pin 17. 
+#. Initialise un objet ``OutputDevice`` pour le relais connecté à la broche GPIO 17.
 
    .. code-block:: python
 
-       # Initialize the relay connected to GPIO pin 17
-       relay = OutputDevice(17)
+       # Initialiser le relais connecté à la broche GPIO 17
+       relais = OutputDevice(17)
 
-#. Inside the ``try`` block, a ``while True`` loop continuously toggles the relay's state. The relay is turned on and off with a 1-second delay between each state, accompanied by console print statements.
+#. À l'intérieur du bloc ``try``, une boucle ``while True`` bascule continuellement l'état du relais. Le relais est allumé et éteint avec un délai de 1 seconde entre chaque état, accompagné de messages imprimés dans la console.
 
    .. code-block:: python
 
        try:
-           # Loop to continuously toggle the relay's state every second
+           # Boucle pour basculer continuellement l'état du relais toutes les secondes
            while True:
-               print('Relay open...')  # Inform that the relay is being activated
-               relay.on()  # Turn on the relay (assuming active low configuration)
-               sleep(1)   # Maintain the relay in the on state for 1 second
+               print('Relay open...')  # Indiquer que le relais est activé
+               relais.on()  # Allumer le relais (configuration active low présumée)
+               sleep(1)   # Maintenir le relais en position allumée pendant 1 seconde
 
-               print('...Relay close')  # Inform that the relay is being deactivated
-               relay.off()  # Turn off the relay
-               sleep(1)   # Maintain the relay in the off state for 1 second
+               print('...Relay close')  # Indiquer que le relais est désactivé
+               relais.off()  # Éteindre le relais
+               sleep(1)   # Maintenir le relais en position éteinte pendant 1 seconde
 
-#. Catches a KeyboardInterrupt (like Ctrl+C) to allow for graceful script termination. The relay is turned off before exiting the script.
+#. Capture une interruption clavier (comme Ctrl+C) pour permettre une terminaison propre du script. Le relais est éteint avant de quitter le script.
 
    .. code-block:: python
-      
-      except KeyboardInterrupt:
-      # Handle a keyboard interrupt (Ctrl+C) to exit the loop
-      relay.off()  # Ensure the relay is turned off before exiting
-      pass
+       
+       except KeyboardInterrupt:
+       # Gérer une interruption clavier (Ctrl+C) pour quitter la boucle
+       relais.off()  # S'assurer que le relais est éteint avant de quitter
+       pass
 

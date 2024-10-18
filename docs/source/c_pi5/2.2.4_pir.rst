@@ -1,112 +1,104 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et aux avant-goûts.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et des promotions à l'occasion des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-2.2.4 PIR
-=========
+2.2.4 Détecteur PIR
+======================
 
 Introduction
-------------
+---------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+Dans ce projet, nous allons créer un dispositif en utilisant des capteurs 
+pyroélectriques infrarouges pour détecter le corps humain. Lorsque quelqu'un 
+s'approche de la LED, celle-ci s'allume automatiquement. Si personne n'est détecté, 
+la lumière s'éteint. Ce capteur de mouvement infrarouge est capable de détecter 
+le rayonnement infrarouge émis par les humains et les animaux.
 
-Components
-----------
+Composants
+-----------
 
 .. image:: img/list_2.2.4_pir.png
 
 
-Principle
+Principe
 ---------
 
-The PIR sensor detects infrared heat radiation that can be used to
-detect the presence of organisms that emit infrared heat radiation.
+Le capteur PIR détecte le rayonnement infrarouge thermique, ce qui permet de repérer 
+la présence d'organismes émettant ce type de rayonnement.
 
-The PIR sensor is split into two slots that are connected to a
-differential amplifier. Whenever a stationary object is in front of the
-sensor, the two slots receive the same amount of radiation and the
-output is zero. Whenever a moving object is in front of the sensor, one
-of the slots receives more radiation than the other , which makes the
-output fluctuate high or low. This change in output voltage is a result
-of detection of motion.
+Le capteur PIR est divisé en deux compartiments connectés à un amplificateur différentiel. 
+Lorsqu'un objet immobile se trouve devant le capteur, les deux compartiments reçoivent la 
+même quantité de rayonnement, et la sortie est nulle. Lorsqu'un objet en mouvement passe 
+devant le capteur, un des compartiments reçoit plus de rayonnement que l'autre, ce qui fait 
+fluctuer la sortie, en passant de haut à bas ou inversement. Ce changement de tension est 
+le résultat de la détection de mouvement.
 
 .. image:: img/image211.png
     :width: 200
 
 
-
-After the sensing module is wired, there is a one-minute initialization.
-During the initialization, module will output for 0~3 times at
-intervals. Then the module will be in the standby mode. Please keep the
-interference of light source and other sources away from the surface of
-the module so as to avoid the misoperation caused by the interfering
-signal. Even you'd better use the module without too much wind, because
-the wind can also interfere with the sensor.
+Une fois le module de détection câblé, il y a une phase d'initialisation d'une minute. 
+Pendant cette période, le module peut émettre un signal de sortie de 0 à 3 fois par 
+intermittence. Ensuite, le module passe en mode veille. Veuillez éviter toute interférence 
+de sources lumineuses ou d'autres perturbations près de la surface du module afin d'éviter 
+tout déclenchement erroné. Il est préférable d'utiliser le module dans un environnement sans 
+vent excessif, car le vent peut également influencer le capteur.
 
 .. image:: img/image212.png
     :width: 400
 
 
+**Réglage de la distance**
 
-**Distance Adjustment**
+En tournant le potentiomètre de réglage de la distance dans le sens horaire, 
+a portée de détection augmente, avec une portée maximale d'environ 0 à 7 mètres. 
+Si vous le tournez dans le sens antihoraire, la portée de détection diminue, avec 
+une portée minimale d'environ 0 à 3 mètres.
 
+**Réglage du délai**
 
-Turning the knob of the distance adjustment potentiometer clockwise, the
-range of sensing distance increases, and the maximum sensing distance
-range is about 0-7 meters. If turn it anticlockwise, the range of
-sensing distance is reduced, and the minimum sensing distance range is
-about 0-3 meters.
+En tournant le potentiomètre de réglage du délai dans le sens horaire, vous augmentez 
+le temps de détection, pouvant atteindre un maximum de 300 secondes. À l'inverse, en 
+le tournant dans le sens antihoraire, vous réduisez le délai jusqu'à un minimum de 5 secondes.
 
-**Delay adjustment**
+Deux modes de déclenchement : (choisir différents modes en utilisant le cavalier).
 
+-  **H :** **Mode de déclenchement répétable**, après avoir détecté la présence d'un 
+humain, le module maintient une sortie de niveau haut. Pendant la période de délai, 
+si une autre personne entre dans la zone de détection, la sortie reste au niveau haut.
 
-Rotate the knob of the delay adjustment potentiometer clockwise, you
-can also see the sensing delay increasing. The maximum of the sensing
-elay can reach up to 300s. On the contrary, if rotate it
-anticlockwise, you can shorten the delay with a minimum of 5s. 
-
-Two trigger modes: (choosing different modes by using the jumper cap).
-
--  **H:** **Repeatable trigger mode**, after sensing the human body, the
-   module outputs high level. During the subsequent delay period, if
-   somebody enters the sensing range,the output will keep being the high
-   level.
-
--  **L:** **Non-repeatable trigger mode**, outputs high level when
-   it senses the human body. After the delay, the output will change
-   from high level into low level automatically. 
+-  **L :** **Mode de déclenchement non répétable**, la sortie passe au niveau haut 
+lorsqu'il détecte un humain. Après le délai, la sortie redevient automatiquement à 
+un niveau bas.
 
 
 
-Schematic Diagram
------------------
+Schéma de câblage
+---------------------
 
 .. image:: img/image327.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image214.png
     :width: 800
 
-**Step 2:** Go to the folder of the code.
+
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -116,7 +108,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.4/
 
-**Step 3:** Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -126,7 +118,7 @@ Experimental Procedures
 
     gcc 2.2.4_PIR.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Étape 4 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -136,17 +128,17 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, PIR detects surroundings and let RGB LED glow
-yellow if it senses someone walking by. There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
+Après l'exécution du code, le capteur PIR détecte les mouvements aux alentours 
+et fait briller la LED RVB en jaune s'il détecte quelqu'un passant à proximité. 
+Il y a deux potentiomètres sur le module PIR : l'un pour ajuster la sensibilité 
+et l'autre pour ajuster la distance de détection. Pour un fonctionnement optimal 
+du module PIR, tournez les deux potentiomètres complètement dans le sens antihoraire.
 
 .. image:: img/PIR_TTE.png
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution ou s'il y a un message d'erreur indiquant : « wiringPi.h : Aucun fichier ou répertoire de ce type », veuillez vous référer à :ref:`C code is not working?`.
 
 
 **Code**
@@ -158,7 +150,7 @@ You need to turn both of them counterclockwise to the end.
     #include <stdio.h>
     #define uchar unsigned char
 
-    #define pirPin    0     //the pir connect to GPIO0
+    #define pirPin    0     // le PIR est connecté à GPIO0
     #define redPin    1
     #define greenPin  2
     #define bluePin   3
@@ -176,7 +168,7 @@ You need to turn both of them counterclockwise to the end.
     int main(void)
     {
         int pir_val;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ // En cas d'échec d'initialisation de wiringPi, afficher un message à l'écran
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -184,7 +176,7 @@ You need to turn both of them counterclockwise to the end.
         pinMode(pirPin, INPUT);
         while(1){
         pir_val = digitalRead(pirPin);
-            if(pir_val== 1){ //if read pir is HIGH level
+            if(pir_val== 1){ // si la lecture de pir est au niveau HAUT
                 ledColorSet(0xff,0xff,0x00); 
             }
             else {
@@ -194,15 +186,15 @@ You need to turn both of them counterclockwise to the end.
         return 0;
     }
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
     void ledInit(void);
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
-These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2 RGB LED` for more details.
+Ces lignes de code sont utilisées pour définir la couleur de la LED RVB. Veuillez vous référer à
+ :ref:`1.1.2 RGB LED` pour plus de détails.
 
 .. code-block:: c
 
@@ -213,7 +205,7 @@ to :ref:`1.1.2 RGB LED` for more details.
         pinMode(pirPin, INPUT);
         while(1){
         pir_val = digitalRead(pirPin);
-            if(pir_val== 1){ //if read pir is HIGH level
+            if(pir_val== 1){ // si la lecture de pir est au niveau HAUT
                 ledColorSet(0xff,0xff,0x00); 
             }
             else {
@@ -223,6 +215,5 @@ to :ref:`1.1.2 RGB LED` for more details.
         return 0;
     }
 
-When PIR detects the human infrared spectrum, RGB LED emits the yellow
-light; if not, emits the blue light.
-
+Lorsque le capteur PIR détecte le spectre infrarouge humain, la LED RVB émet une 
+lumière jaune ; sinon, elle émet une lumière bleue.

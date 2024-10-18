@@ -1,28 +1,27 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, d'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Preparation
-====================================
+Préparation
+==============
 
-In this chapter, we firstly learn to start up Raspberry Pi. The content
-includes installing the OS, Raspberry Pi network and how to open terminal.
+Dans ce chapitre, nous allons commencer par apprendre comment démarrer le Raspberry Pi. Le contenu comprend l'installation du système d'exploitation (OS), la configuration du réseau Raspberry Pi et comment ouvrir le terminal.
 
 .. note::
 
-    You can check the complete tutorial on the official website of the Raspberry Pi: `raspberry-pi-setting-up <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up>`_.
+    Vous pouvez consulter le tutoriel complet sur le site officiel du Raspberry Pi : `raspberry-pi-setting-up <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up>`_.
 
-    If your Raspberry Pi is set up, you can skip the part and go into the next chapter.
+    Si votre Raspberry Pi est déjà configuré, vous pouvez passer cette partie et continuer avec le chapitre suivant.
 
 .. toctree::
     :maxdepth: 2

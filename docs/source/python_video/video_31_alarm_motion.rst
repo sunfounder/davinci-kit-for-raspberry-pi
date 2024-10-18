@@ -1,35 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez au cœur de l'univers Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d’experts** : Résolvez les problèmes après-vente et surmontez les défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des conseils et des tutoriels pour approfondir vos compétences.
+    - **Aperçus exclusifs** : Soyez les premiers informés des nouvelles annonces de produits et découvrez des aperçus en avant-première.
+    - **Remises spéciales** : Bénéficiez de réductions exclusives sur nos derniers produits.
+    - **Promotions et concours festifs** : Participez à des concours et à des promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-Video 31: Alarm for Detecting Motion in the Dark
+Vidéo 31 : Alarme de détection de mouvement dans le noir
 =======================================================================================
 
+Cette vidéo montre comment créer un système d’alarme anti-intrusion à l’aide d’un Raspberry Pi, d’un détecteur de mouvement, d’un capteur de luminosité et d’un buzzer, tout en fournissant des instructions étape par étape pour le montage matériel et la programmation Python.
 
-This video demonstrates how to build an intruder alarm system using a Raspberry Pi, motion sensor, light sensor, and buzzer, providing step-by-step guidance on both the hardware setup and Python coding.
-
-
-1. **Introduction to the project**: Building an intruder alarm system using Raspberry Pi.
-2. **Overview of the components used**: Raspberry Pi, PIR motion sensor, light sensor (ADC-0834), active buzzer, and transistor (S8550).
-3. **Explanation of the hardware setup**: Wiring the components together, including connecting the buzzer, motion sensor, and light sensor to the Raspberry Pi GPIO pins.
-4. **Coding the alarm system**: Using Python code to read sensor inputs, detect motion and darkness, and trigger the buzzer alarm accordingly.
-5. **Testing the system**: Demonstrating the functionality of the alarm system by simulating intruder detection in different lighting conditions.
-6. **Discussion of future projects**: Previewing upcoming tutorials on additional components like accelerometers, gyroscopes, RFID, and cameras for further Raspberry Pi projects.
+1. **Introduction au projet** : Construction d’un système d’alarme anti-intrusion avec un Raspberry Pi.
+2. **Présentation des composants utilisés** : Raspberry Pi, capteur de mouvement PIR, capteur de luminosité (ADC-0834), buzzer actif et transistor (S8550).
+3. **Explication du montage matériel** : Câblage des composants, y compris la connexion du buzzer, du détecteur de mouvement et du capteur de luminosité aux broches GPIO du Raspberry Pi.
+4. **Programmation du système d’alarme** : Utilisation du code Python pour lire les entrées des capteurs, détecter les mouvements et l’obscurité, et déclencher l’alarme en conséquence.
+5. **Test du système** : Démonstration de la fonctionnalité du système d’alarme en simulant la détection d’intrus dans différentes conditions de luminosité.
+6. **Discussion sur les projets futurs** : Aperçu des prochains tutoriels sur l’utilisation de composants supplémentaires comme les accéléromètres, gyroscopes, RFID et caméras pour enrichir les projets sur Raspberry Pi.
 
 
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 

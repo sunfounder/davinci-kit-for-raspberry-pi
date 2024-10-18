@@ -1,151 +1,143 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-2.2.6 MPU6050 Module
-====================
+2.2.6 Module MPU6050
+=======================
 
 Introduction
-------------
+---------------
 
-The MPU-6050 is the world’s first and only 6-axis motion tracking
-devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
-smartphones, tablets and wearable sensors that have these features,
-including the low power, low cost, and high performance requirements.
+Le MPU-6050 est le premier et le seul dispositif de suivi de mouvement 6 axes 
+au monde (gyroscope 3 axes et accéléromètre 3 axes), conçu pour les smartphones, 
+tablettes et capteurs portables. Il se distingue par ses faibles besoins énergétiques, 
+son faible coût et ses performances élevées.
 
-In this experiment, use I2C to obtain the values of the three-axis
-acceleration sensor and three-axis gyroscope for MPU6050 and display
-them on the screen.
+Dans cette expérience, nous utilisons l'I2C pour obtenir les valeurs des capteurs 
+d'accélération et de gyroscope à trois axes du MPU6050 et les afficher à l'écran.
 
-Components
-----------
+Composants
+--------------
 
 .. image:: img/list_2.2.6.png
 
 
-Principle
----------
+Principe
+----------
 
 **MPU6050**
 
-The MPU-6050 is a 6-axis(combines 3-axis Gyroscope, 3-axis
-Accelerometer) motion tracking devices.
+Le MPU-6050 est un dispositif de suivi de mouvement à 6 axes (combinant un gyroscope 
+3 axes et un accéléromètre 3 axes).
 
-Its three coordinate systems are defined as follows:
+Ses trois systèmes de coordonnées se définissent ainsi :
 
-Put MPU6050 flat on the table, assure that the face with label is upward
-and a dot on this surface is on the top left corner. Then the upright
-direction upward is the z-axis of the chip. The direction from left to
-right is regarded as the X-axis. Accordingly the direction from back to
-front is defined as the Y-axis.
+Placez le MPU6050 à plat sur la table, assurez-vous que la face avec l'étiquette est 
+orientée vers le haut et qu'un point se trouve dans le coin supérieur gauche. La direction 
+perpendiculaire vers le haut correspond à l'axe Z du composant. La direction de gauche à 
+droite est considérée comme l'axe X. De même, la direction de l'arrière vers l'avant est 
+définie comme l'axe Y.
 
 .. image:: img/image223.png
 
 
-**3-axis Accelerometer**
+**Accéléromètre 3 axes**
 
-The accelerometer works on the principle of piezo electric effect, the
-ability of certain materials to generate an electric charge in response
-to applied mechanical stress.
+L'accéléromètre fonctionne sur le principe de l'effet piézoélectrique, la capacité de 
+certains matériaux à générer une charge électrique en réponse à une contrainte mécanique 
+appliquée.
 
-Here, imagine a cuboidal box, having a small ball inside it, like in the
-picture above. The walls of this box are made with piezo electric
-crystals. Whenever you tilt the box, the ball is forced to move in the
-direction of the inclination, due to gravity. The wall with which the
-ball collides, creates tiny piezo electric currents. There are totally,
-three pairs of opposite walls in a cuboid. Each pair corresponds to an
-axis in 3D space: X, Y and Z axes. Depending on the current produced
-from the piezo electric walls, we can determine the direction of
-inclination and its magnitude.
+Imaginez ici un cube avec une petite bille à l'intérieur, comme illustré ci-dessus. Les 
+parois de ce cube sont constituées de cristaux piézoélectriques. Chaque fois que vous 
+inclinez le cube, la bille est forcée de se déplacer dans la direction de l'inclinaison 
+sous l'effet de la gravité. La paroi contre laquelle la bille heurte génère de minuscules 
+courants piézoélectriques. Il y a trois paires de parois opposées dans ce cube. Chaque 
+paire correspond à un axe dans l'espace 3D : les axes X, Y et Z. En fonction du courant 
+produit par les parois piézoélectriques, on peut déterminer la direction de l'inclinaison 
+et son intensité.
 
 .. image:: img/image224.png
 
 
-We can use the MPU6050 to detect its acceleration on each coordinate
-axis (in the stationary desktop state, the Z-axis acceleration is 1
-gravity unit, and the X and Y axes are 0). If it is tilted or in a
-weightless/overweight condition, the corresponding reading will change.
+Nous pouvons utiliser le MPU6050 pour détecter son accélération sur chaque axe de 
+coordonnées (à l'état stationnaire sur un bureau, l'accélération de l'axe Z est de 
+1 unité de gravité, tandis que celle des axes X et Y est de 0). Si le composant est 
+incliné ou soumis à un état de pesanteur ou de surpoids, la lecture correspondante changera.
 
-There are four kinds of measuring ranges that can be selected
-programmatically: +/-2g, +/-4g, +/-8g, and +/-16g (2g by default)
-corresponding to each precision. Values range from -32768 to 32767.
+Quatre plages de mesure peuvent être sélectionnées par programmation : 
++/-2g, +/-4g, +/-8g et +/-16g (2g par défaut) correspondant à chaque précision. 
+Les valeurs varient de -32768 à 32767.
 
-The reading of accelerometer is converted to an acceleration value by
-mapping the reading from the reading range to the measuring range.
+La lecture de l'accéléromètre est convertie en valeur d'accélération en mappant 
+la lecture de la plage de lecture à la plage de mesure.
 
-Acceleration = (Accelerometer axis raw data / 65536 \* full scale
-Acceleration range) g
+Accélération = (Données brutes de l'accéléromètre / 65536 \* plage d'accélération maximale) g
 
-Take the X-axis as an example, when Accelerometer X axis raw data is
-16384 and the range is selected as +/-2g:
+Prenons l'axe X par exemple, lorsque les données brutes de l'axe X de l'accéléromètre 
+sont 16384 et que la plage sélectionnée est de +/-2g :
 
-**Acceleration along the X axis = (16384 / 65536 \* 4) g**  **=1g**
+**Accélération le long de l'axe X = (16384 / 65536 \* 4) g** **=1g**
 
-**3-axis Gyroscope**
+**Gyroscope 3 axes**
 
-Gyroscopes work on the principle of Coriolis acceleration. Imagine that
-there is a fork like structure, that is in constant back and forth
-motion. It is held in place using piezo electric crystals. Whenever, you
-try to tilt this arrangement, the crystals experience a force in the
-direction of inclination. This is caused as a result of the inertia of
-the moving fork. The crystals thus produce a current in consensus with
-the piezo electric effect, and this current is amplified.
+Les gyroscopes fonctionnent selon le principe de l'accélération de Coriolis. Imaginez 
+une structure en forme de fourche qui oscille constamment d'avant en arrière. Elle est 
+maintenue en place grâce à des cristaux piézoélectriques. Chaque fois que vous essayez 
+d'incliner cette structure, les cristaux subissent une force dans la direction de 
+l'inclinaison, due à l'inertie de la fourche en mouvement. Les cristaux produisent alors 
+un courant en lien avec l'effet piézoélectrique, et ce courant est amplifié.
 
 .. image:: img/image225.png
     :width: 800
     :align: center
 
-The Gyroscope also has four kinds of measuring ranges: +/- 250, +/- 500,
-+/- 1000, +/- 2000. The calculation method and Acceleration are
-basically consistent.
+Le gyroscope dispose également de quatre plages de mesure : +/- 250, +/- 500, +/- 1000, 
+et +/- 2000. La méthode de calcul et l'accélération sont globalement similaires.
 
-The formula for converting the reading into angular velocity is as
-follows:
+La formule pour convertir la lecture en vitesse angulaire est la suivante :
 
-Angular velocity = (Gyroscope axis raw data / 65536 \* full scale
-Gyroscope range) °/s
+Vitesse angulaire = (Données brutes du gyroscope / 65536 \* plage maximale du gyroscope) °/s
 
-The X axis, for example, the Accelerometer X axis raw data is 16384 and
-ranges + / - 250°/ s:
+Par exemple, pour l'axe X, si les données brutes de l'axe X du gyroscope sont 16384 
+et que la plage est de +/- 250°/s :
 
-**Angular velocity along the X axis = (16384 / 65536 \* 500)°/s** **=125°/s**
+**Vitesse angulaire le long de l'axe X = (16384 / 65536 \* 500)°/s** **=125°/s**
 
-Schematic Diagram
------------------
+Schéma de câblage
+-----------------------
 
-MPU6050 communicates with the microcontroller through the I2C bus
-interface. The SDA1 and SCL1 need to be connected to the corresponding
-pin.
+Le MPU6050 communique avec le microcontrôleur via l'interface du bus I2C. Les broches 
+SDA1 et SCL1 doivent être connectées aux broches correspondantes.
 
 .. image:: img/image330.png
     :width: 600
     :align: center
 
 
-Experimental Procedures
----------------------------
+Procédures expérimentales
+----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image227.png
     :width: 800
 
 
 
-**Step 2**: Setup I2C (see :ref:`i2c_config`. If you have set I2C, skip this
-step.)
+**Étape 2 :** Configurez l'I2C (voir :ref:`i2c_config`. Si l'I2C est déjà configuré, passez cette étape.)
 
-**Step 3:** Go to the folder of the code.
+
+**Étape 3 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -155,7 +147,7 @@ step.)
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.6/
 
-**Step 4:** Compile the code.
+**Étape 4 :** Compilez le code.
 
 .. raw:: html
 
@@ -165,7 +157,7 @@ step.)
 
     gcc 2.2.6_mpu6050.c -lwiringPi -lm
 
-**Step 5:** Run the executable file.
+**Étape 5 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -175,13 +167,13 @@ step.)
 
     sudo ./a.out
 
-With the code run, deflection angle of x axis, y axis and the
-acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
+Une fois le code exécuté, l'angle de déviation des axes X et Y ainsi que 
+l'accélération et la vitesse angulaire de chaque axe, mesurés par le MPU6050, 
+seront affichés à l'écran après calcul.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur indiquant : « wiringPi.h : Aucun fichier ou répertoire de ce type », veuillez vous référer à :ref:`C code is not working?`.
 
 **Code**
 
@@ -199,67 +191,67 @@ printed on the screen after being calculating.
 
     int read_word_2c(int addr)
     {
-    int val;
-    val = wiringPiI2CReadReg8(fd, addr);
-    val = val << 8;
-    val += wiringPiI2CReadReg8(fd, addr+1);
-    if (val >= 0x8000)
-        val = -(65536 - val);
-    return val;
+        int val;
+        val = wiringPiI2CReadReg8(fd, addr);
+        val = val << 8;
+        val += wiringPiI2CReadReg8(fd, addr+1);
+        if (val >= 0x8000)
+            val = -(65536 - val);
+        return val;
     }
 
     double dist(double a, double b)
     {
-    return sqrt((a*a) + (b*b));
+        return sqrt((a*a) + (b*b));
     }
 
     double get_y_rotation(double x, double y, double z)
     {
-    double radians;
-    radians = atan2(x, dist(y, z));
-    return -(radians * (180.0 / M_PI));
+        double radians;
+        radians = atan2(x, dist(y, z));
+        return -(radians * (180.0 / M_PI));
     }
 
     double get_x_rotation(double x, double y, double z)
     {
-    double radians;
-    radians = atan2(y, dist(x, z));
-    return (radians * (180.0 / M_PI));
+        double radians;
+        radians = atan2(y, dist(x, z));
+        return (radians * (180.0 / M_PI));
     }
 
     int main()
     {
-    fd = wiringPiI2CSetup (0x68);
-    wiringPiI2CWriteReg8 (fd,0x6B,0x00);//disable sleep mode 
+        fd = wiringPiI2CSetup (0x68);
+        wiringPiI2CWriteReg8 (fd,0x6B,0x00); // désactiver le mode veille 
     printf("set 0x6B=%X\n",wiringPiI2CReadReg8 (fd,0x6B));
     
-    while(1) {
+        while(1) {
 
-        gyroX = read_word_2c(0x43);
-        gyroY = read_word_2c(0x45);
-        gyroZ = read_word_2c(0x47);
+            gyroX = read_word_2c(0x43);
+            gyroY = read_word_2c(0x45);
+            gyroZ = read_word_2c(0x47);
 
-        gyroX_scaled = gyroX / 131.0;
-        gyroY_scaled = gyroY / 131.0;
-        gyroZ_scaled = gyroZ / 131.0;
+            gyroX_scaled = gyroX / 131.0;
+            gyroY_scaled = gyroY / 131.0;
+            gyroZ_scaled = gyroZ / 131.0;
 
-        //Print values for the X, Y, and Z axes of the gyroscope sensor.
+            // Afficher les valeurs pour les axes X, Y et Z du capteur gyroscopique.
         printf("My gyroX_scaled: %f\n", gyroY X_scaled);
         delay(100);
         printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
         delay(100);
         printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
-        delay(100);
+            delay(100);
 
-        acclX = read_word_2c(0x3B);
-        acclY = read_word_2c(0x3D);
-        acclZ = read_word_2c(0x3F);
+            acclX = read_word_2c(0x3B);
+            acclY = read_word_2c(0x3D);
+            acclZ = read_word_2c(0x3F);
 
-        acclX_scaled = acclX / 16384.0;
-        acclY_scaled = acclY / 16384.0;
-        acclZ_scaled = acclZ / 16384.0;
-        
-        //Print the X, Y, and Z values of the acceleration sensor.
+            acclX_scaled = acclX / 16384.0;
+            acclY_scaled = acclY / 16384.0;
+            acclZ_scaled = acclZ / 16384.0;
+
+            // Afficher les valeurs X, Y et Z du capteur d'accélération.
         printf("My acclX_scaled: %f\n", acclX_scaled);
         delay(100);
         printf("My acclY_scaled: %f\n", acclY_scaled);
@@ -271,13 +263,13 @@ printed on the screen after being calculating.
         delay(100);
         printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
         delay(100);
-        
-        delay(100);
-    }
-    return 0;
+
+            delay(100);
+        }
+        return 0;
     }
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
@@ -292,7 +284,7 @@ printed on the screen after being calculating.
     return val;
     }
 
-Read sensor data sent from MPU6050.
+Lit les données du capteur envoyées par le MPU6050.
 
 .. code-block:: c
 
@@ -303,7 +295,7 @@ Read sensor data sent from MPU6050.
     return -(radians * (180.0 / M_PI));
     }
 
-We get the deflection angle on the Y-axis.
+Calcule l'angle de déviation sur l'axe Y.
 
 .. code-block:: c
 
@@ -314,7 +306,7 @@ We get the deflection angle on the Y-axis.
     return (radians * (180.0 / M_PI));
     }
 
-Calculate the deflection angle of the X-axis.
+Calcule l'angle de déviation sur l'axe X.
 
 .. code-block:: c
 
@@ -326,13 +318,12 @@ Calculate the deflection angle of the X-axis.
     gyroY_scaled = gyroY / 131.0;
     gyroZ_scaled = gyroZ / 131.0;
 
-    //Print values for the X, Y, and Z axes of the gyroscope sensor.
+    // Affiche les valeurs des axes X, Y et Z du capteur gyroscopique.
     printf("My gyroX_scaled: %f\n", gyroY X_scaled);
     printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
     printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
 
-Read the values of the x axis, y axis and z axis on the gyroscope sensor, 
-convert the metadata to angular velocity values, and then print them.
+Lit les valeurs des axes X, Y et Z du capteur gyroscopique, convertit les données brutes en valeurs de vitesse angulaire, puis les affiche.
 
 .. code-block:: c
 
@@ -344,18 +335,17 @@ convert the metadata to angular velocity values, and then print them.
     acclY_scaled = acclY / 16384.0;
     acclZ_scaled = acclZ / 16384.0;
         
-    //Print the X, Y, and Z values of the acceleration sensor.
+    // Affiche les valeurs X, Y et Z du capteur d'accélération.
     printf("My acclX_scaled: %f\n", acclX_scaled);
     printf("My acclY_scaled: %f\n", acclY_scaled);
     printf("My acclZ_scaled: %f\n", acclZ_scaled);
 
-Read the values of the x axis, y axis and z axis on the acceleration sensor,
-convert the metadata to accelerated speed values (gravity unit), and then 
-print them.
+Lit les valeurs des axes X, Y et Z du capteur d'accélération, convertit les données brutes en valeurs d'accélération (en unité de gravité), puis les affiche.
 
 .. code-block:: c
 
     printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
     printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
 
-Print the deflection angles of the x-axis and y-axis.
+Affiche les angles de déviation des axes X et Y.
+

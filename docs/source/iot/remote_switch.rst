@@ -1,31 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez au cœur de l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres amateurs.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et à des aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions et cadeaux festifs** : Participez à des concours et promotions pendant les périodes festives.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Remote Switch
-=================
+Interrupteur à Distance
+===========================
 
-In this project, we will learn to use Cloud4RPi's Switch to control the relay, thereby controlling the relay's load-LED. You can also change the load of the relay to household appliances, but with safety in mind.
+Dans ce projet, nous allons apprendre à utiliser le bouton Interrupteur de Cloud4RPi pour contrôler le relais, permettant ainsi de piloter la charge du relais (par exemple, une LED). Vous pouvez également changer la charge du relais par des appareils électroménagers, mais veillez à respecter les consignes de sécurité.
 
-Experimental Procedures
--------------------------
+Procédures expérimentales
+-----------------------------
 
-Build the circuit.
+Montez le circuit.
 
 .. image:: img/relay1.png
     :align: center
 
-Open the code.
+Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -36,13 +36,13 @@ Open the code.
     cd ~/cloud4rpi-raspberrypi-python
     sudo nano remote_switch.py
 
-Find the line below and fill in the correct device token.
+Trouvez la ligne ci-dessous et complétez-la avec le bon token de l'appareil.
 
 .. code-block:: python
 
     DEVICE_TOKEN = '__YOUR_DEVICE_TOKEN__'
 
-Run the code.
+Exécutez le code.
 
 .. raw:: html
 
@@ -52,31 +52,31 @@ Run the code.
 
     sudo python3 remote_switch.py
 
-Go to Cloud4RPi, add a new Control Panel named project2, and click **Add Widget** to add a **Switch** widget.
+Accédez à Cloud4RPi, ajoutez un nouveau panneau de contrôle nommé **project2** et cliquez sur **Add Widget** pour ajouter un widget **Switch**.
 
 .. image:: img/relay2.png
     :align: center
 
-Once added, you can use the Switch widget to control the relay.
+Une fois ajouté, vous pouvez utiliser le widget Switch pour contrôler le relais.
 
 .. image:: img/relay3.png
     :align: center
 
-Code Explanation
-----------------------
+Explication du code
+------------------------
 
 .. code-block:: python
 
     RELAY_PIN = 18
 
-Relay connected to GPIO18 of the T-expansion board.
+Le relais est connecté au GPIO18 de la carte d'extension T.
 
 .. code-block:: python
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(RELAY_PIN, GPIO.OUT)
 
-Set to BCM nomenclature and set ``RELAY_PIN`` to output.
+Configurez le mode de numérotation BCM et définissez ``RELAY_PIN`` en tant que sortie.
 
 .. code-block:: python
 
@@ -84,11 +84,11 @@ Set to BCM nomenclature and set ``RELAY_PIN`` to output.
         GPIO.output(RELAY_PIN, value)
         return GPIO.input(RELAY_PIN)
 
-This function controls the relay according to the ``value`` and returns the current level of the relay.
+Cette fonction contrôle le relais en fonction de la valeur ``value`` et renvoie le niveau actuel du relais.
 
 .. note::
 
-    Since the relay works at high level, the relay closes when the switch state is True and opens when the switch state is False.
+    Comme le relais fonctionne à un niveau haut, le relais se ferme lorsque l'état de l'interrupteur est à **True** et s'ouvre lorsque l'état de l'interrupteur est à **False**.
 
 .. code-block:: python
 
@@ -100,9 +100,4 @@ This function controls the relay according to the ``value`` and returns the curr
         },
     }
 
-By setting the value of the ``'value'`` key, we can set the initial value of the Switch widget, then always read the value of the ``'value'`` key and send the current level of ``RELAY_PIN`` (the value returned by the function ``relay_control()``) to Cloud4RPi.
-
-
-
-
-
+En définissant la valeur de la clé ``'value'``, nous pouvons fixer la valeur initiale du widget Switch, puis lire en continu la valeur de la clé ``'value'`` et envoyer le niveau actuel de ``RELAY_PIN`` (la valeur renvoyée par la fonction ``relay_control()``) à Cloud4RPi.

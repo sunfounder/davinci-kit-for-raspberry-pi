@@ -1,32 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 aux côtés d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions et cadeaux festifs** : Participez à des tirages au sort et à des offres promotionnelles spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. _1.2.1_py_pi5:
 
-1.2.1 Active Buzzer
-===================
+1.2.1 Buzzer actif
+======================
 
 Introduction
-------------
+----------------
 
-In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+Dans ce projet, nous allons apprendre à activer un buzzer actif à l'aide d'un transistor PNP.
 
-Required Components
-------------------------------
+Composants requis
+---------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous aurons besoin des composants suivants :
 
 .. image:: ../python_pi5/img/1.2.1_active_buzzer_list.png
 
@@ -34,16 +33,16 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
------------------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with high
-level (3.3V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when low level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+Schéma de câblage
+----------------------
+
+Dans cette expérience, un buzzer actif, un transistor PNP et une résistance de 1kΩ 
+sont utilisés entre la base du transistor et le GPIO pour protéger le transistor. 
+Lorsque le GPIO17 du Raspberry Pi fournit un niveau haut (3,3 V), le transistor 
+devient conducteur en raison de la saturation de courant, et le buzzer émet un son. 
+En revanche, lorsque le niveau bas est appliqué au GPIO, le transistor se coupe et le 
+buzzer s'arrête.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -53,15 +52,14 @@ GPIO17       Pin 11   0        17
 .. image:: ../python_pi5/img/1.2.1_active_buzzer_schematic.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+-----------------------------
 
-**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+**Étape 1 :** Construisez le circuit. (Le buzzer actif possède une étiquette blanche sur la surface et un fond noir.)
 
 .. image:: ../python_pi5/img/1.2.1_ActiveBuzzer_circuit.png
 
-**Step 2**: Open the code file.
-
+**Étape 2 :** Ouvrez le fichier de code.
 .. raw:: html
 
    <run></run>
@@ -70,8 +68,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3**: Run.
-
+**Étape 3 :** Exécutez le script.
 .. raw:: html
 
    <run></run>
@@ -80,52 +77,49 @@ Experimental Procedures
 
     sudo python3 1.2.1_ActiveBuzzer_zero.py
 
-The code run, the buzzer beeps.
+Lorsque le code s'exécute, le buzzer émet un bip.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address`` apparaît, consultez :ref:`faq_soc`.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
-
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source comme ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification du code, vous pouvez l'exécuter directement pour observer le résultat.
 .. raw:: html
 
     <run></run>
-
 .. code-block:: python
 
    #!/usr/bin/env python3
    from gpiozero import Buzzer
    from time import sleep
 
-   # Initialize a Buzzer object on GPIO pin 17
+   # Initialiser un objet Buzzer sur le GPIO 17
    buzzer = Buzzer(17)
 
    try:
        while True:
-           # Turn on the buzzer
+           # Activer le buzzer
            print('Buzzer On')
            buzzer.on()
-           sleep(0.1)  # Keep the buzzer on for 0.1 seconds
+           sleep(0.1)  # Laisser le buzzer activé pendant 0,1 seconde
 
-           # Turn off the buzzer
+           # Désactiver le buzzer
            print('Buzzer Off')
            buzzer.off()
-           sleep(0.1)  # Keep the buzzer off for 0.1 seconds
+           sleep(0.1)  # Laisser le buzzer désactivé pendant 0,1 seconde
 
    except KeyboardInterrupt:
-       # Handle KeyboardInterrupt (Ctrl+C) for clean script termination
+       # Gérer une interruption clavier (Ctrl+C) pour arrêter proprement le script
        pass
 
 
-**Code Explanation**
+**Explication du code**
 
-#. These statements import the ``Buzzer`` class from the ``gpiozero`` library and the ``sleep`` function from the ``time`` module.
+1. Ces lignes importent la classe ``Buzzer`` de la bibliothèque ``gpiozero`` ainsi que la fonction ``sleep`` du module ``time``.
 
    .. code-block:: python
        
@@ -133,37 +127,34 @@ The code run, the buzzer beeps.
        from gpiozero import Buzzer
        from time import sleep
 
-
-#. This line creates a ``Buzzer`` object connected to GPIO pin 17 on the Raspberry Pi.
+2. Cette ligne crée un objet ``Buzzer`` connecté au GPIO 17 du Raspberry Pi.
     
    .. code-block:: python
        
-       # Initialize a Buzzer object on GPIO pin 17
+       # Initialiser un objet Buzzer sur le GPIO 17
        buzzer = Buzzer(17)
-        
-      
 
-#. In an infinite loop (``while True``), the buzzer is turned on and off every 0.1 seconds. ``print`` statements provide a console output for each action.
+3. Dans une boucle infinie (``while True``), le buzzer est activé et désactivé toutes les 0,1 secondes. Les instructions ``print`` fournissent un retour d'information dans la console pour chaque action.
       
    .. code-block:: python
        
        try:
            while True:
-               # Turn on the buzzer
+               # Activer le buzzer
                print('Buzzer On')
                buzzer.on()
-               sleep(0.1)  # Keep the buzzer on for 0.1 seconds
+               sleep(0.1)  # Laisser le buzzer activé pendant 0,1 seconde
 
-               # Turn off the buzzer
+               # Désactiver le buzzer
                print('Buzzer Off')
                buzzer.off()
-               sleep(0.1)  # Keep the buzzer off for 0.1 seconds
+               sleep(0.1)  # Laisser le buzzer désactivé pendant 0,1 seconde
 
-#. This segment ensures the program can be terminated safely using a keyboard interrupt (Ctrl+C) without throwing an error.
+4. Ce segment assure que le programme peut être interrompu proprement à l'aide d'une interruption clavier (Ctrl+C) sans générer d'erreurs.
       
    .. code-block:: python
        
        except KeyboardInterrupt:
-       # Handle KeyboardInterrupt (Ctrl+C) for clean script termination
+       # Gérer une interruption clavier (Ctrl+C) pour arrêter proprement le script
        pass
       

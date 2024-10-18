@@ -1,33 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez dans l’univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et relevez les défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Avant-premières exclusives** : Profitez d'un accès anticipé aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos dernières nouveautés.
+    - **Promotions festives et cadeaux** : Participez à des promotions spéciales et des tirages au sort lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd'hui !
 
 .. _1.1.6_py_pi5:
 
-1.1.6 LED Dot Matrix
-=====================
+1.1.6 Matrice de LED
+========================
 
 Introduction
---------------------
+----------------------
 
-As the name suggests, an LED dot matrix is a matrix composed of LEDs.
-The lighting up and dimming of the LEDs formulate different characters
-and patterns.
+Comme son nom l'indique, une matrice de LED est une grille composée de LED. 
+L'allumage et l'extinction des LED permettent de former différents caractères et motifs.
 
-Required Components
+Composants requis
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/1.1.6_led_dot_matrix_list.png
     :width: 800
@@ -37,45 +36,45 @@ In this project, we need the following components.
 
    <br/>
 
-Principle
-----------------
+Principe de fonctionnement
+------------------------------
 
-**LED Dot Matrix**
+**Matrice de LED**
 
-Generally, LED dot matrix can be categorized into two types: common
-cathode (CC) and common anode (CA). They look much alike, but internally
-the difference lies. You can tell by test. A CA one is used in this kit.
-You can see 788BS labeled at the side.
+En général, les matrices de LED se divisent en deux types : cathode commune (CC) et 
+anode commune (CA). Elles se ressemblent, mais présentent des différences internes. 
+Vous pouvez les différencier par un test. Nous utilisons ici un modèle CA, marqué 
+« 788BS » sur le côté.
 
-See the figure below. The pins are arranged at the two ends at the back.
-Take the label side for reference: pins on this end are pin 1-8, and oh
-the other are pin 9-16.
+Consultez la figure ci-dessous. Les broches sont disposées aux deux extrémités de 
+l'arrière. Prenez le côté marqué comme référence : les broches de cette extrémité 
+sont numérotées de 1 à 8, et celles de l'autre extrémité de 9 à 16.
 
-The external view:
+Vue externe :
 
 .. image:: ../python_pi5/img/1.1.6_led_dot_matrix_1.png
    :width: 400
    :align: center
 
-Below the figures show their internal structure. You can see in a CA LED
-dot matrix, ROW represents the anode of the LED, and COL is cathode;
-it's contrary for a CC one. One thing in common: for both types, pin 13,
-3, 4, 10, 6, 11, 15, and 16 are all COL, when pin 9, 14, 8, 12, 1, 7, 2,
-and 5 are all ROW. If you want to turn on the first LED at the top left
-corner, for a CA LED dot matrix, just set pin 9 as High and pin 13 as
-Low, and for a CC one, set pin 13 as High and pin 9 as Low. If you want
-to light up the whole first column, for CA, set pin 13 as Low and ROW 9,
-14, 8, 12, 1, 7, 2, and 5 as High, when for CC, set pin 13 as High and
-ROW 9, 14, 8, 12, 1, 7, 2, and 5 as Low. Consider the following figures
-for better understanding.
+Les schémas ci-dessous montrent leur structure interne. Dans une matrice CA, ROW représente 
+l'anode de la LED, et COL la cathode ; l'inverse est vrai pour un modèle CC. Quel que soit 
+le type, les broches 13, 3, 4, 10, 6, 11, 15 et 16 correspondent aux COL, tandis que les 
+broches 9, 14, 8, 12, 1, 7, 2 et 5 correspondent aux ROW. Pour allumer la première LED en 
+haut à gauche, dans une matrice CA, mettez la broche 9 en High et la broche 13 en Low. 
+Dans une matrice CC, faites l'inverse : mettez la broche 13 en High et la broche 9 en Low. 
+Pour allumer toute la première colonne, dans une matrice CA, mettez la broche 13 en Low et 
+les broches ROW (9, 14, 8, 12, 1, 7, 2, 5) en High ; pour une matrice CC, faites l'inverse.
 
-The internal view:
+
+
+
+Schéma interne :
 
 .. image:: ../python_pi5/img/1.1.6_led_dot_matrix_2.png
    :width: 400
    :align: center
 
-Pin numbering corresponding to the above rows and columns:
+Numérotation des broches correspondant aux rangées et colonnes ci-dessus :
 
 =========== ====== ====== ===== ====== ===== ====== ====== ======
 **COL**     **1**  **2**  **3** **4**  **5** **6**  **7**  **8**
@@ -84,11 +83,10 @@ Pin numbering corresponding to the above rows and columns:
 **Pin No.** **9**  **14** **8** **12** **1** **7**  **2**  **5**
 =========== ====== ====== ===== ====== ===== ====== ====== ======
 
-In addition, two 74HC595 chips are used here. One is to control the rows
-of the LED dot matrix while the other, the columns.
+De plus, deux circuits intégrés 74HC595 sont utilisés ici : l'un pour contrôler les rangées de la matrice de LED, et l'autre pour les colonnes.
 
-Schematic Diagram
------------------------
+Schéma de câblage
+-------------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -100,33 +98,31 @@ GPIO27       Pin 13   2        27
 .. image:: ../python_pi5/img/1.1.6_led_dot_matrix_schematic.png
    :width: 800
 
-Experimental Procedures
+Procédure expérimentale
 ----------------------------
 
-**Step 1:** Build the circuit. Since the wiring is complicated, let's
-make it step by step. First, insert the T-Cobbler, the LED dot matrix
-and two 74HC595 chips into breadboard. Connect the 3.3V and GND of the
-T-Cobbler to holes on the two sides of the board, then hook up pin16 and
-10 of the two 74HC595 chips to VCC, pin 13 and pin 8 to GND.
+**Étape 1 :** Construire le circuit. Comme le câblage est complexe, procédons étape 
+par étape. Insérez d'abord le T-Cobbler, la matrice de LED et les deux circuits 74HC595 
+dans la plaque de montage. Connectez le 3.3V et le GND du T-Cobbler aux trous situés de 
+chaque côté de la plaque, puis reliez la broche 16 et la broche 10 des deux 74HC595 au VCC, 
+et les broches 13 et 8 au GND.
 
 .. note::
-   In the Fritzing image above, the side with label is at the bottom.
+   Dans l'image Fritzing ci-dessus, le côté marqué est en bas.
 
 .. image:: ../python_pi5/img/1.1.6_LedMatrix_circuit_1.png
    :width: 800
 
-**Step 2:** Connect pin 11 of the two 74HC595 together, and then to
-GPIO27; then pin 12 of the two chips, and to GPIO18; next, pin 14 of the
-74HC595 on the left side to GPIO17 and pin 9 to pin 14 of the second
-74HC595.
+**Étape 2 :** Connectez la broche 11 des deux 74HC595 ensemble, puis au GPIO27 ; ensuite, 
+la broche 12 des deux circuits, au GPIO18 ; et enfin, la broche 14 du 74HC595 de gauche au 
+GPIO17 et la broche 9 à la broche 14 du deuxième 74HC595.
 
 .. image:: ../python_pi5/img/1.1.6_LedMatrix_circuit_2.png
    :width: 800
 
-**Step 3:** The 74HC595 on the right side is to control columns of the
-LED dot matrix. See the table below for the mapping. Therefore, Q0-Q7
-pins of the 74HC595 are mapped with pin 13, 3, 4, 10, 6, 11, 15, and 16
-respectively.
+**Étape 3 :** Le 74HC595 à droite contrôle les colonnes de la matrice de LED. Consultez le 
+tableau ci-dessous pour le mappage. Les broches Q0-Q7 du 74HC595 correspondent respectivement 
+aux broches 13, 3, 4, 10, 6, 11, 15 et 16 de la matrice de LED.
 
 +--------------------+--------+--------+--------+--------+--------+--------+--------+--------+
 | **74HC595**        | **Q0** | **Q1** | **Q2** | **Q3** | **Q4** | **Q5** | **Q6** | **Q7** |
@@ -137,10 +133,9 @@ respectively.
 .. image:: ../python_pi5/img/1.1.6_LedMatrix_circuit_3.png
    :width: 800
 
-**Step 4:** Now connect the ROWs of the LED dot matrix. The 74HC595 on
-the left controls ROW of the LED dot matrix. See the table below for the
-mapping. We can see, Q0-Q7 of the 74HC595 on the left are mapped with
-pin 9, 14, 8, 12, 1, 7, 2, and 5 respectively.
+**Étape 4 :** Connectez maintenant les ROW de la matrice de LED. Le 74HC595 de gauche 
+contrôle les rangées de la matrice. Consultez le tableau ci-dessous pour le mappage. 
+Les broches Q0-Q7 du 74HC595 correspondent respectivement aux broches 9, 14, 8, 12, 1, 7, 2 et 5 de la matrice de LED.
 
 +--------------------+--------+--------+--------+--------+--------+--------+--------+--------+
 | **74HC595**        | **Q0** | **Q1** | **Q2** | **Q3** | **Q4** | **Q5** | **Q6** | **Q7** |
@@ -150,9 +145,8 @@ pin 9, 14, 8, 12, 1, 7, 2, and 5 respectively.
 
 .. image:: ../python_pi5/img/1.1.6_LedMatrix_circuit_4.png
    :width: 800
-   
 
-**Step 5:** Open the code file.
+**Étape 5 :** Ouvrir le fichier de code.
 
 .. raw:: html
 
@@ -163,7 +157,7 @@ pin 9, 14, 8, 12, 1, 7, 2, and 5 respectively.
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
 
-**Step 6:** Run.
+**Étape 6 :** Exécuter le code.
 
 .. raw:: html
 
@@ -173,17 +167,17 @@ pin 9, 14, 8, 12, 1, 7, 2, and 5 respectively.
 
     sudo python3 1.1.6_led_dot_matrix_zero.py
 
-After the code runs, the LED dot matrix lights up and out row by row and column by column.
+Après l'exécution du code, la matrice de LED s'allumera et s'éteindra ligne par ligne et colonne par colonne.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si un message d'erreur tel que ``RuntimeError: Cannot determine SOC peripheral base address`` s'affiche, veuillez vous référer à :ref:`faq_soc`.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre dans le répertoire source tel que ``davinci-kit-for-raspberry-pi/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour observer les effets.
 
 .. raw:: html
 
@@ -195,26 +189,26 @@ After the code runs, the LED dot matrix lights up and out row by row and column 
    from gpiozero import OutputDevice
    from time import sleep
 
-   # Define GPIO pins connected to the 74HC595 shift register
-   SDI = OutputDevice(17)   # Serial Data Input
-   RCLK = OutputDevice(18)  # Register Clock
-   SRCLK = OutputDevice(27) # Shift Register Clock
+   # Définir les broches GPIO connectées au registre à décalage 74HC595
+   SDI = OutputDevice(17)   # Entrée de données série
+   RCLK = OutputDevice(18)  # Horloge de registre
+   SRCLK = OutputDevice(27) # Horloge de décalage
 
-   # Define patterns for matrix display; ROWs are anodes (+), COLs are cathodes (-)
-   # Pattern for ROWs (anode signals)
+   # Définir les motifs d'affichage de la matrice ; ROWs sont les anodes (+), COLs sont les cathodes (-)
+   # Modèle pour les rangées (signaux d'anode)
    code_H = [0x01, 0xff, 0x80, 0xff, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff]
-   # Pattern for COLs (cathode signals)
+   # Modèle pour les colonnes (signaux de cathode)
    code_L = [0x00, 0x7f, 0x00, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfe, 0xfd, 0xfb, 0xf7, 0xef, 0xdf, 0xbf, 0x7f]
 
-   # Shift data to 74HC595
+   # Décalage de données vers le 74HC595
    def hc595_shift(dat):
       """ Shift data to the 74HC595 shift register for displaying on the matrix. """
       for i in range(8):
-         # Set SDI value and trigger shift register clock
+         # Régler la valeur de SDI et déclencher l'horloge de décalage
          SDI.value = 0x80 & (dat << i)
          SRCLK.on()
          SRCLK.off()
-      # Trigger register clock to update display
+      # Déclencher l'horloge de registre pour mettre à jour l'affichage
       RCLK.on()
       sleep(0.001)
       RCLK.off()
@@ -222,19 +216,19 @@ After the code runs, the LED dot matrix lights up and out row by row and column 
    def main():
       """ Main loop for cycling through display patterns. """
       while True:
-         # Cycle through patterns in ascending order
+         # Parcourir les motifs dans l'ordre croissant
          for i in range(len(code_H)):
                hc595_shift(code_L[i])
                hc595_shift(code_H[i])
                sleep(0.1)
 
-         # Cycle through patterns in descending order
+         # Parcourir les motifs dans l'ordre décroissant
          for i in range(len(code_H)-1, -1, -1):
                hc595_shift(code_L[i])
                hc595_shift(code_H[i])
                sleep(0.1)
 
-   # Run main loop, handle keyboard interrupt gracefully
+   # Exécuter la boucle principale, gérer l'interruption du clavier proprement
    try:
       main()
    except KeyboardInterrupt:
@@ -243,9 +237,9 @@ After the code runs, the LED dot matrix lights up and out row by row and column 
 
 
 
-**Code Explanation**
+**Explication du Code**
 
-#. This snippet imports the necessary classes for the project. ``OutputDevice`` from ``gpiozero`` is used to control hardware components connected to GPIO pins, and ``sleep`` from ``time`` is for adding delays.
+#. Cet extrait de code importe les classes nécessaires pour le projet. ``OutputDevice`` de la bibliothèque ``gpiozero`` est utilisé pour contrôler les composants matériels connectés aux broches GPIO, et ``sleep`` de la bibliothèque ``time`` est utilisé pour ajouter des délais.
 
    .. code-block:: python
  
@@ -253,66 +247,66 @@ After the code runs, the LED dot matrix lights up and out row by row and column 
       from gpiozero import OutputDevice
       from time import sleep
 
-#. This section initializes GPIO pins connected to the 74HC595 shift register. ``SDI`` is the Serial Data Input, ``RCLK`` is the Register Clock, and ``SRCLK`` is the Shift Register Clock. These pins are used to shift data into the register and control the display of the LED matrix.
+#. Cette section initialise les broches GPIO connectées au registre à décalage 74HC595. ``SDI`` correspond à l'entrée de données série, ``RCLK`` est l'horloge de registre, et ``SRCLK`` est l'horloge de décalage. Ces broches sont utilisées pour insérer les données dans le registre et contrôler l'affichage de la matrice LED.
 
    .. code-block:: python
 
-      # Define GPIO pins connected to the 74HC595 shift register
-      SDI = OutputDevice(17)   # Serial Data Input
-      RCLK = OutputDevice(18)  # Register Clock
-      SRCLK = OutputDevice(27) # Shift Register Clock
+      # Définir les broches GPIO connectées au registre à décalage 74HC595
+      SDI = OutputDevice(17)   # Entrée de données série
+      RCLK = OutputDevice(18)  # Horloge de registre
+      SRCLK = OutputDevice(27) # Horloge de décalage
 
-#. ``code_H`` and ``code_L`` define binary patterns for controlling the rows (anodes) and columns (cathodes) of the LED matrix, respectively. Each element in these arrays represents a binary pattern that controls which LEDs are turned on or off in the matrix.
+#. ``code_H`` et ``code_L`` définissent les motifs binaires pour contrôler respectivement les rangées (anodes) et les colonnes (cathodes) de la matrice LED. Chaque élément de ces tableaux représente un motif binaire qui contrôle quels LED doivent être allumés ou éteints dans la matrice.
 
    .. code-block:: python
 
-      # Define patterns for matrix display; ROWs are anodes (+), COLs are cathodes (-)
-      # Pattern for ROWs (anode signals)
+      # Définir les motifs d'affichage pour la matrice ; ROWs sont les anodes (+), COLs sont les cathodes (-)
+      # Motif pour les rangées (signaux d'anode)
       code_H = [0x01, 0xff, 0x80, 0xff, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff]
-      # Pattern for COLs (cathode signals)
+      # Motif pour les colonnes (signaux de cathode)
       code_L = [0x00, 0x7f, 0x00, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfe, 0xfd, 0xfb, 0xf7, 0xef, 0xdf, 0xbf, 0x7f]
 
-#. This function shifts a byte of data (``dat``) into the 74HC595 shift register. It iterates over each bit in the byte, setting the ``SDI`` pin high or low based on the bit value, and toggles the ``SRCLK`` pin to shift the bit into the register. After all bits are shifted, it toggles the ``RCLK`` pin to update the LED matrix display.
+#. Cette fonction déplace un octet de données (``dat``) dans le registre à décalage 74HC595. Elle parcourt chaque bit de l'octet, définit la broche ``SDI`` sur haut ou bas en fonction de la valeur du bit, et bascule la broche ``SRCLK`` pour insérer le bit dans le registre. Après avoir inséré tous les bits, elle bascule la broche ``RCLK`` pour mettre à jour l'affichage de la matrice LED.
 
    .. code-block:: python
  
-      # Shift data to 74HC595
+      # Déplacer les données vers le 74HC595
       def hc595_shift(dat):
          """ Shift data to the 74HC595 shift register for displaying on the matrix. """
          for i in range(8):
-            # Set SDI value and trigger shift register clock
+            # Régler la valeur de SDI et déclencher l'horloge de décalage
             SDI.value = 0x80 & (dat << i)
             SRCLK.on()
             SRCLK.off()
-         # Trigger register clock to update display
+         # Déclencher l'horloge de registre pour mettre à jour l'affichage
          RCLK.on()
          sleep(0.001)
          RCLK.off()
 
-#. The main function contains an infinite loop that cycles through predefined patterns for the LED matrix. It uses the ``hc595_shift`` function to send row and column patterns (``code_H`` and ``code_L``) to the shift register, first in ascending order and then in descending order, creating a dynamic display.
+#. La fonction principale contient une boucle infinie qui parcourt les motifs prédéfinis de la matrice LED. Elle utilise la fonction ``hc595_shift`` pour envoyer les motifs de rangées et de colonnes (``code_H`` et ``code_L``) au registre à décalage, d'abord dans l'ordre croissant, puis dans l'ordre décroissant, créant ainsi un affichage dynamique.
 
    .. code-block:: python
 
       def main():
          """ Main loop for cycling through display patterns. """
          while True:
-            # Cycle through patterns in ascending order
+            # Parcourir les motifs dans l'ordre croissant
             for i in range(len(code_H)):
                   hc595_shift(code_L[i])
                   hc595_shift(code_H[i])
                   sleep(0.1)
 
-            # Cycle through patterns in descending order
+            # Parcourir les motifs dans l'ordre décroissant
             for i in range(len(code_H)-1, -1, -1):
                   hc595_shift(code_L[i])
                   hc595_shift(code_H[i])
                   sleep(0.1)
 
-#. This segment ensures the program can be interrupted using a keyboard interrupt (Ctrl+C). It gracefully exits the main loop without any abrupt stoppage or resource leakage.
+#. Ce segment garantit que le programme peut être interrompu à l'aide d'une interruption clavier (Ctrl+C). Il quitte proprement la boucle principale sans arrêt brusque ni fuite de ressources.
 
    .. code-block:: python
 
-      # Run main loop, handle keyboard interrupt gracefully
+      # Exécuter la boucle principale, gérer l'interruption clavier proprement
       try:
          main()
       except KeyboardInterrupt:

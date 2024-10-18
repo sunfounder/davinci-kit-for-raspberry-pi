@@ -1,49 +1,46 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez plus profondément dans les projets Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d’experts** : Résolvez vos problèmes après achat et relevez vos défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Soyez parmi les premiers à découvrir les nouvelles annonces de produits et profitez d’avant-premières.
+    - **Remises spéciales** : Bénéficiez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-
-Video 34: Creating a Python Class and Library for Reading a Keypad
-=======================================================================================
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd’hui !
 
 
-This tutorial covers the process of creating a Python class to read input from a keypad connected to a Raspberry Pi. 
-It begins with an introduction to the Raspberry Pi tutorial series sponsored by SunFounder. 
-The hardware setup is explained, detailing the connections of the keypad using GPIO pins. 
-The video then walks through the step-by-step process of creating a "keypad" class to manage keypad functionality, 
-including initialization methods and GPIO pin configuration within the class. 
-The method for reading input from the keypad by scanning rows and columns is implemented. 
-Additionally, the video discusses code logic, button press detection to prevent repeated inputs, 
-concatenation of input characters, configuration of return characters, 
-and the creation of a reusable Python library encapsulating keypad functionality. 
-Potential applications beyond keypad input, such as integration with LCD displays and cameras, are also explored.
+Vidéo 34 : Création d'une classe Python et d'une bibliothèque pour la lecture d'un pavé numérique
+=======================================================================================================
 
+Ce tutoriel explique comment créer une classe Python pour lire les entrées d’un pavé numérique connecté à un Raspberry Pi. 
+Il commence par une présentation de la série de tutoriels sur Raspberry Pi, sponsorisée par SunFounder. 
+La configuration matérielle est détaillée, en expliquant les connexions du pavé numérique aux broches GPIO. 
+La vidéo guide ensuite le spectateur, étape par étape, dans la création d’une classe "keypad" pour gérer les fonctionnalités du pavé numérique, 
+y compris les méthodes d’initialisation et la configuration des broches GPIO au sein de la classe. 
+La méthode de lecture des entrées en scannant les lignes et colonnes est implémentée. 
+De plus, la vidéo aborde la logique du code, la détection des pressions pour éviter les répétitions, 
+la concaténation des caractères d’entrée, la configuration des caractères de retour, 
+ainsi que la création d’une bibliothèque Python réutilisable englobant toutes les fonctionnalités du pavé numérique. 
+Des applications potentielles au-delà de la saisie de pavé numérique, comme l’intégration avec des écrans LCD et des caméras, sont également explorées.
 
-1. Introduction to the Raspberry Pi tutorial series sponsored by SunFounder.
-2. Explanation of keypad hardware connections using GPIO pins.
-3. Step-by-step guide to creating a "keypad" class for managing keypad functionality.
-4. Details on initializing the keypad object with default parameters.
-5. Configuration of GPIO pins within the class for interacting with the keypad hardware.
-6. Implementation of a method to read input from the keypad by scanning rows and columns.
-7. Understanding the step-by-step logic behind building a keypad input system.
-8. Techniques for detecting button presses and preventing repeated inputs.
-9. Concatenating input characters to form a string for processing.
-10. Configuring the return character for keypad inputs.
-11. Creating a reusable Python library encapsulating keypad functionality.
-12. Exploring potential applications beyond keypad input, such as integrating with LCD displays and cameras.
+1. Introduction à la série de tutoriels sur Raspberry Pi, sponsorisée par SunFounder.
+2. Explication des connexions matérielles du pavé numérique à l’aide des broches GPIO.
+3. Guide étape par étape pour créer une classe "keypad" afin de gérer les fonctionnalités du pavé numérique.
+4. Détails sur l’initialisation de l’objet "keypad" avec des paramètres par défaut.
+5. Configuration des broches GPIO au sein de la classe pour interagir avec le matériel du pavé numérique.
+6. Implémentation d’une méthode pour lire les entrées du pavé en scannant les lignes et colonnes.
+7. Comprendre la logique de construction d’un système de saisie pour pavé numérique.
+8. Techniques pour détecter les pressions de touches et éviter les répétitions d’entrées.
+9. Concatenation des caractères d’entrée pour former une chaîne de caractères prête à être traitée.
+10. Configuration du caractère de retour pour les saisies du pavé numérique.
+11. Création d’une bibliothèque Python réutilisable englobant toutes les fonctionnalités du pavé.
+12. Exploration des applications potentielles au-delà de la saisie, telles que l’intégration avec des écrans LCD et des caméras.
 
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 

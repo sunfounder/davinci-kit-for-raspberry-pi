@@ -1,35 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et des offres spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. _py_pi5_pir:
 
 2.2.3 PIR
-=========
+===========
 
 Introduction
-------------
+----------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+Dans ce projet, nous allons utiliser des capteurs pyrosélectriques infrarouges pour 
+détecter la présence humaine. Lorsque quelqu'un s'approche, la LED s'allume automatiquement. 
+Sinon, elle s'éteint. Ce capteur de mouvement infrarouge est capable de détecter le 
+rayonnement infrarouge émis par les êtres humains et les animaux.
 
-Required Components
-------------------------------
 
-In this project, we need the following components. 
+Composants nécessaires
+-------------------------
+
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/2.2.4_pir_list.png
 
@@ -38,20 +38,20 @@ In this project, we need the following components.
    <br/>
 
 
-Schematic Diagram
------------------
+Schéma de câblage
+---------------------
 
 .. image:: ../python_pi5/img/2.2.4_pir_schematic.png
 
 
-Experimental Procedures
------------------------
+Procédure expérimentale
+--------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Montez le circuit.
 
 .. image:: ../python_pi5/img/2.2.4_pir_circuit.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -61,7 +61,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3:** Run the executable file.
+**Étape 3 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -71,9 +71,9 @@ Experimental Procedures
 
     sudo python3 2.2.4_PIR_zero.py
 
-After the code runs, PIR detects surroundings and let RGB LED glow yellow if it senses someone walking by. 
+Lorsque le code s'exécute, le capteur PIR détecte l'environnement et fait briller la LED RGB en jaune si une présence est détectée. 
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Il y a deux potentiomètres sur le module PIR : l'un permet de régler la sensibilité, l'autre la distance de détection. Pour un meilleur fonctionnement du module PIR, tournez-les tous les deux dans le sens antihoraire jusqu'à la butée.
 
 .. image:: ../python_pi5/img/2.2.4_PIR_TTE.png
     :width: 400
@@ -81,15 +81,14 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    En cas de message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
-
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le chemin source du code, tel que ``davinci-kit-for-raspberry-pi/python-pi5``.
+    
 .. raw:: html
 
     <run></run>
@@ -100,27 +99,27 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
    from gpiozero import RGBLED, MotionSensor
    from time import sleep
 
-   # Initialize RGB LED and PIR motion sensor using GPIO Zero library
-   led = RGBLED(red=18, green=27, blue=22)  # RGB LED connected to GPIO pins 18 (Red), 27 (Green), 22 (Blue)
-   pir = MotionSensor(17)  # PIR sensor connected to GPIO pin 17
+   # Initialiser la LED RGB et le capteur de mouvement PIR avec la bibliothèque GPIO Zero
+   led = RGBLED(red=18, green=27, blue=22)  # LED RGB connectée aux broches GPIO 18 (Rouge), 27 (Vert), 22 (Bleu)
+   pir = MotionSensor(17)  # Capteur PIR connecté à la broche GPIO 17
 
    try:
-       # Continuously monitor for motion and update LED color
+       # Surveiller en continu les mouvements et mettre à jour la couleur de la LED
        while True:
-           if pir.motion_detected:  # Check for motion detected by PIR sensor
-               led.color = (1, 1, 0)  # Set LED color to yellow (Red + Green)
+           if pir.motion_detected:  # Vérifier si le capteur PIR détecte un mouvement
+               led.color = (1, 1, 0)  # Régler la couleur de la LED en jaune (Rouge + Vert)
            else:
-               led.color = (0, 0, 1)  # Set LED color to blue (only Blue)
-           sleep(0.1)  # Short delay to reduce CPU load
+               led.color = (0, 0, 1)  # Régler la couleur de la LED en bleu (seulement le Bleu)
+           sleep(0.1)  # Pause courte pour réduire la charge CPU
 
    except KeyboardInterrupt:
-       # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
+       # Gérer l'interruption clavier (Ctrl+C) pour quitter proprement la boucle
        pass
 
 
-**Code Explanation**
+**Explication du code**
 
-#. Imports the ``RGBLED`` class for controlling an RGB LED and the ``MotionSensor`` class for motion detection from the GPIO Zero library. Also imports the ``sleep`` function for creating delays.
+#. Importe la classe ``RGBLED`` pour contrôler une LED RGB et la classe ``MotionSensor`` pour la détection de mouvement depuis la bibliothèque GPIO Zero. Importe également la fonction ``sleep`` pour introduire des délais.
 
    .. code-block:: python
 
@@ -128,28 +127,28 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
        from gpiozero import RGBLED, MotionSensor
        from time import sleep
 
-#. Initializes an RGB LED with red, green, and blue components connected to GPIO pins 18, 27, and 22, respectively. Also, initializes a PIR sensor on GPIO pin 17.
+#. Initialise une LED RGB avec des composants rouge, vert et bleu connectés respectivement aux broches GPIO 18, 27 et 22. Initialise également un capteur PIR sur la broche GPIO 17.
 
    .. code-block:: python
 
-       # Initialize RGB LED and PIR motion sensor using GPIO Zero library
-       led = RGBLED(red=18, green=27, blue=22)  # RGB LED connected to GPIO pins 18 (Red), 27 (Green), 22 (Blue)
-       pir = MotionSensor(17)  # PIR sensor connected to GPIO pin 17
+       # Initialiser la LED RGB et le capteur de mouvement PIR avec la bibliothèque GPIO Zero
+       led = RGBLED(red=18, green=27, blue=22)  # LED RGB connectée aux broches GPIO 18 (Rouge), 27 (Vert), 22 (Bleu)
+       pir = MotionSensor(17)  # Capteur PIR connecté à la broche GPIO 17
 
-#. The program enters an infinite loop, continuously checking for motion using the PIR sensor. If motion is detected, the LED is set to yellow (mix of red and green). If no motion is detected, the LED turns blue. A short sleep of 0.1 seconds reduces CPU load.
+#. Le programme entre dans une boucle infinie, surveillant en continu les mouvements détectés par le capteur PIR. Si un mouvement est détecté, la LED devient jaune (mélange de rouge et vert). En l'absence de mouvement, la LED devient bleue. Un délai court de 0,1 seconde réduit la charge CPU.
 
    .. code-block:: python
 
        try:
-           # Continuously monitor for motion and update LED color
+           # Surveiller en continu les mouvements et mettre à jour la couleur de la LED
            while True:
-               if pir.motion_detected:  # Check for motion detected by PIR sensor
-                   led.color = (1, 1, 0)  # Set LED color to yellow (Red + Green)
+               if pir.motion_detected:  # Vérifier si le capteur PIR détecte un mouvement
+                   led.color = (1, 1, 0)  # Régler la couleur de la LED en jaune (Rouge + Vert)
                else:
-                   led.color = (0, 0, 1)  # Set LED color to blue (only Blue)
-               sleep(0.1)  # Short delay to reduce CPU load
+                   led.color = (0, 0, 1)  # Régler la couleur de la LED en bleu (seulement le Bleu)
+               sleep(0.1)  # Pause courte pour réduire la charge CPU
 
        except KeyboardInterrupt:
-           # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
+           # Gérer l'interruption clavier (Ctrl+C) pour quitter proprement la boucle
            pass
 

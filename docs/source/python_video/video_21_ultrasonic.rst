@@ -1,41 +1,43 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et à des aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions spéciales lors des périodes de fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-Video 21: Using a HC-SR04 Ultrasonic Sensor For Echolocation
+Vidéo 21 : Utilisation d'un capteur ultrasonique HC-SR04 pour l'écholocalisation
 =======================================================================================
 
-This tutorial covers the process of creating an ultrasonic distance sensor with a Raspberry Pi using the HC-SR04 sensor. 
-This video explains the principles of echolocation, introduces the necessary components, demonstrates the wiring setup, 
-and walks through the coding process step by step. 
-It emphasizes the importance of precise timing in the code execution for accurate distance measurements and promotes good engineering practices.
+Ce tutoriel explique comment créer un capteur de distance à ultrasons avec un Raspberry 
+Pi en utilisant le capteur HC-SR04. La vidéo présente les principes de l'écholocalisation, 
+introduit les composants nécessaires, montre la configuration du câblage et détaille étape 
+par étape le processus de codage. L'accent est mis sur l'importance d'une synchronisation 
+précise dans l'exécution du code pour obtenir des mesures de distance précises et sur 
+l'application de bonnes pratiques d'ingénierie.
 
-1. **Introduction to Echolocation**: Using sound to detect objects' positions, inspired by bats and whales.
-2. **Components Overview**: Introduction to the HC-SR04 ultrasonic sensor and its connection to Raspberry Pi.
-3. **Wiring Setup**: Connecting the HC-SR04 sensor to Raspberry Pi GPIO pins for power, ground, trigger, and echo.
-4. **Coding Process**: Python code walkthrough for generating ultrasonic pulses, triggering the sensor, and measuring echo return time.
-5. **Timing Considerations**: Importance of precise timing for accurate distance measurement.
-6. **Good Engineering Practices**: Stressing planning and understanding of code before implementation.
-7. **Waiting for Echo Pin**: Utilizing a while loop to wait for the echo pin to go high.
-8. **Recording Start Time**: Capturing system time when echo pin goes high to mark measurement start.
-9. **Measuring Ping Travel Time**: Calculating ping travel time by determining time difference between echo pin going high and low.
-10. **Converting Units**: Multiplying ping travel time by a million for readability.
-11. **Adding Delay**: Introducing delay after each measurement to prevent multiple echoes.
-12. **Calculating Distance**: Using speed of sound and ping travel time to calculate distance to target.
+1. **Introduction à l'écholocalisation** : Utilisation du son pour détecter la position des objets, inspirée par les chauves-souris et les baleines.
+2. **Présentation des composants** : Introduction au capteur ultrasonique HC-SR04 et connexion au Raspberry Pi.
+3. **Configuration du câblage** : Connexion du capteur HC-SR04 aux broches GPIO du Raspberry Pi pour l'alimentation, la masse, le déclenchement et l'écho.
+4. **Processus de codage** : Explication du code Python pour générer des impulsions ultrasoniques, activer le capteur et mesurer le temps de retour de l'écho.
+5. **Considérations temporelles** : Importance d'une synchronisation précise pour mesurer la distance avec exactitude.
+6. **Bonnes pratiques d'ingénierie** : Insistance sur la planification et la compréhension du code avant sa mise en œuvre.
+7. **Attente du signal Echo** : Utilisation d'une boucle `while` pour attendre que la broche Echo passe à l'état haut.
+8. **Enregistrement du temps de départ** : Capture de l'heure système lorsque la broche Echo passe à l'état haut pour marquer le début de la mesure.
+9. **Mesure du temps de trajet du ping** : Calcul du temps de trajet du ping en déterminant la différence de temps entre l'état haut et bas de la broche Echo.
+10. **Conversion des unités** : Multiplication du temps de trajet du ping par un million pour une meilleure lisibilité.
+11. **Ajout d'un délai** : Introduction d'un délai après chaque mesure pour éviter les échos multiples.
+12. **Calcul de la distance** : Utilisation de la vitesse du son et du temps de trajet du ping pour calculer la distance par rapport à la cible.
 
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

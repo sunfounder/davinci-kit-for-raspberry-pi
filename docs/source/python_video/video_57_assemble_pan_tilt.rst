@@ -1,39 +1,40 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez au cœur du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et tirages au sort** : Participez à nos concours et événements spéciaux tout au long de l'année.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Video 57: Assembling the Sunfounder Pan/Tilt Hat for the RPi Camera
+
+Vidéo 57 : Assemblage du module Pan/Tilt SunFounder pour la caméra RPi
 =======================================================================================
 
+Cette vidéo propose un tutoriel complet pour assembler et configurer le module 
+Pan/Tilt SunFounder pour Raspberry Pi, permettant le suivi d’objets en temps réel 
+avec OpenCV. Elle couvre l'ensemble du processus, de l'assemblage du support à 
+l'installation logicielle, garantissant aux spectateurs une compréhension détaillée 
+de chaque étape pour créer un système de caméra pan-tilt fonctionnel.
 
-The video provides a comprehensive tutorial on assembling and setting up the SunFounder Pan Tilt Hat for Raspberry Pi, 
-facilitating real-time object tracking with OpenCV. It covers the entire process from bracket assembly to software setup, 
-ensuring viewers understand each step involved in creating a functional pan-tilt camera system.
+1. Introduction au projet Raspberry Pi sponsorisé par SunFounder.
+2. Objectif et avantages du module Pan/Tilt SunFounder pour le mouvement de la caméra.
+3. Assemblage correct du support et fixation du système pan-tilt.
+4. Fixation précise des servomoteurs pour assurer un alignement optimal.
+5. Connexion et acheminement soigneux des câbles pour éviter tout dommage lors de l’installation.
+6. Instructions détaillées pour l'installation du logiciel et le téléchargement du code nécessaire.
+7. Importance de tester le bon fonctionnement du système pan-tilt avec de petits ajustements d’angle.
+8. Conseils pour manipuler la caméra et les servos avec précaution afin de prévenir tout dommage potentiel.
+9. Guide de connexion de la caméra au Raspberry Pi et réalisation d’un test final de fonctionnalité.
+10. Utilisation de rivets en plastique pour fixer solidement les supports, de la base au sommet.
 
 
-1. Introduction to the Raspberry Pi project sponsored by SunFounder.
-2. Purpose and advantages of the SunFounder Pan Tilt Hat for camera movement.
-3. Proper bracket assembly and attachment for the pan-tilt system.
-4. Correct attachment of servo parts to ensure precise alignment.
-5. Careful cable connection and routing to prevent damage during setup.
-6. Step-by-step software setup instructions and downloading necessary code.
-7. Importance of testing the pan-tilt system's functionality with small angle adjustments.
-8. Advising viewers to handle the camera and servos carefully to prevent potential damage.
-9. Guidance on connecting the camera to the Raspberry Pi and performing a final functionality test.
-10. Use of plastic rivets to mount brackets securely from the base to the top.
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 

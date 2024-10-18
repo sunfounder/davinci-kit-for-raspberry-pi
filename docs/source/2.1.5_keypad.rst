@@ -1,58 +1,58 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Explorez en profondeur les Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez et partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Avant-premières exclusives** : Accédez en avant-première aux annonces de nouveaux produits.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des promotions spéciales et des tirages au sort.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
 
 2.1.5 Keypad
-============
+================
+
 
 Introduction
-------------
+--------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Un clavier numérique est une matrice rectangulaire de boutons. Dans ce projet, nous l'utiliserons pour saisir des caractères.
 
-Components
-----------
+Composants
+-----------
 
 .. image:: img/list_2.1.5_keypad.png
 
 
-Principle
+Principe
 ---------
 
-**Keypad**
+**Clavier numérique**
 
-A keypad is a rectangular array of 12 or 16 OFF-(ON) buttons. Their
-contacts are accessed via a header suitable for connection with a ribbon
-cable or insertion into a printed circuit board. In some keypads, each
-button connects with a separate contact in the header, while all the
-buttons share a common ground.
+Un clavier numérique est une matrice rectangulaire de 12 ou 16 boutons OFF-(ON). 
+Leurs contacts sont accessibles via un connecteur adapté à une connexion avec un 
+câble ruban ou une insertion dans un circuit imprimé. Dans certains claviers, chaque 
+bouton se connecte à un contact séparé dans le connecteur, tandis que tous les boutons 
+partagent une masse commune.
 
 .. image:: img/image314.png
 
 
-More often, the buttons are matrix encoded, meaning that each of them
-bridges a unique pair of conductors in a matrix. This configuration is
-suitable for polling by a microcontroller, which can be programmed to
-send an output pulse to each of the four horizontal wires in turn.
-During each pulse, it checks the remaining four vertical wires in
-sequence, to determine which one, if any, is carrying a signal. Pullup
-or pulldown resistors should be added to the input wires to prevent the
-inputs of the microcontroller from behaving unpredictably when no signal
-is present.
+Souvent, les boutons sont encodés en matrice, ce qui signifie que chacun d'eux relie une 
+paire unique de conducteurs dans une matrice. Cette configuration est adaptée pour un 
+microcontrôleur, qui peut être programmé pour envoyer une impulsion de sortie à chacun 
+des quatre fils horizontaux à tour de rôle. Pendant chaque impulsion, il vérifie les 
+quatre fils verticaux restants pour déterminer lequel, le cas échéant, transporte un 
+signal. Des résistances pullup ou pulldown doivent être ajoutées aux fils d'entrée pour 
+empêcher les entrées du microcontrôleur de se comporter de manière imprévisible lorsqu'aucun 
+signal n'est présent.
 
-Schematic Diagram
------------------
+Schéma de câblage
+----------------------
 
 .. image:: img/image315.png
 
@@ -60,20 +60,20 @@ Schematic Diagram
 .. image:: img/image316.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image186.png
     :width: 800
 
 
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^^^
+Pour les utilisateurs de C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Open the code file.
+**Étape 2 :** Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -83,7 +83,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.1.5/
 
-**Step 3:** Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -93,7 +93,7 @@ For C Language Users
 
     gcc 2.1.5_Keypad.cpp -lwiringPi
 
-**Step 4:** Run.
+**Étape 4 :** Exécutez le programme.
 
 .. raw:: html
 
@@ -103,13 +103,12 @@ For C Language Users
 
     sudo ./a.out
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Après l'exécution du code, les valeurs des boutons pressés sur le clavier 
+(Valeur du bouton) seront affichées à l'écran.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-    
+    Si cela ne fonctionne pas après l'exécution ou si un message d'erreur s'affiche : \"wiringPi.h : Aucun fichier ou répertoire de ce type\", veuillez consulter :ref:`C code is not working?`.
 **Code**
 
 .. code-block:: c
@@ -224,8 +223,7 @@ Value) will be printed on the screen.
         }
         return -1;
     }
-
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
@@ -238,8 +236,8 @@ Value) will be printed on the screen.
     unsigned char rowPins[ROWS] = {1, 4, 5, 6}; 
     unsigned char colPins[COLS] = {12, 3, 2, 0};
 
-Declare each key of the matrix keyboard to the array keys[] and define
-the pins on each row and column.
+Déclarez chaque touche du clavier matriciel dans le tableau keys[] et définissez 
+les broches de chaque ligne et colonne.
 
 .. code-block:: c
 
@@ -253,16 +251,15 @@ the pins on each row and column.
             delay(100);
         }
 
-This is the part of the main function that reads and prints the button
-value.
+Ceci est la partie de la fonction principale qui lit et affiche la valeur des touches.
 
-The function keyRead() will read the state of every button.
+La fonction keyRead() lira l'état de chaque touche.
 
-KeyCompare() and keyCopy() are used to judge whether the state of a
-button has changed (that is, a button has been pressed or released).
+keyCompare() et keyCopy() sont utilisées pour déterminer si l'état d'une touche a changé 
+(c'est-à-dire si une touche a été appuyée ou relâchée).
 
-keyPrint() will print the button value of the button whose current level
-is high level (the button is pressed).
+keyPrint() affichera la valeur de la touche dont le niveau actuel est élevé (la touche est 
+enfoncée).
 
 .. code-block:: c
 
@@ -284,23 +281,22 @@ is high level (the button is pressed).
         }
     }
 
-This function assigns a high level to each row in turn, and when the key
-in the column is pressed, the column in which the key is located gets a
-high level. After the two-layer loop judgment, the key state compilation
-will generate an array (reasult[]).
+Cette fonction attribue un niveau élevé à chaque ligne à tour de rôle, et lorsque la 
+touche dans la colonne est enfoncée, la colonne obtient un niveau élevé. Après la 
+double boucle de vérification, l'état des touches compilé générera un tableau (result[]).
 
-When pressing button 3:
+Lorsque vous appuyez sur la touche 3 :
 
 .. image:: img/image187.png
 
 
-RowPin [0] writes in the high level, and colPin[2] gets the high level.
-ColPin [0], colPin[1], colPin[3] get the low level.
+RowPin [0] écrit un niveau élevé, et colPin[2] reçoit le niveau élevé. Les autres 
+colPin obtiennent un niveau bas.
 
-This gives us 0,0,1,0. When rowPin[1], rowPin[2] and rowPin[3] are
-written in high level, colPin[0]~colPin[4] will get low level.
+Cela donne 0,0,1,0. Lorsque rowPin[1], rowPin[2] et rowPin[3] sont écrits en niveau 
+élevé, les colPin recevront tous un niveau bas.
 
-After the loop judgment is completed, an array will be generated:
+Après la boucle, un tableau est généré :
 
 .. code-block:: c
 
@@ -327,14 +323,12 @@ After the loop judgment is completed, an array will be generated:
         }
     }
 
+Ces deux fonctions sont utilisées pour vérifier si l'état des touches a changé, par 
+exemple lorsque vous relâchez la touche '3' ou appuyez sur '2', keyCompare() renverra false.
 
-These two functions are used to judge whether the key state has changed,
-for example when you release your hand when pressing \'3\' or pressing
-\'2\', keyCompare() returns false.
-
-KeyCopy() is used to re-write the current button value for the a array
-(last_key_pressed[BUTTON_NUM]) after each comparison. So we can compare
-them next time.
+KeyCopy() réécrit la valeur actuelle de la touche dans le tableau a 
+(last_key_pressed[BUTTON_NUM]) après chaque comparaison pour permettre une 
+comparaison la prochaine fois.
 
 .. code-block:: c
 
@@ -351,15 +345,15 @@ them next time.
         printf("\n");
     }
 
-This function is used to print the value of the button currently
-pressed. If the button \'1\' is pressed, the \'1\' will be printed. If the
-button \'1\' is pressed and the button \'3\' is pressed, the \'1, 3\' will be
-printed.
+Cette fonction est utilisée pour afficher la valeur de la touche actuellement 
+enfoncée. Si la touche '1' est enfoncée, '1' sera affiché. Si vous appuyez sur 
+'1' et ensuite sur '3', '1, 3' sera affiché.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Open the code file.
+Pour les utilisateurs de Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2 :** Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -369,7 +363,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -379,8 +373,8 @@ For Python Language Users
 
     sudo python3 2.1.5_Keypad.py
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Après l'exécution du code, les valeurs des touches pressées sur le clavier 
+(valeur des boutons) seront affichées à l'écran.
 
 
 
@@ -388,7 +382,7 @@ Value) will be printed on the screen.
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin source du code, tel que ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -440,20 +434,19 @@ Value) will be printed on the screen.
         last_key_pressed = pressed_keys
         time.sleep(0.1)
 
-    # Define a destroy function for clean up everything after the script finished
+    # Définir une fonction destroy pour nettoyer tout après la fin du script
     def destroy():
-        # Release resource
+        # Libérer les ressources
         GPIO.cleanup() 
 
-    if __name__ == '__main__':     # Program start from here
+    if __name__ == '__main__':     # Le programme commence ici
         try:
             setup()
             while True:
                 loop()
-        except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt:   # Lorsque 'Ctrl+C' est pressé, la fonction destroy() sera exécutée.
             destroy()
-
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
@@ -468,8 +461,8 @@ Value) will be printed on the screen.
         keypad = Keypad(rowsPins, colsPins, keys)
         last_key_pressed = []
 
-Declare each key of the matrix keyboard to the array keys[] and define
-the pins on each row and column.
+Déclarez chaque touche du clavier matriciel dans le tableau keys[] et définissez 
+les broches pour chaque ligne et colonne.
 
 .. code-block:: python
 
@@ -481,23 +474,20 @@ the pins on each row and column.
         last_key_pressed = pressed_keys
         time.sleep(0.1)
 
-This is the part of the main function that reads and prints the button
-value.
+Voici la partie de la fonction principale qui lit et affiche la valeur des boutons pressés.
 
-The function keyRead() will read the state of every button.
+La fonction keyRead() lira l'état de chaque bouton.
 
-The statement if len(pressed_keys) != 0 and last_key_pressed !=
-pressed_keys is used to judge
+La condition if len(pressed_keys) != 0 and last_key_pressed != pressed_keys est 
+utilisée pour vérifier
 
-whether a key is pressed and the state of the pressed button. (If you
-press \'3\' when you press \'1\', the judgement is tenable.)
+si une touche est enfoncée et si l'état de la touche pressée a changé. 
+(Si vous appuyez sur "3" après avoir appuyé sur "1", cette condition est vraie.)
 
-Prints the value of the currently pressed key when the condition is
-tenable.
+Affiche la valeur de la touche actuellement pressée lorsque la condition est remplie.
 
-The statement last_key_pressed = pressed_keys assigns the state of each
-judgment to an array last_key_pressed to facilitate the next round of
-conditional judgment.
+L'instruction last_key_pressed = pressed_keys attribue l'état de chaque jugement 
+à un tableau last_key_pressed pour faciliter le prochain tour de jugement conditionnel.
 
 .. code-block:: python
 
@@ -512,33 +502,28 @@ conditional judgment.
                 GPIO.output(row, GPIO.LOW)
             return pressed_keys
 
-This function assigns a high level to each row in turn, and when the
-button in the column is pressed, the column in which the key is located
-gets a high level. After the two-layer loop is judged, the value of the
-button whose state is 1 is stored in the array pressed_keys.
+Cette fonction affecte un niveau haut à chaque ligne à tour de rôle, et lorsque le 
+bouton d'une colonne est enfoncé, la colonne dans laquelle la touche se trouve reçoit 
+un niveau haut. Après la vérification en boucle, la valeur du bouton dont l'état est 1 
+est stockée dans le tableau pressed_keys.
 
-If you press the key \'3\':
+Si vous appuyez sur la touche "3" :
 
 .. image:: img/image187.png
 
+rowPins[0] est écrit en niveau haut, et colPins[2] obtient un niveau haut.
 
-rowPins[0] is written in high level, and colPins[2] gets high level.
+colPins[0], colPins[1], colPins[3] obtiennent un niveau bas.
 
-colPins[0]、colPins[1]、colPins[3] get low level.
+Il y a quatre états : 0, 0, 1, 0 ; et nous écrivons "3" dans pressed_keys.
 
-There are four states:0, 0, 1, 0; and we write \'3\' into pressed_keys.
+Lorsque rowPins[1], rowPins[2] et rowPins[3] sont écrits en niveau haut, colPins[0] ~ colPins[4] obtiennent un niveau bas.
 
-When rowPins[1] , rowPins[2] , rowPins[3] are written into high level,
-colPins[0] ~ colPins[4] get low level.
+La boucle s'arrête et retourne pressed_keys = '3'.
 
-The loop stopped, there returns pressed_keys = \'3\'.
+Si vous appuyez sur les touches '1' et '3', pressed_keys retournera = ['1', '3'].
 
-If you press the buttons \'1\' and \'3\', there will return pressed_keys =
-[\'1\',\'3\'].
-
-Phenomenon Picture
-------------------
+Image du Phénomène
+----------------------
 
 .. image:: img/image188.jpeg
-
-

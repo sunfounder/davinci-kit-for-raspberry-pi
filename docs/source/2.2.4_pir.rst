@@ -1,117 +1,113 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté Facebook des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 ! Plongez plus profondément dans l'univers du Raspberry Pi, d'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et concours** : Participez à des concours et promotions pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-2.2.4 PIR
-=========
+2.2.4 Capteur PIR
+===================
 
 Introduction
-------------
+---------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+Dans ce projet, nous allons fabriquer un dispositif à l'aide de capteurs 
+pyroelectriques infrarouges pour le corps humain. Lorsque quelqu'un s'approche, 
+la LED s'allumera automatiquement. Sinon, la lumière s'éteindra. Ce capteur de 
+mouvement infrarouge est un type de capteur capable de détecter l'infrarouge émis 
+par les humains et les animaux.
 
-Components
-----------
+Composants
+-----------
 
 .. image:: img/list_2.2.4_pir.png
 
 
-Principle
----------
+Principe
+--------
 
-The PIR sensor detects infrared heat radiation that can be used to
-detect the presence of organisms that emit infrared heat radiation.
+Le capteur PIR détecte la radiation thermique infrarouge émise par des organismes et 
+peut être utilisé pour détecter la présence d'êtres vivants qui émettent cette radiation.
 
-The PIR sensor is split into two slots that are connected to a
-differential amplifier. Whenever a stationary object is in front of the
-sensor, the two slots receive the same amount of radiation and the
-output is zero. Whenever a moving object is in front of the sensor, one
-of the slots receives more radiation than the other , which makes the
-output fluctuate high or low. This change in output voltage is a result
-of detection of motion.
+Le capteur PIR est divisé en deux emplacements reliés à un amplificateur différentiel. 
+Lorsque qu'un objet immobile se trouve devant le capteur, les deux emplacements reçoivent 
+la même quantité de radiation, et la sortie est nulle. Lorsqu'un objet en mouvement 
+passe devant le capteur, l'un des emplacements reçoit plus de radiation que l'autre, 
+provoquant une variation de la sortie en tension. Cette variation est le résultat de 
+la détection du mouvement.
 
 .. image:: img/image211.png
     :width: 200
 
 
 
-After the sensing module is wired, there is a one-minute initialization.
-During the initialization, module will output for 0~3 times at
-intervals. Then the module will be in the standby mode. Please keep the
-interference of light source and other sources away from the surface of
-the module so as to avoid the misoperation caused by the interfering
-signal. Even you'd better use the module without too much wind, because
-the wind can also interfere with the sensor.
+Après le câblage du module, une phase d'initialisation d'une minute commence. Pendant 
+cette phase, le module émettra de 0 à 3 impulsions à intervalles réguliers. Ensuite, 
+le module passe en mode veille. Veillez à éloigner les sources lumineuses et autres 
+interférences de la surface du module pour éviter les erreurs causées par des signaux 
+parasites. Il est préférable d'utiliser le module dans un environnement sans trop de vent, 
+car cela peut aussi affecter le capteur.
 
 .. image:: img/image212.png
     :width: 400
 
 
 
-**Distance Adjustment**
+**Réglage de la distance**
 
 
-Turning the knob of the distance adjustment potentiometer clockwise, the
-range of sensing distance increases, and the maximum sensing distance
-range is about 0-7 meters. If turn it anticlockwise, the range of
-sensing distance is reduced, and the minimum sensing distance range is
-about 0-3 meters.
+En tournant le bouton du potentiomètre de réglage de la distance dans le sens des aiguilles 
+d'une montre, la portée de détection augmente, la portée maximale de détection est d'environ 
+0 à 7 mètres. Si vous tournez le bouton dans le sens inverse, la portée de détection diminue, 
+avec une portée minimale d'environ 0 à 3 mètres.
 
-**Delay adjustment**
+**Réglage du délai**
 
 
-Rotate the knob of the delay adjustment potentiometer clockwise, you
-can also see the sensing delay increasing. The maximum of the sensing
-elay can reach up to 300s. On the contrary, if rotate it
-anticlockwise, you can shorten the delay with a minimum of 5s. 
+En tournant le bouton du potentiomètre de réglage du délai dans le sens des aiguilles 
+d'une montre, vous pouvez augmenter le délai de détection, qui peut atteindre un maximum 
+de 300 secondes. Inversement, en le tournant dans le sens inverse, vous pouvez réduire le 
+délai avec un minimum de 5 secondes.
 
-Two trigger modes: (choosing different modes by using the jumper cap).
+Deux modes de déclenchement : (choix du mode via un cavalier).
 
--  **H:** **Repeatable trigger mode**, after sensing the human body, the
-   module outputs high level. During the subsequent delay period, if
-   somebody enters the sensing range,the output will keep being the high
-   level.
+-  **H : Mode de déclenchement répétitif**, après détection d'une présence humaine, le 
+module émet un signal de niveau haut. Pendant la période de délai suivante, si quelqu'un 
+entre dans la zone de détection, la sortie restera à un niveau haut.
 
--  **L:** **Non-repeatable trigger mode**, outputs high level when
-   it senses the human body. After the delay, the output will change
-   from high level into low level automatically. 
+-  **L : Mode de déclenchement non répétitif**, émet un signal de niveau haut lorsque la 
+présence d'une personne est détectée. Après le délai, la sortie revient automatiquement à 
+un niveau bas.
 
 
 
-Schematic Diagram
------------------
+Schéma de câblage
+--------------------
 
 .. image:: img/image327.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image214.png
     :width: 800
 
 
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
+Pour les utilisateurs de langage C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -121,7 +117,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.4/
 
-**Step 3:** Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -131,7 +127,7 @@ For C Language Users
 
     gcc 2.2.4_PIR.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Étape 4 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -141,19 +137,18 @@ For C Language Users
 
     sudo ./a.out
 
-After the code runs, PIR detects surroundings and let RGB LED glow
-yellow if it senses someone walking by. There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
+Après exécution du code, le PIR détecte les mouvements et fait briller la LED RGB en 
+jaune s'il détecte quelqu'un qui passe. Il y a deux potentiomètres sur le module PIR : 
+l'un pour régler la sensibilité et l'autre pour ajuster la distance de détection. Pour 
+optimiser le fonctionnement du module PIR, tournez-les tous les deux dans le sens inverse 
+des aiguilles d'une montre jusqu'à la butée.
 
 .. image:: img/PIR_TTE.png
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-
-
+    Si cela ne fonctionne pas après l'exécution, ou si une erreur apparaît: \"wiringPi.h: 
+     Aucun fichier ou répertoire de ce type", veuillez vous référer à :ref:`C code is not working?`.
 **Code**
 
 .. code-block:: c
@@ -163,7 +158,7 @@ You need to turn both of them counterclockwise to the end.
     #include <stdio.h>
     #define uchar unsigned char
 
-    #define pirPin    0     //the pir connect to GPIO0
+    #define pirPin    0     // le capteur PIR est connecté au GPIO0
     #define redPin    1
     #define greenPin  2
     #define bluePin   3
@@ -181,60 +176,59 @@ You need to turn both of them counterclockwise to the end.
     int main(void)
     {
         int pir_val;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ // Si l'initialisation de wiringPi échoue, affiche un message
             printf("setup wiringPi failed !");
             return 1;
         }
         ledInit();
         pinMode(pirPin, INPUT);
         while(1){
-        pir_val = digitalRead(pirPin);
-            if(pir_val== 1){ //if read pir is HIGH level
-                ledColorSet(0xff,0xff,0x00); 
+            pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ // si la lecture du PIR est de niveau haut
+                ledColorSet(0xff,0xff,0x00); // Allume la LED en jaune
             }
             else {
-            ledColorSet(0x00,0x00,0xff); 
+                ledColorSet(0x00,0x00,0xff); // Allume la LED en bleu
             }
         }
         return 0;
     }
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: c
 
     void ledInit(void);
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
-These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2 RGB LED` for more details.
+Ces fonctions sont utilisées pour définir la couleur de la LED RGB. Veuillez vous 
+référer à la section :ref:`1.1.2 RGB LED` pour plus de détails.
 
 .. code-block:: c
 
     int main(void)
     {
         int pir_val;
-        //…… 
+        //……
         pinMode(pirPin, INPUT);
         while(1){
-        pir_val = digitalRead(pirPin);
-            if(pir_val== 1){ //if read pir is HIGH level
-                ledColorSet(0xff,0xff,0x00); 
+            pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ // si la lecture du PIR est de niveau haut
+                ledColorSet(0xff,0xff,0x00); // Allume la LED en jaune
             }
             else {
-            ledColorSet(0x00,0x00,0xff); 
+                ledColorSet(0x00,0x00,0xff); // Allume la LED en bleu
             }
         }
         return 0;
     }
 
-When PIR detects the human infrared spectrum, RGB LED emits the yellow
-light; if not, emits the blue light.
+Lorsque le capteur PIR détecte un spectre infrarouge humain, la LED RGB s'allume en jaune ; sinon, elle s'allume en bleu.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Pour les utilisateurs de Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -244,7 +238,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run the executable file.
+**Étape 3 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -254,19 +248,18 @@ For Python Language Users
 
     sudo python3 2.2.4_PIR.py
 
-After the code runs, PIR detects surroundings and let RGB LED glow
-yellow if it senses someone walking by. There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
+Après l'exécution du code, le capteur PIR détecte les mouvements et fait briller 
+la LED RGB en jaune lorsqu'il détecte quelqu'un. Il y a deux potentiomètres sur le 
+module PIR : l'un pour ajuster la sensibilité et l'autre pour régler la distance de 
+détection. Pour un meilleur fonctionnement du module PIR, tournez-les tous les deux 
+dans le sens inverse des aiguilles d'une montre jusqu'à la fin.
 
 .. image:: img/PIR_TTE.png
 
 **Code**
-
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre dans le répertoire source du code, tel que ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -278,70 +271,69 @@ You need to turn both of them counterclockwise to the end.
     import time
 
     rgbPins = {'Red':18, 'Green':27, 'Blue':22}
-    pirPin = 17    # the pir connect to pin17
+    pirPin = 17    # le pir est connecté à la broche 17
 
     def setup():
         global p_R, p_G, p_B
-        GPIO.setmode(GPIO.BCM)		# Set the GPIO modes to BCM Numbering
-        GPIO.setup(pirPin, GPIO.IN)    # Set pirPin to input
-        # Set all LedPin's mode to output and initial level to High(3.3v)
+        GPIO.setmode(GPIO.BCM)    # Configuration du mode GPIO en numérotation BCM
+        GPIO.setup(pirPin, GPIO.IN)    # Configuration de pirPin en entrée
+        # Configuration des broches LED en sortie et initialisation à un niveau haut (3,3v)
         for i in rgbPins:
             GPIO.setup(rgbPins[i], GPIO.OUT, initial=GPIO.HIGH)
 
-        # Set all led as pwm channel and frequece to 2KHz
+        # Configuration de la PWM pour chaque LED avec une fréquence de 2 kHz
         p_R = GPIO.PWM(rgbPins['Red'], 2000)
         p_G = GPIO.PWM(rgbPins['Green'], 2000)
         p_B = GPIO.PWM(rgbPins['Blue'], 2000)
 
-        # Set all begin with value 0
+        # Initialisation des PWM à 0
         p_R.start(0)
         p_G.start(0)
         p_B.start(0)
 
-    # Define a MAP function for mapping values.  Like from 0~255 to 0~100
+    # Définition d'une fonction MAP pour convertir les valeurs de 0~255 à 0~100
     def MAP(x, in_min, in_max, out_min, out_max):
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-    # Define a function to set up colors 
+    # Définition d'une fonction pour régler les couleurs
     def setColor(color):
-    # configures the three LEDs' luminance with the inputted color value . 
-        # Devide colors from 'color' veriable
+    # Configure la luminance des trois LEDs en fonction de la valeur de couleur
+        # Extraction des valeurs RVB de la variable 'color'
         R_val = (color & 0xFF0000) >> 16
         G_val = (color & 0x00FF00) >> 8
-        B_val = (color & 0x0000FF) >> 0
-        # Map color value from 0~255 to 0~100
+        B_val = (color & 0x0000FF)
+        # Conversion des valeurs de 0~255 à 0~100
         R_val = MAP(R_val, 0, 255, 0, 100)
         G_val = MAP(G_val, 0, 255, 0, 100)
         B_val = MAP(B_val, 0, 255, 0, 100)
         
-        #Assign the mapped duty cycle value to the corresponding PWM channel to change the luminance. 
+        # Modification du cycle de fonctionnement de la PWM en fonction de la luminance calculée
         p_R.ChangeDutyCycle(R_val)
         p_G.ChangeDutyCycle(G_val)
         p_B.ChangeDutyCycle(B_val)
-        #print ("color_msg: R_val = %s,	G_val = %s,	B_val = %s"%(R_val, G_val, B_val))
 
     def loop():
         while True:
             pir_val = GPIO.input(pirPin)
-            if pir_val==GPIO.HIGH:
-                setColor(0xFFFF00)
+            if pir_val == GPIO.HIGH:
+                setColor(0xFFFF00)  # Couleur jaune si mouvement détecté
             else :
-                setColor(0x0000FF)
+                setColor(0x0000FF)  # Couleur bleue sinon
 
     def destroy():
         p_R.stop()
         p_G.stop()
         p_B.stop()
-        GPIO.cleanup()                     # Release resource
+        GPIO.cleanup()  # Libération des ressources
 
-    if __name__ == '__main__':     # Program start from here
+    if __name__ == '__main__':  # Programme principal
         setup()
         try:
             loop()
-        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+        except KeyboardInterrupt:  # Exécution de la fonction destroy en cas d'interruption
             destroy()
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: python
 
@@ -349,8 +341,8 @@ You need to turn both of them counterclockwise to the end.
 
     def setup():
         global p_R, p_G, p_B
-        GPIO.setmode(GPIO.BCM)  
-        # …… 
+        GPIO.setmode(GPIO.BCM)
+        # …
         for i in rgbPins:
             GPIO.setup(rgbPins[i], GPIO.OUT, initial=GPIO.HIGH)
         p_R = GPIO.PWM(rgbPins['Red'], 2000)
@@ -366,8 +358,7 @@ You need to turn both of them counterclockwise to the end.
     def setColor(color):
     ...
 
-These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2 RGB LED` for more details.
+Ces lignes de code sont utilisées pour régler la couleur de la LED RVB, veuillez consulter :ref:`1.1.2 LED RVB` pour plus de détails.
 
 .. code-block:: python
 
@@ -379,10 +370,9 @@ to :ref:`1.1.2 RGB LED` for more details.
             else :
                 setColor(0x0000FF)
 
-When PIR detects the human infrared spectrum, RGB LED emits the yellow
-light; if not, emits the blue light.
+Lorsque le PIR détecte le spectre infrarouge d'un humain, la LED RVB émet une lumière jaune ; sinon, elle émet une lumière bleue.
 
-Phenomenon Picture
-------------------
+Image du phénomène
+---------------------
 
 .. image:: img/image215.jpeg

@@ -1,42 +1,48 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l’univers du Raspberry Pi, d’Arduino et d’ESP32 avec d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et bénéficiez d'aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos tout derniers produits.
+    - **Promotions et concours festifs** : Participez à des concours et à des promotions spéciales lors d’événements festifs.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-Video 10: Making a Dimmable LED with Two Push Buttons
+Vidéo 10 : Réalisation d'une LED dimmable avec deux boutons-poussoirs
 =======================================================================================
 
-This tutorial covers the construction of dimmable LED circuits using Raspberry Pi GPIO pins, 
-focusing on achieving smooth brightness control. Paul McQuarter demonstrates the process step-by-step, 
-from circuit setup to coding implementation. In the Raspberry Pi section, he explains how to build the circuit using GPIO pins and push buttons for control, 
-alongside Python coding for PWM (Pulse Width Modulation) control. 
-The video explores the nuances of PWM, 
-emphasizing non-linear changes in duty cycle for smoother brightness transitions and addressing synchronization issues between PWM frequency and camera scanning rate. 
-The video introduces the concept of using exponential scale for achieving smooth and precise brightness control. 
-It delves into mathematical concepts like logarithms and exponents, illustrating their application in coding for LED brightness control. 
-Troubleshooting tips are provided for debugging and refining the code to ensure optimal performance.
+Ce tutoriel aborde la construction de circuits de LED dimmables à l'aide des 
+broches GPIO du Raspberry Pi, en mettant l'accent sur un contrôle fluide de la 
+luminosité. Paul McQuarter montre le processus pas à pas, de la configuration 
+du circuit à la mise en œuvre du code. Dans la partie dédiée au Raspberry Pi, 
+il explique comment construire le circuit en utilisant les broches GPIO et des 
+boutons-poussoirs pour le contrôle, tout en implémentant la modulation de largeur 
+d'impulsion (PWM) via des scripts Python.
 
+La vidéo explore les subtilités du PWM, en mettant en avant les variations non 
+linéaires du cycle de rapport (duty cycle) pour des transitions de luminosité 
+plus douces, et aborde les problèmes de synchronisation entre la fréquence PWM 
+et le taux de balayage de la caméra. Le concept de l'échelle exponentielle est 
+présenté pour obtenir un contrôle précis de la luminosité. La vidéo approfondit 
+des notions mathématiques telles que les logarithmes et les exposants, illustrant 
+leur application dans le codage pour le réglage de la luminosité des LED. Des 
+astuces de dépannage sont fournies pour affiner le code et garantir des performances optimales.
 
-1. **Circuit setup**: Explanation and demonstration of building dimmable LED circuits with Raspberry Pi GPIO pins, utilizing push buttons for control.
-2. **Python coding**: Walkthroughs of Python code for implementing PWM control and exponential scale for LED brightness control, respectively.
-3. **PWM principles**: Understanding PWM duty cycle and its application in LED brightness control.
-4. **Exponential scale**: Utilizing exponential scale in coding to achieve smooth and linear brightness control.
-5. **Logarithmic concept**: Applying logarithms to determine the constant required for a specific number of button pushes for brightness adjustment.
-6. **Non-linear brightness adjustment**: Exploring non-linear changes in duty cycle for smoother brightness transitions.
-7. **Synchronization issues**: Addressing synchronization problems between PWM frequency and camera scanning rate.
-8. **Troubleshooting and refinement**: Techniques for debugging code and refining LED dimming functionality for optimal performance.
+1. **Montage du circuit** : Explication et démonstration de la construction de circuits LED dimmables avec les broches GPIO du Raspberry Pi, en utilisant des boutons-poussoirs pour le contrôle.
+2. **Programmation en Python** : Démonstration des scripts Python pour implémenter le contrôle PWM et l'échelle exponentielle pour le réglage de la luminosité des LED.
+3. **Principes du PWM** : Comprendre le cycle de rapport du PWM et son utilisation dans le contrôle de la luminosité.
+4. **Échelle exponentielle** : Utilisation de l'échelle exponentielle dans le code pour obtenir un contrôle fluide et linéaire de la luminosité.
+5. **Concept logarithmique** : Application des logarithmes pour déterminer la constante nécessaire au nombre de pressions de bouton requises pour ajuster la luminosité.
+6. **Ajustement non linéaire de la luminosité** : Exploration des modifications non linéaires du cycle de rapport pour des transitions de luminosité plus douces.
+7. **Problèmes de synchronisation** : Réflexion sur les problèmes de synchronisation entre la fréquence PWM et le taux de balayage de la caméra.
+8. **Dépannage et optimisation** : Techniques de débogage du code et d’optimisation de la fonctionnalité de gradation des LED pour des performances maximales.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
     

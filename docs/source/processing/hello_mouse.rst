@@ -1,25 +1,25 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, Arduino et ESP32 avec d’autres amateurs.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Assistance experte** : Résolvez vos problèmes après-vente et relevez des défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et bénéficiez de sneak peeks.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des promotions spéciales et à des tirages au sort.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
 
 Hello Mouse
 ==================
 
-In this project, your mouse will keep shooting lines towards a point; move the mouse and you will draw a unique line of stars. Press the mouse to restart the drawing.
+Dans ce projet, votre souris tracera continuellement des lignes vers un point fixe. Déplacez la souris et vous dessinerez une traînée unique d’étoiles. Cliquez avec la souris pour recommencer le dessin.
 
 .. image:: img/hello_mouse1.png
 
-**Sketch**
+**Code**
 
 .. code-block:: arduino
 
@@ -42,14 +42,14 @@ In this project, your mouse will keep shooting lines towards a point; move the m
         background(192, 16, 18);
     }
 
-**How it works?**
+**Comment ça fonctionne ?**
 
-The previous project was drawing a single image without any animation or interaction.
+Le projet précédent dessinait une image statique sans animation ni interaction.
 
-If we want to make an interactive sketch, we need to add the ``setup()`` and ``draw()`` functions (these are built-in functions that are called automatically) to build the frame.
+Si nous voulons créer une esquisse interactive, nous devons ajouter les fonctions ``setup()`` et ``draw()`` (ce sont des fonctions intégrées appelées automatiquement) pour construire l’animation.
 
-* ``setup()``: Executed only once at the start of the sketch.
-* ``draw()``: Executed repeatedly, where we usually add the sketch for drawing the animation.
+* ``setup()`` : Exécutée une seule fois au début du programme.
+* ``draw()`` : Exécutée en boucle, c’est là que nous ajoutons le code pour dessiner l’animation.
 
 .. code-block:: arduino
 
@@ -66,9 +66,9 @@ If we want to make an interactive sketch, we need to add the ``setup()`` and ``d
         line(pointX, pointY, mouseX, mouseY);
     }
 
-This sketch above already works smoothly as an interactive sketch.
+L’esquisse ci-dessus fonctionne déjà parfaitement en tant que programme interactif.
 
-Next you can add a mouse click event. This event can be implemented with the ``mousePressed()`` function, where we add statements to refresh the target point and clear the screen.
+Ensuite, vous pouvez ajouter un événement de clic de souris. Cet événement est mis en œuvre avec la fonction ``mousePressed()``, où nous ajoutons des instructions pour actualiser le point cible et effacer l’écran.
 
 .. code-block:: arduino
 
@@ -91,6 +91,4 @@ Next you can add a mouse click event. This event can be implemented with the ``m
         background(192, 16, 18);
     }
 
-
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
-
+Pour plus de détails, consultez la `Processing Reference <https://processing.org/reference/>`_.

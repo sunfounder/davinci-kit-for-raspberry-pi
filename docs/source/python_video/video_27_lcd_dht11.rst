@@ -1,31 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d’experts** : Résolvez les problèmes après-vente et surmontez les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des conseils et des tutoriels pour approfondir vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et bénéficiez de contenus inédits.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos nouveaux produits.
+    - **Promotions et cadeaux festifs** : Participez à des concours et à des promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd’hui !
 
 
-Video 27: Build a Temperature and Humidity System with LCD Display
+Vidéo 27 : Construire un système de température et d’humidité avec un écran LCD
 =======================================================================================
 
-In this tutorial, viewers learn how to construct a temperature and humidity sensing device using a Raspberry Pi, a DHT11 sensor, an LCD display, and a push button. The video provides detailed guidance on both the hardware setup and Python coding required for the project. 
+Dans ce tutoriel, les spectateurs apprendront à construire un dispositif de mesure de la température et de l’humidité en utilisant un Raspberry Pi, un capteur DHT11, un écran LCD et un bouton-poussoir. La vidéo fournit des instructions détaillées sur l’installation matérielle ainsi que sur le codage en Python nécessaire pour mener à bien ce projet.
 
-1. Introduction to building a temperature and humidity sensing device with Raspberry Pi.
-2. Components required including Raspberry Pi, DHT11 sensor, LCD display, push button, female to male wires, and jumper wires.
-3. Hardware setup involves connecting Raspberry Pi to the SunFounder breakout board, and then connecting the DHT11 sensor, LCD display, and push button using jumper wires.
-4. Setting up necessary libraries such as LCD1602, GPIO, DHT11, and time.
-5. Initialization of components including setting up GPIO mode, initializing the DHT11 sensor, LCD display, and push button.
-6. Reading button state through GPIO input to toggle between Fahrenheit and Celsius readings on the LCD display.
+1. Introduction à la construction d’un dispositif de mesure de la température et de l’humidité avec un Raspberry Pi.
+2. Composants requis, y compris le Raspberry Pi, le capteur DHT11, l’écran LCD, le bouton-poussoir, des câbles femelle-mâle et des fils de connexion.
+3. Configuration matérielle : connecter le Raspberry Pi à la carte de connexion SunFounder, puis relier le capteur DHT11, l’écran LCD et le bouton-poussoir avec des fils de connexion.
+4. Mise en place des bibliothèques nécessaires, telles que LCD1602, GPIO, DHT11 et time.
+5. Initialisation des composants, incluant la configuration du mode GPIO, l’initialisation du capteur DHT11, de l’écran LCD et du bouton-poussoir.
+6. Lecture de l’état du bouton à travers l’entrée GPIO pour basculer entre les lectures en Fahrenheit et en Celsius sur l’écran LCD.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

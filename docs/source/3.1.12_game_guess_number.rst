@@ -1,40 +1,39 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans le monde de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Recevez en avant-première les annonces de nouveaux produits et des aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-3.1.12 GAME– Guess Number
-============================
+3.1.12 JEU – Devine le Nombre
+=================================
 
 Introduction
 ------------------
 
-Guessing Numbers is a fun party game where you and your friends take
-turns inputting a number (0~99). The range will be smaller with the
-inputting of the number till a player answers the riddle correctly. Then
-the player is defeated and punished. For example, if the lucky number is
-51 which the players cannot see, and the player ① inputs 50, the prompt
-of number range changes to 50~99; if the player ② inputs 70, the range
-of number can be 50~70; if the player ③ inputs 51, this player is the
-unlucky one. Here, we use keypad to input numbers and use LCD to output
-outcomes.
+"Deviner le Nombre" est un jeu amusant où vous et vos amis tour à tour entrez 
+un nombre (0~99). La plage de valeurs se réduit au fur et à mesure que les 
+joueurs entrent des nombres, jusqu'à ce que quelqu'un devine correctement le 
+nombre mystère. Ce joueur est alors considéré comme perdant et reçoit une punition. 
+Par exemple, si le nombre mystère est 51 (non visible par les joueurs), et que 
+le joueur ① entre 50, la plage de nombres passe à 50~99 ; si le joueur ② entre 70, 
+la plage devient 50~70 ; et si le joueur ③ entre 51, ce joueur perd. Ici, nous 
+utilisons un clavier pour entrer les nombres et un écran LCD pour afficher les résultats.
 
-Components
+Composants
 -----------------
 
 .. image:: img/list_GAME_Guess_Number.png
     :align: center
 
-Schematic Diagram
+Schéma de câblage
 -----------------------
 
 ============ ======== ======== =======
@@ -54,22 +53,22 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 .. image:: img/Schematic_three_one12.png
    :align: center
 
-Experimental Procedures
+Procédures expérimentales
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: img/image273.png
    :alt: Guess Number_bb
    :width: 800
 
-**Step 2**: Setup I2C (see Appendix. If you have set I2C, skip this
-step.)
+**Étape 2 :** Configurer I2C (voir l'Annexe. Si vous avez déjà configuré I2C, 
+passez cette étape.)
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Pour les utilisateurs du langage C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 3**: Change directory.
+**Étape 3 :** Changer de répertoire.
 
 .. raw:: html
 
@@ -79,7 +78,7 @@ step.)
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.12/
 
-**Step 4**: Compile.
+**Étape 4 :** Compiler.
 
 .. raw:: html
 
@@ -89,7 +88,7 @@ step.)
 
     gcc 3.1.12_GAME_GuessNumber.c -lwiringPi
 
-**Step 5**: Run.
+**Étape 5 :** Exécuter.
 
 .. raw:: html
 
@@ -99,50 +98,48 @@ step.)
 
     sudo ./a.out
 
-After the program runs, there displays the initial page on the LCD:
+Après le démarrage du programme, l'écran LCD affiche la page d'accueil :
 
-.. code-block:: 
+.. code-block::
 
    Welcome!
    Press A to go!
 
-Press \'A\', and the game will start and the game page will appear on the
-LCD.
+Appuyez sur 'A' pour lancer le jeu, et la page de jeu apparaîtra sur l'écran LCD.
 
-.. code-block:: 
+.. code-block::
 
-   Enter number:
+   Entrez le nombre :
    0 ‹point‹ 99
 
 .. note::
 
-   If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+   Si cela ne fonctionne pas après l'exécution ou si un message d'erreur s'affiche : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`C code is not working?`.
 
 
-A random number \'**point**\' is produced but not displayed on the LCD
-when the game starts, and what you need to do is to guess it. The number
-you have typed appears at the end of the first line till the final
-calculation is finished. (Press \'D\' to start the comparation, and if the
-input number is larger than **10**, the automatic comparation will
-start.)
+Un nombre aléatoire '**point**' est généré mais non affiché sur l'écran LCD au 
+début du jeu, et votre objectif est de le deviner. Le nombre que vous avez saisi 
+apparaît à la fin de la première ligne jusqu'à ce que le calcul final soit effectué. 
+(Appuyez sur 'D' pour lancer la comparaison, et si le nombre saisi est supérieur à 
+**10**, la comparaison se déclenchera automatiquement.)
 
-The number range of \'point\' is displayed on the second line. And you
-must type the number within the range. When you type a number, the range
-narrows; if you got the lucky number luckily or unluckily, there will
-appear \"You've got it!\"
+La plage de valeurs du '**point**' s'affiche sur la seconde ligne. Vous devez entrer 
+un nombre dans cette plage. À chaque saisie, la plage se réduit ; si vous trouvez le 
+nombre chanceux, ou si vous perdez, l'écran affichera "Vous avez trouvé !".
 
-**Code Explanation**
 
-At the beginning part of the code are the functional functions of
-**keypad** and **I2C LCD1602**. You can learning more details about them
-in **1.1.7 I2C LCD1602** and **2.1.5 Keypad.**
+**Explication du code**
 
-Here, what we need to know is as follows:
+Au début du code, on trouve les fonctions de base pour le **clavier** et l'
+**I2C LCD1602**. Vous pouvez en apprendre davantage sur ces éléments dans les 
+sections **1.1.7 I2C LCD1602** et **2.1.5 Keypad**.
+
+Voici les points clés à connaître :
 
 .. code-block:: c
 
     /****************************************/
-    //Start from here
+    //Début du code
     /****************************************/
     void init(void){
         fd = wiringPiI2CSetup(LCDAddr);
@@ -156,9 +153,9 @@ Here, what we need to know is as follows:
         write(0, 0, "Welcome!");
         write(0, 1, "Press A to go!");
     }
-    
-This function is used to initially define **I2C LCD1602** and **Keypad**
-and to display \"Welcome!\" and \"Press A to go!\".
+
+Cette fonction initialise l'**I2C LCD1602** et le **clavier** tout en affichant 
+"Bienvenue!" et "Appuyez sur A!".
 
 .. code-block:: c
 
@@ -171,8 +168,8 @@ and to display \"Welcome!\" and \"Press A to go!\".
         printf("point is %d\n",pointValue);
     }
 
-The function produces the random number \'**point**\' and resets the
-range hint of the point.
+
+La fonction génère un nombre aléatoire '**point**' et réinitialise les limites du jeu.
 
 .. code-block:: c
 
@@ -195,10 +192,9 @@ range hint of the point.
         return 0;
     }
 
-detect_point() compares the input number with the produced \"point\". If
-the comparing outcome is that they are not same, **count** will assign
-values to **upper** and **lower** and return \'**0**\'; otherwise, if
-the outcome indicates they are same, there returns \'**1**\'.
+La fonction detect_point() compare le nombre saisi avec le "point" généré. 
+Si les nombres sont différents, **count** est utilisé pour ajuster les valeurs 
+de **upper** et **lower**, et renvoie '0'. S'ils sont identiques, elle renvoie '1'.
 
 .. code-block:: c
 
@@ -223,10 +219,9 @@ the outcome indicates they are same, there returns \'**1**\'.
         write(12,1,str);
     }
 
-This function works for displaying the game page. Pay attention to the
-function **Int2Str(str,count)**, it converts these variables **count**,
-**lower**, and **upper** from **integer** to **character string** for
-the correct display of **lcd**.
+Cette fonction affiche la page de jeu. La fonction **Int2Str(str,count)** 
+convertit les variables **count**, **lower**, et **upper** d'**entier** en 
+**chaîne de caractères** pour l'affichage correct sur l'**LCD**.
 
 .. code-block:: c
 
@@ -270,33 +265,33 @@ the correct display of **lcd**.
     }
 
 
-Main() contains the whole process of the program, as show below:
 
-1) Initialize **I2C LCD1602** and **Keypad**.
 
-2) Use **init_new_value()** to create a random number **0-99**.
 
-3) Judge whether the button is pressed and get the button reading.
+La fonction Main() contient l'ensemble du processus du programme, tel que décrit ci-dessous :
 
-4) If the button \'**A**\' is pressed, a random number **0-99** will
-   appear then the game starts.
+1) Initialiser l'**I2C LCD1602** et le **clavier**.
 
-5) If the button \'**D**\' is detected to have been pressed, the
-   program will enter into the outcome judgement and will display the
-   outcome on the LCD. This step helps that you can also judge the
-   outcome when you press only one number and then the button
-   \'**D**\'.
+2) Utiliser **init_new_value()** pour créer un nombre aléatoire entre **0 et 99**.
 
-6) If the button **0-9** is pressed, the value of **count** will be
-   changed; if the **count** is larger than **10**, then the judgement
-   starts.
+3) Vérifier si un bouton a été pressé et lire sa valeur.
 
-7) The changes of the game and its values are displayed on **LCD1602**.
+4) Si le bouton \'**A**\' est pressé, un nombre aléatoire entre **0 et 99** est 
+   généré et le jeu commence.
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+5) Si le bouton \'**D**\' est détecté comme pressé, le programme passe à l'étape de 
+    comparaison et affiche le résultat sur l'écran LCD. Cette étape permet également 
+   de juger le résultat en appuyant seulement sur un chiffre et ensuite sur le bouton \'**D**\'.
 
-**Step 3**: Change directory.
+6) Si un des boutons **0-9** est pressé, la valeur de **count** sera modifiée ; si 
+   **count** est supérieur à **10**, la comparaison démarre.
+
+7) Les changements de jeu et leurs valeurs sont affichés sur l'**LCD1602**.
+
+**Pour les utilisateurs Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 3** : Accéder au répertoire.
 
 .. raw:: html
 
@@ -306,7 +301,7 @@ Main() contains the whole process of the program, as show below:
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 4**: Run.
+**Étape 4** : Exécuter le programme.
 
 .. raw:: html
 
@@ -316,38 +311,36 @@ Main() contains the whole process of the program, as show below:
 
     sudo python3 3.1.12_GAME_GuessNumber.py
 
-After the program runs, there displays the initial page on the LCD:
+Après le démarrage du programme, la page initiale s'affiche sur l'écran LCD :
 
 .. code-block:: 
 
    Welcome!
    Press A to go!
 
-Press \'A\', and the game will start and the game page will appear on the
-LCD.
+Appuyez sur \'A\', et le jeu commencera. La page du jeu apparaîtra sur l'écran LCD.
 
 .. code-block:: 
 
    Enter number:
    0 ‹point‹ 99
 
-A random number \'**point**\' is produced but not displayed on the LCD
-when the game starts, and what you need to do is to guess it. The number
-you have typed appears at the end of the first line till the final
-calculation is finished. (Press \'D\' to start the comparation, and if the
-input number is larger than **10**, the automatic comparation will
-start.)
+Un nombre aléatoire \'**point**\' est généré mais n'est pas affiché sur l'écran 
+LCD au début du jeu, et votre objectif est de le deviner. Le nombre que vous avez 
+saisi s'affiche à la fin de la première ligne jusqu'à ce que le calcul final soit 
+terminé. (Appuyez sur \'D\' pour démarrer la comparaison, et si le nombre saisi 
+est supérieur à **10**, la comparaison automatique commencera.)
 
-The number range of \'point\' is displayed on the second line. And you
-must type the number within the range. When you type a number, the range
-narrows; if you got the lucky number luckily or unluckily, there will
-appear \"You've got it!\"
+L'intervalle de nombres pour \'point\' est affiché sur la seconde ligne. Vous devez 
+taper un nombre dans cet intervalle. À chaque tentative, l'intervalle se rétrécit ; 
+si vous trouvez le nombre chanceux par hasard, l'écran affichera "Vous avez trouvé!"
 
 **Code**
 
-.. note::
+.. note:: 
 
-   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+   Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. 
+   Mais avant cela, vous devez accéder au chemin source du code comme ``davinci-kit-for-raspberry-pi/python``. 
     
 .. raw:: html
 
@@ -360,8 +353,8 @@ appear \"You've got it!\"
    import LCD1602
    import random
 
-   ##################### HERE IS THE KEYPAD LIBRARY TRANSPLANTED FROM Arduino ############
-   #class Key:Define some of the properties of Key
+   ##################### LIBRAIRIE KEYPAD ADAPTÉE D'ARDUINO ############
+   #class Key: Définition de quelques propriétés de Key
    class Keypad():
 
       def __init__(self, rowsPins, colsPins, keys):
@@ -384,7 +377,7 @@ appear \"You've got it!\"
                GPIO.output(row, GPIO.LOW)
          return pressed_keys
 
-   ################ EXAMPLE CODE START HERE ################  
+   ################ DÉBUT DU CODE D'EXEMPLE ################  
 
    count = 0
    pointValue = 0
@@ -401,7 +394,7 @@ appear \"You've got it!\"
                "*","0","#","D"]
       keypad = Keypad(rowsPins, colsPins, keys)
       last_key_pressed = []
-      LCD1602.init(0x27, 1)    # init(slave address, background light)
+      LCD1602.init(0x27, 1)    # init(adresse esclave, lumière de fond)
       LCD1602.clear()
       LCD1602.write(0, 0, 'Welcome!')
       LCD1602.write(0, 1, 'Press A to Start!')
@@ -467,27 +460,27 @@ appear \"You've got it!\"
          last_key_pressed = pressed_keys
          time.sleep(0.1)
 
-   # Define a destroy function for clean up everything after the script finished
+   # Fonction pour nettoyer tout après la fin du script
    def destroy():
-      # Release resource
+      # Libérer les ressources
       GPIO.cleanup()
       LCD1602.clear() 
 
-   if __name__ == '__main__':     # Program start from here
+   if __name__ == '__main__':     # Le programme commence ici
       try:
          setup()
          while True:
                loop()
-      except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+      except KeyboardInterrupt:   # Quand 'Ctrl+C' est pressé, la fonction destroy() sera exécutée.
          destroy()
 
-**Code Explanation**
+**Explication du code**
 
-At the beginning part of the code are the functional functions of
-**keypad** and **I2C LCD1602**. You can learning more details about them
-in **1.1.7 I2C LCD1602** and **2.1.5 Keypad.**
+Au début du code, vous trouverez les fonctions liées au **clavier** et à l'
+**I2C LCD1602**. Vous pouvez en savoir plus à leur sujet dans les sections 
+**1.1.7 I2C LCD1602** et **2.1.5 Clavier**.
 
-Here, what we need to know is as follows:
+Voici ce qu'il faut savoir :
 
 .. code-block:: python
 
@@ -499,8 +492,8 @@ Here, what we need to know is as follows:
         count = 0
         print('point is %d' %(pointValue))
 
-The function produces the random number \'**point**\' and resets the
-range hint of the point.
+Cette fonction génère un nombre aléatoire appelé '**point**' et réinitialise 
+l'intervalle de recherche.
 
 .. code-block:: python
 
@@ -518,80 +511,78 @@ range hint of the point.
         count = 0
         return 0
 
-detect_point() compares the input number (**count**) with the produced
-\"**point**\". If the comparing outcome is that they are not same,
-**count** will assign values to **upper** and **lower** and return
-\'**0**\'; otherwise, if the outcome indicates they are same, there
-returns \'**1**\'.
+La fonction detect_point() compare le nombre saisi (**count**) avec le nombre 
+aléatoire '**point**'. Si les nombres ne sont pas identiques, **count** attribue 
+de nouvelles valeurs à **upper** et **lower**, et retourne '**0**'. Si les nombres 
+sont identiques, la fonction retourne '**1**'.
 
 .. code-block:: python
 
     def lcd_show_input(result):
-        LCD1602.clear()
+        LCD1602.clear()
         if result == 1:
             LCD1602.write(0,1,'You have got it!')
-            time.sleep(5)
-            init_new_value()
-            lcd_show_input(0)
-            return
+            time.sleep(5)
+            init_new_value()
+            lcd_show_input(0)
+            return
         LCD1602.write(0,0,'Enter number:')
         LCD1602.write(13,0,str(count))
         LCD1602.write(0,1,str(lower))
         LCD1602.write(3,1,' < Point < ')
         LCD1602.write(13,1,str(upper))
 
-This function works for displaying the game page.
+Cette fonction affiche l'interface du jeu.
 
-str(count): Because **write()** can only support the data type —
-**character string**, **str()** is needed to convert the **number** into
-**string**.
+str(count) : Étant donné que **write()** ne prend en charge que les chaînes de 
+caractères (**string**), il est nécessaire de convertir le **nombre** en **chaîne** 
+à l'aide de **str()**.
 
 .. code-block:: python
 
     def loop():
         global keypad, last_key_pressed,count
-        while(True):
+        while(True):
             result = 0
             pressed_keys = keypad.read()
             if len(pressed_keys) != 0 and last_key_pressed != pressed_keys:
                 if pressed_keys == ["A"]:
-                    init_new_value()
-                    lcd_show_input(0)
+                    init_new_value()
+                    lcd_show_input(0)
                 elif pressed_keys == ["D"]:
                     result = detect_point()
-                    lcd_show_input(result)
+                    lcd_show_input(result)
                 elif pressed_keys[0] in keys:
                     if pressed_keys[0] in list(["A","B","C","D","#","*"]):
-                        continue
+                        continue
                     count = count * 10
                     count += int(pressed_keys[0])
                     if count >= 10:
                         result = detect_point()
-                    lcd_show_input(result)
-                print(pressed_keys)
+                    lcd_show_input(result)
+                print(pressed_keys)
             last_key_pressed = pressed_keys
-            time.sleep(0.1)
-   
+            time.sleep(0.1)
+    
 
-Main() contains the whole process of the program, as show below:
+Main() contient l'ensemble du processus du programme, comme décrit ci-dessous :
 
-1) Initialize **I2C LCD1602** and **Keypad**.
+1) Initialiser **I2C LCD1602** et **Keypad**.
 
-2) Judge whether the button is pressed and get the button reading.
+2) Vérifier si un bouton est pressé et lire sa valeur.
 
-3) If the button \'**A**\' is pressed, a random number **0-99** will
-   appear then the game starts.
+3) Si le bouton '**A**' est pressé, un nombre aléatoire entre **0 et 99** est 
+   généré, et le jeu commence.
 
-4) If the button \'**D**\' is detected to have been pressed, the
-   program will enter into the outcome judgement.
+4) Si le bouton '**D**' est pressé, le programme effectue la comparaison et 
+   détermine le résultat.
 
-5) If the button **0-9** is pressed, the value of **count** will be
-   changed; if the **count** is larger than **10**, then the judgement
-   starts.
+5) Si un des boutons **0-9** est pressé, la valeur de **count** est modifiée. Si
+    **count** est supérieur à **10**, la comparaison commence.
 
-6) The changes of the game and its values are displayed on **LCD1602**.
+6) Les changements dans le jeu et les valeurs sont affichés sur l'écran **LCD1602**.
 
-Phenomenon Picture
+Photo du phénomène
 ------------------------
 
 .. image:: img/image274.jpeg

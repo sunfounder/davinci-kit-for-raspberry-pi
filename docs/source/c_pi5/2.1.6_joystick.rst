@@ -1,79 +1,74 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Rejoignez d'autres passionnés pour approfondir vos connaissances sur le Raspberry Pi, Arduino et ESP32.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes post-vente et relevez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et à des aperçus exclusifs.
+    - **Remises spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des promotions spéciales et des concours pendant les périodes de fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 2.1.6 Joystick
-==============
+================
 
 Introduction
-------------
+--------------
 
-In this project, We're going to learn how joystick works. We manipulate
-the Joystick and display the results on the screen.
+Dans ce projet, nous allons découvrir le fonctionnement d'un joystick. Nous allons manipuler le joystick et afficher les résultats sur l'écran.
 
-Components
-----------
+Composants
+-----------
 
 .. image:: img/image317.png
 
-
-Principle
----------
+Principe
+----------
 
 **Joystick**
 
-The basic idea of a joystick is to translate the movement of a stick
-into electronic information that a computer can process.
+L'idée de base d'un joystick est de traduire les mouvements d'un levier en 
+informations électroniques que l'ordinateur peut interpréter.
 
-In order to communicate a full range of motion to the computer, a
-joystick needs to measure the stick's position on two axes -- the X-axis
-(left to right) and the Y-axis (up and down). Just as in basic geometry,
-the X-Y coordinates pinpoint the stick's position exactly.
+Pour transmettre une gamme complète de mouvements à l'ordinateur, un joystick 
+doit mesurer la position du levier sur deux axes — l'axe X (de gauche à droite) 
+et l'axe Y (de haut en bas). Comme en géométrie de base, les coordonnées X-Y déterminent 
+exactement la position du levier.
 
-To determine the location of the stick, the joystick control system
-simply monitors the position of each shaft. The conventional analog
-joystick design does this with two potentiometers, or variable
-resistors.
+Pour déterminer l'emplacement du levier, le système de contrôle du joystick 
+surveille simplement la position de chaque axe. La conception conventionnelle d'un 
+joystick analogique utilise deux potentiomètres, ou résistances variables.
 
-The joystick also has a digital input that is actuated when the joystick
-is pressed down.
+Le joystick possède également une entrée numérique activée lorsque le levier est enfoncé.
 
 .. image:: img/image318.png
 
-Schematic Diagram
------------------
+Schéma de câblage
+--------------------
 
-When the data of joystick is read, there are some differents between
-axis: data of X and Y axis is analog, which need to use ADC0834 to
-convert the analog value to digital value. Data of Z axis is digital, so
-you can directly use the GPIO to read, or you can also use ADC to read.
+Lors de la lecture des données du joystick, il existe des différences entre les axes : 
+les données des axes X et Y sont analogiques, nécessitant l'utilisation de l'ADC0834 
+pour convertir la valeur analogique en valeur numérique. Les données de l'axe Z sont 
+numériques, elles peuvent donc être lues directement via le GPIO, ou bien vous pouvez 
+également utiliser l'ADC pour les lire.
 
 .. image:: img/image319.png
-
 
 .. image:: img/image320.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image193.png
     :width: 800
 
-
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au dossier contenant le code.
 
 .. raw:: html
 
@@ -83,7 +78,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.1.6/
 
-**Step 3:** Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -93,7 +88,7 @@ Experimental Procedures
 
     gcc 2.1.6_Joystick.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Étape 4 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -102,14 +97,12 @@ Experimental Procedures
 .. code-block::
 
     sudo ./a.out
-
-After the code runs, turn the Joystick, then the corresponding values of
-x, y, Btn are displayed on screen.
-
+Après l'exécution du code, tournez le joystick, puis les valeurs correspondantes 
+de x, y et Btn s'afficheront à l'écran.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si le programme ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`C code is not working?`.
     
 **Code**
 
@@ -184,7 +177,7 @@ x, y, Btn are displayed on screen.
         uchar x_val;
         uchar y_val;
         uchar btn_val;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+        if(wiringPiSetup() == -1){ // En cas d'échec de l'initialisation de wiringPi, affichage du message d'erreur
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -203,7 +196,7 @@ x, y, Btn are displayed on screen.
         return 0;
     }
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
@@ -231,7 +224,7 @@ x, y, Btn are displayed on screen.
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
         ......
 
-The working process of the function is detailed in 2.1.4 Potentiometer.
+Le processus de fonctionnement de la fonction est détaillé dans la section 2.1.4 Potentiomètre.
 
 .. code-block:: c
 
@@ -243,10 +236,8 @@ The working process of the function is detailed in 2.1.4 Potentiometer.
             delay(100);
         }
 
-VRX and VRY of Joystick are connected to CH0, CH1 of ADC0834
-respectively. So the function getResult() is called to read the values
-of CH0 and CH1. Then the read values should be stored in the variables
-x_val and y_val. In addition, read the value of SW of joystick and store
-it into the variable Btn_val. Finally, the values of x_val, y_val and
-Btn_val shall be printed with print() function.
-
+VRX et VRY du joystick sont connectés à CH0 et CH1 de l'ADC0834 respectivement. 
+La fonction getResult() est donc appelée pour lire les valeurs de CH0 et CH1. 
+Ensuite, les valeurs lues sont stockées dans les variables x_val et y_val. De plus, 
+la valeur de SW du joystick est lue et stockée dans la variable Btn_val. Enfin, les 
+valeurs de x_val, y_val et Btn_val sont affichées avec la fonction printf().

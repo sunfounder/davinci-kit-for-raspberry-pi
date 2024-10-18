@@ -1,27 +1,27 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez au cœur des projets avec Raspberry Pi, Arduino et ESP32 aux côtés d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprenez & Partagez** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux nouvelles annonces de produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et tirages au sort** : Participez à des concours et à des promotions pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt(e) à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 Learn More about ``control.py``
-================================
+====================================
 
-In order to better understand the projects that follow, let's take a look at the official sample code provided by Cloud4RPi.
+Afin de mieux comprendre les projets à venir, examinons le code exemple officiel fourni par Cloud4RPi.
 
 .. note::
 
-    Please complete the previous section :ref:`Quick Guide on Cloud4RPi` before viewing this section.
+    Veuillez compléter la section précédente :ref:`Quick Guide on Cloud4RPi` avant de consulter cette partie.
 
-Open the ``control.py`` file.
+Ouvrez le fichier ``control.py``.
 
 .. raw:: html
 
@@ -32,21 +32,21 @@ Open the ``control.py`` file.
     cd cloud4rpi-raspberrypi-python
     sudo nano control.py
 
-Cloud4RPi will set a device token for each one, and you need to fill in the variable DEVICE_TOKEN with the correct device token in order to connect to the corresponding device.
+Cloud4RPi attribue un **token de périphérique** pour chaque appareil, et vous devez renseigner la variable DEVICE_TOKEN avec le bon token pour connecter le périphérique correspondant.
 
 .. code-block:: python
 
     DEVICE_TOKEN = '556UfPaRw6r6rDKYfzx5Nd1jd'
 
-``variables`` is a 2-dimensional dictionary, and the value corresponding to each of its keys is also a dictionary.
+``variables`` est un dictionnaire à deux dimensions, et la valeur correspondant à chacune de ses clés est également un dictionnaire.
 
-The keys of the ``variables`` dictionary are ``'Room Temp'``, ``'LED On'``, ``'CPU Temp'``, ``'STATUS'``, ``'Location'``, which are all data displayed on the Control Panel's widgets.
-    
-The value of each key in the ``variables`` dictionary is also a dictionary, and the keys of these dictionaries are the same, where the value of the ``'bind'`` key is a function that can return the transferred content, and the ``'type'`` is the data type of the transferred content (``'numeric'`` is a numeric type, ``'string'`` is a string type, ``'bool'`` is a boolean type, and ``'location'`` is a list containing two dictionaries).
+Les clés du dictionnaire ``variables`` sont : ``'Room Temp'``, ``'LED On'``, ``'CPU Temp'``, ``'STATUS'``, ``'Location'``, qui correspondent aux données affichées sur les widgets du tableau de bord de contrôle.
 
-Through the analysis of the ``variables`` dictionary, we can know that Cloud4RPi will read the keys of the ``variables`` dictionary and display the value corresponding to the key in the Control Panel. Obviously we cannot change the keys of the ``variables`` dictionary, but we can change the value in the key (the value of the ``'bind'`` dictionary) to let the widgets display the content we want.
+La valeur de chaque clé dans le dictionnaire ``variables`` est elle-même un dictionnaire, dont les clés sont identiques, où la valeur de la clé ``'bind'`` est une fonction capable de retourner le contenu transmis, et ``'type'`` est le type de données du contenu transmis (``'numeric'`` pour un type numérique, ``'string'`` pour une chaîne de caractères, ``'bool'`` pour un booléen, et ``'location'`` pour une liste contenant deux dictionnaires).
 
-For example, if we want to send humidity values to Cloud4RPi, we cannot add a new key to the ``variables`` dictionary, but we can borrow a key, such as the ``'Room Temp'`` key, and then write the function that returns the humidity value in the corresponding ``'bind'`` key.
+Grâce à l'analyse du dictionnaire ``variables``, nous comprenons que Cloud4RPi lit les clés du dictionnaire et affiche la valeur correspondante dans le tableau de bord. De toute évidence, nous ne pouvons pas modifier les clés de ce dictionnaire, mais nous pouvons changer la valeur associée à une clé (la valeur de ``'bind'``) pour que les widgets affichent le contenu souhaité.
+
+Par exemple, si nous souhaitons envoyer des valeurs d'humidité à Cloud4RPi, nous ne pouvons pas ajouter une nouvelle clé dans le dictionnaire ``variables``, mais nous pouvons réutiliser une clé existante, telle que ``'Room Temp'``, puis écrire une fonction qui retourne la valeur d'humidité dans la clé ``'bind'`` correspondante.
 
 .. code-block:: python
 
@@ -73,7 +73,7 @@ For example, if we want to send humidity values to Cloud4RPi, we cannot add a ne
             'bind': get_location
         }
 
-The ``vdiagnostics`` stores information about the Raspberry Pi and is used to verify and prevent misconnections.
+Le dictionnaire ``vdiagnostics`` stocke les informations sur le Raspberry Pi et est utilisé pour vérifier et prévenir les mauvaises connexions.
 
 .. code-block:: python
 

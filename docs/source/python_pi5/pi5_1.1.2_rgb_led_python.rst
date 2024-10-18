@@ -1,31 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté Facebook des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 ! Plongez-vous plus profondément dans le monde du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos nouveaux produits.
+    - **Promotions festives et tirages au sort** : Participez à des promotions spéciales et à des cadeaux durant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. _1.1.2_py_pi5:
 
-1.1.2 RGB LED
+1.1.2 LED RVB
 ====================
 
 Introduction
 --------------
 
-In this project, we will control an RGB LED to flash various colors.
+Dans ce projet, nous allons contrôler une LED RVB pour qu'elle affiche différentes couleurs.
 
-Required Components
-------------------------------
+Composants nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous aurons besoin des composants suivants : 
 
 .. image:: ../python_pi5/img/1.1.2_rgb_led_list.png
     :align: center
@@ -34,10 +34,10 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
------------------------
+Schéma de câblage
+----------------------
 
-After connecting the pins of R, G, and B to a current limiting resistor, connect them to the GPIO17, GPIO18, and GPIO27 respectively. The longest pin (GND) of the LED connects to the GND of the Raspberry Pi. When the three pins are given different PWM values, the RGB LED will display different colors.
+Après avoir connecté les broches R, G et B à une résistance de limitation de courant, connectez-les respectivement aux GPIO17, GPIO18 et GPIO27. La patte la plus longue (GND) de la LED doit être connectée à la masse (GND) du Raspberry Pi. Lorsque les trois broches reçoivent des valeurs PWM différentes, la LED RVB affichera différentes couleurs.
 
 ============ ======== ===
 T-Board Name physical BCM
@@ -48,14 +48,14 @@ GPIO27       Pin 13   27
 
 .. image:: ../python_pi5/img/1.1.2_rgb_led_schematic.png
 
-Experimental Procedures
-----------------------------
+Procédure expérimentale
+--------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../python_pi5/img/1.1.2_rgbLed_circuit.png
 
-**Step 2:** Open the code file.
+**Étape 2 :** Ouvrir le fichier de code.
 
 .. raw:: html
 
@@ -65,7 +65,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3:** Run.
+**Étape 3 :** Exécuter le code.
 
 .. raw:: html
 
@@ -75,18 +75,20 @@ Experimental Procedures
 
     sudo python3 1.1.2_rgbLed_zero.py
 
-After the code runs, you will see that RGB displays red, green, blue,
-yellow, pink, and cyan.
+Après l'exécution du code, vous verrez que la LED RVB affiche les couleurs 
+rouge, verte, bleue, jaune, rose et cyan.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si vous recevez un message d'erreur tel que ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. 
+    Mais avant cela, vous devez accéder au chemin source du code comme ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification, 
+    vous pouvez l'exécuter directement pour observer le résultat.
 
 .. raw:: html
 
@@ -98,33 +100,33 @@ yellow, pink, and cyan.
    from gpiozero import RGBLED
    from time import sleep
 
-   # Define a list of colors for the RGB LED in RGB format (Red, Green, Blue).
-   # Each color component ranges from 0 (off) to 1 (full intensity).
+   # Définir une liste de couleurs pour la LED RVB au format RVB (Rouge, Vert, Bleu).
+   # Chaque composant de couleur varie de 0 (éteint) à 1 (intensité maximale).
    COLORS = [(1, 0, 0), (0, 1, 0), (0.2, 0.1, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
 
-   # Initialize an RGB LED. Connect the red component to GPIO 17, green to GPIO 18, and blue to GPIO 27.
+   # Initialiser une LED RVB. Connecter le composant rouge au GPIO 17, le vert au GPIO 18, et le bleu au GPIO 27.
    rgb_led = RGBLED(red=17, green=18, blue=27)
 
    try:
-       # Continuously cycle through the defined colors.
+       # Parcourir en continu les couleurs définies.
        while True:
            for color in COLORS:
-               # Set the RGB LED to the current color.
+               # Régler la LED RVB sur la couleur actuelle.
                rgb_led.color = color
-               # Output the current color to the console.
+               # Afficher la couleur actuelle dans la console.
                print(f"Color set to: {color}")
-               # Wait for 1 second before switching to the next color.
+               # Attendre 1 seconde avant de passer à la couleur suivante.
                sleep(1)
 
    except KeyboardInterrupt:
-       # Handle a KeyboardInterrupt (Ctrl+C) to exit the loop gracefully.
-       # GPIO cleanup will be managed automatically by GPIO Zero on script termination.
+       # Gérer une interruption clavier (Ctrl+C) pour sortir de la boucle proprement.
+       # La gestion des broches GPIO est automatiquement prise en charge par GPIO Zero lors de la fin du script.
        pass
 
 
-**Code Explanation**
+**Explication du code**
 
-#. This imports the ``RGBLED`` class from the ``gpiozero`` library for controlling an RGB LED, and the ``time`` library for implementing delays in the code.
+#. Cela importe la classe ``RGBLED`` de la bibliothèque ``gpiozero`` pour contrôler une LED RVB, et la bibliothèque ``time`` pour gérer les pauses dans le code.
 
    .. code-block:: python
 
@@ -132,44 +134,44 @@ yellow, pink, and cyan.
        from gpiozero import RGBLED
        from time import sleep
 
-       # Define a list of colors for the RGB LED in RGB format (Red, Green, Blue).
-       # Each color component ranges from 0 (off) to 1 (full intensity).
-    
-#. The ``COLORS`` list contains tuples representing different colors in RGB format. By assigning different Pulse Width Modulation (PWM) values to each of the R, G, and B pins through the ``rgb_led.color`` attribute, the LED can produce a variety of colors. The PWM values range from 0 to 1, where 0 represents no intensity (off) and 1 represents full intensity for each color component.
-#. For instance, setting ``rgb_led.color = (1, 0, 0)`` turns the LED red, as it sets full intensity for the red component while keeping green and blue off. Similarly, varying combinations of these values result in different colors. This technique of color mixing through PWM allows for the creation of a wide range of colors on the RGB LED.
+       # Définir une liste de couleurs pour la LED RVB au format RVB (Rouge, Vert, Bleu).
+       # Chaque composant de couleur varie de 0 (éteint) à 1 (intensité maximale).
+
+#. La liste ``COLORS`` contient des tuples représentant différentes couleurs au format RVB. En attribuant des valeurs de modulation de largeur d'impulsion (PWM) différentes à chacune des broches R, G et B via l'attribut ``led_rvb.color``, la LED peut produire une variété de couleurs. Les valeurs de PWM varient de 0 à 1, où 0 représente aucune intensité (éteint) et 1 représente l'intensité maximale pour chaque composant de couleur.
+
+#. Par exemple, définir ``rgb_led.color = (1, 0, 0)`` allume la LED en rouge, car cela règle l'intensité maximale pour le composant rouge tout en gardant le vert et le bleu éteints. De même, des combinaisons variées de ces valeurs permettent de créer différentes couleurs. Cette technique de mélange de couleurs par PWM permet de créer un large éventail de couleurs sur la LED RVB.
 
    .. code-block:: python    
        
        COLORS = [(1, 0, 0), (0, 1, 0), (0.2, 0.1, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
 
-#. An RGB LED is initialized with its red, green, and blue components connected to GPIO pins 17, 18, and 27, respectively.
+#. Une LED RVB est initialisée avec ses composants rouge, vert et bleu connectés respectivement aux broches GPIO 17, 18 et 27.
 
    .. code-block:: python
 
        # Initialize an RGB LED. Connect the red component to GPIO 17, green to GPIO 18, and blue to GPIO 27.
        rgb_led = RGBLED(red=17, green=18, blue=27)
 
-#. The ``while True:`` loop continuously cycles through the colors defined in ``COLORS``. For each color, ``rgb_led.color = color`` sets the LED to that color, and ``sleep(1)`` pauses for 1 second. 
+#. La boucle ``while True:`` parcourt en continu les couleurs définies dans ``COULEURS``. Pour chaque couleur, ``rgb_led.color = color`` règle la LED sur cette couleur, et ``sleep(1)`` met le programme en pause pendant 1 seconde. 
 
    .. code-block:: python
 
        try:
-           # Continuously cycle through the defined colors.
+           # Parcourir en continu les couleurs définies.
            while True:
                for color in COLORS:
-                   # Set the RGB LED to the current color.
+                   # Régler la LED RVB sur la couleur actuelle.
                    rgb_led.color = color
-                   # Output the current color to the console.
+                   # Afficher la couleur actuelle dans la console.
                    print(f"Color set to: {color}")
-                   # Wait for 1 second before switching to the next color.
+                   # Attendre 1 seconde avant de passer à la couleur suivante.
                    sleep(1)
 
-#. This section gracefully handles a ``KeyboardInterrupt`` (such as pressing Ctrl+C). The ``pass`` statement is used as a placeholder to indicate no specific action on interruption, as GPIO Zero handles GPIO cleanup automatically.
+#. Cette section gère proprement une ``KeyboardInterrupt`` (comme l'appui sur Ctrl+C). L'instruction ``pass`` est utilisée ici comme un espace réservé pour indiquer qu'aucune action spécifique n'est nécessaire lors de l'interruption, car GPIO Zero gère automatiquement le nettoyage des broches GPIO.
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Handle a KeyboardInterrupt (Ctrl+C) to exit the loop gracefully.
-           # GPIO cleanup will be managed automatically by GPIO Zero on script termination.
+           # Gérer une interruption clavier (Ctrl+C) pour sortir de la boucle proprement.
+           # La gestion des broches GPIO est automatiquement prise en charge par GPIO Zero lors de la fin du script.
            pass
-

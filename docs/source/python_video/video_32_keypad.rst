@@ -1,32 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres amateurs.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d’experts** : Résolvez les problèmes après-vente et surmontez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Soyez parmi les premiers à découvrir les nouvelles annonces de produits et à accéder aux avant-premières.
+    - **Remises spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions et concours festifs** : Participez à des concours et promotions spéciales organisés lors des périodes festives.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd'hui !
 
 
-Video 32: Understanding and Using a Keypad with the Raspberry Pi
+Vidéo 32 : Comprendre et utiliser un pavé numérique avec le Raspberry Pi
 =======================================================================================
 
-Learn how to efficiently incorporate a keypad into your Raspberry Pi projects using passive row-column addressing for input reading.
+Apprenez à intégrer efficacement un pavé numérique dans vos projets Raspberry Pi en utilisant le principe d'adressage passif par ligne et colonne pour la lecture des entrées.
 
-1. **Introduction**: Learn how to integrate a keypad into your Raspberry Pi projects.
-2. **Passive Row-Column Addressing**: Understand the concept of passive addressing for efficient keypad input reading.
-3. **Wiring Setup**: Discover the wiring setup using rows and columns for the keypad.
-4. **GPIO Pins Configuration**: Set up GPIO pins as outputs for rows and inputs for columns.
-5. **Key Labeling**: Create a matrix to label the keys on the keypad for easier reference.
-6. **Implementation**: Follow along with the coding process to incorporate the keypad into your projects.
+1. **Introduction** : Découvrez comment ajouter un pavé numérique à vos projets Raspberry Pi.
+2. **Adressage passif par ligne-colonne** : Comprenez le concept d'adressage passif pour une lecture d'entrée optimisée sur le pavé numérique.
+3. **Configuration du câblage** : Explorez la configuration du câblage en utilisant les lignes et colonnes du pavé numérique.
+4. **Configuration des broches GPIO** : Définissez les broches GPIO comme sorties pour les lignes et comme entrées pour les colonnes.
+5. **Étiquetage des touches** : Créez une matrice pour identifier les touches du pavé numérique et faciliter leur utilisation.
+6. **Mise en œuvre** : Suivez le processus de codage pour intégrer le pavé numérique dans vos projets.
 
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

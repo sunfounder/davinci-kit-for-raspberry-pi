@@ -1,33 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder des passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Assistance d'experts** : Résolvez les problèmes post-achat et relevez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et Partager** : Échangez des conseils et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos produits les plus récents.
+    - **Promotions festives et concours** : Participez à nos concours et à nos offres spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Video 63: Track Faces in OpenCV with a Pan/Tilt Camera
+
+Vidéo 63 : Suivi de Visages avec OpenCV et une Caméra Pan/Tilt
 =======================================================================================
 
+Apprenez à implémenter un système de suivi de visages sur un Raspberry Pi en utilisant un module caméra pan-tilt, incluant le montage matériel et les explications de code.
 
-Learn how to implement face tracking on a Raspberry Pi using a pan-tilt camera setup, including hardware setup and coding explanations.
-
-1. Introduction to Raspberry Pi face tracking project.
-2. Setting up pan-tilt camera hardware.
-3. Using OpenCV for face and eye detection.
-4. Operating servos for pan and tilt control.
-5. Handling errors and limiting servo movement.
-6. Improving performance by adjusting image resolution.
-
+1. **Introduction** au projet de suivi de visages avec Raspberry Pi.
+2. **Configuration matérielle** de la caméra pan-tilt.
+3. **Utilisation d'OpenCV** pour la détection des visages et des yeux.
+4. **Contrôle des servomoteurs** pour ajuster les mouvements en panoramique et en inclinaison.
+5. **Gestion des erreurs** et limitation des mouvements des servomoteurs.
+6. **Amélioration des performances** en ajustant la résolution de l'image.
 
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

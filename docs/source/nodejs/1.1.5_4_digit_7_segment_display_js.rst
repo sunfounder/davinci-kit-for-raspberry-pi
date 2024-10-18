@@ -1,49 +1,49 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez dans l'univers du Raspberry Pi, d'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et surmontez vos défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-1.1.5 4-Digit 7-Segment Display
+Afficheur 7 segments à 4 chiffres
 ====================================
 
 Introduction
------------------
+--------------
 
-Next, follow me to try to control the 4-digit 7-segment display.
+Dans ce projet, nous allons apprendre à contrôler un afficheur 7 segments à 4 chiffres.
 
-Components
-------------
+Composants
+-------------
 
 .. image:: img/list_4_digit.png
 
 
-
 .. note::
-    In this projiect, for the 4-Digit 7-Segment Display we should use BS model,if you use AS model it may not light up.
+    Dans ce projet, nous utilisons un modèle BS pour l'afficheur 7 segments à 4 chiffres. Si vous utilisez un modèle AS, il se peut qu'il ne s'allume pas.
 
-Schematic Diagram
---------------------
+Schéma de câblage
+-------------------
 
 .. image:: img/schmatic_4_digit.png
 
 
-Experimental Procedures
--------------------------
+Procédures expérimentales
+---------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: img/image80.png
 
-**Step 2**: Go to the folder of the code.
+
+**Étape 2 :** Accéder au dossier du code.
 
 .. raw:: html
 
@@ -53,7 +53,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3**: Run the code.
+**Étape 3 :** Exécuter le code.
 
 .. raw:: html
 
@@ -63,8 +63,8 @@ Experimental Procedures
 
     sudo node 4_digit_7_segment_display.js
 
-After the code runs, the program takes a count, increasing by 1 per second, and the 4-digit 7-segment display displays the count.
- 
+Après l'exécution du code, le programme commence à compter, en augmentant de 1 chaque seconde, et l'afficheur 7 segments à 4 chiffres affiche le nombre correspondant.
+
 **Code**
 
 .. code-block:: js
@@ -134,7 +134,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
         counter++;
     }, 1000);
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: js
 
@@ -144,13 +144,13 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
     const pin4 = new Gpio(17, {mode: Gpio.OUTPUT});
     const placePin = [pin1,pin2,pin3,pin4];    
 
-Initialize pins 10, 25, 27, and 17 as output modes and place them in the array ``placePin`` to facilitate control of the common anode of the four-digit 7-segment display.
+Initialiser les broches 10, 25, 27 et 17 en mode sortie et les placer dans le tableau ``placePin`` pour faciliter le contrôle de l'anode commune de l'afficheur 7 segments à 4 chiffres.
 
 .. code-block:: js
 
     const number = [0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90];
 
-Define a constant array ``number`` to represent the hexadecimal segment code from 0 to 9 (common anode).
+Définir un tableau constant ``number`` pour représenter les codes hexadécimaux des segments de 0 à 9 (anode commune).
 
 .. code-block:: js
 
@@ -158,7 +158,7 @@ Define a constant array ``number`` to represent the hexadecimal segment code fro
         hc595_shift(0xff); 
     }
 
-Write 0xff to turn off the digital tube.
+Écrire 0xff pour éteindre l'afficheur.
 
 .. code-block:: js
 
@@ -169,9 +169,9 @@ Write 0xff to turn off the digital tube.
         placePin[digit].digitalWrite(1);
     }
 
-Select the place of the value. 
-there is only one place that should be enable each time. 
-The enabled place will be written high.
+Sélectionner le chiffre à afficher. 
+Une seule position doit être activée à la fois.
+La position activée sera définie à l’état haut.
 
 .. code-block:: js
 
@@ -196,13 +196,12 @@ The enabled place will be written high.
         }
     }, 5);
 
-this code is used to set the number displayed on the 4-digit 7-segment Dispaly.
+Ce code est utilisé pour définir le chiffre affiché sur l'afficheur 7 segments à 4 chiffres.
 
-First, start the fourth segment display, write the single-digit number. 
-Then start the third segment display, and type in the tens digit; 
-after that, start the second and the first segment display respectively, 
-and write the hundreds and thousands digits respectively. 
-Because the refreshing speed is very fast, we see a complete four-digit display.
+Tout d’abord, on active le quatrième segment, puis on y écrit le chiffre des unités.
+Ensuite, on active le troisième segment et on y écrit le chiffre des dizaines.
+Puis on active le second et le premier segment respectivement pour y afficher les centaines et les milliers.
+Comme la vitesse de rafraîchissement est très rapide, on perçoit un affichage complet de quatre chiffres.
 
 .. code-block:: js
 
@@ -210,14 +209,10 @@ Because the refreshing speed is very fast, we see a complete four-digit display.
         counter++;
     }, 1000);
 
-Add one to the ``counter`` 
-(the four-digit digital tube displays the number plus one) 
-every second that passes.
+Ajouter une unité au ``counter`` chaque seconde qui passe 
+(ce qui correspond à l’affichage incrémenté d’une unité chaque seconde).
 
-Phenomenon Picture
--------------------------
+Image du résultat
+---------------------
 
 .. image:: img/image81.jpeg
-
-
-

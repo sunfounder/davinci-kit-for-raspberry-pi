@@ -1,67 +1,65 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté Facebook des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 ! Explorez plus en profondeur les possibilités des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des tirages au sort et à des promotions spéciales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 2.2.1 Photoresistor
 ===================
 
 Introduction
-------------
+---------------
 
-Photoresistor is a commonly used component of ambient light intensity in
-life. It helps the controller to recognize day and night and realize
-light control functions such as night lamp. This project is very similar
-to potentiometer, and you might think it changing the voltage to sensing
-light.
+Un photo-résistance est un composant couramment utilisé pour mesurer l'intensité 
+lumineuse dans la vie quotidienne. Il aide le contrôleur à reconnaître le jour et 
+la nuit et à réaliser des fonctions de contrôle de la lumière, telles que les lampes 
+de nuit. Ce projet est très similaire à celui du potentiomètre, sauf qu'il change 
+la tension pour détecter la lumière.
 
-Components
-----------
+Composants
+-------------
 
 .. image:: img/list_2.2.1_photoresistor.png
 
+Principe
+----------
 
-Principle
----------
-
-A photoresistor or photocell is a light-controlled variable resistor.
-The resistance of a photoresistor decreases with increasing incident
-light intensity; in other words, it exhibits photo conductivity. A
-photoresistor can be applied in light-sensitive detector circuits, and
-light- and darkness-activated switching circuits.
+Une photo-résistance ou cellule photoélectrique est une résistance variable contrôlée 
+par la lumière. La résistance d'une photo-résistance diminue avec l'augmentation de 
+l'intensité lumineuse incidente ; en d'autres termes, elle présente une photoconductivité. 
+Une photo-résistance peut être utilisée dans des circuits de détection de lumière, ainsi 
+que dans des circuits de commutation activés par la lumière ou l'obscurité.
 
 .. image:: img/image196.png
     :width: 200
     :align: center
 
 
-Schematic Diagram
------------------
+Schéma de câblage
+--------------------
 
 .. image:: img/image321.png
-
 
 .. image:: img/image322.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+-----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image198.png
     :width: 800
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -71,7 +69,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.1/
 
-**Step 3:** Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -81,7 +79,7 @@ Experimental Procedures
 
     gcc 2.2.1_Photoresistor.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Étape 4 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -91,12 +89,12 @@ Experimental Procedures
 
     sudo ./a.out
 
-The code run, the brightness of LED will vary depending on the intensity
-of light that the photoresistor senses.
+Une fois le code exécuté, la luminosité de la LED variera en fonction de 
+l'intensité lumineuse détectée par la photo-résistance.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si le programme ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`C code is not working?`.
 
 **Code**
 
@@ -173,7 +171,7 @@ of light that the photoresistor senses.
     int main(void)
     {
         uchar analogVal;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+        if(wiringPiSetup() == -1){ // En cas d'échec de l'initialisation de wiringPi, affichage du message d'erreur
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -191,9 +189,8 @@ of light that the photoresistor senses.
         return 0;
     }
 
-**Code Explanation**
+**Explication du Code**
 
-The codes here are the same as that in 2.1.4 Potentiometer. If you have
-any other questions, please check the code explanation of **2.1.4
-Potentiometer.c** for details.
-
+Les codes ici sont les mêmes que ceux de la section 2.1.4 Potentiomètre. 
+Si vous avez d'autres questions, veuillez vous référer aux explications 
+de code du **2.1.4 Potentiomètre.c** pour plus de détails.

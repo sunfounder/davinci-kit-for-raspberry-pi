@@ -1,30 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Remises spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et des promotions spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Video 41: How to Set Up a Remote Desktop on Raspberry Pi Using VNC
+
+Vidéo 41 : Comment configurer un bureau à distance sur Raspberry Pi avec VNC
 =======================================================================================
 
-Learn how to set up remote desktop access on your Raspberry Pi, enabling control from a Windows PC without the need for physical peripherals.
+Découvrez comment configurer un accès bureau à distance sur votre Raspberry Pi, vous permettant de le contrôler depuis un PC Windows sans avoir besoin de périphériques physiques.
 
-1. Introduction to Raspberry Pi tutorial series sponsored by SunFounder.
-2. Explanation of the need for remote desktop access to Raspberry Pi, avoiding physical peripherals.
-3. Overview of using SSH via PuTTY for remote terminal access.
-4. Introduction to VNC (Virtual Network Computing) for full desktop interface.
-5. Instructions for enabling VNC on Raspberry Pi and configuring display options.
-6. Importance of knowing the Raspberry Pi's IP address for remote connection.
+1. **Introduction à la série de tutoriels sur le Raspberry Pi sponsorisée par SunFounder**.
+2. **Explication de la nécessité d'un accès bureau à distance** pour éviter d’utiliser des périphériques physiques.
+3. **Aperçu de l'utilisation de SSH via PuTTY** pour accéder au terminal à distance.
+4. **Présentation de VNC (Virtual Network Computing)** pour une interface bureautique complète.
+5. **Instructions pour activer VNC sur le Raspberry Pi** et configurer les options d'affichage.
+6. **Importance de connaître l'adresse IP de votre Raspberry Pi** pour une connexion à distance fiable.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

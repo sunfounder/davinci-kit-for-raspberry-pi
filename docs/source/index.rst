@@ -1,63 +1,64 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus exclusifs.
+    - **Remises spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et promotions pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-SunFounder |link_DaVinci_kit| for Raspberry Pi
+SunFounder |link_DaVinci_kit| pour Raspberry Pi
 ========================================================
 
 * |link_DaVin_kit|
 
-Thanks for choosing our |link_DaVinci_kit|.
+Merci d'avoir choisi notre |link_DaVinci_kit|.
 
 .. note::
-    This document is available in the following languages.
+    Ce document est disponible dans les langues suivantes :
 
         * |link_german_tutorials|
         * |link_jp_tutorials|
         * |link_en_tutorials|
+        * |link_fr_tutorials|
+        * |link_es_tutorials|
+        * |link_it_tutorials|
     
-    Please click on the respective links to access the document in your preferred language.
+    Veuillez cliquer sur les liens correspondants pour accéder au document dans 
+    la langue de votre choix.
 
-Da Vinci Kit is a basic kit suitable to intelligent beginners who have
-project schedule. It contains 26 commonly used input and output
-components and modules and a number of basic electronic devices (such as
-resistors, capacitors) which can provide powerful assistance in your
-programming learning.
+Le kit Da Vinci est un kit de base destiné aux débutants intelligents ayant un 
+projet planifié. Il contient 26 composants et modules d'entrée et de sortie 
+couramment utilisés, ainsi qu'un certain nombre de dispositifs électroniques de 
+base (tels que des résistances, des condensateurs) qui peuvent fournir une aide 
+précieuse pour votre apprentissage de la programmation.
 
-In the light of the kit, you can learn some basic knowledge on Raspberry
-Pi, including the installation method of Raspberry Pi, knowledge of Bash
-shell and GPIO. Having understood these knowledge, you can start
-programming.
+Grâce à ce kit, vous pouvez acquérir des connaissances de base sur le Raspberry Pi, 
+y compris la méthode d'installation du Raspberry Pi, la connaissance du shell Bash 
+et du GPIO. Une fois ces notions acquises, vous pourrez commencer à programmer.
 
-If you have no knowledge background of hardware, this document about the
-Kit provides you with 30 lessons for reference and learning, including
-26 basic I/o lessons and 4 simple practical examples. It should be noted
-that the arrangement of these courses is not based on the degree of
-difficulty, but on the functions in practice. You can find corresponding
-courses in accordance with your needs. In other words, even if you
-haven't finished reading the entire course or mastered the use of the
-components mentioned, this document will play an important role in
-guiding you to complete practical projects in the future.
+Si vous n'avez pas de connaissances préalables en matériel, ce document sur le kit 
+vous propose 30 leçons de référence et d'apprentissage, incluant 26 leçons de base 
+sur les entrées/sorties et 4 exemples pratiques simples. Il convient de noter que 
+l'ordre de ces cours n'est pas basé sur leur niveau de difficulté, mais sur leurs 
+fonctions pratiques. Vous pouvez trouver les cours correspondants en fonction de vos 
+besoins. En d'autres termes, même si vous n'avez pas terminé la lecture de l'ensemble 
+des cours ou maîtrisé l'utilisation des composants mentionnés, ce document jouera un 
+rôle important en vous guidant pour réaliser des projets pratiques à l'avenir.
 
-We are looking forward to your projects and hope that you can share your
-achievements or creation on our forum while reading this document.
+Nous attendons avec impatience vos projets et espérons que vous pourrez partager vos 
+réalisations ou créations sur notre forum en lisant ce document.
 
-If you have any questions, please send an email to service@sunfounder.com and we will respond as soon as possible.
-
-
+Si vous avez des questions, veuillez envoyer un e-mail à service@sunfounder.com et 
+nous répondrons dès que possible.
 
 
-**Contents**
+**Sommaire**
 
 .. toctree::
     :maxdepth: 2
@@ -78,7 +79,7 @@ If you have any questions, please send an email to service@sunfounder.com and we
 
 
 
-Copyright Notice
+Avis de droits d'auteur
 --------------------------
 
-All contents including but not limited to texts, images, and code in this manual are owned by the SunFounder Company. You should only use it for personal study,investigation, enjoyment, or other non-commercial or nonprofit purposes, under therelated regulations and copyrights laws, without infringing the legal rights of the author and relevant right holders. For any individual or organization that uses these for commercial profit without permission, the Company reserves the right to take legal action.
+Tous les contenus, y compris mais sans s'y limiter les textes, images et codes dans ce manuel, sont la propriété de la société SunFounder. Vous ne devez les utiliser que pour vos études personnelles, recherches, loisirs ou autres fins non commerciales ou à but non lucratif, conformément aux réglementations et lois sur les droits d'auteur, sans porter atteinte aux droits légaux de l'auteur et des titulaires de droits concernés. Pour toute personne ou organisation utilisant ces contenus à des fins commerciales sans autorisation, la société se réserve le droit d'intenter une action en justice.

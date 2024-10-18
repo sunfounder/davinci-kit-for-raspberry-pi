@@ -1,34 +1,33 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales lors des périodes de fête.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Clickable Color Blocks
-=======================
+Blocs de Couleurs Cliquables
+================================
 
-We've already tried drawing a clickable dot to control the LED, so let's take it a step further and draw 3 colored squares to adjust the RGB colors!
+Nous avons déjà essayé de dessiner un point cliquable pour contrôler la LED, alors allons plus loin et dessinons 3 carrés colorés pour ajuster les couleurs RVB !
 
 .. image:: img/colorful_square.png
 
-**Wiring**
+**Câblage**
 
 .. image:: img/image61.png
 
-
-**Sketch**
+**Code**
 
 .. code-block:: arduino
 
-    import processing.io.*; // use the GPIO library
+    import processing.io.*; // utiliser la bibliothèque GPIO
 
     int[] pins = { 17, 18, 27 };
 
@@ -64,16 +63,14 @@ We've already tried drawing a clickable dot to control the LED, so let's take it
         }        
     }
 
+**Comment ça fonctionne ?**
 
-**How it works?**
+Ce projet est très similaire au :ref:`Clickable Dot`, à la différence qu'il affine les conditions de détermination de l'événement de clic de la souris.
 
-This project has a lot in common with :ref:`Clickable Dot`, except that it refines the conditions for determining mouse click event.
+On dessine d'abord trois blocs de couleur dans la fonction ``draw()``, puis on détermine quel bloc de couleur a été cliqué en se basant sur la valeur de ``mouseX`` (la coordonnée X de la souris). Ensuite, on allume la couleur correspondante de la LED RVB.
 
-First draw three color blocks in ``draw()``, then get which color block was clicked based on the value of mouseX (the X-axis coordinate of the mouse), and finally make RGB light up the corresponding color.
+**Et si on allait plus loin ?**
 
-**What more?**
+En utilisant l'addition des couleurs, nous pouvons faire afficher sept couleurs différentes à la LED RVB : ajouter du rouge au vert donne du jaune ; combiner les trois couleurs primaires donne du blanc. Maintenant, c'est à vous d'essayer !
 
-Based on the addition of light, we can make RGB LED display seven colors - adding red to green produces yellow; adding all three primary colors together produces white.
-Now you can try it out for yourself.
-
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+Pour plus d'informations, veuillez consulter la `Processing Reference <https://processing.org/reference/>`_.

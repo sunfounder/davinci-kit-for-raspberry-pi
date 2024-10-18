@@ -1,101 +1,91 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez et partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions exclusives** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des promotions et à des cadeaux lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Quick Guide on Scratch
+Guide rapide sur Scratch
 ==========================
 
 .. note::
 
-    When programming with Scratch 3, you may need a screen for a better experience. Of course, if you don't have a screen, you can also use **VNC** to access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`VNC`.
+    Lors de la programmation avec Scratch 3, il est recommandé d'utiliser un écran pour une meilleure expérience. Bien entendu, si vous n'avez pas d'écran, vous pouvez également utiliser **VNC** pour accéder à distance au bureau du Raspberry Pi. Pour un tutoriel détaillé, veuillez vous référer à :ref:`VNC`.
 
-In addition, Scratch 3 needs at least 1GB of RAM to run, and we recommend a Raspberry Pi 4 with at least 2GB RAM. While you can run Scratch 3 on a Raspberry Pi 2, 3, 3B+, or a Raspberry 4 with 1GB RAM, performance on these models is reduced, and depending on what other software you run at the same time, Scratch 3 may fail to start due to lack of memory.
+De plus, Scratch 3 nécessite au moins 1 Go de RAM pour fonctionner, et nous recommandons un Raspberry Pi 4 avec au moins 2 Go de RAM. Bien que vous puissiez utiliser Scratch 3 sur un Raspberry Pi 2, 3, 3B+ ou un Raspberry Pi 4 avec 1 Go de RAM, les performances seront réduites, et selon les logiciels que vous faites tourner en parallèle, Scratch 3 pourrait ne pas démarrer par manque de mémoire.
 
-Install Scratch 3
--------------------
-When installing Raspberry Pi OS (:ref:`install_os`), you have to choose the version with desktop, either with desktop only or with desktop and recommended software.
+Installer Scratch 3
+-----------------------
 
-If you install the version with the recommended software, you can see Scratch 3 in the system menu at **Programming**.
+Lors de l'installation de Raspberry Pi OS (:ref:`install_os`), il est nécessaire de choisir la version avec bureau, soit la version avec seulement le bureau, soit celle avec bureau et logiciels recommandés.
 
-If you installed the desktop-only version, you will need to install Scratch 3 manually, as described below.
+Si vous installez la version avec logiciels recommandés, vous trouverez Scratch 3 dans le menu du système sous **Programmation**.
 
-Open up the menu, click on **Preferences** -> **Recommended Software**.
+Si vous avez installé uniquement la version avec bureau, vous devrez installer Scratch 3 manuellement, comme décrit ci-dessous.
+
+Ouvrez le menu, cliquez sur **Préférences** -> **Logiciels recommandés**.
 
 .. image:: img/quick_scratch1.png
 
-
-Find scratch 3 and check it, then click **Apply** and finally wait for the installation to finish.
+Trouvez Scratch 3 et cochez-le, puis cliquez sur **Appliquer** et attendez la fin de l'installation.
 
 .. image:: img/quick_scratch2.png
 
-
-Once the installation is complete, you should see it on the **Programming** in the system menu.
+Une fois l'installation terminée, vous devriez le voir apparaître dans le menu **Programmation**.
 
 .. image:: img/quick_scratch3.png
 
 
-About Scratch 3's Interface
-------------------------------
+À propos de l'interface de Scratch 3
+-----------------------------------------
 
-Scratch 3 is designed to be fun, educational, and easy to learn. It has tools for creating interactive stories, games, art, simulations, and more, using block-based programming. Scratch also has its own paint editor and sound editor built-in.
+Scratch 3 est conçu pour être amusant, éducatif et facile à apprendre. Il propose des outils pour créer des histoires interactives, des jeux, de l'art, des simulations et bien plus, en utilisant la programmation par blocs. Scratch dispose également d'un éditeur de peinture et d'un éditeur sonore intégrés.
 
-The top of scratch 3 has some basic options, the first one from left to right is the language option, you can choose different languages for programming. The second one is the **File** option, you can create new files, read local files and save current files with this option. The third is the **Edit** option, which allows you to resume some deletion operations and enable the acceleration mode (in which the sprite movement becomes particularly fast). The fourth is the **Tutorials** option, which allows you to view tutorials for some projects. The fifth is the file naming option, where you can rename the project.
-
+Le haut de l'interface de Scratch 3 présente quelques options de base : la première de gauche à droite est l'option de langue, vous pouvez choisir différentes langues pour programmer. La deuxième est l'option **Fichier**, où vous pouvez créer de nouveaux fichiers, ouvrir des fichiers locaux et enregistrer les fichiers en cours. La troisième est l'option **Édition**, qui vous permet d'annuler certaines suppressions et d'activer le mode accélération (dans lequel le mouvement des sprites devient particulièrement rapide). La quatrième est l'option **Tutoriels**, qui vous permet de consulter des tutoriels pour certains projets. La cinquième est l'option de nommage de fichier, où vous pouvez renommer le projet.
 
 .. image:: img/quick_scratch13.png
 
 **Code**
 
-It has three main sections: a stage area, block palette, and coding area. Programming by clicking and dragging the block on the block palette to the coding area, and finally your programming results will be displayed on the stage area.
+L'interface comporte trois sections principales : une zone de scène, une palette de blocs et une zone de codage. Programmez en cliquant et en faisant glisser les blocs de la palette vers la zone de codage, et vos résultats s'afficheront dans la zone de scène.
 
 .. image:: img/quick_scratch4.png
 
-
-Here is the sprites area of Scratch 3. Above the area are the basic parameters of the sprites, you can add sprites that come with Scratch 3 or upload local sprites.
+Voici la zone des sprites de Scratch 3. Au-dessus de cette zone se trouvent les paramètres de base des sprites. Vous pouvez ajouter des sprites intégrés dans Scratch 3 ou téléverser des sprites locaux.
 
 .. image:: img/quick_scratch5.png
 
-
-Here is the Scratch 3 backdrop area, mainly to add a suitable backdrop for your stage, you can add the backdrop that comes with Scratch 3 or upload a local one.
+Voici la zone de décors de Scratch 3, qui vous permet d'ajouter un arrière-plan adapté pour votre scène. Vous pouvez ajouter un décor intégré ou téléverser un décor local.
 
 .. image:: img/quick_scratch6.png
 
-
-This is a **Add Extension** button.
+Voici un bouton **Ajouter une extension**.
 
 .. image:: img/quick_scratch7.png
 
-
-In Scratch 3, we can add all kinds of useful extensions, here we take **Video Sensing** as an example and click on it.
+Dans Scratch 3, vous pouvez ajouter toutes sortes d'extensions utiles. Prenons l'exemple de **Détection vidéo** et cliquez dessus.
 
 .. image:: img/quick_scratch8.png
 
-
-You will see it on the block palette and you can use the functions associated with this extension. If you have a camera connected, you will see the camera screen on the stage area.
+Vous verrez alors cette extension dans la palette de blocs et pourrez utiliser les fonctions associées. Si une caméra est connectée, l'image de la caméra apparaîtra dans la zone de scène.
 
 .. image:: img/quick_scratch9.png
 
 **Costumes**
 
-Click on the **Costumes** option in the upper left corner to enter the costumes palette. Different costumes allow the sprites to have different static movements, and when these static movements are stitched together, they form a coherent dynamic movement.
+Cliquez sur l'option **Costumes** en haut à gauche pour entrer dans la palette de costumes. Différents costumes permettent aux sprites d'avoir différents mouvements statiques, et lorsque ces mouvements sont assemblés, ils forment une animation dynamique cohérente.
 
 .. image:: img/quick_scratch10.png
 
-**Sounds**
+**Sons**
 
-You may need to use some music clips to make your experiments more interesting. Click on the **Sounds** option in the upper left corner and you can edit the current sound or select/upload a new one.
+Vous pourriez avoir besoin de clips musicaux pour rendre vos projets plus intéressants. Cliquez sur l'option **Sons** en haut à gauche pour éditer le son actuel ou en sélectionner/téléverser un nouveau.
 
 .. image:: img/quick_scratch11.png
-
-
-

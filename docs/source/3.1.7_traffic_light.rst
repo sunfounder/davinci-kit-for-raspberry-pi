@@ -1,34 +1,34 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-3.1.7 Traffic Light
-=====================
+3.1.7 Feu de circulation
+========================
 
 Introduction
 ---------------
 
-In this project, we will use LED lights of three colors to realize the
-change of traffic lights and a four-digit 7-segment display will be used
-to display the timing of each traffic state.
+Dans ce projet, nous allons utiliser des LEDs de trois couleurs pour simuler le changement 
+des feux de circulation, et un afficheur 7 segments à quatre chiffres sera utilisé pour 
+afficher le décompte de chaque état du feu.
 
-Components
+Composants
 ------------
 
 .. image:: img/list_Traffic_Light.png
     :align: center
 
-Schematic Diagram
+Schéma de câblage
 --------------------
 
 ============ ======== ======== ===
@@ -48,18 +48,18 @@ SPICE1       Pin 26   11       7
 .. image:: img/Schematic_three_one7.png
    :align: center
 
-Experimental Procedures
-------------------------
+Procédures expérimentales
+------------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Montez le circuit.
 
 .. image:: img/image254.png
    :width: 800
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Pour les utilisateurs du langage C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Change directory.
+**Étape 2 :** Changez de répertoire.
 
 .. raw:: html
 
@@ -69,7 +69,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.7/
 
-**Step 3:** Compile.
+**Étape 3 :** Compilez.
 
 .. raw:: html
 
@@ -79,7 +79,7 @@ Experimental Procedures
 
     gcc 3.1.7_TrafficLight.c -lwiringPi
 
-**Step 4:** Run.
+**Étape 4 :** Exécutez.
 
 .. raw:: html
 
@@ -89,18 +89,16 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, LEDs will simulate the color changing of traffic
-lights. Firstly, the red LED lights up for 60s, then the green LED
-lights up for 30s; next, the yellow LED lights up for 5s. After that,
-the red LED lights up for 60s once again. In this way, this series of
-actions will be executed repeatedly.
+Lorsque le code s'exécute, les LEDs simuleront le changement de couleur des feux de 
+circulation. D'abord, la LED rouge s'allume pendant 60s, puis la LED verte pendant 30s, 
+et ensuite la LED jaune pendant 5s. Après cela, la LED rouge se rallume pendant 60s. 
+Cette série d'actions se répétera continuellement.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution ou si un message d'erreur apparaît : « wiringPi.h: Aucun fichier ou dossier de ce type », veuillez vous référer à :ref:`C code is not working?`.
 
-
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: c
 
@@ -116,13 +114,13 @@ actions will be executed repeatedly.
     void clearDisplay();
     void display();
 
-These codes are used to realize the function of number display of 4-Digit 7-Segment 
-Displays. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` of the document for more details. Here, we use the 
-codes to display countdown of traffic light time.
+Ces codes sont utilisés pour réaliser l'affichage des chiffres sur un afficheur 7 segments 
+à 4 chiffres. Référez-vous à :ref:`1.1.5 4-Digit 7-Segment Display` du document pour plus 
+de détails. Ici, les codes servent à afficher le décompte du temps des feux de circulation.
 
 .. code-block:: c
 
-    const int ledPin[]={6,10,11};  
+    const int ledPin[] = {6, 10, 11};  
 
     int colorState = 0;
 
@@ -134,7 +132,7 @@ codes to display countdown of traffic light time.
         digitalWrite(ledPin[colorState],LOW);    
     }
 
-The codes are used to switch the LED on and off.
+Ces codes servent à allumer et éteindre les LEDs.
 
 .. code-block:: c
 
@@ -145,7 +143,7 @@ The codes are used to switch the LED on and off.
     char *lightColor[]={"Red","Green","Yellow"};
     int counter = 60;
 
-    void timer(int  timer1){       //Timer function
+    void timer(int timer1){       // Fonction du minuteur
         if(timer1 == SIGALRM){   
             counter --;         
             alarm(1); 
@@ -159,9 +157,9 @@ The codes are used to switch the LED on and off.
         }
     }
 
-The codes are used to switch the timer on and off. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` for more details. Here, when the timer returns to zero, colorState
-will be switched so as to switch LED, and the timer will be assigned to
-a new value.
+Ces codes permettent de contrôler le minuteur. Référez-vous à :ref:`1.1.5 4-Digit 7-Segment Display` 
+pour plus de détails. Ici, lorsque le minuteur atteint zéro, `colorState` change pour alterner les LEDs,
+ et le minuteur est réinitialisé à une nouvelle valeur.
 
 .. code-block:: c
 
@@ -182,13 +180,14 @@ a new value.
         return 0;
     }
 
-The timer is started in the main() function. In loop() function, use
-**while(1)** loop and call the functions of 4-Digit 7-Segment and LED.
+Le minuteur est lancé dans la fonction `main()`. Dans la fonction `loop()`, une boucle
+ **while(1)** est utilisée pour appeler les fonctions de l'afficheur 7 segments et des LEDs.
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Change directory.
+**Pour les utilisateurs du langage Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2 :** Changez de répertoire.
 
 .. raw:: html
 
@@ -198,7 +197,7 @@ The timer is started in the main() function. In loop() function, use
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -208,18 +207,17 @@ The timer is started in the main() function. In loop() function, use
 
     sudo python3 3.1.7_TrafficLight.py
 
-As the code runs, LEDs will simulate the color changing of traffic
-lights. Firstly, the red LED lights up for 60s, then the green LED
-lights up for 30s; next, the yellow LED lights up for 5s. After that,
-the red LED lights up for 60s once again. In this way, this series of
-actions will be executed repeatedly. Meanwhile, the 4-digit 7-segment
-display displays the countdown time continuously.
+Lorsque le code s'exécute, les LEDs simuleront le changement de couleur des feux de 
+circulation. D'abord, la LED rouge s'allume pendant 60s, puis la LED verte pendant 30s, 
+et ensuite la LED jaune pendant 5s. Après cela, la LED rouge se rallume pendant 60s. 
+Ce cycle se répétera continuellement. Pendant ce temps, l'afficheur 7 segments à 4 chiffres 
+affiche en continu le décompte du temps.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre sur le chemin du code source comme ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -231,10 +229,10 @@ display displays the countdown time continuously.
     import time
     import threading
 
-    #define the pins connect to 74HC595
-    SDI   = 24      #serial data input(DS)
-    RCLK  = 23     #memory clock input(STCP)
-    SRCLK = 18      #shift register clock input(SHCP)
+    # Définir les broches connectées au 74HC595
+    SDI   = 24      # entrée de données série (DS)
+    RCLK  = 23     # entrée de l'horloge de mémoire (STCP)
+    SRCLK = 18      # entrée de l'horloge du registre à décalage (SHCP)
     number = (0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90)
 
     placePin = (10,22,27,17)
@@ -284,7 +282,7 @@ display displays the countdown time continuously.
             GPIO.output(i,GPIO.LOW)
         GPIO.output(placePin[digit], GPIO.HIGH)
 
-    def timer():        #timer function
+    def timer():        # Fonction minuteur
         global counter
         global colorState
         global timer1
@@ -310,9 +308,9 @@ display displays the countdown time continuously.
     def display():
         global counter
 
-        a = counter % 10000//1000 + counter % 1000//100
-        b = counter % 10000//1000 + counter % 1000//100 + counter % 100//10
-        c = counter % 10000//1000 + counter % 1000//100 + counter % 100//10 + counter % 10
+        a = counter % 10000 // 1000 + counter % 1000 // 100
+        b = counter % 10000 // 1000 + counter % 1000 // 100 + counter % 100 // 10
+        c = counter % 10000 // 1000 + counter % 1000 // 100 + counter % 100 // 10 + counter % 10
 
         if (counter % 10000//1000 == 0):
             clearDisplay()
@@ -347,25 +345,26 @@ display displays the countdown time continuously.
             display()
             lightup()
 
-    def destroy():   # When "Ctrl+C" is pressed, the function is executed.
+    def destroy():   # Quand "Ctrl+C" est pressé, la fonction est exécutée.
         global timer1
         GPIO.cleanup()
-        timer1.cancel()      #cancel the timer
+        timer1.cancel()      # Annuler le minuteur
 
-    if __name__ == '__main__': # Program starting from here
+    if __name__ == '__main__': # Programme démarrant ici
         setup()
         try:
             loop()
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+
+**Explication du code**
 
 .. code-block:: python
 
-    SDI   = 24      #serial data input(DS)
-    RCLK  = 23     #memory clock input(STCP)
-    SRCLK = 18      #shift register clock input(SHCP)
+    SDI   = 24      # entrée de données série (DS)
+    RCLK  = 23     # entrée de l'horloge de mémoire (STCP)
+    SRCLK = 18      # entrée de l'horloge du registre à décalage (SHCP)
     number = (0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90)
     placePin = (10,22,27,17)   
 
@@ -374,10 +373,10 @@ display displays the countdown time continuously.
     def pickDigit(digit):
     def display():
 
-These codes are used to realize the function of number display of
-4-Digit 7-Segment. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` of the document for more
-details. Here, we use the codes to display countdown of traffic light
-time.
+Ces codes sont utilisés pour réaliser l'affichage des chiffres sur un afficheur 7 
+segments à 4 chiffres. Référez-vous à :ref:`1.1.5 4-Digit 7-Segment Display` du 
+document pour plus de détails. Ici, les codes servent à afficher le décompte du temps 
+des feux de circulation.
 
 .. code-block:: python
 
@@ -390,7 +389,7 @@ time.
             GPIO.output(ledPin[i], GPIO.HIGH)
         GPIO.output(ledPin[colorState], GPIO.LOW)
 
-The codes are used to switch the LED on and off.
+Ces codes permettent de gérer l'allumage et l'extinction des LEDs.
 
 .. code-block:: python
 
@@ -403,7 +402,7 @@ The codes are used to switch the LED on and off.
     counter = 60      
     timer1 = 0         
 
-    def timer():        #timer function
+    def timer():        # Fonction minuteur
         global counter
         global colorState
         global timer1
@@ -420,10 +419,9 @@ The codes are used to switch the LED on and off.
             colorState=(colorState+1)%3
         print ("counter : %d    color: %s "%(counter,lightColor[colorState]))
 
-
-The codes are used to switch the timer on and off. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` for more details. Here, when the timer returns to zero, colorState
-will be switched so as to switch LED, and the timer will be assigned to
-a new value.
+Ces codes permettent de contrôler le minuteur. Référez-vous à :ref:`1.1.5 4-Digit 7-Segment Display` 
+pour plus de détails. Ici, lorsque le minuteur atteint zéro, `colorState` change pour alterner les LEDs, 
+et le minuteur est réinitialisé à une nouvelle valeur.
 
 .. code-block:: python
 
@@ -438,25 +436,24 @@ a new value.
             display()
             lightup()
             
-    def destroy():   # When "Ctrl+C" is pressed, the function is executed. 
+    def destroy():   # Quand "Ctrl+C" est pressé, la fonction est exécutée.
         global timer1
         GPIO.cleanup()      
-        timer1.cancel()      #cancel the timer
+        timer1.cancel()      # Annuler le minuteur
 
-    if __name__ == '__main__': # Program starting from here 
+    if __name__ == '__main__': # Programme démarrant ici
         setup() 
         try:
             loop()  
         except KeyboardInterrupt:  
             destroy()  
 
+Dans la fonction `setup()`, le minuteur est démarré. Dans la fonction `loop()`, une 
+boucle ``while True`` est utilisée pour appeler les fonctions relatives de l'afficheur 
+7 segments et des LEDs de manière circulaire.
 
-In setup() function, start the timer. In loop() function, a ``while
-True`` is used: call the relative functions of 4-Digit 7-Segment and LED
-circularly.
-
-Phenomenon Picture
--------------------
+Image du phénomène
+----------------------
 
 .. image:: img/IMG_8319.jpg
     :width: 800

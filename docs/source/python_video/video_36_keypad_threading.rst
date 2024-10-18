@@ -1,37 +1,34 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez plus profondément dans l'univers des projets Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez vos défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et de démonstrations en avant-première.
+    - **Remises spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-
-Video 36: Monitoring User Input from Keypad Using Threading
-=======================================================================================
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-This video demonstrates how to create an alarm system using a Raspberry Pi, incorporating keypad input and an LCD display. The video covers various aspects such as wiring instructions, threading for multitasking, command handling, password validation, error handling, and extending functionality. McCarter emphasizes the importance of portability and deployment for real-world applications beyond the desktop.
+Vidéo 36 : Surveillance de l’entrée utilisateur via un pavé numérique avec le multithreading
+=================================================================================================
 
+Cette vidéo explique comment créer un système d'alarme avec un Raspberry Pi en intégrant un pavé numérique pour les entrées et un écran LCD pour l'affichage. La vidéo couvre divers aspects tels que les instructions de câblage, le multithreading pour la gestion multitâche, la gestion des commandes, la validation du mot de passe, la gestion des erreurs et l'extension des fonctionnalités. McCarter met en avant l'importance de la portabilité et du déploiement pour des applications réelles au-delà de l'environnement de bureau.
 
-1. **Portability and Deployment**: Moving Raspberry Pi projects beyond desktop for real-world applications.
-2. **Keypad and LCD Setup**: Wiring a keypad and LCD display to Raspberry Pi GPIO pins for input and output.
-3. **Threading for Multitasking**: Using threading to handle input from the keypad while executing other tasks.
-4. **Keypad Input Integration**: Incorporating keypad input into the project using a library.
-5. **Command Handling**: Defining and processing commands for arming, disarming, and changing the password.
-6. **Password Validation**: Implementing password validation for system security.
-7. **LCD Display Interface**: Interfacing with an LCD display to provide user feedback and prompts.
-8. **Error Handling and Debugging**: Techniques for identifying and resolving errors during development.
-9. **Extending Functionality**: Suggestions for expanding the project, including integrating additional sensors and audible alarms.
+1. **Portabilité et déploiement** : Étendre les projets Raspberry Pi au-delà de l'ordinateur de bureau pour des applications concrètes.
+2. **Installation du pavé numérique et de l'écran LCD** : Câblage d'un pavé numérique et d'un écran LCD aux broches GPIO du Raspberry Pi pour les entrées et sorties.
+3. **Multithreading pour la gestion multitâche** : Utilisation du multithreading pour gérer simultanément les entrées du pavé numérique tout en exécutant d'autres tâches.
+4. **Intégration des entrées du pavé numérique** : Intégration des entrées du pavé dans le projet à l'aide d'une bibliothèque dédiée.
+5. **Gestion des commandes** : Définir et traiter les commandes pour armer, désarmer et modifier le mot de passe.
+6. **Validation du mot de passe** : Implémentation de la validation du mot de passe pour assurer la sécurité du système.
+7. **Interface d'affichage sur l'écran LCD** : Interface avec l'écran LCD pour fournir des retours utilisateur et des instructions.
+8. **Gestion des erreurs et débogage** : Techniques pour identifier et résoudre les erreurs rencontrées lors du développement.
+9. **Extension des fonctionnalités** : Suggestions pour élargir le projet, y compris l'intégration de capteurs supplémentaires et d'alarmes sonores.
 
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 

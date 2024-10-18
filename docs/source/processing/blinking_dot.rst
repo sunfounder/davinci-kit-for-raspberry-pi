@@ -1,31 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales lors des périodes de fête.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 Blinking Dot
 ===========================
 
-In this project, we will draw a dot on Processing, which blinks synchronously with the LED. Please build the circuit as shown in the diagram and run the sketch.
+Dans ce projet, nous allons dessiner un point dans Processing qui clignotera en synchronisation avec la LED. Veuillez monter le circuit comme indiqué dans le schéma et exécuter le programme.
 
 .. image:: img/blinking_dot.png
 .. image:: img/clickable_dot_on.png
 
-
-**Wiring**
+**Câblage**
 
 .. image:: img/image49.png
 
-**Sketch**
+**Code**
 
 .. code-block:: arduino
 
@@ -35,37 +34,38 @@ In this project, we will draw a dot on Processing, which blinks synchronously wi
 
     void setup() {
         size(100, 100);
-        frameRate(2); //set frame rate
-        GPIO.pinMode(ledPin, GPIO.OUTPUT); //set the ledPin to output mode 
+        frameRate(2); // définir la fréquence d'images
+        GPIO.pinMode(ledPin, GPIO.OUTPUT); // configurer le ledPin en mode sortie 
     }
 
     void draw() {
         state = !state;
         if (state==true) {
-            GPIO.digitalWrite(ledPin, GPIO.LOW); //led on 
-            fill(255, 0, 0); //set the fill color of led on
+            GPIO.digitalWrite(ledPin, GPIO.LOW); // allumer la LED
+            fill(255, 0, 0); // définir la couleur de remplissage de la LED allumée
         } else {
-            GPIO.digitalWrite(ledPin, GPIO.HIGH); //led off
-            fill(155); //set the fill color of led off
+            GPIO.digitalWrite(ledPin, GPIO.HIGH); // éteindre la LED
+            fill(155); // définir la couleur de remplissage de la LED éteinte
         } 
         ellipse(width/2, height/2, width*0.75, height*0.75);
     }
 
-**How it works?**
+**Comment ça fonctionne ?**
 
-At the beginning of the sketch, you need to embed Processing's GPIO function library by ``import processing.io.*;``, which is indispensable for circuit experiments.
+Au début du programme, il est nécessaire d'importer la bibliothèque de fonctions GPIO de Processing avec ``import processing.io.*;``, ce qui est indispensable pour les expérimentations avec les circuits.
 
-**Frame rate** is the frequency of bitmaps appearing on the board, expressed in hertz (Hz). In other words, it is also the frequency at which the ``draw()`` function is called. In ``setup()``, setting the **frame rate** to 2 will call ``draw()`` every 0.5s.
+La **fréquence d'images** est la fréquence à laquelle les images apparaissent sur le panneau, exprimée en hertz (Hz). En d'autres termes, il s'agit aussi de la fréquence à laquelle la fonction ``draw()`` est appelée. Dans ``setup()``, en définissant la fréquence d'images à 2, ``draw()`` sera appelé toutes les 0,5 secondes.
 
-Each call of the ``draw()`` function takes the inverse of ``state`` and subsequently determines it. If the value is ``true``, the LED is lit and the brush is filled with red; if not, the LED is turned off and the brush is filled with gray.
+Chaque appel de la fonction ``draw()`` inverse la valeur de ``state`` et l'évalue. Si la valeur est ``true``, la LED s'allume et le pinceau est rempli de rouge ; sinon, la LED est éteinte et le pinceau est rempli de gris.
 
-After completing the judgment, use the ``ellipse()`` function to draw a circle. It should be noted that ``width`` and ``height`` are system variables used to store the width and height of the display window.
+Après cette évaluation, utilisez la fonction ``ellipse()`` pour dessiner un cercle. Il est important de noter que ``width`` et ``height`` sont des variables système utilisées pour stocker la largeur et la hauteur de la fenêtre d'affichage.
 
-There are two other points to note. When using GPIOs, you need to use the ``GPIO.pinMode()`` function to set the INPUT/OUTPUT state of the pin, and then use the ``GPIO.digitalWrite()`` function to assign a value (HIGH/LOW) to the pin .
-
+Il y a deux autres points importants à prendre en compte. Lorsque vous utilisez les GPIO, il est nécessaire d'utiliser la fonction ``GPIO.pinMode()`` pour définir l'état INPUT/OUTPUT de la broche, puis d'utiliser la fonction ``GPIO.digitalWrite()`` pour assigner une valeur (HIGH/LOW) à la broche.
 
 .. note::
 
-    Please try to avoid using ``delay()`` in ``draw()`` because it will affect the display window refresh.
+    Veuillez éviter d'utiliser ``delay()`` dans ``draw()`` car cela pourrait affecter le rafraîchissement de la fenêtre d'affichage.
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+
+
+Pour plus d'informations, veuillez vous référer à la `Processing Reference <https://processing.org/reference/>`_.

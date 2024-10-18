@@ -1,37 +1,38 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprenez et Partagez** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-3.1.2 Welcome
-===============
+3.1.2 Bienvenue
+===================
 
 Introduction
--------------
+--------------
 
-In this project, we will use PIR to sense the movement of pedestrians,
-and use servos, LED, buzzer to simulate the work of the sensor door of
-the convenience store. When the pedestrian appears within the sensing
-range of the PIR, the indicator light will be on, the door will be
-opened, and the buzzer will play the opening bell.
+Dans ce projet, nous allons utiliser un capteur PIR pour détecter le mouvement 
+des piétons, et utiliser des servomoteurs, une LED et un buzzer pour simuler le 
+fonctionnement d'une porte automatique de magasin. Lorsqu'un piéton apparaît dans 
+le champ de détection du capteur PIR, le voyant s'allume, la porte s'ouvre, et le 
+buzzer joue un son de bienvenue.
 
-Components
----------------
+Composants
+------------
 
 .. image:: img/list_Welcome.png
     :align: center
 
-Schematic Diagram
--------------------
+
+Schéma de câblage
+--------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -44,18 +45,18 @@ GPIO22       Pin 15   3        22
 .. image:: img/Schematic_three_one2.png
    :align: center
 
-Experimental Procedures
--------------------------
 
-**Step 1:** Build the circuit.
+Procédures expérimentales
+----------------------------
+
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image239.png
     :alt: C:\Users\sunfounder\Desktop\3.1.4_Welcome_bb.png3.1.4_Welcome_bb
     :width: 800
     :align: center
 
-
-**Step 2:** Change directory.
+**Étape 2 :** Changez de répertoire.
 
 .. raw:: html
 
@@ -65,7 +66,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.2/
 
-**Step 3:** Compile.
+**Étape 3 :** Compilez.
 
 .. raw:: html
 
@@ -75,7 +76,7 @@ Experimental Procedures
 
     gcc 3.1.2_Welcome.c -lwiringPi
 
-**Step 4:** Run.
+**Étape 4 :** Exécutez.
 
 .. raw:: html
 
@@ -85,26 +86,27 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, if the PIR sensor detects someone passing by, the
-door will automatically open (simulated by the servo), turn on the
-indicator and play the doorbell music. After the doorbell music plays,
-the system will automatically close the door and turn off the indicator
-light, waiting for the next time someone passes by.
+Après l'exécution du code, si le capteur PIR détecte une personne passant à proximité, 
+la porte s'ouvrira automatiquement (simulée par le servomoteur), le voyant s'allumera 
+et le buzzer jouera une mélodie de bienvenue. Une fois la mélodie jouée, le système 
+fermera automatiquement la porte et éteindra le voyant, en attente du prochain passage 
+d'une personne.
 
-There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
+Il y a deux potentiomètres sur le module PIR : l'un pour ajuster la sensibilité et l'autre 
+pour régler la distance de détection. Pour un fonctionnement optimal du module PIR, tournez 
+les deux potentiomètres complètement dans le sens antihoraire.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur 
+    indiquant : « wiringPi.h : Aucun fichier ou répertoire de ce type », veuillez 
+    vous référer à :ref:`C code is not working?`.
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
-    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+    void setAngle(int pin, int angle){    // Crée une fonction pour contrôler l'angle du servomoteur.
         if(angle < 0)
             angle = 0;
         if(angle > 180)
@@ -112,8 +114,7 @@ You need to turn both of them counterclockwise to the end.
         softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
     } 
 
-Create a function, setAngle to write the angle in the servo that is
-0-180.
+Créez une fonction `setAngle` pour définir l'angle du servomoteur de 0 à 180 degrés.
 
 .. code-block:: c
 
@@ -123,26 +124,25 @@ Create a function, setAngle to write the angle in the servo that is
             delay(beat[i] * 250);
         }
 
-Create a function, doorbell to enable the buzzer to play music.
+Créez une fonction `doorbell` pour faire jouer de la musique au buzzer.
 
 .. code-block:: c
 
     void closedoor(){
-    digitalWrite(ledPin, LOW);   //led off
-    for(int i=180;i>-1;i--){  //make servo rotate from maximum angle to minimum angle
-        setAngle(servoPin,i);
-        delay(1);
+        digitalWrite(ledPin, LOW);   // Éteindre la LED
+        for(int i=180; i>-1; i--){  // Faire tourner le servomoteur de l'angle maximum à l'angle minimum
+            setAngle(servoPin, i);
+            delay(1);
         }
     }
 
-Create a closedoor function to simulate closing the door, turn off the
-LED and let the servo turn from 180 degrees to 0 degree.
+Créez la fonction `closedoor` pour simuler la fermeture de la porte, éteindre la LED et faire pivoter le servomoteur de 180 degrés à 0 degré.
 
 .. code-block:: c
 
     void opendoor(){
-        digitalWrite(ledPin, HIGH);   //led on
-        for(int i=0;i<181;i++){  //make servo rotate from minimum angle to maximum angle
+        digitalWrite(ledPin, HIGH);   // Allumer la LED
+        for(int i=0;i<181;i++){  // Faire tourner le servomoteur de l'angle minimum à l'angle maximum
             setAngle(servoPin,i);
             delay(1);
         }
@@ -150,16 +150,15 @@ LED and let the servo turn from 180 degrees to 0 degree.
         closedoor();
     }
 
-The function opendoor() includes several parts: turn on the indicator
-light, turn the servo (simulate the action of opening the door), play
-the doorbell music of the convenience store, and call the function
-closedoor() after playing music.
+La fonction `opendoor()` comprend plusieurs étapes : allumer le voyant, faire 
+pivoter le servomoteur (simulant l'ouverture de la porte), jouer la mélodie de 
+bienvenue, et appeler la fonction `closedoor()` après la lecture de la mélodie.
 
 .. code-block:: c
 
-        int main(void)
+    int main(void)
     {
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ // En cas d'échec d'initialisation de wiringPi, afficher un message à l'écran
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -168,9 +167,8 @@ closedoor() after playing music.
             return 1;
     ......
 
-In the function main(), initialize library wiringPi and setup softTone,
-then set ledPin to output state and pirPin to input state. If the PIR
-sensor detects someone passing by, the function opendoor will be called
-to simulate opening the door.
-
+Dans la fonction `main()`, initialisez la bibliothèque `wiringPi` et configurez 
+`softTone`, puis définissez `ledPin` en mode sortie et `pirPin` en mode entrée. 
+Si le capteur PIR détecte une personne passant à proximité, la fonction `opendoor` 
+sera appelée pour simuler l'ouverture de la porte.
 

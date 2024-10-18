@@ -1,91 +1,88 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez et partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Profitez d'un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions exclusives** : Bénéficiez de réductions sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des promotions et à des cadeaux lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-1.9 Inflating the Balloon
-==========================
+1.9 Gonfler le ballon
+=========================
 
-Here, we will play a game of ballooning.
+Ici, nous allons jouer à un jeu de gonflage de ballon.
 
-By toggling Slide to the left to start to inflate the balloon, at this time the balloon will get bigger and bigger. If the balloon is too large will blow up; if the balloon is too small, it will not float into the air. You need to judge when to toggle the switch to the right to stop pumping.
+En basculant l'interrupteur vers la gauche pour commencer à gonfler le ballon, ce dernier deviendra de plus en plus grand. Si le ballon devient trop gros, il explosera ; s'il est trop petit, il ne flottera pas dans les airs. Vous devez juger quand basculer l'interrupteur vers la droite pour arrêter de pomper.
 
 .. image:: img/1.15_header.png
 
-Required Components
------------------------
+Composants nécessaires
+--------------------------
 
 .. image:: img/1.15_component.png
 
-Build the Circuit
----------------------
+Construire le circuit
+-------------------------
 
 .. image:: img/1.15_scratch_fritzing.png
 
-Load the Code and See What Happens
------------------------------------------
+Charger le code et voir ce qui se passe
+------------------------------------------
 
-Load the code file (``1.9_inflating_the_balloon.sb3``) to Scratch 3.
+Chargez le fichier de code (``1.9_inflating_the_balloon.sb3``) dans Scratch 3.
 
-By toggling Slider to the left to start to inflate the balloon, at this time the balloon will get bigger and bigger. If the balloon is too large will blow up; if the balloon is too small, it will not float into the air. You need to judge when to toggle the switch to the right to stop pumping.
+En basculant l'interrupteur vers la gauche pour commencer à gonfler le ballon, celui-ci deviendra de plus en plus grand. Si le ballon devient trop gros, il explosera ; s'il est trop petit, il ne flottera pas dans les airs. Vous devez juger quand basculer l'interrupteur vers la droite pour arrêter de pomper.
 
 
-Tips on Sprite
-----------------
+Conseils sur le sprite
+------------------------
 
-Delete the previous Sprite1 sprite, then add the **Balloon1** sprite.
+Supprimez le sprite **Sprite1** précédent, puis ajoutez le sprite **Balloon1**.
 
 .. image:: img/1.15_slide1.png
 
-A balloon explosion sound effect is used in this project, so let's see how it was added.
+Un effet sonore d'explosion de ballon est utilisé dans ce projet, voyons comment il a été ajouté.
 
-Click the **Sound** option at the top, then click **Upload Sound** to upload ``boom.wav`` from the ``home/pi/davinci-kit-for-raspberry-pi/scratch/sound`` path to Scratch 3.
+Cliquez sur l'option **Sons** en haut, puis cliquez sur **Téléverser un son** pour téléverser ``boom.wav`` depuis le chemin ``home/pi/davinci-kit-for-raspberry-pi/scratch/sound`` vers Scratch 3.
 
 .. image:: img/1.15_slide2.png
 
-Tips on Codes
---------------
+Conseils sur le code
+-----------------------
 
 .. image:: img/1.15_slide3.png
   :width: 500
 
-This is an event block, and the trigger condition is that gpio17 is high, that is, the switch is toggled to the left.
+Ceci est un bloc d'événement, dont la condition de déclenchement est que gpio17 soit à l'état haut, c'est-à-dire que l'interrupteur soit basculé vers la gauche.
 
 .. image:: img/1.15_slide4.png
   :width: 400
 
-Set the size threshold of the Ballon1 sprite to 120
+Définissez la taille maximale du sprite **Balloon1** à 120.
 
 .. image:: img/1.15_slide7.png
   :width: 400
 
-Move the coordinates of the Balloon1 sprite to (0,0), which is the center of the stage area.
+Déplacez les coordonnées du sprite **Balloon1** à (0, 0), soit le centre de la scène.
 
 .. image:: img/1.15_slide8.png
   :width: 300
 
-Set the size of the Balloon1 sprite to 50 and show it in the stage area.
+Réglez la taille du sprite **Balloon1** à 50 et affichez-le dans la zone de scène.
 
 .. image:: img/1.15_slide5.png
 
 
-Set up a loop to inflate the balloon, this loop stops when the slider switch is toggled to the right.
+Mettez en place une boucle pour gonfler le ballon, cette boucle s'arrête lorsque l'interrupteur est basculé vers la droite.
 
-Within this loop, the balloon size is increased by 1 every 0.1s, and if it is larger than ``maxSize``, the balloon will burst, at which point the boom sound is made and the code is exited.
+Dans cette boucle, la taille du ballon augmente de 1 toutes les 0,1 secondes, et si elle dépasse ``maxSize``, le ballon éclate, déclenchant alors le son d'explosion et le programme s'arrête.
 
 .. image:: img/1.15_slide6.png
   :width: 600
 
-After the last loop exits (Slider toggles to the right), determine the position of the Balloon1 sprite based on its size. If the size of the Balloon1 sprite is greater than 90, lift off (move the coordinates to (0, 90), otherwise land (move the coordinates to (0, -149).
-
-
-
+Après la sortie de la dernière boucle (lorsque l'interrupteur est basculé vers la droite), déterminez la position du sprite **Balloon1** en fonction de sa taille. Si la taille du sprite **Balloon1** est supérieure à 90, il décolle (déplacez les coordonnées à (0, 90)), sinon il atterrit (déplacez les coordonnées à (0, -149)).

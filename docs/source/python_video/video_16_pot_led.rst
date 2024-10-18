@@ -1,37 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez au cœur du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et bénéficiez de contenus exclusifs.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos dernières nouveautés.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions spéciales lors des périodes festives.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-Video 16: Creating a Potentiometer Controlled Dimmable LED
+Vidéo 16 : Créer une LED dimmable contrôlée par un potentiomètre
 =======================================================================================
 
+Cette vidéo explique comment créer une LED dimmable à l'aide d'un Raspberry Pi, d'un convertisseur analogique-numérique ADC-0834 et de techniques de modulation de largeur d'impulsion (PWM), en offrant un guide complet allant de la configuration matérielle à la programmation en Python.
 
-This video demonstrates how to create a dimmable LED using a Raspberry Pi, ADC-0834 analog-to-digital converter, and pulse-width modulation (PWM) techniques, offering a comprehensive guide from hardware setup to coding in Python.
-
-1. **Introduction**: Overview of the tutorial series sponsored by SunFounder.
-2. **Homework Assignment**: Recap of the previous lesson's task to create a dimmable LED controlled by a potentiometer.
-3. **Hardware Setup**: Explanation of the components required, including Raspberry Pi, ADC-0834, potentiometer, and LED with a current-limiting resistor.
-4. **GPIO Pin Setup**: Setting up GPIO pins and initializing PWM for LED control.
-5. **Python Coding**: Step-by-step guide to coding in Python using Thonny, covering library import, pin setup, and duty cycle calculation.
-6. **Mathematical Calculation**: Explanation of the math involved in mapping potentiometer readings to LED brightness levels.
-7. **Demonstration**: Live demonstration of the dimmable LED functionality.
-8. **Next Homework Assignment**: Announcement of the upcoming task to use an RGB LED and multiple potentiometers for color mixing.
-9. **Acknowledgment**: Recognition of Patreon supporters and encouragement for viewers to consider contributing to support future content.
-
+1. **Introduction** : Présentation de la série de tutoriels sponsorisée par SunFounder.
+2. **Devoir précédent** : Rappel de la tâche précédente, qui consistait à créer une LED dimmable contrôlée par un potentiomètre.
+3. **Configuration matérielle** : Explication des composants requis, incluant le Raspberry Pi, l'ADC-0834, un potentiomètre et une LED avec une résistance limitant le courant.
+4. **Configuration des broches GPIO** : Paramétrage des broches GPIO et initialisation de la PWM pour contrôler la LED.
+5. **Programmation en Python** : Guide pas à pas pour la programmation en Python avec Thonny, incluant l'importation des bibliothèques, la configuration des broches et le calcul du cycle de travail (duty cycle).
+6. **Calcul mathématique** : Explication des calculs nécessaires pour mapper les valeurs du potentiomètre aux niveaux de luminosité de la LED.
+7. **Démonstration** : Démonstration en temps réel de la fonctionnalité de la LED dimmable.
+8. **Prochain devoir** : Annonce de la prochaine tâche consistant à utiliser une LED RGB et plusieurs potentiomètres pour un mélange de couleurs.
+9. **Remerciements** : Remerciement aux soutiens sur Patreon et encouragement pour les spectateurs à contribuer afin de soutenir les contenus futurs.
 
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

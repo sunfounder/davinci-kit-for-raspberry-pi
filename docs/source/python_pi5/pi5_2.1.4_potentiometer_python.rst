@@ -1,59 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des conseils et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd'hui !
 
 .. _2.1.4_py_pi5:
 
-2.1.4 Potentiometer
-===================
+2.1.4 Potentiomètre
+=======================
 
 Introduction
-------------
+----------------
 
-The ADC function can be used to convert analog signals to digital
-signals, and in this experiment, ADC0834 is used to get the function
-involving ADC. Here, we implement this process by using potentiometer.
-Potentiometer changes the physical quantity -- voltage, which is
-converted by the ADC function.
+La fonction ADC (convertisseur analogique-numérique) est utilisée pour convertir 
+des signaux analogiques en signaux numériques. Dans cette expérience, le module 
+ADC0834 est employé pour réaliser cette fonction. Ici, nous illustrons ce processus 
+en utilisant un potentiomètre. Le potentiomètre modifie la grandeur physique (la tension), 
+qui est ensuite convertie par l'ADC.
 
-Required Components
-------------------------------
+Composants nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous aurons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/2.1.7_potentiometer_list.png
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+.. Il est très pratique d'acheter un kit complet, voici le lien :
 
 .. .. list-table::
 ..     :widths: 20 20 20
 ..     :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
+..     *   - Nom
+..         - COMPOSANTS DANS CE KIT
+..         - LIEN
+..     *   - Kit Raphael
 ..         - 337
 ..         - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+.. Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. .. list-table::
 ..     :widths: 30 20
 ..     :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+..     *   - INTRODUCTION DES COMPOSANTS
+..         - LIEN D'ACHAT
 
 ..     *   - :ref:`gpio_extension_board`
 ..         - |link_gpio_board_buy|
@@ -71,28 +71,26 @@ In this project, we need the following components.
 ..         - \-
 
 
-Schematic Diagram
------------------
+Schéma de circuit
+----------------------
 
 .. image:: ../python_pi5/img/2.1.7_potentiometer_second_1.png
 
-
 .. image:: ../python_pi5/img/2.1.7_potentiometer_second_2.png
 
-Experimental Procedures
------------------------
+Procédure expérimentale
+--------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../python_pi5/img/2.1.7_Potentiometer_circuit.png
 
-
 .. note::
-    Please place the chip by referring to the corresponding position
-    depicted in the picture. Note that the grooves on the chip should be on
-    the left when it is placed.
+    Placez le composant en vous référant à la position correspondante indiquée 
+    sur l'image. Notez que l'encoche sur le composant doit être orientée vers 
+    la gauche lorsqu'il est en place.
 
-**Step 2:** Open the code file
+**Étape 2 :** Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -102,7 +100,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez le code.
 
 .. raw:: html
 
@@ -112,19 +110,18 @@ Experimental Procedures
 
     sudo python3 2.1.4_Potentiometer_zero.py
 
-After the code runs, rotate the knob on the potentiometer, the intensity
-of LED will change accordingly.
+Une fois le code exécuté, tournez le bouton du potentiomètre, l'intensité de 
+la LED changera en conséquence.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    En cas d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`. 
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source, tel que ``raphael-kit/python-pi5``. Après modification, vous pouvez exécuter le code pour observer le résultat.
 
 .. raw:: html
 
@@ -138,10 +135,10 @@ of LED will change accordingly.
    import ADC0834
    import time
 
-   # Initialize a PWM LED on GPIO pin 22
+   # Initialiser une LED PWM sur la broche GPIO 22
    led = PWMLED(22)
 
-   # Set up the ADC0834 module
+   # Configurer le module ADC0834
    ADC0834.setup()
 
    def MAP(x, in_min, in_max, out_min, out_max):
@@ -158,27 +155,27 @@ of LED will change accordingly.
 
    try:
        while True:
-           # Get the current reading from the ADC0834 module
+           # Lire la valeur actuelle du module ADC0834
            res = ADC0834.getResult()
            print('res = %d' % res)
 
-           # Map the ADC value to a range suitable for setting LED brightness
+           # Convertir la valeur de l'ADC en une plage adaptée pour régler la luminosité de la LED
            R_val = MAP(res, 0, 255, 0, 100)
 
-           # Set the LED brightness
+           # Régler la luminosité de la LED
            led.value = float(R_val / 100)
 
-           # Wait for 0.2 seconds before reading again
+           # Attendre 0,2 secondes avant la prochaine lecture
            time.sleep(0.2)
 
-   # Graceful exit when 'Ctrl+C' is pressed
+   # Sortie propre lors de l'appui sur 'Ctrl+C'
    except KeyboardInterrupt: 
-       led.value = 0  # Turn off the LED
+       led.value = 0  # Éteindre la LED
 
 
-**Code Explanation**
+**Explication du code**
 
-#. ``gpiozero`` for PWM LED control, ``ADC0834`` for analog-to-digital conversion, and ``time`` for implementing delays.
+#. ``gpiozero`` est utilisé pour contrôler la LED PWM, ``ADC0834`` pour la conversion analogique-numérique, et ``time`` pour les temporisations.
 
    .. code-block:: python
 
@@ -188,24 +185,24 @@ of LED will change accordingly.
        import ADC0834
        import time
 
-#. Initialize a PWMLED object connected to GPIO pin 22 and set up the ADC0834 converter.
+#. Initialisez une LED PWM connectée à la broche GPIO 22 et configurez le convertisseur ADC0834.
 
    .. code-block:: python
 
-       # Initialize a PWM LED on GPIO pin 22
+       # Initialiser une LED PWM sur la broche GPIO 22
        led = PWMLED(22)
 
-       # Set up the ADC0834 module
+       # Configurer le module ADC0834
        ADC0834.setup()
 
-#. Define a function named ``MAP`` to convert one range of values to another, useful for mapping ADC values to appropriate LED brightness levels.
+#. Définissez une fonction appelée ``MAP`` pour convertir une plage de valeurs en une autre, utile pour ajuster les niveaux de luminosité de la LED en fonction des valeurs de l'ADC.
 
    .. code-block:: python
 
        def MAP(x, in_min, in_max, out_min, out_max):
            return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-#. Continuously read the ADC value in a loop, mapping the ADC reading (0-255) to a brightness level (0-100) for the LED. Adjust the LED's brightness based on this mapped value. Implement a delay of 0.2 seconds for better readability and stability.
+#. Lisez continuellement la valeur de l'ADC, ajustez la luminosité de la LED en conséquence et implémentez un délai de 0,2 secondes pour améliorer la stabilité.
 
    .. code-block:: python
 
@@ -224,6 +221,7 @@ of LED will change accordingly.
                # Wait for 0.2 seconds before reading again
                time.sleep(0.2)
 
-       # Graceful exit when 'Ctrl+C' is pressed
+       # Sortie propre lors de l'appui sur 'Ctrl+C'
        except KeyboardInterrupt: 
-           led.value = 0  # Turn off the LED
+           led.value = 0  # Éteindre la LED
+

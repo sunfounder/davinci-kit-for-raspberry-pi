@@ -1,58 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté Facebook des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprenez & Partagez** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et tirages au sort** : Participez à des tirages au sort et bénéficiez de promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-2.1.5 Keypad
-============
+2.1.5 Clavier
+================
 
 Introduction
-------------
+---------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Un clavier est un tableau rectangulaire de boutons. Dans ce projet, nous allons 
+l'utiliser pour saisir des caractères.
 
-Components
-----------
+Composants
+-----------
 
 .. image:: img/list_2.1.5_keypad.png
 
 
-Principle
----------
+Principe
+------------
 
-**Keypad**
+**Clavier**
 
-A keypad is a rectangular array of 12 or 16 OFF-(ON) buttons. Their
-contacts are accessed via a header suitable for connection with a ribbon
-cable or insertion into a printed circuit board. In some keypads, each
-button connects with a separate contact in the header, while all the
-buttons share a common ground.
+Un clavier est un tableau rectangulaire de 12 ou 16 boutons de type OFF-(ON). 
+Leurs contacts sont accessibles via un connecteur adapté pour une connexion 
+par câble plat ou pour être inséré dans une carte de circuit imprimé. Dans 
+certains claviers, chaque bouton est connecté à un contact distinct dans le 
+connecteur, tandis que tous les boutons partagent une masse commune.
 
 .. image:: img/image314.png
 
 
-More often, the buttons are matrix encoded, meaning that each of them
-bridges a unique pair of conductors in a matrix. This configuration is
-suitable for polling by a microcontroller, which can be programmed to
-send an output pulse to each of the four horizontal wires in turn.
-During each pulse, it checks the remaining four vertical wires in
-sequence, to determine which one, if any, is carrying a signal. Pullup
-or pulldown resistors should be added to the input wires to prevent the
-inputs of the microcontroller from behaving unpredictably when no signal
-is present.
+Le plus souvent, les boutons sont codés en matrice, ce qui signifie que chacun 
+d'eux connecte une paire unique de conducteurs dans une matrice. Cette configuration 
+est adaptée à un microcontrôleur, qui peut être programmé pour envoyer une impulsion 
+de sortie sur chacun des quatre fils horizontaux à tour de rôle. Pendant chaque impulsion, 
+il vérifie les quatre fils verticaux restants en séquence, afin de déterminer lequel, 
+le cas échéant, transporte un signal. Des résistances pullup ou pulldown doivent être 
+ajoutées aux fils d'entrée pour éviter que les entrées du microcontrôleur ne se 
+comportent de manière imprévisible en l'absence de signal.
 
-Schematic Diagram
------------------
+Schéma de câblage
+---------------------
 
 .. image:: img/image315.png
 
@@ -60,17 +59,16 @@ Schematic Diagram
 .. image:: img/image316.png
 
 
-Experimental Procedures
------------------------
+Procédure expérimentale
+----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1** : Construisez le circuit.
 
 .. image:: img/image186.png
     :width: 800
 
 
-
-**Step 2:** Open the code file.
+**Étape 2** : Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -80,7 +78,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.1.5/
 
-**Step 3:** Compile the code.
+**Étape 3** : Compilez le code.
 
 .. raw:: html
 
@@ -90,7 +88,7 @@ Experimental Procedures
 
     gcc 2.1.5_Keypad.cpp -lwiringPi
 
-**Step 4:** Run.
+**Étape 4** : Exécutez le programme.
 
 .. raw:: html
 
@@ -100,13 +98,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Après l'exécution du code, les valeurs des boutons pressés sur le clavier 
+(valeur du bouton) seront affichées à l'écran.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-    
+    Si le programme ne fonctionne pas après exécution, ou si un message d'erreur 
+    s'affiche : \"wiringPi.h: No such file or directory\", veuillez vous référer à 
+    :ref:`C code is not working?`.
 **Code**
 
 .. code-block:: c
@@ -222,7 +221,8 @@ Value) will be printed on the screen.
         return -1;
     }
 
-**Code Explanation**
+
+**Explication du Code**
 
 .. code-block:: c
 
@@ -235,8 +235,7 @@ Value) will be printed on the screen.
     unsigned char rowPins[ROWS] = {1, 4, 5, 6}; 
     unsigned char colPins[COLS] = {12, 3, 2, 0};
 
-Declare each key of the matrix keyboard to the array keys[] and define
-the pins on each row and column.
+Déclarez chaque touche du clavier matriciel dans le tableau `KEYS[]` et définissez les broches correspondant à chaque ligne et colonne.
 
 .. code-block:: c
 
@@ -250,16 +249,13 @@ the pins on each row and column.
             delay(100);
         }
 
-This is the part of the main function that reads and prints the button
-value.
+Cette partie de la fonction principale lit et affiche la valeur de la touche pressée.
 
-The function keyRead() will read the state of every button.
+La fonction `keyRead()` lit l'état de chaque touche.
 
-KeyCompare() and keyCopy() are used to judge whether the state of a
-button has changed (that is, a button has been pressed or released).
+`keyCompare()` et `keyCopy()` sont utilisées pour vérifier si l'état de la touche a changé (c'est-à-dire, si une touche a été pressée ou relâchée).
 
-keyPrint() will print the button value of the button whose current level
-is high level (the button is pressed).
+`keyPrint()` affiche la valeur de la touche dont le niveau actuel est un niveau haut (la touche est pressée).
 
 .. code-block:: c
 
@@ -281,12 +277,12 @@ is high level (the button is pressed).
         }
     }
 
-This function assigns a high level to each row in turn, and when the key
-in the column is pressed, the column in which the key is located gets a
-high level. After the two-layer loop judgment, the key state compilation
-will generate an array (reasult[]).
+Cette fonction assigne successivement un niveau haut à chaque ligne. Lorsque 
+la touche correspondante dans la colonne est pressée, la colonne concernée 
+reçoit un niveau haut. Après la boucle à deux niveaux, l'état des touches est 
+compilé pour générer un tableau `result[]`.
 
-When pressing button 3:
+Lorsque le bouton 3 est pressé :
 
 .. image:: img/image187.png
 
@@ -297,7 +293,7 @@ ColPin [0], colPin[1], colPin[3] get the low level.
 This gives us 0,0,1,0. When rowPin[1], rowPin[2] and rowPin[3] are
 written in high level, colPin[0]~colPin[4] will get low level.
 
-After the loop judgment is completed, an array will be generated:
+Après la boucle de vérification, un tableau est généré :
 
 .. code-block:: c
 
@@ -324,14 +320,13 @@ After the loop judgment is completed, an array will be generated:
         }
     }
 
+Ces deux fonctions sont utilisées pour vérifier si l'état d'une touche a changé, 
+par exemple si vous relâchez le bouton "3" ou si vous appuyez sur "2", `keyCompare()` 
+renvoie `false`.
 
-These two functions are used to judge whether the key state has changed,
-for example when you release your hand when pressing \'3\' or pressing
-\'2\', keyCompare() returns false.
-
-KeyCopy() is used to re-write the current button value for the a array
-(last_key_pressed[BUTTON_NUM]) after each comparison. So we can compare
-them next time.
+`keyCopy()` est utilisée pour réécrire la valeur actuelle du bouton dans le 
+tableau `a` (`last_key_pressed[BUTTON_NUM]`) après chaque comparaison. Cela permet 
+de les comparer à nouveau lors de la prochaine boucle.
 
 .. code-block:: c
 
@@ -348,7 +343,7 @@ them next time.
         printf("\n");
     }
 
-This function is used to print the value of the button currently
-pressed. If the button \'1\' is pressed, the \'1\' will be printed. If the
-button \'1\' is pressed and the button \'3\' is pressed, the \'1, 3\' will be
-printed.
+Cette fonction est utilisée pour afficher la valeur de la touche actuellement pressée. 
+Si la touche '1' est pressée, '1' sera affiché. Si la touche '1' et ensuite la touche '3' 
+sont pressées, alors '1, 3' sera affiché.
+

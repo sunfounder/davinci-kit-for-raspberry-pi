@@ -1,32 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour enrichir vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et à des aperçus exclusifs.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions spéciales lors des périodes de fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-Video 23: Measuring the Speed of Sound with an Ultrasonic Sensor
+Vidéo 23 : Mesurer la vitesse du son avec un capteur ultrasonique
 =======================================================================================
 
-Learn how to measure the speed of sound using a Raspberry Pi and an HC-SR04 ultrasonic sensor in this step-by-step tutorial.
+Apprenez à mesurer la vitesse du son en utilisant un Raspberry Pi et un capteur ultrasonique HC-SR04 grâce à ce tutoriel détaillé pas à pas.
 
+1. **Introduction** : Utilisation du capteur ultrasonique HC-SR04 pour mesurer la vitesse du son.
+2. **Compréhension de l'équation** : Introduction à l'équation de base de la distance, de la vitesse et du temps.
+3. **Configuration matérielle** : Mise en place du Raspberry Pi et du capteur ultrasonique.
+4. **Programmation en Python** : Écriture de code Python pour contrôler le capteur et calculer la vitesse du son.
+5. **Analyse dimensionnelle** : Conversion des unités pour obtenir la vitesse finale de manière précise.
+6. **Démonstration pratique** : Mise en pratique de la configuration et du processus de mesure à l'aide d'une règle et d'une cible.
 
-1. Introduction to using the HC-SR04 ultrasonic sensor for measuring sound speed.
-2. Understanding the basic equation for distance, rate, and time.
-3. Hardware setup using Raspberry Pi and the ultrasonic sensor.
-4. Writing Python code to control the sensor and calculate the speed of sound.
-5. Performing dimensional analysis to convert units for the final speed calculation.
-6. Practical demonstration of the setup and measurement process using a ruler and target.
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 

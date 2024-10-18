@@ -1,30 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, d'Arduino et d'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des conseils et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux avant-goûts des prochaines sorties.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-Video 8: Using a Button as a Toggle Switch for LED Control
+Vidéo 8 : Utiliser un Bouton comme Interrupteur à Bascule pour le Contrôle de LED
 =======================================================================================
 
-Learn how to create a toggle LED circuit using a Raspberry Pi and Python programming.
+Apprenez à créer un circuit de LED à bascule en utilisant un Raspberry Pi et la programmation en Python.
 
-1. **Circuit Setup**: Setting up an LED and a push-button switch connected to GPIO pins on a Raspberry Pi.
-2. **Python Programming**: Using the RPi.GPIO library to control the GPIO pins and read the state of the push-button switch.
-3. **Toggle Logic**: Implementing logic in Python to toggle the LED based on the state of the push-button switch.
-4. **Variable Management**: Using variables to track the current and previous states of the push-button switch and the LED.
+1. **Configuration du circuit** : Installation d'une LED et d'un bouton-poussoir connectés aux broches GPIO d'un Raspberry Pi.
+2. **Programmation en Python** : Utilisation de la bibliothèque RPi.GPIO pour contrôler les broches GPIO et lire l'état du bouton-poussoir.
+3. **Logique de basculement** : Implémentation d'une logique en Python pour basculer la LED en fonction de l'état du bouton-poussoir.
+4. **Gestion des variables** : Utilisation de variables pour suivre l'état actuel et précédent du bouton-poussoir ainsi que celui de la LED.
 
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

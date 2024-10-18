@@ -1,37 +1,37 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez au cœur de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits.
+    - **Remises spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des tirages au sort et à des promotions spéciales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-3.1.13 GAME– 10 Second
-========================
+3.1.13 JEU – 10 Secondes
+==============================
 
 Introduction
 -------------------
 
-Next, follow me to make a game device to challenge your concentration.
-Tie the tilt switch to a stick to make a magic wand. Shake the wand, the
-4-digit segment display will start counting, shake again will let it
-stop counting. If you succeed in keeping the displayed count at
-**10.00**, then you win. You can play the game with your friends to see
-who is the time wizard.
+Ensuite, suivez-moi pour fabriquer un dispositif de jeu qui défiera votre 
+concentration. Attachez le commutateur d'inclinaison à un bâton pour en faire 
+une baguette magique. Secouez la baguette, l'afficheur 4 chiffres commencera 
+à compter ; secouez à nouveau pour arrêter le comptage. Si vous réussissez à 
+garder le compteur affiché sur **10.00**, vous gagnez. Jouez avec vos amis pour 
+voir qui est le maître du temps.
 
-Components
+Composants
 ----------------
 
 .. image:: img/list_GAME_10_Second.png
     :align: center
 
-Schematic Diagram
+Schéma de Connexion
 ------------------------
 
 ============ ======== ======== ===
@@ -49,19 +49,19 @@ GPIO26       Pin 37   25       26
 .. image:: img/Schematic_three_one13.png
    :align: center
 
-Experimental Procedures
+Procédure Expérimentale
 ---------------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1** : Construisez le circuit.
 
 .. image:: img/image277.png
    :alt: 10 second_bb
    :width: 800
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^
+**Pour les utilisateurs du langage C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Étape 2** : Accédez au dossier du code.
 
 .. raw:: html
 
@@ -71,7 +71,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.13/
 
-**Step 3**: Compile the code.
+**Étape 3** : Compilez le code.
 
 .. raw:: html
 
@@ -81,7 +81,7 @@ Experimental Procedures
 
     gcc 3.1.13_GAME_10Second.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Étape 4** : Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -91,65 +91,63 @@ Experimental Procedures
 
     sudo ./a.out
 
-Shake the wand, the 4-digit segment display will start counting, shake
-again will let it stop counting. If you succeed in keeping the displayed
-count at **10.00**, then you win. Shake it one more time to start the
-next round of the game.
+Secouez la baguette, l'afficheur 4 chiffres commencera à compter ; secouez à 
+nouveau pour arrêter le comptage. Si vous parvenez à atteindre **10.00**, vous 
+gagnez. Secouez encore une fois pour lancer la manche suivante.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution, ou si un message d'erreur indique : \"wiringPi.h: Aucun fichier ou répertoire de ce type", veuillez vous référer à :ref:`C code is not working?`.
 
-
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: c
 
     void stateChange(){
         if (gameState == 0){
             counter = 0;
-            delay(1000);
-            ualarm(10000,10000); 
-        }else{
-            alarm(0);
-            delay(1000);
-        }
+            delay(1000);
+            ualarm(10000,10000); 
+        }else{
+            alarm(0);
+            delay(1000);
+        }
         gameState = (gameState + 1)%2;
     }
 
-The game is divided into two modes:
+Le jeu est divisé en deux modes :
 
-gameState=0 is the \"start\" mode, in which the time is timed and
-displayed on the segment display, and the tilting switch is shaken to
-enter the \"show\" mode.
+gameState=0 est le mode "démarrage", dans lequel le temps est mesuré et affiché 
+sur l'afficheur à segments, et le commutateur d'inclinaison est secoué pour entrer 
+dans le mode "affichage".
 
-GameState =1 is the \"show\" mode, which stops the timing and displays the
-time on the segment display. Shaking the tilt switch again will reset
-the timer and restart the game.
+GameState=1 est le mode "affichage", qui arrête le chronométrage et montre le 
+temps sur l'afficheur. Secouer à nouveau le commutateur d'inclinaison réinitialise 
+le chronomètre et relance le jeu.
 
 .. code-block:: c
 
     void loop(){
         int currentState =0;
         int lastState=0;
-        while(1){
-            display();
+        while(1){
+            display();
             currentState=digitalRead(sensorPin);
             if((currentState==0)&&(lastState==1)){
-                stateChange();
-            }
+                stateChange();
+            }
             lastState=currentState;
-        }
+        }
     }
 
-Loop() is the main function. First, the time is displayed on the 4-bit
-segment display and the value of the tilt switch is read. If the state
-of the tilt switch has changed, stateChange() is called.
+Loop() est la fonction principale. Elle affiche le temps sur l'afficheur à 4 
+segments et lit la valeur du commutateur d'inclinaison. Si l'état du commutateur 
+change, stateChange() est appelé.
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Pour les utilisateurs du langage Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Étape 2** : Accédez au dossier du code.
 
 .. raw:: html
 
@@ -159,7 +157,7 @@ of the tilt switch has changed, stateChange() is called.
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3**: Run the executable file.
+**Étape 3** : Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -169,16 +167,15 @@ of the tilt switch has changed, stateChange() is called.
 
     sudo python3 3.1.13_GAME_10Second.py
 
-Shake the wand, the 4-digit segment display will start counting, shake
-again will let it stop counting. If you succeed in keeping the displayed
-count at **10.00**, then you win. Shake it one more time to start the
-next round of the game.
+Secouez la baguette, l'afficheur 4 chiffres commencera à compter ; secouez à 
+nouveau pour arrêter le comptage. Si vous parvenez à atteindre **10.00**, vous 
+gagnez. Secouez encore une fois pour lancer la manche suivante.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez aller au chemin du code source comme ``davinci-kit-for-raspberry-pi/python``. 
     
 .. raw:: html
 
@@ -282,19 +279,19 @@ next round of the game.
             GPIO.setup(i, GPIO.OUT)
         GPIO.setup(sensorPin, GPIO.IN)
 
-    def destroy():   # When \"Ctrl+C\" is pressed, the function is executed.
+    def destroy():   # Quand "Ctrl+C" est pressé, la fonction est exécutée.
         GPIO.cleanup()
         global timer1
         timer1.cancel()
 
-    if __name__ == '__main__':  # Program starting from here
+    if __name__ == '__main__':  # Le programme commence ici
         setup()
         try:
             loop()
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
@@ -304,22 +301,22 @@ next round of the game.
         global timer1
         if gameState == 0:
             counter = 0
-            time.sleep(1)
-            timer() 
+            time.sleep(1)
+            timer() 
         elif gameState ==1:
-            timer1.cancel()
-            time.sleep(1)
+            timer1.cancel()
+            time.sleep(1)
         gameState = (gameState+1)%2
 
-The game is divided into two modes:
+Le jeu est divisé en deux modes :
 
-gameState=0 is the \"start\" mode, in which the time is timed and
-displayed on the segment display, and the tilting switch is shaken to
-enter the \"show\" mode.
+gameState=0 est le mode "démarrage", où le temps est chronométré et affiché sur 
+l'afficheur à segments, et le commutateur d'inclinaison est secoué pour passer 
+au mode "affichage".
 
-GameState =1 is the \"show\" mode, which stops the timing and displays the
-time on the segment display. Shaking the tilt switch again will reset
-the timer and restart the game.
+GameState=1 est le mode "affichage", qui arrête le chronométrage et montre le 
+temps sur l'afficheur. Secouer à nouveau le commutateur d'inclinaison réinitialisera 
+le chronomètre et redémarrera le jeu.
 
 .. code-block:: python
 
@@ -328,15 +325,15 @@ the timer and restart the game.
         currentState = 0
         lastState = 0
         while True:
-            display()
-            currentState=GPIO.input(sensorPin)
+            display()
+            currentState=GPIO.input(sensorPin)
             if (currentState == 0) and (lastState == 1):
-                stateChange()
-            lastState=currentState
+                stateChange()
+            lastState=currentState
 
-Loop() is the main function. First, the time is displayed on the 4-bit
-segment display and the value of the tilt switch is read. If the state
-of the tilt switch has changed, stateChange() is called.
+Loop() est la fonction principale. D'abord, le temps est affiché sur l'afficheur 
+4 chiffres et la valeur du commutateur d'inclinaison est lue. Si l'état du commutateur 
+change, stateChange() est appelé.
 
 .. code-block:: python
 
@@ -347,11 +344,10 @@ of the tilt switch has changed, stateChange() is called.
         timer1.start()  
         counter += 1
 
-After the interval reaches 0.01s, the timer function is called; add 1 to
-counter, and the timer is used again to execute itself repeatedly every
-0.01s.
+Après que l'intervalle atteigne 0,01s, la fonction timer est appelée ; on ajoute 1 
+au compteur, et le timer est utilisé à nouveau pour s'exécuter lui-même toutes les 0,01s.
 
-Phenomenon Picture
+Photo de Phénomène
 -----------------------
 
 .. image:: img/image278.jpeg

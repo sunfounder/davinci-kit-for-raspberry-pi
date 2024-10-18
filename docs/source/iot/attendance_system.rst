@@ -1,33 +1,33 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Rejoignez d'autres amateurs pour explorer plus en profondeur le monde du Raspberry Pi, de l'Arduino et de l'ESP32.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des conseils et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à nos concours et promotions saisonnières.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Attendance system
-=====================
+Système de présence
+========================
 
-In this project, we use MFRC522 RFID Module and Cloud4RPi to make a system, you can view the attendance information on Cloud4RPi, or open the local .csv file to view the attendance records.
+Dans ce projet, nous utilisons le module RFID MFRC522 et Cloud4RPi pour créer un système de gestion des présences. Vous pouvez consulter les informations de présence sur Cloud4RPi ou ouvrir le fichier .csv local pour voir les enregistrements de présence.
 
-Due to the delay of network data transmission, the project only allows you to punch in when the green LED is on and upload data when the red LED is on.
+En raison du délai de transmission des données sur le réseau, le projet ne permet de pointer que lorsque la LED verte est allumée, et les données sont téléchargées lorsque la LED rouge est allumée.
 
-Experimental Procedures
--------------------------
+Procédures expérimentales
+----------------------------
 
-Build the circuit.
+Construisez le circuit.
 
 .. image:: img/rfid1.png
-	:align: center
+    :align: center
 
-Open the code.
+Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -38,13 +38,13 @@ Open the code.
     cd ~/cloud4rpi-raspberrypi-python
     sudo nano attendance_system.py
 
-Find the line below and fill in the correct device token.
+Trouvez la ligne ci-dessous et renseignez le bon jeton d'appareil.
 
 .. code-block:: python
 
     DEVICE_TOKEN = '__YOUR_DEVICE_TOKEN__'
 
-Run the code.
+Exécutez le code.
 
 .. raw:: html
 
@@ -54,19 +54,19 @@ Run the code.
 
     sudo python3 attendance_system.py
 
-Go to Cloud4RPi, add a new control panel named **project5** and add 2 widgets (text and chart widgets) via the **Add widget** button.
+Accédez à Cloud4RPi, ajoutez un nouveau panneau de contrôle nommé **project5** et ajoutez 2 widgets (text et graphique) via le bouton **Add widget**.
 
 .. image:: img/rfid2.png
-	:align: center
+    :align: center
 
-Once added, you can view the clock-in records for different time periods on the Chart widget (when the value of LED ON is True, it means someone clocked in), and then view the number of people who clocked in on the Text widget.
+Une fois ajoutés, vous pouvez consulter les enregistrements de pointage pour différentes périodes sur le widget Graphique (quand la valeur de LED ON est True, cela signifie qu’une personne a pointé), et voir le nombre de personnes ayant pointé sur le widget Texte.
 
-Also you can find the ``.csv`` file with the date under the path ``~/cloud4rpi-raspberrypi-python``.
+Vous pouvez également trouver le fichier ``.csv`` avec la date sous le chemin ``~/cloud4rpi-raspberrypi-python``.
 
 .. image:: img/rfid3.png
-	:align: center
+    :align: center
 
-Open it with the following command.
+Ouvrez-le avec la commande suivante.
 
 .. raw:: html
 
@@ -76,18 +76,17 @@ Open it with the following command.
 
     sudo nano attendance_sheet.2021.06.28.csv
 
-
-In this way, you can read the punch-in records of different time periods. On the left is the ID of different MFRC522 RFID modules, and on the right is the time of punching in.
+De cette façon, vous pouvez lire les enregistrements de pointage pour différentes périodes. À gauche se trouve l'ID de différents modules RFID MFRC522, et à droite, l'heure du pointage.
 
 .. image:: img/rfid4.png
-	:align: center
+    :align: center
 
 .. note::
-	
-    If the person's name is written to the MFRC522 RFID Module in advance, and then the id is replaced with text in the code (which will be mentioned later in the code explanation), so that the attendance sheet records the name of each person, rather than the ID of the card.
 
-Code Explanation
-----------------------
+    Si le nom de la personne est déjà écrit dans le module RFID MFRC522 et que l'ID est remplacé par le texte dans le code (ce qui sera expliqué plus tard), la feuille de présence enregistrera alors le nom de chaque personne au lieu de l'ID de la carte.
+
+Explication du code
+-----------------------
 
 .. code-block:: python
 
@@ -98,65 +97,64 @@ Code Explanation
     GPIO.setup(RedPin, GPIO.OUT, initial=GPIO.HIGH)
     GPIO.setup(GreenPin, GPIO.OUT, initial=GPIO.HIGH)
 
-Set 2 LEDs as output and set the initial value to high.
+Configurer 2 LEDs en sortie et définir la valeur initiale à haute.
 
 .. code-block:: python
 
     def get_time():
-		time.time()
-		year = str(time.strftime('%Y',time.localtime(time.time())))
-		month = str(time.strftime('%m',time.localtime(time.time())))
-		day = str(time.strftime('%d',time.localtime(time.time())))
-		hour = str(time.strftime('%H',time.localtime(time.time())))
-		minute = str(time.strftime('%M',time.localtime(time.time())))
-		second = str(time.strftime('%S',time.localtime(time.time())))
-		present_time = year + '.' + month + '.' + day + '.' + hour + '.' + minute + '.' + second
-		present_date = year + '.' + month + '.' + day
-		return present_date, present_time
+        time.time()
+        year = str(time.strftime('%Y',time.localtime(time.time())))
+        month = str(time.strftime('%m',time.localtime(time.time())))
+        day = str(time.strftime('%d',time.localtime(time.time())))
+        hour = str(time.strftime('%H',time.localtime(time.time())))
+        minute = str(time.strftime('%M',time.localtime(time.time())))
+        second = str(time.strftime('%S',time.localtime(time.time())))
+        present_time = year + '.' + month + '.' + day + '.' + hour + '.' + minute + '.' + second
+        present_date = year + '.' + month + '.' + day
+        return present_date, present_time
 
-Use the ``get_time()`` function to get the current timestamp and return two values. Where ``present_date`` is accurate to the day and ``present_time`` is accurate to the second.
+Utilisez la fonction ``get_time()`` pour obtenir l'horodatage actuel et renvoyer deux valeurs. ``present_date`` correspond à la date et ``present_time`` à l'heure précise.
 
 .. code-block:: python
 
     attendance = False
-	GPIO.output(GreenPin, GPIO.LOW)
-	GPIO.output(RedPin, GPIO.HIGH)
+    GPIO.output(GreenPin, GPIO.LOW)
+    GPIO.output(RedPin, GPIO.HIGH)
 	print("Reading...Please place the card...")
-	id, text = reader.read()
+    id, text = reader.read()
 	print("ID: %s\nText: %s" % (id,text))
-	GPIO.output(RedPin, GPIO.LOW)
-	GPIO.output(GreenPin, GPIO.HIGH)
+    GPIO.output(RedPin, GPIO.LOW)
+    GPIO.output(GreenPin, GPIO.HIGH)
 
-First, we set ``attendance`` to False, which means that no one is clocked in.
+Tout d'abord, nous définissons ``attendance`` sur False, ce qui signifie qu'aucune personne n'a pointé.
 
-Then set GreenPin to low level to light it, and RedPin to high level to keep it off, indicating that the current attendance system is working normally.
+Puis, nous passons GreenPin à un niveau bas pour l'allumer, et RedPin à un niveau haut pour l'éteindre, indiquant que le système de présence fonctionne normalement.
 
-When someone punches in, the id and text information of the card will be printed. If the red LED is on and the green LED is off, it means that the check-in is successful and the result is sent to Cloud4RPi.
+Lorsque quelqu'un pointe, l'ID et le texte de la carte seront imprimés. Si la LED rouge est allumée et que la LED verte est éteinte, cela signifie que le pointage a réussi et le résultat est envoyé à Cloud4RPi.
 
-During this period, the attendance system is in sleep state until the next cycle starts (the green light is on).
-
+Pendant cette période, le système de présence est en état de veille jusqu'au début du prochain cycle (LED verte allumée).
 
 .. code-block:: python
 
     if not id in attendance_list:
-		attendance = True
-		attendance_list.append(id)
-		present_date, present_time = get_time()
-		attendance_statistics[id] = present_time
-		with open('attendance_sheet.' + present_date + '.csv', 'w') as f:
-			[f.write('{0}  {1}\n'.format(key, value)) for key, value in attendance_statistics.items()]
+        attendance = True
+        attendance_list.append(id)
+        present_date, present_time = get_time()
+        attendance_statistics[id] = present_time
+        with open('attendance_sheet.' + present_date + '.csv', 'w') as f:
+            [f.write('{0}  {1}\n'.format(key, value)) for key, value in attendance_statistics.items()]
 
-First determine if the id is duplicated in ``attendance_list`` by an if statement, if not, it means the punch-in is valid and pass the id information into ``attendance_list``. Then we get the current timestamp and use the id as the key of the ``attendance_statistics`` dictionary and ``present_time`` as the value of the corresponding key. In this way, the ``attendance_statistics`` dictionary stores the punch time of the current id.
+Tout d'abord, vérifiez si l'identifiant est déjà présent dans ``attendance_list`` grâce à une instruction ``if``. Si ce n'est pas le cas, cela signifie que le pointage est valide, et l'identifiant est ajouté à ``attendance_list``. Ensuite, récupérez l'horodatage actuel et utilisez l'identifiant comme clé du dictionnaire ``attendance_statistics`` et ``present_time`` comme valeur correspondante. Ainsi, le dictionnaire ``attendance_statistics`` stocke l'heure de pointage de l'identifiant actuel.
 
-Finally we write the ``attendance_statistics`` dictionary to a .csv file and name the file as ``'attendance_sheet.'' + present_date + '.csv'``, so that we store the attendance sheet in time order.
+Enfin, écrivez le contenu du dictionnaire ``attendance_statistics`` dans un fichier .csv, nommé ``'attendance_sheet.' + present_date + '.csv'``, afin de conserver les informations de présence de manière chronologique.
 
 .. note::
 
-    If you have written the person's name in the MFRC522 RFID, then replace the ``id`` with ``text`` and your attendance sheet will record the name of the person.
+    Si vous avez préalablement enregistré le nom de la personne dans le module RFID MFRC522, remplacez l'``id`` par ``text``, ce qui permettra d'enregistrer le nom de la personne dans la feuille de présence au lieu de l'identifiant.
 
 .. code-block:: python
 
     def get_num():
-		return len(attendance_list)
+        return len(attendance_list)
 
-Returns the length of ``attendance_list``, i.e. the number of attendees.
+Retourne la longueur de la liste ``attendance_list``, c’est-à-dire le nombre de personnes ayant pointé.

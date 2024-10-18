@@ -1,40 +1,40 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Profitez d'un accès anticipé aux nouvelles annonces de produits et à des aperçus exclusifs.
+    - **Réductions spéciales** : Bénéficiez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-Video 6: Understanding GPIO Inputs, Pull Up and Pull Down Resistors
+Vidéo 6 : Comprendre les entrées GPIO, les résistances pull-up et pull-down
 =======================================================================================
 
-Join Paul McWhorter in this comprehensive tutorial as he explains the importance of pull-up and pull-down resistors in microcontroller circuits, demonstrating practical implementations on both Raspberry Pi platforms for GPIO input handling.
+Rejoignez Paul McWhorter dans ce tutoriel complet où il explique l'importance des résistances pull-up et pull-down dans les circuits de microcontrôleurs, tout en présentant des exemples concrets sur les plateformes Raspberry Pi pour gérer les entrées GPIO.
 
-1. **GPIO Input Basics**: Learn how to read digital inputs from GPIO pins on microcontroller platforms.
-2. **Circuit Setup**: Follow along as Paul demonstrates the physical setup of circuits with push button switches, resistors, and microcontroller boards.
-3. **GPIO Pin Configuration**: Understand how to configure GPIO pins for input mode and read input values in Python (for Raspberry Pi) code.
-4. **Preventing Floating Inputs**: Discover why it's crucial to avoid floating inputs and how pull-up or pull-down resistors can stabilize input readings.
-5. **Pull-Up Resistor**: Ensures a known logic level when the switch is open by connecting the input pin to a high voltage through a resistor.
-6. **Pull-Down Resistor**: Ensures a known logic level when the switch is open by connecting the input pin to ground through a resistor.
-7. **Functionality**: Demonstrates how the circuit behaves with the switch open and closed, affecting the logic level read by the input pin.
-8. **Implementation**: Provides step-by-step instructions on physically setting up the circuit on a breadboard using wires, a push button switch, a resistor, and a microcontroller board.
-9. **Homework Assignment**: Encourages viewers to practice controlling an LED with a push button switch and sharing their solutions on YouTube, linking back to the tutorial video.
+1. **Bases des entrées GPIO** : Apprenez à lire les entrées numériques des broches GPIO sur les plateformes de microcontrôleurs.
+2. **Mise en place du circuit** : Suivez Paul dans la réalisation du montage physique avec des boutons-poussoirs, des résistances et des cartes microcontrôleurs.
+3. **Configuration des broches GPIO** : Comprenez comment configurer les broches GPIO en mode entrée et lire les valeurs d'entrée dans un code Python (pour Raspberry Pi).
+4. **Prévenir les entrées flottantes** : Découvrez pourquoi il est crucial d'éviter les entrées flottantes et comment les résistances pull-up ou pull-down peuvent stabiliser les lectures des broches.
+5. **Résistance pull-up** : Assure un niveau logique connu lorsque le bouton est ouvert, en reliant la broche d'entrée à une haute tension via une résistance.
+6. **Résistance pull-down** : Assure un niveau logique connu lorsque le bouton est ouvert, en reliant la broche d'entrée à la masse via une résistance.
+7. **Fonctionnement** : Montre comment le circuit réagit lorsque le bouton est ouvert ou fermé, affectant le niveau logique lu par la broche d'entrée.
+8. **Mise en œuvre** : Fournit des instructions pas à pas pour monter le circuit sur une breadboard à l'aide de fils, d'un bouton-poussoir, d'une résistance et d'une carte microcontrôleur.
+9. **Exercice pratique** : Encourage les spectateurs à s'entraîner à contrôler une LED avec un bouton-poussoir et à partager leurs solutions sur YouTube, avec un lien vers la vidéo du tutoriel.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 
     <iframe width="700" height="500" src="https://www.youtube.com/embed/0OYtR8UdZQk?si=NZkyjKNIs7zjXvi-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-**Homework Solution**
+**Solution de l'exercice**
 
 .. raw:: html
 

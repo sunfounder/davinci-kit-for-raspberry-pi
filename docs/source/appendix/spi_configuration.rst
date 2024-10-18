@@ -1,25 +1,25 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. _spi_configuration:
 
-SPI Configuration
+Configuration SPI
 -----------------------
 
-**Step 1**: Enable the SPI port of your Raspberry Pi (If you have
-enabled it, skip this; if you do not know whether you have done that or
-not, please continue).
+**Étape 1** : Activez le port SPI de votre Raspberry Pi (Si vous l'avez déjà activé, 
+passez cette étape. Si vous ne savez pas si cela a été fait, suivez les instructions 
+ci-dessous).
 
 .. raw:: html
 
@@ -29,7 +29,7 @@ not, please continue).
 
     sudo raspi-config
 
-**3 Interfacing options**
+**3 Options d'interfaçage**
 
 .. image:: img/image282.png
    :align: center
@@ -39,12 +39,12 @@ not, please continue).
 .. image:: img/i3spi.png
    :align: center
 
-**<YES>, then click <OK> and <Finish>.**
+**<OUI>, puis cliquez sur <OK> et <Terminer>.**
 
 .. image:: img/image286.png
    :align: center 
 
-**Step 2:** Check that the spi modules are loaded and active.
+**Étape 2** : Vérifiez que les modules SPI sont chargés et actifs.
 
 .. raw:: html
 
@@ -54,14 +54,13 @@ not, please continue).
 
     ls /dev/sp*
 
-Then the following codes will appear (the number may be different).
-
+Les lignes suivantes devraient apparaître (les numéros peuvent varier).
 
 .. code-block:: 
 
     /dev/spidev0.0  /dev/spidev0.1
 
-**Step 3:** Install Python module SPI-Py.
+**Étape 3** : Installez le module Python SPI-Py.
 
 .. raw:: html
 
@@ -74,5 +73,5 @@ Then the following codes will appear (the number may be different).
     sudo python3 setup.py install
 
 .. note::
-    This step is for python users, if you use C language, please
-    skip.
+    Cette étape est destinée aux utilisateurs de Python. Si vous utilisez le langage C, 
+    veuillez passer cette étape.

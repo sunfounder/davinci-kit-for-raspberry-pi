@@ -1,75 +1,77 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez et partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions exclusives** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions et cadeaux festifs** : Participez à des promotions et des cadeaux lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-1.8 123 Wooden Man
-===========================
+1.8 Jeu du 1, 2, 3 Soleil
+==============================
 
-Today, we are going to play a game of 123 wooden man.
+Aujourd'hui, nous allons jouer au jeu du 1, 2, 3 Soleil.
 
-Click on the green flag to start the game, hold down the right arrow key on the keyboard to make the sprite go right. If the green light is on, the sprite can move; but when the red LED is on, you have to stop the sprite from moving; otherwise the buzzer will keep ringing.
+Cliquez sur le drapeau vert pour démarrer le jeu, maintenez la flèche droite du clavier pour faire avancer le sprite vers la droite. Si la lumière verte est allumée, le sprite peut bouger ; mais lorsque la LED rouge est allumée, vous devez arrêter de bouger le sprite, sinon le buzzer retentira sans cesse.
 
 .. image:: img/1.14_header.png
 
-Required Components
-------------------------
+Composants nécessaires
+--------------------------
 
 .. image:: img/1.14_component.png
 
-Build the Circuit
----------------------
+Construisez le circuit
+-------------------------
 
 .. image:: img/1.14_fritzing.png
 
 
-Load the Code and See What Happens
----------------------------------------
+Chargez le code et voyez ce qui se passe
+-------------------------------------------
 
-Load the code file (``1.8_123_wooden_man.sb3``) to Scratch 3.
+Chargez le fichier de code (``1.8_123_wooden_man.sb3``) dans Scratch 3.
 
-When the green LED is on, you can use the right arrow key to control **Avery** to walk to the right; when the red LED is on, if you continue to let **Avery** move to the right, then an alarm will sound.
+Lorsque la LED verte est allumée, vous pouvez utiliser la flèche droite pour contrôler **Avery** afin qu'il marche vers la droite ; lorsque la LED rouge est allumée, si vous continuez à faire avancer **Avery**, une alarme retentira.
 
-Tips on Sprite
-----------------
-Delete the default sprite, then choose the **Avery Walking** sprite.
+Conseils sur le sprite
+-------------------------
+
+Supprimez le sprite par défaut, puis choisissez le sprite **Avery Walking**.
 
 .. image:: img/1.14_wooden1.png
   :width: 400
 
-Tips on Codes
---------------
+Conseils sur le code
+------------------------
 
 .. image:: img/1.14_wooden2.png
   :width: 400
 
-Initialize all pins to high.
+Initialisez toutes les broches à l'état haut.
 
 .. image:: img/1.14_wooden3.png
   :width: 400
 
-When the game starts, assign the status variable to 1, indicating that the Avery Walking sprite is movable, and then set gpio18 to low, which lights up the green LED for 5s.
+Lorsque le jeu commence, assignez la variable status à 1, indiquant que le sprite **Avery Walking** est en mouvement, puis réglez gpio18 sur bas, ce qui allume la LED verte pendant 5s.
 
 .. image:: img/1.14_wooden4.png
   :width: 400
 
-Set gpio18 to high, then set gpio27 to low, which means turn off the green LED and light up the yellow LED for 0.5s.
+Réglez gpio18 sur haut, puis réglez gpio27 sur bas, ce qui éteint la LED verte et allume la LED jaune pendant 0,5s.
 
 .. image:: img/1.14_wooden5.png
   :width: 400
 
-Assign the status variable to 0, which means the Avery Walking sprite is not moving; then set gpio27 to low and gpio17 to high, which turns off the yellow LED and then lights up the red LED for 3s. Finally, set gpio17 to high to turn off the red LED.
+Assignez la variable status à 0, ce qui signifie que le sprite **Avery Walking** ne bouge plus ; ensuite, réglez gpio27 sur bas et gpio17 sur haut, ce qui éteint la LED jaune et allume la LED rouge pendant 3s. Enfin, réglez gpio17 sur haut pour éteindre la LED rouge.
 
 .. image:: img/1.14_wooden6.png
   :width: 400
 
-When we press the right arrow key on the keyboard, we need to switch the **Avery Walking** sprite to the next costume so that we can see Avery walking to the right. Then we need to determine the value of the **status** variable. If it is 0, it means that the Avery Walking sprite is not moving at this moment, and the buzzer will sound to warn you that you cannot press the right arrow key again.
+Lorsque nous appuyons sur la flèche droite du clavier, nous devons passer au costume suivant du sprite **Avery Walking** pour voir Avery marcher vers la droite. Ensuite, nous devons vérifier la valeur de la variable **status**. Si elle est à 0, cela signifie que le sprite **Avery Walking** ne bouge pas, et le buzzer émettra un son pour vous avertir que vous ne pouvez pas appuyer à nouveau sur la flèche droite.
+

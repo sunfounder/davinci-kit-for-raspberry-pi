@@ -1,35 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans le monde du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à nos tirages au sort et événements spéciaux tout au long de l'année.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Video 58: Tracking an Object of Interest with Pan/Tilt Camera Mount
+
+Vidéo 58 : Suivi d’un Objet d’Intérêt avec un Support Pan/Tilt pour Caméra
 =======================================================================================
 
+Apprenez à développer un système de suivi d’objets en utilisant un Raspberry Pi, OpenCV et des servomoteurs pour maintenir un objet d’intérêt centré dans le cadre.
+
+1. **Introduction** : Présentation d’une série de tutoriels pour Raspberry Pi, sponsorisée par SunFounder.
+2. **Kit Raspberry Pi** : Utilisation du kit SunFounder Raphael pour Raspberry Pi.
+3. **Objectif du suivi d’objet** : Combiner les leçons précédentes sur l'identification d'objets et le montage de la caméra pour réaliser le suivi d’objet.
+4. **Comprendre les systèmes de contrôle** : Explication de l'importance de la compréhension des systèmes de contrôle pour un codage efficace.
+5. **Calcul de l'erreur** : Démonstration du calcul de l'erreur entre la position de l'objet et le centre du cadre.
+6. **Mouvements Pan et Tilt** : Explication de la logique derrière l'ajustement des angles de pan et de tilt en fonction de l'erreur détectée.
 
 
-Learn to develop an object tracking system using Raspberry Pi, OpenCV, and servo motors to keep an object of interest centered in the frame.
-
-
-
-1. **Introduction**: An introduction to a series of Raspberry Pi tutorials sponsored by SunFounder.
-2. **Raspberry Pi Kit**: Utilizing the SunFounder Raphael kit for Raspberry Pi.
-3. **Object Tracking Objective**: Combining previous lessons on object identification and camera mounting to achieve object tracking.
-4. **Understanding Control Systems**: Explanation of the importance of understanding control systems for effective coding.
-5. **Error Calculation**: Demonstrating how to calculate the error between the object's position and the frame's center.
-6. **Pan and Tilt Movement**: Explanation of the logic behind adjusting pan and tilt angles based on the error.
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 

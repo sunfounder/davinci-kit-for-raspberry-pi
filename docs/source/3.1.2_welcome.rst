@@ -1,37 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez dans l'univers du Raspberry Pi, d'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Recevez des annonces anticipées sur les nouveaux produits et des aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et tirages au sort** : Participez à des concours et promotions pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-3.1.2 Welcome
+3.1.2 Bienvenue
 ===============
 
 Introduction
--------------
+------------
 
-In this project, we will use PIR to sense the movement of pedestrians,
-and use servos, LED, buzzer to simulate the work of the sensor door of
-the convenience store. When the pedestrian appears within the sensing
-range of the PIR, the indicator light will be on, the door will be
-opened, and the buzzer will play the opening bell.
+Dans ce projet, nous utiliserons un capteur PIR pour détecter le mouvement des piétons, 
+ainsi qu'un servo, une LED et un buzzer pour simuler le fonctionnement de la porte 
+automatique d'un magasin. Lorsque le piéton entre dans la zone de détection du capteur 
+PIR, le voyant s'allume, la porte s'ouvre, et le buzzer joue une mélodie d'ouverture.
 
-Components
----------------
+Composants
+------------
 
 .. image:: img/list_Welcome.png
     :align: center
 
-Schematic Diagram
--------------------
+Schéma
+--------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -44,20 +43,20 @@ GPIO22       Pin 15   3        22
 .. image:: img/Schematic_three_one2.png
    :align: center
 
-Experimental Procedures
--------------------------
+Procédures expérimentales
+-------------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image239.png
     :alt: C:\Users\sunfounder\Desktop\3.1.4_Welcome_bb.png3.1.4_Welcome_bb
     :width: 800
     :align: center
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Pour les utilisateurs du langage C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Change directory.
+**Étape 2 :** Changez de répertoire.
 
 .. raw:: html
 
@@ -67,7 +66,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.2/
 
-**Step 3:** Compile.
+**Étape 3 :** Compilation.
 
 .. raw:: html
 
@@ -77,7 +76,7 @@ Experimental Procedures
 
     gcc 3.1.2_Welcome.c -lwiringPi
 
-**Step 4:** Run.
+**Étape 4 :** Exécution.
 
 .. raw:: html
 
@@ -87,26 +86,23 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, if the PIR sensor detects someone passing by, the
-door will automatically open (simulated by the servo), turn on the
-indicator and play the doorbell music. After the doorbell music plays,
-the system will automatically close the door and turn off the indicator
-light, waiting for the next time someone passes by.
+Une fois le code exécuté, si le capteur PIR détecte quelqu'un passant à proximité, 
+la porte s'ouvrira automatiquement (simulée par le servo), le voyant s'allumera et 
+la mélodie de la sonnette retentira. Après la mélodie, le système refermera 
+automatiquement la porte et éteindra le voyant, en attente du prochain passage.
 
-There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
+Le module PIR est équipé de deux potentiomètres : l'un pour régler la sensibilité 
+et l'autre pour ajuster la distance de détection. Pour optimiser le fonctionnement 
+du module PIR, vous devez les tourner complètement dans le sens antihoraire.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-
-**Code Explanation**
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : \"wiringPi.h: No such file or directory\", veuillez consulter :ref:`C code is not working?`.
+**Explication du code**
 
 .. code-block:: c
 
-    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+    void setAngle(int pin, int angle){    // Créer une fonction pour contrôler l'angle du servo.
         if(angle < 0)
             angle = 0;
         if(angle > 180)
@@ -114,8 +110,7 @@ You need to turn both of them counterclockwise to the end.
         softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
     } 
 
-Create a function, setAngle to write the angle in the servo that is
-0-180.
+Création de la fonction setAngle pour définir l'angle du servo entre 0 et 180 degrés.
 
 .. code-block:: c
 
@@ -125,26 +120,25 @@ Create a function, setAngle to write the angle in the servo that is
             delay(beat[i] * 250);
         }
 
-Create a function, doorbell to enable the buzzer to play music.
+Création de la fonction doorbell pour faire jouer une mélodie par le buzzer.
 
 .. code-block:: c
 
     void closedoor(){
-    digitalWrite(ledPin, LOW);   //led off
-    for(int i=180;i>-1;i--){  //make servo rotate from maximum angle to minimum angle
+    digitalWrite(ledPin, LOW);   // Éteindre la LED
+    for(int i=180;i>-1;i--){  // Faire pivoter le servo de l'angle maximum à l'angle minimum
         setAngle(servoPin,i);
         delay(1);
         }
     }
 
-Create a closedoor function to simulate closing the door, turn off the
-LED and let the servo turn from 180 degrees to 0 degree.
+Création de la fonction closedoor pour simuler la fermeture de la porte, éteindre la LED et faire pivoter le servo de 180 degrés à 0 degré.
 
 .. code-block:: c
 
     void opendoor(){
-        digitalWrite(ledPin, HIGH);   //led on
-        for(int i=0;i<181;i++){  //make servo rotate from minimum angle to maximum angle
+        digitalWrite(ledPin, HIGH);   // Allumer la LED
+        for(int i=0;i<181;i++){  // Faire pivoter le servo de l'angle minimum à l'angle maximum
             setAngle(servoPin,i);
             delay(1);
         }
@@ -152,16 +146,15 @@ LED and let the servo turn from 180 degrees to 0 degree.
         closedoor();
     }
 
-The function opendoor() includes several parts: turn on the indicator
-light, turn the servo (simulate the action of opening the door), play
-the doorbell music of the convenience store, and call the function
-closedoor() after playing music.
+La fonction opendoor() comporte plusieurs étapes : allumer la lumière indicatrice, 
+faire pivoter le servo (simulant l'ouverture de la porte), jouer la mélodie de la 
+sonnette et appeler la fonction closedoor() après la musique.
 
 .. code-block:: c
 
         int main(void)
     {
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ // Si l'initialisation de wiringPi échoue, afficher un message à l'écran
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -170,17 +163,17 @@ closedoor() after playing music.
             return 1;
     ......
 
-In the function main(), initialize library wiringPi and setup softTone,
-then set ledPin to output state and pirPin to input state. If the PIR
-sensor detects someone passing by, the function opendoor will be called
-to simulate opening the door.
+Dans la fonction main(), initialisez la bibliothèque wiringPi et configurez softTone, 
+puis définissez ledPin en mode sortie et pirPin en mode entrée. Si le capteur PIR détecte 
+une personne passant à proximité, la fonction opendoor sera appelée pour simuler 
+l'ouverture de la porte.
 
 
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Pour les utilisateurs du langage Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Change directory.
+**Étape 2 :** Changer de répertoire.
 
 .. raw:: html
 
@@ -190,7 +183,7 @@ to simulate opening the door.
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run.
+**Étape 3 :** Exécuter.
 
 .. raw:: html
 
@@ -200,22 +193,21 @@ to simulate opening the door.
 
     sudo python3 3.1.2_Welcome.py
 
-After the code runs, if the PIR sensor detects someone passing by, the
-door will automatically open (simulated by the servo), turn on the
-indicator and play the doorbell music. After the doorbell music plays,
-the system will automatically close the door and turn off the indicator
-light, waiting for the next time someone passes by.
+Une fois le code exécuté, si le capteur PIR détecte le passage d'une personne, 
+la porte s'ouvrira automatiquement (simulée par le servo), la lumière indicatrice 
+s'allumera et la mélodie de la sonnette retentira. Après la mélodie, le système 
+refermera automatiquement la porte et éteindra la lumière indicatrice, en attente 
+du prochain passage.
 
-There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
+Le module PIR est équipé de deux potentiomètres : l'un pour régler la sensibilité 
+et l'autre pour ajuster la distance de détection. Pour optimiser le fonctionnement 
+du module PIR, tournez-les complètement dans le sens antihoraire.
 
 **code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre dans le chemin du code source tel que ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -229,65 +221,65 @@ You need to turn both of them counterclockwise to the end.
     SERVO_MIN_PULSE = 500
     SERVO_MAX_PULSE = 2500
 
-    ledPin = 18    # define the ledPin
-    pirPin = 17    # define the sensorPin
-    servoPin = 22  # define the servoPin
-    buzPin = 27    # define the buzzerpin
+    ledPin = 18    # définir le ledPin
+    pirPin = 17    # définir le sensorPin
+    servoPin = 22  # définir le servoPin
+    buzPin = 27    # définir le buzzerPin
 
 
-    CL = [0, 131, 147, 165, 175, 196, 211, 248]        # Frequency of Low C notes
+    CL = [0, 131, 147, 165, 175, 196, 211, 248]        # Fréquences des notes C basses
 
-    CM = [0, 262, 294, 330, 350, 393, 441, 495]        # Frequency of Middle C notes
+    CM = [0, 262, 294, 330, 350, 393, 441, 495]        # Fréquences des notes C moyennes
 
-    CH = [0, 525, 589, 661, 700, 786, 882, 990]        # Frequency of High C notes
+    CH = [0, 525, 589, 661, 700, 786, 882, 990]        # Fréquences des notes C hautes
 
     song = [    CH[5],CH[2],CM[6],CH[2],CH[3],CH[6],CH[3],CH[5],CH[3],CM[6],CH[2]    ]
 
     beat = [    1,1,1,1,1,2,1,1,1,1,1,]
 
-
     def setup():
         global p
-        global Buzz                        # Assign a global variable to replace GPIO.PWM 
-        GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
-        GPIO.setup(ledPin, GPIO.OUT)   # Set ledPin's mode is output
-        GPIO.setup(pirPin, GPIO.IN)    # Set sensorPin's mode is input
-        GPIO.setup(servoPin, GPIO.OUT)   # Set servoPin's mode is output
-        GPIO.output(servoPin, GPIO.LOW)  # Set servoPin to low
-        GPIO.setup(buzPin, GPIO.OUT)    # Set pins' mode is output
+        global Buzz                        # Déclaration d'une variable globale pour remplacer GPIO.PWM 
+        GPIO.setmode(GPIO.BCM)             # Numérotation des GPIOs par leur emplacement physique
+        GPIO.setup(ledPin, GPIO.OUT)       # Configuration de ledPin en mode sortie
+        GPIO.setup(pirPin, GPIO.IN)        # Configuration de pirPin en mode entrée
+        GPIO.setup(servoPin, GPIO.OUT)     # Configuration de servoPin en mode sortie
+        GPIO.output(servoPin, GPIO.LOW)    # Mise du servoPin à l'état bas
+        GPIO.setup(buzPin, GPIO.OUT)       # Configuration de buzPin en mode sortie
 
-        Buzz = GPIO.PWM(buzPin, 440)    # 440 is initial frequency.
-        Buzz.start(50)                    # Start Buzzer pin with 50% duty ration
+        Buzz = GPIO.PWM(buzPin, 440)       # 440 est la fréquence initiale.
+        Buzz.start(50)                     # Démarrage du buzzer avec un rapport cyclique de 50 %
 
-        p = GPIO.PWM(servoPin, 50)     # set Frequece to 50Hz
-        p.start(0)                     # Duty Cycle = 0
+        p = GPIO.PWM(servoPin, 50)         # Réglage de la fréquence à 50 Hz
+        p.start(0)                         # Rapport cyclique à 0
 
     def map(value, inMin, inMax, outMin, outMax):
         return (outMax - outMin) * (value - inMin) / (inMax - inMin) + outMin
 
         
-    def setAngle(angle):      # make the servo rotate to specific angle (0-180 degrees) 
+    def setAngle(angle):                   # Faire tourner le servo à un angle spécifique (0-180 degrés)
         angle = max(0, min(180, angle))
         pulse_width = map(angle, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
         pwm = map(pulse_width, 0, 20000, 0, 100)
-        p.ChangeDutyCycle(pwm)#map the angle to duty cycle and output it
+        p.ChangeDutyCycle(pwm)              # Conversion de l'angle en rapport cyclique et sortie vers le servo
         
     def doorbell():
-        for i in range(1, len(song)):        # Play song 1
-            Buzz.ChangeFrequency(song[i])    # Change the frequency along the song note
-            time.sleep(beat[i] * 0.25)        # delay a note for beat * 0.25s
-        time.sleep(1)                        # Wait a second for next song.
+        for i in range(1, len(song)):       # Jouer la chanson 1
+            Buzz.ChangeFrequency(song[i])   # Changer la fréquence selon les notes de la chanson
+            time.sleep(beat[i] * 0.25)      # Délai correspondant au battement * 0,25 s
+        time.sleep(1)                       # Attendre une seconde avant la chanson suivante.
 
     def closedoor():
         GPIO.output(ledPin, GPIO.LOW)
-        for i in range(180, -1, -1): #make servo rotate from 180 to 0 deg
+        for i in range(180, -1, -1):        # Faire pivoter le servo de 180 à 0 degrés
             setAngle(i)
             time.sleep(0.001)
         time.sleep(1)
+    
     def opendoor():
         GPIO.output(ledPin, GPIO.LOW)
-        for i in range(0, 181, 1):   #make servo rotate from 0 to 180 deg
-            setAngle(i)     # Write to servo
+        for i in range(0, 181, 1):          # Faire pivoter le servo de 0 à 180 degrés
+            setAngle(i)                     # Commande au servo
             time.sleep(0.001)
         time.sleep(1)
         doorbell()
@@ -298,84 +290,81 @@ You need to turn both of them counterclockwise to the end.
             if GPIO.input(pirPin)==GPIO.HIGH:
                 opendoor()
 
-
     def destroy():
-        GPIO.cleanup()                     # Release resource
+        GPIO.cleanup()                      # Libération des ressources
         p.stop()
         Buzz.stop()
 
-    if __name__ == '__main__':     # Program start from here
+    if __name__ == '__main__':              # Le programme commence ici
         setup()
         try:
             loop()
-        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
+        except KeyboardInterrupt:           # Lorsque 'Ctrl+C' est pressé, la fonction destroy() sera exécutée.
             destroy()
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: python
 
     def setup():
         global p
-        global Buzz                        # Assign a global variable to replace GPIO.PWM
-        GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
-        GPIO.setup(ledPin, GPIO.OUT)   # Set ledPin's mode is output
-        GPIO.setup(pirPin, GPIO.IN)    # Set sensorPin's mode is input
-        GPIO.setup(buzPin, GPIO.OUT)    # Set pins' mode is output
-        Buzz = GPIO.PWM(buzPin, 440)    # 440 is initial frequency.
-        Buzz.start(50)                    # Start Buzzer pin with 50% duty ration
-        GPIO.setup(servoPin, GPIO.OUT)   # Set servoPin's mode is output
-        GPIO.output(servoPin, GPIO.LOW)  # Set servoPin to low
-        p = GPIO.PWM(servoPin, 50)     # set Frequece to 50Hz
-        p.start(0)                     # Duty Cycle = 0
+        global Buzz                        # Déclaration d'une variable globale pour remplacer GPIO.PWM
+        GPIO.setmode(GPIO.BCM)             # Numérotation des GPIOs par leur emplacement physique
+        GPIO.setup(ledPin, GPIO.OUT)       # Configuration de ledPin en mode sortie
+        GPIO.setup(pirPin, GPIO.IN)        # Configuration de pirPin en mode entrée
+        GPIO.setup(buzPin, GPIO.OUT)       # Configuration de buzPin en mode sortie
+        Buzz = GPIO.PWM(buzPin, 440)       # 440 est la fréquence initiale.
+        Buzz.start(50)                     # Démarrage du buzzer avec un rapport cyclique de 50 %
+        GPIO.setup(servoPin, GPIO.OUT)     # Configuration de servoPin en mode sortie
+        GPIO.output(servoPin, GPIO.LOW)    # Mise du servoPin à l'état bas
+        p = GPIO.PWM(servoPin, 50)         # Réglage de la fréquence à 50 Hz
+        p.start(0)                         # Rapport cyclique à 0
 
-These statements are used to initialize the pins of each component.
+Ces instructions sont utilisées pour initialiser les broches de chaque composant.
 
 .. code-block:: python
 
-    def setAngle(angle):      # make the servo rotate to specific angle (0-180 degrees) 
+    def setAngle(angle):                   # Faire tourner le servo à un angle spécifique (0-180 degrés)
         angle = max(0, min(180, angle))
         pulse_width = map(angle, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
         pwm = map(pulse_width, 0, 20000, 0, 100)
-        p.ChangeDutyCycle(pwm)#map the angle to duty cycle and output it
+        p.ChangeDutyCycle(pwm)              # Conversion de l'angle en rapport cyclique et sortie vers le servo
 
-Create a function, servowrite to write the angle in the servo that is
-0-180.
+Création d'une fonction servowrite pour écrire l'angle dans le servo entre 0 et 180 degrés.
 
 .. code-block:: python
 
     def doorbell():
-        for i in range(1,len(song)): # Play song1
-            Buzz.ChangeFrequency(song[i]) # Change the frequency along the song note
-            time.sleep(beat[i] * 0.25) # delay a note for beat * 0.25s
+        for i in range(1,len(song)):        # Jouer la chanson 1
+            Buzz.ChangeFrequency(song[i])   # Changer la fréquence selon les notes de la chanson
+            time.sleep(beat[i] * 0.25)      # Délai d'une note pour beat * 0,25 s
 
-Create a function, doorbell to enable the buzzer to play music. 
+Création d'une fonction doorbell pour permettre au buzzer de jouer de la musique.
 
 .. code-block:: python
 
     def closedoor():
         GPIO.output(ledPin, GPIO.LOW)
         Buzz.ChangeFrequency(1)
-        for i in range(180, -1, -1): #make servo rotate from 180 to 0 deg
+        for i in range(180, -1, -1):        # Faire pivoter le servo de 180 à 0 degrés
             setAngle(i)
             time.sleep(0.001)
 
-Close the door and turn off the indicator light.
+Fermer la porte et éteindre le voyant lumineux.
 
 .. code-block:: python
 
     def opendoor():
         GPIO.output(ledPin, GPIO.LOW)
-        for i in range(0, 181, 1):   #make servo rotate from 0 to 180 deg
-            setAngle(i)     # Write to servo
+        for i in range(0, 181, 1):          # Faire pivoter le servo de 0 à 180 degrés
+            setAngle(i)                     # Commande au servo
             time.sleep(0.001)
         doorbell()
         closedoor()
 
-The function, opendoor() consists of several parts: turn on the
-indicator light, turn the servo (to simulate the action of opening the
-door), play the doorbell music of the convenience store, and call the
-function , closedoor() after playing music.
+La fonction opendoor() comporte plusieurs étapes : allumer le voyant, faire pivoter 
+le servo (pour simuler l'ouverture de la porte), jouer la musique de la sonnette et 
+appeler la fonction closedoor() après la musique.
 
 .. code-block:: python
 
@@ -384,10 +373,10 @@ function , closedoor() after playing music.
         if GPIO.input(pirPin)==GPIO.HIGH:
             opendoor()
 
-When PIR senses that someone is passing by, it calls the function,
+Lorsque le capteur PIR détecte une personne passant à proximité, il appelle la fonction 
 opendoor().
 
-Phenomenon Picture
+Image du phénomène
 --------------------
 
 .. image:: img/image240.jpeg

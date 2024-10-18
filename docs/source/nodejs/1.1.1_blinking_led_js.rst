@@ -1,59 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et surmontez vos défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-1.1.1 Blinking LED
-=========================
+1.1.1 LED Clignotante
+========================
 
 Introduction
------------------
+--------------
 
-In this project, we will learn how to make a blinking LED by programming.
-Through your settings, your LED can produce a series of interesting
-phenomena. Now, go for it.
+Dans ce projet, nous allons apprendre à créer un effet de LED clignotante par 
+programmation. En fonction de vos paramètres, la LED pourra produire une série 
+de phénomènes intéressants. Alors, lancez-vous !
 
-Components
-------------------
+Composants
+--------------
 
 .. image:: img/blinking_led_list.png
     :width: 800
     :align: center
 
+Schéma de câblage
+--------------------
 
-
-Schematic Diagram
----------------------
-
-In this experiment, connect a 220Ω resistor to the anode (the long pin
-of the LED), then the resistor to 3.3 V, and connect the cathode (the
-short pin) of the LED to GPIO17 of Raspberry Pi. Therefore, to turn on
-an LED, we need to make GPIO17 low (0V) level. We can get this
-phenomenon by programming.
+Dans cette expérience, connectez une résistance de 220Ω à l’anode (la broche longue 
+de la LED), puis reliez la résistance au 3,3 V, et connectez la cathode (la broche courte) 
+de la LED au GPIO17 du Raspberry Pi. Par conséquent, pour allumer une LED, nous devons 
+régler le GPIO17 à un niveau bas (0 V). Nous pouvons obtenir cet effet en programmant.
 
 .. image:: img/image48.png
     :width: 800
     :align: center
 
-Experimental Procedures
+Procédures expérimentales
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: img/image49.png
     :width: 800
     :align: center
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -64,9 +61,9 @@ Experimental Procedures
    cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
 .. note::
-    Change directory to the path of the code in this experiment via ``cd``.
+    Accédez au répertoire du code de cette expérience avec la commande ``cd``.
 
-**Step 3:** Run the code
+**Étape 3 :** Exécuter le code
 
 .. raw:: html
 
@@ -77,13 +74,13 @@ Experimental Procedures
    sudo node blink.js
 
 .. note::
-    Here sudo - superuser do, and python means to run the file by Python.
+    Ici, sudo signifie "superuser do", et node indique que le fichier est exécuté avec Node.js.
 
-After the code runs, you will see the LED flashing.
+Après l'exécution du code, vous verrez la LED clignoter.
 
-**Step 4:** If you want to edit the code file blink.js,
-press ``Ctrl + C`` to stop running the code. Then type the following
-command to open blink.js:
+**Étape 4 :** Si vous souhaitez modifier le fichier de code blink.js, 
+appuyez sur ``Ctrl + C`` pour arrêter l'exécution du code. Ensuite, 
+tapez la commande suivante pour ouvrir blink.js :
 
 .. raw:: html
 
@@ -94,19 +91,19 @@ command to open blink.js:
    nano blink.js
 
 .. note::
-    nano is a text editor tool. The command is used to open the
-    code file blink.js by this tool.
+    nano est un éditeur de texte. Cette commande est utilisée pour ouvrir le 
+    fichier de code blink.js avec cet éditeur.
 
-Press ``Ctrl+X`` to exit. If you have modified the code, there will be a
-prompt asking whether to save the changes or not. Type in ``Y`` (save)
-or ``N`` (don’t save).
+Appuyez sur ``Ctrl + X`` pour quitter. Si vous avez modifié le code, un message 
+vous demandera si vous souhaitez enregistrer les modifications. Tapez ``Y`` 
+(enregistrer) ou ``N`` (ne pas enregistrer).
 
-Then press ``Enter`` to exit. Type in nano blink.js again to
-see the effect after the change.
+Appuyez ensuite sur ``Entrée`` pour quitter. Tapez à nouveau nano blink.js pour 
+observer les effets après modification.
 
 **Code**
 
-The following is the program code:
+Voici le code du programme :
 
 .. code-block:: js
 
@@ -122,8 +119,7 @@ The following is the program code:
 
    setInterval(blink_led,300);
 
-
-Alternatively, write the code as a more js-specific arrow function:
+Vous pouvez également écrire le code sous forme de fonction fléchée, plus spécifique à JavaScript :
 
 .. code-block:: js
 
@@ -137,18 +133,19 @@ Alternatively, write the code as a more js-specific arrow function:
       led_state = !led_state;
    }, 300);
 
-
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: js
 
    const Gpio = require('pigpio').Gpio;
 
-Import the Gpio constructor in the pigpio package in this way, 
-and then define a constant ``Gpio`` to represent this constructor.
+Importer le constructeur Gpio du package pigpio de cette manière, 
+puis définir une constante ``Gpio`` pour représenter ce constructeur.
 
-With a variety of constructor, we can use js to control electronic devices.
-``pigpio`` can be used to implement fast GPIO, PWM, servo control, state change notification and interrupt handling.
+Avec ce constructeur, nous pouvons utiliser JavaScript pour contrôler 
+les appareils électroniques. ``pigpio`` peut être utilisé pour implémenter 
+un contrôle rapide des GPIO, PWM, servomoteurs, notifications de changement 
+d’état et gestion des interruptions.
 
 * `pigpio - github <https://github.com/fivdi/pigpio>`_
 
@@ -158,17 +155,17 @@ With a variety of constructor, we can use js to control electronic devices.
 
 .. code-block:: js
 
-   const led = new Gpio(17,{mode: Gpio.OUTPUT});
+   const led = new Gpio(17, {mode: Gpio.OUTPUT});
 
-The ``new`` keyword is used to construct instantiated objects of the class.
+Le mot-clé ``new`` est utilisé pour construire des objets instanciés de la classe.
 
-Connect the LED to the GPIO17 of the T-shaped expansion board, 
-set the LedPin mode to output and assign it to the constant ``led``, 
-that is, construct a GPIO17 object ``led``, and its mode is the output mode.
+Connectez la LED au GPIO17 de la carte d'extension en T, définissez le mode de ``led`` 
+en sortie et assignez-le à la constante ``led`` ; c’est-à-dire que nous construisons un 
+objet GPIO17 ``led``, et son mode est défini comme étant en sortie.
 
-There are two ways to number the IO pins on the Raspberry Pi: 
-BOARD number and BCM number. In our project, we use the BCM number. 
-You need to set each channel used as input or output.
+Il existe deux façons de numéroter les broches IO sur le Raspberry Pi : la numérotation 
+BOARD et la numérotation BCM. Dans notre projet, nous utilisons la numérotation BCM. 
+Vous devez définir chaque canal utilisé comme entrée ou sortie.
 
 .. code-block:: js
 
@@ -177,14 +174,14 @@ You need to set each channel used as input or output.
       led_state = !led_state;
    }
 
-   setInterval(blink_led,300);
+   setInterval(blink_led, 300);
 
-The ``setInterval()`` method can call functions or compute expressions with a specified period (in milliseconds).
-Here we change the operating state of the LED with a period of 300ms.
+La méthode ``setInterval()`` permet d’appeler des fonctions ou de calculer des expressions à une période spécifiée (en millisecondes).
+Ici, nous changeons l'état de la LED avec une période de 300 ms.
 
 *  `setInerval <https://developer.mozilla.org/en-US/docs/Web/API/setInterval>`_
 
-The ``gpio.digitalWrite(level)`` method sets the gpio level to 1 or 0.
+La méthode ``gpio.digitalWrite(level)`` définit le niveau GPIO à 1 ou 0.
 
 .. code-block:: js
 
@@ -196,12 +193,12 @@ The ``gpio.digitalWrite(level)`` method sets the gpio level to 1 or 0.
       led_state = !led_state;
    }, 300);
 
-Rewrite the code as an arrow function to make the code shorter.
+Réécrivez le code en tant que fonction fléchée pour le rendre plus concis.
 
 * `Arrow Functions <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions>`_
 
-Phenomenon Picture
--------------------------
+Image du résultat
+--------------------
 
 .. image:: img/image54.jpeg
     :width: 800

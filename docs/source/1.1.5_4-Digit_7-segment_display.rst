@@ -1,16 +1,17 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes post-vente et techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et tirages au sort** : Participez à des promotions spéciales et des giveaways.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
 
 1.1.5 4-Digit 7-Segment Display
 ====================================
@@ -18,53 +19,47 @@
 Introduction
 -----------------
 
-Next, follow me to try to control the 4-digit 7-segment display.
+Ensuite, suivez-moi pour essayer de contrôler l'afficheur 7 segments à 4 chiffres.
 
-Components
+Composants
 ---------------
 
 .. image:: img/list_4_digit.png
 
-
-Principle
+Principe
 --------------
 
-**4-Digit 7-Segment Display**
+**Afficheur 7 segments à 4 chiffres**
 
-4-Digit 7-segment display consists of four 7- segment displays working
-together.
+L'afficheur 7 segments à 4 chiffres se compose de quatre affichages à 7 segments fonctionnant ensemble.
 
 .. image:: img/4-digit-sche.png
 
-The 4-digtal 7-segment display works independently. It uses the
-principle of human visual persistence to quickly display the characters
-of each 7-segment in a loop to form continuous strings.
+L'afficheur 7 segments à 4 chiffres fonctionne indépendamment. Il utilise le principe 
+de la persistance rétinienne pour afficher rapidement les caractères de chaque segment 
+en boucle afin de former des chaînes continues.
 
-For example, when "1234" is displayed on the display, "1" is displayed
-on the first 7-segment, and "234" is not displayed. After a period of
-time, the second 7-segment shows "2", the 1st 3th 4th of 7-segment does
-not show, and so on, the four digital display show in turn. This process
-is very short (typically 5ms), and because of the optical afterglow
-effect and the principle of visual residue, we can see four characters
-at the same time.
+Par exemple, lorsque "1234" est affiché, "1" est d'abord montré sur le premier segment, 
+les autres ne sont pas affichés. Après un court instant, le deuxième segment affiche "2", 
+et ainsi de suite. Le processus est très rapide (environ 5ms), et en raison de l'effet de 
+rémanence optique et de la persistance rétinienne, nous voyons les quatre chiffres en même 
+temps.
 
 .. image:: img/image78.png
 
+**Codes d'affichage**
 
-**Display Codes**
-
-To help you get to know how 7-segment displays(Common Anode) display
-Numbers, we have drawn the following table. Numbers are the number 0-F
-displayed on the 7-segment display; (DP) GFEDCBA refers to the
-corresponding LED set to 0 or 1, For example, 11000000 means that DP and
-G are set to 1, while others are set to 0. Therefore, the number 0 is
-displayed on the 7-segment display, while HEX Code corresponds to
-hexadecimal number.
+Pour mieux comprendre comment les affichages à 7 segments (anode commune) affichent les 
+chiffres, nous avons dressé le tableau suivant. Les nombres représentent les chiffres 0-F 
+affichés sur l'afficheur 7 segments ; (DP) GFEDCBA indique quels segments LED sont activés. 
+Par exemple, 11000000 signifie que DP et G sont activés, tandis que les autres sont désactivés, 
+ce qui correspond au chiffre "0" sur l'afficheur. Le code HEX correspond au numéro en 
+hexadécimal.
 
 .. image:: img/common_anode.png
 
 
-Schematic Diagram
+Schéma de câblage
 --------------------------
 
 ============ ======== ======== ===
@@ -81,17 +76,17 @@ GPIO24       Pin 18   5        24
 .. image:: img/schmatic_4_digit.png
 
 
-Experimental Procedures
+Procédures expérimentales
 -----------------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1** : Construisez le circuit.
 
 .. image:: img/image80.png
     :width: 800
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^
-Step 2: Go to the folder of the code.
+Pour les utilisateurs du langage C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Étape 2 : Accédez au dossier du code.
 
 .. raw:: html
 
@@ -101,7 +96,7 @@ Step 2: Go to the folder of the code.
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.1.5/
 
-Step 3: Compile the code.
+Étape 3 : Compilez le code.
 
 .. raw:: html
 
@@ -111,7 +106,7 @@ Step 3: Compile the code.
 
     gcc 1.1.5_4-Digit.c -lwiringPi
 
-Step 4: Run the executable file.
+Étape 4 : Exécutez le fichier compilé.
 
 .. raw:: html
 
@@ -121,11 +116,11 @@ Step 4: Run the executable file.
 
     sudo ./a.out
 
-After the code runs, the program takes a count, increasing by 1 per second, and the 4-digit 7-segment display displays the count.
+Après l'exécution du code, le programme effectue un comptage, augmentant de 1 chaque seconde, et l'afficheur 7 segments à 4 chiffres affiche le décompte.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : "wiringPi.h: Aucun fichier ou répertoire de ce type", veuillez consulter :ref:`C code is not working?`.
 
 **Code**
 
@@ -239,19 +234,19 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
 
 
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
     const int placePin[] = {12, 3, 2, 0};
 
-These four pins control the common anode pins of the four-digit 7-segment displays.
+Ces quatre broches contrôlent les anodes communes des quatre affichages à 7 segments.
 
 .. code-block:: c
 
     unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
 
-A segment code array from 0 to 9 in Hexadecimal (Common anode).
+Un tableau de codes segmentés de 0 à 9 en hexadécimal (anode commune).
 
 .. code-block:: c
 
@@ -264,7 +259,7 @@ A segment code array from 0 to 9 in Hexadecimal (Common anode).
         digitalWrite(placePin[digit], 1);
     }
 
-Select the place of the value. there is only one place that should be enable each time. The enabled place will be written high.
+Sélectionnez la position de la valeur. Une seule position doit être activée à chaque fois. La position activée sera définie à un niveau haut.
 
 .. code-block:: c
 
@@ -289,35 +284,35 @@ Select the place of the value. there is only one place that should be enable eac
         }
     }
 
-The functionis used to set the number displayed on the 4-digit 7-segment display.
+Cette fonction est utilisée pour définir le nombre affiché sur l'afficheur 7 segments à 4 chiffres.
 
-* ``clearDisplay()``：write in 11111111 to turn off these eight LEDs on 7-segment display so as to clear the displayed content.
-* ``pickDigit(0)``：pick the fourth 7-segment display.
-* ``hc595_shift(number[counter%10])``：the number in the single digit of counter will display on the forth segment.
+* ``clearDisplay()`` : écrit 11111111 pour éteindre les huit LED de l'afficheur 7 segments afin de vider le contenu affiché.
+* ``pickDigit(0)`` : sélectionne le quatrième segment 7 segments.
+* ``hc595_shift(number[counter % 10])`` : le chiffre des unités du compteur s'affichera sur le quatrième segment.
 
 .. code-block:: c
 
     signal(SIGALRM, timer); 
 
-This is a system-provided function, the prototype of code is:
+C'est une fonction fournie par le système, dont le prototype est :
 
 .. code-block:: c
 
     sig_t signal(int signum,sig_t handler);
 
-After executing the signal(), once the process receives the corresponding signum (in this case SIGALRM), it immediately pauses the existing task and processes the set function (in this case timer(sig)).
+Après l'exécution de ``signal()``, une fois que le processus reçoit le signal correspondant (ici SIGALRM), il interrompt immédiatement la tâche en cours pour traiter la fonction définie (ici ``timer(sig)``).
 
 .. code-block:: c
 
     alarm(1);
 
-This is also a system-provided function. The code prototype is:
+C'est également une fonction fournie par le système. Le prototype du code est :
 
 .. code-block:: c
 
     unsigned int alarm (unsigned int seconds);
 
-It generates a SIGALRM signal after a certain number of seconds.
+Elle génère un signal SIGALRM après un certain nombre de secondes.
 
 .. code-block:: c
 
@@ -331,14 +326,13 @@ It generates a SIGALRM signal after a certain number of seconds.
         }
     }
 
-We use the functions above to implement the timer function.
-After the ``alarm()`` generates the SIGALRM signal, the timer function is called. Add 1 to counter, and the function, ``alarm(1)`` will be repeatedly called after 1 second.
+Nous utilisons les fonctions ci-dessus pour implémenter la fonction de minuterie.
+Après que ``alarm()`` génère le signal SIGALRM, la fonction ``timer`` est appelée. On ajoute 1 au compteur et la fonction ``alarm(1)`` est rappelée toutes les secondes.
 
-
-For Python Language Users
+Pour les utilisateurs de Python
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Step 2: Go to the folder of the code. 
+Étape 2 : Accédez au dossier du code.
 
 .. raw:: html
 
@@ -348,7 +342,7 @@ Step 2: Go to the folder of the code.
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-Step 3: Run the executable file.
+Étape 3 : Exécutez le fichier.
 
 .. raw:: html
 
@@ -358,13 +352,13 @@ Step 3: Run the executable file.
 
     sudo python3 1.1.5_4-Digit.py
 
-After the code runs, the program takes a count, increasing by 1 per second, and the 4 digit display displays the count.
+Après l'exécution du code, le programme effectue un comptage qui augmente de 1 chaque seconde, et l'afficheur 4 chiffres affiche le décompte.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin source du code tel que ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -448,31 +442,30 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
         timer1 = threading.Timer(1.0, timer)  
         timer1.start()       
 
-    def destroy():   # When "Ctrl+C" is pressed, the function is executed.
+    def destroy():   # Lorsque "Ctrl+C" est pressé, la fonction est exécutée.
         global timer1
         GPIO.cleanup()
-        timer1.cancel()  # cancel the timer
+        timer1.cancel()  # annuler le minuteur
 
-    if __name__ == '__main__':  # Program starting from here
+    if __name__ == '__main__':  # Le programme commence ici
         setup()
         try:
             loop()
         except KeyboardInterrupt:
             destroy()
-
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
     placePin = (10, 22, 27, 17)
 
-These four pins control the common anode pins of the four-digit 7-segment displays.
+Ces quatre broches contrôlent les broches d'anode commune des écrans à sept segments à quatre chiffres.
 
 .. code-block:: python
 
     number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-A segment code array from 0 to 9 in hexadecimal (common anode).
+Un tableau de codes segments de 0 à 9 en hexadécimal (anode commune).
 
 .. code-block:: python
 
@@ -484,7 +477,7 @@ A segment code array from 0 to 9 in hexadecimal (common anode).
     GPIO.output(RCLK, GPIO.HIGH)
     GPIO.output(RCLK, GPIO.LOW) 
 
-Write "1" for eight times in SDI., so that the eight LEDs on the 7-segment Dispaly will turn off so as to clear the displayed content.
+Écrire "1" huit fois dans SDI, de sorte que les huit LEDs de l'afficheur à sept segments s'éteignent pour effacer le contenu affiché.
 
 .. code-block:: python
 
@@ -493,7 +486,7 @@ Write "1" for eight times in SDI., so that the eight LEDs on the 7-segment Dispa
             GPIO.output(i,GPIO.LOW)
         GPIO.output(placePin[digit], GPIO.HIGH)
 
-Select the place of the value. there is only one place that should be enable each time. The enabled place will be written high. 
+Sélectionner la position de la valeur. Il ne doit y avoir qu'une seule position activée à chaque fois. La position activée sera mise à l'état haut.
 
 .. code-block:: python
 
@@ -516,24 +509,23 @@ Select the place of the value. there is only one place that should be enable eac
             pickDigit(3)
             hc595_shift(number[counter % 10000//1000])
 
-The function is used to set the number displayed on the 4-digit 7-segment Dispaly.
+Cette fonction sert à définir le nombre affiché sur l'écran à sept segments à quatre chiffres.
 
-First, start the fourth segment display, write the single-digit number. Then start the third segment display, and type in the tens digit; after that, start the second and the first segment display respectively, and write the hundreds and thousands digits respectively. Because the refreshing speed is very fast, we see a complete four-digit display.
+Tout d'abord, on active le quatrième segment et on écrit le chiffre des unités. Ensuite, on active le troisième segment pour afficher le chiffre des dizaines, puis successivement les deuxième et premier segments pour afficher les centaines et les milliers. Grâce à une vitesse de rafraîchissement rapide, nous voyons un affichage complet des quatre chiffres.
 
 .. code-block:: python
 
     timer1 = threading.Timer(1.0, timer)  
     timer1.start()  
 
-The module, threading is the common threading module in Python，and Timer is the subclass of it.
-The prototype of code is:
+Le module threading est le module de gestion des threads en Python, et Timer est une sous-classe de celui-ci.
+Le prototype de code est :
 
 .. code-block:: python
 
     class threading.Timer(interval, function, args=[], kwargs={})
 
-After the interval, the function will be run. Here, the interval is 1.0，and the function is timer().
-start () means the Timer will start at this point.
+Après l'intervalle spécifié, la fonction est exécutée. Ici, l'intervalle est de 1,0 seconde et la fonction appelée est timer(). start() signifie que le Timer démarre à ce moment-là.
 
 .. code-block:: python
 
@@ -545,10 +537,10 @@ start () means the Timer will start at this point.
         counter += 1
         print("%d" % counter)
 
-After Timer reaches 1.0s, the Timer function is called; add 1 to counter, and the Timer is used again to execute itself repeatedly every second.
+Après que le Timer atteigne 1,0 seconde, la fonction timer() est appelée ; on ajoute 1 au compteur, et le Timer est à nouveau utilisé pour s'exécuter de manière répétée toutes les secondes.
 
 
-Phenomenon Picture
+Image du Phénomène
 -----------------------
 
 .. image:: img/image81.jpeg

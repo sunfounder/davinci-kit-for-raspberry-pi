@@ -1,32 +1,33 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes post-achat et relevez les défis techniques grâce au soutien de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des conseils et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Profitez d'un accès anticipé aux nouvelles annonces de produits et à des avant-premières.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions et cadeaux festifs** : Participez à des concours et promotions spéciales durant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Video 45: Getting Ready to Master the Raspberry Pi Camera
+
+Vidéo 45 : Se Préparer à Maîtriser la Caméra du Raspberry Pi
 =======================================================================================
 
+Dans cette vidéo, nous abordons la transition de l’OS Buster vers Bullseye sur le 
+Raspberry Pi et explorons deux méthodes d’interaction avec la caméra : la méthode 
+traditionnelle via OpenCV et la méthode moderne avec la bibliothèque PiCamera.
 
-In this video, we explore the transition from the Buster to Bullseye operating system on the Raspberry Pi and delve into two methods of interacting with the camera: 
-the Legacy method via OpenCV and the modern method using the PiCamera library.
+1. **Transition vers l'OS Bullseye** : Comprenez le passage de Buster à Bullseye sur le Raspberry Pi.
+2. **Interaction avec la caméra** : Découvrez les deux approches pour interagir avec la caméra - la méthode Legacy avec OpenCV et la méthode moderne avec la bibliothèque PiCamera.
+3. **Support Legacy de la caméra** : Démonstration de l'activation et de la désactivation du support Legacy de la caméra dans l’OS Bullseye.
+4. **Bibliothèque PiCamera** : Introduction à la bibliothèque PiCamera pour l’interaction avec la caméra.
+5. **Paramétrage de la caméra** : Apprenez à configurer les paramètres de la caméra en utilisant la bibliothèque PiCamera.
+6. **Capture d’images** : Explication sur la capture d’images avec la bibliothèque PiCamera au lieu d’OpenCV.
 
-1. **Transition to Bullseye OS**: Learn about the shift from Buster to Bullseye OS on Raspberry Pi.
-2. **Camera Interaction**: Understand the two approaches to interacting with the camera - Legacy method with OpenCV and modern method using PiCamera library.
-3. **Legacy Camera Support**: Demonstrates enabling and disabling Legacy camera support in the Bullseye OS.
-4. **PiCamera Library**: Introduction to the PiCamera library for camera interaction.
-5. **Setting up Camera Parameters**: Learn to configure camera parameters using the PiCamera library.
-6. **Grabbing Frames**: Explanation of grabbing frames using PiCamera library instead of OpenCV.
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 

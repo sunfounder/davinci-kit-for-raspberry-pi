@@ -1,36 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprenez et Partagez** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-3.1.6 Motion Control
-======================
+3.1.6 Contrôle de Mouvement
+=============================
 
 Introduction
------------------
+--------------
 
-In this lesson, we will make a simple motion sensing and controlling
-device. The MPU6050 is used as a sensor and the stepper motor as a
-controlled device. With the MPU6050 mounted on the glove, you can
-control the stepper motor by rotating your wrist.
+Dans cette leçon, nous allons créer un dispositif simple de détection et de contrôle 
+de mouvement. Le **MPU6050** est utilisé comme capteur, et le moteur pas-à-pas est 
+utilisé comme dispositif de contrôle. Avec le **MPU6050** monté sur un gant, vous pouvez 
+contrôler le moteur pas-à-pas en tournant votre poignet.
 
-Components
----------------
+Composants
+--------------
 
 .. image:: img/list_Motion_Control.png
     :align: center
 
-Schematic Diagram
---------------------------
+Schéma de câblage
+--------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -45,10 +45,11 @@ SCL1         Pin 5
 .. image:: img/Schematic_three_one6.png
    :align: center
 
-Experimental Procedures
-------------------------------
 
-**Step 1:** Build the circuit.
+Procédures expérimentales
+-----------------------------
+
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image251.png
    :alt: 3.1.6 Motion Control_bb
@@ -56,7 +57,7 @@ Experimental Procedures
    :align: center
 
 
-**Step 2**: Go to the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -66,7 +67,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.6/
 
-**Step 3**: Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -76,7 +77,7 @@ Experimental Procedures
 
     gcc 3.1.6_MotionControl.c -lwiringPi -lm
 
-**Step 4**: Run the executable file.
+**Étape 4 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -86,17 +87,18 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, if the tilt angle of **mpu6050** on the
+Lorsque le code est lancé, si l'angle d'inclinaison du **mpu6050** sur l'axe 
 `Y <https://cn.bing.com/dict/search?q=Y&FORM=BDVSP6&mkt=zh-cn>`__-`axis <https://cn.bing.com/dict/search?q=axis&FORM=BDVSP6&mkt=zh-cn>`__
-is larger than **45** ℃, the stepper motor rotates anticlockwise; if
-less than **-45** ℃, the stepper motor rotates clockwise.
+supérieur à **45** °, le moteur pas-à-pas tourne dans le sens inverse des aiguilles 
+d'une montre ; s'il est inférieur à **-45** °, le moteur tourne dans le sens des 
+aiguilles d'une montre.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur indiquant : « wiringPi.h : Aucun fichier ou répertoire de ce type », veuillez consulter :ref:`C code is not working?`.
 
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
@@ -111,7 +113,7 @@ less than **-45** ℃, the stepper motor rotates clockwise.
         return angle;
     }
 
-mpu6050 gets the tilt angle in the direction of the Y-axis.
+`mpu6050` récupère l'angle d'inclinaison dans la direction de l'axe Y.
 
 .. code-block:: c
 
@@ -120,38 +122,39 @@ mpu6050 gets the tilt angle in the direction of the Y-axis.
             for(int j=0;j<4;j++){
                 for(int i=0;i<4;i++)
                     {digitalWrite(motorPin[i],0x99>>j & (0x08>>i));}
-                delayMicroseconds(stepSpeed);
-            }        
-        }
+                delayMicroseconds(stepSpeed);
+            }        
+        }
         else if(direction =='a'){
             for(int j=0;j<4;j++){
                 for(int i=0;i<4;i++)
                     {digitalWrite(motorPin[i],0x99<<j & (0x80>>i));}
-                delayMicroseconds(stepSpeed);
-            }   
-        }
+                delayMicroseconds(stepSpeed);
+            }   
+        }
     }
 
-If the received direction **key** is \'**c**\', the stepper motor
-rotates clockwise; if the **key** is \'**a**\', the motor rotates
-anticlockwise. Refer to :ref:`1.3.3 Stepper Motor` for more details about
-the calculation of the rotating direction of the stepper motor.
+Si la direction reçue est `c`, le moteur pas-à-pas tourne dans le sens des aiguilles 
+d'une montre ; si la direction est `a`, le moteur tourne dans le sens inverse. Consultez
+:ref:`1.3.3 Stepper Motor` pour plus de détails sur le calcul de la direction de 
+rotation du moteur pas-à-pas.
 
 .. code-block:: c
 
     int main()
     {
-        setup();
+        setup();
         double angle;
         while(1) {
             angle = mpu6050();
             if (angle >=45){rotary('a');}
             else if (angle<=-45){rotary('c');}
-        }
+        }
         return 0;
     }
 
-The tilt angle in the direction of the Y-axis is read from **mpu6050**,
-and if it’s larger than **45** ℃, the stepper motor rotates
-anticlockwise; if less than **-45** ℃, the stepper motor rotates
-clockwise.
+L'angle d'inclinaison dans la direction de l'axe Y est lu depuis **mpu6050**. 
+Si l'angle est supérieur à **45°**, le moteur pas-à-pas tourne dans le sens 
+inverse des aiguilles d'une montre ; s'il est inférieur à **-45°**, le moteur 
+tourne dans le sens des aiguilles d'une montre.
+

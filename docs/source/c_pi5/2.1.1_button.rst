@@ -1,95 +1,86 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et relevez des défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des conseils et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des tirages au sort et à des promotions spéciales pour les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt(e) à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-2.1.1 Button
-============
+2.1.1 Bouton
+===============
 
 Introduction
------------------
+--------------
 
-In this lesson, we will learn how to turn on or off the LED by using a
-button.
+Dans cette leçon, nous allons apprendre à allumer ou éteindre une LED en utilisant un bouton.
 
-Components
----------------
+Composants
+------------
 
 .. image:: img/list_2.1.1_Button.png
 
 
-Principle
--------------
+Principe
+-----------
 
-**Button**
+**Bouton**
 
+Le bouton est un composant courant utilisé pour contrôler des dispositifs électroniques. 
+Il est généralement utilisé comme interrupteur pour connecter ou couper les circuits. 
+Bien qu'il existe sous différentes formes et tailles, celui que nous utilisons ici est 
+un mini-bouton de 6 mm comme montré ci-dessous.
 
-Button is a common component used to control electronic devices. It is
-usually used as switch to connect or break circuits. Although buttons
-come in a variety of sizes and shapes, the one used here is a 6mm
-mini-button as shown in the following pictures.
-
-Two pins on the left are connected, and the one on the right is similar
-to the left, which is shown below:
+Les deux broches de gauche sont connectées ensemble, et celles de droite le sont aussi, 
+comme illustré ci-dessous :
 
 .. image:: img/image148.png
     :width: 400
     :align: center
 
-The symbol shown as below is usually used to represent a button in
-circuits.
-
+Le symbole suivant est souvent utilisé pour représenter un bouton dans les circuits :
 
 .. image:: img/image301.png
     :width: 400
     :align: center
 
+Lorsque le bouton est pressé, les 4 broches sont connectées, fermant ainsi le circuit.
 
-When the button is pressed, the 4 pins are connected, thus closing the
-circuit.
+Schéma de câblage
+----------------------
 
-Schematic Diagram
----------------------
-
-Use a normally open button as the input of Raspberry Pi, the connection
-is shown in the schematic diagram below. When the button is pressed, the
-GPIO18 will turn into low level (0V). We can detect the state of the
-GPIO18 through programming. That is, if the GPIO18 turns into low level,
-it means the button is pressed. You can run the corresponding code when
-the button is pressed, and then the LED will light up.
+Utilisez un bouton normalement ouvert comme entrée pour le Raspberry Pi, le schéma de 
+câblage est illustré ci-dessous. Lorsque le bouton est pressé, le GPIO18 passera à un 
+niveau bas (0V). Nous pouvons détecter l'état du GPIO18 par programmation. Autrement dit, 
+si le GPIO18 devient bas, cela signifie que le bouton est pressé. Vous pouvez exécuter le 
+code correspondant lorsque le bouton est pressé, et ainsi la LED s'allumera.
 
 .. note::
-    The longer pin of the LED is the anode and the shorter one is
-    the cathode.
+    La broche la plus longue de la LED est l'anode, et la plus courte est la cathode.
 
 .. image:: img/image302.png
     :width: 600
     :align: center
-
 
 .. image:: img/image303.png
     :width: 400
     :align: center
 
 
-Experimental Procedures
----------------------------
+Procédures expérimentales
+------------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1** : Montez le circuit.
 
 .. image:: img/image152.png
     :width: 800
 
-**Step 2**: Open the code file.
+**Étape 2** : Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -100,9 +91,9 @@ Experimental Procedures
     cd ~/davinci-kit-for-raspberry-pi/c/2.1.1/
 
 .. note::
-    Change directory to the path of the code in this experiment via **cd**.
+    Changez de répertoire pour accéder au chemin du code de cette expérience via **cd**.
 
-**Step 3**: Compile the code.
+**Étape 3** : Compilez le code.
 
 .. raw:: html
 
@@ -112,7 +103,7 @@ Experimental Procedures
 
     gcc 2.1.1_Button.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Étape 4** : Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -122,13 +113,12 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, press the button, the LED lights up; otherwise,
-turns off.
-
+Après l'exécution du code, appuyez sur le bouton pour allumer la LED ; sinon, 
+elle s'éteint.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur indiquant : \"wiringPi.h: No such file or directory\", veuillez consulter :ref:`C code is not working?`.
 
 **Code**
 
@@ -141,7 +131,7 @@ turns off.
     #define ButtonPin   1
 
     int main(void){
-        // When initialize wiring failed, print message to screen
+        // En cas d'échec de l'initialisation de wiringPi, afficher un message à l'écran
         if(wiringPiSetup() == -1){
             printf("setup wiringPi failed !");
             return 1;
@@ -152,67 +142,62 @@ turns off.
         digitalWrite(LedPin, HIGH);
         
         while(1){
-            // Indicate that button has pressed down
+            // Indiquer que le bouton est enfoncé
             if(digitalRead(ButtonPin) == 0){
-                // Led on
+                // Allumer la LED
                 digitalWrite(LedPin, LOW);
-            //  printf("...LED on\n");
+            //  printf("...LED allumée\n");
             }
             else{
-                // Led off
+                // Éteindre la LED
                 digitalWrite(LedPin, HIGH);
-            //  printf("LED off...\n");
+            //  printf("LED éteinte...\n");
             }
         }
         return 0;
     }
 
-**Code Explanation**
+**Explication du code**
 
-.. code-block:: 
+.. code-block::
 
     #define LedPin      0
 
-Pin GPIO17 in the T_Extension Board is equal to the GPIO0 in the
-wiringPi.
+La broche GPIO17 sur la carte T_Extension est équivalente à GPIO0 dans wiringPi.
 
-.. code-block:: 
+.. code-block::
 
     #define ButtonPin   1
 
-ButtonPin is connected to GPIO1.
+ButtonPin est connecté à GPIO1.
 
-.. code-block:: 
+.. code-block::
 
     pinMode(LedPin, OUTPUT);
 
-Set LedPin as output to assign value to it.
+Définit LedPin comme sortie pour lui attribuer une valeur.
 
-.. code-block:: 
+.. code-block::
 
     pinMode(ButtonPin, INPUT);
 
-Set ButtonPin as input to read the value of ButtonPin.
+Définit ButtonPin comme entrée pour lire sa valeur.
 
-.. code-block:: C
+.. code-block:: c
 
     while(1){
-            // Indicate that button has pressed down
+            // Indiquer que le bouton est enfoncé
             if(digitalRead(ButtonPin) == 0){
-                // Led on
+                // Allumer la LED
                 digitalWrite(LedPin, LOW);
-            //  printf("...LED on\n");
+            //  printf("...LED allumée\n");
             }
             else{
-                // Led off
+                // Éteindre la LED
                 digitalWrite(LedPin, HIGH);
-            //  printf("LED off...\n");
+            //  printf("LED éteinte...\n");
             }
         }
 
-
-if (digitalRead (ButtonPin) == 0: check whether the button has been
-pressed. Execute digitalWrite(LedPin, LOW) when button is pressed to
-light up LED.
-
-
+if (digitalRead(ButtonPin) == 0): vérifier si le bouton a été enfoncé. Exécutez 
+digitalWrite(LedPin, LOW) pour allumer la LED lorsque le bouton est pressé.

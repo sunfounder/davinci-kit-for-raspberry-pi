@@ -1,47 +1,46 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez et partagez** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux nouvelles annonces de produits et avant-premières.
+    - **Réductions exclusives** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et promotions pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-2.1.3 Tilt Switch
+2.1.3 Interrupteur à bascule
 =================
 
 Introduction
 ------------
 
-This is a ball tilt-switch with a metal ball inside. It is used to
-detect inclinations of a small angle.
+Il s'agit d'un interrupteur à bascule avec une bille métallique à l'intérieur. Il est utilisé pour détecter des inclinaisons de petits angles.
 
-Components
-----------
+Composants
+------------
 
 .. image:: img/list_2.1.3_tilt_switch.png
 
 
-Principle
----------
+Principe
+-----------
 
-**Tilt**
+**Interrupteur à bascule**
 
-The principle is very simple. When the switch is tilted in a certain
-angle, the ball inside rolls down and touches the two contacts connected
-to the pins outside, thus triggering circuits. Otherwise the ball will
-stay away from the contacts, thus breaking the circuits.
+Le principe est très simple. Lorsque l'interrupteur est incliné à un certain angle, 
+la bille à l'intérieur roule et touche les deux contacts reliés aux broches extérieures, 
+déclenchant ainsi les circuits. Sinon, la bille reste éloignée des contacts, interrompant 
+ainsi les circuits.
 
 .. image:: img/image167.png
 
 
-Schematic Diagram
------------------
+Schéma électrique
+---------------------
 
 .. image:: img/image307.png
 
@@ -49,20 +48,20 @@ Schematic Diagram
 .. image:: img/image308.png
 
 
-Experimental Procedures
------------------------
+Procédure expérimentale
+--------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image169.png
     :width: 800
 
 
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
+Pour les utilisateurs du langage C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Change directory.
+**Étape 2 :** Changez de répertoire.
 
 .. raw:: html
 
@@ -72,7 +71,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.1.3/
 
-**Step 3:** Compile.
+**Étape 3 :** Compilez.
 
 .. raw:: html
 
@@ -82,7 +81,7 @@ For C Language Users
 
     gcc 2.1.3_Tilt.c -lwiringPi
 
-**Step 4:** Run.
+**Étape 4 :** Exécutez.
 
 .. raw:: html
 
@@ -92,14 +91,13 @@ For C Language Users
 
     sudo ./a.out
 
-Place the tilt horizontally, and the green LED will turns on. If you
-tilt it, \"Tilt!\" will be printed on the screen and the red LED will
-lights on. Place it horizontally again, and the green LED will turns on
-again.
+Placez l'interrupteur horizontalement et la LED verte s'allumera. Si vous 
+l'inclinez, "Tilt!" sera imprimé à l'écran et la LED rouge s'allumera. 
+Replacez-le horizontalement et la LED verte se rallumera.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution ou s'il y a un message d'erreur : \"wiringPi.h: Aucun fichier ou répertoire de ce type", veuillez consulter :ref:`C code is not working?`.
 
 **Code**
 
@@ -132,7 +130,7 @@ again.
 
     int main(void)
     {
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ //quand l'initialisation de wiring échoue, afficher un message à l'écran
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -158,8 +156,7 @@ again.
         }
         return 0;
     }
-
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: c
 
@@ -181,9 +178,9 @@ again.
             printf("LED Error");
     }
 
-Define a function LED() to turn the two LEDs on or off. If the parameter
-color is RED, the red LED lights up; similarly, if the parameter color
-is GREEN, the green LED will turns on.
+Définissez une fonction LED() pour allumer ou éteindre les deux LED. Si le 
+paramètre `color` est "RED", la LED rouge s'allume; de même, si le paramètre 
+`color` est "GREEN", la LED verte s'allume.
 
 .. code-block:: c
 
@@ -203,14 +200,14 @@ is GREEN, the green LED will turns on.
             }
         }
 
-If the read value of tilt switch is 0, it means that the tilt switch is
-tilted then you write the parameter \"RED\" into function LED to get the
-red LED lighten up; otherwise, the green LED will lit.
+Si la valeur lue de l'interrupteur d'inclinaison est 0, cela signifie que 
+l'interrupteur est incliné, puis vous transmettez le paramètre "RED" à la 
+fonction LED pour allumer la LED rouge; sinon, la LED verte s'allume.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Pour les utilisateurs de Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Change directory.
+**Étape 2 :** Changez de répertoire.
 
 .. raw:: html
 
@@ -220,7 +217,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -230,15 +227,15 @@ For Python Language Users
 
     sudo python3 2.1.3_Tilt.py
 
-Place the tilt horizontally, and the green LED will turns on. If you
-tilt it, \"Tilt!\" will be printed on the screen and the red LED will
-turns on. Place it horizontally again, and the green LED will lights on.
+Placez l'inclinaison horizontalement, et la LED verte s'allume. Si vous 
+l'inclinez, "Incliné!" sera imprimé à l'écran et la LED rouge s'allumera. 
+Replacez-le horizontalement, et la LED verte se rallumera.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin du code source comme ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -288,6 +285,7 @@ turns on. Place it horizontally again, and the green LED will lights on.
         lengths = []
         current_length = 0
 
+
         for current in data:
             current_length += 1
 
@@ -319,7 +317,7 @@ turns on. Place it horizontally again, and the green LED will lights on.
                 else:
                     continue
         if len(lengths) != 40:
-            #print ("Data not good, skip")
+            #print ("Données incorrectes, saut")
             return False
 
         shortest_pull_up = min(lengths)
@@ -347,7 +345,7 @@ turns on. Place it horizontally again, and the green LED will lights on.
         #print (the_bytes)
         checksum = (the_bytes[0] + the_bytes[1] + the_bytes[2] + the_bytes[3]) & 0xFF
         if the_bytes[4] != checksum:
-            #print ("Data not good, skip")
+            #print ("Données incorrectes, saut")
             return False
 
         return the_bytes[0], the_bytes[2]
@@ -368,15 +366,15 @@ turns on. Place it horizontally again, and the green LED will lights on.
         try:
             main()
         except KeyboardInterrupt:
-            destroy() 
+            destroy()
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
     GPIO.add_event_detect(TiltPin, GPIO.BOTH, callback=detect, bouncetime=200)
 
-Set up a detect on TiltPin, and callback function to detect.
+Configure une détection sur le TiltPin avec une fonction de rappel, `detect`.
 
 .. code-block:: python
 
@@ -388,8 +386,7 @@ Set up a detect on TiltPin, and callback function to detect.
             GPIO.output(Rpin, 0)
             GPIO.output(Gpin, 1)
 
-Define a function Led() to turn the two LEDs on or off. If x=0, the red
-LED lights up; otherwise, the green LED will be lit.
+Définissez une fonction Led() pour allumer ou éteindre les deux LED. Si `x=0`, la LED rouge s'allume ; sinon, la LED verte s'allume.
 
 .. code-block:: python
 
@@ -399,7 +396,7 @@ LED lights up; otherwise, the green LED will be lit.
             print ('    *   Tilt!   *')
             print ('    *************')
 
-Create a function, Print() to print the characters above on the screen.
+Créez une fonction, Print(), pour afficher le message ci-dessus à l'écran.
 
 .. code-block:: python
 
@@ -407,13 +404,11 @@ Create a function, Print() to print the characters above on the screen.
         Led(GPIO.input(TiltPin))
         Print(GPIO.input(TiltPin))
 
-Define a callback function for tilt callback. Get the read value of the
-tilt switch then the function Led（） controls the turning on or off of
-the two LEDs that is depended on the read value of the tilt switch.
+Définissez une fonction de rappel pour la détection d'inclinaison. Récupérez la 
+valeur lue de l'interrupteur d'inclinaison, puis la fonction Led() contrôle 
+l'allumage ou l'extinction des deux LED en fonction de cette valeur.
 
-Phenomenon Picture
-------------------
+Image du phénomène
+------------------------
 
 .. image:: img/image170.jpeg
-
-

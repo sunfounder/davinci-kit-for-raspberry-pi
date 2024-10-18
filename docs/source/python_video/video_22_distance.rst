@@ -1,42 +1,41 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, d'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et à des aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions spéciales lors des périodes de fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 
-Video 22: Measuring Distance with the HC-SR04 Ultrasonic Sensor
+Vidéo 22 : Mesurer la distance avec le capteur ultrasonique HC-SR04
 =======================================================================================
 
-
-Learn how to measure distance using the HC-SR04 ultrasonic sensor with a Raspberry Pi, 
-including wiring, coding, and unit conversion. Explore troubleshooting tips, 
-understand distance measurement principles, discover practical applications, 
-and receive a homework assignment to measure the speed of sound experimentally.
-
-
-1. **Introduction**: Overview of the tutorial and sponsorship acknowledgment.
-2. **Previous Assignment**: Recap of the HC-SR04 sensor assignment from the previous lesson.
-3. **Setup and Wiring**: Explanation of the wiring setup, including connection to the Raspberry Pi.
-4. **Code Explanation**: Understanding the code for measuring ping travel time and distance.
-5. **Troubleshooting**: Tips for identifying and fixing coding errors.
-6. **Understanding distance measurement**: Explanation of ultrasonic sensor principles.
-7. **Correction factor**: Recognizing the correction needed for accurate distance measurement.
-8. **Unit Conversion**: Discussion on converting units for accurate measurement.
-9. **Practical applications**: Exploring real-world uses of ultrasonic sensors.
-10. **Fusion 360 integration**: Encouragement to combine Raspberry Pi skills with 3D printing knowledge.
-11. **Homework assignment**: Challenge to experimentally measure the speed of sound using the sensor.
+Apprenez à mesurer la distance en utilisant le capteur ultrasonique HC-SR04 avec un 
+Raspberry Pi, en couvrant le câblage, le codage et la conversion des unités. Explorez 
+des conseils de dépannage, comprenez les principes de la mesure de distance, découvrez 
+des applications pratiques, et recevez un devoir pour mesurer expérimentalement la 
+vitesse du son.
 
 
-**Video**
+1. **Introduction** : Présentation du tutoriel et remerciements aux sponsors.
+2. **Exercice précédent** : Récapitulatif de l'exercice sur le capteur HC-SR04 de la leçon précédente.
+3. **Configuration et câblage** : Explication de la configuration du câblage, y compris la connexion au Raspberry Pi.
+4. **Explication du code** : Comprendre le code pour mesurer le temps de trajet de l'onde ultrasonique et la distance.
+5. **Dépannage** : Conseils pour identifier et corriger les erreurs de codage.
+6. **Compréhension de la mesure de distance** : Explication des principes de fonctionnement des capteurs ultrasoniques.
+7. **Facteur de correction** : Reconnaître l'ajustement nécessaire pour une mesure de distance précise.
+8. **Conversion des unités** : Discussion sur la conversion des unités pour une mesure précise.
+9. **Applications pratiques** : Exploration des utilisations réelles des capteurs ultrasoniques.
+10. **Intégration avec Fusion 360** : Encouragement à combiner les compétences acquises sur le Raspberry Pi avec des connaissances en impression 3D.
+11. **Devoir** : Défi visant à mesurer expérimentalement la vitesse du son en utilisant le capteur.
+
+**Vidéo**
 
 .. raw:: html
 

@@ -1,34 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprenez et Partagez** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-3.1.7 Traffic Light
-=====================
+3.1.7 Feu Tricolore
+=======================
 
 Introduction
----------------
+-------------
 
-In this project, we will use LED lights of three colors to realize the
-change of traffic lights and a four-digit 7-segment display will be used
-to display the timing of each traffic state.
+Dans ce projet, nous allons utiliser des LEDs de trois couleurs pour simuler le 
+changement de feux de signalisation, et un afficheur 7 segments à quatre chiffres 
+pour afficher le décompte de chaque état du feu.
 
-Components
-------------
+Composants
+-------------
 
 .. image:: img/list_Traffic_Light.png
     :align: center
 
-Schematic Diagram
+
+Schéma de câblage
 --------------------
 
 ============ ======== ======== ===
@@ -48,16 +49,17 @@ SPICE1       Pin 26   11       7
 .. image:: img/Schematic_three_one7.png
    :align: center
 
-Experimental Procedures
-------------------------
 
-**Step 1:** Build the circuit.
+Procédures expérimentales
+-----------------------------
+
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image254.png
    :width: 800
 
 
-**Step 2:** Change directory.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -67,7 +69,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.7/
 
-**Step 3:** Compile.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -77,7 +79,7 @@ Experimental Procedures
 
     gcc 3.1.7_TrafficLight.c -lwiringPi
 
-**Step 4:** Run.
+**Étape 4 :** Exécutez le fichier.
 
 .. raw:: html
 
@@ -87,18 +89,17 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, LEDs will simulate the color changing of traffic
-lights. Firstly, the red LED lights up for 60s, then the green LED
-lights up for 30s; next, the yellow LED lights up for 5s. After that,
-the red LED lights up for 60s once again. In this way, this series of
-actions will be executed repeatedly.
+Lorsque le programme est lancé, les LEDs simuleront le changement de couleurs des 
+feux tricolores. Tout d'abord, la LED rouge s'allume pendant **60s**, puis la LED 
+verte s'allume pendant **30s**, suivie de la LED jaune pendant **5s**. Ensuite, la 
+LED rouge s'allume à nouveau pour **60s**. Cette série d'actions sera répétée en boucle.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur indiquant : \"wiringPi.h: Aucun fichier ou répertoire de ce type », veuillez consulter :ref:`C code is not working?`.
 
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
@@ -114,9 +115,10 @@ actions will be executed repeatedly.
     void clearDisplay();
     void display();
 
-These codes are used to realize the function of number display of 4-Digit 7-Segment 
-Displays. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` of the document for more details. Here, we use the 
-codes to display countdown of traffic light time.
+Ces fonctions servent à afficher les numéros sur un afficheur 7 segments à quatre 
+chiffres. Reportez-vous à la section :ref:`1.1.5 Afficheur 7 segments à 4 chiffres` 
+pour plus de détails. Ici, les codes permettent d'afficher le décompte du temps du 
+feu tricolore.
 
 .. code-block:: c
 
@@ -132,7 +134,7 @@ codes to display countdown of traffic light time.
         digitalWrite(ledPin[colorState],LOW);    
     }
 
-The codes are used to switch the LED on and off.
+Ces lignes contrôlent l'allumage et l'extinction des LEDs.
 
 .. code-block:: c
 
@@ -143,7 +145,7 @@ The codes are used to switch the LED on and off.
     char *lightColor[]={"Red","Green","Yellow"};
     int counter = 60;
 
-    void timer(int  timer1){       //Timer function
+    void timer(int  timer1){       // Fonction de minuteur
         if(timer1 == SIGALRM){   
             counter --;         
             alarm(1); 
@@ -157,9 +159,10 @@ The codes are used to switch the LED on and off.
         }
     }
 
-The codes are used to switch the timer on and off. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` for more details. Here, when the timer returns to zero, colorState
-will be switched so as to switch LED, and the timer will be assigned to
-a new value.
+Ce code active ou désactive le minuteur. Reportez-vous à la section
+ :ref:`1.1.5 4-Digit 7-Segment Display` pour plus de détails. Lorsque 
+ le compteur atteint zéro, `colorState` change, ce qui permet de changer 
+ la LED et d'attribuer une nouvelle valeur au minuteur.
 
 .. code-block:: c
 
@@ -180,5 +183,7 @@ a new value.
         return 0;
     }
 
-The timer is started in the main() function. In loop() function, use
-**while(1)** loop and call the functions of 4-Digit 7-Segment and LED.
+Le minuteur est démarré dans la fonction **main()**. Dans la fonction **loop()**, 
+une boucle `while(1)` est utilisée pour appeler les fonctions de l'afficheur 7 
+segments et des LEDs.
+

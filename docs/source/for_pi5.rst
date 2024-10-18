@@ -1,26 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus exclusifs.
+    - **Remises spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et promotions pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-For Pi 5
+Pour le Pi 5
 ============================
 
-The release of the Raspberry Pi 5 has brought us a more powerful model, but it also introduced some changes, 
-most notably to the GPIO.Although it retains its standard 40-pin interface, functionality has shifted due to 
-its connection with the newly integrated RP1 southbridge chip. This custom RP1 chip now handles peripherals 
-on the Pi 5 and has resulted in various compatibility concerns.Currently, only the GPIO Zero library, maintained 
-officially by the Raspberry Pi organization, is fully compatible. We have developed a series of courses 
-specifically focused on this library.
+La sortie du Raspberry Pi 5 nous a apporté un modèle plus puissant, mais elle 
+a également introduit quelques changements, notamment au niveau du GPIO. Bien 
+qu'il conserve son interface standard à 40 broches, la fonctionnalité a évolué 
+en raison de sa connexion avec la nouvelle puce southbridge RP1 intégrée. Cette 
+puce RP1 personnalisée gère désormais les périphériques sur le Pi 5 et a entraîné 
+diverses préoccupations en matière de compatibilité. Actuellement, seule la 
+bibliothèque GPIO Zero, maintenue officiellement par l'organisation Raspberry Pi, 
+est entièrement compatible. Nous avons développé une série de cours spécialement 
+axés sur cette bibliothèque.
 
 .. toctree::
     :maxdepth: 1
@@ -29,22 +32,19 @@ specifically focused on this library.
     c_pi5/play_with_c
     scratch_pi5/play_with_scratch
 
-
-For compatibility issues with other programming languages, please see the detailed information below:
-
+Pour les problèmes de compatibilité avec d'autres langages de programmation, veuillez consulter les informations détaillées ci-dessous :
 
 **Processing**
 
-When using Processing 4 on Raspberry Pi 5, GPIO programming encounters challenges. Errors such as "Invalid argument" and "GPIO pin 17 seems to be unavailable on your platform" arise during the execution of GPIO-related code (as depicted in the accompanying image). For further details, visit: https://github.com/benfry/processing4/issues/807
+Lorsque vous utilisez Processing 4 sur Raspberry Pi 5, la programmation GPIO rencontre des difficultés. Des erreurs telles que "Invalid argument" et "GPIO pin 17 seems to be unavailable on your platform" apparaissent lors de l'exécution de code lié au GPIO (comme illustré sur l'image ci-jointe). Pour plus de détails, rendez-vous sur : https://github.com/benfry/processing4/issues/807
 
 .. image:: img/pi5_processing.png
 
 **Node.js**
 
-Node.js utilizes the pigpio library, which, as of now, does not support Raspberry Pi 5. For more insights, visit: https://github.com/joan2937/pigpio/issues/589
+Node.js utilise la bibliothèque pigpio, qui, à ce jour, ne prend pas en charge le Raspberry Pi 5. Pour plus d'informations, visitez : https://github.com/joan2937/pigpio/issues/589
 
 .. image:: img/pi5_nodejs.png
     :width: 700
 
-
-On a 64-bit system, the importation of the Raspberry Pi GPIO library faces issues, leading to unresponsiveness. For more information, visit: https://github.com/raspberrypi/bookworm-feedback/issues/91.
+Sur un système 64 bits, l'importation de la bibliothèque GPIO du Raspberry Pi pose des problèmes, entraînant une absence de réponse. Pour plus d'informations, visitez : https://github.com/raspberrypi/bookworm-feedback/issues/91.

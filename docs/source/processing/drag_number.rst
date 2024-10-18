@@ -1,30 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Assistance experte** : Résolvez vos problèmes après-vente et relevez des défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et bénéficiez de sneak peeks.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions et cadeaux festifs** : Participez à des promotions spéciales et à des tirages au sort.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
 
 Drag Number
 ================================================
 
-Let's draw a slider bar to control the 7-segment Display.
+Dessinez une barre de défilement pour contrôler l'affichage à 7 segments.
 
 .. image:: img/drag_servo.png
-	
+    
 
-**Wiring**
+**Câblage**
 
 .. image:: img/image125.png
 
-**Sketch**
+**Code**
 
 .. code-block:: arduino
 
@@ -42,19 +42,19 @@ Let's draw a slider bar to control the 7-segment Display.
     int[] SegCode= {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
 
     void hc595_shift(int dat){
-    int i;
+        int i;
 
     for(i=0;i<8;i++){
         int n=(0x80 & (dat << i)); 
         if ( n==0){
-        GPIO.digitalWrite(SDI, 0);
-        } else {
-        GPIO.digitalWrite(SDI, 1);
+                GPIO.digitalWrite(SDI, 0);
+            } else {
+                GPIO.digitalWrite(SDI, 1);
+            }
+            GPIO.digitalWrite(SRCLK, 1);
+            delay(1);
+            GPIO.digitalWrite(SRCLK, 0);
         }
-        GPIO.digitalWrite(SRCLK, 1);
-        delay(1);
-        GPIO.digitalWrite(SRCLK, 0);
-    }
 
         GPIO.digitalWrite(RCLK, 1);
         delay(1);
@@ -133,7 +133,6 @@ Let's draw a slider bar to control the 7-segment Display.
         }
     }
 
-**How it works?**
+**Comment ça marche ?**
 
-This project integrates the Slider and 7-segment Display of the previous course. For specific knowledge points, please refer to :ref:`Show Number` and :ref:`Metronome`.  
-
+Ce projet intègre le curseur et l'affichage à 7 segments abordés dans le cours précédent. Pour plus de détails sur ces points spécifiques, veuillez consulter les sections :ref:`Show Number` et :ref:`Metronome`.

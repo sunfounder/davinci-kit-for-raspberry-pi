@@ -1,42 +1,41 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes post-achat et surmontez les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprenez et Partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Profitez d'un accès anticipé aux annonces de nouveaux produits et de leurs avant-premières.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et concours** : Participez à nos concours et à nos offres spéciales lors des événements festifs.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Video 64: Object Detection on Raspberry Pi Using Tensorflow Lite
+
+Vidéo 64 : Détection d'objets sur Raspberry Pi avec TensorFlow Lite
 =======================================================================================
 
+Cette vidéo compare deux approches différentes pour mettre en place la détection d'objets 
+sur un Raspberry Pi : l'une utilisant TensorFlow Lite et l'autre utilisant OpenCV avec 
+TensorFlow. La première partie du tutoriel montre comment configurer TensorFlow Lite pour 
+la détection d'objets sur un Raspberry Pi, en abordant l'installation, la configuration de 
+la caméra et la mise en place du détecteur d'objets. La seconde partie se concentre sur la 
+configuration de la détection d'objets avec OpenCV et TensorFlow, en explorant divers 
+paramètres, la conversion des images, la création d'images tensor, la détection d'objets, 
+la visualisation et l'exploration de la caméra.
+
+1. **Introduction** à la détection d'objets sur Raspberry Pi en utilisant TensorFlow Lite et OpenCV avec TensorFlow.
+2. **Configuration de l'environnement** : Installation des dépendances et des bibliothèques nécessaires pour chaque approche.
+3. **Configuration des caméras** : Paramétrage de la caméra Raspberry Pi et de la webcam pour la capture d'images.
+4. **Mise en place de la détection d'objets** : Définition des paramètres et des seuils pour détecter les objets dans les images.
+5. **Conversion d'images et création de tensors** : Conversion des images dans des formats compatibles et création d'images tensor pour le traitement avec TensorFlow.
+6. **Exécution de la détection d'objets** : Utilisation des modèles TensorFlow pour détecter les objets dans les images.
+7. **Visualisation des résultats** : Affichage des résultats de détection sur les images d'origine avec des cadres et des étiquettes.
+8. **Exploration des caméras** : Évaluation des performances de détection avec différentes caméras et ajustement des paramètres en conséquence.
 
 
-This video compares two different approaches for setting up object detection on a Raspberry Pi: 
-one using TensorFlow Lite and the other using OpenCV with TensorFlow. In the first tutorial, 
-viewers learn to set up TensorFlow Lite for object detection on a Raspberry Pi, covering installation, 
-camera configuration, and object detector setup. The second tutorial focuses on setting up object detection using OpenCV and TensorFlow, 
-exploring various parameters, image conversion, tensor image creation, object detection, visualization, and camera exploration.
-
-
-1. Introduction to object detection on Raspberry Pi using TensorFlow Lite and OpenCV with TensorFlow.
-2. Setting up the environment: Installing necessary dependencies and libraries for each approach.
-3. Configuring cameras: Setting up Raspberry Pi camera and webcam for image capture.
-4. Object detection setup: Configuring parameters and thresholds for detecting objects in images.
-5. Image conversion and tensor creation: Converting images to compatible formats and creating tensor images for TensorFlow processing.
-6. Running object detection: Utilizing TensorFlow models for detecting objects in images.
-7. Visualizing results: Displaying detection results on original images with bounding boxes and labels.
-8. Camera exploration: Assessing the performance of object detection with different cameras and adjusting parameters accordingly.
-
-
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 

@@ -1,32 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans le monde du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques grâce à notre communauté et notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des promotions spéciales et à des tirages au sort.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. _1.1.3_py_pi5:
 
-1.1.3 LED Bar Graph
-======================
+1.1.3 Graphique à LED
+=========================
 
 Introduction
--------------
+---------------
 
-In this project, we sequentially illuminate the lights on the LED Bar
-Graph.
+Dans ce projet, nous allons allumer séquentiellement les lumières sur le graphique à LED.
 
-Required Components
-------------------------------
+Composants nécessaires
+-------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous aurons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/1.1.3_led_bar_list.png
 
@@ -34,8 +33,8 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
--------------------------
+Schéma de câblage
+-----------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -53,18 +52,18 @@ GPIO21       Pin 40   29       21
 
 .. image:: ../python_pi5/img/1.1.3_LedBarGraph_schematic.png
 
-Experimental Procedures
-------------------------------
+Procédure expérimentale
+----------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1** : Construisez le circuit.
 
 .. note::
 
-    Pay attention to the direction when connecting. If you connect it backwards, it will not light up.
+    Faites attention au sens de connexion. Si vous branchez à l'envers, la LED ne s'allumera pas.
 
 .. image:: ../python_pi5/img/1.1.3_LedBarGraph_circuit.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2** : Accédez au dossier du code.
 
 .. raw:: html
 
@@ -74,7 +73,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3**: Run the executable file.
+**Étape 3** : Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -84,18 +83,17 @@ Experimental Procedures
 
     sudo python3 1.1.3_LedBarGraph_zero.py
 
-After the code runs, you will see the LEDs on the LED bar turn on and
-off regularly.
+Après l'exécution du code, vous verrez les LED du graphique à LED s'allumer et s'éteindre de manière séquentielle.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si un message d'erreur apparaît tel que ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`. 
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin source du code comme ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification, vous pouvez l'exécuter directement pour observer le résultat.
 
 .. raw:: html
 
@@ -107,59 +105,59 @@ off regularly.
    from gpiozero import LED
    from time import sleep
 
-   # Define GPIO pins where LEDs are connected
+   # Définir les broches GPIO où les LED sont connectées
    led_pins = [18, 23, 24, 25, 8, 7, 12, 16, 20, 21]
 
-   # Create LED objects for each pin
+   # Créer des objets LED pour chaque broche
    leds = [LED(pin) for pin in led_pins]
 
    def odd_led_bar_graph():
-       # Sequentially light up odd-numbered LEDs (index 0, 2, 4, etc.)
+       # Allumer séquentiellement les LED impaires (index 0, 2, 4, etc.)
        for i in range(5):
-           j = i * 2  # Calculate odd index
-           leds[j].on()  # Turn on odd-numbered LED
-           sleep(0.3)    # Delay for visual effect
-           leds[j].off() # Turn off LED
+           j = i * 2  # Calculer l'index impair
+           leds[j].on()  # Allumer la LED impaire
+           sleep(0.3)    # Attendre pour effet visuel
+           leds[j].off() # Éteindre la LED
 
    def even_led_bar_graph():
-       # Sequentially light up even-numbered LEDs (index 1, 3, 5, etc.)
+       # Allumer séquentiellement les LED paires (index 1, 3, 5, etc.)
        for i in range(5):
-           j = i * 2 + 1  # Calculate even index
-           leds[j].on()   # Turn on even-numbered LED
-           sleep(0.3)     # Delay for visual effect
-           leds[j].off()  # Turn off LED
+           j = i * 2 + 1  # Calculer l'index pair
+           leds[j].on()   # Allumer la LED paire
+           sleep(0.3)     # Attendre pour effet visuel
+           leds[j].off()  # Éteindre la LED
 
    def all_led_bar_graph():
-       # Sequentially light up all LEDs one by one
+       # Allumer séquentiellement toutes les LED une par une
        for led in leds:
-           led.on()       # Turn on LED
-           sleep(0.3)     # Delay for visual effect
-           led.off()      # Turn off LED
+           led.on()       # Allumer la LED
+           sleep(0.3)     # Attendre pour effet visuel
+           led.off()      # Éteindre la LED
 
    def turn_off_all_leds():
-       # Turn off all LEDs at once
+       # Éteindre toutes les LED à la fois
        for led in leds:
            led.off()
 
    try:
-       # Main loop to cycle through LED patterns
+       # Boucle principale pour parcourir les motifs de LED
        while True:
-           odd_led_bar_graph()   # Activate odd-numbered LEDs
-           sleep(0.3)            # Pause between patterns
-           even_led_bar_graph()  # Activate even-numbered LEDs
-           sleep(0.3)            # Pause between patterns
-           all_led_bar_graph()   # Activate all LEDs
-           sleep(0.3)            # Pause before restarting
+           odd_led_bar_graph()   # Activer les LED impaires
+           sleep(0.3)            # Pause entre les motifs
+           even_led_bar_graph()  # Activer les LED paires
+           sleep(0.3)            # Pause entre les motifs
+           all_led_bar_graph()   # Activer toutes les LED
+           sleep(0.3)            # Pause avant de recommencer
 
    except KeyboardInterrupt:
-       # Handle interruption (Ctrl+C) gracefully
-       turn_off_all_leds()      # Ensure all LEDs are turned off on exit
+       # Gérer l'interruption (Ctrl+C) proprement
+       turn_off_all_leds()      # Assurez-vous que toutes les LED sont éteintes à la sortie
        pass
 
 
-**Code Explanation**
+**Explication du code**
 
-#. These lines import the necessary classes and functions. ``LED`` from ``gpiozero`` for LED control and ``sleep`` from ``time`` for delays.
+#. Ces lignes importent les classes et fonctions nécessaires. ``LED`` de ``gpiozero`` pour le contrôle des LED et ``sleep`` de ``time`` pour les délais.
 
    .. code-block:: python
 
@@ -167,68 +165,68 @@ off regularly.
        from gpiozero import LED
        from time import sleep
 
-#. The ``led_pins`` list contains the GPIO pin numbers. ``leds`` is a list of ``LED`` objects, each corresponding to a pin in ``led_pins``.
+#. La liste ``led_pins`` contient les numéros de broche GPIO. ``leds`` est une liste d'objets ``LED``, chacun correspondant à une broche de ``led_pins``.
 
    .. code-block:: python
 
-       # Define GPIO pins where LEDs are connected
+       # Définir les broches GPIO où les LED sont connectées
        led_pins = [18, 23, 24, 25, 8, 7, 12, 16, 20, 21]
 
-       # Create LED objects for each pin
+       # Créer des objets LED pour chaque broche
        leds = [LED(pin) for pin in led_pins]
 
-#. Let the LED on the odd digit of the LED Bar Graph light on in turn.
+#. Faire en sorte que les LED impaires s'allument tour à tour.
 
    .. code-block:: python
 
        def odd_led_bar_graph():
-           # Sequentially light up odd-numbered LEDs (index 0, 2, 4, etc.)
+           # Allumer séquentiellement les LED impaires (index 0, 2, 4, etc.)
            for i in range(5):
-               j = i * 2  # Calculate odd index
-               leds[j].on()  # Turn on odd-numbered LED
-               sleep(0.3)    # Delay for visual effect
-               leds[j].off() # Turn off LED
+               j = i * 2  # Calculer l'index impair
+               leds[j].on()  # Allumer la LED impaire
+               sleep(0.3)    # Attendre pour effet visuel
+               leds[j].off() # Éteindre la LED
 
-#. Make the LED on the even digit of the LED Bar Graph light on in turn.
+#. Faire en sorte que les LED paires s'allument tour à tour.
 
    .. code-block:: python
 
        def even_led_bar_graph():
-           # Sequentially light up even-numbered LEDs (index 1, 3, 5, etc.)
+           # Allumer séquentiellement les LED paires (index 1, 3, 5, etc.)
            for i in range(5):
-               j = i * 2 + 1  # Calculate even index
-               leds[j].on()   # Turn on even-numbered LED
-               sleep(0.3)     # Delay for visual effect
-               leds[j].off()  # Turn off LED
+               j = i * 2 + 1  # Calculer l'index pair
+               leds[j].on()   # Allumer la LED paire
+               sleep(0.3)     # Attendre pour effet visuel
+               leds[j].off()  # Éteindre la LED
 
-#. Let the LED on the LED Bar Graph light on one by one.
+#. Faire en sorte que toutes les LED s'allument tour à tour.
 
    .. code-block:: python
 
        def all_led_bar_graph():
-           # Sequentially light up all LEDs one by one
+           # Allumer séquentiellement toutes les LED une par une
            for led in leds:
-               led.on()       # Turn on LED
-               sleep(0.3)     # Delay for visual effect
-               led.off()      # Turn off LED
+               led.on()       # Allumer la LED
+               sleep(0.3)     # Attendre pour effet visuel
+               led.off()      # Éteindre la LED
 
-#.  The ``while True`` loop continuously cycles through the LED patterns. The ``except`` block handles a KeyboardInterrupt (Ctrl+C), ensuring all LEDs are turned off on exit.
+#. La boucle ``while True`` parcourt continuellement les motifs de LED. Le bloc ``except`` gère une interruption clavier (Ctrl+C) et s'assure que toutes les LED sont éteintes à la sortie.
 
    .. code-block:: python
 
        try:
-           # Main loop to cycle through LED patterns
+           # Boucle principale pour parcourir les motifs de LED
            while True:
-               odd_led_bar_graph()   # Activate odd-numbered LEDs
-               sleep(0.3)            # Pause between patterns
-               even_led_bar_graph()  # Activate even-numbered LEDs
-               sleep(0.3)            # Pause between patterns
-               all_led_bar_graph()   # Activate all LEDs
-               sleep(0.3)            # Pause before restarting
+               odd_led_bar_graph()   # Activer les LED impaires
+               sleep(0.3)            # Pause entre les motifs
+               even_led_bar_graph()  # Activer les LED paires
+               sleep(0.3)            # Pause entre les motifs
+               all_led_bar_graph()   # Activer toutes les LED
+               sleep(0.3)            # Pause avant de recommencer
 
        except KeyboardInterrupt:
-           # Handle interruption (Ctrl+C) gracefully
-           turn_off_all_leds()      # Ensure all LEDs are turned off on exit
+           # Gérer l'interruption (Ctrl+C) proprement
+           turn_off_all_leds()      # Assurez-vous que toutes les LED sont éteintes à la sortie
            pass
 
 

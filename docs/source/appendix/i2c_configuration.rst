@@ -1,25 +1,24 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez au cœur de l’univers Raspberry Pi, Arduino et ESP32 en compagnie d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour approfondir vos compétences.
+    - **Aperçus exclusifs** : Profitez d’un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Bénéficiez de remises exclusives sur nos produits les plus récents.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
 
 .. _i2c_config:
 
 I2C Configuration
 -----------------------
 
-**Step 1**: Enable the I2C port of your Raspberry Pi (If you have
-enabled it, skip this; if you do not know whether you have done that or
-not, please continue).
+**Étape 1 :** Activez le port I2C de votre Raspberry Pi (Si vous l’avez déjà activé, 
+ignorez cette étape ; si vous ne savez pas si c’est le cas, veuillez continuer).
 
 .. raw:: html
 
@@ -29,7 +28,7 @@ not, please continue).
 
     sudo raspi-config
 
-**3 Interfacing options**
+**3 Options d'interfaçage**
 
 .. image:: img/image282.png
     :align: center
@@ -39,12 +38,12 @@ not, please continue).
 .. image:: img/I4i2c.jpeg
     :align: center
 
-**<Yes>, then <Ok> -> <Finish>**
+**<Oui>, puis <Ok> -> <Terminer>**
 
 .. image:: img/image284.png
     :align: center
 
-**Step 2:** Check whether the i2c modules are loaded and active.
+**Étape 2 :** Vérifiez si les modules i2c sont chargés et actifs.
 
 .. raw:: html
 
@@ -54,14 +53,14 @@ not, please continue).
 
     lsmod | grep i2c
 
-Then the following codes will appear (the number may be different), if it does not appear, please reboot the Raspberry Pi with ``sudo reboot``.
+Si les lignes suivantes apparaissent (les numéros peuvent varier), cela signifie que les modules sont actifs. Si ce n'est pas le cas, redémarrez le Raspberry Pi avec ``sudo reboot``.
 
 .. code-block:: 
 
     i2c_dev                     6276    0
     i2c_bcm2708                 4121    0
 
-**Step 3:** Install i2c-tools.
+**Étape 3 :** Installez i2c-tools.
 
 .. raw:: html
 
@@ -71,8 +70,7 @@ Then the following codes will appear (the number may be different), if it does n
 
     sudo apt-get install i2c-tools
 
-**Step 4:** Check the address of the I2C device.
-
+**Étape 4 :** Vérifiez l’adresse du périphérique I2C.
 
 .. raw:: html
 
@@ -80,7 +78,7 @@ Then the following codes will appear (the number may be different), if it does n
   
 .. code-block:: 
 
-    i2cdetect -y 1      # For Raspberry Pi 2 and higher version
+    i2cdetect -y 1      # Pour Raspberry Pi 2 et versions ultérieures
 
 
 
@@ -90,27 +88,27 @@ Then the following codes will appear (the number may be different), if it does n
  
 .. code-block:: 
 
-    i2cdetect -y 0      # For Raspberry Pi 1
+    i2cdetect -y 0      # Pour Raspberry Pi 1
 
 
 .. code-block:: 
 
     pi@raspberrypi ~ $ i2cdetect -y 1
         0  1  2  3   4  5  6  7  8  9   a  b  c  d  e  f
-    00:           -- -- -- -- -- -- -- -- -- -- -- -- --
-    10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-    20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-    30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-    40: -- -- -- -- -- -- -- -- 48 -- -- -- -- -- -- --
-    50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-    60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-    70: -- -- -- -- -- -- -- --
+    00:           -- -- -- -- -- -- -- -- -- -- -- -- -- 
+    10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+    20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+    30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+    40: -- -- -- -- -- -- -- -- 48 -- -- -- -- -- -- -- 
+    50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+    60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+    70: -- -- -- -- -- -- -- -- 
 
-If there is an I2C device connected, the address of the device will be displayed.
+Si un périphérique I2C est connecté, l’adresse de l’appareil sera affichée.
 
-**Step 5:**
+**Étape 5 :**
 
-**For C language users:** Install libi2c-dev.
+**Pour les utilisateurs C :** Installez libi2c-dev.
 
 .. raw:: html
 
@@ -120,15 +118,15 @@ If there is an I2C device connected, the address of the device will be displayed
 
     sudo apt-get install libi2c-dev 
 
-**For Python users:**
+**Pour les utilisateurs Python :**
 
-1. Activating the Virtual Environment.
+1. Activation de l’environnement virtuel.
 
 .. note::
     
-    * Before activation, you need to ensure that you have created a virtual environment, please refer to: :ref:`create_virtual`.
+    * Avant l'activation, assurez-vous d'avoir créé un environnement virtuel. Pour plus de détails, consultez : :ref:`create_virtual`.
 
-    * Each time you restart the Raspberry Pi, or open a new terminal, you will need to run the following command again to activate the virtual environment.
+    * À chaque redémarrage du Raspberry Pi ou ouverture d’un nouveau terminal, il faudra réexécuter la commande suivante pour activer l’environnement virtuel.
 
 .. raw:: html
 
@@ -138,10 +136,10 @@ If there is an I2C device connected, the address of the device will be displayed
 
     source myenv/bin/activate
 
-Once the virtual environment is activated, you will see the environment name before the command line prompt, indicating you are working within the virtual environment.
+Une fois l'environnement virtuel activé, le nom de l'environnement s'affiche avant l'invite de commande, indiquant que vous travaillez dans l'environnement virtuel.
 
 
-2. Install smbus for I2C.
+2. Installez smbus pour I2C.
 
 .. raw:: html
 
@@ -152,9 +150,9 @@ Once the virtual environment is activated, you will see the environment name bef
     sudo pip3 install smbus2
 
 
-3. Exiting the Virtual Environment.
+3. Sortir de l’environnement virtuel.
 
-When you have completed your work and wish to exit the virtual environment, simply run:
+Lorsque vous avez terminé votre travail et souhaitez quitter l'environnement virtuel, il suffit de taper :
 
 .. raw:: html
 
@@ -164,4 +162,4 @@ When you have completed your work and wish to exit the virtual environment, simp
 
     deactivate
 
-This will return you to the system's global Python environment.
+Cela vous ramènera à l'environnement Python global du système.

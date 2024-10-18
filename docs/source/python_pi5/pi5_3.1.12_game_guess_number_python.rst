@@ -1,65 +1,65 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino & ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez & Partagez** : Échangez des astuces et tutoriels pour perfectionner vos compétences.
+    - **Avant-premières exclusives** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des concours et promotions spéciales pour les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. _py_pi5_guess_num:
 
-3.1.12 GAME– Guess Number
-===========================
+3.1.12 JEU – Devine le Nombre
+=================================
 
 Introduction
-------------------
+------------
 
-Guessing Numbers is a fun party game where you and your friends take
-turns inputting a number (0~99). The range will be smaller with the
-inputting of the number till a player answers the riddle correctly. Then
-the player is defeated and punished. For example, if the lucky number is
-51 which the players cannot see, and the player ① inputs 50, the prompt
-of number range changes to 50~99; if the player ② inputs 70, the range
-of number can be 50~70; if the player ③ inputs 51, this player is the
-unlucky one. Here, we use keypad to input numbers and use LCD to output
-outcomes.
+Le jeu « Devine le Nombre » est un jeu amusant où vous et vos amis jouez à 
+tour de rôle en entrant un nombre (0~99). La plage de valeurs se réduit à 
+chaque saisie jusqu'à ce qu'un joueur trouve le nombre mystère. Le joueur 
+qui trouve le nombre est considéré comme perdant et doit recevoir une pénalité. 
+Par exemple, si le nombre chanceux est 51 (invisible pour les joueurs), et que 
+le joueur ① entre 50, l'intervalle affiché devient 50~99 ; si le joueur ② entre 70, 
+la plage devient 50~70 ; si le joueur ③ entre 51, ce joueur est l'infortuné perdant. 
+Ici, nous utilisons un clavier pour entrer les nombres et un écran LCD pour afficher 
+les résultats.
 
-Required Components
-------------------------------
+Composants nécessaires
+---------------------------
 
-In this project, we need the following components.
+Dans ce projet, nous aurons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/4.1.17_game_guess_number_list.png
     :width: 800
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+.. Il est certainement plus pratique d'acheter un kit complet, voici le lien :
 
 .. .. list-table::
 ..     :widths: 20 20 20
 ..     :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
+..     *   - Nom
+..         - ÉLÉMENTS DANS CE KIT
+..         - LIEN
+..     *   - Kit Raphael
 ..         - 337
 ..         - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+.. Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. .. list-table::
 ..     :widths: 30 20
 ..     :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+..     *   - PRÉSENTATION DU COMPOSANT
+..         - LIEN D'ACHAT
 
 ..     *   - :ref:`gpio_extension_board`
 ..         - |link_gpio_board_buy|
@@ -75,8 +75,8 @@ In this project, we need the following components.
 ..         - |link_i2clcd1602_buy|
 
 
-Schematic Diagram
------------------------
+Schéma de câblage
+---------------------
 
 ============ ======== ======== =======
 T-Board Name physical wiringPi BCM
@@ -95,78 +95,71 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 .. image:: ../python_pi5/img/4.1.17_game_guess_number_schematic.png
    :align: center
 
-Experimental Procedures
+Procédures expérimentales
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1** : Assemblez le circuit.
 
 .. image:: ../python_pi5/img/4.1.17_game_guess_number_circuit.png
 
-**Step 2**: Setup I2C (see :ref:`i2c_config`.)
+**Étape 2** : Configurez l'I2C (voir :ref:`i2c_config`.)
 
-**Step 3**: Change directory.
+**Étape 3** : Changez de répertoire.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     cd ~/raphael-kit/python-pi5
 
-**Step 4**: Run.
+**Étape 4** : Exécutez le programme.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo python3 3.1.12_GAME_GuessNumber_zero.py
 
-After the program runs, there displays the initial page on the LCD:
+Après le démarrage du programme, l'écran LCD affiche la page d'accueil :
 
-.. code-block:: 
+.. code-block::
 
    Welcome!
    Press A to go!
 
-Press ‘A’, and the game will start and the game page will appear on the
-LCD.
+Appuyez sur ‘A’ pour démarrer le jeu, et la page de jeu s'affiche alors sur l'écran LCD.
 
-.. code-block:: 
+.. code-block::
 
-   Enter number:
+   Entrez le nombre :
    0 ‹point‹ 99
 
-A random number ‘\ **point**\ ’ is produced but not displayed on the LCD
-when the game starts, and what you need to do is to guess it. The number
-you have typed appears at the end of the first line till the final
-calculation is finished. (Press ‘D’ to start the comparation, and if the
-input number is larger than **10**, the automatic comparation will
-start.)
+Un nombre aléatoire appelé « \ **point**\ » est généré mais n'est pas affiché sur l'écran. 
+Vous devez le deviner. Le nombre que vous saisissez apparaît à la fin de la première ligne 
+jusqu'à ce que le calcul final soit effectué. (Appuyez sur ‘D’ pour lancer la comparaison, 
+et si le nombre saisi est supérieur à **10**, la comparaison démarre automatiquement.)
 
-The number range of ‘point’ is displayed on the second line. And you
-must type the number within the range. When you type a number, the range
-narrows; if you got the lucky number luckily or unluckily, there will
-appear “You've got it!”
-
+La plage de valeurs du « point » est affichée sur la deuxième ligne, et vous devez saisir 
+un nombre dans cette plage. Lorsque vous tapez un nombre, la plage se réduit ; si vous 
+trouvez le nombre chanceux (ou malchanceux), l'écran affiche « Vous l'avez trouvé ! ».
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
-
+    * Si vous rencontrez l'erreur ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, vous devez vous référer à :ref:`i2c_config` pour activer l'I2C.
+    * Si vous obtenez l'erreur ``ModuleNotFoundError: No module named 'smbus2'``, exécutez la commande ``sudo pip3 install smbus2``.
+    * Si l'erreur ``OSError: [Errno 121] Remote I/O error`` apparaît, cela signifie que le module est mal câblé ou que le composant est défectueux.
+    * Si le code et le câblage sont corrects mais que l'écran LCD n'affiche toujours rien, vous pouvez ajuster le potentiomètre à l'arrière pour augmenter le contraste.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
-
+    En cas de message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`.
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre dans le répertoire du code source tel que ``raphael-kit/python-pi5``. Après modification, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -312,9 +305,9 @@ appear “You've got it!”
 
 
 
-**Code Explanation**
+**Explication du Code**
 
-#. This section imports essential classes from the GPIO Zero library for handling digital output devices and buttons. It also includes the sleep function from the time module for introducing delays in the script. The LCD1602 library is imported for operating the LCD display, useful for displaying text or data outputs. Additionally, the random library is incorporated, offering functions to generate random numbers, which can be advantageous for various aspects of the project.
+#. Cette section importe des classes essentielles de la bibliothèque GPIO Zero pour gérer les dispositifs de sortie numérique et les boutons. Elle inclut également la fonction ``sleep`` du module ``time`` pour introduire des délais dans le script. La bibliothèque ``LCD1602`` est importée pour contrôler l'affichage LCD, utile pour afficher du texte ou des résultats. De plus, la bibliothèque ``random`` est intégrée pour générer des nombres aléatoires, ce qui peut être utile pour divers aspects du projet.
 
    .. code-block:: python
 
@@ -325,7 +318,7 @@ appear “You've got it!”
       import LCD1602
       import random
 
-#. Defines a class for the keypad, initializing it with row and column pins and defining a method to read pressed keys.
+#. Définit une classe pour le clavier, l'initialise avec des broches de ligne et de colonne, et définit une méthode pour lire les touches pressées.
 
    .. code-block:: python
 
@@ -356,17 +349,17 @@ appear “You've got it!”
                   row.off()  # Deactivate row
             return pressed_keys
 
-#. Initializes a variable ``count`` as zero, potentially used for tracking attempts or specific values in the game. Configures the keypad and LCD display with a welcome message and instructions. Initializes the ``pointValue`` variable to zero, possibly representing a target score or value in the game. Defines an ``upper`` limit for the game, initially set to 99, which could be the maximum in a number guessing game. Sets the ``lower`` limit starting from zero, likely used as the minimum boundary in the game.
+#. Initialise les variables de jeu : ``count`` à zéro pour suivre les tentatives, ``pointValue`` pour la valeur cible, ainsi que les limites ``upper`` et ``lower`` pour gérer les bornes du jeu.
 
    .. code-block:: python
 
-      # Game-related variables
+      # Variables liées au jeu
       count = 0
       pointValue = 0
       upper = 99
       lower = 0
 
-#. Sets up the keypad and LCD display, showing a welcome message and instructions.
+#. Configure le clavier et l'afficheur LCD avec un message de bienvenue et des instructions.
 
    .. code-block:: python
 
@@ -388,7 +381,7 @@ appear “You've got it!”
          LCD1602.write(0, 0, 'Welcome!')
          LCD1602.write(0, 1, 'Press A to Start!')
 
-#. Initializes a new target value for the game and resets the game parameters.
+#. Initialise une nouvelle valeur cible pour le jeu et réinitialise les paramètres du jeu.
 
    .. code-block:: python
 
@@ -403,7 +396,7 @@ appear “You've got it!”
          count = 0
          print('point is %d' % pointValue)
 
-#. Checks if the guessed number matches the target and updates the guessing range accordingly.
+#. Vérifie si le nombre deviné correspond à la cible et met à jour les limites de déduction.
 
    .. code-block:: python
 
@@ -423,7 +416,7 @@ appear “You've got it!”
          count = 0
          return 0
 
-#. Displays the game state on the LCD, showing the current guess, the range, and the result.
+#. Affiche l'état du jeu sur l'écran LCD, indiquant la tentative actuelle, les bornes et le résultat.
 
    .. code-block:: python
 
@@ -445,7 +438,7 @@ appear “You've got it!”
             LCD1602.write(3, 1, ' < Point < ')
             LCD1602.write(13, 1, str(upper))
 
-#. The main loop for handling keypad input, updating the game state, and displaying results on the LCD.
+#. Boucle principale pour gérer l'entrée du clavier, mettre à jour l'état du jeu et afficher les résultats.
 
    .. code-block:: python
 
@@ -475,7 +468,7 @@ appear “You've got it!”
             last_key_pressed = pressed_keys
             sleep(0.1)
 
-#. Runs the setup and enters the main game loop, allowing for a clean exit using a keyboard interrupt.
+#. Exécute la configuration et entre dans la boucle principale, avec une possibilité de sortie propre via un interrupteur clavier.
 
    .. code-block:: python
 
@@ -483,4 +476,5 @@ appear “You've got it!”
          setup()
          loop()
       except KeyboardInterrupt:
-         LCD1602.clear()  # Clear LCD on interrupt
+         LCD1602.clear()  # Effacer l'écran LCD en cas d'interruption
+

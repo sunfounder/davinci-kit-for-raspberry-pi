@@ -1,31 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez dans l'univers du Raspberry Pi, d'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Recevez des annonces anticipées sur les nouveaux produits et des avant-premières.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et tirages au sort** : Participez à des concours et promotions lors des périodes festives.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-3.1.1 Counting Device
-==============================
+3.1.1 Dispositif de comptage
+=================================
 
 Introduction
------------------
+----------------
 
-Here we will make a number-displaying counter system, consisting of a
-PIR sensor and a 4-digit segment display. When the PIR detects that
-someone is passing by, the number on the 4-digit segment display will
-add 1. You can use this counter to count the number of people walking 
-through the passageway.
+Ici, nous allons créer un système de comptage avec affichage numérique, 
+composé d'un capteur PIR et d'un affichage à 4 segments. Lorsque le capteur 
+PIR détecte qu'une personne passe, le nombre sur l'affichage 4 segments 
+s'incrémentera de 1. Vous pouvez utiliser ce compteur pour compter le nombre 
+de personnes passant dans un couloir.
 
-Components
----------------
+Composants
+-------------
 
 .. image:: img/list_Counting_Device1.png
     :align: center
@@ -33,8 +33,8 @@ Components
 .. image:: img/list_Counting_Device2.png
     :align: center
 
-Schematic Diagram
-----------------------
+Schéma
+---------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -51,19 +51,19 @@ GPIO26       Pin 37   25       26
 .. image:: img/Schematic_three_one1.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procédures expérimentales
+--------------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1** : Construisez le circuit.
 
 .. image:: img/image235.png
    :alt: 计数器_bb
    :width: 800
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^
+**Pour les utilisateurs du langage C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Étape 2** : Accédez au dossier du code.
 
 .. raw:: html
 
@@ -73,7 +73,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.1/
 
-**Step 3**: Compile the code.
+**Étape 3** : Compilez le code.
 
 .. raw:: html
 
@@ -83,58 +83,55 @@ Experimental Procedures
 
     gcc 3.1.1_CountingDevice.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Étape 4** : Exécutez le fichier exécutable.
 
 .. raw:: html
 
     <run></run>
- 
+
 .. code-block:: 
  
     sudo ./a.out
  
-After the code runs, when the PIR detects that someone is passing by,
-the number on the 4-digit segment display will add 1.
+Une fois le code exécuté, lorsque le capteur PIR détecte le passage de quelqu'un, 
+le nombre sur l'affichage à 4 segments s'incrémentera de 1.
 
-There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
-
+Il y a deux potentiomètres sur le module PIR : l'un ajuste la sensibilité et l'autre 
+ajuste la distance de détection. Pour un meilleur fonctionnement du module PIR, vous 
+devez tourner les deux à fond dans le sens antihoraire.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-    
-**Code Explanation**
+    Si cela ne fonctionne pas après l'exécution, ou si un message d'erreur apparaît : \"wiringPi.h: No such file or directory\", veuillez consulter :ref:`C code is not working?`.
+
+**Explication du code**
 
 .. code-block:: c
 
     void display()
     {
-        clearDisplay();
-        pickDigit(0);
+        clearDisplay();
+        pickDigit(0);
         hc595_shift(number[counter % 10]);
 
-        clearDisplay();
-        pickDigit(1);
+        clearDisplay();
+        pickDigit(1);
         hc595_shift(number[counter % 100 / 10]);
 
-        clearDisplay();
-        pickDigit(2);
+        clearDisplay();
+        pickDigit(2);
         hc595_shift(number[counter % 1000 / 100]);
-     
-        clearDisplay();
-        pickDigit(3);
+     
+        clearDisplay();
+        pickDigit(3);
         hc595_shift(number[counter % 10000 / 1000]);
     }
 
-First, start the fourth segment display, write the single-digit number.
-Then start the third segment display, and type in the tens digit; after
-that, start the second and the first segment display respectively, and
-write the hundreds and thousands digits respectively. Because the
-refreshing speed is very fast, we see a complete four-digit display.
-
+D'abord, le quatrième segment de l'affichage est activé et affiche le chiffre des 
+unités. Ensuite, le troisième segment affiche le chiffre des dizaines ; après cela, 
+le deuxième et le premier segment affichent respectivement les centaines et les milliers. 
+Grâce à une vitesse de rafraîchissement très rapide, nous voyons un affichage complet 
+à quatre chiffres.
 .. code-block:: c
 
     void loop(){
@@ -150,14 +147,12 @@ refreshing speed is very fast, we see a complete four-digit display.
         }
     }
 
-This is the main function: display the number on the 4-digit segment
-display and read the PIR value. When the PIR detects that someone is
-passing by, the number on the 4-digit segment display will add 1.
+Il s'agit de la fonction principale : elle affiche le nombre sur l'afficheur à 4 segments et lit la valeur du capteur PIR. Lorsque le PIR détecte qu'une personne passe, le nombre sur l'afficheur à 4 segments s'incrémente de 1.
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Pour les utilisateurs du langage Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Étape 2** : Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -167,7 +162,7 @@ passing by, the number on the 4-digit segment display will add 1.
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3**: Run the executable file.
+**Étape 3** : Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -177,15 +172,15 @@ passing by, the number on the 4-digit segment display will add 1.
 
     sudo python3 3.1.1_CountingDevice.py
 
-After the code runs, when the PIR detects that someone is passing by,
-the number on the 4-digit segment display will add 1.
+Après l'exécution du code, lorsque le PIR détecte le passage de quelqu'un, 
+le nombre sur l'afficheur à 4 segments s'incrémentera de 1.
 
 
-**code**
+**Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez aller au chemin du code source tel que ``davinci-kit-for-raspberry-pi/python``. 
     
 .. raw:: html
 
@@ -276,12 +271,11 @@ the number on the 4-digit segment display will add 1.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explication du code**
 
-Based on **1.1.5 4-Digit 7-Segment Display**, this lesson adds **PIR
-module** to change the automatic counting of lesson 1.1.5 into count
-detecting. When the PIR detects that someone is passing by, the number
-on the 4-digit segment display will add 1.
+Basé sur **1.1.5 Afficheur 7 segments à 4 chiffres**, cette leçon ajoute le **module PIR** 
+pour transformer le comptage automatique de la leçon 1.1.5 en détection de comptage. Lorsque 
+le PIR détecte qu'une personne passe, le nombre sur l'afficheur à 4 segments s'incrémentera de 1.
 
 .. code-block:: python
 
@@ -303,16 +297,16 @@ on the 4-digit segment display will add 1.
         pickDigit(3)
         hc595_shift(number[counter % 10000//1000])
 
-First, start the fourth segment display, write the single-digit number.
-Then start the third segment display, and type in the tens digit; after
-that, start the second and the first segment display respectively, and
-write the hundreds and thousands digits respectively. Because the
-refreshing speed is very fast, we see a complete four-digit display.
+D'abord, activez le quatrième segment de l'affichage et écrivez le chiffre des unités. 
+Ensuite, activez le troisième segment et entrez le chiffre des dizaines ; après cela, 
+activez successivement le deuxième et le premier segment pour afficher respectivement 
+les centaines et les milliers. Grâce à une vitesse de rafraîchissement très rapide, 
+nous voyons un affichage complet à quatre chiffres.
 
 .. code-block:: python
 
     def loop():
-    global counter
+        global counter
         currentState = 0
         lastState = 0
         while True:
@@ -322,11 +316,11 @@ refreshing speed is very fast, we see a complete four-digit display.
                 counter +=1
             lastState=currentState 
 
-This is the main function: display the number on the 4-digit segment
-display and read the PIR value. When the PIR detects that someone is
-passing by, the number on the 4-digit segment display will add 1.
+Il s'agit de la fonction principale : elle affiche le nombre sur l'afficheur à 4 segments 
+et lit la valeur du PIR. Lorsque le PIR détecte qu'une personne passe, le nombre sur 
+l'afficheur à 4 segments s'incrémente de 1.
 
-Phenomenon Picture
+Image du phénomène
 -------------------------
 
 .. image:: img/image236.jpeg

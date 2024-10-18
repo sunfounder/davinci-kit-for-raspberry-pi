@@ -1,35 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers du Raspberry Pi, d'Arduino et d'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez et partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-3.1.10 Alarm Bell
-=====================
+3.1.10 Alarme Manuelle
+=========================
 
 Introduction
------------------
+--------------
 
-In this course, we will make a manual alarm device. You can replace the
-toggle switch with a thermistor or a photosensitive sensor to make a
-temperature alarm or a light alarm.
+Dans ce projet, nous allons créer un dispositif d'alarme manuel. 
+Vous pouvez remplacer l'interrupteur à bascule par une thermistance 
+ou un capteur photosensible pour en faire une alarme de température ou de luminosité.
 
-Components
----------------
+Composants
+------------
 
 .. image:: img/list_Alarm_Bell.png
     :align: center
 
-Schematic Diagram
--------------------------
+Schéma de Câblage
+-------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -42,16 +42,16 @@ GPIO22       Pin 15   3        22
 .. image:: img/Schematic_three_one10.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procédures Expérimentales
+----------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1 :** Montez le circuit.
 
 .. image:: img/image266.png
    :alt: Alarm Bell_bb
    :width: 800
 
-**Step 2**: Change directory.
+**Étape 2 :** Changez de répertoire.
 
 .. raw:: html
 
@@ -61,7 +61,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.10/
 
-**Step 3**: Compile.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -71,7 +71,7 @@ Experimental Procedures
 
     gcc 3.1.10_AlarmBell.c -lwiringPi -lpthread
 
-**Step 4**: Run.
+**Étape 4 :** Exécutez le fichier compilé.
 
 .. raw:: html
 
@@ -81,67 +81,65 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the program starts, the toggle switch will be toggled to the
-right, and the buzzer will give out alarm sounds. At the same time, the
-red and green LEDs will flash at a certain frequency.
+Lorsque le programme démarre, basculez l'interrupteur vers la droite et le 
+buzzer émettra un son d'alarme. En même temps, les LED rouge et verte clignoteront 
+à une certaine fréquence.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-
-
-**Code Explanation**
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur indiquant « wiringPi.h : Aucun fichier ou répertoire de ce type », veuillez consulter :ref:`C code is not working?`.
+**Explication du Code**
 
 .. code-block:: c
 
     #include <pthread.h>
 
-In this code, you'll use a new library, pthread.h, which is a set of
-common thread libraries and can realize multithreading. We add the
-**-lpthread** parameter at compile time for the independent working of
-the LED and the buzzer.
+Dans ce code, nous utilisons la nouvelle bibliothèque `pthread.h`, qui est un 
+ensemble de bibliothèques de threads permettant de réaliser le multithreading. 
+Nous ajoutons le paramètre **-lpthread** lors de la compilation pour permettre 
+le fonctionnement indépendant de la LED et du buzzer.
 
 .. code-block:: c
 
     void *ledWork(void *arg){       
-        while(1)    
-        {   
-            if(flag==0){
-                pthread_exit(NULL);
-            }
-            digitalWrite(ALedPin,HIGH);
-            delay(500);
-            digitalWrite(ALedPin,LOW);
-            digitalWrite(BLedPin,HIGH);
-            delay(500);
-            digitalWrite(BLedPin,LOW);
-        }
+        while(1)    
+        {   
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            digitalWrite(ALedPin,HIGH);
+            delay(500);
+            digitalWrite(ALedPin,LOW);
+            digitalWrite(BLedPin,HIGH);
+            delay(500);
+            digitalWrite(BLedPin,LOW);
+        }
     }
 
-The function ledWork() helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+La fonction `ledWork()` configure l'état de fonctionnement des deux LEDs : 
+elle allume la LED verte pendant 0,5 seconde, puis l'éteint, et fait de même 
+pour la LED rouge.
 
 .. code-block:: c
 
     void *buzzWork(void *arg){
-        while(1)
-        {
-            if(flag==0){
-                pthread_exit(NULL);
-            }
-            if((note>=800)||(note<=130)){
+        while(1)
+        {
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            if((note>=800)||(note<=130)){
                 pitch = -pitch;
-            }
-            note=note+pitch;
-            softToneWrite(BeepPin,note);
-            delay(10);
-        }
+            }
+            note=note+pitch;
+            softToneWrite(BeepPin,note);
+            delay(10);
+        }
     }
 
-The function buzzWork() is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+La fonction `buzzWork()` configure l'état de fonctionnement du buzzer. Ici, 
+nous définissons une fréquence entre 130 et 800, qui augmente ou diminue avec 
+un intervalle de 10 millisecondes.
 
 .. code-block:: c
 
@@ -149,77 +147,69 @@ at an interval of 20.
         flag = 1;
         if(softToneCreate(BeepPin) == -1){
             printf("setup softTone failed !");
-            return; 
-        }    
+            return; 
+        }    
         pthread_t tLed;     
-        pthread_create(&tLed,NULL,ledWork,NULL);    
+        pthread_create(&tLed,NULL,ledWork,NULL);    
         pthread_t tBuzz;  
-        pthread_create(&tBuzz,NULL,buzzWork,NULL);      
+        pthread_create(&tBuzz,NULL,buzzWork,NULL);      
     }
 
-In the function on():
+Dans la fonction `on()` :
 
-1) Define the mark \"flag=1\", indicating the ending of the control
-   thread.
+1) Définition de la variable `flag=1` pour indiquer que le thread de contrôle est actif.
 
-2) Create a software-controlled tone pin **BeepPin**.
+2) Création d'une broche de tonalité contrôlée par logiciel **BeepPin**.
+3) Création de deux threads distincts pour que la LED et le buzzer puissent fonctionner en même temps.
 
-3) Create two separate threads so that the LED and the buzzer can work
-   at the same time.
+**pthread_t tLed :** Déclaration d'un thread nommé **tLed**.
 
-**pthread_t tLed:** Declare a thread **tLed**.
+**pthread_create(&tLed, NULL, ledWork, NULL) :** Création du thread avec le prototype suivant :
 
-**pthread_create(&tLed,NULL,ledWork,NULL)：** Create the thread and its
-prototype is as follows:
+int pthread_create(pthread_t \*restrict tidp, const pthread_attr_t \*restrict_attr, void*（*start_rtn)(void*), void \*restrict arg);
 
-int pthread_create(pthread_t \*restrict tidp,const pthread_attr_t
-\*restrict_attr,void*（*start_rtn)(void*),void \*restrict arg);
+**Valeur de retour**
 
-**Return the Value**
+Si la création est réussie, retourne \"**0**\" ; sinon, retourne le code d'erreur \"**-1**\".
 
-If successful, return \"**0**\"；otherwise, return the **fall number**
-\"**-1**\".
+**Paramètres**
 
-**Parameter**
-
-| The first parameter is a pointer to the thread identifier.
-| The second one is used to set the thread attribute.
-| The third one is the starting address of the thread running function.
-| The last one is the one that runs the function.
+- Le premier paramètre est un pointeur vers l'identifiant du thread.
+- Le second paramètre est utilisé pour définir les attributs du thread.
+- Le troisième paramètre est l'adresse de démarrage de la fonction du thread.
+- Le dernier paramètre est celui qui exécute la fonction.
 
 .. code-block:: c
 
     void off(){
         flag = 0;
-        softToneStop(BeepPin);
-        digitalWrite(ALedPin,LOW);
-        digitalWrite(BLedPin,LOW);
+        softToneStop(BeepPin);
+        digitalWrite(ALedPin,LOW);
+        digitalWrite(BLedPin,LOW);
     }
 
-
-The function Off() defines \"flag=0\" so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+La fonction `off()` définit `flag=0` afin de sortir des threads `ledWork` et `buzzWork`, puis arrête le buzzer et les LEDs.
 
 .. code-block:: c
 
     int main(){       
-        setup(); 
+        setup(); 
         int lastState = 0;
-        while(1){
+        while(1){
             int currentState = digitalRead(switchPin);
             if ((currentState == 1)&&(lastState==0)){
-                on();
-            }
+                on();
+            }
             else if((currentState == 0)&&(lastState==1)){
-                off();
-            }
-            lastState=currentState;
-        }
+                off();
+            }
+            lastState=currentState;
+        }
         return 0;
     }
 
-Main() contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function on() is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+La fonction `main()` contient l'ensemble du processus du programme : elle lit 
+d'abord la valeur de l'interrupteur coulissant ; si celui-ci est basculé vers 
+la droite (la lecture est 1), la fonction `on()` est appelée, le buzzer est 
+activé et les LEDs rouge et verte clignotent. Sinon, le buzzer et les LEDs s'éteignent.
+

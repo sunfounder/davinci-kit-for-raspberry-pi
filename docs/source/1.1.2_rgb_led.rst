@@ -1,94 +1,89 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez et partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Profitez d'un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions exclusives** : Bénéficiez de réductions sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des promotions et à des cadeaux lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+
 
 1.1.2 RGB LED
 ====================
 
 Introduction
---------------
+---------------
 
-In this lesson, we will use it to control an RGB LED to flash various
-kinds of colors.
+Dans cette leçon, nous allons apprendre à contrôler une LED RVB pour afficher différentes couleurs.
 
-Components
---------------
+Composants
+-------------
 
 .. image:: img/list_rgb_led.png
     :align: center
 
-Principle
---------------
+Principe
+-----------
 
 **PWM**
 
-Pulse Width Modulation, or PWM, is a technique for getting analog
-results with digital means. Digital control is used to create a square
-wave, a signal switched between on and off. This on-off pattern can
-simulate voltages in between full on (5 Volts) and off (0 Volts) by
-changing the portion of the time the signal spends on versus the time
-that the signal spends off. The duration of \"on time\" is called pulse
-width. To get varying analog values, you change, or modulate, that
-width. If you repeat this on-off pattern fast enough with some device,
-an LED for example, the result would be like this: the signal is a
-steady voltage between 0 and 5v controlling the brightness of the LED.
+Le Pulse Width Modulation (PWM) est une technique permettant d'obtenir des 
+résultats analogiques à partir de moyens numériques. Le contrôle numérique crée 
+une onde carrée, un signal alternant entre allumé et éteint. Ce motif allumé-éteint 
+peut simuler des tensions intermédiaires entre complètement allumé (5 Volts) et éteint
+ (0 Volts) en changeant la durée pendant laquelle le signal reste allumé par rapport à 
+ la durée pendant laquelle il est éteint. La durée pendant laquelle le signal est actif 
+ est appelée largeur d'impulsion. Pour obtenir des valeurs analogiques variables, vous 
+ modifiez cette largeur. Si vous répétez ce motif assez rapidement, par exemple avec une 
+ LED, le résultat sera une tension stable entre 0 et 5V contrôlant la luminosité de la LED.
 
-**Duty Cycle**
+**Cycle de service**
 
-A duty cycle is the percentage of one period in which a signal is
-active. A period is the time it takes for a signal to complete an
-on-and-off cycle. As a formula, a duty cycle may be expressed as:
+Le cycle de service est le pourcentage d'une période pendant laquelle un signal est actif. 
+Une période est le temps nécessaire pour compléter un cycle allumé-éteint. En formule, un 
+cycle de service peut s'exprimer comme suit :
 
 .. image:: img/image56.png
    :width: 1.16667in
    :height: 0.36458in
    :align: center
 
-Where **D** is the duty cycle, **T** is the time the signal is active,
-and **P** is the total period of the signal. Thus, a 60% duty cycle
-means the signal is on 60% of the time but off 40% of the time. The \"on
-time\" for a 60% duty cycle could be a fraction of a second, a day, or
-even a week, depending on the length of the period.
+Où **D** représente le cycle de service, **T** est le temps où le signal est actif, et **P** 
+est la période totale du signal. Ainsi, un cycle de service de 60 % signifie que le signal 
+est actif pendant 60 % du temps, et inactif 40 % du temps.
 
 .. image:: img/image57.jpeg
    :width: 4.325in
    :height: 5.49167in
    :align: center
 
-**RGB LED**
+**LED RVB**
 
 .. image:: img/rgb_led_sch.png
     :width: 500
     :align: center
 
-The three primary colors of the RGB LED can be mixed into various colors
-by brightness. The brightness of LED can be adjusted with PWM. Raspberry
-Pi has only one channel for hardware PWM output, but it needs three
-channels to control the RGB LED, which means it is difficult to control
-the RGB LED with the hardware PWM of Raspberry Pi. Fortunately, the
-softPwm library simulates PWM (softPwm) by programming. You only need to
-include the header file softPwm.h (for C language users), and then call
-the API it provides to easily control the RGB LED by multi-channel PWM
-output, so as to display all kinds of color.
+Les trois couleurs primaires de la LED RVB peuvent être combinées en différentes couleurs 
+en ajustant leur luminosité. La luminosité de chaque LED peut être ajustée via le PWM. Le 
+Raspberry Pi n'a qu'un canal pour la sortie PWM matérielle, mais il en faut trois pour 
+contrôler la LED RVB. Heureusement, la bibliothèque softPwm simule le PWM par programmation. 
+Il vous suffit d'inclure le fichier d'en-tête softPwm.h (pour les utilisateurs du langage C), 
+puis d'appeler les API fournies pour contrôler facilement la LED RVB via plusieurs canaux 
+de sortie PWM, ce qui permet d'afficher toutes sortes de couleurs.
 
-Schematic Diagram
------------------------
+Schéma de câblage
+-----------------
 
-After connecting the pins of R, G, and B to a current limiting resistor,
-connect them to the GPIO17, GPIO18, and GPIO27 respectively. The longest
-pin (GND) of the LED connects to the GND of the Raspberry Pi. When the
-three pins are given different PWM values, the RGB LED will display
-different colors.
+Après avoir connecté les broches R, G et B à une résistance de limitation de courant, 
+connectez-les respectivement aux GPIO17, GPIO18 et GPIO27. La broche la plus longue de 
+la LED (GND) se connecte au GND du Raspberry Pi. Lorsque les trois broches reçoivent 
+des valeurs PWM différentes, la LED RVB affiche différentes couleurs.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -99,19 +94,19 @@ GPIO27       Pin 13   2        27
 
 .. image:: img/rgb_led_schematic.png
 
-Experimental Procedures
-----------------------------
+Procédures expérimentales
+-----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image61.png
    :width: 6.59097in
    :height: 4.29722in
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Pour les utilisateurs du langage C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -121,7 +116,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.1.2/
 
-**Step 3:** Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -133,9 +128,9 @@ For C Language Users
 
 .. note::
 
-    When the instruction \"gcc\" is executed, if \"-o\" is not called, then the executable file is named \"a.out\".
+    Lorsque la commande "gcc" est exécutée, si l'option "-o" n'est pas appelée, le fichier exécutable sera nommé "a.out".
 
-**Step 4:** Run the executable file.
+**Étape 4 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -145,13 +140,13 @@ For C Language Users
 
     sudo ./a.out
 
-
-After the code runs, you will see that RGB displays red, green, blue,
-yellow, pink, and cyan.
+Après l'exécution du code, vous verrez que la LED RVB affiche les couleurs rouge, 
+verte, bleue, jaune, rose et cyan.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur comme 
+    "wiringPi.h: No such file or directory", veuillez consulter :ref:`C code is not working?`.
 
 **Code**
 
@@ -179,7 +174,7 @@ yellow, pink, and cyan.
 
     int main(void){
 
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, printf messageto screen
+        if(wiringPiSetup() == -1){ // Si l'initialisation de wiring échoue, afficher un message à l'écran
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -208,13 +203,13 @@ yellow, pink, and cyan.
         return 0;
     }
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: c
 
     #include <softPwm.h>
 
-Library used for realizing the pwm function of the software.
+Bibliothèque utilisée pour réaliser la fonction PWM par logiciel.
 
 .. code-block:: c
 
@@ -224,19 +219,17 @@ Library used for realizing the pwm function of the software.
         softPwmCreate(LedPinBlue, 0, 100);
     }
 
-The function is to use software to create a PWM pin, set its period
-between 0x100us-100x100us.
+Cette fonction utilise le logiciel pour créer une broche PWM et définit sa période entre 100us et 10000us.
 
-The prototype of the function softPwmCreate(LedPinRed, 0, 100) is as
-follows:
+Le prototype de la fonction softPwmCreate(LedPinRed, 0, 100) est le suivant :
 
 .. code-block:: c
 
-    int softPwmCreate(int pin,int initialValue,int pwmRange);
+    int softPwmCreate(int pin, int initialValue, int pwmRange);
 
-* **Parameter pin:** Any GPIO pin of Raspberry Pi can be set as a PWM pin.
-* **Parameter initialValue:** The initial pulse width is that initialValue times100us.
-* **Parameter pwmRange:** the period of PWM is that pwmRange times100us.
+* **Paramètre pin :** Toute broche GPIO du Raspberry Pi peut être définie comme broche PWM.
+* **Paramètre initialValue :** La largeur d'impulsion initiale est initialValue multiplié par 100us.
+* **Paramètre pwmRange :** La période du PWM est pwmRange multiplié par 100us.
 
 .. code-block:: c
 
@@ -246,33 +239,31 @@ follows:
         softPwmWrite(LedPinBlue,  b_val);
     }
 
-This function is to set the colors of the LED. Using RGB, the formal
-parameter **r_val** represents the luminance of the red one, **g_val**
-of the green one, **b_val** of the blue one.
+Cette fonction permet de définir les couleurs de la LED. En utilisant le modèle RVB, 
+le paramètre formel **r_val** représente l'intensité du rouge, **g_val** celle du 
+vert et **b_val** celle du bleu.
 
-The prototype of the function softPwmWrite(LedPinBlue, b_val) is as
-follows：
+Le prototype de la fonction softPwmWrite(LedPinBlue, b_val) est le suivant :
 
 .. code-block:: c
 
     void softPwmWrite (int pin, int value) ;
 
-* **Parameter pin:** Any GPIO pin of Raspberry Pi can be set as a PWM pin.
-* **Parameter Value:** The pulse width of PWM is value times 100us. Note that value can only be less than pwmRange defined previously, if it is larger than pwmRange, the value will be given a fixed value, pwmRange.
+* **Paramètre pin :** Toute broche GPIO du Raspberry Pi peut être définie comme broche PWM.
+* **Paramètre value :** La largeur d'impulsion du PWM est value multiplié par 100us. Notez que la valeur doit être inférieure à pwmRange défini précédemment ; si elle est supérieure, elle sera limitée à pwmRange.
 
 .. code-block:: c
 
     ledColorSet(0xff,0x00,0x00);
 
-Call the function defined before. Write 0xff into LedPinRed and 0x00
-into LedPinGreen and LedPinBlue. Only the Red LED lights up after
-running this code. If you want to light up LEDs in other colors, just
-modify the parameters.
+Appelle la fonction définie précédemment. Écrire 0xff dans LedPinRed et 0x00 dans 
+LedPinGreen et LedPinBlue. Seule la LED rouge s'allume après l'exécution de ce code. 
+Si vous souhaitez allumer des LED d'autres couleurs, il suffit de modifier les paramètres.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Pour les utilisateurs du langage Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Open the code file.
+**Étape 2 :** Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -282,7 +273,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -292,17 +283,17 @@ For Python Language Users
 
     sudo python3 1.1.2_rgbLed.py
 
-After the code runs, you will see that RGB displays red, green, blue,
-yellow, pink, and cyan.
+Après l'exécution du code, vous verrez que la LED RVB affiche les couleurs 
+rouge, verte, bleue, jaune, rose et cyan.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin du code source tel que ``davinci-kit-for-raspberry-pi/python``.
+
 .. raw:: html
-   
+
     <run></run>
 
 .. code-block:: python
@@ -310,55 +301,53 @@ yellow, pink, and cyan.
     import RPi.GPIO as GPIO
     import time
 
-    # Set up a color table in Hexadecimal
+    # Définir une table de couleurs en Hexadécimal
     COLOR = [0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0xFF00FF, 0x00FFFF]
-    # Set pins' channels with dictionary
+    # Définir les broches via un dictionnaire
     pins = {'Red':17, 'Green':18, 'Blue':27}
 
 
     def setup():
         global p_R, p_G, p_B
-        # Set the GPIO modes to BCM Numbering
+        # Définir les modes GPIO sur la numérotation BCM
         GPIO.setmode(GPIO.BCM)
-        # Set all LedPin's mode to output and initial level to High(3.3v)
+        # Définir tous les modes LedPin sur la sortie et le niveau initial à High (3,3 V)
         for i in pins:
             GPIO.setup(pins[i], GPIO.OUT, initial=GPIO.HIGH)
 
-        # Set all led as pwm channel and frequece to 2KHz
+        # Définir tous les LED en tant que canal PWM avec une fréquence de 2 kHz
         p_R = GPIO.PWM(pins['Red'], 2000)
         p_G = GPIO.PWM(pins['Green'], 2000)
         p_B = GPIO.PWM(pins['Blue'], 2000)
 
-        # Set all begin with value 0
+        # Initialiser toutes les LED avec une valeur de 0
         p_R.start(0)
         p_G.start(0)
         p_B.start(0)
 
-    # Define a MAP function for mapping values.  Like from 0~255 to 0~100
+    # Définir une fonction MAP pour mapper les valeurs. Par exemple de 0~255 à 0~100
     def MAP(x, in_min, in_max, out_min, out_max):
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-    # Define a function to set up colors 
-    # input color should be Hexadecimal with 
-    # red value, blue value, green value.
+    # Définir une fonction pour configurer les couleurs
+    # l'entrée doit être en hexadécimal avec des valeurs pour rouge, bleu et vert.
     def setColor(color):
-    # configures the three LEDs' luminance with the inputted color value . 
-        # Devide colors from 'color' veriable
+        # Configure la luminosité des trois LED en fonction de la valeur de couleur donnée.
+        # Décomposer les couleurs à partir de la variable 'color'
         R_val = (color & 0xFF0000) >> 16
         G_val = (color & 0x00FF00) >> 8
         B_val = (color & 0x0000FF) >> 0
-    # these three lines are used for analyzing the col variables 
-    # assign the first two values of the hexadecimal to R, the middle two assigned to G
-    # assign the last two values to B, please refer to the shift operation of the hexadecimal for details.
+        # Ces lignes analysent la variable de couleur en attribuant les deux premières valeurs au rouge,
+        # les deux du milieu au vert, et les deux dernières au bleu (opérations de décalage).
 
-        # Map color value from 0~255 to 0~100
+        # Mapper les valeurs de couleur de 0~255 à 0~100
         R_val = MAP(R_val, 0, 255, 0, 100)
         G_val = MAP(G_val, 0, 255, 0, 100)
         B_val = MAP(B_val, 0, 255, 0, 100)
-        
-        # Change the colors
+
+        # Changer les couleurs
         p_R.ChangeDutyCycle(R_val)
-        # Assign the mapped duty cycle value to the corresponding PWM channel to change the luminance. 
+        # Assigner la valeur mappée du cycle de service au canal PWM correspondant pour changer la luminosité.
         p_G.ChangeDutyCycle(G_val)
         p_B.ChangeDutyCycle(B_val)
 
@@ -366,29 +355,28 @@ yellow, pink, and cyan.
 
     def main():
         while True:
-            for color in COLOR:# Assign every item in the COLOR list to the color respectively and change the color of the RGB LED via the setColor() function.
-                setColor(color)# change the color of the RGB LED
-                time.sleep(0.5)# set delay for 0.5s after each color changing. Modify this parameter will changed the LED's color changing rate.   
+            for color in COLOR: # Affecter chaque élément de la liste COLOR respectivement et changer la couleur de la LED RVB via la fonction setColor().
+                setColor(color) # Changer la couleur de la LED RVB
+                time.sleep(0.5) # Fixer un délai de 0,5s après chaque changement de couleur. Modifier ce paramètre modifie la vitesse de changement des couleurs de la LED.
 
     def destroy():
-        # Stop all pwm channel
+        # Arrêter tous les canaux PWM
         p_R.stop()
         p_G.stop()
         p_B.stop()
-        # Release resource
+        # Libérer les ressources
         GPIO.cleanup()
 
-    # If run this script directly, do:
+    # Si ce script est exécuté directement, faire :
     if __name__ == '__main__':
         setup()
         try:
             main()
-        # When 'Ctrl+C' is pressed, the program 
-        # destroy() will be  executed.
+        # Lorsque 'Ctrl+C' est pressé, la fonction destroy() sera exécutée.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: python
 
@@ -400,19 +388,17 @@ yellow, pink, and cyan.
     p_G.start(0)
     p_B.start(0)
 
-Call the GPIO.PWM( )function to define Red, Green and Blue as PWM pins
-and set the frequency of PWM pins to 2000Hz, then Use the Start()
-function to set the initial duty cycle to zero.
+Appeler la fonction GPIO.PWM() pour définir les broches Rouge, Vert et Bleu en 
+tant que broches PWM et fixer la fréquence à 2000 Hz. Ensuite, utiliser la fonction 
+Start() pour définir le cycle de service initial à zéro.
 
 .. code-block:: python
 
     def MAP(x, in_min, in_max, out_min, out_max):
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-Define a MAP function for mapping values. For instance, x=50, in_min=0,
-in_max=255, out_min=0, out_max=100. After the map function mapping, it
-returns (50-0) \* (100-0)/(255-0) +0=19.6, meaning that 50 in 0-255
-equals 19.6 in 0-100.
+Définir une fonction MAP pour mapper les valeurs. Par exemple, si x=50, in_min=0, 
+in_max=255, out_min=0, out_max=100, la fonction renverra 19,6.
 
 .. code-block:: python
 
@@ -421,11 +407,9 @@ equals 19.6 in 0-100.
         G_val = (color & 0x00FF00) >> 8
         B_val = (color & 0x0000FF) >> 0
 
-Configures the three LEDs’ luminance with the inputted color value,
-assign the first two values of the hexadecimal to R_val, the middle two
-assigned to G_val, the last two values to B_val. For instance, if
-color=0xFF00FF, R_val=（0xFF00FF & 0xFF0000）>> 16 = 0xFF, G_val = 0x00,
-B_val=0xFF.
+Configurer la luminosité des trois LED avec la valeur de couleur donnée. 
+Par exemple, si color=0xFF00FF, R_val=（0xFF00FF & 0xFF0000）>> 16 = 0xFF, 
+G_val = 0x00, B_val=0xFF.
 
 .. code-block:: python
 
@@ -433,8 +417,8 @@ B_val=0xFF.
     G_val = MAP(G_val, 0, 255, 0, 100)
     B_val = MAP(B_val, 0, 255, 0, 100)
 
-Use map function to map the R,G,B value among 0~255 into PWM duty cycle
-range 0-100.
+Utiliser la fonction MAP pour convertir les valeurs RVB entre 0~255 en une plage 
+de cycle de service PWM de 0 à 100.
 
 .. code-block:: python
 
@@ -442,8 +426,8 @@ range 0-100.
     p_G.ChangeDutyCycle(G_val)
     p_B.ChangeDutyCycle(B_val)
 
-Assign the mapped duty cycle value to the corresponding PWM channel to
-change the luminance.
+Affecter la valeur mappée du cycle de service au canal PWM correspondant pour 
+changer la luminosité.
 
 .. code-block:: python
 
@@ -451,10 +435,10 @@ change the luminance.
         setColor(color)
         time.sleep(0.5)
 
-Assign every item in the COLOR list to the color respectively and change
-the color of the RGB LED via the setColor() function.
+Affecter chaque élément de la liste COLOR à la variable color et changer la 
+couleur de la LED RVB via la fonction setColor().
 
-Phenomenon Picture
-------------------------
+Image du phénomène
+----------------------
 
 .. image:: img/image62.jpeg

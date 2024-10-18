@@ -1,25 +1,23 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et d'aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des concours et des promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-Play with Scratch 
+Jouer avec Scratch 
 ==================================
 
-Scratch is a block-based visual programming language and website targeted primarily at children 8-16 as an educational tool for coding. Users of the site can create projects on the web using a block-like interface. The service is developed by the MIT Media Lab, has been translated into 70+ languages, and is used in most parts of the world.
+Scratch est un langage de programmation visuel basé sur des blocs, destiné principalement aux enfants de 8 à 16 ans comme outil éducatif pour apprendre le codage. Les utilisateurs peuvent créer des projets sur le web en utilisant une interface similaire à un assemblage de blocs. Développé par le MIT Media Lab, Scratch est traduit dans plus de 70 langues et est utilisé dans de nombreuses régions du monde.
 
-
-Here you will learn to use Scratch 3 in Raspberry Pi and access Raspberry Pi GPIO with Scratch 3, which is not possible with online Scratch.
-
+Dans ce guide, vous apprendrez à utiliser Scratch 3 sur Raspberry Pi et à accéder aux GPIO du Raspberry Pi avec Scratch 3, ce qui n'est pas possible avec la version en ligne de Scratch.
 
 
 .. toctree::

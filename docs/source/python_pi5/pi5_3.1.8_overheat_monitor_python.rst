@@ -1,62 +1,62 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales pour les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. _3.1.8_py_pi5_monitor:
 
-3.1.8 Overheat Monitor
+3.1.8 Moniteur de surchauffe
 ================================
 
 Introduction
 -------------------
 
-You may want to make an overheat monitoring device that applies to
-various situations, ex., in the factory, if we want to have an alarm and
-the timely automatic turning off of the machine when there is a circuit
-overheating. In this project, we will use thermistor, joystick, buzzer,
-LED and LCD to make an smart temperature monitoring device whose
-threshold is adjustable.
+Vous souhaitez peut-être concevoir un dispositif de surveillance de la surchauffe 
+applicable dans diverses situations, par exemple, dans une usine, pour déclencher 
+une alarme et l'arrêt automatique d'une machine en cas de surchauffe de circuit. 
+Dans ce projet, nous utiliserons une thermistance, un joystick, un buzzer, une LED 
+et un écran LCD pour fabriquer un appareil de surveillance de la température intelligent 
+dont le seuil est réglable.
 
-Required Components
+Composants nécessaires
 ------------------------------
 
-In this project, we need the following components.
+Pour ce projet, nous aurons besoin des composants suivants :
 
 .. image:: ../python_pi5/img/4.1.13_overheat_monitor_list.png
     :width: 800
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+.. Un kit complet est disponible ici :
 
 .. .. list-table::
 ..     :widths: 20 20 20
 ..     :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
+..     *   - Nom
+..         - ÉLÉMENTS DANS CE KIT
+..         - LIEN
+..     *   - Kit Raphael
 ..         - 337
 ..         - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+.. Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. .. list-table::
 ..     :widths: 30 20
 ..     :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+..     *   - INTRODUCTION DES COMPOSANTS
+..         - LIEN D'ACHAT
 
 ..     *   - :ref:`gpio_extension_board`
 ..         - |link_gpio_board_buy|
@@ -81,7 +81,7 @@ In this project, we need the following components.
 ..     *   - :ref:`buzzer`
 ..         - \-
 
-Schematic Diagram
+Schéma de câblage
 --------------------------
 
 ============ ======== ======== ===
@@ -99,15 +99,14 @@ SCL1         Pin 5
 .. image:: ../python_pi5/img/4.1.13_overheat_monitor_schematic.png
    :align: center
 
-Experimental Procedures
+Procédures expérimentales
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../python_pi5/img/4.1.13_overheat_monitor_circuit.png
 
-
-**Step 2**: Go to the folder of the code.
+**Étape 2 :** Accédez au dossier contenant le code.
 
 .. raw:: html
 
@@ -117,7 +116,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3**: Run the executable file.
+**Étape 3 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -127,33 +126,29 @@ Experimental Procedures
 
     sudo python3 3.1.8_OverheatMonitor_zero.py
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Lorsque le programme est exécuté, la température actuelle et le seuil de haute 
+température **40** sont affichés sur **I2C LCD1602**. Si la température actuelle 
+dépasse le seuil, le buzzer et la LED se déclenchent pour vous avertir.
 
-**Joystick** here is for your pressing to adjust the high-temperature
-threshold. Toggling the **Joystick** in the direction of X-axis and
-Y-axis can adjust (turn up or down) the current high-temperature
-threshold. Press the **Joystick** once again to reset the threshold to
-initial value.
+**Le Joystick** vous permet de régler le seuil de haute température. En déplaçant 
+le joystick le long des axes X et Y, vous pouvez augmenter ou diminuer le seuil actuel. 
+Appuyez à nouveau sur le joystick pour réinitialiser le seuil à sa valeur initiale.
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
-
+    * Si vous rencontrez l'erreur ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, vous devez consulter :ref:`i2c_config` pour activer l'I2C.
+    * Si vous obtenez l'erreur ``ModuleNotFoundError: No module named 'smbus2'``, veuillez exécuter ``sudo pip3 install smbus2``.
+    * Si l'erreur ``OSError: [Errno 121] Remote I/O error`` apparaît, cela signifie que le module est mal câblé ou qu'il est défectueux.
+    * Si le code et le câblage sont corrects mais que l'écran LCD n'affiche toujours rien, vous pouvez ajuster le potentiomètre à l'arrière pour augmenter le contraste.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si une erreur du type ``RuntimeError: Cannot determine SOC peripheral base address`` apparaît, veuillez vous référer à :ref:`faq_soc`.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin source, par exemple ``raphael-kit/python``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -169,15 +164,15 @@ initial value.
    import time
    import math
 
-   # Initialize joystick button, buzzer, and LED
+   # Initialisation du bouton du joystick, du buzzer et de la LED
    Joy_BtnPin = Button(22)
    buzzPin = Buzzer(23)
    ledPin = LED(24)
 
-   # Set initial upper temperature threshold
+   # Définir le seuil initial de température supérieure
    upperTem = 40
 
-   # Setup ADC and LCD modules
+   # Configuration des modules ADC et LCD
    ADC0834.setup()
    LCD1602.init(0x27, 1)
 
@@ -241,13 +236,13 @@ initial value.
            buzzPin.off()
            ledPin.off()
 
-   # Main execution loop
+   # Boucle d'exécution principale
    try:
        lastState = 1
        stage = 0
        while True:
            currentState = Joy_BtnPin.value
-           # Toggle between settings and monitoring mode
+           # Basculer entre le mode de réglage et le mode de surveillance
            if currentState == 1 and lastState == 0:
                stage = (stage + 1) % 2
                time.sleep(0.1)
@@ -258,14 +253,14 @@ initial value.
            else:
                monitoring_temp()
    except KeyboardInterrupt:
-       # Clean up and exit
+       # Nettoyage et sortie
        LCD1602.clear()
        ADC0834.destroy()
 
 
-**Code Explanation**
+**Explication du Code**
 
-#. This section imports necessary libraries for the project. ``LCD1602`` is for the LCD display, ``gpiozero`` provides classes for LED, Buzzer, and Button, ``ADC0834`` is for analog-to-digital conversion, and ``time`` and ``math`` are Python standard libraries for time-related functions and mathematical operations, respectively.
+#. Cette section importe les bibliothèques nécessaires pour le projet. ``LCD1602`` est utilisé pour l'affichage LCD, ``gpiozero`` fournit des classes pour contrôler les LED, le Buzzer et le Bouton, ``ADC0834`` est utilisé pour la conversion analogique-numérique, et ``time`` et ``math`` sont des bibliothèques standard de Python pour les fonctions temporelles et les calculs mathématiques respectivement.
 
    .. code-block:: python
 
@@ -277,27 +272,27 @@ initial value.
        import time
        import math
 
-#. Here, the joystick button, buzzer, and LED are initialized. ``Button(22)`` creates a button object connected to GPIO pin 22. ``Buzzer(23)`` and ``LED(24)`` initialize the buzzer and LED to GPIO pins 23 and 24, respectively.
+#. Ici, le bouton du joystick, le buzzer et la LED sont initialisés. ``Button(22)`` crée un objet bouton connecté à la broche GPIO 22. ``Buzzer(23)`` et ``LED(24)`` initialisent respectivement le buzzer et la LED sur les broches GPIO 23 et 24.
 
    .. code-block:: python
 
-       # Initialize joystick button, buzzer, and LED
+       # Initialisation du bouton du joystick, du buzzer et de la LED
        Joy_BtnPin = Button(22)
        buzzPin = Buzzer(23)
        ledPin = LED(24)
 
-#. Sets the initial upper temperature limit and initializes the ADC and LCD modules. The LCD is initialized with an address (``0x27``) and a mode (``1``).
+#. Définit la limite de température supérieure initiale et initialise les modules ADC et LCD. L'écran LCD est initialisé avec une adresse (``0x27``) et un mode (``1``).
 
    .. code-block:: python
 
-       # Set initial upper temperature threshold
+       # Définir le seuil initial de température supérieure
        upperTem = 40
 
-       # Setup ADC and LCD modules
+       # Configuration des modules ADC et LCD
        ADC0834.setup()
        LCD1602.init(0x27, 1)
 
-#. This function reads the joystick's X and Y values using ADC0834. It returns a change value based on the joystick's position, which will be used to adjust the temperature threshold.
+#. Cette fonction lit les valeurs X et Y du joystick en utilisant l'ADC0834. Elle renvoie une valeur de changement basée sur la position du joystick, qui sera utilisée pour ajuster le seuil de température.
 
    .. code-block:: python
 
@@ -318,7 +313,7 @@ initial value.
            else:
                return 0
 
-#. Adjusts the upper temperature limit using the joystick input. The new limit is displayed on the LCD.
+#. Ajuste la limite de température supérieure en utilisant l'entrée du joystick. La nouvelle limite est affichée sur l'écran LCD.
 
    .. code-block:: python
 
@@ -335,7 +330,7 @@ initial value.
            LCD1602.write(len(strUpperTem), 1, '              ')
            time.sleep(0.1)
 
-#. Reads the current temperature from the sensor using ADC0834 and converts it to Celsius.
+#. Lit la température actuelle du capteur à l'aide de l'ADC0834 et la convertit en Celsius.
 
    .. code-block:: python
 
@@ -350,7 +345,7 @@ initial value.
            Cel = temp - 273.15
            return round(Cel, 2)
 
-#. Monitors and displays the current temperature and upper limit. If the temperature exceeds the upper limit, the buzzer and LED are activated.
+#. Surveille et affiche la température actuelle et la limite supérieure. Si la température dépasse la limite supérieure, le buzzer et la LED sont activés.
 
    .. code-block:: python
 
@@ -373,17 +368,17 @@ initial value.
                buzzPin.off()
                ledPin.off()
 
-#. The main execution loop toggles between setting and monitoring modes based on joystick button presses. It continuously updates either the temperature setting or monitors the current temperature.
+#. La boucle principale alterne entre les modes de réglage et de surveillance en fonction des pressions sur le bouton du joystick. Elle met continuellement à jour soit le réglage de la température, soit la surveillance de la température actuelle.
 
    .. code-block:: python
 
-       # Main execution loop
+       # Boucle d'exécution principale
        try:
            lastState = 1
            stage = 0
            while True:
                currentState = Joy_BtnPin.value
-               # Toggle between settings and monitoring mode
+               # Basculer entre le mode de réglage et le mode de surveillance
                if currentState == 1 and lastState == 0:
                    stage = (stage + 1) % 2
                    time.sleep(0.1)
@@ -394,7 +389,7 @@ initial value.
                else:
                    monitoring_temp()
 
-#. This section ensures proper cleanup and resource release when the program is interrupted.
+#. Cette section garantit un nettoyage correct et la libération des ressources lorsque le programme est interrompu.
 
    .. code-block:: python
 

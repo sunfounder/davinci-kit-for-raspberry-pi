@@ -1,31 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d’experts** : Résolvez les problèmes après-vente et surmontez les défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et bénéficiez de contenus exclusifs.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos nouveaux produits.
+    - **Promotions et cadeaux festifs** : Participez à des concours et à des promotions spéciales pendant les fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
 
 
-Video 26: Using an LCD1602 LCD Display with I2C
+Vidéo 26 : Utiliser un écran LCD1602 avec communication I2C
 =======================================================================================
 
-Learn how to set up and connect an LCD 1602 display to a Raspberry Pi using I2C communication in this comprehensive tutorial by Paul McWhorter.
+Apprenez à configurer et à connecter un écran LCD1602 à un Raspberry Pi en utilisant la communication I2C dans ce tutoriel complet animé par Paul McWhorter.
 
-#. Sponsorship acknowledgment to SunFounder for providing the Raspberry Pi kit.
-#. **Explanation of the project**: Connecting an LCD 1602 display to the Raspberry Pi using I2C.
-#. **Benefits of I2C communication**: Simplified wiring with only four connections compared to previous methods.
-#. **Hardware setup**: Connecting the LCD display to the Raspberry Pi GPIO pins via a breakout board.
-#. **Configuring the Raspberry Pi for I2C**: Enabling the I2C interface via raspi-config.
+#. Remerciements à SunFounder pour avoir fourni le kit Raspberry Pi.
+#. **Explication du projet** : Connexion d’un écran LCD1602 au Raspberry Pi via l’interface I2C.
+#. **Avantages de la communication I2C** : Câblage simplifié avec seulement quatre connexions, par rapport aux méthodes précédentes.
+#. **Configuration matérielle** : Connexion de l’écran LCD aux broches GPIO du Raspberry Pi à l’aide d’une carte d’extension.
+#. **Configurer le Raspberry Pi pour I2C** : Activation de l’interface I2C via raspi-config.
 
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 

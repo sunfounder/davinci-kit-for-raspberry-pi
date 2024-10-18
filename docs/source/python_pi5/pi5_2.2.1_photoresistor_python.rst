@@ -1,35 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des concours et des promotions spéciales lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. _2.2.1_py_pi5:
 
 2.2.1 Photoresistor
-===================
+=====================
 
 Introduction
-------------
+------------------
 
-Photoresistor is a commonly used component of ambient light intensity in
-life. It helps the controller to recognize day and night and realize
-light control functions such as night lamp. This project is very similar
-to potentiometer, and you might think it changing the voltage to sensing
-light.
+La photorésistance est un composant couramment utilisé pour mesurer l'intensité 
+de la lumière ambiante. Elle permet au contrôleur de distinguer le jour et la nuit, 
+et d'implémenter des fonctions de contrôle de la lumière, comme l'activation d'une 
+lampe de nuit. Ce projet est très similaire à celui du potentiomètre, mais au lieu 
+de changer la tension, la photorésistance détecte la lumière.
 
-Required Components
-------------------------------
+Composants nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous aurons besoin des composants suivants :
 
 .. image:: ../python_pi5/img/2.2.1_photoresistor_list.png
 
@@ -71,53 +71,51 @@ In this project, we need the following components.
 ..         - |link_photoresistor_buy|
 
 Schematic Diagram
------------------
+-------------------
 
 .. image:: ../python_pi5/img/2.2.1_photoresistor_schematic_1.png
-
 
 .. image:: ../python_pi5/img/2.2.1_photoresistor_schematic_2.png
 
 
-Experimental Procedures
------------------------
+Procédure expérimentale
+---------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../python_pi5/img/2.2.1_photoresistor_circuit.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au répertoire contenant le code.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run the executable file.
+**Étape 3 :** Exécutez le fichier.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     sudo python3 2.2.1_Photoresistor_zero.py
 
-When the code is running, the brightness of the LED will change according to the light intensity sensed by the photoresistor.
+Lorsque le code s'exécute, la luminosité de la LED variera en fonction de l'intensité lumineuse détectée par la photorésistance.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    En cas d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source tel que ``raphael-kit/python-pi5``. Après modification, vous pouvez exécuter le code pour voir le résultat.
 
 .. raw:: html
 
@@ -130,40 +128,40 @@ When the code is running, the brightness of the LED will change according to the
    import ADC0834
    import time
 
-   # Initialize a PWM LED on GPIO pin 22
+   # Initialiser une LED PWM sur la broche GPIO 22
    led = PWMLED(22)
 
-   # Set up the ADC0834 module
+   # Configurer le module ADC0834
    ADC0834.setup()
 
-   # Define a function for mapping values from one range to another
+   # Définir une fonction pour mapper les valeurs d'une plage à une autre
    def MAP(x, in_min, in_max, out_min, out_max):
        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-   # Main loop for reading ADC value and controlling LED brightness
+   # Boucle principale pour lire les valeurs de l'ADC et contrôler la luminosité de la LED
    def loop():
        while True:
-           # Read analog value from ADC
+           # Lire la valeur analogique depuis l'ADC
            analogVal = ADC0834.getResult()
            print('value = %d' % analogVal)
 
-           # Map the ADC value to a PWM value and set LED brightness
+           # Mapper la valeur de l'ADC sur une valeur PWM et régler la luminosité de la LED
            led.value = float(analogVal/255)
 
-           # Wait for 0.2 seconds
+           # Attendre 0,2 seconde
            time.sleep(0.2)
 
-   # Run the main loop and handle KeyboardInterrupt for graceful shutdown
+   # Exécuter la boucle principale et gérer KeyboardInterrupt pour un arrêt propre
    try:
        loop()
    except KeyboardInterrupt: 
-       # Turn off LED before exiting
+       # Éteindre la LED avant de quitter
        led.value = 0
 
 
-**Code Explanation**
+**Explication du code**
 
-#. This segment imports the PWMLED class from the gpiozero library, necessary for controlling PWM LEDs. It also includes the ADC0834 module for interfacing with the analog-to-digital converter, and the time module for executing time-based functions such as sleep.
+#. Ce segment importe la classe ``PWMLED`` de la bibliothèque ``gpiozero``, nécessaire pour contrôler les LED en PWM. Il inclut également le module ``ADC0834`` pour interfacer avec le convertisseur analogique-numérique, ainsi que le module ``time`` pour les fonctions basées sur le temps, telles que ``sleep``.
 
    .. code-block:: python
 
@@ -172,49 +170,49 @@ When the code is running, the brightness of the LED will change according to the
        import ADC0834
        import time
 
-#. Initializes a PWM LED connected to GPIO pin 22 and sets up the ADC0834 module, preparing it for use in the project.
+#. Initialise une LED PWM connectée à la broche GPIO 22 et configure le module ADC0834 pour son utilisation dans le projet.
 
    .. code-block:: python
 
-       # Initialize a PWM LED on GPIO pin 22
+       # Initialiser une LED PWM sur la broche GPIO 22
        led = PWMLED(22)
 
-       # Set up the ADC0834 module
+       # Configurer le module ADC0834
        ADC0834.setup()
 
-#. Defines a function to map an input value from one range to another. This function is crucial for translating the ADC readings into a suitable range for PWM control.
+#. Définit une fonction pour mapper une valeur d'entrée d'une plage à une autre. Cette fonction est essentielle pour traduire les lectures de l'ADC en une plage appropriée pour le contrôle PWM de la LED.
 
    .. code-block:: python
 
-       # Define a function for mapping values from one range to another
+       # Définir une fonction pour mapper les valeurs d'une plage à une autre
        def MAP(x, in_min, in_max, out_min, out_max):
            return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-#. This section contains a loop that continuously reads the analog value from the ADC0834, maps it to a corresponding PWM value, and adjusts the LED brightness. A brief delay (`time.sleep(0.2)`) is included to make the changes visible and to avoid overburdening the CPU.
+#. Cette section contient une boucle qui lit continuellement la valeur analogique de l'ADC0834, la mappe sur une valeur PWM correspondante et ajuste la luminosité de la LED. Une brève pause (`time.sleep(0.2)`) est incluse pour rendre les changements visibles et éviter une surcharge du processeur.
 
    .. code-block:: python
 
-       # Main loop for reading ADC value and controlling LED brightness
+       # Boucle principale pour lire les valeurs de l'ADC et contrôler la luminosité de la LED
        def loop():
            while True:
-               # Read analog value from ADC
+               # Lire la valeur analogique depuis l'ADC
                analogVal = ADC0834.getResult()
                print('value = %d' % analogVal)
 
-               # Map the ADC value to a PWM value and set LED brightness
+               # Mapper la valeur de l'ADC sur une valeur PWM et régler la luminosité de la LED
                led.value = float(analogVal/255)
 
-               # Wait for 0.2 seconds
+               # Attendre 0,2 seconde
                time.sleep(0.2)
 
-#. Executes the loop function and includes error handling for a graceful shutdown on KeyboardInterrupt. It ensures the LED is turned off when the program is stopped.
+#. Exécute la fonction ``loop`` et inclut la gestion des erreurs pour un arrêt propre lors d'un ``KeyboardInterrupt``. Cela garantit que la LED est éteinte lorsque le programme se termine.
 
    .. code-block:: python
 
-       # Run the main loop and handle KeyboardInterrupt for graceful shutdown
+       # Exécuter la boucle principale et gérer KeyboardInterrupt pour un arrêt propre
        try:
            loop()
        except KeyboardInterrupt: 
-           # Turn off LED before exiting
+           # Éteindre la LED avant de quitter
            led.value = 0
 

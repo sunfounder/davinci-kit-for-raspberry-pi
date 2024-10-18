@@ -1,131 +1,110 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits.
+    - **Remises spéciales** : Bénéficiez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et tirages au sort** : Participez à des concours et à des promotions lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd'hui !
 
-1.3.4 Relay
-===========
+1.3.4 Relais
+============
 
 Introduction
-------------
+----------------
 
-In this lesson, we will learn to use a relay. It is one of the commonly
-used components in automatic control system. When the voltage, current,
-temperature, pressure, etc., reaches, exceeds or is lower than the
-predetermined value, the relay will connect or interrupt the circuit, to
-control and protect the equipment.
+Dans cette leçon, nous allons apprendre à utiliser un relais. C'est l'un des 
+composants couramment utilisés dans les systèmes de contrôle automatique. 
+Lorsque la tension, le courant, la température ou la pression atteignent, 
+dépassent ou sont inférieurs à une valeur prédéterminée, le relais connecte ou 
+interrompt le circuit pour contrôler et protéger les équipements.
 
-Components
-----------
+Composants
+-----------
 
 .. image:: img/list_1.3.4.png
 
-
-Principle
----------
+Principe
+----------
 
 **Diode**
 
-A diode is a two-terminal component in electronics with a unidirectional
-flow of current. It offers low resistance in the direction of current
-flow and offers high resistance in the opposite direction. Diodes are
-mostly used to prevent damage to components, especially due to
-electromotive force in circuits which are usually polarized.
+Une diode est un composant électronique à deux bornes qui permet un flux de courant 
+unidirectionnel. Elle offre une faible résistance dans le sens du courant et une haute 
+résistance dans le sens opposé. Les diodes sont principalement utilisées pour éviter 
+les dommages aux composants, notamment en raison de la force électromotrice dans les 
+circuits polarisés.
 
 .. image:: img/image344.png
 
+Les deux bornes d'une diode sont polarisées : l'anode (pôle positif) et la cathode 
+(pôle négatif). La cathode est généralement en argent ou comporte une bande colorée. 
+Le courant dans une diode circule de l'anode à la cathode. Ce comportement est similaire 
+à celui d'une soupape de non-retour. Si une tension plus élevée est appliquée à l'anode, 
+le courant circule, c'est le biais direct. Si la tension plus élevée est appliquée à la 
+cathode, le courant ne passe pas, c'est le biais inverse.
 
-The two terminals of a diode are polarized, with the positive end called
-anode and the negative end called cathode. The cathode is usually made
-of silver or has a color band. Controlling the direction of current flow
-is one of the key features of diodes — the current in a diode flows from
-anode to cathode. The behavior of a diode is similar to the behavior of
-a check valve. One of the most important characteristics of a diode is
-the non-linear current voltage. If higher voltage is connected to the
-anode, then current flows from anode to cathode, and the process is
-known as forward bias. However, if the higher voltage is connected to
-the cathode, then the diode does not conduct electricity, and the
-process is called reverse bias.
+**Relais**
 
-**Relay**
+Un relais est un dispositif utilisé pour établir une connexion entre deux ou plusieurs 
+points en réponse à un signal d'entrée. En d'autres termes, il assure une isolation entre 
+le contrôleur et l'appareil, notamment lorsque des dispositifs fonctionnent en courant 
+alternatif (AC) ou continu (DC). Les relais sont très utiles pour contrôler de grandes 
+quantités de courant ou de tension à l'aide de faibles signaux électriques.
 
-As we may know, relay is a device which is used to provide connection
-between two or more points or devices in response to the input signal
-applied. In other words, relays provide isolation between the controller
-and the device as devices may work on AC as well as on DC. However, they
-receive signals from a microcontroller which works on DC hence requiring
-a relay to bridge the gap. Relay is extremely useful when you need to
-control a large amount of current or voltage with small electrical
-signal.
+Il y a 5 parties dans chaque relais :
 
-There are 5 parts in every relay:
+**Électroaimant** - Il est constitué d'un noyau en fer enroulé de fils. Lorsque 
+l'électricité passe à travers, il devient magnétique.
 
-**Electromagnet** - It consists of an iron core wounded by coil of
-wires. When electricity is passed through, it becomes magnetic.
-Therefore, it is called electromagnet.
+**Armature** - Une bande magnétique mobile appelée armature. Lorsque du courant 
+circule, le champ magnétique attire l'armature, activant les contacts normalement 
+ouverts (N/O) ou fermés (N/C).
 
-**Armature** - The movable magnetic strip is known as armature. When
-current flows through them, the coil is it energized thus producing a
-magnetic field which is used to make or break the normally open (N/O) or
-normally close (N/C) points. And the armature can be moved with direct
-current (DC) as well as alternating current (AC).
+**Ressort** - Lorsque le courant ne passe pas dans l'électroaimant, le ressort 
+tire l'armature pour que le circuit soit interrompu.
 
-**Spring** - When no currents flow through the coil on the
-electromagnet, the spring pulls the armature away so the circuit cannot
-be completed.
+**Jeu de contacts électriques** :
+- Normalement ouvert - connecté lorsque le relais est activé, déconnecté lorsqu'il 
+est inactif.
+- Normalement fermé - non connecté lorsque le relais est activé, connecté lorsqu'il 
+est inactif.
 
-Set of electrical **contacts** - There are two contact points:
+**Cadre moulé** - Protégé par un boîtier en plastique.
 
--  Normally open - connected when the relay is activated, and disconnected when it is inactive.
+**Fonctionnement du relais**
 
--  Normally close - not connected when the relay is activated, and connected when it is inactive.
-
-**Molded frame** - Relays are covered with plastic for protection.
-
-**Working of Relay**
-
-The working principle of relay is simple. When power is supplied to the
-relay, currents start flowing through the control coil; as a result, the
-electromagnet starts energizing. Then the armature is attracted to the
-coil, pulling down the moving contact together thus connecting with the
-normally open contacts. So the circuit with the load is energized. Then
-breaking the circuit would a similar case, as the moving contact will be
-pulled up to the normally closed contacts under the force of the spring.
-In this way, the switching on and off of the relay can control the state
-of a load circuit.
+Le principe de fonctionnement est simple. Lorsque le relais est alimenté, le courant 
+circule dans la bobine de commande, ce qui active l'électroaimant. L'armature est alors 
+attirée et connecte les contacts normalement ouverts, fermant ainsi le circuit. Lors de 
+la rupture du circuit, le ressort ramène l'armature vers les contacts normalement fermés, 
+interrompant le circuit. Ce processus permet de contrôler l'état d'un circuit de charge.
 
 .. image:: img/image142.jpeg
 
-
-Schematic Diagram
------------------
+Schéma
+---------
 
 .. image:: img/image345.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+---------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: img/image144.png
     :width: 800
 
-    
+Pour les utilisateurs du langage C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
-
-**Step 2**: Open the code file.
+**Étape 2 :** Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -135,7 +114,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.3.4
 
-**Step 3:** Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -145,8 +124,7 @@ For C Language Users
 
     gcc 1.3.4_Relay.c -lwiringPi
 
-
-**Step 4:** Run the executable file.
+**Étape 4 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -156,13 +134,13 @@ For C Language Users
 
     sudo ./a.out
 
-After the code runs, the LED will light up. In addition, you can
-hear a ticktock caused by breaking normally close contact and 
-closing normally open contact.
+Après l'exécution du code, la LED s'allumera. De plus, vous entendrez un « tic-tac 
+» dû à l'ouverture du contact normalement fermé et à la fermeture du contact 
+normalement ouvert.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si cela ne fonctionne pas après l'exécution ou si un message d'erreur apparaît : \"wiringPi.h : Aucun fichier ou répertoire de ce type\", veuillez vous référer à :ref:`C code is not working?`.
 
 **Code**
 
@@ -173,11 +151,11 @@ closing normally open contact.
     #define RelayPin 0
 
     int main(void){
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen
+        if(wiringPiSetup() == -1){ //si l'initialisation de wiringPi échoue, affichez un message à l'écran
             printf("setup wiringPi failed !");
             return 1;
         }
-        pinMode(RelayPin, OUTPUT);   //set GPIO17(GPIO0) output
+        pinMode(RelayPin, OUTPUT);   //définir la sortie GPIO17(GPIO0)
         while(1){
             // Tick
             printf("Relay Open......\n");
@@ -194,28 +172,28 @@ closing normally open contact.
         return 0;
     }
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
     digitalWrite(RelayPin, LOW);
 
-Set the I/O port as low level (0V), thus the transistor is not energized
-and the coil is not powered. There is no electromagnetic force, so the
-relay opens, LED does not turn on.
+Configurez le port I/O à un niveau bas (0V), ce qui désactive le transistor et 
+la bobine n'est pas alimentée. Il n'y a donc pas de force électromagnétique, le 
+relais s'ouvre et la LED ne s'allume pas.
 
 .. code-block:: c
 
     digitalWrite(RelayPin, HIGH);
 
-set the I/O port as high level (5V) to energize the transistor. The coil
-of the relay is powered and generate electromagnetic force, and the
-relay closes, LED lights up.
+Configurez le port I/O à un niveau haut (5V) pour alimenter le transistor. La bobine 
+du relais est alimentée, générant une force électromagnétique, et le relais se ferme, 
+allumant la LED.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Pour les utilisateurs de Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Open the code file.
+**Étape 2 :** Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -225,8 +203,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python
 
-
-**Step 3:** Run.
+**Étape 3 :** Exécutez le code.
 
 .. raw:: html
 
@@ -236,16 +213,17 @@ For Python Language Users
 
     sudo python3 1.3.4_Relay.py
 
-While the code is running, the LED lights up. In addition, you can hear
-a ticktock caused by breaking normally close contact and closing
-normally open contact.
+Pendant l'exécution du code, la LED s'allume. De plus, vous entendrez 
+un « tic-tac » dû à l'ouverture et à la fermeture du relais.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code 
+    ci-dessous. Mais avant cela, vous devez vous rendre au chemin du code 
+    source tel que ``davinci-kit-for-raspberry-pi/python``.
+
 .. raw:: html
 
     <run></run>
@@ -255,69 +233,67 @@ normally open contact.
     import RPi.GPIO as GPIO
     import time
 
-    # Set GPIO17 as control pin
+    # Définir GPIO17 comme broche de contrôle
     relayPin = 17
 
-    # Define a setup function for some setup
+    # Définir une fonction de configuration
     def setup():
-        # Set the GPIO modes to BCM Numbering
+        # Configurer le mode GPIO en numérotation BCM
         GPIO.setmode(GPIO.BCM)
-        # Set relayPin's mode to output,
-        # and initial level to High(3.3v)
+        # Configurer le mode de relayPin en sortie,
+        # avec un niveau initial à High (3,3V)
         GPIO.setup(relayPin, GPIO.OUT, initial=GPIO.HIGH)
 
-    # Define a main function for main process
+    # Définir une fonction principale pour le processus principal
     def main():
         while True:
             print ('Relay open...')
-            # Tick
+            # Tic
             GPIO.output(relayPin, GPIO.LOW)
             time.sleep(1)
             print ('...Relay close')
-            # Tock
+            # Tac
             GPIO.output(relayPin, GPIO.HIGH)
             time.sleep(1)
 
-    # Define a destroy function for clean up everything after
-    # the script finished
+    # Définir une fonction destroy pour nettoyer après la fin du script
     def destroy():
-        # Turn off LED
+        # Éteindre la LED
         GPIO.output(relayPin, GPIO.HIGH)
-        # Release resource
-        GPIO.cleanup()                    
+        # Libérer les ressources
+        GPIO.cleanup()
 
-    # If run this script directly, do:
+    # Si ce script est exécuté directement, exécuter :
     if __name__ == '__main__':
         setup()
         try:
             main()
-        # When 'Ctrl+C' is pressed, the child program
-        # destroy() will be  executed.
+        # Lorsque 'Ctrl+C' est pressé, le programme enfant
+        # destroy() sera exécuté.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
     GPIO.output(relayPin, GPIO.LOW)
 
-Set the pins of transistor as low level to let the relay open, LED does not turn on.
+Configurez les broches du transistor en niveau bas pour ouvrir le relais, et la LED ne s'allume pas.
 
 .. code-block:: python
 
     time.sleep(1)
 
-wait for 1 second. 
+Attendre 1 seconde.
 
 .. code-block:: python
 
     GPIO.output(relayPin, GPIO.HIGH)
 
-Set the pins of the transistor as low level to actuate the relay, LED
-lights up.
+Configurez les broches du transistor en niveau haut pour activer le relais, et la LED s'allume.
 
-Phenomenon Picture
-------------------
+Image du Phénomène
+-----------------------
 
 .. image:: img/image145.jpeg

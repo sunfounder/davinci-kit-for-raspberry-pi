@@ -1,59 +1,60 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder des passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez au cœur du Raspberry Pi, de l’Arduino et de l’ESP32 aux côtés d’autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez les problèmes post-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Avant-premières exclusives** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des tirages au sort et à des promotions spéciales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. _py_pi5_alarm:
 
-3.1.3 Reversing Alarm
-======================================
+3.1.3 Alarme de Recul
+========================
 
 Introduction
--------------
+---------------
 
-In this project, we will use LCD, buzzer and ultrasonic sensors to make
-a reverse assist system. We can put it on the remote control vehicle to
-simulate the actual process of reversing the car into the garage.
+Dans ce projet, nous allons utiliser un écran LCD, un buzzer et des capteurs 
+ultrasoniques pour créer un système d’assistance au stationnement en marche 
+arrière. Nous pourrons le placer sur un véhicule télécommandé pour simuler le 
+processus réel de recul d’une voiture dans un garage.
 
-Required Components
-------------------------------
+Composants Nécessaires
+-------------------------
 
-In this project, we need the following components.
+Pour ce projet, nous aurons besoin des composants suivants :
 
 .. image:: ../python_pi5/img/4.1.9_reversing_alarm_list.png
     :width: 800
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+.. C'est certainement plus pratique d'acheter un kit complet, voici le lien : 
 
 .. .. list-table::
 ..     :widths: 20 20 20
 ..     :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
+..     *   - Nom	
+..         - COMPOSANTS DANS CE KIT
+..         - LIEN
+..     *   - Kit Raphael
 ..         - 337
 ..         - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+.. Vous pouvez également les acheter séparément aux liens ci-dessous.
 
 .. .. list-table::
 ..     :widths: 30 20
 ..     :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+..     *   - INTRODUCTION DU COMPOSANT
+..         - LIEN D'ACHAT
 
 ..     *   - :ref:`gpio_extension_board`
 ..         - |link_gpio_board_buy|
@@ -72,13 +73,13 @@ In this project, we need the following components.
 ..     *   - :ref:`i2c_lcd1602`
 ..         - |link_i2clcd1602_buy|
 
-Schematic Diagram
---------------------
+Schéma de Câblage
+----------------------
 
-Ultrasonic sensor detects the distance between itself and the obstacle
-that will be displayed on the LCD in the form of code. At the same time,
-the ultrasonic sensor let the buzzer issue prompt sound of different
-frequency according to different distance value.
+Le capteur ultrasonique détecte la distance entre lui-même et l'obstacle, qui 
+sera affichée sur l'écran LCD sous forme de valeur numérique. Simultanément, 
+le capteur active le buzzer, émettant des sons d’alerte de fréquences différentes 
+selon la valeur de la distance.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -92,15 +93,15 @@ SCL1         Pin 5
 .. image:: ../python_pi5/img/4.1.9_reversing_alarm_schematic.png
    :align: center
 
-Experimental Procedures
-------------------------
+Procédures Expérimentales
+-----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Montez le circuit.
 
 .. image:: ../python_pi5/img/4.1.9_reversing_alarm_circuit.png
     :align: center
 
-**Step 2:** Change directory.
+**Étape 2 :** Changez le répertoire.
 
 .. raw:: html
 
@@ -110,7 +111,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez le programme.
 
 .. raw:: html
 
@@ -120,27 +121,26 @@ Experimental Procedures
 
     sudo python3 3.1.3_ReversingAlarm_zero.py
 
-As the code runs, ultrasonic sensor module detects the distance to the
-obstacle and then displays the information about the distance on
-LCD1602; besides, buzzer emits warning tone whose frequency changes with
-the distance.
+Lorsque le programme s’exécute, le module de capteur ultrasonique détecte la 
+distance jusqu’à l’obstacle, affiche l’information sur l’écran LCD1602 et émet 
+des tonalités d’avertissement dont la fréquence varie en fonction de la distance détectée.
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * Si vous recevez l'erreur ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, veuillez consulter :ref:`i2c_config` pour activer l'I2C.
+    * Si vous recevez l'erreur ``ModuleNotFoundError: No module named 'smbus2'``, exécutez la commande ``sudo pip3 install smbus2``.
+    * Si l'erreur ``OSError: [Errno 121] Remote I/O error`` apparaît, cela signifie que le module est mal câblé ou qu’il est défectueux.
+    * Si le code et le câblage sont corrects, mais que l'écran LCD n'affiche toujours pas de contenu, vous pouvez tourner le potentiomètre à l'arrière pour augmenter le contraste.
 
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si un message d'erreur du type ``RuntimeError: Cannot determine SOC peripheral base address`` apparaît, veuillez vous référer à :ref:`faq_soc`.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. Cependant, avant cela, assurez-vous d'être dans le répertoire source comme ``raphael-kit/python-pi5``. Après modification, vous pouvez exécuter le code pour observer les résultats.
 
 .. raw:: html
 
@@ -153,55 +153,55 @@ the distance.
     import time
     from gpiozero import DistanceSensor, Buzzer
 
-    # Initialize the ultrasonic sensor with GPIO pins
-    sensor = DistanceSensor(echo=24, trigger=23)  # Echo pin is GPIO 24, Trigger pin is GPIO 23
+    # Initialisation du capteur ultrasonique avec les broches GPIO
+    sensor = DistanceSensor(echo=24, trigger=23)  # Broche Echo : GPIO 24, Broche Trigger : GPIO 23
 
-    # Initialize the buzzer connected to GPIO pin 17
+    # Initialisation du buzzer connecté à la broche GPIO 17
     buzzer = Buzzer(17)
 
     def lcdsetup():
-        # Initialize the LCD with I2C address and enable backlight
-        LCD1602.init(0x27, 1)  # 0x27 is the I2C address of the LCD
-        LCD1602.clear()  # Clear the LCD display
-        # Display startup messages on LCD
+        # Initialisation de l'écran LCD avec l'adresse I2C et activation du rétroéclairage
+        LCD1602.init(0x27, 1)  # 0x27 est l'adresse I2C de l'écran LCD
+        LCD1602.clear()  # Effacer l'écran LCD
+        # Affichage des messages de démarrage sur l'écran LCD
         LCD1602.write(0, 0, 'Ultrasonic Starting')
         LCD1602.write(1, 1, 'By SunFounder')
-        time.sleep(2)  # Wait for 2 seconds
+        time.sleep(2)  # Attendre 2 secondes
 
     def distance():
-        # Calculate and return the distance measured by the sensor
-        dis = sensor.distance * 100  # Convert distance to centimeters
-        print('Distance: {:.2f} cm'.format(dis))  # Print distance with two decimal places
-        time.sleep(0.3)  # Wait for 0.3 seconds before next measurement
+        # Calculer et retourner la distance mesurée par le capteur
+        dis = sensor.distance * 100  # Convertir la distance en centimètres
+        print('Distance: {:.2f} cm'.format(dis))  # Afficher la distance avec deux décimales
+        time.sleep(0.3)  # Attendre 0,3 seconde avant la prochaine mesure
         return dis
 
     def loop():
-        # Continuously measure distance and update LCD and buzzer
+        # Mesurer la distance en continu et mettre à jour l'écran LCD et le buzzer
         while True:
-            dis = distance()  # Get the current distance
-            # Display distance and handle alerts based on distance
-            if dis > 400:  # Check if distance is out of range
+            dis = distance()  # Obtenir la distance actuelle
+            # Afficher la distance et gérer les alertes en fonction de celle-ci
+            if dis > 400:  # Vérifier si la distance est hors de portée
                 LCD1602.clear()
                 LCD1602.write(0, 0, 'Error')
                 LCD1602.write(3, 1, 'Out of range')
                 time.sleep(0.5)
             else:
-                # Display current distance on LCD
+                # Afficher la distance actuelle sur l'écran LCD
                 LCD1602.clear()
                 LCD1602.write(0, 0, 'Distance is')
                 LCD1602.write(5, 1, str(round(dis, 2)) + ' cm')
-                # Adjust buzzer frequency based on distance
+                # Ajuster la fréquence du buzzer en fonction de la distance
                 if dis >= 50:
                     time.sleep(0.5)
                 elif 20 < dis < 50:
-                    # Medium distance: medium buzzer frequency
+                    # Distance moyenne : fréquence moyenne du buzzer
                     for _ in range(2):
                         buzzer.on()
                         time.sleep(0.05)
                         buzzer.off()
                         time.sleep(0.2)
                 elif dis <= 20:
-                    # Close distance: high buzzer frequency
+                    # Distance proche : fréquence élevée du buzzer
                     for _ in range(5):
                         buzzer.on()
                         time.sleep(0.05)
@@ -209,18 +209,17 @@ the distance.
                         time.sleep(0.05)
 
     try:
-        lcdsetup()  # Setup the LCD display
-        loop()      # Start the measurement loop
+        lcdsetup()  # Configurer l'écran LCD
+        loop()      # Démarrer la boucle de mesure
     except KeyboardInterrupt:
-        # Turn off buzzer and clear LCD on user interrupt (e.g., Ctrl+C)
+        # Éteindre le buzzer et effacer l'écran LCD en cas d'interruption par l'utilisateur (ex. Ctrl+C)
         buzzer.off()
     LCD1602.clear()
 
 
+**Explication du Code**
 
-**Code Explanation**
-
-#. This script utilizes several libraries for its functionality. The ``LCD1602`` library manages the LCD display, while ``time`` provides time-related functions. The ``gpiozero`` library is essential for Raspberry Pi GPIO pin interactions, particularly for operating the DistanceSensor and Buzzer.
+#. Ce script utilise plusieurs bibliothèques pour son bon fonctionnement. La bibliothèque ``LCD1602`` gère l'affichage de l'écran LCD, tandis que ``time`` fournit les fonctions liées au temps. La bibliothèque ``gpiozero`` est essentielle pour les interactions avec les broches GPIO du Raspberry Pi, en particulier pour contrôler le capteur de distance et le buzzer.
 
    .. code-block:: python
 
@@ -229,85 +228,84 @@ the distance.
        import time
        from gpiozero import DistanceSensor, Buzzer
 
-#. The ultrasonic sensor is set up with its echo and trigger pins connected to GPIO pins 24 and 23, respectively. Additionally, a buzzer is connected to GPIO pin 17.
+#. Le capteur ultrasonique est configuré avec ses broches Echo et Trigger connectées respectivement aux broches GPIO 24 et 23. De plus, un buzzer est connecté à la broche GPIO 17.
 
    .. code-block:: python
 
-       # Initialize the ultrasonic sensor with GPIO pins
-       sensor = DistanceSensor(echo=24, trigger=23)  # Echo pin is GPIO 24, Trigger pin is GPIO 23
+       # Initialisation du capteur ultrasonique avec les broches GPIO
+       sensor = DistanceSensor(echo=24, trigger=23)  # Broche Echo : GPIO 24, Broche Trigger : GPIO 23
 
-       # Initialize the buzzer connected to GPIO pin 17
+       # Initialisation du buzzer connecté à la broche GPIO 17
        buzzer = Buzzer(17)
 
-#. The initialization of the LCD display involves clearing it and displaying a startup message.
+#. L'initialisation de l'écran LCD consiste à le configurer, à effacer l'affichage et à afficher un message de démarrage.
 
    .. code-block:: python
 
        def lcdsetup():
-           # Initialize the LCD with I2C address and enable backlight
-           LCD1602.init(0x27, 1)  # 0x27 is the I2C address of the LCD
-           LCD1602.clear()  # Clear the LCD display
-           # Display startup messages on LCD
+           # Initialisation de l'écran LCD avec l'adresse I2C et activation du rétroéclairage
+           LCD1602.init(0x27, 1)  # 0x27 est l'adresse I2C de l'écran LCD
+           LCD1602.clear()  # Effacer l'écran LCD
+           # Affichage des messages de démarrage sur l'écran LCD
            LCD1602.write(0, 0, 'Ultrasonic Starting')
            LCD1602.write(1, 1, 'By SunFounder')
-           time.sleep(2)  # Wait for 2 seconds
-
-#. The ``distance`` function calculates the distance measured by the ultrasonic sensor and outputs it, returning the value in centimeters.
+           time.sleep(2)  # Attendre 2 secondes
+#. La fonction ``distance`` calcule la distance mesurée par le capteur ultrasonique et l'affiche, puis retourne la valeur en centimètres.
 
    .. code-block:: python
 
        def distance():
-           # Calculate and return the distance measured by the sensor
-           dis = sensor.distance * 100  # Convert distance to centimeters
-           print('Distance: {:.2f} cm'.format(dis))  # Print distance with two decimal places
-           time.sleep(0.3)  # Wait for 0.3 seconds before next measurement
+           # Calculer et retourner la distance mesurée par le capteur
+           dis = sensor.distance * 100  # Convertir la distance en centimètres
+           print('Distance: {:.2f} cm'.format(dis))  # Afficher la distance avec deux décimales
+           time.sleep(0.3)  # Attendre 0,3 seconde avant la prochaine mesure
            return dis
 
-#. The main loop continually measures the distance, updating both the LCD and the buzzer. It handles different distance ranges with specific actions, like displaying error messages or varying buzzer frequencies based on the measured distance.
+#. La boucle principale mesure continuellement la distance, met à jour l'écran LCD et le buzzer. Elle gère les différentes plages de distance avec des actions spécifiques, comme l'affichage de messages d'erreur ou la variation de la fréquence du buzzer en fonction de la distance mesurée.
 
    .. code-block:: python
 
        def loop():
-           # Continuously measure distance and update LCD and buzzer
+           # Mesurer continuellement la distance et mettre à jour l'écran LCD et le buzzer
            while True:
-               dis = distance()  # Get the current distance
-               # Display distance and handle alerts based on distance
-               if dis > 400:  # Check if distance is out of range
+               dis = distance()  # Obtenir la distance actuelle
+               # Afficher la distance et gérer les alertes en fonction de celle-ci
+               if dis > 400:  # Vérifier si la distance est hors de portée
                    LCD1602.clear()
                    LCD1602.write(0, 0, 'Error')
                    LCD1602.write(3, 1, 'Out of range')
                    time.sleep(0.5)
                else:
-                   # Display current distance on LCD
+                   # Afficher la distance actuelle sur l'écran LCD
                    LCD1602.clear()
                    LCD1602.write(0, 0, 'Distance is')
                    LCD1602.write(5, 1, str(round(dis, 2)) + ' cm')
-                   # Adjust buzzer frequency based on distance
+                   # Ajuster la fréquence du buzzer en fonction de la distance
                    if dis >= 50:
                        time.sleep(0.5)
                    elif 20 < dis < 50:
-                       # Medium distance: medium buzzer frequency
+                       # Distance moyenne : fréquence moyenne du buzzer
                        for _ in range(2):
                            buzzer.on()
                            time.sleep(0.05)
                            buzzer.off()
                            time.sleep(0.2)
                    elif dis <= 20:
-                       # Close distance: high buzzer frequency
+                       # Distance proche : fréquence élevée du buzzer
                        for _ in range(5):
                            buzzer.on()
                            time.sleep(0.05)
                            buzzer.off()
                            time.sleep(0.05)
 
-#. Upon execution, the script sets up the LCD and enters the main loop. It can be interrupted with a keyboard command (Ctrl+C), which turns off the buzzer and clears the LCD.
+#. Lors de l'exécution, le script initialise l'écran LCD et entre dans la boucle principale. Il peut être interrompu par une commande clavier (Ctrl+C), ce qui éteint le buzzer et efface l'écran LCD.
 
    .. code-block:: python
 
        try:
-           lcdsetup()  # Setup the LCD display
-           loop()      # Start the measurement loop
+           lcdsetup()  # Configurer l'écran LCD
+           loop()      # Démarrer la boucle de mesure
        except KeyboardInterrupt:
-           # Turn off buzzer and clear LCD on user interrupt (e.g., Ctrl+C)
+           # Éteindre le buzzer et effacer l'écran LCD en cas d'interruption par l'utilisateur (ex. Ctrl+C)
            buzzer.off()
            LCD1602.clear()

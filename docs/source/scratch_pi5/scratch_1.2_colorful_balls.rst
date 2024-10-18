@@ -1,77 +1,80 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Why Join?**
+    **Pourquoi nous rejoindre ?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez et partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions exclusives** : Profitez de réductions sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des promotions et à des cadeaux lors des fêtes.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
-1.2 Colorful Balls
+1.2 Boules colorées
 =====================
 
-
-Clicking on different colored balls on the stage area will cause the RGB LED to light up in different colors.
+Cliquer sur les différentes boules colorées dans la zone de scène fera s'allumer la LED RVB dans différentes couleurs.
 
 .. image:: img/1.2_header.png
 
-Required Components
------------------------
+Composants nécessaires
+--------------------------
 
 .. image:: img/1.2_list.png
 
-Build the Circuit
----------------------
+Construire le circuit
+------------------------
 
 .. image:: img/1.2_image61.png
 
 
-Load the Code and See What Happens
------------------------------------------
+Charger le code et voir ce qui se passe
+------------------------------------------
 
-After loading the code file (``1.2_colorful_balls.sb3``) into Scratch 3, the RGB LED will light up yellow, blue, red, green or purple respectively when you click on the corresponding ball.
+Après avoir chargé le fichier de code (``1.2_colorful_balls.sb3``) dans Scratch 3, la LED RVB s'allumera en jaune, bleu, rouge, vert ou violet en fonction de la boule sur laquelle vous cliquez.
 
-Tips on Sprites
-----------------
 
-Delete the default sprite, then choose the **Ball** sprite.
+Conseils sur les sprites
+---------------------------
+
+Supprimez le sprite par défaut, puis choisissez le sprite **Ball**.
 
 .. image:: img/1.2_ball.png
 
-And duplicate it 5 times.
+Dupliquez-le 5 fois.
 
 .. image:: img/1.2_duplicate_ball.png
 
-Choose different costumes for these 5 **Ball** sprites and move them to the corresponding positions.
+Choisissez des costumes différents pour ces 5 sprites **Ball** et placez-les aux positions correspondantes.
 
 .. image:: img/1.2_rgb1.png
 
-Tips on Codes
---------------
-Before understanding the code, we need to understand the `RGB color model <https://en.wikipedia.org/wiki/RGB_color_model>`_.
+Conseils sur le code
+-----------------------
 
-The RGB color model is an additive color model in which red, green, and blue light are added together in various ways to reproduce a broad array of colors. 
+Avant de comprendre le code, nous devons d'abord comprendre le `RGB color model <https://en.wikipedia.org/wiki/RGB_color_model>`_.
 
-Additive color mixing: adding red to green yields yellow; adding green to blue yields cyan; adding blue to red yields magenta; adding all three primary colors together yields white.
+Le modèle de couleur RVB est un modèle additif où la lumière rouge, verte et bleue est ajoutée de différentes manières pour reproduire une large gamme de couleurs.
+
+Mélange additif de couleurs : ajouter du rouge au vert donne du jaune ; ajouter du vert au bleu donne du cyan ; ajouter du bleu au rouge donne du magenta ; mélanger les trois couleurs primaires donne du blanc.
 
 .. image:: img/1.2_rgb_addition.png
   :width: 400
 
-An RGB LED is a combination of 3 LEDs(red LED, green LED, blue LED ) in just one package, you can produce almost any color by combining those three colors.
-It has 4 pins, one of which is GND, and the other 3 pins control 3 LEDs respectively.
+Une LED RVB est une combinaison de 3 LEDs (rouge, verte et bleue) dans un seul boîtier. 
+En combinant ces trois couleurs, on peut produire presque n'importe quelle couleur. 
+Elle possède 4 broches, dont l'une est reliée à la masse (GND) et les 3 autres contrôlent 
+les 3 LEDs respectives.
 
-So the code to make the RGB LED light yellow is as follows.
+Le code pour allumer la LED RVB en jaune est le suivant.
 
 .. image:: img/1.2_rgb3.png
 
+Lorsque le sprite **Ball** (boule jaune) est cliqué, nous réglons gpio17 sur haut 
+(LED rouge allumée), gpio18 sur haut (LED verte allumée) et gpio27 sur bas (LED bleue éteinte), ce qui fait que la LED RVB s'allume en jaune.
 
-When the Ball sprite (yellow ball) is clicked, we set gpio17 high (red LED on), gpio18 high (green LED on) and gpio27 low (blue LED off) so that the RGB LED will light yellow.
-
-You can Write codes to other sprites in the same way to make the RGB LEDs light up in the corresponding colors.
-
+Vous pouvez écrire des codes similaires pour les autres sprites afin de faire s'allumer 
+la LED RVB dans les couleurs correspondantes.
 

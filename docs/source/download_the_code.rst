@@ -13,7 +13,7 @@
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
 Laden Sie die Kode herunter
-===========================
+=================================
 
 
 Beachten Sie vor dem Herunterladen des Codes, dass der Beispielcode NUR unter Raspberry Pi OS getestet wird. Wir bieten zwei Methoden zum Download an:

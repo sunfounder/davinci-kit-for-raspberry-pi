@@ -17,7 +17,7 @@ Projects
 
 In this section, you will start learning to create IoT projects.
 
-Before starting the project, you should have downloaded the code we provided (:ref:`Download the Code`).
+Before starting the project, you should have downloaded the code we provided (:ref:`Laden Sie die Kode herunter`).
 
 Then copy the codes from the ``iot`` folder to the ``cloud4rpi-raspberrypi-python`` folder.
 

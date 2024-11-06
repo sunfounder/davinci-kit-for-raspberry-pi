@@ -1,33 +1,33 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 Metronome
 ====================
 
-Here we will make a metronome, the metronome is divided into 5 levels, the higher the level, the more urgent the buzzer call.
+Aquí vamos a crear un metrónomo, dividido en 5 niveles. Cuanto mayor sea el nivel, más rápido sonará el zumbador.
 
 .. image:: img/metronome.png
 
 
-**Wiring**
+**Conexión**
 
 .. image:: img/image106.png
 
 .. note::
 
-    An active buzzer is used here, and it has a white sticker on it.
-    
+    Aquí se utiliza un zumbador activo que lleva una etiqueta blanca.
+
 **Sketch**
 
 .. code-block:: Arduino
@@ -109,23 +109,21 @@ Here we will make a metronome, the metronome is divided into 5 levels, the highe
         }
     }
 
-**How it works?**
+**¿Cómo funciona?**
 
-
-Here, we created a ``Slider`` class and made it act as **WIDGET**.
+Aquí, hemos creado una clase ``Slider`` que actúa como un **WIDGET**.
 
 .. code-block:: arduino
 
     Slider(ax, ay, bx, by, min, max, v)
 
-In the declaration, it needs to be passed in 7 parameters.
+En la declaración, se deben pasar 7 parámetros.
 
-The first four parameters determine the size of the widget, followed by the coordinates (x1, y1) of the starting point in the upper left corner and (x2, y2) in the lower right corner.
+Los primeros cuatro parámetros determinan el tamaño del widget, con las coordenadas (x1, y1) del punto inicial en la esquina superior izquierda y (x2, y2) en la esquina inferior derecha.
 
-The last three parameters determine its numerical range (min to max) and initial value.
+Los últimos tres parámetros determinan su rango numérico (min a max) y el valor inicial.
 
-It has two methods, the effect of ``dragPoint()`` is to make the slider draggable and return the slider's current position value.
-
+Tiene dos métodos. El método ``dragPoint()`` permite arrastrar el control deslizante y devuelve el valor de la posición actual del control deslizante.
 
 .. code-block:: arduino
 
@@ -137,7 +135,7 @@ It has two methods, the effect of ``dragPoint()`` is to make the slider draggabl
         return value;
     }
 
-Another method ``show()`` is to show the Slider. At the same time, the range value and current value are displayed in the corresponding position.
+El otro método, ``show()``, muestra el control deslizante. Al mismo tiempo, se muestran el valor del rango y el valor actual en la posición correspondiente.
 
 .. code-block:: arduino
 
@@ -155,4 +153,4 @@ Another method ``show()`` is to show the Slider. At the same time, the range val
         text(value, linePoint, slotPointAY);
     }
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+Para más información, consulta `Processing Reference <https://processing.org/reference/>`_.

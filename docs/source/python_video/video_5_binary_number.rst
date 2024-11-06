@@ -1,28 +1,28 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete junto a otros entusiastas en el fascinante mundo de Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Exclusivas**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
 
-Video 5: Understanding Binary Numbers
+Video 5: Entendiendo los Números Binarios
 =======================================================================================
 
-Delve into the world of binary numbers, exploring their significance in computing, and learn binary arithmetic basics. Engage in a hands-on Raspberry Pi homework assignment to create a five-digit binary counter using LEDs and resistors.
+Adéntrate en el mundo de los números binarios, explorando su importancia en la computación y aprendiendo los conceptos básicos de la aritmética binaria. Participa en una tarea práctica en Raspberry Pi para crear un contador binario de cinco dígitos usando LEDs y resistencias.
 
-1. **Binary Basics**: Computers operate in binary, utilizing zeros and ones for all computations.
-2. **Data Representation**: Binary numbers encode various data types, from numbers to text and images.
-3. **Hardware Components**: Learn how on-off switches form the basis of binary representation in computers.
-4. **Binary Arithmetic**: Understand the process of binary addition, mirroring traditional carrying methods.
-5. **Raspberry Pi Homework Assignment**: Get practical with a hands-on task to create a five-digit binary counter using LEDs and resistors.
+1. **Conceptos Básicos del Binario**: Las computadoras operan en binario, utilizando ceros y unos para realizar todas las operaciones.
+2. **Representación de Datos**: Los números binarios codifican varios tipos de datos, desde números hasta texto e imágenes.
+3. **Componentes de Hardware**: Aprende cómo los interruptores de encendido y apagado forman la base de la representación binaria en las computadoras.
+4. **Aritmética Binaria**: Comprende el proceso de suma binaria, que refleja los métodos tradicionales de acarreo.
+5. **Tarea Práctica en Raspberry Pi**: Realiza un ejercicio práctico para crear un contador binario de cinco dígitos usando LEDs y resistencias.
 
 **Video**
 
@@ -30,7 +30,7 @@ Delve into the world of binary numbers, exploring their significance in computin
 
     <iframe width="700" height="500" src="https://www.youtube.com/embed/Rbi6sVvazFU?si=AAVIRPmAaXLxOMfO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-**Homework Solution**
+**Solución de la Tarea**
 
 .. raw:: html
 

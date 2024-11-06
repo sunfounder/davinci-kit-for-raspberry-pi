@@ -1,35 +1,34 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-2.1.5 Keypad
-============
+2.1.5 Teclado Matricial
+===========================
 
-Introduction
-------------
+Introducción
+---------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Un teclado matricial es un arreglo rectangular de botones. En este proyecto, 
+lo utilizaremos para ingresar caracteres.
 
-Components
-----------
+Componentes
+--------------
 
 .. image:: ../img/list_2.1.5_keypad.png
 
 
-
-Schematic Diagram
------------------
+Diagrama del Circuito
+------------------------
 
 .. image:: ../img/image315.png
 
@@ -37,14 +36,14 @@ Schematic Diagram
 .. image:: ../img/image316.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image186.png
 
-**Step 2:** Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -54,7 +53,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Run.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -64,10 +63,10 @@ Experimental Procedures
 
     sudo node keypad.js
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Tras ejecutar el código, los valores de las teclas presionadas en el 
+teclado matricial (Valor de la tecla) se mostrarán en pantalla.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -75,10 +74,10 @@ Value) will be printed on the screen.
 
     var rowsPins = [18,23,24,25];
     var colsPins = [10,6,27,17];
-    var keys = ["1","2","3","A",
-            "4","5","6","B",
-            "7","8","9","C",
-            "*","0","#","D"];      
+    var keys = ["1","2","3","A",            
+                "4","5","6","B",            
+                "7","8","9","C",            
+                "*","0","#","D"];      
 
     for(let i=0;i<rowsPins.length;i++){
         rowsPins[i] = new Gpio(rowsPins[i],{mode: Gpio.OUTPUT})
@@ -115,7 +114,7 @@ Value) will be printed on the screen.
     }, 10);
 
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
@@ -140,20 +139,17 @@ Value) will be printed on the screen.
     }
 
 
+En el teclado matricial, se declaran dos conjuntos de pines y una matriz.
 
-In the style of the keypad, declare two sets of pins and a matrix.
+Cuatro de los pines representan las filas del teclado, y se configuran en modo OUTPUT.
+Los otros cuatro pines corresponden a las columnas del teclado, configurados en modo INPUT y con interrupción en el flanco de subida.
 
-Four of the pins are the row of the keypad, set these pins to OUTPUT mode;
-The other four pins are the columns of the keypad, set these pins to INPUT mode, and set the rising edge interrupt for them.
+El microcontrolador detecta el valor de la tecla presionada de la siguiente forma:
+Los pines de las filas suministran un nivel alto de manera secuencial; si se presiona un botón, 
+el pin de la columna correspondiente recibirá este nivel alto, disparando la interrupción.
 
-The principle that the main controller can obtain the key value is as follows:
-The four row pins provide high level in turn, if a button is pressed,
-The corresponding column pin will get the high level released by the row pin, which will trigger the rising edge interrupt.
-
-For example, if I press the button **3** , when the 2nd, 3rd, and 4th row pins release the high level, there is no effect;
-When the row pin in the first position releases the high level, the third column pin will be able to obtain the high level and trigger the rising edge interrupt. At this time, the 1st, 2nd, and 4th column pins do not trigger any events.
-
-Then, according to the 1st row pin that releases the high level and the 3rd column pin that gets the high level, the main controller will be able to know that the position of the pressed button is (1,3), which is the button **3**.
+Por ejemplo, si presionas la tecla **3**, al aplicar nivel alto en la primera fila y leer la tercera columna, 
+se activará la interrupción en el pin correspondiente, indicando que la tecla **3** ha sido presionada.
 
 .. image:: ../img/image187.png
 
@@ -169,7 +165,7 @@ Then, according to the 1st row pin that releases the high level and the 3rd colu
         rowsPins[row].digitalWrite(1);
     }, 10);
 
-The four row pins are periodically supplied high, and the variable ``row`` is used to locate the currently working row pin.
+Los cuatro pines de las filas reciben periódicamente un nivel alto. La variable ``row`` indica la fila activa en ese momento.
 
 .. code-block:: js
 
@@ -185,8 +181,7 @@ The four row pins are periodically supplied high, and the variable ``row`` is us
         });
     }
 
-Set up interrupt functions for the four column pins, 
-and the variable ``col`` is used to locate the column pins that trigger the rising edge interrupt event.
+Se establecen funciones de interrupción para las cuatro columnas. La variable ``col`` ubica las columnas que disparan el evento de interrupción.
 
 
 .. code-block:: js
@@ -197,12 +192,11 @@ and the variable ``col`` is used to locate the column pins that trigger the risi
     }
     last_key_pressed = pressed_keys;
 
-There is also a piece of code in the break function to get the specific key value from the ``keys`` matrix according to ``row`` and ``col``.
-And every time you get a new key value, print the value.
+En la función de interrupción, se obtiene el valor de la tecla desde la matriz ``keys`` usando ``row`` y ``col``.
+Cada vez que se obtiene un nuevo valor de tecla, este se imprime en pantalla.
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: ../img/image188.jpeg
-
 

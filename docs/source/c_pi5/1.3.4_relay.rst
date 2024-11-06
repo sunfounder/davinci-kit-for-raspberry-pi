@@ -1,127 +1,119 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Accede anticipadamente a anuncios de nuevos productos y vistas previas.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-1.3.4 Relay
-===========
+1.3.4 Relé
+=============
 
-Introduction
-------------
+Introducción
+---------------
 
-In this lesson, we will learn to use a relay. It is one of the commonly
-used components in automatic control system. When the voltage, current,
-temperature, pressure, etc., reaches, exceeds or is lower than the
-predetermined value, the relay will connect or interrupt the circuit, to
-control and protect the equipment.
+En esta lección, aprenderemos a utilizar un relé. Es uno de los componentes 
+más comunes en los sistemas de control automático. Cuando el voltaje, la 
+corriente, la temperatura, la presión, etc., alcanzan, superan o son inferiores 
+al valor predeterminado, el relé conectará o interrumpirá el circuito, para 
+controlar y proteger el equipo.
 
-Components
-----------
+Componentes
+-------------
 
 .. image:: img/list_1.3.4.png
 
+Principio
+------------
 
-Principle
----------
+**Diodo**
 
-**Diode**
-
-A diode is a two-terminal component in electronics with a unidirectional
-flow of current. It offers low resistance in the direction of current
-flow and offers high resistance in the opposite direction. Diodes are
-mostly used to prevent damage to components, especially due to
-electromotive force in circuits which are usually polarized.
+Un diodo es un componente electrónico de dos terminales que permite el flujo 
+unidireccional de la corriente. Ofrece baja resistencia en la dirección del 
+flujo de corriente y alta resistencia en la dirección opuesta. Los diodos se 
+utilizan principalmente para prevenir daños a los componentes, especialmente 
+debido a la fuerza electromotriz en circuitos que generalmente están polarizados.
 
 .. image:: img/image344.png
 
+Los dos terminales de un diodo están polarizados, siendo el extremo positivo 
+llamado ánodo y el extremo negativo llamado cátodo. El cátodo generalmente está 
+hecho de plata o tiene una banda de color. Controlar la dirección del flujo de 
+corriente es una de las características clave de los diodos: la corriente en un 
+diodo fluye del ánodo al cátodo. El comportamiento de un diodo es similar al de 
+una válvula de retención. Una de las características más importantes de un diodo 
+es su curva característica de corriente y voltaje. Si se conecta un voltaje mayor 
+al ánodo, la corriente fluye del ánodo al cátodo, lo que se conoce como polarización 
+directa. Sin embargo, si el voltaje mayor se conecta al cátodo, el diodo no conduce 
+electricidad, y el proceso se llama polarización inversa.
 
-The two terminals of a diode are polarized, with the positive end called
-anode and the negative end called cathode. The cathode is usually made
-of silver or has a color band. Controlling the direction of current flow
-is one of the key features of diodes — the current in a diode flows from
-anode to cathode. The behavior of a diode is similar to the behavior of
-a check valve. One of the most important characteristics of a diode is
-the non-linear current voltage. If higher voltage is connected to the
-anode, then current flows from anode to cathode, and the process is
-known as forward bias. However, if the higher voltage is connected to
-the cathode, then the diode does not conduct electricity, and the
-process is called reverse bias.
+**Relé**
 
-**Relay**
+Como sabemos, un relé es un dispositivo que se utiliza para proporcionar conexión entre 
+dos o más puntos o dispositivos en respuesta a una señal de entrada aplicada. En otras 
+palabras, los relés proporcionan aislamiento entre el controlador y el dispositivo, ya que 
+los dispositivos pueden funcionar tanto con CA como con CC. Sin embargo, reciben señales de 
+un microcontrolador que funciona con CC, por lo que se requiere un relé para cerrar la brecha. 
+El relé es extremadamente útil cuando necesitas controlar una gran cantidad de corriente o voltaje 
+con una pequeña señal eléctrica.
 
-As we may know, relay is a device which is used to provide connection
-between two or more points or devices in response to the input signal
-applied. In other words, relays provide isolation between the controller
-and the device as devices may work on AC as well as on DC. However, they
-receive signals from a microcontroller which works on DC hence requiring
-a relay to bridge the gap. Relay is extremely useful when you need to
-control a large amount of current or voltage with small electrical
-signal.
+Hay 5 partes en cada relé:
 
-There are 5 parts in every relay:
+**Electroimán** - Consiste en un núcleo de hierro enrollado con un bobinado de 
+alambre. Cuando pasa electricidad a través de él, se vuelve magnético. Por lo 
+tanto, se llama electroimán.
 
-**Electromagnet** - It consists of an iron core wounded by coil of
-wires. When electricity is passed through, it becomes magnetic.
-Therefore, it is called electromagnet.
+**Armadura** - La tira magnética móvil se conoce como armadura. Cuando la 
+corriente fluye a través de ella, la bobina se energiza, produciendo un campo 
+magnético que se utiliza para abrir o cerrar los puntos normalmente abiertos 
+(N/O) o normalmente cerrados (N/C). Y la armadura puede moverse con corriente 
+continua (CC) así como con corriente alterna (CA).
 
-**Armature** - The movable magnetic strip is known as armature. When
-current flows through them, the coil is it energized thus producing a
-magnetic field which is used to make or break the normally open (N/O) or
-normally close (N/C) points. And the armature can be moved with direct
-current (DC) as well as alternating current (AC).
+**Resorte** - Cuando no hay corriente fluyendo a través de la bobina del 
+electroimán, el resorte aleja la armadura, por lo que el circuito no se completa.
 
-**Spring** - When no currents flow through the coil on the
-electromagnet, the spring pulls the armature away so the circuit cannot
-be completed.
+**Conjunto de contactos eléctricos** - Hay dos puntos de contacto:
 
-Set of electrical **contacts** - There are two contact points:
+- Normalmente abierto: conectado cuando el relé está activado y desconectado cuando está inactivo.
 
--  Normally open - connected when the relay is activated, and disconnected when it is inactive.
+- Normalmente cerrado: no conectado cuando el relé está activado y conectado cuando está inactivo.
 
--  Normally close - not connected when the relay is activated, and connected when it is inactive.
+**Marco moldeado** - Los relés están cubiertos de plástico para protección.
 
-**Molded frame** - Relays are covered with plastic for protection.
+**Funcionamiento del relé**
 
-**Working of Relay**
-
-The working principle of relay is simple. When power is supplied to the
-relay, currents start flowing through the control coil; as a result, the
-electromagnet starts energizing. Then the armature is attracted to the
-coil, pulling down the moving contact together thus connecting with the
-normally open contacts. So the circuit with the load is energized. Then
-breaking the circuit would a similar case, as the moving contact will be
-pulled up to the normally closed contacts under the force of the spring.
-In this way, the switching on and off of the relay can control the state
-of a load circuit.
+El principio de funcionamiento del relé es simple. Cuando se suministra energía 
+al relé, comienza a fluir corriente a través de la bobina de control; como 
+resultado, el electroimán comienza a energizarse. Luego, la armadura es atraída 
+hacia la bobina, bajando el contacto móvil y conectándose con los contactos 
+normalmente abiertos. Así, el circuito con la carga se energiza. Romper el 
+circuito sería un caso similar, ya que el contacto móvil será levantado hacia 
+los contactos normalmente cerrados bajo la fuerza del resorte. De esta manera, 
+el encendido y apagado del relé puede controlar el estado de un circuito de carga.
 
 .. image:: img/image142.jpeg
 
-
-Schematic Diagram
------------------
+Diagrama esquemático
+------------------------
 
 .. image:: img/image345.png
 
 
-Experimental Procedures
------------------------
+Procedimientos experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: img/image144.png
     :width: 800
 
-
-**Step 2**: Open the code file.
+**Paso 2**: Abrir el archivo de código.
 
 .. raw:: html
 
@@ -131,7 +123,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.3.4
 
-**Step 3:** Compile the code.
+**Paso 3:** Compilar el código.
 
 .. raw:: html
 
@@ -141,8 +133,7 @@ Experimental Procedures
 
     gcc 1.3.4_Relay.c -lwiringPi
 
-
-**Step 4:** Run the executable file.
+**Paso 4:** Ejecutar el archivo ejecutable.
 
 .. raw:: html
 
@@ -152,15 +143,15 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the LED will light up. In addition, you can
-hear a ticktock caused by breaking normally close contact and 
-closing normally open contact.
+Después de ejecutar el código, el LED se encenderá. Además, podrás escuchar 
+un tic-tac causado por la ruptura del contacto normalmente cerrado y el cierre 
+del contacto normalmente abierto.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`C code is not working?`.
 
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -169,11 +160,11 @@ closing normally open contact.
     #define RelayPin 0
 
     int main(void){
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen
+        if(wiringPiSetup() == -1){ //cuando la inicialización de wiring falla, imprime un mensaje en pantalla
             printf("setup wiringPi failed !");
             return 1;
         }
-        pinMode(RelayPin, OUTPUT);   //set GPIO17(GPIO0) output
+        pinMode(RelayPin, OUTPUT);   //configura GPIO17(GPIO0) como salida
         while(1){
             // Tick
             printf("Relay Open......\n");
@@ -190,21 +181,20 @@ closing normally open contact.
         return 0;
     }
 
-**Code Explanation**
+**Explicación del código**
 
 .. code-block:: c
 
     digitalWrite(RelayPin, LOW);
 
-Set the I/O port as low level (0V), thus the transistor is not energized
-and the coil is not powered. There is no electromagnetic force, so the
-relay opens, LED does not turn on.
+Establece el puerto de E/S como nivel bajo (0V), por lo que el transistor 
+no se energiza y la bobina no recibe corriente. No hay fuerza electromagnética, 
+por lo que el relé se abre y el LED no se enciende.
 
 .. code-block:: c
 
     digitalWrite(RelayPin, HIGH);
 
-set the I/O port as high level (5V) to energize the transistor. The coil
-of the relay is powered and generate electromagnetic force, and the
-relay closes, LED lights up.
-
+Establece el puerto de E/S como nivel alto (5V) para energizar el transistor. 
+La bobina del relé se alimenta y genera fuerza electromagnética, y el relé se 
+cierra, encendiendo el LED.

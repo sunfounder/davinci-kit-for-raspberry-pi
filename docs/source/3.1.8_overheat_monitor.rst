@@ -1,31 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete más profundamente en Raspberry Pi, Arduino y ESP32 junto con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas posventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
-3.1.8 Overheat Monitor
-========================
+3.1.8 Monitor de Sobrecalentamiento
+==========================================
 
-Introduction
+Introducción
 -------------------
 
-You may want to make an overheat monitoring device that applies to
-various situations, ex., in the factory, if we want to have an alarm and
-the timely automatic turning off of the machine when there is a circuit
-overheating. In this lesson, we will use thermistor, joystick, buzzer,
-LED and LCD to make an smart temperature monitoring device whose
-threshold is adjustable.
+Podrías querer crear un dispositivo de monitoreo de sobrecalentamiento que 
+se aplique a diversas situaciones, por ejemplo, en una fábrica, si se necesita 
+una alarma y el apagado automático oportuno de una máquina cuando hay sobrecalentamiento 
+en el circuito. En esta lección, usaremos un termistor, un joystick, un zumbador, un LED 
+y una pantalla LCD para crear un dispositivo inteligente de monitoreo de temperatura cuyo umbral es ajustable.
 
-Components
+Componentes
 -----------------
 
 .. image:: img/list_Overheat_Monitor.png
@@ -34,7 +33,7 @@ Components
 .. image:: img/list_Overheat_Monitor2.png
     :align: center
 
-Schematic Diagram
+Diagrama de Esquema
 --------------------------
 
 ============ ======== ======== ===
@@ -53,19 +52,19 @@ SCL1         Pin 5
    :width: 700
    :align: center
 
-Experimental Procedures
+Procedimiento Experimental
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: img/image258.png
    :alt: Overheat Monitor_bb
    :width: 800
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Para Usuarios de Lenguaje C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -75,7 +74,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.8/
 
-**Step 3**: Compile the code.
+**Paso 3**: Compila el código.
 
 .. raw:: html
 
@@ -85,7 +84,7 @@ Experimental Procedures
 
     gcc 3.1.8_OverheatMonitor.c -lwiringPi -lm
 
-**Step 4**: Run the executable file.
+**Paso 4**: Ejecuta el archivo compilado.
 
 .. raw:: html
 
@@ -95,23 +94,22 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Al ejecutarse el código, se muestra en la **I2C LCD1602** la temperatura 
+actual y el umbral de temperatura alta, que inicialmente es **40**. Si la 
+temperatura actual supera el umbral, el zumbador y el LED se activan para 
+alertarte.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si el programa no funciona después de ejecutarlo o aparece el mensaje de error: "wiringPi.h: No such file or directory", consulta :ref:`c code is not working?`.
 
 
-**Joystick** here is for your pressing to adjust the high-temperature
-threshold. Toggling the **Joystick** in the direction of X-axis and
-Y-axis can adjust (turn up or down) the current high-temperature
-threshold. Press the **Joystick** once again to reset the threshold to
-initial value.
+**Joystick** aquí se utiliza para ajustar el umbral de temperatura alta. Al 
+mover el **Joystick** en las direcciones de los ejes X o Y puedes ajustar 
+(subir o bajar) el umbral de temperatura alta actual. Presiona el **Joystick** 
+nuevamente para restablecer el umbral al valor inicial.
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -137,9 +135,9 @@ initial value.
         }
     }
 
-This function reads values of X and Y. If **X>200**, there will return
-\"**1**\"; **X<50**, return \"**-1**\"; **y>200**, return
-\"**-10**\", and **y<50**, return \"**10**\".
+Esta función lee los valores de X y Y. Si **X>200**, devuelve "**1**"; si 
+**X<50**, devuelve "**-1**"; si **y>200**, devuelve "**-10**", y si **y<50**, 
+devuelve "**10**".
 
 .. code-block:: c
 
@@ -149,15 +147,14 @@ This function reads values of X and Y. If **X>200**, there will return
         upperTem = upperTem + change;
         char str[6];
         snprintf(str,3,"%d",upperTem);
-    write(0,1,str);
-    int len;
-      len = strlen(str);
-      write(len,1,"             ");
+        write(0,1,str);
+        int len;
+        len = strlen(str);
+        write(len,1,"             ");
         delay(100);
     }
 
-This function is for adjusting the threshold and displaying it on the
-I2C LCD1602.
+Esta función permite ajustar el umbral y mostrarlo en la pantalla I2C LCD1602.
 
 .. code-block:: c
 
@@ -173,8 +170,8 @@ I2C LCD1602.
         return cel;
     }
 
-Read the analog value of the **CH0** (thermistor) of **ADC0834** and
-then convert it to temperature value.
+Lee el valor analógico de **CH0** (termistor) del **ADC0834** y luego lo 
+convierte en un valor de temperatura.
 
 .. code-block:: c
 
@@ -198,10 +195,9 @@ then convert it to temperature value.
         }
     }
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Al ejecutar el código, se muestra en la **I2C LCD1602** la temperatura actual 
+y el umbral de temperatura alta, que inicialmente es **40**. Si la temperatura 
+actual supera el umbral, el zumbador y el LED se activan para alertarte.
 
 .. code-block:: c
 
@@ -229,23 +225,23 @@ to alarm you.
         return 0;
     }
 
-The function main() contains the whole program process as shown:
+La función main() contiene el proceso completo del programa como se muestra a 
+continuación:
 
-1) When the program starts, the initial value of **stage** is **0**, and
-   the current temperature and the high-temperature threshold **40** are
-   displayed on **I2C LCD1602**. If the current temperature is larger
-   than the threshold, the buzzer and the LED are started to alarm you.
+1) Al iniciar el programa, el valor inicial de **stage** es **0**, y la 
+temperatura actual y el umbral de temperatura alta **40** se muestran en 
+la **I2C LCD1602**. Si la temperatura actual supera el umbral, el zumbador 
+y el LED se activan para alertar.
 
-2) Press the Joystick, and **stage** will be **1** and you can adjust
-   the high-temperature threshold. Toggling the Joystick in the
-   direction of X-axis and Y-axis can adjust (turn up or down) the
-   current threshold. Press the Joystick once again to reset the
-   threshold to initial value.
+2) Al presionar el Joystick, **stage** cambiará a **1**, y podrás ajustar el 
+umbral de temperatura alta. Al mover el Joystick en las direcciones de los 
+ejes X o Y, puedes ajustar (subir o bajar) el umbral actual. Presiona el 
+Joystick nuevamente para restablecer el umbral al valor inicial.
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Para Usuarios de Lenguaje Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -255,7 +251,7 @@ The function main() contains the whole program process as shown:
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3**: Run the executable file.
+**Paso 3**: Ejecuta el archivo.
 
 .. raw:: html
 
@@ -265,22 +261,20 @@ The function main() contains the whole program process as shown:
 
     sudo python3 3.1.8_OverheatMonitor.py
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Al ejecutar el código, la temperatura actual y el umbral de temperatura 
+alta **40** se muestran en la **I2C LCD1602**. Si la temperatura actual 
+supera el umbral, el zumbador y el LED se activarán para alertarte.
 
-**Joystick** here is for your pressing to adjust the high-temperature
-threshold. Toggling the **Joystick** in the direction of X-axis and
-Y-axis can adjust (turn up or down) the current high-temperature
-threshold. Press the **Joystick** once again to reset the threshold to
-initial value.
+El **Joystick** se utiliza para ajustar el umbral de temperatura alta. 
+Moviendo el **Joystick** en la dirección del eje X o Y puedes aumentar o 
+disminuir el umbral de temperatura alta. Presiona el **Joystick** nuevamente 
+para restablecer el umbral al valor inicial.
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes, necesitas ir a la ruta del código fuente como ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -377,15 +371,14 @@ initial value.
         ADC0834.destroy()
         GPIO.cleanup()
 
-    if __name__ == '__main__':     # Program start from here
+    if __name__ == '__main__':     # El programa comienza aquí
         try:
             setup()
             while True:
                 loop()
-        except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt:   # Cuando se presiona 'Ctrl+C', se ejecutará la función destroy()
             destroy()
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
@@ -400,12 +393,12 @@ initial value.
             return -10
         elif(y_val < 50):
             return 10
-        else:
+        else:
             return 0
 
-This function reads values of X and Y. If **X>200**, there will return
-\"**1**\"; **X<50**, return \"**-1**\"; **y>200**, return
-\"**-10**\", and **y<50**, return \"**10**\".
+Esta función lee los valores de X e Y. Si **X > 200**, devuelve "**1**"; 
+si **X < 50**, devuelve "**-1**"; si **y > 200**, devuelve "**-10**"; 
+y si **y < 50**, devuelve "**10**".
 
 .. code-block:: python
 
@@ -416,10 +409,9 @@ This function reads values of X and Y. If **X>200**, there will return
         upperTem = upperTem + change
     LCD1602.write(0, 1, str(upperTem))
     LCD1602.write(len(strUpperTem),1, '              ')
-        time.sleep(0.1)
+        time.sleep(0.1)
 
-This function is for adjusting the threshold and displaying it on the
-I2C LCD1602.
+Esta función ajusta el umbral y lo muestra en la I2C LCD1602.
 
 .. code-block:: python
 
@@ -432,8 +424,8 @@ I2C LCD1602.
         Fah = Cel * 1.8 + 32
         return round(Cel,2)
 
-Read the analog value of the **CH0** (thermistor) of **ADC0834** and
-then convert it to temperature value.
+Lee el valor analógico del **CH0** (termistor) del **ADC0834** y lo convierte 
+en valor de temperatura.
 
 .. code-block:: python
 
@@ -444,18 +436,17 @@ then convert it to temperature value.
         LCD1602.write(0, 1, 'Upper: ')
         LCD1602.write(6, 0, str(Cel))
         LCD1602.write(7, 1, str(upperTem))
-        time.sleep(0.1)
+        time.sleep(0.1)
         if Cel >= upperTem:
             GPIO.output(buzzPin, GPIO.HIGH)
             GPIO.output(ledPin, GPIO.HIGH)
-        else:
+        else:
             GPIO.output(buzzPin, GPIO.LOW)
             GPIO.output(ledPin, GPIO.LOW)
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Al ejecutar el código, la temperatura actual y el umbral de alta temperatura 
+**40** se muestran en **I2C LCD1602**. Si la temperatura actual supera el 
+umbral, el zumbador y el LED se activarán para alertarte.
 
 .. code-block:: python
 
@@ -466,28 +457,28 @@ to alarm you.
             currentState=GPIO.input(Joy_BtnPin)
             if currentState==1 and lastState ==0:
                 stage=(stage+1)%2
-                time.sleep(0.1)    
-                LCD1602.clear()
+                time.sleep(0.1)    
+                LCD1602.clear()
             lastState=currentState
             if stage == 1:
-                upper_tem_setting()
-            else:
-                monitoring_temp()
+                upper_tem_setting()
+            else:
+                monitoring_temp()
 
-The function main() contains the whole program process as shown:
+La función main() contiene todo el proceso del programa como se muestra:
 
-1) When the program starts, the initial value of **stage** is **0**, and
-   the current temperature and the high-temperature threshold **40** are
-   displayed on **I2C LCD1602**. If the current temperature is larger
-   than the threshold, the buzzer and the LED are started to alarm you.
+1) Al iniciar el programa, el valor inicial de **stage** es **0**, 
+   y la temperatura actual y el umbral de alta temperatura **40** 
+   se muestran en **I2C LCD1602**. Si la temperatura actual es mayor 
+   que el umbral, el zumbador y el LED se activarán para alertarte.
 
-2) Press the Joystick, and **stage** will be **1** and you can adjust
-   the high-temperature threshold. Toggling the Joystick in the
-   direction of X-axis and Y-axis can adjust (turn up or down) the
-   current high-temperature threshold. Press the Joystick once again to
-   reset the threshold to initial value.
+2) Presiona el Joystick y **stage** cambiará a **1**, permitiéndote 
+   ajustar el umbral de alta temperatura. Moviendo el Joystick en 
+   las direcciones del eje X e Y se puede ajustar (aumentar o disminuir) 
+   el umbral de temperatura actual. Vuelve a presionar el Joystick para 
+   restablecer el umbral al valor inicial.
 
-Phenomenon Picture
+Imagen del Fenómeno
 -------------------------
 
 .. image:: img/image259.jpeg

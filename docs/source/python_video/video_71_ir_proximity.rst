@@ -1,30 +1,28 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros apasionados para profundizar en el mundo de Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y supera desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-Video 71: Using an IR Proximity Sensor for Collision Avoidance
+Video 71: Uso de un Sensor de Proximidad IR para Evitar Colisiones
 =======================================================================================
 
-Learn how to implement collision avoidance using an IR proximity sensor with a Raspberry Pi in this tutorial by Paul from toptechboy.com.
+Aprende a implementar un sistema de evasión de colisiones utilizando un sensor de proximidad IR con una Raspberry Pi en este tutorial de Paul de toptechboy.com.
 
-
-#. **Proximity Sensor Basics**: Understand the principles behind using a proximity sensor for collision avoidance.
-#. **Sensor Components**: Learn about the infrared LED and detector that constitute the proximity sensor.
-#. **Wiring and Setup**: Follow along as Paul demonstrates how to wire the sensor to the Raspberry Pi GPIO pins.
-#. **Coding**: See Python code examples for reading sensor data and interpreting it for collision detection.
-#. **Sensitivity Adjustment**: Discover how to adjust the sensor's sensitivity using a potentiometer.
-#. **Practical Application**: Get a homework assignment to connect the sensor to an RGB LED for proximity indication.
-
+#. **Fundamentos del Sensor de Proximidad**: Comprende los principios del uso de un sensor de proximidad para evitar colisiones.
+#. **Componentes del Sensor**: Aprende sobre el LED infrarrojo y el detector que componen el sensor de proximidad.
+#. **Cableado y Configuración**: Sigue el paso a paso mientras Paul muestra cómo conectar el sensor a los pines GPIO de la Raspberry Pi.
+#. **Codificación**: Observa ejemplos de código en Python para leer los datos del sensor e interpretarlos para detectar colisiones.
+#. **Ajuste de Sensibilidad**: Descubre cómo ajustar la sensibilidad del sensor mediante un potenciómetro.
+#. **Aplicación Práctica**: Completa una tarea de práctica conectando el sensor a un LED RGB para indicar la proximidad.
 
 **Video**
 

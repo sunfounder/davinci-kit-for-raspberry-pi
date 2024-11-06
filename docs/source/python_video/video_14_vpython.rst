@@ -1,30 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
 
-Video 14: Installing Visual Python on the Raspberry Pi
+Video 14: Instalación de Visual Python en la Raspberry Pi
 =======================================================================================
 
-This video demonstrates how to control an RGB LED using buttons with a Raspberry Pi, focusing on installing Visual Python, creating a simple 3D animation, and integrating it with the LED control code from a previous lesson. The tutorial covers installing Visual Python, integrating existing circuit and code for RGB LED control, creating 3D animations to represent LED states, understanding PWM duty cycles and color representation, troubleshooting code execution and calibration issues, and exploring further customization and optimization possibilities.
+Este video muestra cómo controlar un LED RGB mediante botones conectados a una Raspberry Pi, enfocándose en la instalación de Visual Python, la creación de una animación 3D sencilla y la integración con el código de control de LED de una lección anterior. El tutorial cubre la instalación de Visual Python, la integración del circuito y código existentes para el control del LED RGB, la creación de animaciones 3D para representar los estados del LED, la comprensión de los ciclos de trabajo PWM y la representación de colores, la resolución de problemas de ejecución y calibración de código, y la exploración de posibilidades de personalización y optimización adicionales.
 
-1. Installing Visual Python on Raspberry Pi and setting up the environment.
-2. Integrating existing circuit and code from previous lessons for RGB LED control.
-3. Creating 3D animations using Visual Python to represent LED states.
-4. Understanding the conversion between PWM duty cycles used for LED control and color representation in Visual Python.
-5. Troubleshooting issues with code execution and calibration between real and virtual LEDs.
-6. Exploring further customization and optimization possibilities for the animations and LED control.
-
+1. Instalación de Visual Python en la Raspberry Pi y configuración del entorno.
+2. Integración del circuito y el código de lecciones anteriores para el control del LED RGB.
+3. Creación de animaciones 3D utilizando Visual Python para representar los estados del LED.
+4. Comprensión de la conversión entre ciclos de trabajo PWM utilizados para el control del LED y la representación de colores en Visual Python.
+5. Resolución de problemas en la ejecución del código y calibración entre LEDs reales y virtuales.
+6. Exploración de posibilidades de personalización y optimización adicionales para las animaciones y el control del LED.
 
 
 **Video**

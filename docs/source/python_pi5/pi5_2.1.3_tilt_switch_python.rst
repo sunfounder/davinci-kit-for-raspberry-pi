@@ -1,32 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.1.3_py_pi5:
 
-2.1.3 Tilt Switch
-=================
+2.1.3 Interruptor de Inclinación
+===================================
 
-Introduction
-------------
+Introducción
+---------------
 
-This is a ball tilt-switch with a metal ball inside. It is used to
-detect inclinations of a small angle.
+Este es un interruptor de inclinación de bola con una bola de metal en su interior. 
+Se utiliza para detectar inclinaciones en ángulos pequeños.
 
-Required Components
-------------------------------
+Componentes Necesarios
+-------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../python_pi5/img/2.1.3_tilt_switch_list.png
 
@@ -34,8 +34,8 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
------------------
+Diagrama de Conexión
+-----------------------
 
 .. image:: ../python_pi5/img/2.1.3_tilt_switch_schematic_1.png
 
@@ -43,14 +43,14 @@ Schematic Diagram
 .. image:: ../python_pi5/img/2.1.3_tilt_switch_schematic_2.png
 
 
-Experimental Procedures
------------------------
+Procedimientos del Experimento
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Monta el circuito.
 
 .. image:: ../python_pi5/img/2.1.3_tilt_switch_circuit.png
 
-**Step 2:** Change directory.
+**Paso 2:** Cambia al directorio.
 
 .. raw:: html
 
@@ -60,7 +60,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3:** Run.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -70,19 +70,19 @@ Experimental Procedures
 
     sudo python3 2.1.3_Tilt_zero.py
 
-Place the tilt vertically, and the green LED will turns on. If you
-tilt it, "Tilt!" will be printed on the screen and the red LED will
-turns on. Place it vertically again, and the green LED will lights on.
+Coloca el sensor de inclinación en posición vertical, y el LED verde se 
+encenderá. Si lo inclinas, aparecerá "Tilt!" en la pantalla y el LED rojo 
+se encenderá. Al volver a ponerlo en posición vertical, el LED verde se encenderá de nuevo.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si aparece el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Antes de eso, asegúrate de estar en la ruta del código fuente, como ``davinci-kit-for-raspberry-pi/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -94,10 +94,10 @@ turns on. Place it vertically again, and the green LED will lights on.
    #!/usr/bin/env python3
    from gpiozero import LED, Button
 
-   # Initialize the Button for the tilt sensor and LEDs using GPIO Zero
-   TiltPin = Button(17, pull_up=False)  # Tilt sensor connected to GPIO pin 17, pull-up resistor disabled
-   green_led = LED(27)  # Green LED connected to GPIO pin 27
-   red_led = LED(22)   # Red LED connected to GPIO pin 22
+   # Inicializa el sensor de inclinación y los LEDs usando GPIO Zero
+   TiltPin = Button(17, pull_up=False)  # Sensor de inclinación conectado al pin GPIO 17, con resistencia de pull-up desactivada
+   green_led = LED(27)  # LED verde conectado al pin GPIO 27
+   red_led = LED(22)    # LED rojo conectado al pin GPIO 22
 
    def detect():
        """
@@ -105,46 +105,46 @@ turns on. Place it vertically again, and the green LED will lights on.
        Turns on the red LED and turns off the green LED when tilted.
        Turns off the red LED and turns on the green LED when not tilted.
        """
-       if TiltPin.is_pressed:  # Check if the sensor is tilted
+       if TiltPin.is_pressed:  # Verifica si el sensor está inclinado
            print('    *************')
            print('    *   Tilt!   *')
            print('    *************')
-           red_led.on()   # Turn on red LED
-           green_led.off()  # Turn off green LED
-       else:  # If the sensor is not tilted
-           red_led.off()  # Turn off red LED
-           green_led.on()  # Turn on green LED
+           red_led.on()   # Enciende el LED rojo
+           green_led.off()  # Apaga el LED verde
+       else:  # Si el sensor no está inclinado
+           red_led.off()  # Apaga el LED rojo
+           green_led.on()  # Enciende el LED verde
 
    try:
        while True:
-           # Continuously check the tilt sensor state and update LEDs
+           # Verifica continuamente el estado del sensor de inclinación y actualiza los LEDs
            TiltPin.when_pressed = detect
            TiltPin.when_released = detect
 
    except KeyboardInterrupt:
-       # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
+       # Maneja una interrupción de teclado (Ctrl+C) para salir del bucle de manera ordenada
        pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. This line sets the script to run with Python 3 and imports ``LED`` and ``Button`` from ``gpiozero`` for controlling GPIO devices.
+#. Esta línea configura el script para ejecutarse con Python 3 e importa ``LED`` y ``Button`` desde ``gpiozero`` para controlar los dispositivos GPIO.
 
    .. code-block:: python
 
        #!/usr/bin/env python3
        from gpiozero import LED, Button
 
-#. Initializes the tilt sensor connected to GPIO pin 17 (with pull-up resistor disabled) and two LEDs connected to GPIO pins 27 and 22.
+#. Inicializa el sensor de inclinación conectado al pin GPIO 17 (con resistencia de pull-up desactivada) y dos LEDs conectados a los pines GPIO 27 y 22.
 
    .. code-block:: python
 
-       # Initialize the Button for the tilt sensor and LEDs using GPIO Zero
-       TiltPin = Button(17, pull_up=False)  # Tilt sensor connected to GPIO pin 17, pull-up resistor disabled
-       green_led = LED(27)  # Green LED connected to GPIO pin 27
-       red_led = LED(22)   # Red LED connected to GPIO pin 22
+       # Inicializa el sensor de inclinación y los LEDs usando GPIO Zero
+       TiltPin = Button(17, pull_up=False)  # Sensor de inclinación conectado al pin GPIO 17, con resistencia de pull-up desactivada
+       green_led = LED(27)  # LED verde conectado al pin GPIO 27
+       red_led = LED(22)   # LED rojo conectado al pin GPIO 22
 
-#. Defines the ``detect`` function, which checks the state of the tilt sensor. If tilted, it turns on the red LED and off the green LED. If not tilted, it does the opposite.
+#. Define la función ``detect``, que verifica el estado del sensor de inclinación. Si está inclinado, enciende el LED rojo y apaga el LED verde. Si no está inclinado, hace lo contrario.
 
    .. code-block:: python
 
@@ -154,27 +154,27 @@ turns on. Place it vertically again, and the green LED will lights on.
            Turns on the red LED and turns off the green LED when tilted.
            Turns off the red LED and turns on the green LED when not tilted.
            """
-           if TiltPin.is_pressed:  # Check if the sensor is tilted
+           if TiltPin.is_pressed:  # Verifica si el sensor está inclinado
                print('    *************')
                print('    *   Tilt!   *')
                print('    *************')
-               red_led.on()   # Turn on red LED
-               green_led.off()  # Turn off green LED
-           else:  # If the sensor is not tilted
-               red_led.off()  # Turn off red LED
-               green_led.on()  # Turn on green LED
+               red_led.on()   # Enciende el LED rojo
+               green_led.off()  # Apaga el LED verde
+           else:  # Si el sensor no está inclinado
+               red_led.off()  # Apaga el LED rojo
+               green_led.on()  # Enciende el LED verde
 
-#. The main loop assigns the ``detect`` function to both ``when_pressed`` and ``when_released`` events of the tilt sensor. The ``try-except`` block handles a KeyboardInterrupt for graceful termination.
+#. El bucle principal asigna la función ``detect`` tanto a los eventos ``when_pressed`` como ``when_released`` del sensor de inclinación. El bloque ``try-except`` maneja una interrupción de teclado para una terminación ordenada.
 
    .. code-block:: python
 
        try:
            while True:
-               # Continuously check the tilt sensor state and update LEDs
+               # Verifica continuamente el estado del sensor de inclinación y actualiza los LEDs
                TiltPin.when_pressed = detect
                TiltPin.when_released = detect
 
        except KeyboardInterrupt:
-           # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
+           # Maneja una interrupción de teclado (Ctrl+C) para salir del bucle de manera ordenada
            pass
 

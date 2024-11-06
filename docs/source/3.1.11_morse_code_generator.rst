@@ -1,34 +1,34 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete para profundizar en Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y vistas previas.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-3.1.11 Morse Code Generator
-=============================
+3.1.11 Generador de Código Morse
+===================================
 
-Introduction
+Introducción
 -----------------
 
-In this lesson, we'll make a Morse code generator, where you type in a
-series of English letters in the Raspberry Pi to make it appear as Morse
-code.
+En esta lección, crearemos un generador de código Morse. Ingresarás una 
+serie de letras en inglés en el Raspberry Pi y aparecerán en forma de 
+código Morse.
 
-Components
+Componentes
 ---------------
 
 .. image:: img/3.1.10.png
     :align: center
 
-Schematic Diagram
+Diagrama Esquemático
 -----------------------
 
 ============ ======== ======== ===
@@ -40,41 +40,40 @@ GPIO22       Pin 15   3        22
 .. image:: img/Schematic_three_one11.png
    :align: center
 
-Experimental Procedures
-----------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit. (Pay attention to poles of the buzzer:
-The one with + label is the positive pole and the other is the
-negative.)
+**Paso 1:** Construye el circuito. (Presta atención a los polos del 
+zumbador: el marcado con + es el polo positivo y el otro es el negativo.)
 
 .. image:: img/image269.png
    :alt: Morse_bb
    :width: 800
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Para Usuarios de Lenguaje C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Open the code file.
+**Paso 2**: Abre el archivo de código.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.11/
 
-**Step 3**: Compile the code.
+**Paso 3**: Compila el código.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     gcc 3.1.11_MorseCodeGenerator.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**Paso 4**: Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -84,15 +83,14 @@ negative.)
 
     sudo ./a.out
 
-After the program runs, type a series of characters, and the buzzer and
-the LED will send the corresponding Morse code signals.
+Después de ejecutar el programa, escribe una serie de caracteres y el 
+zumbador y el LED enviarán las señales correspondientes en código Morse.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
 
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -114,55 +112,53 @@ the LED will send the corresponding Morse code signals.
         {';',"101010"},{'!',"101011"}, {'@',"011010"}, {':',"111000"}
     };
 
-This structure MORSE is the dictionary of the Morse code, containing
-characters A-Z, numbers 0-9 and marks \"?\" \"/\" \":\" \",\" \".\" \";\" \"!\" \"@\" .
+Esta estructura MORSE es el diccionario del código Morse y contiene los 
+caracteres de la A a la Z, los números del 0 al 9 y los símbolos \"?\" \"/\" \":\" \",\" \".\" \";\" \"!\" \"@\" .
 
 .. code-block:: c
 
     char *lookup(char key,struct MORSE *dict,int length)
     {
         for (int i=0;i<length;i++)
-        {
-            if(dict[i].word==key){
+        {
+            if(dict[i].word==key){
                 return dict[i].code;
-            }
-        }    
+            }
+        }    
     }
 
-The function **lookup()** works by \"checking the dictionary\". Define a
-**key,** search the same words as **key** in the structure **morseDict**
-and return the corresponding information— \"**code**\" of the certain
-word.
+La función **lookup()** funciona como un "diccionario". Define una **clave**, 
+busca en la estructura **morseDict** la palabra que coincide con **key** y 
+devuelve la información correspondiente —el \"**code**\" de esa palabra.
 
 .. code-block:: c
 
     void on(){
-        digitalWrite(ALedPin,HIGH);
-        digitalWrite(BeepPin,HIGH);     
+        digitalWrite(ALedPin,HIGH);
+        digitalWrite(BeepPin,HIGH);     
     }
 
-Create a function on() to start the buzzer and the LED.
+Crea una función on() para activar el zumbador y el LED.
 
 .. code-block:: c
 
     void off(){
-        digitalWrite(ALedPin,LOW);
-        digitalWrite(BeepPin,LOW);
+        digitalWrite(ALedPin,LOW);
+        digitalWrite(BeepPin,LOW);
     }
 
-The function off() turns off the buzzer and the LED.
+La función off() apaga el zumbador y el LED.
 
 .. code-block:: c
 
     void beep(int dt){
-        on();
-        delay(dt);
-        off();
-        delay(dt);
+        on();
+        delay(dt);
+        off();
+        delay(dt);
     }
-
-Define a function beep() to make the buzzer and the LED emit sounds and
-blink in a certain interval of **dt**.
+Define una función beep() para hacer que el zumbador y el LED emitan sonidos y
+parpadeen en un intervalo determinado de **dt**.
 
 .. code-block:: c
 
@@ -171,26 +167,25 @@ blink in a certain interval of **dt**.
         char *point = NULL;
         int length = sizeof(morseDict)/sizeof(morseDict[0]);
         for (int i=0;i<strlen(code);i++)
-        {
+        {
             point=lookup(code[i],morseDict,length);
             for (int j=0;j<strlen(point);j++){
                 if (point[j]=='0')
-                {
-                    beep(pause/2);
+                {
+                    beep(pause/2);
                 }else if(point[j]=='1')
-                {
-                    beep(pause);
-                }
-                delay(pause);
-            }
-        }
+                {
+                    beep(pause);
+                }
+                delay(pause);
+            }
+        }
     }
 
-The function morsecode() is used to process the Morse code of input
-characters by making the \"1\" of the code keep emitting sounds or lights
-and the \"0\"shortly emit sounds or lights, ex., input \"SOS\", and there
-will be a signal containing three short three long and then three short
-segments \" · · · - - - · · · \".
+La función morsecode() procesa el código Morse de los caracteres ingresados 
+haciendo que el "1" del código emita sonidos o luces prolongados, mientras 
+que el "0" produce sonidos o luces breves; por ejemplo, al ingresar "SOS", 
+se generará una señal con tres segmentos cortos, tres largos y luego tres cortos " · · · - - - · · · ".
 
 .. code-block:: c
 
@@ -208,12 +203,12 @@ segments \" · · · - - - · · · \".
     return orign;
     }
 
-Before coding, you need to unify the letters into capital letters.
+Antes de codificar, debes unificar las letras en mayúsculas.
 
 .. code-block:: c
 
     void main(){
-        setup();
+        setup();
         char *code;
         int length=8;
         code = (char*)malloc(sizeof(char)*length);
@@ -224,50 +219,50 @@ Before coding, you need to unify the letters into capital letters.
             code=strupr(code);
             printf("%s\n",code);
             delay(100);
-            morsecode(code);
-        }
+            morsecode(code);
+        }
     }
 
-When you type the relevant characters with the keyboard,
-code=strupr(code) will convert the input letters to their capital form.
+Cuando ingreses los caracteres relevantes con el teclado, code=strupr(code) 
+convertirá las letras ingresadas a mayúsculas.
 
-Printf() then prints the clear text on the computer screen, and the
-morsecod() function causes the buzzer and the LED to emit Morse code.
+Printf() luego imprimirá el texto claro en la pantalla de la computadora, 
+y la función morsecode() hará que el zumbador y el LED emitan el código Morse.
 
-Note that the length of the input character mustn’t exceed the
-**length** (can be revised).
+Ten en cuenta que la longitud de los caracteres ingresados no debe exceder 
+el **length** (se puede modificar).
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Para Usuarios de Lenguaje Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Open the code file.
+**Paso 2**: Abre el archivo de código.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     cd ~/davinci-kit-for-raspberry-pi/python
 
-**Step 3**: Run.
+**Paso 3**: Ejecuta.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     sudo python3 3.1.11_MorseCodeGenerator.py
 
-After the program runs, type a series of characters, and the buzzer and
-the LED will send the corresponding Morse code signals.
+Después de ejecutar el programa, escribe una serie de caracteres y el 
+zumbador y el LED enviarán las señales correspondientes en código Morse.
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes, necesitas dirigirte a la ruta del código fuente, como ``davinci-kit-for-raspberry-pi/python``. 
     
 
 .. code-block:: python
@@ -302,7 +297,7 @@ the LED will send the corresponding Morse code signals.
         GPIO.output(BeepPin, 0)
         GPIO.output(ALedPin, 0)
 
-    def beep(dt):	# dt for delay time.
+    def beep(dt):  # dt es el tiempo de retardo.
         on()
         time.sleep(dt)
         off()
@@ -338,7 +333,7 @@ the LED will send the corresponding Morse code signals.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
@@ -351,10 +346,10 @@ the LED will send the corresponding Morse code signals.
         '6':'10000', '7':'11000', '8':'11100', '9':'11110', '0':'11111',
         '?':'001100', '/':'10010', ',':'110011', '.':'010101', ';':'101010',
         '!':'101011', '@':'011010', ':':'111000',
-        }
+    }
 
-This structure MORSE is the dictionary of the Morse code, containing
-characters A-Z, numbers 0-9 and marks \"?\" \"/\" \":\" \",\" \".\" \";\" \"!\" \"@\" .
+Esta estructura MORSE es el diccionario del código Morse, que contiene
+los caracteres de la A a la Z, los números del 0 al 9 y los símbolos \"?\" \"/\" \":\" \",\" \".\" \";\" \"!\" \"@\".
 
 .. code-block:: python
 
@@ -362,7 +357,7 @@ characters A-Z, numbers 0-9 and marks \"?\" \"/\" \":\" \",\" \".\" \";\" \"!\" 
         GPIO.output(BeepPin, 1)
         GPIO.output(ALedPin, 1)
 
-The function on() starts the buzzer and the LED.
+La función on() activa el zumbador y el LED.
 
 .. code-block:: python
 
@@ -370,18 +365,18 @@ The function on() starts the buzzer and the LED.
         GPIO.output(BeepPin, 0)
         GPIO.output(ALedPin, 0)
 
-The function off() is used to turn off the buzzer and the LED.
+La función off() se utiliza para apagar el zumbador y el LED.
 
 .. code-block:: python
 
-    def beep(dt):   # x for dalay time.
-        on()
-        time.sleep(dt)
-        off()
-        time.sleep(dt)
+    def beep(dt):   # dt es el tiempo de retardo.
+        on()
+        time.sleep(dt)
+        off()
+        time.sleep(dt)
 
-Define a function beep() to make the buzzer and the LED emit sounds and
-blink in a certain interval of **dt**.
+Define una función beep() para hacer que el zumbador y el LED emitan sonidos y
+parpadeen en un intervalo determinado de **dt**.
 
 .. code-block:: python
 
@@ -390,16 +385,16 @@ blink in a certain interval of **dt**.
         for letter in code:
             for tap in MORSECODE[letter]:
                 if tap == '0':
-                    beep(pause/2)
+                    beep(pause/2)
                 if tap == '1':
-                    beep(pause)
-            time.sleep(pause)
+                    beep(pause)
+            time.sleep(pause)
 
-The function morsecode() is used to process the Morse code of input
-characters by making the \"1\" of the code keep emitting sounds or lights
-and the \"0\"shortly emit sounds or lights, ex., input \"SOS\", and there
-will be a signal containing three short three long and then three short
-segments \" · · · - - - · · · \".
+La función morsecode() procesa el código Morse de los caracteres ingresados 
+haciendo que el "1" del código emita sonidos o luces prolongados, mientras 
+que el "0" produce sonidos o luces breves; por ejemplo, al ingresar "SOS", 
+se generará una señal con tres segmentos cortos, tres largos y luego tres 
+cortos " · · · - - - · · · ".
 
 .. code-block:: python
 
@@ -407,17 +402,17 @@ segments \" · · · - - - · · · \".
         while True:
             code=input("Please input the messenger:")
             code = code.upper()
-            print(code)
-            morsecode(code)
+            print(code)
+            morsecode(code)
 
-When you type the relevant characters with the keyboard, upper() will
-convert the input letters to their capital form.
+Cuando ingreses los caracteres relevantes con el teclado, upper() convertirá 
+las letras ingresadas a mayúsculas.
 
-Printf () then prints the clear text on the computer screen, and the
-morsecod() function causes the buzzer and the LED to emit Morse code.
+Printf() luego imprimirá el texto claro en la pantalla de la computadora, y 
+la función morsecode() hará que el zumbador y el LED emitan el código Morse.
 
 
-Phenomenon Picture
+Imagen del Fenómeno
 -----------------------
 
 .. image:: img/image270.jpeg

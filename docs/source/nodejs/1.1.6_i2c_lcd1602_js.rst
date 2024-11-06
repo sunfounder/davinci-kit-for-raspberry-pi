@@ -1,34 +1,34 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el apasionante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-1.1.6 I2C LCD1602
-=======================
+LCD1602 I2C
+=============
 
-Introduction
-------------------
+Introducción
+--------------
 
-LCD1602 is a character type liquid crystal display, which can display 32
-(16*2) characters at the same time.
+LCD1602 es una pantalla de cristal líquido de tipo carácter que puede mostrar 
+32 caracteres (16*2) al mismo tiempo.
 
-Components
--------------------
+Componentes
+---------------
 
 .. image:: ../img/list_i2c_lcd.png
 
 
-Schematic Diagram
----------------------
+Diagrama del Circuito
+------------------------
 
 ============ ========
 T-Board Name physical
@@ -39,16 +39,16 @@ SCL1         Pin 5
 .. image:: ../img/schematic_i2c_lcd.png
 
 
-Experimental Procedures
------------------------------
+Procedimiento Experimental
+----------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1**: Construye el circuito.
 
 .. image:: ../img/image96.png
 
-**Step 2**: Setup I2C (see :ref:`I2C Configuration`. If you have set I2C, skip this step.)
+**Paso 2**: Configura I2C (consulta :ref:`I2C Configuration`. Si ya configuraste I2C, omite este paso.)
 
-**Step 3:** Go to the folder of the code.
+**Paso 3**: Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -58,7 +58,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 4:** Install dependencies.
+**Paso 4**: Instala las dependencias.
 
 .. raw:: html
 
@@ -68,7 +68,7 @@ Experimental Procedures
 
     sudo npm install @oawu/lcd1602
 
-**Step 5:** Run the code.
+**Paso 5**: Ejecuta el código.
 
 .. raw:: html
 
@@ -78,9 +78,9 @@ Experimental Procedures
 
     sudo node i2c_lcd1602.js
 
-After the code runs, you can see ``Greetings!!, From SunFounder`` displaying on the LCD.
+Al ejecutar el código, verás en el LCD el mensaje ``Greetings!!, From SunFounder``.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -90,17 +90,17 @@ After the code runs, you can see ``Greetings!!, From SunFounder`` displaying on 
     lcd.text(0, 0, 'Greetings!!');
     lcd.text(1, 1, 'from SunFounder');
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
     const LCD = require('@oawu/lcd1602');
     const lcd = new LCD();
 
-Import the ``lcd1602`` module and represent it with ``lcd``.
+Importa el módulo ``lcd1602`` y represéntalo con ``lcd``.
 
 .. note::
-    For the lcd1602 module, please refer to: https://www.npmjs.com/package/@oawu/lcd1602
+    Para más información sobre el módulo lcd1602, consulta: https://www.npmjs.com/package/@oawu/lcd1602
 
    
 .. code-block:: js
@@ -108,16 +108,17 @@ Import the ``lcd1602`` module and represent it with ``lcd``.
     lcd.text(0, 0, 'Greetings!!');
     lcd.text(1, 1, 'from SunFounder');
 
-Calling the encapsulated ``text()`` function in the ``LCD`` class can make the lcd1602 display the text we want.
+Llamando a la función encapsulada ``text()`` en la clase ``LCD``, podemos hacer que el lcd1602 muestre el texto que queremos.
 
-The ``text()`` function receives three parameters, 
-the first parameter is the line of lcd1602, 
-the second parameter represents the position of the displayed text, 
-and the third parameter represents the text we want to display.
+La función ``text()`` recibe tres parámetros: 
+el primer parámetro es la línea del lcd1602, 
+el segundo parámetro representa la posición del texto que se mostrará, 
+y el tercer parámetro es el texto que queremos mostrar.
 
-The **1602** number in the LCD model means it has 2 rows of 16 cells each.
+El número **1602** en el modelo LCD significa que tiene 2 filas de 16 celdas cada una.
 
-Phenomenon Picture
---------------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: ../img/image97.jpeg
+

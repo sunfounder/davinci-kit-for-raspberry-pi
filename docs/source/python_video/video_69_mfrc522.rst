@@ -1,30 +1,28 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros apasionados para profundizar en el mundo de Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y supera desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-Video 69: Using the MFRC522 RFID Module and Tag on Raspberry Pi
+Video 69: Uso del Módulo RFID MFRC522 y Tarjetas en Raspberry Pi
 =======================================================================================
 
-Learn how to integrate an RFID module into your Raspberry Pi projects for tasks like access control and attendance tracking, 
-with step-by-step instructions and Python coding demonstrations.
+Descubre cómo integrar un módulo RFID en tus proyectos con Raspberry Pi para tareas como control de acceso y seguimiento de asistencia, con instrucciones detalladas y demostraciones de programación en Python.
 
-1. **Introduction to RFID module**: Understand how RFID technology can enhance Raspberry Pi projects by interacting with RFID cards or key fobs.
-2. **Setting up hardware**: Follow along as we connect the MFRC522 RFID module to Raspberry Pi GPIO pins using a provided breakout board.
-3. **Setting up SPI on Raspberry Pi**: Enable SPI interface and install necessary libraries for communication between Raspberry Pi and the RFID module.
-4. **Interacting with the RFID module**: Learn how to write Python code to initialize the RFID reader object, read card IDs, and associate text data with IDs.
-5. **Reading and writing RFID tags**: See demonstrations on reading and writing data to RFID tags using Python code, with practical testing.
-6. **Homework assignment**: Get tasked with creating a system to record a person's name and favorite color using RFID tags, expanding your understanding of RFID integration with Raspberry Pi projects.
-
+1. **Introducción al Módulo RFID**: Descubre cómo la tecnología RFID puede mejorar tus proyectos con Raspberry Pi al interactuar con tarjetas o llaveros RFID.
+2. **Configuración del Hardware**: Aprende a conectar el módulo RFID MFRC522 a los pines GPIO de la Raspberry Pi usando una placa de expansión.
+3. **Activación de SPI en Raspberry Pi**: Activa la interfaz SPI e instala las bibliotecas necesarias para la comunicación entre la Raspberry Pi y el módulo RFID.
+4. **Interacción con el Módulo RFID**: Aprende a escribir código en Python para inicializar el lector RFID, leer IDs de tarjetas y asociar datos de texto con estos IDs.
+5. **Lectura y Escritura de Etiquetas RFID**: Observa demostraciones de cómo leer y escribir datos en etiquetas RFID usando código en Python, con pruebas prácticas.
+6. **Tarea Práctica**: Crea un sistema que registre el nombre y el color favorito de una persona utilizando etiquetas RFID, expandiendo así tu comprensión de la integración de RFID con proyectos en Raspberry Pi.
 
 **Video**
 

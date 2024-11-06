@@ -1,50 +1,49 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 1.3.3 Relay
-===========
+===============
 
-Introduction
-------------
+Introducción
+---------------
 
-In this project, we will learn to use a relay. It is one of the commonly
-used components in automatic control system. When the voltage, current,
-temperature, pressure, etc., reaches, exceeds or is lower than the
-predetermined value, the relay will connect or interrupt the circuit, to
-control and protect the equipment.
+En este proyecto, aprenderemos a utilizar un relé, uno de los componentes 
+más comunes en sistemas de control automático. Cuando el voltaje, la corriente, 
+la temperatura, la presión, etc., alcanzan, exceden o están por debajo de un 
+valor preestablecido, el relé conecta o interrumpe el circuito para controlar 
+y proteger el equipo.
 
-Components
-----------
+Componentes
+---------------
 
 .. image:: ../img/list_1.3.4.png
 
 
-
-Schematic Diagram
------------------
+Diagrama del Circuito
+-------------------------
 
 .. image:: ../img/image345.png
 
 
-Experimental Procedures
------------------------
+Procedimiento Experimental
+------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image144.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -55,7 +54,7 @@ Experimental Procedures
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -65,11 +64,11 @@ Experimental Procedures
 
     sudo node relay.js
 
-While the code is running, the LED lights up. In addition, you can hear
-a ticktock caused by breaking normally close contact and closing
-normally open contact.
+Mientras el código se ejecuta, el LED se enciende. Además, puedes escuchar un 
+"clic" causado por la apertura del contacto normalmente cerrado y el cierre del 
+contacto normalmente abierto.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -86,14 +85,14 @@ normally open contact.
     });
 
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
     const relay = new Gpio(17,{mode: Gpio.OUTPUT});
 
-Import the ``pigpio`` module and instantiate an object relay of Gpio to control the IO port Gpio17, and set it to output mode.
+Importa el módulo ``pigpio`` e instancia un objeto relay de Gpio para controlar el puerto IO Gpio17, configurado en modo de salida.
 
 
 .. code-block:: js
@@ -102,7 +101,7 @@ Import the ``pigpio`` module and instantiate an object relay of Gpio to control 
         relay.digitalWrite(!relay.digitalRead());
     }, 500);
 
-The relay is opened and closed continuously, and the LEDs will also be on and off continuously at intervals of 500ms.
+El relé se abre y se cierra continuamente, y los LEDs también se encenderán y apagarán a intervalos de 500 ms.
 
 
 .. code-block:: js
@@ -112,9 +111,9 @@ The relay is opened and closed continuously, and the LEDs will also be on and of
         process.exit();
     });
 
-When ctrl+c is caught, the relay is opened.
+Cuando se detecta ctrl+c, el relé se abre.
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: ../img/image145.jpeg

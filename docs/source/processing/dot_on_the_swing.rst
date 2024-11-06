@@ -1,44 +1,43 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Dot on the Swing
+Punto en el Oscilador
 ==============================
 
-In this project, 3 buttons are connected, one to change the size of the dot, one to change the position and the last one to change the color. If you press all 3 buttons at the same time, you will get a dot that is swinging and has a variable color.
-
+En este proyecto, conectaremos 3 botones: uno para cambiar el tamaño del punto, otro para cambiar su posición y el último para cambiar su color. Si presionas los 3 botones al mismo tiempo, obtendrás un punto que oscila y cambia de color.
 
 .. image:: img/dancing_dot.png
 
-**Wiring**
+**Conexión**
 
 .. image:: img/circuit_dancing_dot.png
 
-**Sketch**
+**Código**
 
 .. code-block:: arduino
 
     import processing.io.*;
 
-    // Define an instance of the Dot object
+    // Definir una instancia del objeto Dot
     Dot myDot;
 
-    // Define the pins that will be reading button presses
+    // Definir los pines que leerán las pulsaciones de los botones
     int[] pins = { 18, 23, 24 };
 
     void setup() {
         size(400, 400);
-        // Change the color mode of the sketch to HSB
+        // Cambiar el modo de color a HSB
         colorMode(HSB, 360, 100, 100);
         noStroke();
 
@@ -46,21 +45,21 @@ In this project, 3 buttons are connected, one to change the size of the dot, one
             GPIO.pinMode(pins[i], GPIO.INPUT_PULLUP);
         }
 
-        // Create a Dot in the middle of the screen 
+        // Crear un punto en el centro de la pantalla 
         myDot = new Dot(width / 2, height / 2, 100, 255);
     }
 
     void draw() {
         background(0); 
 
-        // Modify attributes of the Dot depending on which buttons are pressed
+        // Modificar atributos del punto según los botones presionados
         if (GPIO.digitalRead(pins[0]) == GPIO.LOW) {myDot.setSize();} 
         if (GPIO.digitalRead(pins[1]) == GPIO.LOW) {myDot.setPosition();} 
         if (GPIO.digitalRead(pins[2]) == GPIO.LOW) {myDot.setColor();} 
 
-        // Update the Dot state
+        // Actualizar el estado del punto
         myDot.update();
-        // And draw it to the screen
+        // Y dibujarlo en la pantalla
         myDot.show();
     }
 
@@ -118,30 +117,29 @@ In this project, 3 buttons are connected, one to change the size of the dot, one
         }
     }
 
-**How it works?**
+**¿Cómo funciona?**
 
-Instead of drawing dot directly, we create a ``Dot`` class here.
-Then, declare the object (in this case ``myDot``).
+En lugar de dibujar el punto directamente, aquí creamos una clase ``Dot``.
+Luego, declaramos el objeto (en este caso, ``myDot``).
 
-This is a simple way to draw dots with multiple identical properties.
-For example, if we add three functions to the dot in this project - change size, change position and change color - then each dot we declare will have the same function.
-We can use the same button to make them do the same thing, or we can use different buttons to control each dot separately.
+Esta es una forma sencilla de dibujar puntos con múltiples propiedades idénticas. 
+Por ejemplo, si agregamos tres funciones al punto en este proyecto - cambiar tamaño, 
+cambiar posición y cambiar color - cada punto que declaremos tendrá la misma funcionalidad. 
+Podemos usar el mismo botón para que realicen la misma acción o botones diferentes para controlar cada punto por separado.
 
-Using **classes** makes your sketch beautiful, powerful and flexible.
+Usar **clases** hace que tu código sea más limpio, poderoso y flexible.
 
 `Class (computer programming) - Wikipedia <https://en.wikipedia.org/wiki/Class_(computer_programming)>`_
 
-Next, let's take a closer look at the ``Dot`` class. 
-
+Veamos más de cerca la clase ``Dot``.
 
 .. code-block:: arduino
 
     Dot(float x, float y, float s, int c)
 
-In the declaration, it needs to pass in four parameters, which are the X  and Y coordinate value of the position, the size, and the color (here it is set to the `HSB color mode <https://en.wikipedia.org/wiki/HSL_and_HSV>`_ ).
+En la declaración, se deben pasar cuatro parámetros: las coordenadas X e Y de la posición, el tamaño y el color (aquí se usa el `HSB color mode <https://en.wikipedia.org/wiki/HSL_and_HSV>`_).
 
-Each parameter will be assigned to 2 sets of values ​​(initial value and current value).
-
+Cada parámetro se asignará a dos conjuntos de valores (valor inicial y valor actual).
 
 .. code-block:: arduino
 
@@ -159,9 +157,9 @@ Each parameter will be assigned to 2 sets of values ​​(initial value and cur
     int currentColor;
     int ColorRange = 80;
 
-In addition to the initial value and the current value, there is also a set of range values. It is not difficult to understand that the initial value is used to determine the initial state of the dot (determined by the incoming parameters), while the current value will change within the range to make the dot move.
+Además del valor inicial y el valor actual, hay un conjunto de valores de rango. No es difícil entender que el valor inicial se usa para determinar el estado inicial del punto (definido por los parámetros de entrada), mientras que el valor actual cambiará dentro del rango para hacer que el punto se mueva.
 
-Therefore, except for the X coordinate value, the current values of the other three parameters are calculated as follows:
+Así, excepto el valor X, los valores actuales de los otros tres parámetros se calculan como sigue:
 
 .. code-block:: arduino
 
@@ -178,9 +176,9 @@ Therefore, except for the X coordinate value, the current values of the other th
     }
 
 
-If you are familiar with trigonometric functions, it should not be difficult to understand `sine and cosine <https://en.wikipedia.org/wiki/Sine>`_, which gives a smooth periodic change (from -1 to 1) of the current value of the dot.
+Si estás familiarizado con las funciones trigonométricas, no te resultará difícil entender `sine and cosine <https://en.wikipedia.org/wiki/Sine>`_, que dan un cambio periódico y suave (de -1 a 1) en el valor actual del punto.
 
-We also need to add a seed, ``timer``, for the periodic variation. It adds the fixed value in the method ``update()`` and is called in ``draw()``.
+También necesitamos un temporizador, ``timer``, para la variación periódica. Este se incrementa en el método ``update()``, llamado en ``draw()``.
 
 .. code-block:: arduino
 
@@ -188,7 +186,7 @@ We also need to add a seed, ``timer``, for the periodic variation. It adds the f
         timer += speed;
     }
 
-Finally, the dot is displayed according to the current value using the method ``show()``, which is also called in ``draw()``.
+Finalmente, el punto se muestra según el valor actual mediante el método ``show()``, que también se llama en ``draw()``.
 
 .. code-block:: arduino
 
@@ -197,10 +195,10 @@ Finally, the dot is displayed according to the current value using the method ``
         ellipse(currentX, currentY, currentSize, currentSize);
     }
 
-**What more?**
+**¿Algo más?**
 
-Having mastered the use of classes, you can already draw multiple dots with the same properties, so why not try to do something cooler.
-For example, how about drawing a stable binary star system, or making a 'DUET' game?
+Al dominar el uso de clases, ya puedes dibujar múltiples puntos con las mismas propiedades, así que ¿por qué no intentar algo más interesante?
+Por ejemplo, podrías dibujar un sistema binario estable, o crear un juego al estilo de 'DUET'.
 
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+Para más detalles consulta `Processing Reference <https://processing.org/reference/>`_.

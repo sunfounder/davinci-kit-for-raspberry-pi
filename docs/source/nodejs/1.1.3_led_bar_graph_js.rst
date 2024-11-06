@@ -1,49 +1,46 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el apasionante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-1.1.3 LED Bar Graph
-======================
+1.1.3 Barra de LED
+====================
 
-Introduction
--------------
+Introducción
+---------------
 
-In this project, we sequentially illuminate the lights on the LED Bar
-Graph.
+En este proyecto, iluminaremos secuencialmente los LEDs en la barra de LED.
 
-Components
-----------------
+Componentes
+--------------
 
 .. image:: img/list_led_bar.png
 
-
-
-Schematic Diagram
--------------------------
+Diagrama del Circuito
+------------------------
 
 .. image:: img/schematic_led_bar.png
 
-Experimental Procedures
-------------------------------
+Procedimiento Experimental
+-----------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construye el circuito.
 
 .. note::
-    Pay attention to the direction when connecting. If you connect it backwards, it will not light up.
+    Presta atención a la dirección al conectar. Si lo conectas al revés, no se encenderá.
 
 .. image:: img/image66.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -53,7 +50,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/ 
 
-**Step 3**: Compile the code.
+**Paso 3**: Ejecuta el código.
 
 .. raw:: html
 
@@ -63,9 +60,9 @@ Experimental Procedures
 
     sudo node led_bar_graph.js
 
-After the code runs, you will see the LEDs on the LED bar turn on and off regularly.
+Después de ejecutar el código, verás que los LEDs en la barra de LED se encienden y apagan regularmente.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -109,13 +106,13 @@ After the code runs, you will see the LEDs on the LED bar turn on and off regula
     }, 500);
   
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
     var pins = [17,18,27,22,23,24,25,2,3,8];
 
-Because the led bar graph will use multiple pins, we create a constant array ``pins`` to store them in batches.
+Como la barra de LED usará varios pines, creamos un arreglo constante ``pins`` para almacenarlos en conjunto.
 
 .. code-block:: js
 
@@ -124,8 +121,7 @@ Because the led bar graph will use multiple pins, we create a constant array ``p
         leds[i] = new Gpio(pins[i], { mode: Gpio.OUTPUT });
     }
 
-Instantiate these pins as leds objects with a for loop.
-
+Instanciamos estos pines como objetos leds usando un bucle for.
 
 .. code-block:: js
 
@@ -139,8 +135,8 @@ Instantiate these pins as leds objects with a for loop.
         }
     }
 
-Implement an ``oddLedBarGraph()`` function to make the LEDs on the 
-odd digits of the LED bar graph light up.    
+Implementa una función ``oddLedBarGraph()`` para que se enciendan los LEDs 
+en las posiciones impares de la barra de LED.
 
 .. code-block:: js
 
@@ -154,8 +150,8 @@ odd digits of the LED bar graph light up.
         };
     }
 
-Implement an ``evenLedBarGraph()`` function to make the LEDs on the 
-even digits of the LED bar graph light up. 
+Implementa una función ``evenLedBarGraph()`` para que se enciendan los LEDs 
+en las posiciones pares de la barra de LED.
 
 .. code-block:: js
 
@@ -170,10 +166,10 @@ even digits of the LED bar graph light up.
         }
     }, 500);
 
-The working state of the LED is switched every 500ms.
+El estado de funcionamiento del LED cambia cada 500ms.
 
-Phenomenon Picture
----------------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: img/image67.jpeg
 

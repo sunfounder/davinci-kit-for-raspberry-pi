@@ -1,32 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante épocas festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 
-Video 25: Measure Temperature and Humidity with the DHT-11 Sensor
+Video 25: Medición de Temperatura y Humedad con el Sensor DHT-11
 =======================================================================================
 
+En este tutorial, aprende cómo conectar un sensor de temperatura y humedad DHT11 a una Raspberry Pi y leer los datos usando Python.
 
-In this tutorial, learn how to connect a DHT11 temperature and humidity sensor to a Raspberry Pi and read data from it using Python.
-
-#. **Introduction**: Join us in this Raspberry Pi tutorial series sponsored by SunFounder.
-#. **Components Needed**: Gather your Raspberry Pi, jumper cables, DHT11 sensor, and a 10k resistor.
-#. **Wiring Instructions**: Follow detailed instructions to correctly wire the components together to avoid damaging the sensor.
-#. **Python Library Installation**: Learn how to install the required Python library for interacting with the DHT11 sensor.
-#. **Code Implementation**: Write Python code to read temperature and humidity data from the sensor and print it to the terminal.
-#. **Code Execution**: See the code in action as it interprets the sensor readings.
-#. **Future Projects**: Explore potential projects combining components from the SunFounder kit.
-
+#. **Introducción**: Únete a esta serie de tutoriales de Raspberry Pi patrocinada por SunFounder.
+#. **Componentes Necesarios**: Reúne tu Raspberry Pi, cables jumper, sensor DHT11 y una resistencia de 10k.
+#. **Instrucciones de Conexión**: Sigue instrucciones detalladas para conectar los componentes correctamente y evitar dañar el sensor.
+#. **Instalación de la Biblioteca Python**: Aprende a instalar la biblioteca Python necesaria para interactuar con el sensor DHT11.
+#. **Implementación del Código**: Escribe el código en Python para leer los datos de temperatura y humedad del sensor y mostrarlos en la terminal.
+#. **Ejecución del Código**: Observa el código en acción mientras interpreta las lecturas del sensor.
+#. **Proyectos Futuros**: Explora proyectos potenciales que combinan componentes del kit SunFounder.
 
 
 **Video**

@@ -1,92 +1,90 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Accede anticipadamente a anuncios de nuevos productos y vistas previas.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-2.1.2 Slide Switch
-==================
+2.1.2 Interruptor deslizante
+============================
 
-Introduction
-------------
+Introducción
+-----------------
 
-In this lesson, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+En esta lección, aprenderemos a utilizar un interruptor deslizante. 
+Generalmente, el interruptor deslizante se suelda en la placa de circuito 
+impreso (PCB) como un interruptor de encendido, pero aquí necesitamos 
+insertarlo en la placa de pruebas, por lo que puede no estar fijo. 
+Lo usaremos en la placa de pruebas para demostrar su función.
 
-Components
-----------
+Componentes
+--------------
 
 .. image:: img/list_2.1.2_slide_switch.png
 
 
-Principle
----------
+Principio
+------------
 
-**Slide Switch**
+**Interruptor deslizante**
 
 .. image:: img/image156.jpeg
 
+Un interruptor deslizante, como su nombre indica, se utiliza para deslizar 
+la barra del interruptor para conectar o romper el circuito, y así cambiar 
+circuitos. Los tipos más comunes son SPDT, SPTT, DPDT, DPTT, etc. El interruptor 
+deslizante se utiliza comúnmente en circuitos de baja tensión. Presenta 
+características de flexibilidad y estabilidad, y se aplica ampliamente en 
+instrumentos eléctricos y juguetes eléctricos.
 
-A slide switch, just as its name implies, is to slide the switch bar to
-connect or break the circuit, and further switch circuits. The
-common-used types are SPDT, SPTT, DPDT, DPTT etc. The slide switch is
-commonly used in low-voltage circuit. It has the features of flexibility
-and stability, and applies in electric instruments and electric toys
-widely.
-
-How it works: Set the middle pin as the fixed one. When you pull the
-slide to the left, the two pins on the left are connected; when you pull
-it to the right, the two pins on the right are connected. Thus, it works
-as a switch connecting or disconnecting circuits. See the figure below:
+¿Cómo funciona? Se establece el pin del medio como el fijo. Cuando deslizas 
+el interruptor hacia la izquierda, los dos pines de la izquierda están 
+conectados; cuando lo deslizas hacia la derecha, los dos pines de la derecha 
+están conectados. Así, funciona como un interruptor que conecta o desconecta 
+circuitos. Consulta la figura a continuación:
 
 .. image:: img/image304.png
 
-
-The circuit symbol of the slide switch is shown as below. The pin2 in
-the figure refers to the middle pin.
+El símbolo del circuito del interruptor deslizante se muestra a continuación. 
+El pin 2 en la figura se refiere al pin del medio.
 
 .. image:: img/image159.png
 
 
-**Capacitor**
+**Condensador**
 
-The capacitor is a component that has the capacity to store energy in
-the form of electrical charge or to produce a potential difference
-(Static Voltage) between its plates, much like a small rechargeable
-battery.
+El condensador es un componente que tiene la capacidad de almacenar energía en 
+forma de carga eléctrica o de producir una diferencia de potencial (voltaje 
+estático) entre sus placas, similar a una pequeña batería recargable.
 
-Standard Units of Capacitance
+Unidades estándar de capacitancia
 
-Microfarad (μF) 1μF = 1/1,000,000 = 0.000001 = :math:`10^{- 6}` F
+Microfaradio (μF) 1μF = 1/1,000,000 = 0.000001 = :math:`10^{- 6}` F
 
 Nanofarad (nF) 1nF = 1/1,000,000,000 = 0.000000001 = :math:`10^{- 9}`\ F
 
-Picofarad (pF) 1pF = 1/1,000,000,000,000 = 0.000000000001 =
-:math:`10^{- 12}`\ F
+Picofarad (pF) 1pF = 1/1,000,000,000,000 = 0.000000000001 = :math:`10^{- 12}`\ F
 
 .. note::
-    Here we use **104 capacitor(10 x 10\ 4\ PF)**. Just like the
-    ring of resistors, the numbers on the capacitors help to read the values
-    once assembled onto the board. The first two digits represent the value
-    and the last digit of the number means the multiplier. Thus 104
-    represents a power of 10 x 10 to 4 (in pF) equal to 100 nF.
+    Aquí usamos un **condensador 104 (10 x 10\ 4\ PF)**. Al igual que el código 
+    de colores en los resistores, los números en los condensadores ayudan a leer 
+    los valores una vez ensamblados en la placa. Los dos primeros dígitos 
+    representan el valor y el último dígito del número indica el multiplicador. 
+    Así, 104 representa una potencia de 10 x 10 a la 4 (en pF), equivalente a 100 nF.
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+-----------------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Conecta el pin del medio del interruptor deslizante al GPIO17, y dos LEDs a los pines 
+GPIO22 y GPIO27 respectivamente. Así, cuando deslices el interruptor, podrás ver 
+los dos LEDs encenderse alternativamente.
 
 .. image:: img/image305.png
 
@@ -94,15 +92,15 @@ can see the two LEDs light up alternately.
 .. image:: img/image306.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+----------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: img/image161.png
     :width: 800
 
-**Step 2**: Go to the folder of the code.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -112,7 +110,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.1.2
 
-**Step 3**: Compile.
+**Paso 3:** Compila el código.
 
 .. raw:: html
 
@@ -122,7 +120,7 @@ Experimental Procedures
 
     gcc 2.1.2_Slider.c -lwiringPi 
 
-**Step 4**: Run the executable file above.
+**Paso 4:** Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -132,14 +130,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Mientras el código se está ejecutando, conecta el interruptor hacia la izquierda, 
+entonces el LED amarillo se encenderá; hacia la derecha, se encenderá la luz roja.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutarlo, o si aparece un mensaje de error: "wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
 
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -151,7 +149,7 @@ the yellow LED lights up; to the right, the red light turns on.
 
     int main(void)
     {
-        // When initialize wiring failed, print message to screen
+        // Cuando la inicialización falla, imprime un mensaje en pantalla
         if(wiringPiSetup() == -1){
             printf("setup wiringPi failed !");
             return 1;
@@ -160,14 +158,14 @@ the yellow LED lights up; to the right, the red light turns on.
         pinMode(led1, OUTPUT);
         pinMode(led2, OUTPUT);
         while(1){
-            // slide switch high, led1 on
+            // Interruptor deslizante alto, led1 encendido
             if(digitalRead(slidePin) == 1){
                 digitalWrite(led1, LOW);
                 digitalWrite(led2, HIGH);
                 printf("LED1 on\n");
                 delay(100);
             }
-            // slide switch low, led2 on
+            // Interruptor deslizante bajo, led2 encendido
             if(digitalRead(slidePin) == 0){
                 digitalWrite(led2, LOW);
                 digitalWrite(led1, HIGH);
@@ -178,7 +176,7 @@ the yellow LED lights up; to the right, the red light turns on.
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 
 .. code-block:: c
@@ -189,9 +187,9 @@ the yellow LED lights up; to the right, the red light turns on.
                 printf("LED1 on\n");
         }
 
-When the slide is pulled to the right, the middle pin and right one are
-connected; the Raspberry Pi reads a high level at the middle pin, so the
-LED1 is on and LED2 off
+Cuando el interruptor se desliza hacia la derecha, el pin del medio y el 
+de la derecha están conectados; la Raspberry Pi lee un nivel alto en el 
+pin del medio, por lo que el LED1 está encendido y el LED2 apagado.
 
 .. code-block:: c
 
@@ -201,6 +199,6 @@ LED1 is on and LED2 off
                 printf(".....LED2 on\n");
             }
 
-When the slide is pulled to the left, the middle pin and left one are
-connected; the Raspberry Pi reads a low, so the LED2 is on and LED1 off
-
+Cuando el interruptor se desliza hacia la izquierda, el pin del medio y el 
+de la izquierda están conectados; la Raspberry Pi lee un nivel bajo, por lo 
+que el LED2 está encendido y el LED1 apagado.

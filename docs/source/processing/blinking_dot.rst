@@ -1,31 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 Blinking Dot
 ===========================
 
-In this project, we will draw a dot on Processing, which blinks synchronously with the LED. Please build the circuit as shown in the diagram and run the sketch.
+En este proyecto, dibujaremos un punto en Processing que parpadea al mismo ritmo que el LED. Por favor, construye el circuito según el diagrama y ejecuta el código.
 
 .. image:: img/blinking_dot.png
 .. image:: img/clickable_dot_on.png
 
 
-**Wiring**
+**Conexión**
 
 .. image:: img/image49.png
 
-**Sketch**
+**Código**
 
 .. code-block:: arduino
 
@@ -35,37 +35,37 @@ In this project, we will draw a dot on Processing, which blinks synchronously wi
 
     void setup() {
         size(100, 100);
-        frameRate(2); //set frame rate
-        GPIO.pinMode(ledPin, GPIO.OUTPUT); //set the ledPin to output mode 
+        frameRate(2); // establece la frecuencia de fotogramas
+        GPIO.pinMode(ledPin, GPIO.OUTPUT); // configura el ledPin en modo salida 
     }
 
     void draw() {
         state = !state;
         if (state==true) {
-            GPIO.digitalWrite(ledPin, GPIO.LOW); //led on 
-            fill(255, 0, 0); //set the fill color of led on
+            GPIO.digitalWrite(ledPin, GPIO.LOW); // enciende el LED
+            fill(255, 0, 0); // establece el color de relleno cuando el LED está encendido
         } else {
-            GPIO.digitalWrite(ledPin, GPIO.HIGH); //led off
-            fill(155); //set the fill color of led off
+            GPIO.digitalWrite(ledPin, GPIO.HIGH); // apaga el LED
+            fill(155); // establece el color de relleno cuando el LED está apagado
         } 
         ellipse(width/2, height/2, width*0.75, height*0.75);
     }
 
-**How it works?**
+**¿Cómo funciona?**
 
-At the beginning of the sketch, you need to embed Processing's GPIO function library by ``import processing.io.*;``, which is indispensable for circuit experiments.
+Al inicio del código, necesitas incorporar la biblioteca de funciones GPIO de Processing mediante ``import processing.io.*;``, lo cual es indispensable para los experimentos de circuitos.
 
-**Frame rate** is the frequency of bitmaps appearing on the board, expressed in hertz (Hz). In other words, it is also the frequency at which the ``draw()`` function is called. In ``setup()``, setting the **frame rate** to 2 will call ``draw()`` every 0.5s.
+La **frecuencia de fotogramas** es la cantidad de veces que un fotograma aparece en la pantalla por segundo, expresada en hercios (Hz). Es decir, también es la frecuencia con la que se llama a la función ``draw()``. En ``setup()``, configurar la **frecuencia de fotogramas** a 2 llamará a ``draw()`` cada 0.5 segundos.
 
-Each call of the ``draw()`` function takes the inverse of ``state`` and subsequently determines it. If the value is ``true``, the LED is lit and the brush is filled with red; if not, the LED is turned off and the brush is filled with gray.
+Cada llamada de la función ``draw()`` invierte el valor de ``state`` y, luego, lo determina. Si el valor es ``true``, el LED se enciende y el pincel se llena de rojo; si no, el LED se apaga y el pincel se llena de gris.
 
-After completing the judgment, use the ``ellipse()`` function to draw a circle. It should be noted that ``width`` and ``height`` are system variables used to store the width and height of the display window.
+Después de realizar esta verificación, usa la función ``ellipse()`` para dibujar un círculo. Cabe destacar que ``width`` y ``height`` son variables de sistema que almacenan el ancho y alto de la ventana de visualización.
 
-There are two other points to note. When using GPIOs, you need to use the ``GPIO.pinMode()`` function to set the INPUT/OUTPUT state of the pin, and then use the ``GPIO.digitalWrite()`` function to assign a value (HIGH/LOW) to the pin .
-
+Hay otros dos puntos importantes a tener en cuenta. Cuando utilices GPIOs, debes usar la función ``GPIO.pinMode()`` para configurar el estado de ENTRADA/SALIDA del pin, y luego usar la función ``GPIO.digitalWrite()`` para asignarle un valor (HIGH/LOW).
 
 .. note::
 
-    Please try to avoid using ``delay()`` in ``draw()`` because it will affect the display window refresh.
+    Por favor, intenta evitar el uso de ``delay()`` en ``draw()`` ya que afectará la actualización de la ventana de visualización.
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+
+Para más información, consulta `Processing Reference <https://processing.org/reference/>`_.

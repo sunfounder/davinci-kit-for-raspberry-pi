@@ -1,46 +1,43 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 2.1.1 Button
 ===============
 
-Introduction
+Introducción
 -----------------
 
-In this project, we will learn how to turn on or off the LED by using a
-button.
+En este proyecto, aprenderemos a encender y apagar un LED usando un botón.
 
-Components
+Componentes
 ---------------
 
 .. image:: ../img/list_2.1.1_Button.png
 
 
+Diagrama del Circuito
+-------------------------
 
-Schematic Diagram
----------------------
-
-Use a normally open button as the input of Raspberry Pi, the connection
-is shown in the schematic diagram below. When the button is pressed, the
-GPIO18 will turn into low level (0V). We can detect the state of the
-GPIO18 through programming. That is, if the GPIO18 turns into low level,
-it means the button is pressed. You can run the corresponding code when
-the button is pressed, and then the LED will light up.
+Usaremos un botón normalmente abierto como entrada para la Raspberry Pi, 
+y la conexión se muestra en el siguiente diagrama. Cuando se presiona el 
+botón, el GPIO18 cambiará a nivel bajo (0V). Podemos detectar el estado 
+del GPIO18 mediante programación: si el GPIO18 está en nivel bajo, significa 
+que el botón está presionado. Así, el código correspondiente puede ejecutarse 
+al presionar el botón, y el LED se encenderá.
 
 .. note::
-    The longer pin of the LED is the anode and the shorter one is
-    the cathode.
+    El pin más largo del LED es el ánodo, y el más corto es el cátodo.
 
 .. image:: ../img/image302.png
 
@@ -48,14 +45,14 @@ the button is pressed, and then the LED will light up.
 .. image:: ../img/image303.png
 
 
-Experimental Procedures
----------------------------
+Procedimientos Experimentales
+-----------------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construye el circuito.
 
 .. image:: ../img/image152.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -65,7 +62,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3**: Run the code.
+**Paso 3**: Ejecuta el código.
 
 .. raw:: html
 
@@ -75,10 +72,9 @@ Experimental Procedures
 
     sudo node button.js
 
-Now, press the button, and the LED will light up; 
-release the button, and the LED will go out. 
+Ahora, presiona el botón, y el LED se encenderá; suelta el botón, y el LED se apagará.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -98,7 +94,7 @@ release the button, and the LED will go out.
       led.digitalWrite(level);          
     });
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
@@ -106,7 +102,8 @@ release the button, and the LED will go out.
 
     const led = new Gpio(17, {mode: Gpio.OUTPUT});
 
-Import the ``pigpio`` module, create a led object to control the IO port Gpio17, and set it to output mode.
+Importa el módulo ``pigpio``, crea un objeto led para controlar el puerto 
+IO Gpio17, y configúralo en modo de salida.
 
 .. code-block:: js
 
@@ -116,9 +113,9 @@ Import the ``pigpio`` module, create a led object to control the IO port Gpio17,
       edge: Gpio.EITHER_EDGE       
     });
 
-Create a button object to control the IO port Gpio18, set it to input mode,
-Pull down (low when the button is not pressed, high when the button is pressed).
-And set the interrupt function, the mode is EITHER_EDGE, that is, both rising and falling edges will trigger the interrupt function.
+Crea un objeto button para controlar el puerto IO Gpio18, configúralo en modo de entrada,
+con una resistencia pull-down (bajo cuando el botón no está presionado, alto cuando el botón está presionado).
+Configura la función de interrupción en modo EITHER_EDGE, es decir, tanto los flancos ascendentes como descendentes activarán la función de interrupción.
 
 .. code-block:: js
 
@@ -126,15 +123,13 @@ And set the interrupt function, the mode is EITHER_EDGE, that is, both rising an
       led.digitalWrite(level);          
     });
 
-Write an interrupt function, when the button is pressed, it is a falling edge, triggering the interrupt function,
-At this time, write the low level of the button IO port to the IO port of the led, and the led lights up.
+Escribe una función de interrupción: cuando el botón se presiona, es un flanco descendente que activa la función de interrupción;
+en este momento, el nivel bajo del puerto IO del botón se escribe en el puerto IO del LED, y el LED se enciende.
 
-When the button is released, it is a rising edge, triggering the interrupt function,
-At this time, the high level of the button IO port is written to the IO port of the led, and the led is off.     
+Cuando se suelta el botón, es un flanco ascendente que activa la función de interrupción;
+en este momento, el nivel alto del puerto IO del botón se escribe en el puerto IO del LED, y el LED se apaga.
 
-Phenomenon Picture
-^^^^^^^^^^^^^^^^^^
+Imagen del Fenómeno
+-----------------------
 
 .. image:: ../img/image153.jpeg
-
-

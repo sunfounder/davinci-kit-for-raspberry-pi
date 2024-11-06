@@ -1,75 +1,78 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros apasionados y profundiza en el mundo de Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y supera desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos especiales.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-1.8 123 Wooden Man
-===========================
+1.8 123 Hombre de Madera
+==========================
 
-Today, we are going to play a game of 123 wooden man.
+Hoy vamos a jugar al juego de "123 hombre de madera".
 
-Click on the green flag to start the game, hold down the right arrow key on the keyboard to make the sprite go right. If the green light is on, the sprite can move; but when the red LED is on, you have to stop the sprite from moving; otherwise the buzzer will keep ringing.
+Haz clic en la bandera verde para comenzar el juego. Mantén presionada la tecla de flecha derecha en el teclado para mover el sprite hacia la derecha. Si la luz verde está encendida, el sprite puede moverse; pero cuando el LED rojo está encendido, debes detener el sprite; de lo contrario, el zumbador seguirá sonando.
 
 .. image:: img/1.14_header.png
 
-Required Components
+Componentes Necesarios
 ------------------------
 
 .. image:: img/1.14_component.png
 
-Build the Circuit
----------------------
+Construye el Circuito
+------------------------
 
 .. image:: img/1.14_fritzing.png
 
-
-Load the Code and See What Happens
+Carga el Código y Observa Qué Sucede
 ---------------------------------------
 
-Load the code file (``1.8_123_wooden_man.sb3``) to Scratch 3.
+Carga el archivo de código (``1.8_123_wooden_man.sb3``) en Scratch 3.
 
-When the green LED is on, you can use the right arrow key to control **Avery** to walk to the right; when the red LED is on, if you continue to let **Avery** move to the right, then an alarm will sound.
 
-Tips on Sprite
-----------------
-Delete the default sprite, then choose the **Avery Walking** sprite.
+Cuando el LED verde está encendido, puedes usar la tecla de flecha derecha para controlar a **Avery** y hacerlo caminar hacia la derecha; cuando el LED rojo está encendido, si continúas moviendo a **Avery** hacia la derecha, se activará una alarma.
+
+
+Consejos sobre el Sprite
+--------------------------
+
+Elimina el sprite predeterminado y selecciona el sprite **Avery Walking**.
 
 .. image:: img/1.14_wooden1.png
   :width: 400
 
-Tips on Codes
---------------
+Consejos sobre el Código
+---------------------------
 
 .. image:: img/1.14_wooden2.png
   :width: 400
 
-Initialize all pins to high.
+Inicializa todos los pines en alto.
 
 .. image:: img/1.14_wooden3.png
   :width: 400
 
-When the game starts, assign the status variable to 1, indicating that the Avery Walking sprite is movable, and then set gpio18 to low, which lights up the green LED for 5s.
+Cuando comienza el juego, asigna el valor 1 a la variable **status**, lo que indica que el sprite Avery Walking es móvil. Luego, configura gpio18 en bajo para encender el LED verde durante 5 segundos.
 
 .. image:: img/1.14_wooden4.png
   :width: 400
 
-Set gpio18 to high, then set gpio27 to low, which means turn off the green LED and light up the yellow LED for 0.5s.
+Configura gpio18 en alto y luego gpio27 en bajo, lo que significa apagar el LED verde y encender el LED amarillo durante 0.5 segundos.
 
 .. image:: img/1.14_wooden5.png
   :width: 400
 
-Assign the status variable to 0, which means the Avery Walking sprite is not moving; then set gpio27 to low and gpio17 to high, which turns off the yellow LED and then lights up the red LED for 3s. Finally, set gpio17 to high to turn off the red LED.
+Asigna el valor 0 a la variable **status**, lo que indica que el sprite Avery Walking no se está moviendo; luego configura gpio27 en bajo y gpio17 en alto, lo que apaga el LED amarillo y enciende el LED rojo durante 3 segundos. Finalmente, configura gpio17 en alto para apagar el LED rojo.
 
 .. image:: img/1.14_wooden6.png
   :width: 400
 
-When we press the right arrow key on the keyboard, we need to switch the **Avery Walking** sprite to the next costume so that we can see Avery walking to the right. Then we need to determine the value of the **status** variable. If it is 0, it means that the Avery Walking sprite is not moving at this moment, and the buzzer will sound to warn you that you cannot press the right arrow key again.
+Cuando presionamos la tecla de flecha derecha en el teclado, necesitamos cambiar el disfraz del sprite **Avery Walking** al siguiente disfraz para ver a Avery caminar hacia la derecha. Luego necesitamos verificar el valor de la variable **status**. Si es 0, significa que el sprite Avery Walking no se está moviendo en ese momento, y el zumbador sonará para advertirte que no puedes presionar la tecla de flecha derecha nuevamente.
+

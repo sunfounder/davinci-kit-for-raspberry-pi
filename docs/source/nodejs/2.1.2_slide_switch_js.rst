@@ -1,41 +1,39 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-2.1.2 Slide Switch
-==================
 
-Introduction
-------------
+2.1.2 Interruptor Deslizante
+=================================
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+Introducción
+---------------
 
-Components
-----------
+En este proyecto, aprenderemos a usar un interruptor deslizante. 
+Usualmente, el interruptor deslizante se suelda en la PCB como interruptor de encendido; sin embargo, aquí lo insertaremos en una placa de pruebas, por lo que puede no quedar completamente fijo. Lo utilizaremos en la placa para mostrar su funcionamiento.
+
+Componentes
+--------------
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
 
+Diagrama del Circuito
+-----------------------
 
-Schematic Diagram
------------------
-
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Conecta el pin central del interruptor deslizante a GPIO17 y dos LEDs a 
+los pines GPIO22 y GPIO27, respectivamente. Al deslizar el interruptor, 
+verás que los dos LEDs se encienden alternadamente.
 
 .. image:: ../img/image305.png
 
@@ -43,14 +41,14 @@ can see the two LEDs light up alternately.
 .. image:: ../img/image306.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image161.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -60,7 +58,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3**: Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -70,10 +68,11 @@ Experimental Procedures
 
     sudo node slide_switch.js
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Mientras el código esté en ejecución, conecta el interruptor hacia la 
+izquierda, y el LED amarillo se encenderá; hacia la derecha, se encenderá 
+el LED rojo.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -94,7 +93,7 @@ the yellow LED lights up; to the right, the red light turns on.
     });
 
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
@@ -109,8 +108,9 @@ the yellow LED lights up; to the right, the red light turns on.
         edge: Gpio.EITHER_EDGE        
     });
 
-Import the pigpio module, and create three objects led1, led2, slideSwitch, 
-and control the on and off of led1 and led2 by reading the level of the slideSwitch IO port.   
+Importa el módulo pigpio y crea tres objetos: led1, led2, slideSwitch. 
+Controla el encendido y apagado de led1 y led2 leyendo el nivel del 
+puerto IO de slideSwitch.
 
 .. code-block:: js
 
@@ -119,12 +119,10 @@ and control the on and off of led1 and led2 by reading the level of the slideSwi
         led2.digitalWrite(!level);       
     });
 
-When the read level of the slideSwitch IO port changes,
-Write the same level to led1 and the opposite level to led2.
+Cuando cambia el nivel de lectura del puerto IO de slideSwitch, escribe el 
+mismo nivel en led1 y el nivel opuesto en led2.
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+------------------------
 
 .. image:: ../img/image162.jpeg
-
-

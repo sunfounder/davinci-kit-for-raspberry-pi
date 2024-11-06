@@ -1,27 +1,27 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el apasionante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 Learn More about ``control.py``
 ================================
 
-In order to better understand the projects that follow, let's take a look at the official sample code provided by Cloud4RPi.
+Para entender mejor los proyectos que vienen a continuación, echemos un vistazo al código de ejemplo oficial proporcionado por Cloud4RPi.
 
 .. note::
 
-    Please complete the previous section :ref:`Quick Guide on Cloud4RPi` before viewing this section.
+    Completa la sección anterior  :ref:`Quick Guide on Cloud4RPi` antes de revisar esta sección.
 
-Open the ``control.py`` file.
+Abre el archivo ``control.py``.
 
 .. raw:: html
 
@@ -32,21 +32,21 @@ Open the ``control.py`` file.
     cd cloud4rpi-raspberrypi-python
     sudo nano control.py
 
-Cloud4RPi will set a device token for each one, and you need to fill in the variable DEVICE_TOKEN with the correct device token in order to connect to the corresponding device.
+Cloud4RPi asignará un token de dispositivo para cada uno, y es necesario rellenar la variable DEVICE_TOKEN con el token de dispositivo correcto para conectar con el dispositivo correspondiente.
 
 .. code-block:: python
 
     DEVICE_TOKEN = '556UfPaRw6r6rDKYfzx5Nd1jd'
 
-``variables`` is a 2-dimensional dictionary, and the value corresponding to each of its keys is also a dictionary.
+``variables`` es un diccionario de 2 dimensiones, y el valor correspondiente a cada una de sus claves también es un diccionario.
 
-The keys of the ``variables`` dictionary are ``'Room Temp'``, ``'LED On'``, ``'CPU Temp'``, ``'STATUS'``, ``'Location'``, which are all data displayed on the Control Panel's widgets.
-    
-The value of each key in the ``variables`` dictionary is also a dictionary, and the keys of these dictionaries are the same, where the value of the ``'bind'`` key is a function that can return the transferred content, and the ``'type'`` is the data type of the transferred content (``'numeric'`` is a numeric type, ``'string'`` is a string type, ``'bool'`` is a boolean type, and ``'location'`` is a list containing two dictionaries).
+Las claves del diccionario ``variables`` son ``'Room Temp'``, ``'LED On'``, ``'CPU Temp'``, ``'STATUS'``, ``'Location'``, todos estos datos se muestran en los widgets del Panel de Control.
 
-Through the analysis of the ``variables`` dictionary, we can know that Cloud4RPi will read the keys of the ``variables`` dictionary and display the value corresponding to the key in the Control Panel. Obviously we cannot change the keys of the ``variables`` dictionary, but we can change the value in the key (the value of the ``'bind'`` dictionary) to let the widgets display the content we want.
+El valor de cada clave en el diccionario ``variables`` también es un diccionario, y las claves de estos diccionarios son iguales; el valor de la clave ``'bind'`` es una función que puede devolver el contenido transferido, y el ``'type'`` indica el tipo de datos del contenido transferido (``'numeric'`` es numérico, ``'string'`` es una cadena de texto, ``'bool'`` es un tipo booleano y ``'location'`` es una lista que contiene dos diccionarios).
 
-For example, if we want to send humidity values to Cloud4RPi, we cannot add a new key to the ``variables`` dictionary, but we can borrow a key, such as the ``'Room Temp'`` key, and then write the function that returns the humidity value in the corresponding ``'bind'`` key.
+A través del análisis del diccionario ``variables``, sabemos que Cloud4RPi leerá las claves de ``variables`` y mostrará el valor correspondiente en el Panel de Control. Evidentemente, no podemos cambiar las claves del diccionario ``variables``, pero sí podemos modificar el valor de cada clave (el valor del diccionario ``'bind'``) para que los widgets muestren el contenido deseado.
+
+Por ejemplo, si queremos enviar valores de humedad a Cloud4RPi, no podemos agregar una nueva clave al diccionario ``variables``, pero podemos usar una clave existente, como la clave ``'Room Temp'``, y escribir en la clave ``'bind'`` una función que devuelva el valor de la humedad.
 
 .. code-block:: python
 
@@ -73,7 +73,7 @@ For example, if we want to send humidity values to Cloud4RPi, we cannot add a ne
             'bind': get_location
         }
 
-The ``vdiagnostics`` stores information about the Raspberry Pi and is used to verify and prevent misconnections.
+``vdiagnostics`` almacena información sobre la Raspberry Pi y se utiliza para verificar y prevenir conexiones incorrectas.
 
 .. code-block:: python
 

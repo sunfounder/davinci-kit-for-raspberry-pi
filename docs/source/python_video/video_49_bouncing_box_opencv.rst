@@ -1,28 +1,28 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-Video 49: Creating A Bouncing Box Overlay in OpenCV
+
+Video 49: Creación de una Superposición de Caja Rebotante en OpenCV
 =======================================================================================
 
-In this Raspberry Pi tutorial sponsored by SunFounder, learn how to overlay a bouncing box on a camera feed, emphasizing the importance of planning and thinking like an engineer before coding.
+En este tutorial de Raspberry Pi, patrocinado por SunFounder, aprende cómo superponer una caja rebotante en una transmisión de cámara, enfatizando la importancia de planificar y pensar como un ingeniero antes de codificar.
 
-
-#. **Explanation of the homework assignment**: overlaying a bouncing box on a Raspberry Pi camera feed.
-#. **Emphasis on planning before coding**: stressing the importance of thinking like an engineer, sketching out the solution, and labeling key points.
-#. **Step-by-step process**: Demonstrating how to translate the sketch into code, defining variables for the box position, size, and movement, and handling edge cases for changing direction when hitting screen boundaries.
-#. **Coding demonstration**: Showing the implementation of the solution in Python using OpenCV.
-#. **Testing and validation**: Verifying the functionality by running the code and ensuring that the bouncing box behaves as expected on the camera feed.
+#. **Explicación de la tarea**: superposición de una caja rebotante en una transmisión de cámara de Raspberry Pi.
+#. **Énfasis en la planificación antes de codificar**: resaltando la importancia de pensar como un ingeniero, esquematizar la solución y etiquetar los puntos clave.
+#. **Proceso paso a paso**: Demostración de cómo traducir el esquema en código, definiendo variables para la posición, tamaño y movimiento de la caja, y manejando casos extremos para cambiar la dirección cuando se alcanzan los límites de la pantalla.
+#. **Demostración de codificación**: Muestra la implementación de la solución en Python usando OpenCV.
+#. **Pruebas y validación**: Verificación de la funcionalidad ejecutando el código y asegurando que la caja rebotante se comporte como se espera en la transmisión de cámara.
 
 **Video**
 

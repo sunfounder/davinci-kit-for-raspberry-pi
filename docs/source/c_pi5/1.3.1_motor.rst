@@ -1,128 +1,121 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y avances.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy!
 
 1.3.1 Motor
 =============
 
-Introduction
------------------
+Introducción
+---------------
 
-In this lesson, we will learn to how to use L293D to drive a DC motor
-and make it rotate clockwise and counterclockwise. Since the DC Motor
-needs a larger current, for safety purpose, here we use the Power Supply
-Module to supply motors.
+En esta lección, aprenderemos a utilizar el L293D para accionar un motor de 
+corriente continua y hacerlo girar en sentido horario y antihorario. Dado que 
+el motor de corriente continua necesita una corriente mayor, utilizaremos el 
+módulo de alimentación para alimentar los motores por razones de seguridad.
 
-Components
------------
+Componentes
+---------------
 
 .. image:: img/list_1.3.1.png
 
-
-Principle
----------
+Principio
+-------------
 
 **L293D**
 
-L293D is a 4-channel motor driver integrated by chip with high voltage
-and high current. It's designed to connect to standard DTL, TTL logic
-level, and drive inductive loads (such as relay coils, DC, Stepper
-Motors) and power switching transistors etc. DC Motors are devices that
-turn DC electrical energy into mechanical energy. They are widely used
-in electrical drive for their superior speed regulation performance.
+El L293D es un controlador de motor de 4 canales integrado en un chip que 
+soporta alta tensión y alta corriente. Está diseñado para conectarse a niveles 
+lógicos estándar DTL y TTL, y para accionar cargas inductivas (como bobinas de 
+relé, motores de CC, motores paso a paso) y transistores de conmutación de 
+potencia, entre otros. Los motores de corriente continua son dispositivos que 
+convierten la energía eléctrica en corriente continua en energía mecánica. Se 
+utilizan ampliamente en accionamientos eléctricos debido a su excelente rendimiento 
+en la regulación de velocidad.
 
-See the figure of pins below. L293D has two pins (Vcc1 and Vcc2) for
-power supply. Vcc2 is used to supply power for the motor, while Vcc1 to
-supply for the chip. Since a small-sized DC motor is used here, connect
-both pins to +5V.
+A continuación se muestra la figura de los pines. El L293D tiene dos pines (Vcc1 y Vcc2) para la alimentación. Vcc2 se utiliza para alimentar el motor, mientras que Vcc1 alimenta el chip. Dado que aquí se utiliza un motor de corriente continua de pequeño tamaño, conectaremos ambos pines a +5V.
 
 .. image:: img/image111.png
 
-
-The following is the internal structure of L293D. Pin EN is an enable
-pin and only works with high level; A stands for input and Y for output.
-You can see the relationship among them at the right bottom. When pin EN
-is High level, if A is High, Y outputs high level; if A is Low, Y
-outputs Low level. When pin EN is Low level, the L293D does not work.
+La siguiente figura muestra la estructura interna del L293D. El pin EN es un 
+pin de habilitación que solo funciona con un nivel alto; A representa la 
+entrada y Y la salida. Puedes ver la relación entre ellos en la parte inferior 
+derecha. Cuando el pin EN está en nivel alto, si A está en alto, Y saldrá en 
+nivel alto; si A está en bajo, Y saldrá en bajo. Cuando el pin EN está en bajo, 
+el L293D no funcionará.
 
 .. image:: img/image334.png
 
-
-**DC Motor**
+**Motor de Corriente Continua**
 
 .. image:: img/image114.jpeg
 
-
-This is a 5V DC motor. It will rotate when you give the two terminals of
-the copper sheet one high and one low level. For convenience, you can
-weld the pins to it.
+Este es un motor de CC de 5V. Girará cuando se le dé a los dos terminales 
+de la placa de cobre un nivel alto y uno bajo. Para mayor comodidad, puedes 
+soldar los pines al motor.
 
 .. image:: img/image335.png
 
+**Módulo de Alimentación**
 
-**Power Supply Module**
+En este experimento, se necesita una gran corriente para accionar el motor, 
+especialmente al iniciar y detener, lo que interferirá severamente con el 
+funcionamiento normal de la Raspberry Pi. Por lo tanto, alimentaremos el 
+motor por separado con este módulo para que funcione de manera segura y estable.
 
-In this experiment, it needs large currents to drive the motor
-especially when it starts and stops, which will severely interfere with
-the normal work of Raspberry Pi. Therefore, we separately supply power
-for the motor by this module to make it run safely and steadily.
-
-You can just plug it in the breadboard to supply power. It provides a
-voltage of 3.3V and 5V, and you can connect either via a jumper cap
-included.
+Puedes simplemente conectarlo en la placa de pruebas para suministrar energía. 
+Proporciona voltajes de 3.3V y 5V, y puedes conectar cualquiera de ellos a 
+través de un capuchón de puente incluido.
 
 .. image:: img/image115.png
 
+Diagrama Esquemático
+-----------------------
 
-Schematic Diagram
-------------------
-
-Plug the power supply module in breadboard, and insert the jumper cap to
-pin of 5V, then it will output voltage of 5V. Connect pin 1 of L293D to
-GPIO22, and set it as high level. Connect pin2 to GPIO27, and pin7 to
-GPIO17, then set one pin high, while the other low. Thus you can change
-the motor’s rotation direction.
+Conecta el módulo de alimentación en la placa de pruebas e inserta el capuchón 
+de puente en el pin de 5V, luego saldrá un voltaje de 5V. Conecta el pin 1 del 
+L293D a GPIO22 y configúralo en nivel alto. Conecta el pin 2 a GPIO27 y el pin 7 
+a GPIO17, luego establece un pin en alto y el otro en bajo. De esta manera, puedes 
+cambiar la dirección de rotación del motor.
 
 .. image:: img/image336.png
 
 
-Experimental Procedures
---------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: img/1.3.1.png
     :width: 800
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    El módulo de alimentación puede usar una batería de 9V con el conector 
+    de batería de 9V incluido en el kit. Inserta el capuchón de puente del 
+    módulo de alimentación en las tiras de bus de 5V de la placa de pruebas.
 
 .. image:: img/image118.jpeg
 
-
-**Step 2**: Get into the folder of the code.
+**Paso 2**: Acceder a la carpeta del código.
 
 .. raw:: html
 
     <run></run>
-    
+
 .. code-block::
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.3.1/
 
-**Step 3**: Compile.
+**Paso 3**: Compilar.
 
 .. raw:: html
 
@@ -132,7 +125,7 @@ Experimental Procedures
 
     gcc 1.3.1_Motor.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**Paso 4**: Ejecutar el archivo ejecutable.
 
 .. raw:: html
 
@@ -142,15 +135,16 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, the motor first rotates clockwise for 5s then stops for 5s, 
-after that, it rotates anticlockwise for 5s; subsequently, the motor stops 
-for 5s. This series of actions will be executed repeatedly.  
+Al ejecutar el código, el motor primero girará en sentido horario 
+durante 5 segundos, luego se detendrá durante 5 segundos, después girará 
+en sentido antihorario durante 5 segundos; posteriormente, el motor se 
+detendrá durante 5 segundos. Esta serie de acciones se repetirá.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`c code is not working?`.
 
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -163,7 +157,7 @@ for 5s. This series of actions will be executed repeatedly.
 
     int main(void){
         int i;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+        if(wiringPiSetup() == -1){ //si la inicialización de wiring falla, imprime un mensaje en pantalla
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -207,24 +201,24 @@ for 5s. This series of actions will be executed repeatedly.
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
     digitalWrite(MotorEnable, HIGH);
 
-Enable the L239D.
+Habilita el L239D.
 
 .. code-block:: c
 
     digitalWrite(MotorPin1, HIGH);
     digitalWrite(MotorPin2, LOW);
 
-Set a high level for 2A(pin 7); since 1,2EN(pin 1) is in 
-high level, 2Y will output high level.
+Establece un nivel alto para 2A (pin 7); dado que 1,2EN (pin 1) está en 
+nivel alto, 2Y saldrá en nivel alto.
 
-Set a low level for 1A, then 1Y will output low level, and 
-the motor will rotate.
+Establece un nivel bajo para 1A, luego 1Y saldrá en nivel bajo, y 
+el motor girará.
 
 .. code-block:: c
 
@@ -232,18 +226,18 @@ the motor will rotate.
     delay(1000);
     }
 
-this loop is to delay for 3*1000ms.
+Este bucle retrasa durante 3*1000 ms.
 
 .. code-block:: c
 
     digitalWrite(MotorEnable, LOW)
 
-If 1,2EN (pin1) is in low level, L293D does not work. Motor stops rotating.
+Si 1,2EN (pin 1) está en nivel bajo, el L293D no funcionará. El motor deja de girar.
 
 .. code-block:: c
 
     digitalWrite(MotorPin1, LOW)
     digitalWrite(MotorPin2, HIGH)
 
-Reverse the current flow of the motor, then the motor will rotate reversely.
+Invierte el flujo de corriente del motor, luego el motor girará en sentido inverso.
 

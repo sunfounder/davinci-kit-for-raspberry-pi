@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros entusiastas para profundizar en Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vista previa exclusiva**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.2.2_py_pi5:
 
-2.2.2 Thermistor
-================
+2.2.2 Termistor
+===================
 
-Introduction
-------------
+Introducción
+---------------
 
-Just like photoresistor can sense light, thermistor is a temperature
-sensitive electronic device that can be used for realizing functions of
-temperature control, such as making a heat alarm.
+Al igual que el fotoresistor puede detectar la luz, el termistor es 
+un dispositivo electrónico sensible a la temperatura que puede usarse 
+para funciones de control de temperatura, como la creación de una alarma de calor.
 
-Required Components
-------------------------------
+Componentes necesarios
+-------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../python_pi5/img/2.2.2_thermistor_list.png
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+.. Es muy conveniente comprar el kit completo, aquí tienes el enlace: 
 
 .. .. list-table::
 ..     :widths: 20 20 20
 ..     :header-rows: 1
 
-..     *   - Name	
+..     *   - Nombre
 ..         - ITEMS IN THIS KIT
 ..         - LINK
-..     *   - Raphael Kit
+..     *   - Kit Raphael
 ..         - 337
 ..         - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+.. También puedes comprarlos por separado en los enlaces a continuación.
 
 .. .. list-table::
 ..     :widths: 30 20
 ..     :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+..     *   - INTRODUCCIÓN DEL COMPONENTE
+..         - ENLACE DE COMPRA
 
 ..     *   - :ref:`gpio_extension_board`
 ..         - |link_gpio_board_buy|
@@ -66,23 +66,22 @@ In this project, we need the following components.
 ..     *   - :ref:`adc0834`
 ..         - \-
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+------------------------
 
 .. image:: ../python_pi5/img/2.2.2_thermistor_schematic_1.png
-
 
 .. image:: ../python_pi5/img/2.2.2_thermistor_schematic_2.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Monta el circuito.
 
 .. image:: ../python_pi5/img/2.2.2_thermistor_circuit.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -92,7 +91,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run the executable file
+**Paso 3:** Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -102,18 +101,18 @@ Experimental Procedures
 
     sudo python3 2.2.2_Thermistor_zero.py
 
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
+Cuando el código se ejecute, el termistor detectará la temperatura ambiente, 
+que se imprimirá en la pantalla una vez finalizado el cálculo del programa.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si aparece un mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc`
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, debes ir a la ruta del código fuente, como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -129,45 +128,45 @@ be printed on the screen once it finishes the program calculation.
    import time
    import math
 
-   # Initialize the ADC0834 module
+   # Inicializa el módulo ADC0834
    ADC0834.setup()
 
-   # Run the process in a try-except block
+   # Ejecuta el proceso en un bloque try-except
    try:
        while True:
-           # Read the analog value from the sensor
+           # Lee el valor analógico del sensor
            analogVal = ADC0834.getResult()
 
-           # Convert the analog value to a voltage
+           # Convierte el valor analógico a voltaje
            Vr = 5 * float(analogVal) / 255
 
-           # Calculate the resistance of the thermistor
+           # Calcula la resistencia del termistor
            Rt = 10000 * Vr / (5 - Vr)
 
-           # Calculate the temperature in Kelvin
+           # Calcula la temperatura en Kelvin
            temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
 
-           # Convert Kelvin to Celsius
+           # Convierte Kelvin a Celsius
            Cel = temp - 273.15
 
-           # Convert Celsius to Fahrenheit
+           # Convierte Celsius a Fahrenheit
            Fah = Cel * 1.8 + 32
 
-           # Print the temperature in both Celsius and Fahrenheit
+           # Imprime la temperatura en Celsius y Fahrenheit
            print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
 
-           # Wait for 0.2 seconds before the next read
+           # Espera 0.2 segundos antes de la próxima lectura
            time.sleep(0.2)
 
-   # Handle KeyboardInterrupt for graceful termination
+   # Maneja KeyboardInterrupt para una terminación suave
    except KeyboardInterrupt:
-       # Clean up ADC0834 resources
+       # Limpia los recursos de ADC0834
        ADC0834.destroy()
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. This section imports the ADC0834 library for analog-to-digital conversion, the time library for implementing delays, and the math library for conducting mathematical operations.
+#. Este segmento importa la clase PWMLED de la librería gpiozero, necesaria para controlar los LEDs PWM. También incluye el módulo ADC0834 para la conversión de analógico a digital y el módulo de tiempo para ejecutar funciones basadas en tiempo, como sleep.
 
    .. code-block:: python
 
@@ -178,49 +177,49 @@ be printed on the screen once it finishes the program calculation.
        import time
        import math
 
-#. Initializes the ADC0834 module to enable reading of analog values.
+#. Inicializa el módulo ADC0834 para permitir la lectura de valores analógicos.
 
    .. code-block:: python
 
-       # Initialize the ADC0834 module
+       # Inicializa el módulo ADC0834
        ADC0834.setup()
 
-#. Implements an infinite loop for continuous data reading. The loop reads the analog value from a thermistor, converts this value to voltage, calculates the thermistor's resistance, and then translates this resistance into temperature measurements in Kelvin, Celsius, and Fahrenheit. It also outputs the temperature readings in Celsius and Fahrenheit, pausing for 0.2 seconds between each reading.
+#. Implementa un bucle infinito para la lectura continua de datos. El bucle lee el valor analógico de un termistor, lo convierte a voltaje, calcula la resistencia del termistor y luego traduce esta resistencia en medidas de temperatura en Kelvin, Celsius y Fahrenheit. También imprime las lecturas de temperatura en Celsius y Fahrenheit, con una pausa de 0.2 segundos entre cada lectura.
 
    .. code-block:: python
 
-       # Run the process in a try-except block
+       # Ejecuta el proceso en un bloque try-except
        try:
            while True:
-               # Read the analog value from the sensor
+               # Lee el valor analógico del sensor
                analogVal = ADC0834.getResult()
 
-               # Convert the analog value to a voltage
+               # Convierte el valor analógico a voltaje
                Vr = 5 * float(analogVal) / 255
 
-               # Calculate the resistance of the thermistor
+               # Calcula la resistencia del termistor
                Rt = 10000 * Vr / (5 - Vr)
 
-               # Calculate the temperature in Kelvin
+               # Calcula la temperatura en Kelvin
                temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
 
-               # Convert Kelvin to Celsius
+               # Convierte Kelvin a Celsius
                Cel = temp - 273.15
 
-               # Convert Celsius to Fahrenheit
+               # Convierte Celsius a Fahrenheit
                Fah = Cel * 1.8 + 32
 
-               # Print the temperature in both Celsius and Fahrenheit
+               # Imprime la temperatura en Celsius y Fahrenheit
                print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
 
-               # Wait for 0.2 seconds before the next read
+               # Espera 0.2 segundos antes de la próxima lectura
                time.sleep(0.2)
 
-#. Catches a KeyboardInterrupt exception to gracefully terminate the program and includes clean-up instructions for the ADC0834 resources upon termination.
+#. Captura una excepción de KeyboardInterrupt para terminar el programa de manera ordenada e incluye instrucciones de limpieza para los recursos del ADC0834 al finalizar.
 
    .. code-block:: python
 
-       # Handle KeyboardInterrupt for graceful termination
+       # Maneja KeyboardInterrupt para una terminación suave
        except KeyboardInterrupt:
-           # Clean up ADC0834 resources
+           # Limpia los recursos de ADC0834
            ADC0834.destroy()

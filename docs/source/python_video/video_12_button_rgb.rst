@@ -1,34 +1,33 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
 
-Video 12: Pushbutton Control of RGB LED
+Video 12: Control del LED RGB con Botones Pulsadores
 =======================================================================================
 
-Explore how to control RGB LEDs using Raspberry Pi platforms, 
-covering hardware setup, code organization, GPIO pin configuration, color mixing, dimmable LED control, debugging, and project extension possibilities.
+Descubre cómo controlar LEDs RGB usando plataformas Raspberry Pi, abordando la configuración de hardware, organización del código, configuración de pines GPIO, mezcla de colores, control de brillo del LED, depuración y posibilidades de ampliación del proyecto.
 
-1. **Hardware setup**: Configure RGB LEDs, buttons, and GPIO connections.
-2. **Code organization**: Organize code systematically for easier maintenance.
-3. **GPIO pin setup**: Configure GPIO pins for input and output functionalities.
-4. **Main loop implementation**: Create a main loop to monitor button states and update LED states.
-5. **Debugging and testing**: Ensure proper hardware and software functionality through debugging procedures.
-6. **RGB LED color mixing**: Experiment with color combinations using red, green, and blue.
-7. **Dimmable LED control**: Explore dimming LEDs for precise color and brightness adjustments.
-8. **Circuit troubleshooting**: Identify and resolve circuit issues like poor connections.
-9. **Programming logic**: Develop code logic for controlling RGB LED behavior.
-10. **Project extension**: Consider expanding the project with advanced features like dimmable LED control.
+1. **Configuración de hardware**: Configura los LEDs RGB, botones y conexiones GPIO.
+2. **Organización del código**: Estructura el código de manera sistemática para facilitar su mantenimiento.
+3. **Configuración de pines GPIO**: Configura los pines GPIO para funciones de entrada y salida.
+4. **Implementación del bucle principal**: Crea un bucle principal para monitorear el estado de los botones y actualizar el estado de los LEDs.
+5. **Depuración y pruebas**: Asegura el funcionamiento adecuado del hardware y el software mediante procedimientos de depuración.
+6. **Mezcla de colores en LED RGB**: Experimenta con combinaciones de colores utilizando rojo, verde y azul.
+7. **Control de brillo del LED**: Explora el control de brillo para ajustar colores y niveles de iluminación.
+8. **Resolución de problemas de circuito**: Identifica y soluciona problemas de circuito como conexiones deficientes.
+9. **Lógica de programación**: Desarrolla la lógica del código para controlar el comportamiento del LED RGB.
+10. **Ampliación del proyecto**: Considera expandir el proyecto con funciones avanzadas como el control de brillo del LED.
 
 **Video**
 

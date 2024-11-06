@@ -1,91 +1,89 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros apasionados y profundiza en el mundo de Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y supera desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos especiales.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-1.9 Inflating the Balloon
-==========================
+1.9 Inflar el Globo
+=======================
 
-Here, we will play a game of ballooning.
+Aquí jugaremos a inflar un globo.
 
-By toggling Slide to the left to start to inflate the balloon, at this time the balloon will get bigger and bigger. If the balloon is too large will blow up; if the balloon is too small, it will not float into the air. You need to judge when to toggle the switch to the right to stop pumping.
+Al mover el deslizador a la izquierda, comenzará a inflar el globo, que se hará cada vez más grande. Si el globo es demasiado grande, explotará; si es muy pequeño, no flotará en el aire. Debes decidir cuándo mover el interruptor a la derecha para dejar de inflarlo.
 
 .. image:: img/1.15_header.png
 
-Required Components
------------------------
+Componentes Necesarios
+--------------------------
 
 .. image:: img/1.15_component.png
 
-Build the Circuit
----------------------
+Construye el Circuito
+--------------------------
 
 .. image:: img/1.15_scratch_fritzing.png
 
-Load the Code and See What Happens
------------------------------------------
+Carga el Código y Observa Qué Sucede
+--------------------------------------
 
-Load the code file (``1.9_inflating_the_balloon.sb3``) to Scratch 3.
+Carga el archivo de código (``1.9_inflating_the_balloon.sb3``) en Scratch 3.
 
-By toggling Slider to the left to start to inflate the balloon, at this time the balloon will get bigger and bigger. If the balloon is too large will blow up; if the balloon is too small, it will not float into the air. You need to judge when to toggle the switch to the right to stop pumping.
+Al mover el deslizador a la izquierda, comenzará a inflar el globo, que se hará cada vez más grande. Si el globo es demasiado grande, explotará; si es muy pequeño, no flotará en el aire. Debes decidir cuándo mover el interruptor a la derecha para dejar de inflarlo.
 
 
-Tips on Sprite
-----------------
+Consejos sobre el Sprite
+---------------------------
 
-Delete the previous Sprite1 sprite, then add the **Balloon1** sprite.
+Elimina el sprite Sprite1 anterior y agrega el sprite **Balloon1**.
 
 .. image:: img/1.15_slide1.png
 
-A balloon explosion sound effect is used in this project, so let's see how it was added.
+En este proyecto se utiliza un efecto de sonido de explosión de globo, así que veamos cómo se agregó.
 
-Click the **Sound** option at the top, then click **Upload Sound** to upload ``boom.wav`` from the ``home/pi/davinci-kit-for-raspberry-pi/scratch/sound`` path to Scratch 3.
+Haz clic en la opción **Sonido** en la parte superior, luego en **Subir sonido** para cargar ``boom.wav`` desde la ruta ``home/pi/davinci-kit-for-raspberry-pi/scratch/sound`` en Scratch 3.
 
 .. image:: img/1.15_slide2.png
 
-Tips on Codes
---------------
+Consejos sobre el Código
+----------------------------
 
 .. image:: img/1.15_slide3.png
   :width: 500
 
-This is an event block, and the trigger condition is that gpio17 is high, that is, the switch is toggled to the left.
+Este es un bloque de evento, y la condición de activación es que gpio17 esté alto, es decir, el interruptor se ha movido a la izquierda.
 
 .. image:: img/1.15_slide4.png
   :width: 400
 
-Set the size threshold of the Ballon1 sprite to 120
+Establece el tamaño máximo del sprite Balloon1 en 120.
 
 .. image:: img/1.15_slide7.png
   :width: 400
 
-Move the coordinates of the Balloon1 sprite to (0,0), which is the center of the stage area.
+Mueve las coordenadas del sprite Balloon1 a (0,0), que es el centro del área del escenario.
 
 .. image:: img/1.15_slide8.png
   :width: 300
 
-Set the size of the Balloon1 sprite to 50 and show it in the stage area.
+Configura el tamaño del sprite Balloon1 en 50 y muéstralo en el área del escenario.
 
 .. image:: img/1.15_slide5.png
 
 
-Set up a loop to inflate the balloon, this loop stops when the slider switch is toggled to the right.
+Configura un bucle para inflar el globo; este bucle se detiene cuando el interruptor del deslizador se mueve a la derecha.
 
-Within this loop, the balloon size is increased by 1 every 0.1s, and if it is larger than ``maxSize``, the balloon will burst, at which point the boom sound is made and the code is exited.
+Dentro de este bucle, el tamaño del globo aumenta en 1 cada 0.1s, y si es mayor que ``maxSize``, el globo explotará, en cuyo momento se activa el sonido de explosión y el código se termina.
 
 .. image:: img/1.15_slide6.png
   :width: 600
 
-After the last loop exits (Slider toggles to the right), determine the position of the Balloon1 sprite based on its size. If the size of the Balloon1 sprite is greater than 90, lift off (move the coordinates to (0, 90), otherwise land (move the coordinates to (0, -149).
-
-
+Después de que el bucle finaliza (el deslizador se mueve a la derecha), se determina la posición del sprite Balloon1 en función de su tamaño. Si el tamaño del Balloon1 es mayor que 90, se eleva (mueve las coordenadas a (0, 90)), de lo contrario, aterriza (mueve las coordenadas a (0, -149)).
 

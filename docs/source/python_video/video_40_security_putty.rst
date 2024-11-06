@@ -1,30 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-Video 40: Remotely Run Your Security Project Using Putty
+
+Video 40: Ejecuta tu Proyecto de Seguridad de Forma Remota Usando Putty
 =======================================================================================
 
+Aprende a acceder y controlar tu Raspberry Pi de forma remota utilizando SSH y Putty, lo que permite desarrollar proyectos sin depender de un entorno de escritorio.
 
-Learn how to remotely access and control your Raspberry Pi using SSH and Putty, enabling the development of projects untethered from a desktop environment.
 
-
-1. **Enabling SSH on Raspberry Pi**: Enable SSH on your Raspberry Pi through raspi-config to allow remote access.
-2. **Finding the Raspberry Pi's IP address**: Learn how to find your Raspberry Pi's IP address using ifconfig and consider assigning a static IP address for consistent remote access.
-3. **Downloading and installing Putty**: Download and install Putty on your PC to establish SSH connections to your Raspberry Pi.
-4. **Connecting to the Raspberry Pi using Putty**: Connect to your Raspberry Pi remotely via SSH using Putty, login with credentials, and run commands remotely.
-5. **Controlling Raspberry Pi remotely**: Remotely run and interact with programs on your Raspberry Pi through Putty, demonstrating the practicality of remote access for project deployment.
-
+1. **Activación de SSH en Raspberry Pi**: Activa SSH en tu Raspberry Pi mediante raspi-config para permitir el acceso remoto.
+2. **Encontrar la dirección IP de Raspberry Pi**: Aprende a encontrar la dirección IP de tu Raspberry Pi usando ifconfig y considera asignar una IP estática para un acceso remoto consistente.
+3. **Descarga e instalación de Putty**: Descarga e instala Putty en tu PC para establecer conexiones SSH con tu Raspberry Pi.
+4. **Conexión a Raspberry Pi usando Putty**: Conéctate a tu Raspberry Pi de forma remota mediante SSH usando Putty, inicia sesión con tus credenciales y ejecuta comandos de manera remota.
+5. **Control remoto de Raspberry Pi**: Ejecuta e interactúa con programas en tu Raspberry Pi a través de Putty, demostrando la practicidad del acceso remoto para el despliegue de proyectos.
 
 **Video**
 

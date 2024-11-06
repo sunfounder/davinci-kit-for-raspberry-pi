@@ -1,49 +1,48 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el apasionante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 2.2.4 PIR
-=========
+==========
 
-Introduction
-------------
+Introducción
+---------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+En este proyecto, vamos a crear un dispositivo utilizando sensores 
+de infrarrojos pirosensibles al cuerpo humano. Cuando alguien se 
+acerque al LED, este se encenderá automáticamente. Si no hay nadie 
+cerca, la luz se apagará. Este sensor de movimiento infrarrojo puede 
+detectar la radiación infrarroja emitida por personas y animales.
 
-Components
-----------
+Componentes
+--------------
 
 .. image:: ../img/list_2.2.4_pir2.png
 
-
-Schematic Diagram
------------------
+Diagrama del Circuito
+-------------------------
 
 .. image:: ../img/image327.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image214.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -53,7 +52,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -63,13 +62,13 @@ Experimental Procedures
 
     sudo node pir.js
 
-After the code runs, PIR detects surroundings and let RGB LED glow
-yellow if it senses someone walking by. There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. In order to make the PIR module work better, you
-need to try to adjust these two potentiometers.
+Después de ejecutar el código, el sensor PIR detectará el entorno y hará 
+que el LED RGB emita una luz amarilla si detecta que alguien pasa cerca. 
+Hay dos potenciómetros en el módulo PIR: uno para ajustar la sensibilidad 
+y otro para ajustar la distancia de detección. Para optimizar el funcionamiento 
+del módulo PIR, ajusta estos dos potenciómetros.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -79,43 +78,43 @@ need to try to adjust these two potentiometers.
         mode: Gpio.INPUT,
         pullUpDown: Gpio.PUD_DOWN,
         edge: Gpio.EITHER_EDGE
-    })    // the pir connect to pin17
+    })    // el PIR está conectado al pin 17
 
     const redPin = new Gpio(18, { mode: Gpio.OUTPUT, })
     const greenPin = new Gpio(27, { mode: Gpio.OUTPUT, })
     const bluePin = new Gpio(22, { mode: Gpio.OUTPUT, })
-    //'Red':18, 'Green':27, 'Blue':22
+    //'Rojo':18, 'Verde':27, 'Azul':22
 
     var p_R, p_G, p_B
 
-    // Set all led as pwm channel and frequece to 2KHz
+    // Configurar todos los LEDs como canales PWM y frecuencia a 2 kHz
     p_R = redPin.pwmFrequency(2000)
     p_G = greenPin.pwmFrequency(2000)
     p_B = bluePin.pwmFrequency(2000)
 
-    // Set all begin with value 0
+    // Todos empiezan con valor 0
     p_R.pwmWrite(0)
     p_G.pwmWrite(0)
     p_B.pwmWrite(0)
 
-    // Define a MAP function for mapping values.  Like from 0~255 to 0~100
+    // Definir una función MAP para mapear valores, como de 0~255 a 0~100
     function MAP(x, in_min, in_max, out_min, out_max) {
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
     }
 
-    // Define a function to set up colors
+    // Definir una función para configurar colores
     function setColor(color) {
-        // configures the three LEDs' luminance with the inputted color value .
-        // Devide colors from 'color' veriable
+        // Configura la luminancia de los tres LEDs según el valor del color ingresado.
+        // Divide los colores de la variable 'color'
         R_val = (color & 0xFF0000) >> 16
         G_val = (color & 0x00FF00) >> 8
         B_val = (color & 0x0000FF) >> 0
-        // Map color value from 0~255 to 0~100
+        // Mapear el valor del color de 0~255 a 0~100
         R_val = MAP(R_val, 0, 255, 0, 100)
         G_val = MAP(G_val, 0, 255, 0, 100)
         B_val = MAP(B_val, 0, 255, 0, 100)
 
-        //Assign the mapped duty cycle value to the corresponding PWM channel to change the luminance.
+        // Asigna el valor del ciclo de trabajo mapeado al canal PWM correspondiente para ajustar la luminancia.
         p_R.pwmWrite(R_val)
         p_G.pwmWrite(G_val)
         p_B.pwmWrite(B_val)
@@ -137,13 +136,12 @@ need to try to adjust these two potentiometers.
         process.exit();
     })
 
-**Code Explanation**
+**Explicación del Código**
 
-The code for this example is a combination of :ref:`2.1.1 Button` and :ref:`1.1.2 RGB LED`, no need to go into details.
+El código de este ejemplo es una combinación de :ref:`2.1.1 Button` y :ref:`1.1.2 RGB LED`, por lo que no es necesario profundizar en los detalles.
 
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+----------------------
 
 .. image:: ../img/image215.jpeg
-    

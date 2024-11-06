@@ -1,72 +1,70 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y avances.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy!
 
-1.1.7 I2C LCD1602
+1.1.7 LCD1602 I2C
 ======================
 
-Introduction
+Introducción
 ------------------
 
-LCD1602 is a character type liquid crystal display, which can display 32
-(16*2) characters at the same time.
+El LCD1602 es un tipo de pantalla de cristal líquido que puede mostrar 32
+(16*2) caracteres al mismo tiempo.
 
-Components
+Componentes
 -------------------
 
 .. image:: img/list_i2c_lcd.png
 
-Principle
+Principio
 -----------
 
-**I2C LCD1602**
+**LCD1602 I2C**
 
 .. image:: img/i2c_lcd1602.png
     :width: 800
 
-* **GND**: Ground
-* **VCC**: Voltage supply, 5V.
-* **SDA**: Serial data line. Connect to VCC through a pullup resistor.
-* **SCL**: Serial clock line. Connect to VCC through a pullup resistor.
+* **GND**: Tierra
+* **VCC**: Suministro de voltaje, 5V.
+* **SDA**: Línea de datos en serie. Conéctala a VCC a través de una resistencia de pull-up.
+* **SCL**: Línea de reloj en serie. Conéctala a VCC a través de una resistencia de pull-up.
 
-As we all know, though LCD and some other displays greatly enrich the man-machine interaction, they share a common weakness. When they are connected to a controller, multiple IOs will be occupied of the controller which has no so many outer ports. Also it restricts other functions of the controller. 
+Como todos sabemos, aunque el LCD y algunas otras pantallas enriquecen enormemente la interacción hombre-máquina, comparten una debilidad común. Cuando se conectan a un controlador, múltiples pines de E/S serán ocupados por el controlador, que no tiene tantos puertos externos. Además, esto restringe otras funciones del controlador.
 
-Therefore, LCD1602 with an I2C module is developed to solve the problem. The I2C module has a built-in PCF8574 I2C chip that converts I2C serial data to parallel data for the LCD display.        
+Por lo tanto, se ha desarrollado el LCD1602 con un módulo I2C para resolver este problema. El módulo I2C tiene un chip PCF8574 integrado que convierte los datos en serie I2C a datos paralelos para la pantalla LCD.
 
 * `PCF8574 Datasheet <https://www.ti.com/lit/ds/symlink/pcf8574.pdf?ts=1627006546204&ref_url=https%253A%252F%252Fwww.google.com%252F>`_
 
-**I2C Address**
+**Dirección I2C**
 
-The default address is basically 0x27, in a few cases it may be 0x3F.
+La dirección predeterminada es, básicamente, 0x27, aunque en algunos casos puede ser 0x3F.
 
-Taking the default address of 0x27 as an example, the device address can be modified by shorting the A0/A1/A2 pads; in the default state, A0/A1/A2 is 1, and if the pad is shorted, A0/A1/A2 is 0.
+Tomando como ejemplo la dirección predeterminada de 0x27, la dirección del dispositivo puede modificarse conectando las almohadillas A0/A1/A2; en el estado predeterminado, A0/A1/A2 es 1, y si la almohadilla está conectada, A0/A1/A2 es 0.
 
 .. image:: img/i2c_address.jpg
     :width: 600
 
-**Backlight/Contrast**
+**Retroiluminación/Contraste**
 
-Backlight can be enabled by jumper cap, unplugg the jumper cap to disable the backlight. The blue potentiometer on the back is used to adjust the contrast (the ratio of brightness between the brightest white and the darkest black).
-
+La retroiluminación se puede habilitar mediante un capuchón de puente, desenchufa el capuchón para desactivar la retroiluminación. El potenciómetro azul en la parte posterior se utiliza para ajustar el contraste (la relación de brillo entre el blanco más brillante y el negro más oscuro).
 
 .. image:: img/back_lcd1602.jpg
 
-* **Shorting Cap**: Backlight can be enabled by this cap，unplugg this cap to disable the backlight.
-* **Potentiometer**: It is used to adjust the contrast (the clarity of the displayed text), which is increased in the clockwise direction and decreased in the counterclockwise direction.
+* **Capuchón de Puente**: La retroiluminación se puede habilitar mediante este capuchón, desenchufa este capuchón para desactivar la retroiluminación.
+* **Potenciómetro**: Se utiliza para ajustar el contraste (la claridad del texto mostrado), que aumenta en dirección horaria y disminuye en dirección antihoraria.
 
-
-Schematic Diagram
----------------------
+Diagrama Esquemático
+-----------------------
 
 ============ ========
 T-Board Name physical
@@ -77,19 +75,18 @@ SCL1         Pin 5
 .. image:: img/schematic_i2c_lcd.png
 
 
-Experimental Procedures
------------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: img/image96.png
     :width: 800
 
 
+**Paso 2**: Configura I2C (ver :ref:`I2C Configuration`. Si ya has configurado I2C, omite este paso.)
 
-**Step 2**: Setup I2C (see :ref:`I2C Configuration`. If you have set I2C, skip this step.)
-
-**Step 3:** Change directory.
+**Paso 3:** Cambia de directorio.
 
 .. raw:: html
 
@@ -99,7 +96,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.1.7/
 
-**Step 4:** Compile.
+**Paso 4:** Compila.
 
 .. raw:: html
 
@@ -109,7 +106,7 @@ Experimental Procedures
 
     gcc 1.1.7_Lcd1602.c -lwiringPi
 
-**Step 5:** Run.
+**Paso 5:** Ejecuta.
 
 .. raw:: html
 
@@ -119,16 +116,15 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, you can see \"Greetings\",\"From SunFounder\" displaying on the LCD.
+Después de ejecutar el código, podrás ver \"Greetings\", \"From SunFounder\" mostrando en el LCD.
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * Si aparece un mensaje de error ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi`.
+    * Si recibes el error ``Unable to open I2C device: No such file or directory``, debes consultar :ref:`i2c_config` para habilitar I2C y verificar si el cableado es correcto.
+    * Si el código y el cableado están bien, pero el LCD aún no muestra contenido, puedes girar el potenciómetro en la parte trasera para aumentar el contraste.
 
-
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -152,57 +148,57 @@ After the code runs, you can see \"Greetings\",\"From SunFounder\" displaying on
 
     void send_command(int comm){
         int buf;
-        // Send bit7-4 firstly
+        // Envía primero bit7-4
         buf = comm & 0xF0;
         buf |= 0x04;			// RS = 0, RW = 0, EN = 1
         write_word(buf);
         delay(2);
-        buf &= 0xFB;			// Make EN = 0
+        buf &= 0xFB;			// Hace EN = 0
         write_word(buf);
 
-        // Send bit3-0 secondly
+        // Envía segundo bit3-0
         buf = (comm & 0x0F) << 4;
         buf |= 0x04;			// RS = 0, RW = 0, EN = 1
         write_word(buf);
         delay(2);
-        buf &= 0xFB;			// Make EN = 0
+        buf &= 0xFB;			// Hace EN = 0
         write_word(buf);
     }
 
     void send_data(int data){
         int buf;
-        // Send bit7-4 firstly
+        // Envía primero bit7-4
         buf = data & 0xF0;
         buf |= 0x05;			// RS = 1, RW = 0, EN = 1
         write_word(buf);
         delay(2);
-        buf &= 0xFB;			// Make EN = 0
+        buf &= 0xFB;			// Hace EN = 0
         write_word(buf);
 
-        // Send bit3-0 secondly
+        // Envía segundo bit3-0
         buf = (data & 0x0F) << 4;
         buf |= 0x05;			// RS = 1, RW = 0, EN = 1
         write_word(buf);
         delay(2);
-        buf &= 0xFB;			// Make EN = 0
+        buf &= 0xFB;			// Hace EN = 0
         write_word(buf);
     }
 
     void init(){
-        send_command(0x33);	// Must initialize to 8-line mode at first
+        send_command(0x33);	// Debe inicializar en modo de 8 líneas primero
         delay(5);
-        send_command(0x32);	// Then initialize to 4-line mode
+        send_command(0x32);	// Luego inicializa en modo de 4 líneas
         delay(5);
-        send_command(0x28);	// 2 Lines & 5*7 dots
+        send_command(0x28);	// 2 Líneas y 5*7 puntos
         delay(5);
-        send_command(0x0C);	// Enable display without cursor
+        send_command(0x0C);	// Habilita la pantalla sin cursor
         delay(5);
-        send_command(0x01);	// Clear Screen
+        send_command(0x01);	// Limpia la pantalla
         wiringPiI2CWrite(fd, 0x08);
     }
 
     void clear(){
-        send_command(0x01);	//clear Screen
+        send_command(0x01);	//limpia la pantalla
     }
 
     void write(int x, int y, char data[]){
@@ -213,7 +209,7 @@ After the code runs, you can see \"Greetings\",\"From SunFounder\" displaying on
         if (y < 0)  y = 0;
         if (y > 1)  y = 1;
 
-        // Move cursor
+        // Mueve el cursor
         addr = 0x80 + 0x40 * y + x;
         send_command(addr);
         
@@ -231,7 +227,7 @@ After the code runs, you can see \"Greetings\",\"From SunFounder\" displaying on
         write(1, 1, "From SunFounder");
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block::
 
@@ -242,23 +238,23 @@ After the code runs, you can see \"Greetings\",\"From SunFounder\" displaying on
     void clear(){……}
     void write(int x, int y, char data[]){……}
 
-These functions are used to control I2C LCD1602 open source code. They allow us to easily use I2C LCD1602.
-Among these functions, init() is used for initialization, clear() is used to clear the screen, write() is used to write what is displayed, and other functions support the above functions.
+Estas funciones se utilizan para controlar el código fuente del LCD1602 I2C. Nos permiten usar fácilmente el LCD1602 I2C.
+Entre estas funciones, init() se usa para la inicialización, clear() se usa para limpiar la pantalla, write() se utiliza para escribir lo que se muestra, y las otras funciones respaldan las anteriores.
 
 .. code-block:: c
 
     fd = wiringPiI2CSetup(LCDAddr);
 
-This function initializes the I2C system with the specified device symbol. The prototype of the function:
+Esta función inicializa el sistema I2C con el símbolo del dispositivo especificado. El prototipo de la función:
 
 .. code-block:: c
 
     int wiringPiI2CSetup(int devId);
 
-Parameters devId is the address of the I2C device, it can be found through the i2cdetect command(see Appendix) and the devId of I2C LCD1602 is generally 0x27.
+Los parámetros devId son la dirección del dispositivo I2C, que se puede encontrar mediante el comando i2cdetect (ver Apéndice) y la devId del I2C LCD1602 es generalmente 0x27.
 
 .. code-block:: c
 
     void write(int x, int y, char data[]){}
 
-In this function, data[] is the character to be printed on the LCD, and the parameters x and y determine the printing position (line y+1, column x+1 is the starting position of the character to be printed).
+En esta función, data[] es el carácter que se imprimirá en el LCD, y los parámetros x e y determinan la posición de impresión (la línea y + 1, columna x + 1 es la posición inicial del carácter a imprimir).

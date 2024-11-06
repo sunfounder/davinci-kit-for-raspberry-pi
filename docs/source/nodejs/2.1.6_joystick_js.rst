@@ -1,40 +1,40 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 2.1.6 Joystick
-==============
+====================
 
-Introduction
-------------
+Introducción
+--------------
 
-In this project, We're going to learn how joystick works. We manipulate
-the Joystick and display the results on the screen.
+En este proyecto, aprenderemos cómo funciona un joystick. Manipularemos el 
+joystick y mostraremos los resultados en la pantalla.
 
-Components
-----------
+Componentes
+---------------
 
 .. image:: ../img/image317.png
 
 
+Diagrama del Circuito
+-------------------------
 
-Schematic Diagram
------------------
-
-When the data of joystick is read, there are some differents between
-axis: data of X and Y axis is analog, which need to use ADC0834 to
-convert the analog value to digital value. Data of Z axis is digital, so
-you can directly use the GPIO to read, or you can also use ADC to read.
+Al leer los datos del joystick, existen diferencias entre los ejes: 
+los datos de los ejes X y Y son analógicos, por lo que es necesario 
+usar el ADC0834 para convertir los valores analógicos en digitales. 
+El dato del eje Z es digital, por lo que puedes usar directamente el 
+GPIO para leerlo, o también puedes emplear el ADC.
 
 .. image:: ../img/image319.png
 
@@ -42,14 +42,14 @@ you can directly use the GPIO to read, or you can also use ADC to read.
 .. image:: ../img/image320.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image193.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -59,7 +59,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -69,10 +69,10 @@ Experimental Procedures
 
     sudo node joystick.js
 
-After the code runs, turn the Joystick, then the corresponding values of
-x, y, Btn are displayed on screen.
+Después de ejecutar el código, mueve el joystick y verás en pantalla los 
+valores correspondientes de x, y y Btn.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -95,14 +95,13 @@ x, y, Btn are displayed on screen.
     }, 100);
 
 
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
     const ADC0834 = require('./adc0834.js').ADC0834;
 
-We import an ``ADC0834`` constructor to use the adc0834 module.
+Importamos el constructor ``ADC0834`` para usar el módulo adc0834.
 
 .. code-block:: js
 
@@ -115,18 +114,16 @@ We import an ``ADC0834`` constructor to use the adc0834 module.
         console.log(`x = ${x_val}, y = ${y_val}, btn = ${btn_val}\n`);
     }, 100);
 
-
-When reading the values of multiple channels of ADC0834 at the same time, asynchronous programming is required.
-We build a promise function here,
-And use the await instruction of async function to elegantly write this complex asynchronous task.
+Cuando se leen los valores de múltiples canales del ADC0834 simultáneamente, 
+es necesario emplear programación asincrónica. Aquí construimos una función 
+con promesas y utilizamos la instrucción await de la función async para 
+gestionar esta tarea asincrónica de manera eficiente.
 
 * `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 * `Async Function <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>`_
 
-
-
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+------------------------
 
 .. image:: ../img/image194.jpeg
 

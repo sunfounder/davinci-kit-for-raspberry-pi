@@ -1,30 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Drag Number
+Control Deslizante de Números
 ================================================
 
-Let's draw a slider bar to control the 7-segment Display.
+Vamos a dibujar una barra deslizante para controlar el Display de 7 segmentos.
 
 .. image:: img/drag_servo.png
 	
 
-**Wiring**
+**Conexión**
 
 .. image:: img/image125.png
 
-**Sketch**
+**Código**
 
 .. code-block:: arduino
 
@@ -34,9 +34,9 @@ Let's draw a slider bar to control the 7-segment Display.
     int levelRange=9;
     Slider mySlider;
 
-    int SDI=17;   //serial data input
-    int RCLK=18;  //memory clock input(STCP)
-    int SRCLK =27;   //shift register clock input(SHCP)
+    int SDI=17;   // entrada de datos en serie
+    int RCLK=18;  // entrada de reloj de memoria (STCP)
+    int SRCLK =27;   // entrada de reloj de registro de desplazamiento (SHCP)
 
 
     int[] SegCode= {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
@@ -133,7 +133,6 @@ Let's draw a slider bar to control the 7-segment Display.
         }
     }
 
-**How it works?**
+**¿Cómo funciona?**
 
-This project integrates the Slider and 7-segment Display of the previous course. For specific knowledge points, please refer to :ref:`Show Number` and :ref:`Metronome`.  
-
+Este proyecto integra el control deslizante (Slider) y el Display de 7 segmentos del curso anterior. Para temas específicos, consulta :ref:`Show Number` y :ref:`Metronome`.  

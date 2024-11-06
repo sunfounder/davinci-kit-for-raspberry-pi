@@ -1,36 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.3.3_py_pi5:
 
-1.3.3 Stepper Motor
-====================
+1.3.3 Motor a Pasos
+======================
 
-Introduction
-------------
+Introducción
+----------------
 
-Stepper motors, due to their unique design, can be controlled to a high
-degree of accuracy without any feedback mechanisms. The shaft of a
-stepper, mounted with a series of magnets, is controlled by a series of
-electromagnetic coils that are charged positively and negatively in a
-specific sequence, precisely moving it forward or backward in small
-\"steps\".
+Los motores a pasos, debido a su diseño único, pueden ser controlados con 
+un alto grado de precisión sin necesidad de mecanismos de retroalimentación. 
+El eje de un motor a pasos, equipado con una serie de imanes, es controlado 
+por una secuencia específica de bobinas electromagnéticas que se cargan positiva y 
+negativamente, moviéndolo hacia adelante o hacia atrás en pequeños \"pasos\".
 
-Required Components
-------------------------------
 
-In this project, we need the following components. 
+Componentes Necesarios
+--------------------------
+
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../python_pi5/img/1.3.3_stepper_motor_list.png
 
@@ -38,21 +38,20 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
------------------
-
+Diagrama de Conexiones
+--------------------------
 
 .. image:: /python_pi5/img/1.3.3_stepper_motor_schematic.png
 
 
-Experimental Procedures
------------------------
+Procedimientos del Experimento
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../python_pi5/img/1.3.3_stepper_motor_circuit.png
 
-**Step 2:** Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -62,8 +61,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-
-**Step 3:** Run.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -73,17 +71,17 @@ Experimental Procedures
 
     sudo python3 1.3.3_StepperMotor_zero.py
 
-As the code runs, the stepper motor will turn clockwise or anti-clockwise depending on your input \'a\' or \'c\'.
+Al ejecutar el código, el motor a pasos girará en sentido horario o antihorario, dependiendo de la entrada \'a\' o \'c\'.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si aparece el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Antes de eso, asegúrate de estar en la ruta del código fuente, como ``davinci-kit-for-raspberry-pi/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -96,13 +94,13 @@ As the code runs, the stepper motor will turn clockwise or anti-clockwise depend
    from gpiozero import OutputDevice
    from time import sleep
 
-   # Initialize motor pins to GPIO pins 18, 23, 24, 25
+   # Inicializa los pines del motor a los GPIO 18, 23, 24, 25
    motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
 
-   # Set motor rotation speed parameters
+   # Define parámetros de velocidad de rotación del motor
    rotationPerMinute = 15
    stepsPerRevolution = 2048
-   # Calculate time to wait between each step for smooth motor operation
+   # Calcula el tiempo de espera entre cada paso para un funcionamiento suave
    stepSpeed = (60 / rotationPerMinute) / stepsPerRevolution
 
    def rotary(direction):
@@ -112,7 +110,7 @@ As the code runs, the stepper motor will turn clockwise or anti-clockwise depend
        :param direction: 'c' for clockwise, 'a' for anti-clockwise
        """
        if direction == 'c':
-           # Execute the stepping sequence for clockwise rotation
+           # Ejecuta la secuencia de pasos para rotación en sentido horario
            for j in range(4):
                for i in range(4):
                    if 0x99 << j & (0x08 >> i):
@@ -121,7 +119,7 @@ As the code runs, the stepper motor will turn clockwise or anti-clockwise depend
                        motorPin[i].off()
                    sleep(stepSpeed)
        elif direction == 'a':
-           # Execute the stepping sequence for anti-clockwise rotation
+           # Ejecuta la secuencia de pasos para rotación en sentido antihorario
            for j in range(4):
                for i in range(4):
                    if 0x99 >> j & (0x08 >> i):
@@ -146,7 +144,7 @@ As the code runs, the stepper motor will turn clockwise or anti-clockwise depend
            else:
                print('Input error, please try again!')
 
-       # Keep the motor rotating in the selected direction
+       # Mantiene el motor girando en la dirección seleccionada
        while True:
            rotary(direction)
 
@@ -157,16 +155,16 @@ As the code runs, the stepper motor will turn clockwise or anti-clockwise depend
        for pin in motorPin:
            pin.off()
 
-   # Main program execution
+   # Ejecución principal del programa
    try:
        loop()
    except KeyboardInterrupt:
-       destroy()  # Handle keyboard interrupt to safely shut down the motor
+       destroy()  # Maneja la interrupción de teclado para apagar el motor de manera segura
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. This section imports necessary libraries. ``gpiozero`` for controlling GPIO pins and ``time`` for the sleep function used in timing control.
+#. Esta sección importa las bibliotecas necesarias. ``gpiozero`` para controlar los pines GPIO y ``time`` para la función sleep utilizada en el control de temporización.
 
    .. code-block:: python
 
@@ -174,24 +172,24 @@ As the code runs, the stepper motor will turn clockwise or anti-clockwise depend
        from gpiozero import OutputDevice
        from time import sleep
 
-#. Initializes GPIO pins 18, 23, 24, and 25 as output devices for controlling the stepper motor.
+#. Inicializa los pines GPIO 18, 23, 24 y 25 como dispositivos de salida para controlar el motor a pasos.
 
    .. code-block:: python
 
-       # Initialize motor pins to GPIO pins 18, 23, 24, 25
+       # Inicializa los pines del motor a los GPIO 18, 23, 24, 25
        motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
 
-#. Sets the motor's rotation speed and calculates the time interval between each step for smooth operation.
+#. Configura la velocidad de rotación del motor y calcula el intervalo de tiempo entre cada paso para un funcionamiento suave.
 
    .. code-block:: python
 
-       # Set motor rotation speed parameters
+       # Define parámetros de velocidad de rotación del motor
        rotationPerMinute = 15
        stepsPerRevolution = 2048
-       # Calculate time to wait between each step for smooth motor operation
+       # Calcula el tiempo de espera entre cada paso para un funcionamiento suave
        stepSpeed = (60 / rotationPerMinute) / stepsPerRevolution
 
-#. The ``rotary`` function controls the motor's rotation. It uses bit manipulation and a stepping sequence to activate the motor pins in the correct order for either clockwise or anti-clockwise rotation.
+#. La función ``rotary`` controla la rotación del motor usando manipulación de bits y una secuencia de pasos para activar los pines en el orden correcto para la rotación en sentido horario o antihorario.
 
    .. code-block:: python
 
@@ -202,7 +200,7 @@ As the code runs, the stepper motor will turn clockwise or anti-clockwise depend
            :param direction: 'c' for clockwise, 'a' for anti-clockwise
            """
            if direction == 'c':
-               # Execute the stepping sequence for clockwise rotation
+               # Ejecuta la secuencia de pasos para rotación en sentido horario
                for j in range(4):
                    for i in range(4):
                        if 0x99 << j & (0x08 >> i):
@@ -211,7 +209,7 @@ As the code runs, the stepper motor will turn clockwise or anti-clockwise depend
                            motorPin[i].off()
                        sleep(stepSpeed)
            elif direction == 'a':
-               # Execute the stepping sequence for anti-clockwise rotation
+               # Ejecuta la secuencia de pasos para rotación en sentido antihorario
                for j in range(4):
                    for i in range(4):
                        if 0x99 >> j & (0x08 >> i):
@@ -220,7 +218,7 @@ As the code runs, the stepper motor will turn clockwise or anti-clockwise depend
                            motorPin[i].off()
                        sleep(stepSpeed)
 
-#. This function continuously prompts the user to choose the motor rotation direction and controls the motor based on the input.
+#. Esta función solicita continuamente al usuario que elija la dirección de rotación del motor y controla el motor en función de la entrada.
 
    .. code-block:: python
 
@@ -240,11 +238,11 @@ As the code runs, the stepper motor will turn clockwise or anti-clockwise depend
                else:
                    print('Input error, please try again!')
 
-           # Keep the motor rotating in the selected direction
+           # Mantiene el motor girando en la dirección seleccionada
            while True:
                rotary(direction)
 
-#. The ``destroy`` function turns off all motor pins. It's used for a clean shutdown, ensuring that the motor stops safely when the program ends.
+#. La función ``destroy`` apaga todos los pines del motor. Es utilizada para un apagado seguro, asegurando que el motor se detenga al finalizar el programa.
 
    .. code-block:: python
 
@@ -255,13 +253,14 @@ As the code runs, the stepper motor will turn clockwise or anti-clockwise depend
            for pin in motorPin:
                pin.off()
 
-#. The main program calls ``loop`` and handles keyboard interrupts (like Ctrl+C) to safely shut down the motor using ``destroy``.
+#. El programa principal llama a ``loop`` y maneja interrupciones de teclado (como Ctrl+C) para apagar el motor de manera segura usando ``destroy``.
 
    .. code-block:: python
 
-       # Main program execution
+       # Ejecución principal del programa
        try:
            loop()
        except KeyboardInterrupt:
-           destroy()  # Handle keyboard interrupt to safely shut down the motor
+           destroy()  # Maneja la interrupción de teclado para apagar el motor de manera segura
+
 

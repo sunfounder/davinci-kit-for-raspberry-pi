@@ -1,71 +1,68 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de Raspberry Pi, Arduino y ESP32 de SunFounder en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Exclusivas**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-1.1.5 4-Digit 7-Segment Display
-====================================
+1.1.5 Pantalla de 7 Segmentos de 4 Dígitos
+===========================================
 
-Introduction
------------------
+Introducción
+--------------
 
-Next, follow me to try to control the 4-digit 7-segment display.
+A continuación, acompáñame a controlar la pantalla de 7 segmentos de 4 dígitos.
 
-Components
----------------
+Componentes
+--------------
 
 .. image:: img/list_4_digit.png
 
 
-Principle
---------------
+Principio
+----------
 
-**4-Digit 7-Segment Display**
+**Pantalla de 7 Segmentos de 4 Dígitos**
 
-4-Digit 7-segment display consists of four 7- segment displays working
-together.
+La pantalla de 7 segmentos de 4 dígitos consiste en cuatro pantallas de 7 segmentos que funcionan juntas.
 
 .. image:: img/4-digit-sche.png
 
-The 4-digtal 7-segment display works independently. It uses the
-principle of human visual persistence to quickly display the characters
-of each 7-segment in a loop to form continuous strings.
+La pantalla de 4 dígitos de 7 segmentos funciona de forma independiente. 
+Utiliza el principio de la persistencia visual humana para mostrar rápidamente 
+los caracteres de cada 7 segmentos en un bucle, formando cadenas continuas.
 
-For example, when "1234" is displayed on the display, "1" is displayed
-on the first 7-segment, and "234" is not displayed. After a period of
-time, the second 7-segment shows "2", the 1st 3th 4th of 7-segment does
-not show, and so on, the four digital display show in turn. This process
-is very short (typically 5ms), and because of the optical afterglow
-effect and the principle of visual residue, we can see four characters
-at the same time.
+Por ejemplo, cuando se muestra "1234" en la pantalla, "1" se muestra en el 
+primer 7 segmentos, y "234" no se muestra. Después de un periodo de tiempo, 
+el segundo 7 segmentos muestra "2", mientras que los 1, 3 y 4 segmentos no 
+se muestran, y así sucesivamente, los cuatro dígitos se muestran en turnos. 
+Este proceso es muy corto (típicamente 5 ms), y gracias al efecto de afterglow 
+óptico y al principio de residuo visual, podemos ver los cuatro caracteres al 
+mismo tiempo.
 
 .. image:: img/image78.png
 
+**Códigos de Pantalla**
 
-**Display Codes**
-
-To help you get to know how 7-segment displays(Common Anode) display
-Numbers, we have drawn the following table. Numbers are the number 0-F
-displayed on the 7-segment display; (DP) GFEDCBA refers to the
-corresponding LED set to 0 or 1, For example, 11000000 means that DP and
-G are set to 1, while others are set to 0. Therefore, the number 0 is
-displayed on the 7-segment display, while HEX Code corresponds to
-hexadecimal number.
+Para ayudarte a conocer cómo las pantallas de 7 segmentos (Común Ánodo) muestran 
+números, hemos dibujado la siguiente tabla. Los números son del 0 al F que se 
+muestran en la pantalla de 7 segmentos; (DP) GFEDCBA se refiere a los LEDs 
+correspondientes configurados a 0 o 1. Por ejemplo, 11000000 significa que 
+DP y G están configurados a 1, mientras que los demás están configurados a 0. 
+Por lo tanto, el número 0 se muestra en la pantalla de 7 segmentos, mientras 
+que el Código HEX corresponde al número hexadecimal.
 
 .. image:: img/common_anode.png
 
-
-Schematic Diagram
---------------------------
+Diagrama Esquemático
+------------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -81,15 +78,15 @@ GPIO24       Pin 18   5        24
 .. image:: img/schmatic_4_digit.png
 
 
-Experimental Procedures
------------------------------------
+Procedimientos Experimentales
+-------------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construir el circuito.
 
 .. image:: img/image80.png
     :width: 800
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Acceder a la carpeta del código.
 
 .. raw:: html
 
@@ -99,7 +96,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.1.5/
 
-**Step 3**: Compile the code.
+**Paso 3**: Compilar.
 
 .. raw:: html
 
@@ -109,7 +106,7 @@ Experimental Procedures
 
     gcc 1.1.5_4-Digit.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Paso 4**: Ejecutar el archivo ejecutable.
 
 .. raw:: html
 
@@ -119,13 +116,12 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the program takes a count, increasing by 1 per second, and the 4-digit 7-segment display displays the count.
+Después de que el código se ejecute, el programa contará, aumentando de 1 por segundo, y la pantalla de 7 segmentos de 4 dígitos mostrará el conteo.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-
-**Code**
+    Si no funciona después de ejecutarlo, o si aparece un mensaje de error: "wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
+**Código**
 
 .. code-block:: c
 
@@ -235,21 +231,19 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
         loop(); 
     }
 
-
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
     const int placePin[] = {12, 3, 2, 0};
 
-These four pins control the common anode pins of the four-digit 7-segment displays.
+Estos cuatro pines controlan los pines de ánodo común de los displays de 7 segmentos de cuatro dígitos.
 
 .. code-block:: c
 
     unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
 
-A segment code array from 0 to 9 in Hexadecimal (Common anode).
+Un array de códigos de segmentos del 0 al 9 en hexadecimal (ánodo común).
 
 .. code-block:: c
 
@@ -262,7 +256,7 @@ A segment code array from 0 to 9 in Hexadecimal (Common anode).
         digitalWrite(placePin[digit], 1);
     }
 
-Select the place of the value. there is only one place that should be enable each time. The enabled place will be written high.
+Selecciona la posición del valor. Solo una posición debe estar habilitada en cada momento. La posición habilitada se establecerá en alto.
 
 .. code-block:: c
 
@@ -287,35 +281,35 @@ Select the place of the value. there is only one place that should be enable eac
         }
     }
 
-The functionis used to set the number displayed on the 4-digit 7-segment display.
+Esta función se utiliza para establecer el número que se muestra en el display de 7 segmentos de 4 dígitos.
 
-* ``clearDisplay()``：write in 11111111 to turn off these eight LEDs on 7-segment display so as to clear the displayed content.
-* ``pickDigit(0)``：pick the fourth 7-segment display.
-* ``hc595_shift(number[counter%10])``：the number in the single digit of counter will display on the forth segment.
+* ``clearDisplay()``: escribe 11111111 para apagar los ocho LEDs en el display de 7 segmentos y así borrar el contenido mostrado.
+* ``pickDigit(0)``: selecciona el cuarto display de 7 segmentos.
+* ``hc595_shift(number[counter%10])``: el número en el dígito individual del contador se mostrará en el cuarto segmento.
 
 .. code-block:: c
 
     signal(SIGALRM, timer); 
 
-This is a system-provided function, the prototype of code is:
+Esta es una función proporcionada por el sistema, el prototipo del código es:
 
 .. code-block:: c
 
     sig_t signal(int signum,sig_t handler);
 
-After executing the signal(), once the process receives the corresponding signum (in this case SIGALRM), it immediately pauses the existing task and processes the set function (in this case timer(sig)).
+Después de ejecutar signal(), una vez que el proceso recibe el signum correspondiente (en este caso SIGALRM), inmediatamente pausa la tarea existente y procesa la función establecida (en este caso timer(sig)).
 
 .. code-block:: c
 
     alarm(1);
 
-This is also a system-provided function. The code prototype is:
+Esta también es una función proporcionada por el sistema. El prototipo del código es:
 
 .. code-block:: c
 
     unsigned int alarm (unsigned int seconds);
 
-It generates a SIGALRM signal after a certain number of seconds.
+Genera una señal SIGALRM después de un cierto número de segundos.
 
 .. code-block:: c
 
@@ -329,6 +323,6 @@ It generates a SIGALRM signal after a certain number of seconds.
         }
     }
 
-We use the functions above to implement the timer function.
-After the ``alarm()`` generates the SIGALRM signal, the timer function is called. Add 1 to counter, and the function, ``alarm(1)`` will be repeatedly called after 1 second.
-
+Utilizamos las funciones anteriores para implementar la función de temporizador. 
+Después de que ``alarm()`` genera la señal SIGALRM, se llama a la función de 
+temporizador. Se suma 1 al contador, y la función ``alarm(1)`` se llamará repetidamente después de 1 segundo.

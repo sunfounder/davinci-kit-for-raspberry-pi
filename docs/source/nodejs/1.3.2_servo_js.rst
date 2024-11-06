@@ -1,46 +1,45 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-1.3.2 Servo
-============
+Servo
+========
 
-Introduction
---------------
+Introducción
+----------------
 
-In this project, we will learn how to make the servo rotate.
+En este proyecto, aprenderemos cómo hacer que el servomotor gire.
 
-Components
-----------
+Componentes
+----------------
 
 .. image:: ../img/list_1.3.2.png
 
 
-
-Schematic Diagram
------------------
+Diagrama del Circuito
+--------------------------
 
 .. image:: ../img/image337.png
 
 
-Experimental Procedures
------------------------
+Procedimiento Experimental
+-------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image125.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -50,7 +49,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3**: Run the code.
+**Paso 3**: Ejecuta el código.
 
 .. raw:: html
 
@@ -60,10 +59,11 @@ Experimental Procedures
 
     sudo node servo.js
 
-After the program is executed, the servo will rotate from 0 degrees 
-to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
+Al ejecutar el programa, el servo girará de 0 grados a 180 grados, y luego 
+de 180 grados a 0 grados, de forma continua.
 
-**Code**
+
+**Código**
 
 .. code-block:: js
 
@@ -95,7 +95,7 @@ to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
     }, 20);
 
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
@@ -103,8 +103,8 @@ to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
 
     ServoPin = new Gpio(18,{mode: Gpio.OUTPUT})
 
-Import the pigpio module and create an object of class Gpio, ServoPin, to control the output of Gpio18.    
-  
+Importa el módulo pigpio y crea un objeto de la clase Gpio, ServoPin, para controlar la salida de Gpio18.  
+
 
 .. code-block:: js
 
@@ -121,9 +121,9 @@ Import the pigpio module and create an object of class Gpio, ServoPin, to contro
         return Math.floor(map(angle,SERVO_MIN_ANGLE,SERVO_MAX_ANGLE,SERVO_MIN_PULSE ,SERVO_MAX_PULSE))
     }
 
-The function that maps the angle to the pulse width is defined here.
-This is because the servo control function ``servoWrite(pulseWidth)`` encapsulated in the Gpio class needs to write pulse width instead of angle.
-The angle range of the servo we use is 0~180, which needs to be mapped to the range of pulseWidth, 500~2500.
+Se define una función para mapear el ángulo a la anchura del pulso. Esto es 
+necesario ya que la función ``servoWrite(pulseWidth)`` de la clase Gpio requiere escribir un ancho de pulso en lugar de un ángulo.
+El rango de ángulos del servomotor es de 0 a 180, y debe ser mapeado al rango de anchura de pulso, 500 a 2500.
 
 .. code-block:: js
 
@@ -137,11 +137,10 @@ The angle range of the servo we use is 0~180, which needs to be mapped to the ra
         ServoPin.servoWrite(angle2pulse(angle));
     }, 20);
 
-Let the servo angle deflect back and forth from 0 to 180.
+Permite que el ángulo del servomotor oscile entre 0 y 180 grados.
 
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: ../img/image126.jpeg
-

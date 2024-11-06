@@ -1,26 +1,26 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Inflating the Dot
+Inflando el Punto
 ===========================
 
-Next, let's build a circuit that allows the button to control the size of the dot.
-When we press the button, the dot will quickly get bigger; when we release the button, the dot will gradually get smaller, which makes the dot look like a balloon being inflated.
+Ahora, vamos a construir un circuito que permita al botón controlar el tamaño del punto.
+Cuando presionemos el botón, el punto se agrandará rápidamente; al soltarlo, el punto se reducirá gradualmente, dando la apariencia de un globo inflándose.
 
 .. image:: img/dot_size.png
 
-**Wiring**
+**Conexión**
 
 .. image:: img/button_pressed.png
 
@@ -35,7 +35,7 @@ When we press the button, the dot will quickly get bigger; when we release the b
 
     void setup() {
         size(200, 200);
-        frameRate(64); //set frame rate
+        frameRate(64); //establece la velocidad de fotogramas
         GPIO.pinMode(buttonPin, GPIO.INPUT_PULLUP); 
         diameter = width*0.5;
     }
@@ -50,12 +50,14 @@ When we press the button, the dot will quickly get bigger; when we release the b
         ellipse(width/2, height/2,diameter, diameter);
     }
 
-**How it works?**
+**¿Cómo funciona?**
 
-This project uses the input function compared to the previous 2 projects that used the output function of the GPIO.
 
-The ``GPIO.pinMode()`` function is used to set ``buttonPin`` to pull-up input mode, which makes the pin get high automatically in the default state.
 
-Then use the ``GPIO.digitalRead()`` function to read the value of ``buttonPin``. When the value is LOW, it means the button is pressed, at which point let the diameter of the dot increase by 5; if the button is released, then the diameter of the dot will decrease by 1.
+Este proyecto utiliza la función de entrada en comparación con los dos proyectos anteriores, que usaban la función de salida del GPIO.
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+La función ``GPIO.pinMode()`` se utiliza para configurar ``buttonPin`` en modo de entrada pull-up, lo que hace que el pin esté alto automáticamente en estado predeterminado.
+
+Luego, se usa la función ``GPIO.digitalRead()`` para leer el valor de ``buttonPin``. Cuando el valor es LOW, significa que el botón está presionado; en ese momento, el diámetro del punto aumenta en 5; si el botón se suelta, el diámetro del punto disminuye en 1.
+
+Para más información, consulta `Processing Reference <https://processing.org/reference/>`_.

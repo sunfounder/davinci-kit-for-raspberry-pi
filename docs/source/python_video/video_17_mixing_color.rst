@@ -1,36 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
 
-Video 17: Mixing Any Color on an RGB LED
+Video 17: Mezcla de Colores en un LED RGB
 =======================================================================================
 
-The video discusses the process of building and mastering RGB LED control with Raspberry Pi and an ADC0834 chip. It begins with an introduction to the tutorial series, sponsored by SunFounder, focusing on Raspberry Pi projects. The previous episode's task involved creating a dimmable LED, and now the focus shifts to replacing it with an RGB LED.
+El video explica el proceso de construcción y control avanzado de un LED RGB usando Raspberry Pi y el chip ADC0834. Comienza con una introducción a la serie de tutoriales, patrocinada por SunFounder, centrada en proyectos para Raspberry Pi. La tarea del episodio anterior consistía en crear un LED regulable, y ahora el enfoque cambia a sustituirlo por un LED RGB.
 
-The circuit overview includes the utilization of an ADC0834 chip, potentiometers, and resistors for the RGB LED setup. Wiring instructions emphasize the importance of using straight jumper wires for a clean build and GPIO pin assignments. Moving on to coding RGB LED control, Python and Thonny IDE are used to modify the LED control program for PWM control of each color channel.
+La descripción del circuito incluye el uso de un chip ADC0834, potenciómetros y resistencias para la configuración del LED RGB. Las instrucciones de cableado enfatizan la importancia de usar cables jumper rectos para una construcción ordenada y asignaciones de pines GPIO. Luego, en la programación del control del LED RGB, se utiliza Python y Thonny IDE para modificar el programa de control del LED mediante PWM en cada canal de color.
 
-1. Tutorial series introduction sponsored by SunFounder for Raspberry Pi projects.
-2. Previous episode's task involved creating a dimmable LED; now, it's about replacing it with an RGB LED.
-3. Circuit overview includes ADC0834 chip, potentiometers, and resistors for RGB LED setup.
-4. Importance of using straight jumper wires for clean build and GPIO pin assignments.
-5. Coding RGB LED control using Python and Thonny IDE for PWM control of each color channel.
-6. PWM setup on Raspberry Pi for controlling the RGB LED.
-7. ADC0834 initialization for analog input readings.
-8. Reading analog values from ADC0834 chip to determine LED brightness.
-9. Duty cycle conversion to convert analog values to duty cycles for accurate PWM control.
-10. Dynamically adjusting LED brightness based on analog input values.
-11. Code organization and troubleshooting for efficient LED control.
+1. Introducción a la serie de tutoriales patrocinada por SunFounder para proyectos con Raspberry Pi.
+2. La tarea del episodio anterior fue crear un LED regulable; ahora se trata de reemplazarlo con un LED RGB.
+3. Descripción del circuito que incluye el chip ADC0834, potenciómetros y resistencias para la configuración del LED RGB.
+4. Importancia de usar cables jumper rectos para una construcción limpia y asignaciones de pines GPIO.
+5. Programación del control del LED RGB utilizando Python y Thonny IDE para el control PWM de cada canal de color.
+6. Configuración de PWM en Raspberry Pi para controlar el LED RGB.
+7. Inicialización del ADC0834 para lecturas de entrada analógica.
+8. Lectura de valores analógicos del chip ADC0834 para determinar el brillo del LED.
+9. Conversión de valores analógicos a ciclos de trabajo para un control preciso de PWM.
+10. Ajuste dinámico del brillo del LED basado en los valores de entrada analógica.
+11. Organización del código y solución de problemas para un control eficiente del LED.
 
 **Video**
 

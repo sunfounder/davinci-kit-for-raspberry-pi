@@ -1,63 +1,64 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros apasionados y profundiza en el mundo de Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y supera desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos especiales.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-1.3 Tumbler
-==================
+1.3 Muñeco Tambaleante
+===========================
 
-In this project, we will make a tilt switch controlled tumbler toy.
+En este proyecto, crearemos un juguete tambaleante controlado por un interruptor de inclinación.
 
 .. image:: img/1.3_header.png
 
-Required Components
------------------------
+Componentes Necesarios
+--------------------------
 
 .. image:: img/1.3_component.png
 
-Build the Circuit
----------------------
+Construye el Circuito
+--------------------------
 
 .. image:: img/1.3_fritzing.png
 
 
-Load the Code and See What Happens
+Carga el Código y Observa Qué Sucede
 -----------------------------------------
 
-Load the code file (``1.3_tumbler.sb3``) to Scratch 3.
+Carga el archivo de código (``1.3_tumbler.sb3``) en Scratch 3.
 
-When the tilt switch is placed upright, the tumbler is standing. If you tilt it, the tumbler will also fall. Place it upright again, and the tumbler will stand up again.
+Cuando el interruptor de inclinación está en posición vertical, el muñeco tambaleante se mantiene en pie. Si lo inclinas, el muñeco también caerá. Colócalo nuevamente en posición vertical, y el muñeco volverá a pararse.
 
 
-Tips on Sprite
-----------------
-Select Sprite1 and click **Costumes** in the top left corner; upload **tumbler1.png** and **tumbler2.png** from the ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **tumbler**.
+Consejos sobre el Sprite
+--------------------------
+
+Selecciona Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **tumbler1.png** y **tumbler2.png** desde la ruta ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` usando el botón **Subir Disfraz**; elimina los dos disfraces predeterminados y renombra el sprite como **tumbler**.
 
 .. image:: img/1.3_add_tumbler.png
 
-Tips on Codes
---------------
+Consejos sobre el Código
+---------------------------
 
 .. image:: img/1.3_title2.png
   :width: 400
 
-When the green flag is clicked, the initial state of gpio17 is set to low.
+Cuando se hace clic en la bandera verde, el estado inicial de gpio17 se establece en bajo.
 
 .. image:: img/1.3_title4.png
   :width: 400
 
-When pin17 is low (the tilt switch is placed upright), we switch the tumbler sprite's costume to tumbler1 (upright state).
+Cuando pin17 está en bajo (el interruptor de inclinación está en posición vertical), cambiamos el disfraz del sprite tumbler a tumbler1 (estado vertical).
 
 .. image:: img/1.3_title3.png
   :width: 400
 
-When pin17 is high (tilt switch is tilted), switch the tumbler sprite's costume to tumbler2 (tilt state).
+Cuando pin17 está en alto (el interruptor de inclinación está inclinado), cambiamos el disfraz del sprite tumbler a tumbler2 (estado inclinado).

@@ -1,154 +1,144 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en el uso de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-2.2.6 MPU6050 Module
-====================
+Módulo 2.2.6 MPU6050
+======================
 
-Introduction
-------------
+Introducción
+---------------
 
-The MPU-6050 is the world’s first and only 6-axis motion tracking
-devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
-smartphones, tablets and wearable sensors that have these features,
-including the low power, low cost, and high performance requirements.
+El MPU-6050 es el primer y único dispositivo de seguimiento de 
+movimiento de 6 ejes (giroscopio de 3 ejes y acelerómetro de 3 ejes) 
+diseñado para smartphones, tablets y sensores portátiles que requieren 
+bajo consumo, bajo costo y alto rendimiento.
 
-In this experiment, use I2C to obtain the values of the three-axis
-acceleration sensor and three-axis gyroscope for MPU6050 and display
-them on the screen.
+En este experimento, utilizaremos I2C para obtener los valores del sensor 
+de aceleración de tres ejes y del giroscopio de tres ejes del MPU6050, y 
+los mostraremos en pantalla.
 
-Components
-----------
+Componentes
+--------------
 
 .. image:: img/list_2.2.6.png
 
 
-Principle
----------
+Principio
+------------
 
 **MPU6050**
 
-The MPU-6050 is a 6-axis(combines 3-axis Gyroscope, 3-axis
-Accelerometer) motion tracking devices.
+El MPU-6050 es un dispositivo de seguimiento de movimiento de 6 ejes 
+(combina giroscopio de 3 ejes y acelerómetro de 3 ejes).
 
-Its three coordinate systems are defined as follows:
+Sus tres sistemas de coordenadas están definidos de la siguiente manera:
 
-Put MPU6050 flat on the table, assure that the face with label is upward
-and a dot on this surface is on the top left corner. Then the upright
-direction upward is the z-axis of the chip. The direction from left to
-right is regarded as the X-axis. Accordingly the direction from back to
-front is defined as the Y-axis.
+Coloca el MPU6050 plano sobre una mesa, asegurando que la cara con la 
+etiqueta esté hacia arriba y el punto en la esquina superior izquierda. 
+La dirección vertical hacia arriba es el eje Z del chip. La dirección de 
+izquierda a derecha se considera el eje X, y de atrás hacia adelante es 
+el eje Y.
 
 .. image:: img/image223.png
 
 
-**3-axis Accelerometer**
+**Acelerómetro de 3 ejes**
 
-The accelerometer works on the principle of piezo electric effect, the
-ability of certain materials to generate an electric charge in response
-to applied mechanical stress.
+El acelerómetro funciona mediante el efecto piezoeléctrico, la capacidad de 
+ciertos materiales para generar una carga eléctrica en respuesta a una tensión 
+mecánica aplicada.
 
-Here, imagine a cuboidal box, having a small ball inside it, like in the
-picture above. The walls of this box are made with piezo electric
-crystals. Whenever you tilt the box, the ball is forced to move in the
-direction of the inclination, due to gravity. The wall with which the
-ball collides, creates tiny piezo electric currents. There are totally,
-three pairs of opposite walls in a cuboid. Each pair corresponds to an
-axis in 3D space: X, Y and Z axes. Depending on the current produced
-from the piezo electric walls, we can determine the direction of
-inclination and its magnitude.
+Imagina una caja rectangular con una pequeña bola dentro, como en la imagen. 
+Las paredes de esta caja están hechas de cristales piezoeléctricos. Cuando 
+inclinas la caja, la bola se mueve en la dirección de la inclinación debido 
+a la gravedad. La pared con la que colisiona la bola genera pequeñas corrientes 
+piezoeléctricas. Cada par de paredes opuestas representa un eje en el espacio 
+3D: ejes X, Y y Z. Según la corriente generada, se determina la dirección y 
+magnitud de la inclinación.
 
 .. image:: img/image224.png
 
+Podemos utilizar el MPU6050 para detectar la aceleración en cada eje (en estado 
+estacionario, la aceleración en el eje Z es 1 unidad de gravedad, y en los ejes 
+X e Y es 0). Si se inclina o está en condiciones de peso cero o sobrepeso, la 
+lectura correspondiente cambiará.
 
-We can use the MPU6050 to detect its acceleration on each coordinate
-axis (in the stationary desktop state, the Z-axis acceleration is 1
-gravity unit, and the X and Y axes are 0). If it is tilted or in a
-weightless/overweight condition, the corresponding reading will change.
+Hay cuatro rangos de medición seleccionables programáticamente: +/-2g, +/-4g, 
++/-8g y +/-16g (por defecto es 2g), con valores de -32768 a 32767.
 
-There are four kinds of measuring ranges that can be selected
-programmatically: +/-2g, +/-4g, +/-8g, and +/-16g (2g by default)
-corresponding to each precision. Values range from -32768 to 32767.
+La lectura del acelerómetro se convierte en valor de aceleración mapeando el 
+rango de lecturas al rango de medición.
 
-The reading of accelerometer is converted to an acceleration value by
-mapping the reading from the reading range to the measuring range.
+Aceleración = (Lectura cruda del eje del acelerómetro / 65536 * Rango de aceleración total) g
 
-Acceleration = (Accelerometer axis raw data / 65536 \* full scale
-Acceleration range) g
+Ejemplo en el eje X: cuando la lectura del acelerómetro en el eje X es 16384 y el rango es +/-2g:
 
-Take the X-axis as an example, when Accelerometer X axis raw data is
-16384 and the range is selected as +/-2g:
+**Aceleración en el eje X = (16384 / 65536 * 4) g**  **= 1g**
 
-**Acceleration along the X axis = (16384 / 65536 \* 4) g**  **=1g**
+**Giroscopio de 3 ejes**
 
-**3-axis Gyroscope**
-
-Gyroscopes work on the principle of Coriolis acceleration. Imagine that
-there is a fork like structure, that is in constant back and forth
-motion. It is held in place using piezo electric crystals. Whenever, you
-try to tilt this arrangement, the crystals experience a force in the
-direction of inclination. This is caused as a result of the inertia of
-the moving fork. The crystals thus produce a current in consensus with
-the piezo electric effect, and this current is amplified.
+Los giroscopios operan bajo el principio de la aceleración de Coriolis. 
+Imagina una estructura similar a un tenedor en constante movimiento de 
+vaivén, sostenida por cristales piezoeléctricos. Cuando intentas inclinar 
+esta disposición, los cristales experimentan una fuerza en la dirección de 
+la inclinación, generando una corriente según el efecto piezoeléctrico, y 
+esta corriente se amplifica.
 
 .. image:: img/image225.png
     :width: 800
     :align: center
 
-The Gyroscope also has four kinds of measuring ranges: +/- 250, +/- 500,
-+/- 1000, +/- 2000. The calculation method and Acceleration are
-basically consistent.
+El giroscopio también tiene cuatro rangos de medición: +/- 250, +/- 500, +/- 
+1000, +/- 2000. El método de cálculo es similar al del acelerómetro.
 
-The formula for converting the reading into angular velocity is as
-follows:
+La fórmula para convertir la lectura en velocidad angular es:
 
-Angular velocity = (Gyroscope axis raw data / 65536 \* full scale
-Gyroscope range) °/s
+Velocidad angular = (Lectura cruda del eje del giroscopio / 65536 * Rango total 
+del giroscopio) °/s
 
-The X axis, for example, the Accelerometer X axis raw data is 16384 and
-ranges + / - 250°/ s:
+Ejemplo en el eje X: cuando la lectura cruda en el eje X es 16384 y el rango 
+es +/- 250°/s:
 
-**Angular velocity along the X axis = (16384 / 65536 \* 500)°/s** **=125°/s**
+**Velocidad angular en el eje X = (16384 / 65536 * 500)°/s** **= 125°/s**
 
-Schematic Diagram
------------------
+Diagrama de Circuito
+------------------------
 
-MPU6050 communicates with the microcontroller through the I2C bus
-interface. The SDA1 and SCL1 need to be connected to the corresponding
-pin.
+El MPU6050 se comunica con el microcontrolador mediante la interfaz de bus I2C. 
+Los pines SDA1 y SCL1 deben conectarse al pin correspondiente.
 
 .. image:: img/image330.png
     :width: 600
     :align: center
 
 
-Experimental Procedures
----------------------------
+Procedimiento Experimental
+-------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: img/image227.png
     :width: 800
 
 
 
-**Step 2**: Setup I2C (see Appendix. If you have set I2C, skip this
-step.)
+**Paso 2**: Configura I2C (ver Apéndice. Si ya configuraste I2C, omite este paso).
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
 
-**Step 3:** Go to the folder of the code.
+Para Usuarios de C
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Paso 3:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -158,7 +148,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.6/
 
-**Step 4:** Compile the code.
+**Paso 4:** Compila el código.
 
 .. raw:: html
 
@@ -168,7 +158,7 @@ For C Language Users
 
     gcc 2.2.6_mpu6050.c -lwiringPi -lm
 
-**Step 5:** Run the executable file.
+**Paso 5:** Ejecuta el archivo.
 
 .. raw:: html
 
@@ -178,15 +168,14 @@ For C Language Users
 
     sudo ./a.out
 
-With the code run, deflection angle of x axis, y axis and the
-acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
+Al ejecutar el código, el ángulo de desviación en los ejes X e Y, junto 
+con la aceleración y velocidad angular en cada eje medida por el MPU6050, 
+se mostrará en pantalla después de ser calculada.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-
-**Code**
+    Si no funciona después de ejecutar el código, o si aparece un mensaje de error como: \"wiringPi.h: No such file or directory\", consulta la sección :ref:`c code is not working?`.
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -233,7 +222,7 @@ printed on the screen after being calculating.
     int main()
     {
     fd = wiringPiI2CSetup (0x68);
-    wiringPiI2CWriteReg8 (fd,0x6B,0x00);//disable sleep mode 
+    wiringPiI2CWriteReg8 (fd,0x6B,0x00); // desactivar el modo de suspensión
     printf("set 0x6B=%X\n",wiringPiI2CReadReg8 (fd,0x6B));
     
     while(1) {
@@ -246,7 +235,7 @@ printed on the screen after being calculating.
         gyroY_scaled = gyroY / 131.0;
         gyroZ_scaled = gyroZ / 131.0;
 
-        //Print values for the X, Y, and Z axes of the gyroscope sensor.
+        // Imprimir los valores de los ejes X, Y y Z del sensor de giroscopio.
         printf("My gyroX_scaled: %f\n", gyroY X_scaled);
         delay(100);
         printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
@@ -262,7 +251,7 @@ printed on the screen after being calculating.
         acclY_scaled = acclY / 16384.0;
         acclZ_scaled = acclZ / 16384.0;
         
-        //Print the X, Y, and Z values of the acceleration sensor.
+        // Imprimir los valores X, Y y Z del sensor de aceleración.
         printf("My acclX_scaled: %f\n", acclX_scaled);
         delay(100);
         printf("My acclY_scaled: %f\n", acclY_scaled);
@@ -280,7 +269,7 @@ printed on the screen after being calculating.
     return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -295,7 +284,7 @@ printed on the screen after being calculating.
     return val;
     }
 
-Read sensor data sent from MPU6050.
+Lee los datos del sensor enviados desde el MPU6050.
 
 .. code-block:: c
 
@@ -306,7 +295,7 @@ Read sensor data sent from MPU6050.
     return -(radians * (180.0 / M_PI));
     }
 
-We get the deflection angle on the Y-axis.
+Obtiene el ángulo de deflexión en el eje Y.
 
 .. code-block:: c
 
@@ -317,7 +306,7 @@ We get the deflection angle on the Y-axis.
     return (radians * (180.0 / M_PI));
     }
 
-Calculate the deflection angle of the X-axis.
+Calcula el ángulo de deflexión en el eje X.
 
 .. code-block:: c
 
@@ -329,13 +318,12 @@ Calculate the deflection angle of the X-axis.
     gyroY_scaled = gyroY / 131.0;
     gyroZ_scaled = gyroZ / 131.0;
 
-    //Print values for the X, Y, and Z axes of the gyroscope sensor.
+    // Imprime los valores de los ejes X, Y y Z del sensor de giroscopio.
     printf("My gyroX_scaled: %f\n", gyroY X_scaled);
     printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
     printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
 
-Read the values of the x axis, y axis and z axis on the gyroscope sensor, 
-convert the metadata to angular velocity values, and then print them.
+Lee los valores de los ejes x, y y z en el sensor de giroscopio, convierte los datos en valores de velocidad angular y luego los imprime.
 
 .. code-block:: c
 
@@ -347,26 +335,26 @@ convert the metadata to angular velocity values, and then print them.
     acclY_scaled = acclY / 16384.0;
     acclZ_scaled = acclZ / 16384.0;
         
-    //Print the X, Y, and Z values of the acceleration sensor.
+    // Imprime los valores de los ejes X, Y y Z del sensor de aceleración.
     printf("My acclX_scaled: %f\n", acclX_scaled);
     printf("My acclY_scaled: %f\n", acclY_scaled);
     printf("My acclZ_scaled: %f\n", acclZ_scaled);
 
-Read the values of the x axis, y axis and z axis on the acceleration sensor,
-convert the metadata to accelerated speed values (gravity unit), and then 
-print them.
+Lee los valores de los ejes x, y y z en el sensor de aceleración, 
+convierte los datos en valores de velocidad de aceleración (unidad 
+de gravedad), y luego los imprime.
 
 .. code-block:: c
 
     printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
     printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
 
-Print the deflection angles of the x-axis and y-axis.
+Imprime los ángulos de deflexión de los ejes x e y.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Para Usuarios de Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 3:** Go to the folder of the code.
+**Paso 3:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -376,7 +364,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python
 
-**Step 4:** Run the executable file.
+**Paso 4:** Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -386,16 +374,17 @@ For Python Language Users
 
     sudo python3 2.2.6_mpu6050.py
 
-With the code run, the angle of deflection of the x-axis and y-axis and
-the acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
+Con el código en ejecución, el ángulo de deflexión de los ejes x e y, 
+así como la aceleración y la velocidad angular en cada eje obtenidos 
+por el MPU6050, se mostrarán en la pantalla después de calcularse.
 
-**Code**
+**Código**
 
 .. note::
 
-    
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a 
+    continuación. Pero antes de hacerlo, debes dirigirte a la ruta del 
+    código fuente, como ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -407,7 +396,7 @@ printed on the screen after being calculating.
     import math
     import time
 
-    # Power management registers
+    # Registros de administración de energía
     power_mgmt_1 = 0x6b
     power_mgmt_2 = 0x6c
 
@@ -439,10 +428,10 @@ printed on the screen after being calculating.
         return math.degrees(radians)
 
 
-    bus = smbus.SMBus(1) # or bus = smbus.SMBus(1) for Revision 2 boards
-    address = 0x68       # This is the address value read via the i2cdetect command
+    bus = smbus.SMBus(1) # o bus = smbus.SMBus(1) para placas de la Revisión 2
+    address = 0x68       # Este es el valor de la dirección leído mediante el comando i2cdetect
 
-    # Now wake the 6050 up as it starts in sleep mode
+    # Ahora activa el 6050 ya que comienza en modo de suspensión
     bus.write_byte_data(address, power_mgmt_1, 0)
 
     while True:
@@ -472,7 +461,7 @@ printed on the screen after being calculating.
 
         time.sleep(0.5)
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
@@ -489,8 +478,7 @@ printed on the screen after being calculating.
         else:
             return val
 
-Read sensor data sent from MPU6050.
-
+Lee los datos del sensor enviados desde el MPU6050.
 
 .. code-block:: python
 
@@ -498,7 +486,7 @@ Read sensor data sent from MPU6050.
         radians = math.atan2(x, dist(y,z))
         return -math.degrees(radians)
 
-Calculate the deflection angle of the y-axis.
+Calcula el ángulo de deflexión en el eje y.
 
 .. code-block:: python
 
@@ -506,7 +494,7 @@ Calculate the deflection angle of the y-axis.
         radians = math.atan2(y, dist(x,z))
         return math.degrees(radians)
 
-Calculate the deflection angle of the x-axis.
+Calcula el ángulo de deflexión en el eje x.
 
 .. code-block:: python
 
@@ -518,8 +506,8 @@ Calculate the deflection angle of the x-axis.
     print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
     print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
 
-Read the values of the x axis, y axis and z axis on the gyroscope sensor, 
-convert the metadata to angular velocity values, and then print them.
+Lee los valores de los ejes x, y y z en el sensor de giroscopio, convierte 
+los datos en valores de velocidad angular y luego los imprime.
 
 .. code-block:: python
 
@@ -535,18 +523,18 @@ convert the metadata to angular velocity values, and then print them.
     print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
     print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
 
-Read the values of the x axis, y axis and z axis on the acceleration sensor, 
-convert the elements to accelerated speed value (gravity unit), and print 
-them.
+Lee los valores de los ejes x, y y z en el sensor de aceleración, 
+convierte los datos en valores de velocidad de aceleración (unidad 
+de gravedad) y luego los imprime.
 
 .. code-block:: python
 
     print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
     print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
 
-Print the deflection angles of the x-axis and y-axis.
+Imprime los ángulos de deflexión de los ejes x e y.
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+----------------------
 
 .. image:: img/image228.jpeg

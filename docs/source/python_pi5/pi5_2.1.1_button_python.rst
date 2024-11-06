@@ -1,32 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.1.1_py_pi5:
 
-2.1.1 Button
-===============
+2.1.1 Botón
+==============
 
-Introduction
------------------
+Introducción
+--------------
 
-In this project, we will learn how to turn on or off the LED by using a
-button.
+En este proyecto, aprenderemos a encender o apagar el LED usando un botón.
 
-Required Components
-------------------------------
+Componentes Necesarios
+-------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../python_pi5/img/2.1.1_Button_list.png
 
@@ -34,14 +33,13 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
----------------------
+Diagrama de Conexión
+-----------------------
 
-Use a normally open button as the input of Raspberry Pi, the connection is shown in the schematic diagram below. When the button is pressed, the GPIO18 will turn into high level (3.3V). We can detect the state of the GPIO18 through programming. That is, if the GPIO18 turns into high level, it means the button is pressed. You can run the corresponding code when the button is pressed, and then the LED will light up.
+Utiliza un botón normalmente abierto como entrada para la Raspberry Pi; la conexión se muestra en el diagrama de abajo. Cuando se presiona el botón, el GPIO18 se elevará a un nivel alto (3.3V). Podemos detectar el estado del GPIO18 mediante programación. Es decir, si el GPIO18 cambia a un nivel alto, significa que el botón ha sido presionado. Al detectar esta señal, se puede ejecutar el código correspondiente para encender el LED.
 
 .. note::
-    The longer pin of the LED is the anode and the shorter one is
-    the cathode.
+    La pata más larga del LED es el ánodo y la más corta es el cátodo.
 
 .. image:: ../python_pi5/img/2.1.1_Button_schematic_1.png
 
@@ -49,14 +47,14 @@ Use a normally open button as the input of Raspberry Pi, the connection is shown
 .. image:: ../python_pi5/img/2.1.1_Button_schematic_2.png
 
 
-Experimental Procedures
----------------------------
+Procedimientos del Experimento
+-----------------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Monta el circuito.
 
 .. image:: ../python_pi5/img/2.1.1_Button_circuit.png
 
-**Step 2**: Open the code file.
+**Paso 2**: Abre el archivo de código.
 
 .. raw:: html
 
@@ -66,7 +64,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3**: Run the code.
+**Paso 3**: Ejecuta el código.
 
 .. raw:: html
 
@@ -76,17 +74,17 @@ Experimental Procedures
 
     sudo python3 2.1.1_Button_zero.py
 
-Now, press the button and the LED will light up; release the button and the LED will go off.
+Ahora, presiona el botón y el LED se encenderá; suelta el botón y el LED se apagará.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si aparece el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Antes de eso, asegúrate de estar en la ruta del código fuente, como ``davinci-kit-for-raspberry-pi/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -96,56 +94,56 @@ Now, press the button and the LED will light up; release the button and the LED 
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
-   from signal import pause  # Import pause function from signal module
+   from gpiozero import LED, Button  # Importa las clases LED y Button de gpiozero
+   from signal import pause  # Importa la función pause del módulo signal
 
-   # Initialize an LED object on GPIO pin 17
+   # Inicializa un objeto LED en el pin GPIO 17
    led = LED(17)
-   # Initialize a Button object on GPIO pin 18
+   # Inicializa un objeto Button en el pin GPIO 18
    button = Button(18)
 
-   # Link the button's "when_pressed" event to the LED's on() method
+   # Asocia el evento "when_pressed" del botón con el método on() del LED
    button.when_pressed = led.on
-   # Link the button's "when_released" event to the LED's off() method
+   # Asocia el evento "when_released" del botón con el método off() del LED
    button.when_released = led.off
 
-   # Run an event loop that waits for button events and keeps the script running
+   # Ejecuta un bucle de eventos que espera acciones del botón y mantiene el script en ejecución
    pause()
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. The script is written in Python3 and it imports ``LED`` and ``Button`` classes from the ``gpiozero`` library, and ``pause`` from the ``signal`` module.
+#. El script está escrito en Python3 e importa las clases ``LED`` y ``Button`` de la librería ``gpiozero``, y ``pause`` del módulo ``signal``.
 
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
-       from signal import pause  # Import pause function from signal module
+       from gpiozero import LED, Button  # Importa las clases LED y Button de gpiozero
+       from signal import pause  # Importa la función pause del módulo signal
 
-#. Initializes an ``LED`` object on GPIO pin 17 and a ``Button`` object on GPIO pin 18.
+#. Inicializa un objeto ``LED`` en el pin GPIO 17 y un objeto ``Button`` en el pin GPIO 18.
 
    .. code-block:: python
 
-       # Initialize an LED object on GPIO pin 17
+       # Inicializa un objeto LED en el pin GPIO 17
        led = LED(17)
-       # Initialize a Button object on GPIO pin 18
+       # Inicializa un objeto Button en el pin GPIO 18
        button = Button(18)
 
-#. Sets up event handlers so that the LED turns on when the button is pressed and turns off when the button is released.
+#. Configura manejadores de eventos para que el LED se encienda cuando el botón se presione y se apague cuando el botón se suelte.
 
    .. code-block:: python
 
-       # Link the button's "when_pressed" event to the LED's on() method
+       # Asocia el evento "when_pressed" del botón con el método on() del LED
        button.when_pressed = led.on
-       # Link the button's "when_released" event to the LED's off() method
+       # Asocia el evento "when_released" del botón con el método off() del LED
        button.when_released = led.off
 
-#. This keeps the script running in an event loop, waiting for the button press and release events.
+#. Mantiene el script en un bucle de eventos, esperando que se presione o suelte el botón.
 
    .. code-block:: python
        
-       # Run an event loop that waits for button events and keeps the script running
+       # Ejecuta un bucle de eventos que espera acciones del botón y mantiene el script en ejecución
        pause()
 
 

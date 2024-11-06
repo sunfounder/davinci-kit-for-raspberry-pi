@@ -1,30 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-Video 45: Getting Ready to Master the Raspberry Pi Camera
+
+Video 45: Preparación para Dominar la Cámara de Raspberry Pi
 =======================================================================================
 
+En este video, exploramos la transición del sistema operativo Buster al Bullseye en Raspberry Pi y profundizamos en dos métodos para interactuar con la cámara: el método Legacy mediante OpenCV y el método moderno usando la biblioteca PiCamera.
 
-In this video, we explore the transition from the Buster to Bullseye operating system on the Raspberry Pi and delve into two methods of interacting with the camera: 
-the Legacy method via OpenCV and the modern method using the PiCamera library.
-
-1. **Transition to Bullseye OS**: Learn about the shift from Buster to Bullseye OS on Raspberry Pi.
-2. **Camera Interaction**: Understand the two approaches to interacting with the camera - Legacy method with OpenCV and modern method using PiCamera library.
-3. **Legacy Camera Support**: Demonstrates enabling and disabling Legacy camera support in the Bullseye OS.
-4. **PiCamera Library**: Introduction to the PiCamera library for camera interaction.
-5. **Setting up Camera Parameters**: Learn to configure camera parameters using the PiCamera library.
-6. **Grabbing Frames**: Explanation of grabbing frames using PiCamera library instead of OpenCV.
+1. **Transición al sistema operativo Bullseye**: Conoce el cambio de Buster a Bullseye en el sistema operativo de Raspberry Pi.
+2. **Interacción con la Cámara**: Comprende los dos enfoques para interactuar con la cámara: el método Legacy con OpenCV y el método moderno utilizando la biblioteca PiCamera.
+3. **Soporte para Cámara Legacy**: Demuestra cómo habilitar y deshabilitar el soporte para cámaras Legacy en el sistema operativo Bullseye.
+4. **Biblioteca PiCamera**: Introducción a la biblioteca PiCamera para la interacción con la cámara.
+5. **Configuración de Parámetros de la Cámara**: Aprende a configurar los parámetros de la cámara utilizando la biblioteca PiCamera.
+6. **Captura de Fotogramas**: Explicación sobre cómo capturar fotogramas usando la biblioteca PiCamera en lugar de OpenCV.
 
 **Video**
 

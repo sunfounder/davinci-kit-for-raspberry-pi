@@ -1,32 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _py_pi5_keypad:
 
-2.1.5 Keypad
-============
+2.1.5 Teclado
+================
 
-Introduction
-------------
+Introducción
+---------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Un teclado es una matriz rectangular de botones. En este proyecto, lo 
+utilizaremos para ingresar caracteres.
 
-Required Components
-------------------------------
+Componentes Necesarios
+-------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../python_pi5/img/2.1.5_keypad_list.png
 
@@ -34,54 +34,53 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
------------------
+Diagrama de Conexión
+-----------------------
 
 .. image:: ../python_pi5/img/2.1.5_keypad_chematic_1.png
-
 
 .. image:: ../python_pi5/img/2.1.5_keypad_chematic_2.png
 
 
-Experimental Procedures
------------------------
+Procedimientos del Experimento
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Monta el circuito.
 
 .. image:: ../python_pi5/img/2.1.5_keypad_circuit.png
 
-**Step 2:** Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3:** Run.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo python3 2.1.5_Keypad_zero.py
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Después de ejecutar el código, los valores de los botones presionados 
+en el teclado (valor del botón) se imprimirán en pantalla.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si aparece el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Antes de eso, asegúrate de estar en la ruta del código fuente, como ``davinci-kit-for-raspberry-pi/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -102,11 +101,11 @@ Value) will be printed on the screen.
            :param cols_pins: List of GPIO pins for the columns.
            :param keys: List of keys in the keypad layout.
            """
-           # Initialize row pins as DigitalOutputDevice
+           # Inicializa los pines de las filas como DigitalOutputDevice
            self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]
-           # Initialize column pins as Buttons
+           # Inicializa los pines de las columnas como Botones
            self.cols = [Button(pin, pull_up=False) for pin in cols_pins]
-           self.keys = keys  # Set the keypad layout
+           self.keys = keys  # Establece el diseño del teclado
 
        def read(self):
            """
@@ -114,19 +113,19 @@ Value) will be printed on the screen.
            :return: A list of pressed keys.
            """
            pressed_keys = []
-           # Scan each row and column to identify pressed keys
+           # Escanea cada fila y columna para identificar las teclas presionadas
            for i, row in enumerate(self.rows):
-               row.on()  # Enable the current row
+               row.on()  # Activa la fila actual
                for j, col in enumerate(self.cols):
-                   if col.is_pressed:  # Check if the column button is pressed
-                       # Calculate the key index based on row and column
+                   if col.is_pressed:  # Verifica si el botón de la columna está presionado
+                       # Calcula el índice de la tecla basado en la fila y columna
                        index = i * len(self.cols) + j
                        pressed_keys.append(self.keys[index])
-               row.off()  # Disable the current row
+               row.off()  # Desactiva la fila actual
            return pressed_keys
 
    try:
-       # Configure rows, columns, and keypad layout
+       # Configura filas, columnas y diseño del teclado
        rows_pins = [18, 23, 24, 25]
        cols_pins = [10, 22, 27, 17]
        keys = ["1", "2", "3", "A",
@@ -134,26 +133,26 @@ Value) will be printed on the screen.
                "7", "8", "9", "C",
                "*", "0", "#", "D"]
 
-       # Create an instance of the Keypad class
+       # Crea una instancia de la clase Keypad
        keypad = Keypad(rows_pins, cols_pins, keys)
        last_key_pressed = []
 
-       # Continuously read the keypad and print newly pressed keys
+       # Lee continuamente el teclado e imprime las teclas presionadas nuevas
        while True:
            pressed_keys = keypad.read()
            if pressed_keys and pressed_keys != last_key_pressed:
-               print(pressed_keys)  # Print the list of pressed keys
+               print(pressed_keys)  # Imprime la lista de teclas presionadas
                last_key_pressed = pressed_keys
-           sleep(0.1)  # Short delay to reduce CPU load
+           sleep(0.1)  # Breve pausa para reducir la carga de la CPU
 
    except KeyboardInterrupt:
-       # Handle a keyboard interrupt (Ctrl+C) for a clean exit
+       # Maneja una interrupción de teclado (Ctrl+C) para salir limpiamente
        pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. Imports the ``DigitalOutputDevice`` and ``Button`` classes from the ``gpiozero`` library, and the ``sleep`` function for delays.
+#. Importa las clases ``DigitalOutputDevice`` y ``Button`` de la biblioteca ``gpiozero``, y la función ``sleep`` para añadir pausas.
 
    .. code-block:: python
 
@@ -161,7 +160,7 @@ Value) will be printed on the screen.
        from gpiozero import DigitalOutputDevice, Button
        from time import sleep
 
-#. Defines the ``Keypad`` class. The ``__init__`` method initializes the keypad with given row and column pins and keys. The ``read`` method scans the keypad and returns a list of pressed keys.
+#. Define la clase ``Keypad``. El método ``__init__`` inicializa el teclado con los pines de fila y columna y las teclas. El método ``read`` escanea el teclado y devuelve una lista de teclas presionadas.
 
    .. code-block:: python
 
@@ -173,11 +172,11 @@ Value) will be printed on the screen.
                :param cols_pins: List of GPIO pins for the columns.
                :param keys: List of keys in the keypad layout.
                """
-               # Initialize row pins as DigitalOutputDevice
+               # Inicializa los pines de las filas como DigitalOutputDevice
                self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]
-               # Initialize column pins as Buttons
+               # Inicializa los pines de las columnas como Botones
                self.cols = [Button(pin, pull_up=False) for pin in cols_pins]
-               self.keys = keys  # Set the keypad layout
+               self.keys = keys  # Establece el diseño del teclado
 
            def read(self):
                """
@@ -185,23 +184,23 @@ Value) will be printed on the screen.
                :return: A list of pressed keys.
                """
                pressed_keys = []
-               # Scan each row and column to identify pressed keys
+               # Escanea cada fila y columna para identificar las teclas presionadas
                for i, row in enumerate(self.rows):
-                   row.on()  # Enable the current row
+                   row.on()  # Activa la fila actual
                    for j, col in enumerate(self.cols):
-                       if col.is_pressed:  # Check if the column button is pressed
-                           # Calculate the key index based on row and column
+                       if col.is_pressed:  # Verifica si el botón de la columna está presionado
+                           # Calcula el índice de la tecla basado en la fila y columna
                            index = i * len(self.cols) + j
                            pressed_keys.append(self.keys[index])
-                   row.off()  # Disable the current row
+                   row.off()  # Desactiva la fila actual
                return pressed_keys
 
-#. Sets up the GPIO pins for rows and columns and defines the keypad layout.
+#. Configura los pines GPIO para filas y columnas y define el diseño del teclado.
 
    .. code-block:: python
 
        try:
-           # Configure rows, columns, and keypad layout
+           # Configura filas, columnas y diseño del teclado
            rows_pins = [18, 23, 24, 25]
            cols_pins = [10, 22, 27, 17]
            keys = ["1", "2", "3", "A",
@@ -209,33 +208,33 @@ Value) will be printed on the screen.
                    "7", "8", "9", "C",
                    "*", "0", "#", "D"]
 
-#. Creates an instance of the ``Keypad`` class with the specified configuration.
+#. Crea una instancia de la clase ``Keypad`` con la configuración especificada.
 
    .. code-block:: python
 
        try:
            ...
 
-           # Create an instance of the Keypad class
+           # Crea una instancia de la clase Keypad
            keypad = Keypad(rows_pins, cols_pins, keys)
            last_key_pressed = []
 
-#. Continuously reads the keypad for pressed keys, prints any changes in the key state, and introduces a short delay to reduce CPU load. Catches a KeyboardInterrupt (like Ctrl+C) to allow for a graceful exit from the script.
+#. Lee continuamente el teclado en busca de teclas presionadas, imprime cualquier cambio en el estado de las teclas e introduce una breve pausa para reducir la carga de la CPU. Captura una interrupción de teclado (Ctrl+C) para permitir una salida ordenada del script.
 
    .. code-block:: python
 
        try:
            ...
 
-           # Continuously read the keypad and print newly pressed keys
+           # Lee continuamente el teclado e imprime las teclas presionadas nuevas
            while True:
                pressed_keys = keypad.read()
                if pressed_keys and pressed_keys != last_key_pressed:
-                   print(pressed_keys)  # Print the list of pressed keys
+                   print(pressed_keys)  # Imprime la lista de teclas presionadas
                    last_key_pressed = pressed_keys
-               sleep(0.1)  # Short delay to reduce CPU load
+               sleep(0.1)  # Breve pausa para reducir la carga de la CPU
 
        except KeyboardInterrupt:
-           # Handle a keyboard interrupt (Ctrl+C) for a clean exit
+           # Maneja una interrupción de teclado (Ctrl+C) para salir limpiamente
            pass
 

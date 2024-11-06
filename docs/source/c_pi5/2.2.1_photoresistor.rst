@@ -1,67 +1,64 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-2.2.1 Photoresistor
-===================
+2.2.1 Fotoresistor
+=====================
 
-Introduction
-------------
+Introducción
+---------------
 
-Photoresistor is a commonly used component of ambient light intensity in
-life. It helps the controller to recognize day and night and realize
-light control functions such as night lamp. This project is very similar
-to potentiometer, and you might think it changing the voltage to sensing
-light.
+El fotoresistor es un componente comúnmente utilizado para medir la 
+intensidad de la luz ambiental. Ayuda al controlador a reconocer el 
+día y la noche, y a realizar funciones de control de luz, como la de 
+una lámpara nocturna. Este proyecto es muy similar al de un potenciómetro, 
+y podrías pensar que cambia el voltaje para detectar la luz.
 
-Components
-----------
+Componentes
+-----------
 
 .. image:: img/list_2.2.1_photoresistor.png
 
+Principio
+----------
 
-Principle
----------
-
-A photoresistor or photocell is a light-controlled variable resistor.
-The resistance of a photoresistor decreases with increasing incident
-light intensity; in other words, it exhibits photo conductivity. A
-photoresistor can be applied in light-sensitive detector circuits, and
-light- and darkness-activated switching circuits.
+Un fotoresistor o celda fotoeléctrica es un resistor variable controlado por 
+la luz. La resistencia de un fotoresistor disminuye a medida que aumenta la 
+intensidad de la luz incidente; en otras palabras, exhibe fotoconductividad. 
+Un fotoresistor se puede aplicar en circuitos de detección de luz y en circuitos 
+de conmutación activados por luz y oscuridad.
 
 .. image:: img/image196.png
     :width: 200
     :align: center
 
-
-Schematic Diagram
------------------
+Diagrama Esquemático
+--------------------------
 
 .. image:: img/image321.png
-
 
 .. image:: img/image322.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+----------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: img/image198.png
     :width: 800
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Acceder a la carpeta del código.
 
 .. raw:: html
 
@@ -71,7 +68,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.1/
 
-**Step 3:** Compile the code.
+**Paso 3:** Compilar el código.
 
 .. raw:: html
 
@@ -81,7 +78,7 @@ Experimental Procedures
 
     gcc 2.2.1_Photoresistor.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Paso 4:** Ejecutar el archivo ejecutable.
 
 .. raw:: html
 
@@ -91,14 +88,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-The code run, the brightness of LED will vary depending on the intensity
-of light that the photoresistor senses.
+Una vez ejecutado el código, el brillo del LED variará según la intensidad 
+de luz que detecte el fotoresistor.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: "wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
 
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -128,19 +125,19 @@ of light that the photoresistor senses.
 
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
-        // Start bit
+        // Bit de inicio
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        //Single End mode
+        // Modo de un solo extremo
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        // ODD
+        // IMPAR
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        //Select
+        // Selección
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);
@@ -173,7 +170,7 @@ of light that the photoresistor senses.
     int main(void)
     {
         uchar analogVal;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+        if(wiringPiSetup() == -1){ // Si la inicialización de wiring falla, imprime un mensaje en pantalla
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -191,9 +188,8 @@ of light that the photoresistor senses.
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
-The codes here are the same as that in 2.1.4 Potentiometer. If you have
-any other questions, please check the code explanation of **2.1.4
-Potentiometer.c** for details.
-
+Los códigos aquí son los mismos que los del 2.1.4 Potenciómetro. 
+Si tienes alguna otra pregunta, consulta la explicación del código 
+de **2.1.4 Potenciómetro.c** para obtener más detalles.

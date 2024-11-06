@@ -1,29 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones especiales en épocas festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 
-Video 27: Build a Temperature and Humidity System with LCD Display
+Video 27: Construye un Sistema de Temperatura y Humedad con Pantalla LCD
 =======================================================================================
 
-In this tutorial, viewers learn how to construct a temperature and humidity sensing device using a Raspberry Pi, a DHT11 sensor, an LCD display, and a push button. The video provides detailed guidance on both the hardware setup and Python coding required for the project. 
+En este tutorial, los espectadores aprenderán a construir un dispositivo de detección de temperatura y humedad utilizando una Raspberry Pi, un sensor DHT11, una pantalla LCD y un botón. El video proporciona una guía detallada tanto para la configuración del hardware como para la programación en Python necesaria para el proyecto.
 
-1. Introduction to building a temperature and humidity sensing device with Raspberry Pi.
-2. Components required including Raspberry Pi, DHT11 sensor, LCD display, push button, female to male wires, and jumper wires.
-3. Hardware setup involves connecting Raspberry Pi to the SunFounder breakout board, and then connecting the DHT11 sensor, LCD display, and push button using jumper wires.
-4. Setting up necessary libraries such as LCD1602, GPIO, DHT11, and time.
-5. Initialization of components including setting up GPIO mode, initializing the DHT11 sensor, LCD display, and push button.
-6. Reading button state through GPIO input to toggle between Fahrenheit and Celsius readings on the LCD display.
+1. Introducción a la construcción de un dispositivo de detección de temperatura y humedad con Raspberry Pi.
+2. Componentes necesarios, incluyendo Raspberry Pi, sensor DHT11, pantalla LCD, botón, cables hembra a macho y cables de puente.
+3. Configuración del hardware, conectando la Raspberry Pi a la placa de expansión SunFounder y luego conectando el sensor DHT11, la pantalla LCD y el botón mediante cables de puente.
+4. Configuración de las bibliotecas necesarias, como LCD1602, GPIO, DHT11 y time.
+5. Inicialización de componentes, incluyendo la configuración del modo GPIO, inicialización del sensor DHT11, la pantalla LCD y el botón.
+6. Lectura del estado del botón a través de la entrada GPIO para alternar entre las lecturas en Fahrenheit y Celsius en la pantalla LCD.
 
 **Video**
 

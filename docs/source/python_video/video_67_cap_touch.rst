@@ -1,27 +1,27 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-Video 67: Using a Capacitive Touch Sensor with Python
+
+Video 67: Uso de un Sensor Táctil Capacitivo con Python
 =======================================================================================
 
-Learn how to use a capacitive touch sensor with your Raspberry Pi in this tutorial, covering setup, coding, and a practical example.
+Aprende a utilizar un sensor táctil capacitivo con tu Raspberry Pi en este tutorial que abarca desde la configuración y programación hasta un ejemplo práctico.
 
-1. **Introduction to Capacitive Touch Sensor**: Understand how the sensor detects touch through capacitance.
-2. **Hardware Setup**: Learn how to connect the capacitive touch sensor to the Raspberry Pi GPIO pins.
-3. **Programming with GPIO**: Explore programming the Raspberry Pi in Python to read data from the touch sensor.
-4. **Practical Example**: Get hands-on with a homework assignment, controlling an RGB LED based on touch sensor input to toggle between colors.
-
+1. **Introducción al Sensor Táctil Capacitivo**: Comprende cómo el sensor detecta el toque a través de la capacitancia.
+2. **Configuración de Hardware**: Aprende a conectar el sensor táctil capacitivo a los pines GPIO de la Raspberry Pi.
+3. **Programación con GPIO**: Explora cómo programar la Raspberry Pi en Python para leer datos del sensor táctil.
+4. **Ejemplo Práctico**: Pon en práctica un ejercicio, controlando un LED RGB mediante la entrada del sensor táctil para alternar entre colores.
 
 **Video**
 

@@ -1,35 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Profundiza en el uso de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-3.1.7 Traffic Light
-=====================
+3.1.7 Semáforo
+======================
 
-Introduction
----------------
+Introducción
+----------------
 
-In this project, we will use LED lights of three colors to realize the
-change of traffic lights and a four-digit 7-segment display will be used
-to display the timing of each traffic state.
+En este proyecto, utilizaremos luces LED de tres colores para simular 
+el cambio de un semáforo. Además, usaremos una pantalla de 7 segmentos 
+de cuatro dígitos para mostrar la cuenta regresiva de cada estado del semáforo.
 
-Components
-------------
+Componentes
+----------------
 
 .. image:: img/list_Traffic_Light.png
     :align: center
 
-Schematic Diagram
---------------------
+Diagrama de Esquema
+----------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -48,18 +48,18 @@ SPICE1       Pin 26   11       7
 .. image:: img/Schematic_three_one7.png
    :align: center
 
-Experimental Procedures
-------------------------
+Procedimiento Experimental
+----------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: img/image254.png
    :width: 800
 
-**For C Language Users**
+**Para Usuarios de C**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Change directory.
+**Paso 2:** Cambia al directorio.
 
 .. raw:: html
 
@@ -69,7 +69,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.7/
 
-**Step 3:** Compile.
+**Paso 3:** Compila.
 
 .. raw:: html
 
@@ -79,7 +79,7 @@ Experimental Procedures
 
     gcc 3.1.7_TrafficLight.c -lwiringPi
 
-**Step 4:** Run.
+**Paso 4:** Ejecuta.
 
 .. raw:: html
 
@@ -89,18 +89,17 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, LEDs will simulate the color changing of traffic
-lights. Firstly, the red LED lights up for 60s, then the green LED
-lights up for 30s; next, the yellow LED lights up for 5s. After that,
-the red LED lights up for 60s once again. In this way, this series of
-actions will be executed repeatedly.
+Al ejecutar el código, los LEDs simularán el cambio de colores de un semáforo. 
+Primero, se enciende el LED rojo durante 60 segundos, luego el LED verde se 
+enciende durante 30 segundos, y finalmente el LED amarillo se enciende durante 
+5 segundos. Después, el ciclo vuelve a iniciar con el LED rojo encendido por 60 
+segundos. Esta secuencia se repetirá continuamente.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutar el programa, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`C code is not working?`.
 
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -116,9 +115,9 @@ actions will be executed repeatedly.
     void clearDisplay();
     void display();
 
-These codes are used to realize the function of number display of 4-Digit 7-Segment 
-Displays. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` of the document for more details. Here, we use the 
-codes to display countdown of traffic light time.
+Estas líneas de código permiten realizar la función de visualización de 
+números en una pantalla de 7 segmentos de 4 dígitos. Consulta :ref:`1.1.5 Pantalla de 7 segmentos de 4 dígitos` 
+para más detalles. Aquí, el código muestra la cuenta regresiva del tiempo del semáforo.
 
 .. code-block:: c
 
@@ -134,7 +133,7 @@ codes to display countdown of traffic light time.
         digitalWrite(ledPin[colorState],LOW);    
     }
 
-The codes are used to switch the LED on and off.
+Estas líneas controlan el encendido y apagado de los LEDs.
 
 .. code-block:: c
 
@@ -145,7 +144,7 @@ The codes are used to switch the LED on and off.
     char *lightColor[]={"Red","Green","Yellow"};
     int counter = 60;
 
-    void timer(int  timer1){       //Timer function
+    void timer(int timer1){       // Función de temporizador
         if(timer1 == SIGALRM){   
             counter --;         
             alarm(1); 
@@ -159,9 +158,9 @@ The codes are used to switch the LED on and off.
         }
     }
 
-The codes are used to switch the timer on and off. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` for more details. Here, when the timer returns to zero, colorState
-will be switched so as to switch LED, and the timer will be assigned to
-a new value.
+Estas líneas controlan el temporizador. Consulta :ref:`1.1.5 4-Digit 7-Segment Display` para más detalles. 
+Cuando el temporizador llega a cero, se cambia el color de `colorState`, activando el LED correspondiente y 
+reasignando un nuevo valor al temporizador.
 
 .. code-block:: c
 
@@ -182,13 +181,11 @@ a new value.
         return 0;
     }
 
-The timer is started in the main() function. In loop() function, use
-**while(1)** loop and call the functions of 4-Digit 7-Segment and LED.
-
-**For Python Language Users**
+El temporizador se inicia en la función main(). En la función loop(), se usa un ciclo **while(1)** y se llaman las funciones de visualización de la pantalla de 7 segmentos y el control de los LEDs.
+**Para Usuarios de Python**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Change directory.
+**Paso 2:** Cambiar de directorio.
 
 .. raw:: html
 
@@ -198,7 +195,7 @@ The timer is started in the main() function. In loop() function, use
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run.
+**Paso 3:** Ejecutar.
 
 .. raw:: html
 
@@ -208,18 +205,19 @@ The timer is started in the main() function. In loop() function, use
 
     sudo python3 3.1.7_TrafficLight.py
 
-As the code runs, LEDs will simulate the color changing of traffic
-lights. Firstly, the red LED lights up for 60s, then the green LED
-lights up for 30s; next, the yellow LED lights up for 5s. After that,
-the red LED lights up for 60s once again. In this way, this series of
-actions will be executed repeatedly. Meanwhile, the 4-digit 7-segment
-display displays the countdown time continuously.
 
-**Code**
+A medida que el código se ejecuta, los LEDs simularán el cambio de colores de 
+un semáforo. Primero, el LED rojo se ilumina durante 60 segundos, luego el LED 
+verde durante 30 segundos; después, el LED amarillo durante 5 segundos. 
+Tras esto, el LED rojo se enciende nuevamente por 60 segundos. Así, esta serie 
+de acciones se ejecutará en un bucle. Mientras tanto, la pantalla de 7 segmentos 
+de 4 dígitos muestra el tiempo de cuenta regresiva de forma continua.
+
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes, debes dirigirte a la ruta del código fuente como ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -231,10 +229,10 @@ display displays the countdown time continuously.
     import time
     import threading
 
-    #define the pins connect to 74HC595
-    SDI   = 24      #serial data input(DS)
-    RCLK  = 23     #memory clock input(STCP)
-    SRCLK = 18      #shift register clock input(SHCP)
+    # Definir los pines conectados al 74HC595
+    SDI   = 24      # entrada de datos en serie (DS)
+    RCLK  = 23     # entrada de reloj de memoria (STCP)
+    SRCLK = 18      # entrada de reloj del registro de desplazamiento (SHCP)
     number = (0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90)
 
     placePin = (10,22,27,17)
@@ -284,7 +282,7 @@ display displays the countdown time continuously.
             GPIO.output(i,GPIO.LOW)
         GPIO.output(placePin[digit], GPIO.HIGH)
 
-    def timer():        #timer function
+    def timer():        # función de temporizador
         global counter
         global colorState
         global timer1
@@ -347,25 +345,25 @@ display displays the countdown time continuously.
             display()
             lightup()
 
-    def destroy():   # When "Ctrl+C" is pressed, the function is executed.
+    def destroy():   # Cuando se presiona "Ctrl+C", la función se ejecuta.
         global timer1
         GPIO.cleanup()
-        timer1.cancel()      #cancel the timer
+        timer1.cancel()      # cancelar el temporizador
 
-    if __name__ == '__main__': # Program starting from here
+    if __name__ == '__main__': # El programa comienza aquí
         setup()
         try:
             loop()
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
-    SDI   = 24      #serial data input(DS)
-    RCLK  = 23     #memory clock input(STCP)
-    SRCLK = 18      #shift register clock input(SHCP)
+    SDI   = 24      # entrada de datos en serie (DS)
+    RCLK  = 23     # entrada de reloj de memoria (STCP)
+    SRCLK = 18      # entrada de reloj del registro de desplazamiento (SHCP)
     number = (0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90)
     placePin = (10,22,27,17)   
 
@@ -374,10 +372,9 @@ display displays the countdown time continuously.
     def pickDigit(digit):
     def display():
 
-These codes are used to realize the function of number display of
-4-Digit 7-Segment. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` of the document for more
-details. Here, we use the codes to display countdown of traffic light
-time.
+Estos códigos se utilizan para implementar la función de visualización numérica 
+de una pantalla de 7 segmentos de 4 dígitos. Consulte :ref:`1.1.5 4-Digit 7-Segment Display` 
+en el documento para obtener más detalles. Aquí, usamos el código para mostrar la cuenta regresiva del semáforo.
 
 .. code-block:: python
 
@@ -390,7 +387,7 @@ time.
             GPIO.output(ledPin[i], GPIO.HIGH)
         GPIO.output(ledPin[colorState], GPIO.LOW)
 
-The codes are used to switch the LED on and off.
+Estos códigos se usan para encender y apagar el LED.
 
 .. code-block:: python
 
@@ -403,7 +400,7 @@ The codes are used to switch the LED on and off.
     counter = 60      
     timer1 = 0         
 
-    def timer():        #timer function
+    def timer():        # función de temporizador
         global counter
         global colorState
         global timer1
@@ -421,42 +418,41 @@ The codes are used to switch the LED on and off.
         print ("counter : %d    color: %s "%(counter,lightColor[colorState]))
 
 
-The codes are used to switch the timer on and off. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` for more details. Here, when the timer returns to zero, colorState
-will be switched so as to switch LED, and the timer will be assigned to
-a new value.
+Los códigos se usan para controlar el temporizador. Consulte :ref:`1.1.5 4-Digit 7-Segment Display` 
+para obtener más detalles. Aquí, cuando el temporizador llega a cero, `colorState` cambiará para 
+alternar el LED, y el temporizador se asignará a un nuevo valor.
 
 .. code-block:: python
 
     def setup():
-        # ... 
+        # ...
         global timer1
         timer1 = threading.Timer(1.0,timer)   
-        timer1.start()  
+        timer1.start()
 
     def loop():
         while True:
             display()
             lightup()
-            
-    def destroy():   # When "Ctrl+C" is pressed, the function is executed. 
+
+    def destroy():  # Cuando se presiona "Ctrl+C", se ejecuta la función.
         global timer1
-        GPIO.cleanup()      
-        timer1.cancel()      #cancel the timer
+        GPIO.cleanup()
+        timer1.cancel()  # cancelar el temporizador
 
-    if __name__ == '__main__': # Program starting from here 
-        setup() 
+    if __name__ == '__main__':  # El programa comienza aquí
+        setup()
         try:
-            loop()  
-        except KeyboardInterrupt:  
-            destroy()  
+            loop()
+        except KeyboardInterrupt:
+            destroy()
 
+En la función setup(), se inicia el temporizador. En la función loop(), 
+se utiliza un bucle ``while True`` para llamar repetidamente a las funciones 
+relacionadas con la pantalla de 7 segmentos de 4 dígitos y el LED.
 
-In setup() function, start the timer. In loop() function, a ``while
-True`` is used: call the relative functions of 4-Digit 7-Segment and LED
-circularly.
-
-Phenomenon Picture
--------------------
+Imagen del Resultado
+-------------------------
 
 .. image:: img/IMG_8319.jpg
     :width: 800

@@ -1,62 +1,61 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 1.3.1 Motor
-=================
+================
 
-Introduction
------------------
+Introducción
+---------------
 
-In this project, we will learn to how to use L293D to drive a DC motor
-and make it rotate clockwise and counterclockwise. Since the DC Motor
-needs a larger current, for safety purpose, here we use the Power Supply
-Module to supply motors.
+En este proyecto, aprenderemos a utilizar el L293D para controlar un motor 
+de corriente continua (DC) y hacerlo girar en el sentido horario y antihorario. 
+Dado que el motor DC necesita una mayor corriente, para mayor seguridad utilizaremos 
+el Módulo de Alimentación para suministrar energía al motor.
 
-Components
------------
+Componentes
+---------------
 
 .. image:: ../img/list_1.3.1.png
 
 
+Diagrama del Circuito
+------------------------
 
-Schematic Diagram
-------------------
-
-Plug the power supply module in breadboard, and insert the jumper cap to
-pin of 5V, then it will output voltage of 5V. Connect pin 1 of L293D to
-GPIO22, and set it as high level. Connect pin2 to GPIO27, and pin7 to
-GPIO17, then set one pin high, while the other low. Thus you can change
-the motor’s rotation direction.
+Conecta el módulo de alimentación a la protoboard y coloca el puente en el 
+pin de 5V para que emita una salida de 5V. Conecta el pin 1 del L293D al 
+GPIO22 y configúralo como nivel alto. Conecta el pin 2 al GPIO27 y el pin 7 
+al GPIO17; luego, configura un pin en alto y el otro en bajo para cambiar la 
+dirección de rotación del motor.
 
 .. image:: ../img/image336.png
 
 
-**Experimental Procedures**
+Procedimiento Experimental
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image117.png
 
-
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    El módulo de alimentación puede utilizar una batería de 9V con el broche 
+    para batería de 9V incluido en el kit. Inserta el puente del módulo de 
+    alimentación en el bus de 5V de la protoboard.
 
 .. image:: ../img/image118.jpeg
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -66,7 +65,7 @@ the motor’s rotation direction.
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 4**: Run the code.
+**Paso 3**: Ejecuta el código.
 
 .. raw:: html
 
@@ -76,12 +75,13 @@ the motor’s rotation direction.
 
     sudo node motor.js
 
-As the code runs, the motor first rotates clockwise for 1s then stops for 1s, 
-after that, it rotates anticlockwise for 1s; subsequently, the motor stops 
-for 1s. This series of actions will be executed repeatedly.  
+Al ejecutar el código, el motor primero gira en sentido horario durante 1 
+segundo, luego se detiene durante 1 segundo, después gira en sentido 
+antihorario durante 1 segundo, y finalmente se detiene durante 1 segundo. 
+Esta serie de acciones se repetirá continuamente.
 
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -92,29 +92,29 @@ for 1s. This series of actions will be executed repeatedly.
     MotorEnable = new Gpio(22, { mode: Gpio.OUTPUT });
 
 
-    // Define a motor function to spin the motor
-    // direction should be
-    // 2(clockwise), 1(counterclockwise), 0(stop)
+    // Define una función para girar el motor
+    // La dirección debe ser:
+    // 2 (horario), 1 (antihorario), 0 (detener)
     function motor(direction) {
         switch (direction) {
-            case 2: // Clockwise
-                // Set direction
+            case 2: // Sentido horario
+                // Configura la dirección
                 MotorPin1.digitalWrite(1)
                 MotorPin2.digitalWrite(0)
-                // Enable the motor
+                // Activa el motor
                 MotorEnable.digitalWrite(1)
                 console.log('Clockwise')
                 break;
-            case 1:  // Counterclockwise
-                // Set direction
+            case 1:  // Sentido antihorario
+                // Configura la dirección
                 MotorPin1.digitalWrite(0)
                 MotorPin2.digitalWrite(1)
-                // Enable the motor
+                // Activa el motor
                 MotorEnable.digitalWrite(1)
                 console.log('Counterclockwise')
                 break;
-            case 0: // Stop
-                // Disable the motor
+            case 0: // Detener
+                // Desactiva el motor
                 MotorEnable.digitalWrite(0)
                 console.log('Stop')
 
@@ -130,10 +130,10 @@ for 1s. This series of actions will be executed repeatedly.
     setInterval(() => {
         index=(index+1)%3
         motor(index)
-    }, 1000)    
- 
+    }, 1000)
 
-**Code Explanation**
+
+**Explicación del Código**
 
 .. code-block:: js
 
@@ -141,44 +141,41 @@ for 1s. This series of actions will be executed repeatedly.
     MotorPin2 = new Gpio(27, { mode: Gpio.OUTPUT });
     MotorEnable = new Gpio(22, { mode: Gpio.OUTPUT });
 
-
-Import the pigpio module and create three Gpio class objects to control the three IO ports of Gpio17, Gpio27, and Gpio22.
-
+Importa el módulo pigpio y crea tres objetos de la clase Gpio para controlar los tres puertos IO: Gpio17, Gpio27 y Gpio22.
 
 .. code-block:: js
 
     function motor(direction) {
         switch (direction) {
-            case 2: // Clockwise
-                // Set direction
+            case 2: // Sentido horario
+                // Configura la dirección
                 MotorPin1.digitalWrite(1)
                 MotorPin2.digitalWrite(0)
-                // Enable the motor
+                // Activa el motor
                 MotorEnable.digitalWrite(1)
                 console.log('Clockwise')
                 break;
-            case 1:  // Counterclockwise
-                // Set direction
+            case 1:  // Sentido antihorario
+                // Configura la dirección
                 MotorPin1.digitalWrite(0)
                 MotorPin2.digitalWrite(1)
-                // Enable the motor
+                // Activa el motor
                 MotorEnable.digitalWrite(1)
-                console.log('Counterclockwise')
+                console.log('Sentido antihorario')
                 break;
-            case 0: // Stop
-                // Disable the motor
+            case 0: // Detener
+                // Desactiva el motor
                 MotorEnable.digitalWrite(0)
                 console.log('Stop')
 
         }
     }
 
+Define una función motor() para controlar el motor:
 
-Define a motor() function to control the motor,
-
-#. When the direction is equal to 2, the MotorPin1 port writes a high level, the MotorPin2 port writes a low level, and the enable port MotorEnable writes a high level, and the motor rotates clockwise.
-#. When the direction is equal to 1, the MotorPin1 port writes a low level, the MotorPin2 port writes a high level, and the enable port MotorEnable writes a high level, and the motor rotates counterclockwise.
-#. When the direction is equal to 0, the enable port MotorEnable is written to a low level, and the motor stops rotating.  
+#. Cuando la dirección es igual a 2, el puerto MotorPin1 escribe un nivel alto, el puerto MotorPin2 escribe un nivel bajo, y el puerto habilitador MotorEnable escribe un nivel alto, y el motor gira en sentido horario.
+#. Cuando la dirección es igual a 1, el puerto MotorPin1 escribe un nivel bajo, el puerto MotorPin2 escribe un nivel alto, y el puerto habilitador MotorEnable escribe un nivel alto, y el motor gira en sentido antihorario.
+#. Cuando la dirección es igual a 0, el puerto habilitador MotorEnable escribe un nivel bajo y el motor se detiene.
 
 .. code-block:: js
 
@@ -186,10 +183,9 @@ Define a motor() function to control the motor,
     setInterval(() => {
         index=(index+1)%3
         motor(index)
-    }, 1000)    
+    }, 1000)
 
-Let the motor rotate clockwise and counterclockwise alternately, with an interval of 1 second.
-
+Haz que el motor gire alternadamente en sentido horario y antihorario, con un intervalo de 1 segundo.
 
 .. code-block:: js
 
@@ -198,11 +194,9 @@ Let the motor rotate clockwise and counterclockwise alternately, with an interva
         process.exit();
     })
 
+Cuando se detecta que se ha presionado **ctrl+c**, MotorEnable se pone en bajo para detener el motor.
 
-When it is detected that **ctrl+c is** pressed,
-MotorEnable is written low to stop the motor from spinning.
-
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: ../img/image119.jpeg

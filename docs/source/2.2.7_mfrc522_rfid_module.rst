@@ -1,107 +1,109 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-2.2.7 MFRC522 RFID Module
-==========================
+2.2.7 Módulo RFID MFRC522
+============================
 
-Introduction
+Introducción
 ---------------
 
-Radio Frequency Identification (RFID) refers to technologies that use
-wireless communication between an object (or tag) and interrogating
-device (or reader) to automatically track and identify such objects.
+La Identificación por Radiofrecuencia (RFID) se refiere a las tecnologías 
+que utilizan comunicación inalámbrica entre un objeto (o etiqueta) y un 
+dispositivo de interrogación (o lector) para rastrear e identificar 
+automáticamente dichos objetos.
 
-Some of the most common applications for this technology include retail
-supply chains, military supply chains, automated payment methods,
-baggage tracking and management, document tracking and pharmaceutical
-management, to name a few.
+Algunas de las aplicaciones más comunes de esta tecnología incluyen cadenas 
+de suministro minoristas, cadenas de suministro militares, métodos de pago 
+automatizados, seguimiento y gestión de equipaje, seguimiento de documentos 
+y gestión farmacéutica, entre otros.
 
-In this project, we will use RFID for reading and writing.
+En este proyecto, utilizaremos RFID para leer y escribir.
 
-Components
-----------
+Componentes
+----------------
 
 .. image:: img/list_2.2.7.png
 
-
-Principle
----------
+Principio
+------------
 
 **RFID**
 
-Radio Frequency Identification (RFID) refers to technologies that
-involve using wireless communication between an object (or tag) and an
-interrogating device (or reader) to automatically track and identify
-such objects. The tag transmission range is limited to several meters
-from the reader. A clear line of sight between the reader and tag is not
-necessarily required.
+La Identificación por Radiofrecuencia (RFID) se refiere a tecnologías que 
+implican el uso de comunicación inalámbrica entre un objeto (o etiqueta) y 
+un dispositivo de interrogación (o lector) para rastrear e identificar 
+automáticamente dichos objetos. El alcance de transmisión de la etiqueta se 
+limita a varios metros desde el lector. No es estrictamente necesaria una 
+línea de visión clara entre el lector y la etiqueta.
 
-Most tags contain at least one integrated circuit (IC) and an antenna.
-The microchip stores information and is responsible for managing the
-radio frequency (RF) communication with the reader. Passive tags do not
-have an independent energy source and depend on an external
-electromagnetic signal, provided by the reader, to power their
-operations. Active tags contain an independent energy source, such as a
-battery. Thus, they may have increased processing, transmission
-capabilities and range.
+La mayoría de las etiquetas contienen al menos un circuito integrado (IC) y 
+una antena. El microchip almacena información y es responsable de gestionar 
+la comunicación por radiofrecuencia (RF) con el lector. Las etiquetas pasivas 
+no tienen una fuente de energía independiente y dependen de una señal 
+electromagnética externa, proporcionada por el lector, para alimentar sus 
+operaciones. Las etiquetas activas contienen una fuente de energía independiente, 
+como una batería, lo que puede aumentar sus capacidades de procesamiento, 
+transmisión y alcance.
 
 .. image:: img/image230.png
 
-
 **MFRC522**
 
-MFRC522 is a kind of integrated read and write card chip. It is commonly
-used in the radio at 13.56MHz. Launched by the NXP Company, it is a
-low-voltage, low-cost, and small-sized non-contact card chip, a best
-choice of intelligent instrument and portable handheld device.
+El MFRC522 es un tipo de chip lector y escritor de tarjetas integradas. 
+Es comúnmente utilizado en radiofrecuencia de 13.56 MHz. Lanzado por la 
+compañía NXP, es un chip de tarjeta sin contacto de bajo voltaje, bajo 
+costo y tamaño reducido, ideal para instrumentos inteligentes y dispositivos 
+portátiles.
 
-The MF RC522 uses advanced modulation and demodulation concept which
-fully presented in all types of 13.56MHz passive contactless
-communication methods and protocols. In addition, it supports rapid
-CRYPTO1 encryption algorithm to verify MIFARE products. MFRC522 also
-supports MIFARE series of high-speed non-contact communication, with a
-two-way data transmission rate up to 424kbit/s. As a new member of the
-13.56MHz highly integrated reader card series, MF RC522 is much similar
-to the existing MF RC500 and MF RC530 but there also exists great
-differences. It communicates with the host machine via the serial manner
-which needs less wiring. You can choose between SPI, I2C and serial UART
-mode (similar to RS232), which helps reduce the connection, save PCB
-board space (smaller size), and reduce cost.
+El MF RC522 utiliza un concepto avanzado de modulación y demodulación que se 
+presenta completamente en todos los métodos de comunicación sin contacto pasiva 
+de 13.56 MHz y sus protocolos. Además, admite el algoritmo de cifrado rápido 
+CRYPTO1 para verificar productos MIFARE. El MFRC522 también admite la serie 
+MIFARE de comunicación de alta velocidad sin contacto, con una tasa de 
+transmisión de datos bidireccional de hasta 424 kbit/s. Como un nuevo miembro 
+de la serie de tarjetas lectoras altamente integradas de 13.56 MHz, el MF RC522 
+es muy similar a los ya existentes MF RC500 y MF RC530, aunque presenta algunas 
+diferencias importantes. Se comunica con la máquina host de forma serial, lo que 
+requiere menos cableado. Puedes elegir entre los modos SPI, I2C y UART serial 
+(similar a RS232), lo que ayuda a reducir la conexión, ahorrar espacio en la 
+placa PCB (tamaño más pequeño) y reducir costos.
 
-Schematic Diagram
------------------
+
+Diagrama de conexión
+----------------------
 
 .. image:: img/image331.png
 
 
-Experimental Procedures
------------------------
+Procedimiento Experimental
+--------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: img/image232.png
     :width: 800
 
 
 
-**Step 2:** Set up SPI (refer to :ref:`Appendix` for more details. If you have
-set SPI, skip this step.)
+**Paso 2:** Configurar SPI (consulta el :ref:`Appendix` para más detalles. 
+Si ya configuraste SPI, omite este paso).
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
 
-**Step 3:** Go to the folder of the code.
+Para usuarios de C
+^^^^^^^^^^^^^^^^^^^^^^^
+
+**Paso 3:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -111,7 +113,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.7/
 
-**Step 4:** Compile the code.
+**Paso 4:** Compila el código.
 
 .. raw:: html
 
@@ -123,10 +125,10 @@ For C Language Users
     make write
 
 .. note::
-    There are two examples for you to read or write the card ID,
-    and you can choose one of them according to your need.
+    Hay dos ejemplos para leer o escribir el ID de la tarjeta,
+    y puedes elegir uno de ellos según tu necesidad.
 
-**Step 5:** Run the executable file.
+**Paso 5:** Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -146,43 +148,40 @@ For C Language Users
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`. 
+    Si no funciona después de ejecutarlo, o si aparece un mensaje de error: "wiringPi.h: No such file or directory", consulta:ref:`C code is not working?`.
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
     InitRc522();
 
-This function is used to initialize the RFID RC522 module.
+Esta función se utiliza para inicializar el módulo RFID RC522.
 
 .. code-block:: c
 
     uint8_t read_card_data();
 
-This function is used to read the data of the card, and if 
-the read is successful, it will return "1".
+Esta función se utiliza para leer los datos de la tarjeta; si la lectura
+es exitosa, devolverá "1".
 
 .. code-block:: c
 
     uint8_t write_card_data(uint8_t *data);
 
-This function is used to write the data of card and returns "1" if 
-the write is successful. \*data is the information that will be written 
-to the card.
+Esta función permite escribir datos en la tarjeta y devuelve "1" si la escritura 
+es exitosa. \*data es la información que se escribirá en la tarjeta.
 
+Para usuarios de Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Step 2**: Activating the Virtual Environment.
+**Paso 2**: Activar el entorno virtual.
 
 .. note::
     
-    * Before activation, you need to ensure that you have created a virtual environment, please refer to: :ref:`create_virtual`.
+    * Antes de activarlo, debes asegurarte de haber creado un entorno virtual; consulta: :ref:`create_virtual`.
 
-    * Each time you restart the Raspberry Pi, or open a new terminal, you will need to run the following command again to activate the virtual environment.
+    * Cada vez que reinicies la Raspberry Pi o abras una nueva terminal, deberás ejecutar el siguiente comando nuevamente para activar el entorno virtual.
 
 .. raw:: html
 
@@ -192,14 +191,14 @@ For Python Language Users
 
     source myenv/bin/activate
 
-Once the virtual environment is activated, you will see the environment name before the command line prompt, indicating you are working within the virtual environment.
+Una vez activado el entorno virtual, verás el nombre del entorno antes del indicador de la línea de comandos, lo cual indica que estás trabajando dentro del entorno virtual.
 
 
-**Step 3:** Install the libraries.
+**Paso 3:** Instalar las bibliotecas.
 
-The ``spidev`` library helps handle interactions with the SPI and is a key component to this tutorial as we need it for the Raspberry Pi to interact with the RFID RC522.
+La biblioteca ``spidev`` ayuda a gestionar las interacciones con el SPI y es un componente clave en este tutorial, ya que la necesitamos para que la Raspberry Pi interactúe con el RFID RC522.
 
-Run the following command to install ``spidev`` to your Raspberry Pi via ``pip``.
+Ejecuta el siguiente comando para instalar ``spidev`` en tu Raspberry Pi a través de ``pip``.
 
 .. raw:: html
 
@@ -210,11 +209,15 @@ Run the following command to install ``spidev`` to your Raspberry Pi via ``pip``
     sudo pip3 install spidev
 
 
-Continue to install the MFRC522 library. The MFRC522 library contains two files: ``MFRC522.py`` and ``SimpleMFRC522.py``. 
+Continúa con la instalación de la biblioteca MFRC522. La biblioteca MFRC522 contiene dos archivos: ``MFRC522.py`` y ``SimpleMFRC522.py``.
 
-Among them ``MFRC522.py`` is the realization of RFID RC522 interface, this library handles all the heavy work of communicating with RFID through Pi's SPI interface.
 
-``SimpleMFRC522.py`` takes the ``MFRC522.py`` file and greatly simplifies it by allowing you to deal with only a few functions instead of a few functions.
+Entre ellos, ``MFRC522.py`` es la implementación de la interfaz del RFID RC522; 
+esta biblioteca maneja todo el trabajo pesado de la comunicación con el RFID a 
+través de la interfaz SPI de la Pi.
+
+``SimpleMFRC522.py`` toma el archivo ``MFRC522.py`` y lo simplifica enormemente, 
+permitiéndote manejar solo unas pocas funciones en lugar de muchas.
 
 .. raw:: html
 
@@ -225,9 +228,9 @@ Among them ``MFRC522.py`` is the realization of RFID RC522 interface, this libra
     sudo pip3 install mfrc522
 
 
-**Step 4**: Exiting the Virtual Environment.
+**Paso 4**: Salir del entorno virtual.
 
-When you have completed your work and wish to exit the virtual environment, simply run:
+Cuando hayas terminado tu trabajo y desees salir del entorno virtual, simplemente ejecuta:
 
 .. raw:: html
 
@@ -237,9 +240,9 @@ When you have completed your work and wish to exit the virtual environment, simp
 
     deactivate
 
-This will return you to the system's global Python environment.
+Esto te devolverá al entorno global de Python del sistema.
 
-**Step 5:** Go to the folder of the code.
+**Paso 5:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -249,7 +252,7 @@ This will return you to the system's global Python environment.
 
     cd ~/davinci-kit-for-raspberry-pi/python/2.2.7
 
-**Step 6:** Run the executable file.
+**Paso 6:** Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -269,23 +272,24 @@ This will return you to the system's global Python environment.
 
 .. note::
 
-    * After running ``2.2.7_read.py``, it will print the ``id`` and ``text`` of your card in the shell.
-    * After running ``2.2.7_write.py``, you need to write a message first, press ``Enter`` to confirm, and finally put your card on the MFRC522 RFID module to finish writing.
+    * Después de ejecutar ``2.2.7_read.py``, se imprimirá el ``id`` y el ``texto`` de tu tarjeta en la terminal.
+    * Después de ejecutar ``2.2.7_write.py``, primero debes escribir un mensaje, presionar ``Enter`` para confirmar y, 
+    finalmente, colocar tu tarjeta en el módulo RFID MFRC522 para completar la escritura.
 
 
-**code**
+**código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, debes ir a la ruta del código fuente, como ``davinci-kit-for-raspberry-pi/python``.
+
 .. raw:: html
 
     <run></run>
 
 .. code-block:: python
 
-    # read
+    # lectura
     import time
     from mfrc522 import SimpleMFRC522
     import RPi.GPIO as GPIO
@@ -305,18 +309,18 @@ This will return you to the system's global Python environment.
     if __name__ == '__main__':
         try:
             main()
-        # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
+        # Cuando se presiona 'Ctrl+C', se ejecutará la función destroy().
         except KeyboardInterrupt:
             destroy()
 
-    
+
 .. raw:: html
 
     <run></run>
         
 .. code-block:: python
 
-    # write
+    # escritura
     from mfrc522 import SimpleMFRC522
     import RPi.GPIO as GPIO
 
@@ -335,31 +339,31 @@ This will return you to the system's global Python environment.
     if __name__ == '__main__':
         try:
             main()
-        # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
+        # Cuando se presiona 'Ctrl+C', se ejecutará la función destroy().
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
     reader = SimpleMFRC522()
 
-Instantiate ``SimpleMFRC522()`` class.
+Instancia la clase ``SimpleMFRC522()``.
 
 .. code-block:: python
 
     reader.read()
 
-This function is used to read card data. If the reading is successful, id and text will be returned.
+Esta función se utiliza para leer los datos de la tarjeta. Si la lectura es exitosa, devolverá el id y el texto.
 
 .. code-block:: python
 
     reader.write(text)
 
-This function is used to write information to the card, press ``Enter`` key to finish writing. ``text`` is the information to be written to the card.
+Esta función se utiliza para escribir información en la tarjeta; presiona la tecla ``Enter`` para finalizar la escritura. ``text`` es la información que se escribirá en la tarjeta.
 
-Phenomenon Picture
----------------------
+Imagen del Fenómeno
+-------------------------
 
 .. image:: img/image233.jpeg

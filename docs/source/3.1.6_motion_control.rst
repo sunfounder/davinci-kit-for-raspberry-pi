@@ -1,36 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenidos a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-3.1.6 Motion Control
-======================
+3.1.6 Control de Movimiento
+===============================
 
-Introduction
------------------
+Introducción
+----------------
 
-In this lesson, we will make a simple motion sensing and controlling
-device. The MPU6050 is used as a sensor and the stepper motor as a
-controlled device. With the MPU6050 mounted on the glove, you can
-control the stepper motor by rotating your wrist.
+En esta lección, haremos un dispositivo sencillo de detección y control 
+de movimiento. El MPU6050 se utiliza como sensor y el motor paso a paso 
+como dispositivo controlado. Con el MPU6050 montado en un guante, puedes 
+controlar el motor girando la muñeca.
 
-Components
----------------
+Componentes
+--------------
 
 .. image:: img/list_Motion_Control.png
     :align: center
 
-Schematic Diagram
---------------------------
+Diagrama Esquemático
+-----------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -45,20 +45,20 @@ SCL1         Pin 5
 .. image:: img/Schematic_three_one6.png
    :align: center
 
-Experimental Procedures
-------------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Arma el circuito.
 
 .. image:: img/image251.png
    :alt: 3.1.6 Motion Control_bb
    :width: 800
    :align: center
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Para Usuarios de Lenguaje C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -68,7 +68,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.6/
 
-**Step 3**: Compile the code.
+**Paso 3**: Compila el código.
 
 .. raw:: html
 
@@ -78,7 +78,7 @@ Experimental Procedures
 
     gcc 3.1.6_MotionControl.c -lwiringPi -lm
 
-**Step 4**: Run the executable file.
+**Paso 4**: Ejecuta el archivo compilado.
 
 .. raw:: html
 
@@ -88,17 +88,16 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, if the tilt angle of **mpu6050** on the
-`Y <https://cn.bing.com/dict/search?q=Y&FORM=BDVSP6&mkt=zh-cn>`__-`axis <https://cn.bing.com/dict/search?q=axis&FORM=BDVSP6&mkt=zh-cn>`__
-is larger than **45** ℃, the stepper motor rotates anticlockwise; if
-less than **-45** ℃, the stepper motor rotates clockwise.
+Mientras el código se ejecuta, si el ángulo de inclinación del **mpu6050** 
+en el eje `Y <https://cn.bing.com/dict/search?q=Y&FORM=BDVSP6&mkt=zh-cn>`__-`axis <https://cn.bing.com/dict/search?q=axis&FORM=BDVSP6&mkt=zh-cn>`__
+ es mayor a **45** °C, el motor paso a paso gira en sentido 
+antihorario; si es menor a **-45** °C, el motor gira en sentido horario.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
 
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -113,7 +112,7 @@ less than **-45** ℃, the stepper motor rotates clockwise.
         return angle;
     }
 
-mpu6050 gets the tilt angle in the direction of the Y-axis.
+mpu6050 obtiene el ángulo de inclinación en la dirección del eje Y.
 
 .. code-block:: c
 
@@ -122,46 +121,45 @@ mpu6050 gets the tilt angle in the direction of the Y-axis.
             for(int j=0;j<4;j++){
                 for(int i=0;i<4;i++)
                     {digitalWrite(motorPin[i],0x99>>j & (0x08>>i));}
-                delayMicroseconds(stepSpeed);
-            }        
-        }
+                delayMicroseconds(stepSpeed);
+            }         
+        }
         else if(direction =='a'){
             for(int j=0;j<4;j++){
                 for(int i=0;i<4;i++)
                     {digitalWrite(motorPin[i],0x99<<j & (0x80>>i));}
-                delayMicroseconds(stepSpeed);
-            }   
-        }
+                delayMicroseconds(stepSpeed);
+            }   
+        }
     }
 
-If the received direction **key** is \'**c**\', the stepper motor
-rotates clockwise; if the **key** is \'**a**\', the motor rotates
-anticlockwise. Refer to :ref:`1.3.3 Stepper Motor` for more details about
-the calculation of the rotating direction of the stepper motor.
+Si la dirección **key** recibida es \'**c**\', el motor paso a paso gira 
+en sentido horario; si la **key** es \'**a**\', el motor gira en sentido 
+antihorario. Consulta :ref:`1.3.3 Motor Paso a Paso` para más detalles 
+sobre el cálculo de la dirección de rotación del motor.
 
 .. code-block:: c
 
     int main()
     {
-        setup();
+        setup();
         double angle;
         while(1) {
             angle = mpu6050();
             if (angle >=45){rotary('a');}
             else if (angle<=-45){rotary('c');}
-        }
+        }
         return 0;
     }
 
-The tilt angle in the direction of the Y-axis is read from **mpu6050**,
-and if it’s larger than **45** ℃, the stepper motor rotates
-anticlockwise; if less than **-45** ℃, the stepper motor rotates
-clockwise.
+El ángulo de inclinación en la dirección del eje Y se lee desde el **mpu6050**, 
+y si es mayor a **45** °C, el motor paso a paso gira en sentido antihorario; 
+si es menor a **-45** °C, el motor gira en sentido horario.
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Para Usuarios de Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -171,7 +169,7 @@ clockwise.
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3**: Run the executable file.
+**Paso 3**: Ejecuta el archivo.
 
 .. raw:: html
 
@@ -181,16 +179,16 @@ clockwise.
 
     sudo python3 3.1.6_MotionControl.py
 
-As the code runs, if the tilt angle of **mpu6050** on the
+Mientras se ejecuta el código, si el ángulo de inclinación del **mpu6050** en el 
 `Y <https://cn.bing.com/dict/search?q=Y&FORM=BDVSP6&mkt=zh-cn>`__\ **-**\ `axis <https://cn.bing.com/dict/search?q=axis&FORM=BDVSP6&mkt=zh-cn>`__
-is larger than **45** ℃, the stepper motor rotates anticlockwise; if
-less than **-45** ℃, the stepper motor rotates clockwise.
+ es mayor a **45** °C, el motor paso a paso gira en sentido antihorario; 
+si es menor a **-45** °C, el motor gira en sentido horario.
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes, debes dirigirte a la ruta de código fuente como ``davinci-kit-for-raspberry-pi/python``. 
     
 .. raw:: html
 
@@ -203,9 +201,7 @@ less than **-45** ℃, the stepper motor rotates clockwise.
     import math
     import time
 
-
-
-    # Power management registers
+    # Registros de gestión de energía
     power_mgmt_1 = 0x6b
     power_mgmt_2 = 0x6c
 
@@ -213,13 +209,13 @@ less than **-45** ℃, the stepper motor rotates clockwise.
     address = 0x68     
     bus.write_byte_data(address, power_mgmt_1, 0)
 
-    #Stepper motor pins
+    # Pines del motor paso a paso
     motorPin = (18,23,24,25) 
     rolePerMinute =15
     stepsPerRevolution = 2048
     stepSpeed = (60/rolePerMinute)/stepsPerRevolution
 
-    #mpu6050
+    # mpu6050
     def read_byte(adr):
         return bus.read_byte_data(address, adr)
 
@@ -257,7 +253,7 @@ less than **-45** ℃, the stepper motor rotates clockwise.
         angle=get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
         return angle
 
-    #Stepper Motor
+    # Motor Paso a Paso
     def rotary(direction):
         if(direction == 'c'):   
             for j in range(4):
@@ -297,7 +293,7 @@ less than **-45** ℃, the stepper motor rotates clockwise.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
@@ -311,7 +307,7 @@ less than **-45** ℃, the stepper motor rotates clockwise.
         angle=get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
         return angle
 
-mpu6050 gets the tilt angle in the direction of the Y-axis.
+mpu6050 obtiene el ángulo de inclinación en la dirección del eje Y.
 
 .. code-block:: python
 
@@ -320,35 +316,34 @@ mpu6050 gets the tilt angle in the direction of the Y-axis.
             for j in range(4):
                 for i in range(4):
                     GPIO.output(motorPin[i],0x99>>j & (0x08>>i))
-                time.sleep(stepSpeed)
+                time.sleep(stepSpeed)
 
         elif(direction == 'a'):
             for j in range(4):
                 for i in range(4):
                     GPIO.output(motorPin[i],0x99<<j & (0x80>>i))
-                time.sleep(stepSpeed)
+                time.sleep(stepSpeed)
 
-If the received direction **key** is \'**c**\', the stepper motor
-rotates clockwise; if the **key** is \'**a**\', the motor rotates
-anticlockwise. Refer to :ref:`1.3.3 Stepper Motor` for more details about
-the calculation of the rotating direction of the stepper motor.
+Si la dirección **key** recibida es \'**c**\', el motor paso a paso gira en 
+sentido horario; si la **key** es \'**a**\', el motor gira en sentido antihorario. 
+Consulta :ref:`1.3.3 Stepper Motor` para más detalles sobre el cálculo de 
+la dirección de rotación del motor.
 
 .. code-block:: python
 
     def loop():
         while True:
-            angle=mpu6050()
+            angle=mpu6050()
             if angle >=45 :
-                rotary('a')
+                rotary('a')
             elif angle <=-45:
-                rotary('c')
+                rotary('c')
 
-The tilt angle in the direction of the **Y-axis** is read from
-**mpu6050**, and if it’s larger than **45** ℃, rotary() is called to
-let the stepper motor rotate anticlockwise; if less than **-45** ℃, the
-stepper motor rotates clockwise.
+El ángulo de inclinación en la dirección del **eje Y** se lee desde **mpu6050**. 
+Si es mayor a **45** °C, se llama a rotary() para que el motor paso a paso gire 
+en sentido antihorario; si es menor a **-45** °C, el motor gira en sentido horario.
 
-Phenomenon Picture
+Imagen del Fenómeno
 -----------------------
 
 .. image:: img/image252.jpeg

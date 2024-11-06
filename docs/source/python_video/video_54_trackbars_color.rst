@@ -1,28 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-Video 54: Using Trackbars to Track Colored Objects in OpenCV
+
+Video 54: Uso de Trackbars para Rastrear Objetos de Color en OpenCV
 =======================================================================================
 
-Learn how to track objects using OpenCV on Raspberry Pi with the SunFounder Raphael kit in this comprehensive tutorial.
+Aprende a rastrear objetos usando OpenCV en Raspberry Pi con el kit Raphael de SunFounder en este tutorial completo.
 
-1. **SunFounder Sponsorship**: Introduction to the SunFounder Raphael kit for Raspberry Pi.
-2. **Trackbar Setup**: Setting up trackbars to define parameters like Hue, Saturation, and Value.
-3. **Function Definitions**: Defining functions to handle trackbar changes and update parameter values.
-4. **Color Space Conversion**: Converting the image to the HSV color space for improved object detection.
-5. **Mask Creation**: Creating masks based on defined HSV ranges to isolate objects of interest.
-6. **Object Display**: Displaying the mask and tracked objects using OpenCV's imshow function.
+1. **Patrocinio de SunFounder**: Introducción al kit Raphael de SunFounder para Raspberry Pi.
+2. **Configuración de Trackbars**: Configuración de trackbars para definir parámetros como Matiz, Saturación y Valor.
+3. **Definición de Funciones**: Definición de funciones para manejar cambios en los trackbars y actualizar los valores de los parámetros.
+4. **Conversión de Espacio de Color**: Conversión de la imagen al espacio de color HSV para mejorar la detección de objetos.
+5. **Creación de Máscaras**: Creación de máscaras basadas en los rangos de HSV definidos para aislar los objetos de interés.
+6. **Visualización de Objetos**: Visualización de la máscara y de los objetos rastreados usando la función imshow de OpenCV.
 
 **Video**
 

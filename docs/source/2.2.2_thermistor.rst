@@ -1,118 +1,110 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenidos a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vista previa exclusiva**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales en fechas festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
 2.2.2 Thermistor
-================
+==================
 
-Introduction
-------------
+Introducción
+---------------
 
-Just like photoresistor can sense light, thermistor is a temperature
-sensitive electronic device that can be used for realizing functions of
-temperature control, such as making a heat alarm.
+Al igual que la fotorresistencia puede detectar la luz, un termistor es 
+un dispositivo electrónico sensible a la temperatura que puede usarse para 
+funciones de control de temperatura, como activar una alarma de calor.
 
-Components
-----------
+Componentes
+--------------
 
 .. image:: img/list_2.2.2_thermistor.png
 
 
-Principle
----------
+Principio
+-------------
 
-A thermistor is a thermally sensitive resistor that exhibits a precise
-and predictable change in resistance proportional to small changes in
-temperature. How much its resistance will change is dependent upon its
-unique composition. Thermistors are the parts of a larger group of
-passive components. And unlike their active component counterparts,
-passive devices are incapable of providing power gain, or amplification
-to a circuit.
+Un termistor es una resistencia sensible a la temperatura que exhibe un 
+cambio preciso y predecible en la resistencia proporcional a pequeños cambios 
+de temperatura. Cuánto cambia su resistencia depende de su composición única. 
+Los termistores forman parte de un grupo más grande de componentes pasivos que, 
+a diferencia de sus contrapartes activas, no proporcionan ganancia de potencia 
+o amplificación a un circuito.
 
-Thermistor is a sensitive element, and it has two types: Negative
-Temperature Coefficient (NTC) and Positive Temperature Coefficient
-(PTC), also known as NTC and PTC. Its resistance varies significantly
-with temperature. The resistance of PTC thermistor increases with
-temperature ,while the condition of NTC is opposite to the former In
-this experiment we use NTC.
+El termistor es un elemento sensible que presenta dos tipos: Coeficiente de 
+Temperatura Negativo (NTC) y Coeficiente de Temperatura Positivo (PTC). Su 
+resistencia varía significativamente con la temperatura. La resistencia de un 
+termistor PTC aumenta con la temperatura, mientras que en el caso del NTC es 
+lo contrario. En este experimento usamos un termistor NTC.
 
 .. image:: img/image325.png
 
+El principio es que la resistencia del termistor NTC cambia con la temperatura 
+del entorno. Detecta la temperatura en tiempo real. Cuando la temperatura aumenta, 
+la resistencia del termistor disminuye. Luego, el convertidor A/D convierte los 
+datos de voltaje en cantidades digitales, y la temperatura en grados Celsius o 
+Fahrenheit se muestra mediante programación.
 
-The principle is that the resistance of the NTC thermistor changes with
-the temperature of the outer environment. It detects the real-time
-temperature of the environment. When the temperature gets higher, the
-resistance of the thermistor decreases. Then the voltage data is
-converted to digital quantities by the A/D adapter. The temperature in
-Celsius or Fahrenheit is output via programming.
+En este experimento se utiliza un termistor y una resistencia pull-up de 10k. 
+Cada termistor tiene una resistencia normal, que en este caso es de 10k ohmios, 
+medida a 25 grados Celsius.
 
-In this experiment, a thermistor and a 10k pull-up resistor are used.
-Each thermistor has a normal resistance. Here it is 10k ohm, which is
-measured under 25 degree Celsius.
-
-Here is the relation between the resistance and temperature:
+Aquí está la relación entre la resistencia y la temperatura:
 
 R\ :sub:`T` =R\ :sub:`N` exp\ :sup:`B(1/TK – 1/TN)`
 
-**R\ T** is the resistance of the NTC thermistor when the temperature is
-**T\ K**.
+**R\ T** es la resistencia del termistor NTC cuando la temperatura es **T\ K**.
 
-**R\ N** is the resistance of the NTC thermistor under the rated
-temperature **T\ N**. Here, the numerical value of **R\ N** is 10k.
+**R\ N** es la resistencia del termistor NTC bajo la temperatura nominal **T\ N**, cuyo valor es 10k.
 
-**T\ K** is a Kelvin temperature and the unit is K. Here, the numerical
-value of **T\ K**\ is 273.15 + degree Celsius.
+**T\ K** es una temperatura en Kelvin y la unidad es K, donde el valor numérico 
+de **T\ K** es 273.15 + grados Celsius.
 
-**T\ N** is a rated Kelvin temperature; the unit is K too. Here, the
-numerical value of **T\ N** is 273.15+25.
+**T\ N** es la temperatura nominal en Kelvin, también en K. Su valor es 273.15+25.
 
-And **B**\ (beta), the material constant of NTC thermistor, is also
-called heat sensitivity index with a numerical value 3950.
+**B** (beta), es la constante del material del termistor NTC, conocida también 
+como índice de sensibilidad térmica, con un valor numérico de 3950.
 
-**exp** is the abbreviation of exponential, and the base number e is a
-natural number and equals 2.7 approximately.
+**exp** es la abreviatura de exponencial, y el número base e es un número natural 
+que aproximadamente es igual a 2.7.
 
-Convert this formula
-T\ :sub:`K`\ =1/(ln(R\ :sub:`T`/R\ :sub:`N`)/B+1/T\ :sub:`N`) to get
-Kelvin temperature that minus 273.15 equals degree Celsius.
+Convertir esta fórmula
+T\ :sub:`K`\ =1/(ln(R\ :sub:`T`/R\ :sub:`N`)/B+1/T\ :sub:`N`) permite obtener 
+la temperatura en Kelvin, de la cual, al restarle 273.15, se obtiene en grados 
+Celsius.
 
-This relation is an empirical formula. It is accurate only when the
-temperature and resistance are within the effective range.
+Esta relación es una fórmula empírica y solo es precisa cuando la temperatura y 
+la resistencia están dentro del rango efectivo.
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+-------------------------
 
 .. image:: img/image323.png
-
 
 .. image:: img/image324.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: img/image202.png
     :width: 800
 
 
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
+Para usuarios de lenguaje C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -122,7 +114,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.2/
 
-**Step 3:** Compile the code.
+**Paso 3:** Compila el código.
 
 .. raw:: html
 
@@ -133,10 +125,9 @@ For C Language Users
     gcc 2.2.2_Thermistor.c -lwiringPi -lm
 
 .. note::
-    -lm is to load the library math. Do not omit, or you will make
-    an error.
+    -lm es para cargar la biblioteca matemática. No omitir, o se generará un error.
 
-**Step 4:** Run the executable file.
+**Paso 4:** Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -146,15 +137,14 @@ For C Language Users
 
     sudo ./a.out
 
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
+Al ejecutar el código, el termistor detectará la temperatura ambiente, que se 
+imprimirá en pantalla una vez que finalice el cálculo del programa.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si el programa no funciona después de ejecutarlo o aparece un mensaje de error que dice: "wiringPi.h: No such file or directory", consulta la sección :ref:`C code is not working?`.
 
-
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -183,19 +173,19 @@ be printed on the screen once it finishes the program calculation.
 
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
-        // Start bit
+        // Bit de inicio
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        //Single End mode
+        // Modo de entrada simple
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        // ODD
+        // IMPAR
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        //Select
+        // Selección
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);
@@ -229,7 +219,7 @@ be printed on the screen once it finishes the program calculation.
     {
         unsigned char analogVal;
         double Vr, Rt, temp, cel, Fah;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+        if(wiringPiSetup() == -1){ // cuando falla la inicialización de wiringPi, imprime mensaje en pantalla
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -249,20 +239,20 @@ be printed on the screen once it finishes the program calculation.
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
     #include <math.h>
 
-There is a C numerics library which declares a set of functions to
-compute common mathematical operations and transformations.
+Esta es una biblioteca de funciones matemáticas en C que permite realizar 
+operaciones y transformaciones numéricas comunes.
 
 .. code-block:: c
 
     analogVal = get_ADC_Result(0);
 
-This function is used to read the value of the thermistor.
+Esta función se utiliza para leer el valor del termistor.
 
 .. code-block:: c
 
@@ -273,46 +263,45 @@ This function is used to read the value of the thermistor.
     Fah = cel * 1.8 +32;
     printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
 
-These calculations convert the thermistor values into Celsius values.
+Estos cálculos convierten los valores del termistor en grados Celsius.
 
 .. code-block:: c
 
     Vr = 5 * (double)(analogVal) / 255;
     Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
 
-These two lines of codes are calculating the voltage distribution with
-the read value analog so as to get Rt (resistance of thermistor).
+Estas líneas calculan la distribución de voltaje a partir del valor 
+leído (analogVal) para obtener Rt (resistencia del termistor).
 
 .. code-block:: c
 
     temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
 
-This code refers to plugging Rt into the formula
-**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** to get Kelvin temperature.
+Este cálculo usa Rt en la fórmula 
+**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** para obtener la temperatura en Kelvin.
 
 .. code-block:: c
 
     temp = temp - 273.15;
 
-Convert Kelvin temperature into degree Celsius.
+Convierte la temperatura de Kelvin a grados Celsius.
 
 .. code-block:: c
 
     Fah = cel * 1.8 +32;
 
-Convert degree Celsius into Fahrenheit.
-    
+Convierte la temperatura de grados Celsius a Fahrenheit.
+
 .. code-block:: c
 
     printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
 
-Print centigrade degree, Fahrenheit degree and their units on the
-display.
+Imprime en pantalla los valores en grados Celsius, Fahrenheit y sus unidades.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Para Usuarios de Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -322,7 +311,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run the executable file
+**Paso 3:** Ejecuta el archivo ejecutable
 
 .. raw:: html
 
@@ -332,14 +321,14 @@ For Python Language Users
 
     sudo python3 2.2.2_Thermistor.py
 
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
+Con el código en ejecución, el termistor detectará la temperatura ambiente, 
+la cual se imprimirá en la pantalla al finalizar el cálculo del programa.
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, debes ir a la ruta del código fuente, como ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -373,20 +362,20 @@ be printed on the screen once it finishes the program calculation.
         except KeyboardInterrupt:
             ADC0834.destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
     import math
 
-There is a numerics library which declares a set of functions to compute
-common mathematical operations and transformations.
+Esta es una biblioteca de funciones numéricas que declara un conjunto de 
+funciones para realizar operaciones y transformaciones matemáticas comunes.
 
 .. code-block:: python
 
     analogVal = ADC0834.getResult()
 
-This function is used to read the value of the thermistor.
+Esta función se usa para leer el valor del termistor.
 
 .. code-block:: python
 
@@ -397,44 +386,43 @@ This function is used to read the value of the thermistor.
     Fah = Cel * 1.8 + 32
     print ('Celsius: %.2f °C  Fahrenheit: %.2f ℉' % (Cel, Fah))
 
-These calculations convert the thermistor values into centigrade degree
-and Fahrenheit degree.
+Estos cálculos convierten los valores del termistor en grados Celsius y 
+Fahrenheit.
 
 .. code-block:: python
 
     Vr = 5 * float(analogVal) / 255
     Rt = 10000 * Vr / (5 - Vr)
 
-These two lines of codes are calculating the voltage distribution with
-the read value analog so as to get Rt (resistance of thermistor).
+Estas dos líneas de código calculan la distribución de voltaje con el valor 
+analógico leído para obtener Rt (resistencia del termistor).
 
 .. code-block:: python
 
     temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
 
-This code refers to plugging Rt into the formula
-**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** to get Kelvin temperature.
+Este cálculo introduce Rt en la fórmula 
+**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** para obtener la temperatura en Kelvin.
 
 .. code-block:: python
 
     temp = temp - 273.15
 
-Convert Kelvin temperature into centigrade degree.
+Convierte la temperatura de Kelvin a grados Celsius.
 
 .. code-block:: python
 
     Fah = Cel * 1.8 + 32
 
-Convert the centigrade degree into Fahrenheit degree.
+Convierte la temperatura de grados Celsius a grados Fahrenheit.
 
 .. code-block:: python
 
     print ('Celsius: %.2f °C  Fahrenheit: %.2f ℉' % (Cel, Fah))
 
-Print centigrade degree, Fahrenheit degree and their units on the
-display.
+Imprime los valores en grados Celsius y Fahrenheit con sus unidades en la pantalla.
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+------------------------
 
 .. image:: img/image203.jpeg

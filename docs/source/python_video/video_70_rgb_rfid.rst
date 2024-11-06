@@ -1,39 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros apasionados para profundizar en el mundo de Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y supera desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-Video 70: Using the MFRC522 RFID Module and Tag on Raspberry Pi
+Video 70: Uso del Módulo RFID MFRC522 y Tarjeta en Raspberry Pi
 =======================================================================================
 
+El video aborda técnicas avanzadas para programar tarjetas RFID/NFC utilizando una Raspberry Pi. 
+Cubre temas como agrupación de datos, manejo de entradas del usuario, interacción con el hardware y verificación de errores. 
+El tutorial ofrece conocimientos sobre la gestión eficiente de datos, 
+prompts de usuario y técnicas de depuración para implementar funciones administrativas en proyectos de programación de tarjetas RFID/NFC.
 
-The video discusses advanced techniques for programming RFID/NFC cards using a Raspberry Pi. 
-It covers topics such as data bundling, user input handling, hardware interaction, and error checking. 
-The tutorial provides insights into efficient data management, 
-user prompts, and debugging techniques for implementing admin functionality in RFID/NFC card programming projects.
-
-
-1. Introduction to Raspberry Pi kit sponsored by SunFounder.
-2. Setting up RC522 RFID module and RGB LED.
-3. Utilizing dictionaries for efficient data management.
-4. Implementing user prompts and responses.
-5. Admin functionality for programming new RFID/NFC cards.
-6. Data Bundling: Using a colon delimiter to bundle data efficiently.
-7. Proper formatting and apostrophe handling for user input.
-8. Writing personalized data onto NFC cards.
-9. Controlling LEDs based on the data read from NFC cards.
-10. Importance of error checking and techniques for error handling.
-11. Homework assignment: Implementing error checking for color input and dynamically updating the dictionary in the admin section of the program.
-
+1. Introducción al kit de Raspberry Pi patrocinado por SunFounder.
+2. Configuración del módulo RFID RC522 y el LED RGB.
+3. Uso de diccionarios para una gestión eficiente de los datos.
+4. Implementación de prompts de usuario y respuestas.
+5. Funcionalidad de administración para programar nuevas tarjetas RFID/NFC.
+6. Agrupación de Datos: Uso de dos puntos como delimitador para organizar datos de forma eficiente.
+7. Formateo adecuado y manejo de apóstrofes en las entradas de usuario.
+8. Escritura de datos personalizados en tarjetas NFC.
+9. Control de LEDs según los datos leídos de las tarjetas NFC.
+10. Importancia de la verificación de errores y técnicas para el manejo de errores.
+11. Tarea práctica: Implementar verificación de errores para la entrada de color y actualización dinámica del diccionario en la sección administrativa del programa.
 
 **Video**
 

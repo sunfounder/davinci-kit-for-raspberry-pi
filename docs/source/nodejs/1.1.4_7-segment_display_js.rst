@@ -1,54 +1,54 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el apasionante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-1.1.4 7-segment Display
-=============================
+1.1.4 Pantalla de 7 Segmentos
+=================================
 
-Introduction
---------------
+Introducción
+---------------
 
-Let's try to drive a 7-segment display to show a figure from 0 to 9 and
-A to F.
+Vamos a aprender a controlar una pantalla de 7 segmentos para mostrar cifras de 0 a 9 y de A a F.
 
-Components
-----------------
+Componentes
+-------------
 
 .. image:: img/list_7_segment.png
 
 
-Schematic Diagram
----------------------
+Diagrama del Circuito
+-----------------------
 
-Connect pin ST_CP of 74HC595 to Raspberry Pi GPIO18, SH_CP to GPIO27, DS
-to GPIO17, parallel output ports to 8 segments of the LED segment
-display. Input data in DS pin to shift register when SH_CP (the clock
-input of the shift register) is at the rising edge, and to the memory
-register when ST_CP (the clock input of the memory) is at the rising
-edge. Then you can control the states of SH_CP and ST_CP via the
-Raspberry Pi GPIOs to transform serial data input into parallel data
-output so as to save Raspberry Pi GPIOs and drive the display.
+Conecta el pin ST_CP del 74HC595 al GPIO18 de la Raspberry Pi, SH_CP a GPIO27 
+y DS a GPIO17. Los puertos de salida paralelos se conectan a los 8 segmentos 
+de la pantalla LED. Introduce datos en el pin DS al registro de desplazamiento 
+cuando SH_CP (entrada de reloj del registro de desplazamiento) está en el flanco 
+ascendente, y al registro de memoria cuando ST_CP (entrada de reloj de la memoria) 
+está en el flanco ascendente. Puedes controlar los estados de SH_CP y ST_CP a 
+través de los GPIO de la Raspberry Pi para transformar la entrada de datos 
+seriales en salida de datos paralelos, ahorrando así pines GPIO en la Raspberry Pi y 
+manejando la pantalla.
 
 .. image:: img/schematic_7_segment.png
 
-Experimental Procedures
---------------------------
+Procedimiento Experimental
+------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: img/image73.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -58,7 +58,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -68,9 +68,9 @@ Experimental Procedures
 
     sudo node 7-segment_display.js
 
-After the code runs, you'll see the 7-segment display display 0-9, A-F.
+Después de ejecutar el código, verás que la pantalla de 7 segmentos muestra de 0 a 9 y de A a F.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -101,13 +101,13 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
     }, 1000);
 
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
     const segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71];
 
-Define a hexadecimal (common cathode) segment code array from 0 to F.   
+Define un arreglo de códigos de segmentos en hexadecimal (cátodo común) de 0 a F.
 
 .. code-block:: js
 
@@ -115,7 +115,7 @@ Define a hexadecimal (common cathode) segment code array from 0 to F.
     const RCLK = new Gpio(18, { mode: Gpio.OUTPUT });
     const SRCLK = new Gpio(27, { mode: Gpio.OUTPUT });
 
-Initialize pins 17, 18, and 27 as output mode, and copy them to ``SDI``, ``RCLK``, and ``SRCLK`` respectively.
+Inicializa los pines 17, 18 y 27 en modo de salida, y los asigna a ``SDI``, ``RCLK`` y ``SRCLK`` respectivamente.
 
 .. code-block:: js
 
@@ -131,8 +131,8 @@ Initialize pins 17, 18, and 27 as output mode, and copy them to ``SDI``, ``RCLK`
         RCLK.trigger(1,1);
     }
 
-Implement a ``hc595_shift`` function to convert the fields in the array ``segCode`` into numbers 
-and display them on the digital tube.
+Implementa una función ``hc595_shift`` para convertir los campos del 
+arreglo ``segCode`` en números y mostrarlos en la pantalla de 7 segmentos.
 
 .. code-block:: js
 
@@ -142,31 +142,30 @@ and display them on the digital tube.
     }
     SDI.digitalWrite(code); 
 
-Assign the dat data to SDI(DS) by bits. 
-Here we assume dat=0x3f(0011 1111, when j=2, 0x3f will shift right(<<) 2 bits. 
-1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
-At this time, 1 is written to SDI.
+Asigna los datos ``dat`` a SDI(DS) bit a bit. 
+Por ejemplo, si ``dat=0x3f`` (0011 1111), cuando ``j=2``, 0x3f se desplazará a la derecha (<<) 2 bits. 
+1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, lo cual es verdadero.
+En este momento, se escribe un 1 en SDI.
 
 .. code-block:: js
 
     SRCLK.trigger(1,1);
 
-Generate a rising edge pulse and move the DS data to the shift register.
+Genera un pulso ascendente y transfiere los datos de DS al registro de desplazamiento.
 
 
 ``trigger(pulseLen, level)``
-    * pulseLen - pulse length in microseconds (1 - 100)
-    * level - 0 or 1
+    * pulseLen - longitud del pulso en microsegundos (1 - 100)
+    * level - 0 o 1
 
-Sends a trigger pulse to the GPIO. 
-The GPIO is set to level for pulseLen microseconds and then reset to not level.
+Envía un pulso de activación al GPIO. 
+El GPIO se configura a nivel durante ``pulseLen`` microsegundos y luego se restablece a no nivel.
 
 .. code-block:: js
 
     RCLK.trigger(1,1);
 
-Generate a rising edge pulse and move the data from the shift register to the storage register.
-
+Genera un pulso ascendente y mueve los datos del registro de desplazamiento al registro de almacenamiento.
 
 .. code-block:: js
 
@@ -176,11 +175,11 @@ Generate a rising edge pulse and move the data from the shift register to the st
         hc595_shift(segCode[index]);
     }, 1000);
 
-Finally, use the function ``hc595_shift()`` to convert the fields in ``segCode`` 
-and display them through the digital tube.   
+Finalmente, utiliza la función ``hc595_shift()`` para convertir los 
+campos en ``segCode`` y mostrarlos en la pantalla de 7 segmentos.
 
-Phenomenon Picture
----------------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: img/image74.jpeg
 

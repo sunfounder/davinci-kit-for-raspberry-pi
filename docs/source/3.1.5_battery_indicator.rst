@@ -1,34 +1,34 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Resuelve problemas postventa y desafíos técnicos con ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales por temporadas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-3.1.5 Battery Indicator
-============================
+3.1.5 Indicador de Batería
+================================
 
-Introduction
---------------
+Introducción
+-----------------
 
-In this course, we will make a battery indicator device that can
-visually display the battery level on the LED Bargraph.
+En este curso, crearemos un dispositivo indicador de batería que puede 
+mostrar visualmente el nivel de carga en una barra LED.
 
-Components
+Componentes
 ------------
 
 .. image:: img/list_Battery_Indicator.png
     :align: center
 
-Schematic Diagram
--------------------
+Diagrama de Esquemático
+---------------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -50,20 +50,20 @@ GPIO26       Pin 37   25       26
 .. image:: img/Schematic_three_one5.png
    :align: center
 
-Experimental Procedures
--------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Monta el circuito.
 
 .. image:: img/image248.png
-   :alt: 电量计_bb
+   :alt: indicador_bb
    :width: 800
    :align: center
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Para Usuarios de Lenguaje C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -73,7 +73,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.5/
 
-**Step 3:** Compile the code.
+**Paso 3:** Compila el código.
 
 .. raw:: html
 
@@ -83,7 +83,7 @@ Experimental Procedures
 
     gcc 3.1.5_BatteryIndicator.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Paso 4:** Ejecuta el archivo.
 
 .. raw:: html
 
@@ -93,17 +93,16 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the program runs, give the 3rd pin of ADC0834 and the GND a
-lead-out wire separately and then lead them to the two poles of a
-battery separately. You can see the corresponding LED on the LED
-Bargraph is lit up to display the power level (measuring range: 0-5V).
+Cuando el programa se ejecute, conecta el pin 3 del ADC0834 y el pin GND de 
+forma separada, luego conéctalos a los dos polos de una batería. Puedes ver 
+que el LED correspondiente en la barra LED se enciende para mostrar el nivel 
+de carga (rango de medición: 0-5V).
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si el programa no funciona después de ejecutarse, o aparece un error como: \"wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
 
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -116,10 +115,9 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
         }
     }
 
-This function works for controlling the turning on or off of the 10 LEDs
-on the LED Bargraph. We give these 10 LEDs high levels to let they are
-off at first, then decide how many LEDs are lit up by changing the
-received analog value.
+Esta función controla el encendido o apagado de los 10 LEDs en la barra 
+LED. Primero, se establece un nivel alto en los LEDs para apagarlos, luego, 
+se determina cuántos LEDs encender según el valor analógico recibido.
 
 .. code-block:: c
 
@@ -144,19 +142,18 @@ received analog value.
         return 0;
     }
 
-analogVal produces values (**0-255**) with varying voltage values
-(**0-5V**), ex., if a 3V is detected on a battery, the corresponding
-value **152** is displayed on the voltmeter.
+analogVal genera valores (**0-255**) según el voltaje (**0-5V**). Por ejemplo, 
+si se detecta un voltaje de 3V en una batería, el valor correspondiente de **152** 
+se muestra en el voltímetro.
 
-The **10** LEDs on the LED Bargraph are used to display the
-**analogVal** readings. 255/10=25, so every **25** the analog value
-increases, one more LED turns on, ex., if “analogVal=150 (about 3V),
-there are 6 LEDs turning on.”
+Los **10** LEDs de la barra LED se utilizan para mostrar las lecturas de **analogVal**. 
+255/10 = 25, así que cada **25** unidades de valor analógico que aumentan, se enciende 
+un LED adicional. Por ejemplo, si “analogVal = 150” (aproximadamente 3V), se encienden 6 LEDs.
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Para Usuarios de Lenguaje Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -166,7 +163,7 @@ there are 6 LEDs turning on.”
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run the executable file.
+**Paso 3:** Ejecuta el archivo.
 
 .. raw:: html
 
@@ -176,16 +173,18 @@ there are 6 LEDs turning on.”
 
     sudo python3 3.1.5_BatteryIndicator.py
 
-After the program runs, give the 3rd pin of ADC0834 and the GND a
-lead-out wire separately and then lead them to the two poles of a
-battery separately. You can see the corresponding LED on the LED
-Bargraph is lit up to display the power level (measuring range: 0-5V).
+Cuando el programa se ejecute, conecta el pin 3 del ADC0834 y el pin 
+GND de forma separada, luego conéctalos a los dos polos de una batería. 
+Podrás ver que el LED correspondiente en la barra LED se enciende para 
+mostrar el nivel de carga (rango de medición: 0-5V).
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a 
+    continuación. Pero antes de hacerlo, debes ir a la ruta del código 
+    fuente como ``davinci-kit-for-raspberry-pi/python``. 
     
 .. raw:: html
 
@@ -224,10 +223,10 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
         setup()
         try:
             loop()
-        except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt:  # Cuando se presiona 'Ctrl+C', se ejecutará destroy().
             destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
@@ -237,10 +236,10 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
         for i in range(value):
             GPIO.output(ledPins[i],GPIO.LOW)
 
-This function works for controlling the turning on or off of the **10**
-LEDs on the LED Bargraph. We give these **10** LEDs high levels to let
-they are **off** at first, then decide how many LEDs are lit up by
-changing the received analog value.
+Esta función controla el encendido o apagado de los **10** LEDs en la 
+barra de LED. Primero, se establece un nivel alto en los LEDs para 
+apagarlos, y luego se decide cuántos LEDs se encenderán cambiando el 
+valor analógico recibido.
 
 .. code-block:: python
 
@@ -249,16 +248,16 @@ changing the received analog value.
             analogVal = ADC0834.getResult()
             LedBarGraph(int(analogVal/25))
 
-analogVal produces values (**0-255**) with varying voltage values
-(**0-5V**), ex., if a 3V is detected on a battery, the corresponding
-value **152** is displayed on the voltmeter.
+analogVal genera valores (**0-255**) según el voltaje (**0-5V**). 
+Por ejemplo, si se detecta un voltaje de 3V en una batería, el valor 
+correspondiente de **152** se muestra en el voltímetro.
 
-The **10** LEDs on the LED Bargraph are used to display the
-**analogVal** readings. 255/10=25, so every **25** the analog value
-increases, one more LED turns on, ex., if “analogVal=150 (about 3V),
-there are 6 LEDs turning on.”
+Los **10** LEDs de la barra se utilizan para mostrar las lecturas de 
+**analogVal**. 255/10 = 25, por lo tanto, cada vez que el valor analógico 
+aumenta en **25**, se enciende un LED adicional. Por ejemplo, si “analogVal=150” 
+(aproximadamente 3V), se encienden 6 LEDs.
 
-Phenomenon Picture
+Imagen del Fenómeno
 ----------------------
 
 .. image:: img/image249.jpeg

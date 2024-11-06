@@ -1,41 +1,46 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Play with Processing 
+Juega con Processing 
 =====================================
 
-What is Processing？
+¿Qué es Processing?
 ---------------------------
 
-Processing is a simple programming environment that was created to make it easier to develop visually oriented applications with an emphasis on animation and providing users with instant feedback through interaction. 
-The developers wanted a means to \"sketch\" ideas in code. 
-As its capabilities have expanded over the past decade, Processing has come to be used for more advanced production-level work in addition to its sketching role. 
-Originally built as a domain-specific extension to Java targeted towards artists and designers, Processing has evolved into a full-blown design and prototyping tool used for large-scale installation work, motion graphics, and complex data visualization.
+Processing es un entorno de programación sencillo creado para facilitar 
+el desarrollo de aplicaciones visuales, especialmente las enfocadas en 
+animación y en brindar retroalimentación instantánea a los usuarios mediante 
+la interacción. Los desarrolladores buscaban una forma de “bosquejar” 
+ideas en código. A medida que sus capacidades se han expandido en la última 
+década, Processing se ha utilizado no solo para crear bosquejos, sino también 
+en trabajos de producción avanzados. Originalmente concebido como una extensión 
+de Java orientada a artistas y diseñadores, Processing ha evolucionado hasta 
+convertirse en una herramienta de diseño y prototipado utilizada en instalaciones 
+a gran escala, gráficos en movimiento y visualización de datos complejos.
 
-Processing is based on Java, but because program elements in Processing are fairly simple, you can learn to use it even if you don't know any Java. If you're familiar with Java, it's best to forget that Processing has anything to do with Java for a while, until you get the hang of how the API works.
+Processing está basado en Java, pero como los elementos de programación en Processing son bastante simples, puedes aprender a usarlo incluso si no conoces Java. Si estás familiarizado con Java, es recomendable dejar de lado por un momento la relación de Processing con Java hasta que te acostumbres a cómo funciona la API.
 
+Este texto proviene del tutorial, `Processing Overview <https://processing.org/tutorials/overview/>`_.
 
-This text is from the tutorial, `Processing Overview <https://processing.org/tutorials/overview/>`_.
-
-Install the Processing
+Instalar Processing
 ------------------------------
 
 .. note:: 
 
-    Before you can use Processing, you need to access the Raspberry Pi desktop remotely (:ref:`Remote Desktop`) or connect a display for the Raspberry Pi.
+    Antes de que puedas utilizar Processing, debes acceder al escritorio de Raspberry Pi de forma remota (:ref:`Remote Desktop`) o conectar una pantalla a la Raspberry Pi.
 
-.. Run the following command in Terminal to install Processing.
+.. Ejecuta el siguiente comando en la Terminal para instalar Processing.
 
 .. .. raw:: html
 
@@ -45,54 +50,53 @@ Install the Processing
 
 ..     curl https://processing.org/download/install-arm.sh | sudo sh
 
-.. Once the installation is complete, type ``processing`` to open it.
+.. Una vez completada la instalación, escribe ``processing`` para abrirlo.
 
 
 .. .. image:: img/processing1.png
 
 
-.. For a detailed tutorial, please refer to `Pi Processing <https://pi.processing.org/>`_.
+.. Para un tutorial detallado, consulta `Pi Processing <https://pi.processing.org/>`_.
 
-Welcome to Machining! First visit https://processing.org/download and select the ``Linux ARM32-bit`` version
+Bienvenido a Processing! Primero visita https://processing.org/download y selecciona la versión ``Linux ARM32-bit``.
 
-You will then download to a ``.tar.gz`` file that should be familiar to most Linux users. 
-Download the file to your home directory, then open a terminal window and type:
+Luego, descarga un archivo ``.tar.gz``, común entre los usuarios de Linux. Descarga el archivo en tu directorio de inicio, luego abre una ventana de terminal y escribe:
 
 .. code-block:: 
 
     tar xvfz processing-xxxx.tgz
 
-(Replace xxxx with the rest of the file's name, which is the version number.) This will create a folder named processing-2.0 or something similar. Then change to that directory:
+(Reemplaza xxxx con el resto del nombre del archivo, que corresponde al número de versión). Esto creará una carpeta llamada processing-2.0 o algo similar. Luego, cambia a ese directorio:
 
 .. code-block:: 
 
     cd processing-xxxx
 
-and run it:
+y ejecútalo:
 
 .. code-block:: 
 
     ./processing
 
-With any luck, the main Processing window will now be visible.
+Con suerte, ahora podrás ver la ventana principal de Processing.
 
 .. image:: img/processing2.png
 
 
-Install Hardware I/O
---------------------
+Instalar Hardware I/O
+------------------------
 
-In order to use the Raspberry Pi's GPIO, you need to manually add a `Hardware I/O library <https://processing.org/reference/libraries/io/index.html>`_.
+Para poder usar los GPIO de la Raspberry Pi, necesitas agregar manualmente una `Hardware I/O library <https://processing.org/reference/libraries/io/index.html>`_.
 
-Click ``Sketch`` -> ``Import Library`` -> ``Add Library...`` 
+Haz clic en ``Sketch`` -> ``Import Library`` -> ``Add Library...`` 
 
 .. image:: img/import-00.png
 
-Find Hardware I/O , select it, and then click Install. When done, a checkmark icon will appear.
+Encuentra Hardware I/O, selecciónalo y luego haz clic en Instalar. Una vez finalizado, aparecerá un icono de verificación.
 
 .. image:: img/import-02.png
 
-Projects
+Proyectos
 ---------------
 
 .. toctree::
@@ -106,3 +110,4 @@ Projects
     metronome
     show_number
     drag_number
+

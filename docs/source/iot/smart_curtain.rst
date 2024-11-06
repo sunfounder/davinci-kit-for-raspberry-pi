@@ -1,36 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el apasionante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Smart Curtain
-=================
+Cortina Inteligente
+======================
 
+En este proyecto, simularemos un escenario donde las cortinas se abren o cierran automáticamente según la luminosidad de la habitación. 
 
-In this project, we will simulate a scenario where the curtains are automatically opened or closed according to the brightness of the room.
-When the photoresistor detects that the room brightness is too bright, Raspberry Pi will drive the motor to close the curtain; when the room brightness is too dark, the curtain will be opened.
+Cuando el fotorresistor detecta que la luminosidad es muy alta, el Raspberry Pi activará el motor para cerrar las cortinas; cuando detecta que la habitación está demasiado oscura, las cortinas se abrirán.
 
-Also you can view the indoor brightness change through text widget on Cloud4RPi, or control the lamp with Switch widget (for electricity safety, this experiment uses LED instead).
+También puedes ver el cambio de luminosidad de la habitación a través del widget de texto en Cloud4RPi o controlar la lámpara con el widget de Interruptor (por seguridad, este experimento usa un LED en lugar de una lámpara).
 
+Procedimiento Experimental
+-----------------------------
 
-Experimental Procedures
--------------------------
-
-Build the circuit.
+Construye el circuito.
 
 .. image:: img/window1.png
     :align: center
 
-Open the code.
+Abre el código.
 
 .. raw:: html
 
@@ -41,32 +40,35 @@ Open the code.
     cd ~/cloud4rpi-raspberrypi-python
     sudo nano smart_curtain.py
 
-Find the line below and fill in the correct device token.
+Encuentra la línea a continuación y completa con el token del dispositivo correcto.
 
 .. code-block:: python
 
     DEVICE_TOKEN = '__YOUR_DEVICE_TOKEN__'
 
-Run the code.
+Ejecuta el código.
 
 .. raw:: html
 
-    <run></run>
+   <run></run>
  
 .. code-block:: 
 
     sudo python3 smart_curtain.py
 
-Go to Cloud4RPi, add a new control panel named **project4** and add 3 widgets (Switch, Text and Chart widgets) via the **Add Widget** button.
+Accede a Cloud4RPi, agrega un nuevo panel de control llamado **project4** y añade 3 widgets (Interruptor, Texto y Gráfica) mediante el botón **Add Widget**.
 
 .. image:: img/window2.png
     :align: center
 
-Once added, you can use the Switch widget to control the LED; the value of the photoresistor on the Text widget will be updated every 1 minute, when the value > 100, the motor rotates clockwise for 5 seconds; if the value is less than 20, the motor rotates counterclockwise for 5 seconds.
-You can see the change over time in the Chart widget.
+Una vez añadidos, puedes usar el widget Interruptor para controlar el LED; 
+el valor del fotorresistor en el widget de Texto se actualizará cada minuto. 
+Cuando el valor es >100, el motor rota en sentido horario por 5 segundos; 
+si el valor es <20, el motor rota en sentido antihorario por 5 segundos. 
+Puedes ver los cambios en el tiempo en el widget de Gráfica.
 
-Code Explanation
-----------------------
+Explicación del Código
+-------------------------
 
 .. code-block:: python
 
@@ -82,7 +84,7 @@ Code Explanation
             move.stop()
         return analogVal
 
-Read the value of channel CH0 (with photoresistor connected) of the ADC0834. If the value is >100, the motor rotates clockwise for 5 seconds. If the value is less than 20, the motor rotates counterclockwise for 5 seconds.
+Lee el valor del canal CH0 (conectado al fotorresistor) del ADC0834. Si el valor es >100, el motor rota en sentido horario durante 5 segundos. Si el valor es <20, el motor rota en sentido antihorario durante 5 segundos.
 
 .. code-block:: python
 
@@ -91,4 +93,5 @@ Read the value of channel CH0 (with photoresistor connected) of the ADC0834. If 
         'bind': getValue
     },
 
-Pass ``getValue()`` into the ``'bind'`` key as a callback function, so that the brightness value (the return value of the ``getValue()`` function) can be sent to the Text widget.
+Pasa ``getValue()`` a la clave ``'bind'`` como una función de devolución para que el valor de luminosidad (el valor devuelto por la función ``getValue()``) se envíe al widget de Texto.
+

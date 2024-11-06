@@ -1,35 +1,33 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-2.1.3 Tilt Switch
-=================
+2.1.3Interruptor de Inclinación
+=======================================
 
-Introduction
-------------
+Introducción
+---------------
 
-This is a ball tilt-switch with a metal ball inside. It is used to
-detect inclinations of a small angle.
+Este es un interruptor de inclinación con una bola metálica en su interior. Se utiliza para detectar inclinaciones de ángulos pequeños.
 
-Components
-----------
+Componentes
+--------------
 
 .. image:: ../img/list_2.1.3_tilt_switch.png
 
 
-
-Schematic Diagram
------------------
+Diagrama del Circuito
+-------------------------
 
 .. image:: ../img/image307.png
 
@@ -37,14 +35,14 @@ Schematic Diagram
 .. image:: ../img/image308.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image169.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -54,7 +52,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -64,11 +62,11 @@ Experimental Procedures
 
     sudo node tilt_switch.js
 
-Place the tilt vertically, and the green LED will turns on. 
-If you tilt it, the red LED will turns on. 
-Place it vertically again, and the green LED will lights on.
+Coloca el interruptor de inclinación verticalmente, y el LED 
+verde se encenderá. Si lo inclinas, el LED rojo se encenderá. 
+Colócalo nuevamente en posición vertical, y el LED verde se encenderá.
 
-**Code**
+**Código**
 
 .. raw:: html
 
@@ -98,7 +96,7 @@ Place it vertically again, and the green LED will lights on.
         led2.digitalWrite(!level);    
     });
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
@@ -113,9 +111,8 @@ Place it vertically again, and the green LED will lights on.
         edge: Gpio.EITHER_EDGE        
     }); 
 
-Import the pigpio module and create three objects led1, led2, tilt,
-By reading the level of the tilt IO port, the on and off of led1 and led2 are controlled.       
-
+Importa el módulo pigpio y crea tres objetos: led1, led2 y tilt, 
+para controlar el encendido y apagado de los LED led1 y led2 leyendo el nivel del puerto IO de tilt.
 
 .. code-block:: js
 
@@ -125,8 +122,8 @@ By reading the level of the tilt IO port, the on and off of led1 and led2 are co
         edge: Gpio.EITHER_EDGE       
     });
 
-Create a tilt object to control the IO port Gpio17, set it to input mode, pull-down resistor (initially low level).
-And set the interrupt function, the mode is EITHER_EDGE, that is, both rising and falling edges will trigger the interrupt function.
+Crea un objeto tilt para controlar el puerto IO Gpio17, configúralo en modo de entrada con resistencia pull-down (nivel bajo inicial).
+Establece la función de interrupción con modo EITHER_EDGE, es decir, los bordes de subida y bajada activarán la función de interrupción.
 
 .. code-block:: js
 
@@ -141,16 +138,13 @@ And set the interrupt function, the mode is EITHER_EDGE, that is, both rising an
         led2.digitalWrite(!level);    
     });
 
-
-When the interrupt is triggered, write the same level to led1, and write the opposite level to led2.
-When the tilt IO port is high, the terminal prints "Horizontally";
-When the tilt IO port is low, the terminal prints "Vertically".
-
+Cuando se activa la interrupción, se escribe el mismo nivel en led1 y el nivel opuesto en led2. 
+Cuando el puerto IO de tilt está en alto, el terminal imprime "Horizontal";
+Cuando el puerto IO de tilt está en bajo, el terminal imprime "Vertical".
 
 
-Phenomenon Picture
-------------------
+
+Imagen del Fenómeno
+-----------------------
 
 .. image:: ../img/image170.jpeg
-
-

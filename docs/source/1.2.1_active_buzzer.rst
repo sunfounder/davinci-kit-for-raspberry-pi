@@ -1,104 +1,96 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de expertos**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos lanzamientos y anuncios de productos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-1.2.1 Active Buzzer
-===================
+1.2.1 Zumbador Activo
+========================
 
-Introduction
-------------
+Introducción
+---------------
 
-In this lesson, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+En esta lección, aprenderemos cómo activar un zumbador activo para que emita sonido utilizando un transistor PNP.
 
-Components
-----------
+Componentes
+-------------
 
 .. image:: img/list_1.2.1.png
 
+Principio
+-----------
 
-Principle
----------
+**Zumbador**
 
-**Buzzer**
+Como un tipo de zumbador electrónico con estructura integrada, 
+los zumbadores, que funcionan con corriente continua, se utilizan 
+ampliamente en computadoras, impresoras, fotocopiadoras, alarmas, 
+juguetes electrónicos, dispositivos electrónicos automotrices, 
+teléfonos, temporizadores y otros productos electrónicos o dispositivos 
+de sonido. Los zumbadores pueden clasificarse en activos y pasivos (ver 
+la imagen a continuación). Gira el zumbador para que sus pines queden 
+hacia arriba; el que tiene una placa de circuito verde es un zumbador 
+pasivo, mientras que el que está cubierto con una cinta negra es un zumbador activo.
 
-As a type of electronic buzzer with an integrated structure, buzzers,
-which are supplied by DC power, are widely used in computers, printers,
-photocopiers, alarms, electronic toys, automotive electronic devices,
-telephones, timers and other electronic products or voice devices.
-Buzzers can be categorized as active and passive ones (see the following
-picture). Turn the buzzer so that its pins are facing up, and the buzzer
-with a green circuit board is a passive buzzer, while the one enclosed
-with a black tape is an active one.
-
-The difference between an active buzzer and a passive buzzer:
+La diferencia entre un zumbador activo y uno pasivo:
 
 .. image:: img/image101.png
     :width: 400
     :align: center
 
+La diferencia entre un zumbador activo y uno pasivo es que un zumbador activo 
+tiene una fuente de oscilación interna, por lo que emite sonido cuando se energiza. 
+Un zumbador pasivo no tiene esta fuente, por lo que no emitirá sonido si se le aplica 
+corriente continua; en su lugar, necesita una señal de onda cuadrada con una frecuencia 
+entre 2K y 5K para funcionar. Generalmente, el zumbador activo es más costoso que el 
+pasivo debido a los circuitos de oscilación integrados.
 
-The difference between an active buzzer and a passive buzzer is: An
-active buzzer has a built-in oscillating source, so it will make sounds
-when electrified. But a passive buzzer does not have such source, so it
-will not beep if DC signals are used; instead, you need to use square
-waves whose frequency is between 2K and 5K to drive it. The active
-buzzer is often more expensive than the passive one because of multiple
-built-in oscillating circuits.
-
-The following is the electrical symbol of a buzzer. It has two pins with
-positive and negative poles. With a + in the surface represents the
-anode and the other is the cathode.
+A continuación se muestra el símbolo eléctrico de un zumbador, el cual tiene 
+dos pines con polos positivo y negativo. El lado con el símbolo + en la 
+superficie representa el ánodo y el otro es el cátodo.
 
 .. image:: img/image102.png
     :width: 150
     :align: center
 
+Puedes revisar los pines del zumbador; el pin más largo es el ánodo y el más 
+corto es el cátodo. No los conectes al revés, de lo contrario el zumbador no 
+emitirá sonido.
 
-You can check the pins of the buzzer, the longer one is the anode and
-the shorter one is the cathode. Please don’t mix them up when
-connecting, otherwise the buzzer will not make sound.
+Diagrama Esquemático
+--------------------
 
-Schematic Diagram
------------------
-
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+En este experimento se utiliza un zumbador activo, un transistor PNP y una 
+resistencia de 1k entre la base del transistor y el GPIO para proteger el 
+transistor. Cuando el GPIO17 de la Raspberry Pi recibe una señal de bajo 
+nivel (0V) mediante programación, el transistor conducirá debido a la saturación 
+de corriente y el zumbador emitirá sonido. Pero cuando el GPIO de la Raspberry Pi 
+recibe una señal de alto nivel, el transistor se apagará y el zumbador no 
+emitirá sonido.
 
 .. image:: img/image332.png
 
+Procedimiento Experimental
+-------------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit. (Pay attention to poles of the buzzer:
-The one with + label is the positive pole and the other is the
-negative.)
+**Paso 1:** Monta el circuito. (Presta atención a los polos del zumbador: 
+el que tiene la etiqueta + es el polo positivo y el otro es el negativo).
 
 .. image:: img/image104.png
     :width: 800
 
+Para Usuarios de Lenguaje C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
-
-**Step 2**: Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -108,7 +100,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.2.1/
 
-**Step 3**: Compile the code.
+**Paso 3:** Compila el código.
 
 .. raw:: html
 
@@ -118,7 +110,7 @@ For C Language Users
 
     gcc 1.2.1_ActiveBuzzer.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**Paso 4:** Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -128,13 +120,13 @@ For C Language Users
 
     sudo ./a.out
 
-The code run, the buzzer beeps.
+Cuando el código se ejecuta, el zumbador emite sonido.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: "wiringPi.h: No such file or directory", consulta :ref:`c code is not working?`.
 
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -143,47 +135,47 @@ The code run, the buzzer beeps.
 
     #define BeepPin 0
     int main(void){
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+        if(wiringPiSetup() == -1){ // si falla la inicialización de wiringPi, imprime el mensaje en pantalla
             printf("setup wiringPi failed !");
             return 1;
         }
         
-        pinMode(BeepPin, OUTPUT);   //set GPIO0 output
+        pinMode(BeepPin, OUTPUT);   // configurar GPIO0 como salida
         while(1){
-            //beep on
+            // zumbador encendido
             printf("Buzzer on\n");
             digitalWrite(BeepPin, LOW);
             delay(100);
             printf("Buzzer off\n");
-            //beep off
+            // zumbador apagado
             digitalWrite(BeepPin, HIGH);
             delay(100);
         }
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
     digitalWrite(BeepPin, LOW);
 
-We use an active buzzer in this experiment, so it will make sound 
-automatically when connecting to the direct current. This sketch 
-is to set the I/O port as low level (0V), thus to manage the 
-transistor and make the buzzer beep. 
+Usamos un zumbador activo en este experimento, por lo que emitirá sonido 
+automáticamente cuando se le aplique corriente continua. Este código 
+establece el puerto I/O en bajo nivel (0V) para manejar el transistor y 
+hacer que el zumbador suene.
 
 .. code-block:: c
 
     digitalWrite(BeepPin, HIGH);
 
-To set the I/O port as high level(3.3V), thus the transistor is 
-not energized and the buzzer doesn’t beep. 
+Establece el puerto I/O en alto nivel (3.3V), así el transistor no recibe 
+corriente y el zumbador no emite sonido.
 
-For Python Language Users
+Para Usuarios de Python
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -193,7 +185,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python
 
-**Step 3**: Run.
+**Paso 3:** Ejecutar.
 
 .. raw:: html
 
@@ -203,14 +195,14 @@ For Python Language Users
 
     sudo python3 1.2.1_ActiveBuzzer.py
 
-The code run, the buzzer beeps.
+Cuando el código se ejecuta, el zumbador emite sonido.
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Antes de eso, debes ir a la ruta del código fuente como ``davinci-kit-for-raspberry-pi/python``. 
+
 .. raw:: html
 
     <run></run>
@@ -220,68 +212,66 @@ The code run, the buzzer beeps.
     import RPi.GPIO as GPIO
     import time
 
-    # Set #17 as buzzer pin
+    # Configurar el pin 17 como pin del zumbador
     BeepPin = 17
 
     def setup():
-        # Set the GPIO modes to BCM Numbering
+        # Configurar el modo GPIO en numeración BCM
         GPIO.setmode(GPIO.BCM)
-        # Set LedPin's mode to output, 
-        # and initial level to High(3.3v)
+        # Configurar el modo del pin del zumbador como salida,
+        # y el nivel inicial en alto (3.3V)
         GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.HIGH)
 
     def main():
         while True:
-            # Buzzer on (Beep)
+            # Zumbador encendido
             print ('Buzzer On')
             GPIO.output(BeepPin, GPIO.LOW)
             time.sleep(0.1)
-            # Buzzer off
+            # Zumbador apagado
             print ('Buzzer Off')
             GPIO.output(BeepPin, GPIO.HIGH)
             time.sleep(0.1)
 
     def destroy():
-        # Turn off buzzer
+        # Apagar el zumbador
         GPIO.output(BeepPin, GPIO.HIGH)
-        # Release resource
+        # Liberar recursos
         GPIO.cleanup()    
 
-    # If run this script directly, do:
+    # Si ejecutas este script directamente, haz:
     if __name__ == '__main__':
         setup()
         try:
             main()
-        # When 'Ctrl+C' is pressed, the program 
-        # destroy() will be  executed.
+        # Cuando se presione 'Ctrl+C', se ejecutará destroy().
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
     GPIO.output(BeepPin, GPIO.LOW)
 
-Set the buzzer pin as low level to make the buzzer beep.  
+Establece el pin del zumbador en bajo nivel para hacer que el zumbador emita sonido.
 
 .. code-block:: python
 
     time.sleep(0.1)
 
-Wait for 0.1 second. Change the switching frequency by 
-changing this parameter. 
+Espera 0.1 segundos. Cambia la frecuencia de conmutación ajustando este parámetro.
 
 .. note::
-    Not the sound frequency. Active Buzzer cannot change sound frequency.
+    No es la frecuencia del sonido. El zumbador activo no puede cambiar la frecuencia del sonido.
 
 .. code-block:: python
 
     GPIO.output(BeepPin, GPIO.HIGH)
 
-Close the buzzer. 
+Apaga el zumbador.
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: img/image105.jpeg

@@ -1,40 +1,41 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenidos a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto con otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Soluciona problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales en días festivos.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-    
-3.1.3 Reversing Alarm
-========================
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-Introduction
--------------
+3.1.3 Alarma de Reversa
+===========================
 
-In this project, we will use LCD, buzzer and ultrasonic sensors to make
-a reverse assist system. We can put it on the remote control vehicle to
-simulate the actual process of reversing the car into the garage.
+Introducción
+---------------
 
-Components
-----------------
+En este proyecto, usaremos una pantalla LCD, un zumbador y sensores 
+ultrasónicos para crear un sistema de asistencia de reversa. Podemos 
+colocarlo en un vehículo a control remoto para simular el proceso real 
+de reversa al ingresar a un garaje.
+
+Componentes
+--------------
 
 .. image:: img/list_Reversing_Alarm.png
     :align: center
 
-Schematic Diagram
---------------------
+Diagrama de Circuito
+-----------------------
 
-Ultrasonic sensor detects the distance between itself and the obstacle
-that will be displayed on the LCD in the form of code. At the same time,
-the ultrasonic sensor let the buzzer issue prompt sound of different
-frequency according to different distance value.
+El sensor ultrasónico detecta la distancia entre él y el obstáculo, la cual 
+se mostrará en el LCD en forma de código. Al mismo tiempo, el sensor ultrasónico 
+emite una señal sonora de advertencia a diferentes frecuencias, según el valor 
+de la distancia.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -49,16 +50,16 @@ SCL1         Pin 5
     :width: 800
     :align: center
 
-Experimental Procedures
-------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: img/image242.png
     :width: 800
     :align: center
 
-**Step 2:** Change directory.
+**Paso 2:** Cambia al directorio.
 
 .. raw:: html
 
@@ -68,7 +69,7 @@ Experimental Procedures
  
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.3/
  
-**Step 3:** Compile.
+**Paso 3:** Compila.
 
 .. raw:: html
 
@@ -78,7 +79,7 @@ Experimental Procedures
 
     gcc 3.1.3_ReversingAlarm.c -lwiringPi
 
-**Step 4:** Run.
+**Paso 4:** Ejecuta.
 
 .. raw:: html
 
@@ -88,22 +89,21 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, ultrasonic sensor module detects the distance to the
-obstacle and then displays the information about the distance on
-LCD1602; besides, buzzer emits warning tone whose frequency changes with
-the distance.
+Al ejecutar el código, el módulo sensor ultrasónico detectará la distancia 
+al obstáculo y luego mostrará la información en el LCD1602. Además, el 
+zumbador emitirá un tono de advertencia cuya frecuencia cambiará según la distancia.
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * Si aparece el error ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi`.
+    * Si recibes el error ``Unable to open I2C device: No such file or directory``, debes habilitar I2C y revisar si el cableado es correcto en :ref:`i2c_config`.
+    * Si el código y el cableado están correctos pero la pantalla LCD no muestra contenido, ajusta el potenciómetro en la parte trasera para aumentar el contraste.
 
-**Code**
+**Código**
 
 .. note::
-    The following codes are incomplete. If you want to check the complete codes, 
-    you are suggested to use command ``nano 3.1.1_ReversingAlarm.c``.
+    El siguiente código está incompleto. Para ver el código completo, usa el 
+    comando ``nano 3.1.1_ReversingAlarm.c``.
 
 
 .. code-block:: c
@@ -123,7 +123,7 @@ the distance.
     int BLEN = 1;
     int fd;
 
-    //here is the function of LCD
+    //Aquí está la función de LCD
     void write_word(int data){...}
 
     void send_command(int comm){...}
@@ -136,12 +136,12 @@ the distance.
 
     void write(int x, int y, char data[]){...}
 
-    //here is the function of Ultrasonic
+    //Aquí está la función de Ultrasonido
     void ultraInit(void){...}
 
     float disMeasure(void){...}
 
-    //here is the main function
+    //Aquí está la función principal
     int main(void)
     {
         float dis;
@@ -202,7 +202,7 @@ the distance.
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -211,9 +211,9 @@ the distance.
     lcdInit();
     ultraInit();
 
-In this program, we apply previous components synthetically. Here we use
-buzzers, LCD and ultrasonic. We can initialize them the same way as we
-did before.
+En este programa, aplicamos componentes previamente usados de manera conjunta: 
+zumbador, LCD y ultrasonido. Se inicializan de la misma forma que se hizo 
+anteriormente.
 
 .. code-block:: c
 
@@ -231,21 +231,20 @@ did before.
         write(5, 1, result);
 	}
 
-Here we get the value of the ultrasonic sensor and get the distance
-through calculation.
+Aquí obtenemos el valor del sensor ultrasónico y calculamos la distancia.
 
-If the value of distance is greater than the range value to be detected,
-an error message is printed on the LCD. And if the distance value is
-within the range, the corresponding results will be output.
+Si el valor de la distancia supera el rango a detectar, se mostrará un mensaje 
+de error en el LCD. Si el valor de la distancia está dentro del rango, se 
+mostrarán los resultados correspondientes.
 
 .. code-block:: c
 
     sprintf(result,"%.2f cm",dis);
 
-Since the output mode of LCD only supports character type, and the
-variable dis stores the value of float type, we need to use sprintf().
-The function converts the float type value to a character and stores it
-on the string variable result[]. %.2f means to keep two decimal places.
+Dado que la salida del LCD solo soporta caracteres, y la variable dis almacena 
+un valor de tipo float, usamos sprintf(). Esta función convierte el valor float 
+a un carácter y lo guarda en la variable string result[]. %.2f indica que se 
+mantendrán dos decimales.
 
 .. code-block:: c
 
@@ -268,9 +267,7 @@ on the string variable result[]. %.2f means to keep two decimal places.
         }
     }
 
-This judgment condition is used to control the sound of the buzzer.
-According to the difference in distance, it can be divided into three
-cases, in which there will be different sound frequencies. Since the
-total value of delay is 500, all of the cases can provide a 500ms
-interval for the ultrasonic sensor.
-
+Esta condición de evaluación se usa para controlar el sonido del zumbador. 
+Según la distancia, se divide en tres casos, cada uno con una frecuencia de 
+sonido distinta. Dado que el valor total del delay es de 500 ms, todos los 
+casos proporcionan un intervalo de 500 ms para el sensor ultrasónico.

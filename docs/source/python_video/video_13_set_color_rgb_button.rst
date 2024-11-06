@@ -1,31 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
 
-Video 13: Set Color of RGB LED with Push Buttons
+Video 13: Configuración del Color del LED RGB con Botones Pulsadores
 =======================================================================================
 
-This video demonstrates how to control an RGB LED using buttons with a Raspberry Pi, covering hardware setup, coding, and troubleshooting.
+Este video muestra cómo controlar un LED RGB mediante botones conectados a una Raspberry Pi, cubriendo la configuración del hardware, la codificación y la resolución de problemas.
 
-1. Learn how to connect RGB LEDs and buttons to a Raspberry Pi GPIO.
-2. Understand the importance of systematic code organization for easier debugging.
-3. Set up GPIO pins for both input (buttons) and output (LED control).
-4. Implement a main loop to continuously read button states and update LED states.
-5. Follow debugging and testing procedures to ensure proper functionality.
-6. Explore color mixing by adjusting red, green, and blue values to create a spectrum of colors.
-
-
+1. Aprende a conectar LEDs RGB y botones a los pines GPIO de una Raspberry Pi.
+2. Comprende la importancia de organizar el código de manera sistemática para facilitar la depuración.
+3. Configura los pines GPIO para entrada (botones) y salida (control de LED).
+4. Implementa un bucle principal que lea continuamente el estado de los botones y actualice el estado del LED.
+5. Sigue procedimientos de depuración y pruebas para asegurar la funcionalidad correcta.
+6. Explora la mezcla de colores ajustando los valores de rojo, verde y azul para crear una variedad de colores en el espectro.
 
 
 **Video**

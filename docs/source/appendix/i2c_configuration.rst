@@ -1,35 +1,34 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso exclusivo**: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _i2c_config:
 
 I2C Configuration
------------------------
+==========================
 
-**Step 1**: Enable the I2C port of your Raspberry Pi (If you have
-enabled it, skip this; if you do not know whether you have done that or
-not, please continue).
+**Paso 1**: Habilita el puerto I2C de tu Raspberry Pi (si ya lo has habilitado, 
+omite este paso; si no estás seguro, continúa).
 
 .. raw:: html
 
    <run></run>
- 
+
 .. code-block:: 
 
     sudo raspi-config
 
-**3 Interfacing options**
+**3 Opciones de interfaz**
 
 .. image:: img/image282.png
     :align: center
@@ -39,61 +38,57 @@ not, please continue).
 .. image:: img/I4i2c.jpeg
     :align: center
 
-**<Yes>, then <Ok> -> <Finish>**
+**<Sí>, luego <Aceptar> -> <Finalizar>**
 
 .. image:: img/image284.png
     :align: center
 
-**Step 2:** Check whether the i2c modules are loaded and active.
+**Paso 2:** Verifica si los módulos i2c están cargados y activos.
 
 .. raw:: html
 
    <run></run>
- 
+
 .. code-block:: 
 
     lsmod | grep i2c
 
-Then the following codes will appear (the number may be different), if it does not appear, please reboot the Raspberry Pi with ``sudo reboot``.
+A continuación, aparecerán los siguientes códigos (el número puede variar). Si no aparecen, reinicia la Raspberry Pi con ``sudo reboot``.
 
 .. code-block:: 
 
     i2c_dev                     6276    0
     i2c_bcm2708                 4121    0
 
-**Step 3:** Install i2c-tools.
+**Paso 3:** Instala i2c-tools.
 
 .. raw:: html
 
    <run></run>
- 
+
 .. code-block:: 
 
     sudo apt-get install i2c-tools
 
-**Step 4:** Check the address of the I2C device.
-
+**Paso 4:** Verifica la dirección del dispositivo I2C.
 
 .. raw:: html
 
     <run></run>
-  
+
 .. code-block:: 
 
-    i2cdetect -y 1      # For Raspberry Pi 2 and higher version
-
-
+    i2cdetect -y 1      # Para Raspberry Pi 2 y versiones superiores
 
 .. raw:: html
 
    <run></run>
- 
-.. code-block:: 
-
-    i2cdetect -y 0      # For Raspberry Pi 1
-
 
 .. code-block:: 
+
+    i2cdetect -y 0      # Para Raspberry Pi 1
+
+.. code-block::
 
     pi@raspberrypi ~ $ i2cdetect -y 1
         0  1  2  3   4  5  6  7  8  9   a  b  c  d  e  f
@@ -106,29 +101,29 @@ Then the following codes will appear (the number may be different), if it does n
     60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     70: -- -- -- -- -- -- -- --
 
-If there is an I2C device connected, the address of the device will be displayed.
+Si hay un dispositivo I2C conectado, se mostrará la dirección del dispositivo.
 
-**Step 5:**
+**Paso 5:**
 
-**For C language users:** Install libi2c-dev.
+**Para usuarios de C:** Instala libi2c-dev.
 
 .. raw:: html
 
    <run></run>
- 
+
 .. code-block:: 
 
     sudo apt-get install libi2c-dev 
 
-**For Python users:**
+**Para usuarios de Python:**
 
-1. Activating the Virtual Environment.
+1. Activar el entorno virtual.
 
 .. note::
-    
-    * Before activation, you need to ensure that you have created a virtual environment, please refer to: :ref:`create_virtual`.
 
-    * Each time you restart the Raspberry Pi, or open a new terminal, you will need to run the following command again to activate the virtual environment.
+    * Antes de activar, asegúrate de haber creado un entorno virtual. Consulta: :ref:`create_virtual`.
+
+    * Cada vez que reinicies la Raspberry Pi o abras una nueva terminal, necesitarás ejecutar el siguiente comando nuevamente para activar el entorno virtual.
 
 .. raw:: html
 
@@ -138,23 +133,22 @@ If there is an I2C device connected, the address of the device will be displayed
 
     source myenv/bin/activate
 
-Once the virtual environment is activated, you will see the environment name before the command line prompt, indicating you are working within the virtual environment.
+Una vez que el entorno virtual esté activado, verás el nombre del entorno antes del indicador de la línea de comandos, indicando que estás trabajando dentro del entorno virtual.
 
-
-2. Install smbus for I2C.
+2. Instalar smbus para I2C.
 
 .. raw:: html
 
     <run></run>
- 
+
 .. code-block:: 
 
     sudo pip3 install smbus2
 
 
-3. Exiting the Virtual Environment.
+3. Salir del entorno virtual.
 
-When you have completed your work and wish to exit the virtual environment, simply run:
+Cuando hayas terminado tu trabajo y desees salir del entorno virtual, simplemente ejecuta:
 
 .. raw:: html
 
@@ -164,4 +158,5 @@ When you have completed your work and wish to exit the virtual environment, simp
 
     deactivate
 
-This will return you to the system's global Python environment.
+Esto te devolverá al entorno global de Python del sistema.
+

@@ -1,35 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenidos a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto con otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Soluciona problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales en días festivos.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-3.1.7 Traffic Light
-=====================
+3.1.7 Semáforo
+=================
 
-Introduction
----------------
+Introducción
+-------------
 
-In this project, we will use LED lights of three colors to realize the
-change of traffic lights and a four-digit 7-segment display will be used
-to display the timing of each traffic state.
+En este proyecto, usaremos luces LED de tres colores para simular el cambio 
+de luces en un semáforo, y un display de 7 segmentos de cuatro dígitos para 
+mostrar la cuenta regresiva de cada estado del semáforo.
 
-Components
-------------
+Componentes
+--------------
 
 .. image:: img/list_Traffic_Light.png
     :align: center
 
-Schematic Diagram
---------------------
+Diagrama de Circuito
+-----------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -48,16 +48,16 @@ SPICE1       Pin 26   11       7
 .. image:: img/Schematic_three_one7.png
    :align: center
 
-Experimental Procedures
-------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: img/image254.png
    :width: 800
 
 
-**Step 2:** Change directory.
+**Paso 2:** Cambia al directorio.
 
 .. raw:: html
 
@@ -67,7 +67,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.7/
 
-**Step 3:** Compile.
+**Paso 3:** Compila.
 
 .. raw:: html
 
@@ -77,7 +77,7 @@ Experimental Procedures
 
     gcc 3.1.7_TrafficLight.c -lwiringPi
 
-**Step 4:** Run.
+**Paso 4:** Ejecuta.
 
 .. raw:: html
 
@@ -87,18 +87,17 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, LEDs will simulate the color changing of traffic
-lights. Firstly, the red LED lights up for 60s, then the green LED
-lights up for 30s; next, the yellow LED lights up for 5s. After that,
-the red LED lights up for 60s once again. In this way, this series of
-actions will be executed repeatedly.
+Cuando se ejecuta el código, los LEDs simulan el cambio de color de un semáforo. 
+Primero, el LED rojo se enciende durante 60s, luego el LED verde se enciende 
+durante 30s; después, el LED amarillo se enciende durante 5s. Al finalizar, 
+el LED rojo se enciende nuevamente por 60s, y esta secuencia se repetirá.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutar el código, o aparece el mensaje de error: \"wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
 
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -114,9 +113,9 @@ actions will be executed repeatedly.
     void clearDisplay();
     void display();
 
-These codes are used to realize the function of number display of 4-Digit 7-Segment 
-Displays. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` of the document for more details. Here, we use the 
-codes to display countdown of traffic light time.
+Estos códigos permiten la función de visualización de números en un display de 7 segmentos 
+de 4 dígitos. Consulta :ref:`1.1.5 4-Digit 7-Segment Display` para más detalles. Aquí, 
+usamos el código para mostrar la cuenta regresiva del tiempo en el semáforo.
 
 .. code-block:: c
 
@@ -132,7 +131,7 @@ codes to display countdown of traffic light time.
         digitalWrite(ledPin[colorState],LOW);    
     }
 
-The codes are used to switch the LED on and off.
+Este código enciende y apaga los LEDs.
 
 .. code-block:: c
 
@@ -143,7 +142,7 @@ The codes are used to switch the LED on and off.
     char *lightColor[]={"Red","Green","Yellow"};
     int counter = 60;
 
-    void timer(int  timer1){       //Timer function
+    void timer(int  timer1){       //Función de temporizador
         if(timer1 == SIGALRM){   
             counter --;         
             alarm(1); 
@@ -157,9 +156,11 @@ The codes are used to switch the LED on and off.
         }
     }
 
-The codes are used to switch the timer on and off. Refer to :ref:`1.1.5 4-Digit 7-Segment Display` for more details. Here, when the timer returns to zero, colorState
-will be switched so as to switch LED, and the timer will be assigned to
-a new value.
+Este código enciende y apaga el temporizador. Consulta 
+:ref:`1.1.5 4-Digit 7-Segment Display` para más detalles. 
+Aquí, cuando el temporizador llega a cero, el valor de 
+colorState se cambia para encender otro LED y el temporizador 
+se reinicia con un nuevo valor.
 
 .. code-block:: c
 
@@ -180,5 +181,7 @@ a new value.
         return 0;
     }
 
-The timer is started in the main() function. In loop() function, use
-**while(1)** loop and call the functions of 4-Digit 7-Segment and LED.
+El temporizador se inicia en la función main(). En la función loop(), 
+se utiliza un ciclo **while(1)** para llamar a las funciones del display 
+de 7 segmentos y de control de los LEDs.
+

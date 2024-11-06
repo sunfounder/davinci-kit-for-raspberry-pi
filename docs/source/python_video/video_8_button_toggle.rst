@@ -1,27 +1,27 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
 
-Video 8: Using a Button as a Toggle Switch for LED Control
+Video 8: Usar un Botón como Interruptor de Encendido/Apagado para Control de LED
 =======================================================================================
 
-Learn how to create a toggle LED circuit using a Raspberry Pi and Python programming.
+Aprende a crear un circuito de LED con función de encendido y apagado (toggle) utilizando una Raspberry Pi y programación en Python.
 
-1. **Circuit Setup**: Setting up an LED and a push-button switch connected to GPIO pins on a Raspberry Pi.
-2. **Python Programming**: Using the RPi.GPIO library to control the GPIO pins and read the state of the push-button switch.
-3. **Toggle Logic**: Implementing logic in Python to toggle the LED based on the state of the push-button switch.
-4. **Variable Management**: Using variables to track the current and previous states of the push-button switch and the LED.
+1. **Configuración del Circuito**: Conectar un LED y un interruptor pulsador a los pines GPIO de una Raspberry Pi.
+2. **Programación en Python**: Utilizar la biblioteca RPi.GPIO para controlar los pines GPIO y leer el estado del interruptor pulsador.
+3. **Lógica de Encendido/Apagado**: Implementar en Python la lógica para alternar el estado del LED según el estado del interruptor pulsador.
+4. **Gestión de Variables**: Usar variables para rastrear el estado actual y anterior del interruptor y del LED.
 
 
 **Video**

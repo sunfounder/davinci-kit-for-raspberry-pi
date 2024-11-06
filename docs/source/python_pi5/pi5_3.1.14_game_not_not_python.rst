@@ -1,42 +1,42 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete junto a otros entusiastas en el fascinante mundo de Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas posventa y desafíos técnicos con ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Accede anticipadamente a anuncios y adelantos de nuevos productos.
+    - **Descuentos especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales en días festivos.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _3.1.14_py_pi5:
 
-3.1.14 GAME– Not Not
-=======================
+3.1.14 JUEGO – Not Not
+========================
 
-Introduction
---------------------
+Introducción
+---------------------
 
-In this lesson, we will make an interesting game device, and we call it \"Not Not\".
+En esta lección, crearemos un divertido dispositivo de juego llamado "Not Not".
 
-During the game, the dot matrix will refresh an arrow randomly. What you need to do is to press the button in the opposite direction of the arrow within a limited time. If the time is up, or if the button in the same direction as the arrow is pressed, you are out.
+Durante el juego, la matriz de puntos mostrará una flecha en una dirección al azar. Debes presionar el botón en la dirección opuesta a la flecha dentro de un tiempo limitado. Si el tiempo se acaba o presionas el botón en la misma dirección de la flecha, pierdes.
 
-This game can really practice your reverse thinking, and now shall we have a try?
+Este juego realmente puede ayudarte a practicar el pensamiento inverso. ¿Listo para intentarlo?
 
-Required Components
+Componentes necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitaremos los siguientes componentes.
 
 .. image:: ../python_pi5/img/3.1.14_game_not_not_list.png
     :width: 800
     :align: center
 
-Schematic Diagram
------------------------
+Diagrama de Esquema
+------------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -50,14 +50,14 @@ GPIO26       Pin 37   25       26
 .. image:: ../python_pi5/img/3.1.14_game_not_not_schematic.png
    :align: center
 
-Experimental Procedures
------------------------
+Procedimiento Experimental
+-------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Monta el circuito.
 
 .. image:: ../python_pi5/img/3.1.14_game_not_not_circuit.png
 
-**Step 2:** Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -68,7 +68,7 @@ Experimental Procedures
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
 
-**Step 3:** Run.
+**Paso 3:** Ejecuta el programa.
 
 .. raw:: html
 
@@ -78,24 +78,24 @@ Experimental Procedures
 
     sudo python3 3.1.14_MotionControl_zero.py
 
-After starting the program, on the dot matrix appears an arrow pointing
-to the right or the left. What you need to do is to press the button in
-the opposite direction of the arrow within a limited time. Then
-\"**√**\" appears on the dot matrix. If the time is up, or if the
-button in the same direction as the arrow is pressed, you are out and
-the dot matrix displays \"x\". You can also add 2 new buttons or replace
-them with Joystick keys for up, down, left and right— 4 directions to
-increase the difficulty of the game.
+Al iniciar el programa, aparece una flecha en la matriz de puntos apuntando 
+hacia la derecha o la izquierda. Lo que debes hacer es presionar el botón en 
+la dirección opuesta a la flecha dentro de un tiempo límite. Entonces, aparecerá 
+un \"**√**\" en la matriz de puntos. Si se acaba el tiempo o presionas el botón 
+en la misma dirección que la flecha, pierdes y la matriz de puntos muestra una 
+\"x\". También puedes agregar 2 botones nuevos o reemplazarlos por los controles 
+de un joystick para tener 4 direcciones: arriba, abajo, izquierda y derecha, 
+aumentando así la dificultad del juego.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si aparece el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta la sección :ref:`faq_soc` 
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Sin embargo, antes de hacerlo, dirígete a la ruta de código fuente, como ``davinci-kit-for-raspberry-pi/python-pi5``. Tras realizar cambios, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -109,28 +109,28 @@ increase the difficulty of the game.
    import threading
    import random
 
-   # GPIO pins for the 74HC595 shift register
-   SDI = OutputDevice(17)   # Serial Data Input
-   RCLK = OutputDevice(18)  # Register Clock
-   SRCLK = OutputDevice(27) # Shift Register Clock
+   # Pines GPIO para el registro de desplazamiento 74HC595
+   SDI = OutputDevice(17)   # Entrada de Datos Serial
+   RCLK = OutputDevice(18)  # Reloj de Registro
+   SRCLK = OutputDevice(27) # Reloj de Registro de Desplazamiento
 
-   # GPIO pins for buttons
-   AButtonPin = Button(20)  # Button A
-   BButtonPin = Button(26)  # Button B
+   # Pines GPIO para los botones
+   AButtonPin = Button(20)  # Botón A
+   BButtonPin = Button(26)  # Botón B
 
-   # Game variables initialization
+   # Inicialización de variables del juego
    timerPlay = 0
    timerCheck = 0
    waypoint = "NULL"
    stage = "NULL"
 
-   # Arrow glyphs for LED matrix display
+   # Flechas para la matriz LED
    arrow = {
        "right": [0xFF, 0xEF, 0xDF, 0x81, 0xDF, 0xEF, 0xFF, 0xFF],
        "left": [0xFF, 0xF7, 0xFB, 0x81, 0xFB, 0xF7, 0xFF, 0xFF]
    }
 
-   # Feedback glyphs for correct/wrong answers
+   # Iconos de respuesta para respuestas correctas/incorrectas
    check = {
        "wrong": [0xFF, 0xBB, 0xD7, 0xEF, 0xD7, 0xBB, 0xFF, 0xFF],
        "right": [0xFF, 0xFF, 0xF7, 0xEB, 0xDF, 0xBF, 0xFF, 0xFF]
@@ -195,10 +195,10 @@ increase the difficulty of the game.
    def destroy():
        """ Clean up resources on program exit. """
        global timerPlay, timerCheck
-       timerPlay.cancel()  # Cancel the play timer
-       timerCheck.cancel()  # Cancel the checkpoint timer
+       timerPlay.cancel()  # Cancela el temporizador de juego
+       timerCheck.cancel()  # Cancela el temporizador de verificación
 
-   # Run the game, handle KeyboardInterrupt for clean exit
+   # Ejecuta el juego, maneja la interrupción de teclado para salir limpiamente
    try:
        main()
    except KeyboardInterrupt:
@@ -207,12 +207,11 @@ increase the difficulty of the game.
 
 
 
-**Code Explanation**
+**Explicación del Código**
 
-Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to make an amusing game device. So, if you are not very familiar with the dot matrix, please refer to :ref:`1.1.6_py_pi5`.
+Basado en **1.1.6 Matriz de Puntos LED**, en esta lección se añaden **2** botones para crear un dispositivo de juego divertido. Si aún no estás familiarizado con la matriz de puntos, por favor consulta :ref:`1.1.6_py_pi5`.
 
-
-#. The code begins by importing necessary libraries. ``gpiozero`` is used for interacting with GPIO pins like buttons and output devices. ``time`` allows for adding delays, ``threading`` enables running multiple tasks concurrently, and ``random`` is useful for introducing randomness in the project.
+#. El código comienza importando las librerías necesarias. Se utiliza ``gpiozero`` para interactuar con pines GPIO como botones y dispositivos de salida. ``time`` permite agregar retrasos, ``threading`` habilita la ejecución de múltiples tareas simultáneamente, y ``random`` es útil para introducir aleatoriedad en el proyecto.
 
    .. code-block:: python
 
@@ -222,46 +221,46 @@ Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to make an amu
        import threading
        import random
 
-#. Initializes GPIO pins for the shift register (``SDI``, ``RCLK``, ``SRCLK``) and buttons (``AButtonPin``, ``BButtonPin``). The shift register is used to control multiple LEDs with fewer GPIO pins, which is crucial for the LED matrix display.
+#. Se inicializan los pines GPIO para el registro de desplazamiento (``SDI``, ``RCLK``, ``SRCLK``) y los botones (``AButtonPin``, ``BButtonPin``). El registro de desplazamiento se utiliza para controlar múltiples LEDs con menos pines GPIO, lo cual es crucial para la pantalla de la matriz LED.
 
    .. code-block:: python
 
-       # GPIO pins for the 74HC595 shift register
-       SDI = OutputDevice(17)   # Serial Data Input
-       RCLK = OutputDevice(18)  # Register Clock
-       SRCLK = OutputDevice(27) # Shift Register Clock
+       # Pines GPIO para el registro de desplazamiento 74HC595
+       SDI = OutputDevice(17)   # Entrada de Datos Serial
+       RCLK = OutputDevice(18)  # Reloj de Registro
+       SRCLK = OutputDevice(27) # Reloj de Registro de Desplazamiento
 
-       # GPIO pins for buttons
-       AButtonPin = Button(20)  # Button A
-       BButtonPin = Button(26)  # Button B
+       # Pines GPIO para los botones
+       AButtonPin = Button(20)  # Botón A
+       BButtonPin = Button(26)  # Botón B
 
-#. Initializes variables used in the game logic, such as timers and game state indicators.
+#. Se inicializan variables utilizadas en la lógica del juego, como temporizadores e indicadores de estado del juego.
 
    .. code-block:: python
 
-       # Game variables initialization
+       # Inicialización de variables del juego
        timerPlay = 0
        timerCheck = 0
        waypoint = "NULL"
        stage = "NULL"
 
-#. Defines binary patterns for displaying arrows and feedback (right/wrong) on the LED matrix. Each array element represents a row of the LED matrix, where ``1`` and ``0`` correspond to an LED being on or off, respectively.
+#. Se definen patrones binarios para mostrar flechas y respuestas (correcto/incorrecto) en la matriz LED. Cada elemento del arreglo representa una fila de la matriz LED, donde ``1`` y ``0`` indican si el LED está encendido o apagado, respectivamente.
 
    .. code-block:: python
 
-       # Arrow glyphs for LED matrix display
+       # Flechas para la pantalla de la matriz LED
        arrow = {
            "right": [0xFF, 0xEF, 0xDF, 0x81, 0xDF, 0xEF, 0xFF, 0xFF],
            "left": [0xFF, 0xF7, 0xFB, 0x81, 0xFB, 0xF7, 0xFF, 0xFF]
        }
 
-       # Feedback glyphs for correct/wrong answers
+       # Íconos de respuesta para respuestas correctas/incorrectas
        check = {
            "wrong": [0xFF, 0xBB, 0xD7, 0xEF, 0xD7, 0xBB, 0xFF, 0xFF],
            "right": [0xFF, 0xFF, 0xF7, 0xEB, 0xDF, 0xBF, 0xFF, 0xFF]
        }
 
-#. This function shifts a byte of data to the 74HC595 shift register. It iterates over each bit of the ``dat`` byte, setting the ``SDI`` pin high or low accordingly, and toggles the ``SRCLK`` pin to shift the bit into the register.
+#. Esta función desplaza un byte de datos hacia el registro de desplazamiento 74HC595. Itera sobre cada bit del byte ``dat``, configurando el pin ``SDI`` alto o bajo según corresponda, y alterna el pin ``SRCLK`` para desplazar el bit en el registro.
 
    .. code-block:: python
 
@@ -272,7 +271,7 @@ Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to make an amu
                SRCLK.on()
                SRCLK.off()
 
-#. This function displays a glyph on the LED matrix. It sends each row of the glyph (represented by ``glyphCode``) and the row's address to the shift register using ``hc595_shift``, then toggles the ``RCLK`` pin to update the display.
+#. Esta función muestra un glifo en la matriz LED. Envía cada fila del glifo (representado por ``glyphCode``) y la dirección de la fila al registro de desplazamiento usando ``hc595_shift``, y luego alterna el pin ``RCLK`` para actualizar la pantalla.
 
    .. code-block:: python
 
@@ -284,7 +283,7 @@ Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to make an amu
                RCLK.on()
                RCLK.off()
 
-#. This function randomly selects a glyph from the ``arrow`` dictionary, starts the play timer, and sets the game stage to "PLAY". The ``threading.Timer`` is used for timing control in the game.
+#. Esta función selecciona un glifo al azar del diccionario ``arrow``, inicia el temporizador de juego y establece el estado del juego en "PLAY". Se utiliza ``threading.Timer`` para el control del tiempo en el juego.
 
    .. code-block:: python
 
@@ -296,7 +295,7 @@ Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to make an amu
            timerPlay = threading.Timer(2.0, timeOut)
            timerPlay.start()
 
-#. This function checks the player's input against the current glyph. If the input is correct, it sets the waypoint to "right", otherwise to "wrong". It then cancels the current play timer and starts a new timer for the next glyph.
+#. Esta función verifica la entrada del jugador en comparación con el glifo actual. Si la entrada es correcta, establece el waypoint en "right", de lo contrario en "wrong". Luego cancela el temporizador de juego actual e inicia un nuevo temporizador para el próximo glifo.
 
    .. code-block:: python
 
@@ -312,7 +311,7 @@ Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to make an amu
            timerCheck = threading.Timer(1.0, creatGlyph)
            timerCheck.start()
 
-#. This function is called when the game times out. It invokes ``checkPoint`` with "empty" to indicate no button was pressed in time.
+#. Esta función se llama cuando se agota el tiempo del juego. Invoca ``checkPoint`` con "empty" para indicar que no se presionó ningún botón a tiempo.
 
    .. code-block:: python
 
@@ -320,7 +319,7 @@ Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to make an amu
            """ Handle game timeout scenario. """
            checkPoint("empty")
 
-#. This function checks the state of the buttons. If ``AButtonPin`` is pressed (and ``BButtonPin`` is not), it calls ``checkPoint`` with "right". If ``BButtonPin`` is pressed (and ``AButtonPin`` is not), it calls ``checkPoint`` with "left".
+#. Esta función verifica el estado de los botones. Si ``AButtonPin`` está presionado (y ``BButtonPin`` no), llama a ``checkPoint`` con "right". Si ``BButtonPin`` está presionado (y ``AButtonPin`` no), llama a ``checkPoint`` con "left".
 
    .. code-block:: python
 
@@ -331,7 +330,7 @@ Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to make an amu
            elif not AButtonPin.is_pressed and BButtonPin.is_pressed:
                checkPoint("left")
 
-#. The ``main`` function controls the game flow. It starts by creating a glyph, then continuously checks the game stage. If in "PLAY" stage, it displays the current glyph and checks for button presses. In "CHECK" stage, it displays the feedback based on the player's action.
+#. La función ``main`` controla el flujo del juego. Comienza creando un glifo, luego verifica continuamente el estado del juego. Si está en el estado "PLAY", muestra el glifo actual y verifica las pulsaciones de botón. En el estado "CHECK", muestra la retroalimentación según la acción del jugador.
 
    .. code-block:: python
 
@@ -345,21 +344,21 @@ Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to make an amu
                elif stage == "CHECK":
                    display(check[waypoint])
 
-#. This function cancels any running timers when the program exits, ensuring a clean shutdown.
+#. Esta función cancela cualquier temporizador activo al salir del programa, asegurando un apagado limpio.
 
    .. code-block:: python
 
        def destroy():
            """ Clean up resources on program exit. """
            global timerPlay, timerCheck
-           timerPlay.cancel()  # Cancel the play timer
-           timerCheck.cancel()  # Cancel the checkpoint timer
+           timerPlay.cancel()  # Cancela el temporizador de juego
+           timerCheck.cancel()  # Cancela el temporizador de verificación
 
-#. The game is run in a ``try`` block. If a ``KeyboardInterrupt`` (like pressing Ctrl+C) occurs, it catches the exception and calls ``destroy`` to clean up before exiting.
+#. El juego se ejecuta en un bloque ``try``. Si ocurre una ``KeyboardInterrupt`` (como presionar Ctrl+C), captura la excepción y llama a ``destroy`` para limpiar antes de salir.
 
    .. code-block:: python
 
-       # Run the game, handle KeyboardInterrupt for clean exit
+       # Ejecuta el juego y maneja KeyboardInterrupt para salir limpiamente
        try:
            main()
        except KeyboardInterrupt:

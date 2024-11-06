@@ -1,47 +1,44 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas posventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Accede de forma anticipada a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-1.1.3 LED Bar Graph
-======================
+1.1.3 Barra de LEDs
+========================
 
-Introduction
--------------
+Introducción
+---------------
 
-In this project, we sequentially illuminate the lights on the LED Bar
-Graph.
+En este proyecto, iluminaremos secuencialmente las luces de la barra de LEDs.
 
-Components
-----------------
+Componentes
+--------------
 
 .. image:: img/list_led_bar.png
 
+Principio
+------------
 
-Principle
---------------
+**Barra de LEDs**
 
-**LED Bar Graph**
-
-LED Bar Graph is an LED array, which is used to connect with electronic
-circuit or microcontroller. It’s easy to connect LED bar graph with the
-circuit like as connecting 10 individual LEDs with 10 output pins.
-Generally we can use the LED bar graph as a Battery level Indicator,
-Audio equipments, and Industrial Control panels. There are many other
-applications of LED bar graphs.
+La barra de LEDs es un conjunto de LEDs que se conecta a un circuito 
+electrónico o microcontrolador. Es similar a conectar 10 LEDs individuales 
+a 10 pines de salida. Generalmente, se puede utilizar como indicador de nivel 
+de batería, en equipos de audio y en paneles de control industrial, entre otras 
+aplicaciones.
 
 .. image:: img/led_bar_sche.png
 
-Schematic Diagram
+Diagrama Esquemático
 -------------------------
 
 ============ ======== ======== ===
@@ -61,18 +58,18 @@ SPICE0       Pin 24   10       8
 .. image:: img/schematic_led_bar.png
 
 
-Experimental Procedures
-------------------------------
+Procedimientos Experimentales
+-----------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construye el circuito.
 
 .. image:: img/image66.png
     :width: 800
-    
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+Para Usuarios de Lenguaje C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Paso 2**: Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -82,7 +79,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.1.3/
 
-**Step 3**: Compile the code.
+**Paso 3**: Compila el código.
 
 .. raw:: html
 
@@ -92,7 +89,7 @@ For C Language Users
 
     gcc 1.1.3_LedBarGraph.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Paso 4**: Ejecuta el archivo compilado.
 
 .. raw:: html
 
@@ -102,15 +99,14 @@ For C Language Users
 
     sudo ./a.out
 
-After the code runs, you will see the LEDs on the LED bar turn on and
-off regularly.
-
+Después de ejecutar el código, verás cómo los LEDs de la barra se encienden 
+y apagan de forma regular.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si el código no funciona después de ejecutarlo, o aparece un mensaje de error como \"wiringPi.h: No such file or directory\", consulta :ref:`c code is not working?`.
     
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -143,11 +139,11 @@ off regularly.
     }
     int main(void)
     {
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ //si la inicialización de wiring falla, imprime mensaje en pantalla
             printf("setup wiringPi failed !");
             return 1;
         }
-        for(int i=0;i<10;i++){       //make led pins' mode is output
+        for(int i=0;i<10;i++){       //configura los pines de LED en modo salida
             pinMode(pins[i], OUTPUT);
             digitalWrite(pins[i],LOW);
         }
@@ -161,16 +157,14 @@ off regularly.
         }
         return 0;
     }
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
     int pins[10] = {0,1,2,3,4,5,6,8,9,10};
 
-Create an array and assign it to the pin number corresponding to the LED
-Bar Graph (0,1,2,3,4,5,6,8,9,10) and the array will be used to control
-the LED.
+Crea un arreglo y asígnale los números de los pines correspondientes a la 
+barra de LEDs (0,1,2,3,4,5,6,8,9,10). Este arreglo se utilizará para controlar los LEDs.
 
 .. code-block:: c
 
@@ -183,7 +177,7 @@ the LED.
         }
     }
 
-Let the LED on the odd digit of the LED Bar Graph light on in turn.
+Enciende los LEDs en las posiciones impares de la barra de LEDs uno por uno.
 
 .. code-block:: c
 
@@ -196,7 +190,7 @@ Let the LED on the odd digit of the LED Bar Graph light on in turn.
         }
     }
 
-Make the LED on the even digit of the LED Bar Graph light on in turn.
+Enciende los LEDs en las posiciones pares de la barra de LEDs uno por uno.
 
 .. code-block:: c
 
@@ -208,12 +202,12 @@ Make the LED on the even digit of the LED Bar Graph light on in turn.
         }
     }
 
-Let the LED on the LED Bar Graph light on one by one.
+Enciende los LEDs de la barra de LEDs uno a uno.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Para Usuarios de Lenguaje Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -223,7 +217,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3**: Run the executable file.
+**Paso 3:** Ejecuta el archivo.
 
 .. raw:: html
 
@@ -233,14 +227,13 @@ For Python Language Users
 
     sudo python3 1.1.3_LedBarGraph.py
 
-After the code runs, you will see the LEDs on the LED bar turn on and
-off regularly.
+Después de ejecutar el código, verás que los LEDs en la barra se encienden y apagan regularmente.
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Antes de eso, asegúrate de estar en la ruta de código fuente, como ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -275,10 +268,10 @@ off regularly.
 
     def setup():
         GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BOARD)        # Numbers GPIOs by physical location
+        GPIO.setmode(GPIO.BOARD)        # Numeración física de pines GPIO
         for i in ledPins:
-            GPIO.setup(i, GPIO.OUT)   # Set all ledPins' mode is output
-            GPIO.output(i, GPIO.LOW) # Set all ledPins to high(+3.3V) to off led
+            GPIO.setup(i, GPIO.OUT)     # Configura todos los pines de ledPins como salida
+            GPIO.output(i, GPIO.LOW)    # Configura todos los pines de ledPins en bajo (+3.3V) para apagar el LED
 
     def loop():
         while True:
@@ -291,20 +284,20 @@ off regularly.
 
     def destroy():
         for pin in ledPins:
-            GPIO.output(pin, GPIO.LOW)    # turn off all leds
-        GPIO.cleanup()                     # Release resource
+            GPIO.output(pin, GPIO.LOW)  # Apaga todos los LEDs
+        GPIO.cleanup()                  # Libera los recursos
 
-    if __name__ == '__main__':     # Program start from here
+    if __name__ == '__main__':          # Inicio del programa
         setup()
         try:
             loop()
-        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
+        except KeyboardInterrupt:       # Cuando se presiona 'Ctrl+C', se ejecuta destroy()
             destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 ledPins = [11, 12, 13, 15, 16, 18, 22, 3, 5, 24]
-Create an array and assign it to the pin number corresponding to the LED Bar Graph (11, 12, 13, 15, 16, 18, 22, 3, 5, 24) and the array will be used to control the LED.
+Crea un arreglo y asígnale los números de los pines correspondientes a la barra de LEDs (11, 12, 13, 15, 16, 18, 22, 3, 5, 24). Este arreglo se utilizará para controlar los LEDs.
 
 .. code-block:: python
 
@@ -315,7 +308,7 @@ Create an array and assign it to the pin number corresponding to the LED Bar Gra
             time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
 
-Let the LED on the odd digit of the LED Bar Graph light on in turn.
+Enciende los LEDs en las posiciones impares de la barra de LEDs uno por uno.
 
 .. code-block:: python
 
@@ -326,7 +319,7 @@ Let the LED on the odd digit of the LED Bar Graph light on in turn.
             time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
 
-Make the LED on the even digit of the LED Bar Graph light on in turn.
+Enciende los LEDs en las posiciones pares de la barra de LEDs uno por uno.
 
 .. code-block:: python
 
@@ -336,9 +329,9 @@ Make the LED on the even digit of the LED Bar Graph light on in turn.
             time.sleep(0.3)
             GPIO.output(i,GPIO.LOW)
 
-Let the LED on the LED Bar Graph light on one by one.
+Enciende los LEDs de la barra de LEDs uno a uno.
 
-Phenomenon Picture
+Imagen del Fenómeno
 -----------------------
 
 .. image:: img/image67.jpeg

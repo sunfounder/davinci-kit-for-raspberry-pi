@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros entusiastas y explora más a fondo Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _py_pi5_btr_indicator:
 
-3.1.5 Battery Indicator
-===================================
+3.1.5 Indicador de Batería
+=============================
 
-Introduction
---------------
+Introducción
+---------------
 
-In this project, we will make a battery indicator device that can
-visually display the battery level on the LED Bargraph.
+En este proyecto, crearemos un dispositivo de indicador de batería que 
+muestra visualmente el nivel de batería en el Bargraph LED.
 
-Required Components
-------------------------------
+Componentes Necesarios
+-------------------------
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../python_pi5/img/4.1.11_battery_indicator_list.png
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+.. Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. .. list-table::
 ..     :widths: 20 20 20
 ..     :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
+..     *   - Nombre	
+..         - ELEMENTOS EN ESTE KIT
+..         - ENLACE
+..     *   - Kit Raphael
 ..         - 337
 ..         - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+.. También puedes comprarlos por separado en los enlaces a continuación.
 
 .. .. list-table::
 ..     :widths: 30 20
 ..     :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+..     *   - INTRODUCCIÓN AL COMPONENTE
+..         - ENLACE DE COMPRA
 
 ..     *   - :ref:`gpio_extension_board`
 ..         - |link_gpio_board_buy|
@@ -66,8 +66,8 @@ In this project, we need the following components.
 ..     *   - :ref:`adc0834`
 ..         - \-
 
-Schematic Diagram
--------------------
+Diagrama Esquemático
+------------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -89,14 +89,14 @@ GPIO26       Pin 37   25       26
 .. image:: ../python_pi5/img/4.1.11_battery_indicator_schematic.png
    :align: center
 
-Experimental Procedures
--------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: ../python_pi5/img/4.1.11_battery_indicator_circuit.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ir a la carpeta del código.
 
 .. raw:: html
 
@@ -106,7 +106,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run the executable file.
+**Paso 3:** Ejecutar el archivo ejecutable.
 
 .. raw:: html
 
@@ -116,19 +116,19 @@ Experimental Procedures
 
     sudo python3 3.1.5_BatteryIndicator_zero.py
 
-After the program runs, give the 3rd pin of ADC0834 and the GND a
-lead-out wire separately and then lead them to the two poles of a
-battery separately. You can see the corresponding LED on the LED
-Bargraph is lit up to display the power level (measuring range: 0-5V).
+Después de ejecutar el programa, conecta un cable desde el tercer pin 
+del ADC0834 y otro desde el GND, y dirígelos a los dos polos de una batería. 
+Verás que el LED correspondiente en el Bargraph LED se ilumina para mostrar 
+el nivel de carga (rango de medición: 0-5V).
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si aparece el error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc`
 
-**Code**
+**Código**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes, debes ir a la ruta del código fuente, como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -141,39 +141,39 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
    import ADC0834
    import time
 
-   # List of GPIO pins to which LEDs are connected
+   # Lista de pines GPIO a los que están conectados los LEDs
    ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
-   # Initialize LED objects for each pin in the list
+   # Inicializa objetos LED para cada pin en la lista
    leds = [LED(pin) for pin in ledPins]
 
-   # Setup ADC0834 module
+   # Configura el módulo ADC0834
    ADC0834.setup()
 
    def LedBarGraph(value):
-       # Turn off all LEDs
+       # Apaga todos los LEDs
        for i in range(10):
            leds[i].off()
-       # Turn on LEDs up to the specified value
+       # Enciende LEDs hasta el valor especificado
        for i in range(value):
            leds[i].on()
 
    try:
-       # Main loop to continuously update LED bar graph
+       # Bucle principal para actualizar continuamente el gráfico de barras de LEDs
        while True:
-           # Read analog value from ADC0834
+           # Lee el valor analógico del ADC0834
            analogVal = ADC0834.getResult()
-           # Convert analog value to LED bar graph level
+           # Convierte el valor analógico al nivel del gráfico de barras LED
            LedBarGraph(int(analogVal/25))
    except KeyboardInterrupt: 
-       # Turn off all LEDs when program is interrupted
+       # Apaga todos los LEDs cuando se interrumpe el programa
        for i in range(10):
            leds[i].off()
 
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. This section imports the necessary libraries. ``gpiozero`` is for controlling the LEDs, ``ADC0834`` for interfacing with the ADC module, and ``time`` for time-related operations.
+#. Esta sección importa las bibliotecas necesarias. ``gpiozero`` es para controlar los LEDs, ``ADC0834`` para la interfaz con el módulo ADC y ``time`` para operaciones relacionadas con el tiempo.
 
    .. code-block:: python
 
@@ -182,51 +182,51 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
        import ADC0834
        import time
 
-#. Defines the GPIO pins to which the LEDs are connected and initializes an array of LED objects for each pin. This allows for easy control of each LED in the array.
+#. Define los pines GPIO a los que están conectados los LEDs e inicializa una matriz de objetos LED para cada pin, lo que permite un control fácil de cada LED en la matriz.
 
    .. code-block:: python
 
-       # List of GPIO pins to which LEDs are connected
+       # Lista de pines GPIO a los que están conectados los LEDs
        ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
-       # Initialize LED objects for each pin in the list
+       # Inicializa objetos LED para cada pin en la lista
        leds = [LED(pin) for pin in ledPins]
 
-#. Initializes the ADC0834 module for analog-to-digital conversion.
+#. Inicializa el módulo ADC0834 para la conversión de analógico a digital.
 
    .. code-block:: python
 
-       # Setup ADC0834 module
+       # Configura el módulo ADC0834
        ADC0834.setup()
 
-#. This function turns off all LEDs and then turns on a number of LEDs based on the input value, effectively creating a bar graph representation.
+#. Esta función apaga todos los LEDs y luego enciende un número de LEDs basado en el valor de entrada, creando efectivamente una representación gráfica de barras.
 
    .. code-block:: python
 
        def LedBarGraph(value):
-           # Turn off all LEDs
+           # Apaga todos los LEDs
            for i in range(10):
                leds[i].off()
-           # Turn on LEDs up to the specified value
+           # Enciende LEDs hasta el valor especificado
            for i in range(value):
                leds[i].on()
 
-#. Continuously reads the analog value from the ADC0834 and updates the LED bar graph based on this value. The analog value is scaled down to a range of 0-10 for the 10 LEDs.
+#. Lee continuamente el valor analógico del ADC0834 y actualiza el gráfico de barras de LEDs según este valor. El valor analógico se reduce a un rango de 0-10 para los 10 LEDs.
 
    .. code-block:: python
 
        try:
-           # Main loop to continuously update LED bar graph
+           # Bucle principal para actualizar continuamente el gráfico de barras LED
            while True:
-               # Read analog value from ADC0834
+               # Lee el valor analógico del ADC0834
                analogVal = ADC0834.getResult()
-               # Convert analog value to LED bar graph level
+               # Convierte el valor analógico al nivel del gráfico de barras LED
                LedBarGraph(int(analogVal/25))
 
-#. Ensures all LEDs are turned off when the program is interrupted (e.g., by pressing Ctrl+C).
+#. Asegura que todos los LEDs se apaguen cuando se interrumpe el programa (por ejemplo, al presionar Ctrl+C).
 
    .. code-block:: python
 
        except KeyboardInterrupt: 
-           # Turn off all LEDs when program is interrupted
+           # Apaga todos los LEDs cuando se interrumpe el programa
            for i in range(10):
                leds[i].off()

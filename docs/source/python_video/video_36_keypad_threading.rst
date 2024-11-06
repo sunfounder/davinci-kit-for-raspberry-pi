@@ -1,35 +1,33 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros aficionados.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
 
-Video 36: Monitoring User Input from Keypad Using Threading
+Video 36: Monitoreo de Entrada del Usuario desde un Teclado Usando Hilos
 =======================================================================================
 
+Este video muestra cómo crear un sistema de alarma utilizando un Raspberry Pi, integrando la entrada del teclado y una pantalla LCD. El video abarca diversos aspectos como instrucciones de cableado, uso de hilos para multitarea, manejo de comandos, validación de contraseñas, gestión de errores y extensión de funcionalidades. McCarter enfatiza la importancia de la portabilidad y el despliegue para aplicaciones en el mundo real más allá del escritorio.
 
-This video demonstrates how to create an alarm system using a Raspberry Pi, incorporating keypad input and an LCD display. The video covers various aspects such as wiring instructions, threading for multitasking, command handling, password validation, error handling, and extending functionality. McCarter emphasizes the importance of portability and deployment for real-world applications beyond the desktop.
 
-
-1. **Portability and Deployment**: Moving Raspberry Pi projects beyond desktop for real-world applications.
-2. **Keypad and LCD Setup**: Wiring a keypad and LCD display to Raspberry Pi GPIO pins for input and output.
-3. **Threading for Multitasking**: Using threading to handle input from the keypad while executing other tasks.
-4. **Keypad Input Integration**: Incorporating keypad input into the project using a library.
-5. **Command Handling**: Defining and processing commands for arming, disarming, and changing the password.
-6. **Password Validation**: Implementing password validation for system security.
-7. **LCD Display Interface**: Interfacing with an LCD display to provide user feedback and prompts.
-8. **Error Handling and Debugging**: Techniques for identifying and resolving errors during development.
-9. **Extending Functionality**: Suggestions for expanding the project, including integrating additional sensors and audible alarms.
-
+1. **Portabilidad y Despliegue**: Llevar los proyectos de Raspberry Pi más allá del escritorio para aplicaciones en el mundo real.
+2. **Configuración de Teclado y LCD**: Cableado de un teclado y una pantalla LCD a los pines GPIO de Raspberry Pi para entrada y salida.
+3. **Uso de Hilos para Multitarea**: Emplear hilos para manejar la entrada del teclado mientras se ejecutan otras tareas.
+4. **Integración de Entrada del Teclado**: Incorporación de la entrada del teclado en el proyecto usando una librería.
+5. **Manejo de Comandos**: Definir y procesar comandos para activar, desactivar y cambiar la contraseña.
+6. **Validación de Contraseña**: Implementación de validación de contraseñas para la seguridad del sistema.
+7. **Interfaz de Pantalla LCD**: Interacción con una pantalla LCD para proporcionar retroalimentación y mensajes al usuario.
+8. **Gestión de Errores y Depuración**: Técnicas para identificar y resolver errores durante el desarrollo.
+9. **Ampliación de Funcionalidades**: Sugerencias para expandir el proyecto, incluyendo la integración de sensores adicionales y alarmas audibles.
 
 **Video**
 

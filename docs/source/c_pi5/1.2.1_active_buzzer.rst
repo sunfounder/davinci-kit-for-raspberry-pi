@@ -1,100 +1,93 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y avances.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy!
 
-1.2.1 Active Buzzer
-===================
+1.2.1 Zumbador Activo
+========================
 
-Introduction
-------------
+Introducción
+--------------
 
-In this lesson, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+En esta lección, aprenderemos a controlar un zumbador activo para que emita 
+un sonido utilizando un transistor PNP.
 
-Components
-----------
+Componentes
+-------------
 
 .. image:: img/list_1.2.1.png
 
+Principio
+------------
 
-Principle
----------
+**Zumbador**
 
-**Buzzer**
+Como un tipo de zumbador electrónico con estructura integrada, los zumbadores, 
+que son alimentados por corriente continua, se utilizan ampliamente en computadoras, 
+impresoras, fotocopiadoras, alarmas, juguetes electrónicos, dispositivos electrónicos 
+automotrices, teléfonos, temporizadores y otros productos electrónicos o dispositivos 
+de voz. Los zumbadores se pueden categorizar en activos y pasivos (ver la imagen siguiente). 
+Coloca el zumbador de modo que sus pines queden hacia arriba; el zumbador con una placa de 
+circuito verde es un zumbador pasivo, mientras que el que está envuelto con cinta negra es un zumbador activo.
 
-As a type of electronic buzzer with an integrated structure, buzzers,
-which are supplied by DC power, are widely used in computers, printers,
-photocopiers, alarms, electronic toys, automotive electronic devices,
-telephones, timers and other electronic products or voice devices.
-Buzzers can be categorized as active and passive ones (see the following
-picture). Turn the buzzer so that its pins are facing up, and the buzzer
-with a green circuit board is a passive buzzer, while the one enclosed
-with a black tape is an active one.
-
-The difference between an active buzzer and a passive buzzer:
+La diferencia entre un zumbador activo y uno pasivo:
 
 .. image:: img/image101.png
     :width: 400
     :align: center
 
+La diferencia entre un zumbador activo y uno pasivo es la siguiente: 
+un zumbador activo tiene una fuente de oscilación incorporada, por lo que 
+produce sonido cuando se energiza. En cambio, un zumbador pasivo no tiene 
+dicha fuente, por lo que no emitirá sonido si se utilizan señales de corriente 
+continua; en su lugar, se deben usar ondas cuadradas cuya frecuencia esté entre 
+2K y 5K para activarlo. El zumbador activo suele ser más caro que el pasivo 
+debido a sus múltiples circuitos osciladores incorporados.
 
-The difference between an active buzzer and a passive buzzer is: An
-active buzzer has a built-in oscillating source, so it will make sounds
-when electrified. But a passive buzzer does not have such source, so it
-will not beep if DC signals are used; instead, you need to use square
-waves whose frequency is between 2K and 5K to drive it. The active
-buzzer is often more expensive than the passive one because of multiple
-built-in oscillating circuits.
-
-The following is the electrical symbol of a buzzer. It has two pins with
-positive and negative poles. With a + in the surface represents the
-anode and the other is the cathode.
+A continuación se muestra el símbolo eléctrico de un zumbador. Tiene dos 
+pines con polos positivo y negativo. Con un + en la superficie que representa 
+el ánodo y el otro es el cátodo.
 
 .. image:: img/image102.png
     :width: 150
     :align: center
 
 
-You can check the pins of the buzzer, the longer one is the anode and
-the shorter one is the cathode. Please don’t mix them up when
-connecting, otherwise the buzzer will not make sound.
+Puedes verificar los pines del zumbador; el más largo es el ánodo y el más corto 
+es el cátodo. No los confundas al conectarlos, de lo contrario, el zumbador no emitirá sonido.
 
-Schematic Diagram
------------------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+Diagrama Esquemático
+-------------------------
+
+En este experimento, se utiliza un zumbador activo, un transistor PNP y una 
+resistencia de 1k entre la base del transistor y GPIO para proteger el transistor. 
+Cuando la salida GPIO17 de Raspberry Pi está en bajo (0V) mediante programación, 
+el transistor conducirá debido a la saturación de corriente y el zumbador 
+emitirá sonido. Sin embargo, cuando se suministre un nivel alto a la E/S de 
+Raspberry Pi, el transistor se cortará y el zumbador no emitirá sonido.
 
 .. image:: img/image332.png
 
+Procedimientos Experimentales
+---------------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit. (Pay attention to poles of the buzzer:
-The one with + label is the positive pole and the other is the
-negative.)
+**Paso 1:** Construir el circuito. (Presta atención a los polos del zumbador: 
+el que tiene la etiqueta + es el polo positivo y el otro es el negativo.)
 
 .. image:: img/image104.png
     :width: 800
 
-
-**Step 2**: Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -104,7 +97,7 @@ negative.)
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.2.1/
 
-**Step 3**: Compile the code.
+**Paso 3:** Compila el código.
 
 .. raw:: html
 
@@ -114,7 +107,7 @@ negative.)
 
     gcc 1.2.1_ActiveBuzzer.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**Paso 4:** Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -124,13 +117,13 @@ negative.)
 
     sudo ./a.out
 
-The code run, the buzzer beeps.
+Al ejecutar el código, el zumbador emitirá un sonido.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`c code is not working?`.
 
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -139,39 +132,39 @@ The code run, the buzzer beeps.
 
     #define BeepPin 0
     int main(void){
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+        if(wiringPiSetup() == -1){ //si la inicialización de wiring falla, imprime un mensaje en pantalla
             printf("setup wiringPi failed !");
             return 1;
         }
         
-        pinMode(BeepPin, OUTPUT);   //set GPIO0 output
+        pinMode(BeepPin, OUTPUT);   //configura GPIO0 como salida
         while(1){
-            //beep on
+            //zumbador encendido
             printf("Buzzer on\n");
             digitalWrite(BeepPin, LOW);
             delay(100);
             printf("Buzzer off\n");
-            //beep off
+            //zumbador apagado
             digitalWrite(BeepPin, HIGH);
             delay(100);
         }
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
     digitalWrite(BeepPin, LOW);
 
-We use an active buzzer in this experiment, so it will make sound 
-automatically when connecting to the direct current. This sketch 
-is to set the I/O port as low level (0V), thus to manage the 
-transistor and make the buzzer beep. 
+Utilizamos un zumbador activo en este experimento, por lo que emitirá 
+sonido automáticamente al conectarlo a la corriente continua. Este código 
+establece el puerto de E/S en nivel bajo (0V), lo que permite gestionar el 
+transistor y hacer que el zumbador emita sonido.
 
 .. code-block:: c
 
     digitalWrite(BeepPin, HIGH);
 
-To set the I/O port as high level(3.3V), thus the transistor is 
-not energized and the buzzer doesn’t beep. 
+Esto establece el puerto de E/S en nivel alto (3.3V), por lo que el transistor 
+no se energiza y el zumbador no emite sonido.

@@ -1,34 +1,34 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete para profundizar en Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y vistas previas.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-3.1.10 Alarm Bell
+3.1.10 Alarma
 =====================
 
-Introduction
+Introducción
 -----------------
 
-In this course, we will make a manual alarm device. You can replace the
-toggle switch with a thermistor or a photosensitive sensor to make a
-temperature alarm or a light alarm.
+En este curso, vamos a crear un dispositivo de alarma manual. 
+Puedes reemplazar el interruptor de palanca con un termistor o 
+un sensor fotosensible para hacer una alarma de temperatura o de luz.
 
-Components
+Componentes
 ---------------
 
 .. image:: img/list_Alarm_Bell.png
     :align: center
 
-Schematic Diagram
+Diagrama Esquemático
 -------------------------
 
 ============ ======== ======== ===
@@ -42,19 +42,19 @@ GPIO22       Pin 15   3        22
 .. image:: img/Schematic_three_one10.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construye el circuito.
 
 .. image:: img/image266.png
    :alt: Alarm Bell_bb
    :width: 800
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Para Usuarios de Lenguaje C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Change directory.
+**Paso 2**: Cambia de directorio.
 
 .. raw:: html
 
@@ -64,87 +64,86 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.10/
 
-**Step 3**: Compile.
+**Paso 3**: Compila.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     gcc 3.1.10_AlarmBell.c -lwiringPi -lpthread
 
-**Step 4**: Run.
+**Paso 4**: Ejecuta.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     sudo ./a.out
 
-After the program starts, the toggle switch will be toggled to the
-right, and the buzzer will give out alarm sounds. At the same time, the
-red and green LEDs will flash at a certain frequency.
+Después de iniciar el programa, el interruptor de palanca se moverá 
+hacia la derecha, y el zumbador emitirá sonidos de alarma. Al mismo 
+tiempo, los LED rojo y verde parpadearán a una cierta frecuencia.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
 
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
     #include <pthread.h>
 
-In this code, you'll use a new library, pthread.h, which is a set of
-common thread libraries and can realize multithreading. We add the
-**-lpthread** parameter at compile time for the independent working of
-the LED and the buzzer.
+En este código, se usa una nueva biblioteca, pthread.h, que es un conjunto 
+de bibliotecas de hilos comunes y permite la implementación de multihilos. 
+Añadimos el parámetro **-lpthread** al momento de la compilación para que 
+el LED y el zumbador funcionen de manera independiente.
 
 .. code-block:: c
 
     void *ledWork(void *arg){       
-        while(1)    
-        {   
-            if(flag==0){
-                pthread_exit(NULL);
-            }
-            digitalWrite(ALedPin,HIGH);
-            delay(500);
-            digitalWrite(ALedPin,LOW);
-            digitalWrite(BLedPin,HIGH);
-            delay(500);
-            digitalWrite(BLedPin,LOW);
-        }
+        while(1)    
+        {   
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            digitalWrite(ALedPin,HIGH);
+            delay(500);
+            digitalWrite(ALedPin,LOW);
+            digitalWrite(BLedPin,HIGH);
+            delay(500);
+            digitalWrite(BLedPin,LOW);
+        }
     }
 
-The function ledWork() helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+La función ledWork() se encarga de configurar el estado de funcionamiento de 
+estos 2 LEDs: mantiene el LED verde encendido durante 0,5 s y luego se apaga; 
+de manera similar, mantiene el LED rojo encendido durante 0,5 s y luego se apaga.
 
 .. code-block:: c
 
     void *buzzWork(void *arg){
-        while(1)
-        {
-            if(flag==0){
-                pthread_exit(NULL);
-            }
-            if((note>=800)||(note<=130)){
+        while(1)
+        {
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            if((note>=800)||(note<=130)){
                 pitch = -pitch;
-            }
-            note=note+pitch;
-            softToneWrite(BeepPin,note);
-            delay(10);
-        }
+            }
+            note=note+pitch;
+            softToneWrite(BeepPin,note);
+            delay(10);
+        }
     }
 
-The function buzzWork() is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+La función buzzWork() se utiliza para configurar el estado de funcionamiento 
+del zumbador. Aquí establecemos la frecuencia entre 130 y 800, acumulando o 
+decayendo en intervalos de 20.
 
 .. code-block:: c
 
@@ -152,114 +151,112 @@ at an interval of 20.
         flag = 1;
         if(softToneCreate(BeepPin) == -1){
             printf("setup softTone failed !");
-            return; 
-        }    
+            return; 
+        }    
         pthread_t tLed;     
-        pthread_create(&tLed,NULL,ledWork,NULL);    
+        pthread_create(&tLed,NULL,ledWork,NULL);    
         pthread_t tBuzz;  
-        pthread_create(&tBuzz,NULL,buzzWork,NULL);      
+        pthread_create(&tBuzz,NULL,buzzWork,NULL);       
     }
 
-In the function on():
+En la función on():
 
-1) Define the mark \"flag=1\", indicating the ending of the control
-   thread.
+1) Definimos la marca "flag=1", lo que indica el fin del hilo de control.
 
-2) Create a software-controlled tone pin **BeepPin**.
+2) Creamos un pin de tono controlado por software **BeepPin**.
 
-3) Create two separate threads so that the LED and the buzzer can work
-   at the same time.
+3) Creamos dos hilos independientes para que el LED y el zumbador puedan 
+   funcionar al mismo tiempo.
 
-**pthread_t tLed:** Declare a thread **tLed**.
+**pthread_t tLed:** Declara un hilo **tLed**.
 
-**pthread_create(&tLed,NULL,ledWork,NULL)：** Create the thread and its
-prototype is as follows:
+**pthread_create(&tLed,NULL,ledWork,NULL):** Crea el hilo, y su prototipo es 
+el siguiente:
 
-int pthread_create(pthread_t \*restrict tidp,const pthread_attr_t
-\*restrict_attr,void*（*start_rtn)(void*),void \*restrict arg);
+int pthread_create(pthread_t *restrict tidp,const pthread_attr_t *restrict_attr,
+void*（*start_rtn)(void*),void *restrict arg);
 
-**Return the Value**
+**Retorno del Valor**
 
-If successful, return \"**0**\"；otherwise, return the **fall number**
-\"**-1**\".
+Si tiene éxito, devuelve "**0**"; de lo contrario, devuelve el **número de error** "\"**-1**\"".
 
-**Parameter**
+**Parámetros**
 
-| The first parameter is a pointer to the thread identifier.
-| The second one is used to set the thread attribute.
-| The third one is the starting address of the thread running function.
-| The last one is the one that runs the function.
+| El primer parámetro es un puntero al identificador del hilo.
+| El segundo se usa para establecer el atributo del hilo.
+| El tercero es la dirección de inicio de la función de ejecución del hilo.
+| El último es el que ejecuta la función.
 
 .. code-block:: c
 
     void off(){
         flag = 0;
-        softToneStop(BeepPin);
-        digitalWrite(ALedPin,LOW);
-        digitalWrite(BLedPin,LOW);
+        softToneStop(BeepPin);
+        digitalWrite(ALedPin,LOW);
+        digitalWrite(BLedPin,LOW);
     }
 
 
-The function Off() defines \"flag=0\" so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+La función off() define \"flag=0\" para salir de los hilos **ledWork** y 
+**buzzWork** y luego apaga el zumbador y los LED.
 
 .. code-block:: c
 
     int main(){       
-        setup(); 
+        setup(); 
         int lastState = 0;
-        while(1){
+        while(1){
             int currentState = digitalRead(switchPin);
             if ((currentState == 1)&&(lastState==0)){
-                on();
-            }
+                on();
+            }
             else if((currentState == 0)&&(lastState==1)){
-                off();
-            }
+                off();
+            }
             lastState=currentState;
-        }
+        }
         return 0;
     }
 
-Main() contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function on() is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+Main() contiene todo el proceso del programa: primero lee el valor del 
+interruptor deslizante; si el interruptor se cambia a la derecha 
+(la lectura es 1), se llama a la función on(), el zumbador emite sonidos 
+y los LED rojo y verde parpadean. De lo contrario, el zumbador y los LED 
+permanecen apagados.
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Para Usuarios de Lenguaje Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Change directory.
+**Paso 2:** Cambia de directorio.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run.
+**Paso 3:** Ejecuta.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     sudo python3 3.1.10_AlarmBell.py
 
-After the program starts, the toggle switch will be toggled to the
-right, and the buzzer will give out alarm sounds. At the same time, the
-red and green LEDs will flash at a certain frequency.
+Después de iniciar el programa, el interruptor de palanca se moverá hacia 
+la derecha, y el zumbador emitirá sonidos de alarma. Al mismo tiempo, los 
+LED rojo y verde parpadearán a una cierta frecuencia.
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes, necesitas dirigirte a la ruta del código fuente, como ``davinci-kit-for-raspberry-pi/python``. 
+
 .. raw:: html
 
     <run></run>
@@ -348,32 +345,32 @@ red and green LEDs will flash at a certain frequency.
             main()
         except KeyboardInterrupt:
             destroy()
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
     import threading
 
-Here, we import the **Threading** module and it allows you to do
-multiple things at once, while normal programs can only execute code
-from top to bottom. With **Threading** modules, the LED and the buzzer
-can work separately.
+Aquí importamos el módulo **Threading**, que permite ejecutar múltiples 
+tareas simultáneamente, mientras que los programas normales solo pueden 
+ejecutar el código de arriba hacia abajo. Con los módulos **Threading**, 
+el LED y el zumbador pueden funcionar por separado.
 
 .. code-block:: python
 
     def ledWork():
         while flag:
-            GPIO.output(ALedPin,GPIO.HIGH)
-            time.sleep(0.5)
-            GPIO.output(ALedPin,GPIO.LOW)
-            GPIO.output(BLedPin,GPIO.HIGH)
-            time.sleep(0.5)
-            GPIO.output(BLedPin,GPIO.LOW)
+            GPIO.output(ALedPin,GPIO.HIGH)
+            time.sleep(0.5)
+            GPIO.output(ALedPin,GPIO.LOW)
+            GPIO.output(BLedPin,GPIO.HIGH)
+            time.sleep(0.5)
+            GPIO.output(BLedPin,GPIO.LOW)
 
-The function ledWork() helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+La función ledWork() ayuda a establecer el estado de funcionamiento de 
+estos 2 LEDs: mantiene el LED verde encendido durante 0,5 s y luego se 
+apaga; de manera similar, mantiene el LED rojo encendido durante 0,5 s y 
+luego se apaga.
 
 .. code-block:: python
 
@@ -384,78 +381,77 @@ similarly, keeps the red LED lighting up for 0.5s and then turns off.
             if note >= 800 or note <=130:
                 pitch = -pitch
             note = note + pitch 
-            Buzz.ChangeFrequency(note)
-            time.sleep(0.01)
+            Buzz.ChangeFrequency(note)
+            time.sleep(0.01)
 
-The function buzzWork() is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+La función buzzWork() se utiliza para configurar el estado de funcionamiento 
+del zumbador. Aquí establecemos la frecuencia entre 130 y 800, acumulando o 
+decayendo en intervalos de 20.
 
 .. code-block:: python
 
     def on():
         global flag
         flag = 1
-        Buzz.start(50)
+        Buzz.start(50)
         tBuzz = threading.Thread(target=buzzerWork) 
-        tBuzz.start()
+        tBuzz.start()
         tLed = threading.Thread(target=ledWork) 
-        tLed.start()  
+        tLed.start()   
 
-In the function on():
+En la función on():
 
-1) Define the mark \"flag=1\", indicating the ending of the control
-   thread.
+1) Definimos la marca \"flag=1\", lo que indica el inicio del hilo de control.
 
-2) Start the Buzz, and set the duty cycle to 50%.
+2) Inicia el Buzz y establece el ciclo de trabajo al 50%.
 
-3) Create **2** separate threads so that the LED and the buzzer can work
-   at the same time.
+3) Crea **2** hilos separados para que el LED y el zumbador puedan funcionar 
+   al mismo tiempo.
 
-   tBuzz = threading.Thread(target=buzzerWork) **:** Create the
-   thread and its prototype is as follows:
+   tBuzz = threading.Thread(target=buzzerWork) **:** Crea el
+   hilo, cuyo prototipo es el siguiente:
 
 
-class threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, \*, daemon=None)
+class threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, \*, daemon=None)
 
-Among the construction methods, the principal parameter is **target**,
-we need to assign a callable object (here are the functions **ledWork**
-and **BuzzWork** ) to **target**.
+Entre los métodos de construcción, el parámetro principal es **target**,
+al cual necesitamos asignar un objeto invocable (en este caso, las funciones **ledWork**
+y **BuzzWork** ) a **target**.
 
-Next **start()** is called to start the thread object, ex.,
-tBuzz.start() is used to start the newly installed tBuzz thread.
+Luego se llama a **start()** para iniciar el objeto del hilo, por ejemplo,
+tBuzz.start() se usa para iniciar el hilo tBuzz recién creado.
 
 .. code-block:: python
 
     def off():
         global flag
         flag = 0
-        Buzz.stop()
-        GPIO.output(ALedPin,GPIO.LOW)
-        GPIO.output(BLedPin,GPIO.LOW)
+        Buzz.stop()
+        GPIO.output(ALedPin,GPIO.LOW)
+        GPIO.output(BLedPin,GPIO.LOW)
 
-The function Off() defines \"flag=0\" so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+La función off() define \"flag=0\" para salir de los hilos **ledWork** y 
+**buzzWork** y luego apaga el zumbador y los LED.
 
 .. code-block:: python
 
     def main():
-        lastState=0
+        lastState=0
         while True:
             currentState =GPIO.input(switchPin)
             if currentState == 1 and lastState == 0:
-                on()
+                on()
             elif currentState == 0 and lastState == 1:
-                off()
-            lastState=currentState
+                off()
+            lastState=currentState
 
-Main() contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function on() is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+Main() contiene todo el proceso del programa: primero lee el valor del 
+interruptor deslizante; si el interruptor se cambia a la derecha (la 
+lectura es 1), se llama a la función on(), el zumbador emite sonidos y 
+los LEDs rojo y verde parpadean. De lo contrario, el zumbador y los LEDs 
+permanecen apagados.
 
-Phenomenon Picture
+Imagen del Fenómeno
 ------------------------
 
 .. image:: img/image267.jpeg

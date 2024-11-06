@@ -1,99 +1,96 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros apasionados y profundiza en el mundo de Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y supera desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos especiales.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-1.10 Rotating fan
-==================
+1.10 Ventilador Giratorio
+=============================
 
-
-In this project, we will make a spinning star sprite and fan.
+En este proyecto, haremos que un sprite en forma de estrella y un ventilador giren.
 
 .. image:: img/1.17_header.png
 
-Required Components
------------------------
+Componentes Necesarios
+-------------------------
 
 .. image:: img/1.17_list.png
 
-Build the Circuit
----------------------
+Construye el Circuito
+-------------------------
 
 .. image:: img/1.17_image117.png
 
-Load the Code and See What Happens
----------------------------------------
+Carga el Código y Observa Qué Sucede
+------------------------------------
 
-Load the code file (``1.10_rotating_fan.sb3``) to Scratch 3.
+Carga el archivo de código (``1.10_rotating_fan.sb3``) en Scratch 3.
 
-After clicking the green flag on the stage, click on the star sprite，then it and the motor will rotate clockwise; you can change the direction of rotation by clicking on the two **arrow** sprites. When you click on the **star** sprite again, it and the motor will stop rotating.
+Después de hacer clic en la bandera verde en el escenario, haz clic en el sprite de la estrella; entonces, tanto la estrella como el motor girarán en el sentido de las agujas del reloj. Puedes cambiar la dirección de rotación haciendo clic en los dos sprites de **flecha**. Si vuelves a hacer clic en el sprite de **estrella**, tanto el sprite como el motor se detendrán.
 
-Tips on Sprite
-----------------
-Delete the default sprite, then select the **Star** sprite and the **Arrow1** sprite, and copy Arrow1 once.
+Consejos sobre el Sprite
+------------------------
+
+Elimina el sprite predeterminado y luego selecciona el sprite **Estrella** y el sprite **Flecha1**; duplica Flecha1 una vez.
 
 .. image:: img/1.17_motor1.png
 
-In the **Costumes** option, change the Arrow2 sprite to a different direction costume.
+En la opción **Disfraces**, cambia el sprite Flecha2 a una dirección diferente.
 
 .. image:: img/1.17_motor2.png
 
-Adjust the size and position of the sprite appropriately.
+Ajusta el tamaño y la posición del sprite de manera adecuada.
 
 .. image:: img/1.17_motor3.png
 
 
-Tips on Codes
---------------
+Consejos sobre el Código
+----------------------------
 
-**Flow Chart**
+**Diagrama de Flujo**
 
 .. image:: img/1.17_scratch.png
 
-In this code, you will see 2 pink blocks, turn left and turn right, which are our custom blocks (functions).
+En este código, verás dos bloques rosas, girar a la izquierda y girar a la derecha, que son bloques personalizados (funciones).
 
 .. image:: img/1.17_new_block.png
 
-**How to Make a Block?**
+**¿Cómo Crear un Bloque?**
 
-Let's learn how to make a block (function). The block (function) can be used to simplify your program, especially if you perform the same operation multiple times. Putting these operations into a newly declared block can be very convenient for you.
+Aprendamos a crear un bloque (función). Un bloque (función) puede usarse para simplificar tu programa, especialmente si realizas la misma operación varias veces. Poner estas operaciones en un nuevo bloque declarado puede ser muy conveniente.
 
-First find **My Blocks** in the block palette, then select **Make a Block**.
+Primero, busca **Mis Bloques** en la paleta de bloques, luego selecciona **Crear un Bloque**.
 
 .. image:: img/1.17_motor4.png
 
-Enter the name of the new block.
+Ingresa el nombre del nuevo bloque.
 
 .. image:: img/1.17_motor5.png
 
-After writing the function of the new block in the coding area, save it and then you can find the block in the blocks palette.
+Después de escribir la función del nuevo bloque en el área de programación, guárdalo y luego podrás encontrar el bloque en la paleta de bloques.
 
 .. image:: img/1.17_motor6.png
 
-**turn left**
+**girar a la izquierda**
 
-This is the code inside the turn left block to make the motor rotate counterclockwise.
+Este es el código dentro del bloque girar a la izquierda para que el motor gire en sentido contrario a las agujas del reloj.
 
 .. image:: img/1.17_motor12.png
   :width: 400
 
-**turn right**
 
-This is the code inside the turn right block to make the motor rotate clockwise.
+**girar a la derecha**
 
-
+Este es el código dentro del bloque girar a la derecha para que el motor gire en el sentido de las agujas del reloj.
 
 .. image:: img/1.17_motor11.png
   :width: 400
-
-
 

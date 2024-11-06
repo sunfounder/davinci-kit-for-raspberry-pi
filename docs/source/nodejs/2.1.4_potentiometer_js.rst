@@ -1,38 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-2.1.4 Potentionmeter
-=====================
+2.1.4 Potenciómetro
+===========================
 
-Introduction
-------------
+Introducción
+----------------
 
-The ADC function can be used to convert analog signals to digital
-signals, and in this experiment, ADC0834 is used to get the function
-involving ADC. Here, we implement this process by using potentiometer.
-Potentiometer changes the physical quantity -- voltage, which is
-converted by the ADC function.
+La función de ADC permite convertir señales analógicas en señales 
+digitales. En este experimento, usamos el ADC0834 para realizar esta 
+conversión con un potenciómetro. El potenciómetro cambia la cantidad 
+física, en este caso el voltaje, que luego es convertido mediante la función ADC.
 
-Components
-----------
+Componentes
+-------------
 
 .. image:: ../img/list_2.1.4_potentiometer.png
 
 
-
-Schematic Diagram
------------------
+Diagrama del Circuito
+----------------------
 
 .. image:: ../img/image311.png
 
@@ -40,20 +38,20 @@ Schematic Diagram
 .. image:: ../img/image312.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image180.png
 
 
 .. note::
-    Please place the chip by referring to the corresponding position
-    depicted in the picture. Note that the grooves on the chip should be on
-    the left when it is placed.
+    Coloca el chip siguiendo la posición correspondiente indicada en 
+    la imagen. Observa que las muescas del chip deben estar a la izquierda 
+    cuando se coloque.
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -63,7 +61,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -73,10 +71,10 @@ Experimental Procedures
 
     sudo node potentionmeter.js
 
-After the code runs, rotate the knob on the potentiometer, the intensity
-of LED will change accordingly.
+Después de ejecutar el código, gira la perilla del potenciómetro; la 
+intensidad del LED cambiará en consecuencia.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -95,19 +93,19 @@ of LED will change accordingly.
         });
     }, 100);
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
 
-Import the ``pigpio`` module.
+Importa el módulo ``pigpio``.
 
 .. code-block:: js
 
     const ADC0834 = require('./adc0834.js').ADC0834;
 
-We import an ``ADC0834`` constructor to use the adc0834 module.
+Importamos un constructor ``ADC0834`` para usar el módulo adc0834.
 
 
 .. code-block:: js
@@ -115,9 +113,9 @@ We import an ``ADC0834`` constructor to use the adc0834 module.
    const adc = new ADC0834(17, 18, 27);
 
 
-Instantiate an ADC0834 object, the three parameters are its three pins.
+Instancia un objeto ADC0834; los tres parámetros corresponden a sus tres pines.
 
-This is a promise object, you may need to understand the concept from the following link.
+Este es un objeto promise. Puedes obtener más información sobre el concepto en el siguiente enlace:
 
 * `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 
@@ -133,16 +131,15 @@ This is a promise object, you may need to understand the concept from the follow
         });
     }, 100);
 
-The value of ADC0834 channel 0 (channel 0 is connected to the potentiometer) is read every 100ms, and the value will be stored in ``value``.
+Cada 100 ms, se lee el valor del canal 0 del ADC0834 (el canal 0 está conectado al potenciómetro), y el valor se almacena en ``value``.
 
-Print ``value`` and use it to control the brightness of the LED, now you can see that the brightness of the LED changes with the value of the potentiometer.
-
-
+Imprime ``value`` y úsalo para controlar el brillo del LED. Ahora puedes observar cómo el brillo del LED varía en función del valor del potenciómetro.
 
 
 
-Phenomenon Picture
-------------------
+
+Imagen del Fenómeno
+------------------------
 
 .. image:: ../img/image181.jpeg
 

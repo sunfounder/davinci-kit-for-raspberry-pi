@@ -1,29 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más profundamente en el mundo de Raspberry Pi, Arduino y ESP32 junto con otros aficionados.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
 
-Video 32: Understanding and Using a Keypad with the Raspberry Pi
+Video 32: Entendiendo y Usando un Teclado con el Raspberry Pi
 =======================================================================================
 
-Learn how to efficiently incorporate a keypad into your Raspberry Pi projects using passive row-column addressing for input reading.
+Aprende a integrar eficientemente un teclado en tus proyectos de Raspberry Pi utilizando el direccionamiento pasivo de filas y columnas para leer entradas.
 
-1. **Introduction**: Learn how to integrate a keypad into your Raspberry Pi projects.
-2. **Passive Row-Column Addressing**: Understand the concept of passive addressing for efficient keypad input reading.
-3. **Wiring Setup**: Discover the wiring setup using rows and columns for the keypad.
-4. **GPIO Pins Configuration**: Set up GPIO pins as outputs for rows and inputs for columns.
-5. **Key Labeling**: Create a matrix to label the keys on the keypad for easier reference.
-6. **Implementation**: Follow along with the coding process to incorporate the keypad into your projects.
+1. **Introducción**: Aprende cómo integrar un teclado en tus proyectos de Raspberry Pi.
+2. **Direccionamiento Pasivo de Filas y Columnas**: Comprende el concepto de direccionamiento pasivo para una lectura eficiente de las entradas del teclado.
+3. **Configuración del Cableado**: Descubre la configuración de cableado usando filas y columnas para el teclado.
+4. **Configuración de Pines GPIO**: Configura los pines GPIO como salidas para las filas y entradas para las columnas.
+5. **Etiquetado de Teclas**: Crea una matriz para etiquetar las teclas del teclado y facilitar su referencia.
+6. **Implementación**: Sigue el proceso de codificación para integrar el teclado en tus proyectos.
 
 
 **Video**

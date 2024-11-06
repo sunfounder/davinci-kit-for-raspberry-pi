@@ -1,33 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con el apoyo de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-Video 60: Improved Pan/Tilt Tracking Control Algorithm
+
+Video 60: Algoritmo Mejorado de Control para Seguimiento Pan/Tilt
 =======================================================================================
 
+En este tutorial, profundizamos en la optimización de un sistema de control de cámara para Raspberry Pi, enfocándonos en mejorar su velocidad y estabilidad mediante ajustes en el algoritmo.
 
-
-In this tutorial, we delve into optimizing a Raspberry Pi camera control system, 
-focusing on enhancing its speed and stability through algorithm adjustments.
-
-
-1. Introduction: The video introduces the optimization of a Raspberry Pi camera control system to improve its speed and stability.
-2. System Shortcomings: The previous control system was slow and made corrections one degree at a time, leading to inefficiency.
-3. Proposed Solution: The speaker proposes adjusting the control algorithm to take "smart steps" proportional to the error, ensuring faster and more accurate movements.
-4. Algorithm Derivation: Mathematical derivation of the new control algorithm for both pan and tilt movements is explained.
-5. Code Implementation: The implementation of the new control algorithm is demonstrated, including adjustments to limit servo movements and ensure stability.
-6. Testing and Conclusion: The video concludes with testing of the optimized control system, highlighting parameter adjustments for optimal performance.
-
+1. **Introducción**: El video presenta la optimización de un sistema de control de cámara en Raspberry Pi para mejorar su velocidad y estabilidad.
+2. **Deficiencias del Sistema**: El sistema de control anterior era lento y realizaba correcciones de un grado a la vez, lo que generaba ineficiencia.
+3. **Solución Propuesta**: El presentador propone ajustar el algoritmo de control para realizar "pasos inteligentes" proporcionales al error, asegurando movimientos más rápidos y precisos.
+4. **Derivación del Algoritmo**: Se explica la derivación matemática del nuevo algoritmo de control para los movimientos de pan y tilt.
+5. **Implementación del Código**: Se demuestra la implementación del nuevo algoritmo de control, incluyendo ajustes para limitar el movimiento de los servos y garantizar estabilidad.
+6. **Pruebas y Conclusión**: El video concluye con pruebas del sistema de control optimizado, destacando los ajustes de parámetros para un rendimiento óptimo.
 
 **Video**
 

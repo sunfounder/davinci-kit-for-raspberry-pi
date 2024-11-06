@@ -1,126 +1,122 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _install_os:
 
-Installing the OS (Common)
-========================================
+Instalación del Sistema Operativo (Común)
+============================================
 
-**Step 1**
+**Paso 1**
 
-Raspberry Pi have developed a graphical SD card writing tool that works
-on Mac OS, Ubuntu 18.04 and Windows, and is the easiest option for most
-users as it will download the image and install it automatically to the
-SD card.
+Raspberry Pi ha desarrollado una herramienta gráfica para escribir en 
+tarjetas SD que funciona en Mac OS, Ubuntu 18.04 y Windows. Es la opción 
+más sencilla para la mayoría de usuarios, ya que descarga la imagen e 
+instala automáticamente el sistema operativo en la tarjeta SD.
 
-Visit the download page: https://www.raspberrypi.org/software/. Click on
-the link for the **Raspberry Pi Imager** that matches your operating system,
-when the download finishes, click it to launch the installer.
+Visita la página de descarga: https://www.raspberrypi.org/software/. Haz 
+clic en el enlace de **Raspberry Pi Imager** correspondiente a tu sistema 
+operativo. Una vez descargado, ábrelo para iniciar la instalación.
 
 .. image:: img/image11.png
     :align: center
 
+**Paso 2**
 
-**Step 2**
+Al iniciar el instalador, tu sistema operativo podría intentar bloquear la 
+ejecución. Por ejemplo, en Windows aparece el siguiente mensaje:
 
-When you launch the installer, your operating system may try to block
-you from running it. For example, on Windows I receive the following
-message:
-
-If this pops up, click on **More info** and then **Run anyway**, then
-follow the instructions to install the Raspberry Pi Imager.
+Si ves este mensaje, haz clic en **Más información** y luego en 
+**Ejecutar de todos modos**, y sigue las instrucciones para instalar Raspberry Pi Imager.
 
 .. image:: img/image12.png
     :align: center
 
-**Step 3**
+**Paso 3**
 
-Insert your SD card into the computer or laptop SD card slot.
+Inserta tu tarjeta SD en el lector de tarjetas de tu computadora o laptop.
 
-**Step 4**
+**Paso 4**
 
-In the Raspberry Pi Imager, select the OS that you want to install and
-the SD card you would like to install it on.
+En Raspberry Pi Imager, selecciona el sistema operativo que deseas instalar y la tarjeta SD donde se instalará.
 
 .. image:: img/image13.png
     :align: center
 
 .. note:: 
 
-    * You will need to be connected to the internet the first time.
-    * That OS will then be stored for future offline use(``lastdownload.cache``, ``C:/Users/yourname/AppData/Local/Raspberry Pi/Imager/cache``). So the next time you open the software, it will have the display "Released: date, cached on your computer".
+    * Necesitarás conexión a internet la primera vez que lo uses.
+    * Ese sistema operativo se guardará para uso sin conexión en el futuro (``lastdownload.cache``, ``C:/Users/tu_nombre_usuario/AppData/Local/Raspberry Pi/Imager/cache``). La próxima vez que abras el software, verás "Released: fecha, cached on your computer".
 
-.. Download the `raspios_armhf-2020-05-28 <https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-05-28/2021-05-07-raspios-buster-armhf.zip>`_ image and select it in Raspberry Pi Imager.
+.. Descarga la imagen `raspios_armhf-2020-05-28 <https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-05-28/2021-05-07-raspios-buster-armhf.zip>`_ y selecciónala en Raspberry Pi Imager.
 
 .. .. image:: img/otherOS.png
 ..     :align: center
 
 .. .. warning::
-..     Raspberry Pi OS has major changes after the 2021-05-28 version, which may cause some functions to be unavailable. Please do not use the latest version for now.
+..     Raspberry Pi OS ha tenido cambios importantes a partir de la versión 2021-05-28, lo cual podría hacer que algunas funciones no estén disponibles. Por el momento, no uses la última versión.
 
 
 .. .. mark
 
 
-**Step 5**
+**Paso 5**
 
-Select the SD card you are using.
+Selecciona la tarjeta SD que estás utilizando.
 
 .. image:: img/image14.png
     :align: center
 
-**Step 6**
+**Paso 6**
 
-Press **Ctrl+Shift+X** or click the **setting** icon to open the **Advanced options** page to enable SSH and set username and password. 
+Presiona **Ctrl+Shift+X** o haz clic en el ícono de **configuración** para abrir las **Opciones avanzadas** y habilitar SSH, además de configurar el nombre de usuario y la contraseña.
 
     .. note::
-        * Now that the Raspberry Pi doesn't have a default password, you will need to set it yourself. Also, the username can be changed.
-        * For remote access, you will also need to enable SSH manually.
-
+        * Dado que la Raspberry Pi ya no tiene una contraseña predeterminada, deberás establecerla. También puedes cambiar el nombre de usuario.
+        * Para acceder de forma remota, también necesitarás habilitar SSH manualmente.
 
 .. image:: img/image15.png
     :align: center
 
-Then scroll down to complete the wifi configuration and click **SAVE**.
+A continuación, desplázate hacia abajo para completar la configuración de wifi y haz clic en **GUARDAR**.
 
 .. note::
 
-    ``wifi country`` should be set the two-letter `ISO/IEC alpha2 code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ for the country in which you are using your Raspberry Pi.
+    El ``país del wifi`` debe establecerse con el código de dos letras `ISO/IEC alpha2 code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ del país en el que usas tu Raspberry Pi.
 
 .. image:: img/image16.png
     :align: center
 
-**Step 7**
+**Paso 7**
 
-Click the **WRITE** button.
+Haz clic en el botón **ESCRIBIR**.
 
 .. image:: img/image17.png
     :align: center
 
-**Step 8**
+**Paso 8**
 
-If your SD card currently has any files on it, you may wish to back up
-these files first to prevent you from permanently losing them. If there
-is no file to be backed up, click **Yes**.
+Si tu tarjeta SD contiene archivos, puede que desees hacer 
+una copia de seguridad para no perderlos permanentemente. 
+Si no necesitas hacer una copia, haz clic en **Sí**.
 
 .. image:: img/image18.png
     :align: center
 
-**Step 9**
+**Paso 9**
 
-After waiting for a period of time, the following window will appear to
-represent the completion of writing.
+Después de un tiempo de espera, aparecerá la siguiente ventana indicando 
+que la escritura se ha completado.
 
 .. image:: img/image19.png
     :align: center

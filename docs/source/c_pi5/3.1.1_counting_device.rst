@@ -1,30 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenidos a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto con otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Soluciona problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales en días festivos.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-3.1.1 Counting Device
+3.1.1 Dispositivo Contador
 ==============================
 
-Introduction
+Introducción
 -----------------
 
-Here we will make a number-displaying counter system, consisting of a
-PIR sensor and a 4-digit segment display. When the PIR detects that
-someone is passing by, the number on the 4-digit segment display will
-add 1. You can use this counter to count the number of people walking 
-through the passageway.
+Aquí crearemos un sistema contador que muestra el número de personas, 
+compuesto por un sensor PIR y un display de 4 dígitos. Cuando el PIR 
+detecta que alguien pasa, el número en el display de 4 dígitos incrementará 
+en 1. Puedes usar este contador para contar el número de personas que 
+atraviesan un pasillo.
 
-Components
+Componentes
 ---------------
 
 .. image:: img/list_Counting_Device1.png
@@ -33,8 +33,8 @@ Components
 .. image:: img/list_Counting_Device2.png
     :align: center
 
-Schematic Diagram
-----------------------
+Diagrama de Circuito
+------------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -51,16 +51,16 @@ GPIO26       Pin 37   25       26
 .. image:: img/Schematic_three_one1.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construye el circuito.
 
 .. image:: img/image235.png
    :alt: 计数器_bb
    :width: 800
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Accede a la carpeta del código.
 
 .. raw:: html
 
@@ -70,7 +70,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.1/
 
-**Step 3**: Compile the code.
+**Paso 3**: Compila el código.
 
 .. raw:: html
 
@@ -80,7 +80,7 @@ Experimental Procedures
 
     gcc 3.1.1_CountingDevice.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Paso 4**: Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -90,20 +90,19 @@ Experimental Procedures
  
     sudo ./a.out
  
-After the code runs, when the PIR detects that someone is passing by,
-the number on the 4-digit segment display will add 1.
+Cuando el código se ejecute, cada vez que el PIR detecte que alguien 
+pasa, el número en el display de 4 dígitos incrementará en 1.
 
-There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
-
+El módulo PIR tiene dos potenciómetros: uno para ajustar la sensibilidad 
+y el otro para ajustar la distancia de detección. Para optimizar el 
+funcionamiento del módulo PIR, ajusta ambos potenciómetros al máximo en 
+sentido antihorario.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutar el código, o aparece el mensaje de error: "wiringPi.h: No such file or directory", consulta :ref:`c code is not working?`.
     
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -126,11 +125,11 @@ You need to turn both of them counterclockwise to the end.
         hc595_shift(number[counter % 10000 / 1000]);
     }
 
-First, start the fourth segment display, write the single-digit number.
-Then start the third segment display, and type in the tens digit; after
-that, start the second and the first segment display respectively, and
-write the hundreds and thousands digits respectively. Because the
-refreshing speed is very fast, we see a complete four-digit display.
+Primero, se inicia el display del cuarto segmento y se escribe el dígito 
+de las unidades. Luego se inicia el tercer segmento para mostrar las decenas; 
+después se activan respectivamente el segundo y el primer segmento, mostrando 
+los valores de centenas y millares. Debido a la rápida velocidad de actualización, 
+se observa un display completo de cuatro dígitos.
 
 .. code-block:: c
 
@@ -147,6 +146,6 @@ refreshing speed is very fast, we see a complete four-digit display.
         }
     }
 
-This is the main function: display the number on the 4-digit segment
-display and read the PIR value. When the PIR detects that someone is
-passing by, the number on the 4-digit segment display will add 1.
+Esta es la función principal: muestra el número en el display de 4 dígitos 
+y lee el valor del PIR. Cuando el PIR detecta que alguien pasa, el número 
+en el display de 4 dígitos se incrementará en 1.

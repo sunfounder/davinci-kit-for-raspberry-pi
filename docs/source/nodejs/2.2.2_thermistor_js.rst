@@ -1,36 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-2.2.2 Thermistor
+2.2.2 Termistor
 ================
 
-Introduction
-------------
+Introducción
+---------------
 
-Just like photoresistor can sense light, thermistor is a temperature
-sensitive electronic device that can be used for realizing functions of
-temperature control, such as making a heat alarm.
+Así como el fotoresistor puede detectar la luz, el termistor es un dispositivo 
+electrónico sensible a la temperatura que se utiliza para realizar funciones de 
+control térmico, como alarmas de calor.
 
-Components
-----------
+Componentes
+--------------
 
 .. image:: ../img/list_2.2.2_thermistor.png
 
 
 
-Schematic Diagram
-------------------
+Diagrama del Circuito
+-------------------------
 
 .. image:: ../img/image323.png
 
@@ -38,14 +38,14 @@ Schematic Diagram
 .. image:: ../img/image324.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image202.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Dirígete a la carpeta del código.
 
 .. raw:: html
 
@@ -55,7 +55,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -65,10 +65,10 @@ Experimental Procedures
 
     sudo node thermistor.js
 
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
+Una vez que el código se está ejecutando, el termistor detectará la temperatura 
+ambiental, que se imprimirá en la pantalla una vez finalizado el cálculo del programa.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -92,7 +92,7 @@ be printed on the screen once it finishes the program calculation.
       });
     }, 1000);
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
@@ -109,7 +109,7 @@ be printed on the screen once it finishes the program calculation.
       });
     }, 1000);
 
-We can read the ``value`` of the thermistor through the statement ``adc.read(0).then((value) => {...})``
+Podemos leer el ``value`` del termistor mediante la instrucción ``adc.read(0).then((value) => {...})``.
 
 
 .. code-block:: js
@@ -121,41 +121,40 @@ We can read the ``value`` of the thermistor through the statement ``adc.read(0).
     var Fah = (cel * 1.8 + 32).toFixed(2);
     console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
 
-These operations convert the thermistor value to a Celsius temperature value.
+Estas operaciones convierten el valor del termistor en un valor de temperatura en grados Celsius.
 
 .. code-block:: js
 
     var Vr = 5 * value / 255;
     var Rt = 10000 * Vr / (5 - Vr);
 
-These two lines of code are used to calculate the voltage distribution from the read values, resulting in Rt (resistance of the thermistor).
+Estas dos líneas de código calculan la distribución de voltaje a partir de los valores leídos, obteniendo así Rt (resistencia del termistor).
 
 .. code-block:: js
 
     var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));  
 
-This code refers to substituting Rt into the formula **TK=1/(ln(RT/RN)/B+1/TN)** to get the temperature in Kelvin.
+Este código se refiere a sustituir Rt en la fórmula **TK=1/(ln(RT/RN)/B+1/TN)** para obtener la temperatura en Kelvin.
 
 .. code-block:: js
 
     var cel = (temp - 273.15).toFixed(2);
 
-This paragraph is to convert the Kelvin temperature to Celsius with two decimal places.
+Esta línea convierte la temperatura de Kelvin a Celsius con dos decimales.
 
 .. code-block:: js
 
     var Fah = (cel * 1.8 + 32).toFixed(2);
 
-This paragraph converts Celsius to Fahrenheit with two decimal places.
+Esta línea convierte Celsius a Fahrenheit con dos decimales.
 
 .. code-block:: js
 
     console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
 
-Print Celsius, Fahrenheit and their units on the terminal.  
+Imprime en la terminal los valores de Celsius, Fahrenheit y sus unidades.
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-------------------------
 
 .. image:: ../img/image203.jpeg
-    

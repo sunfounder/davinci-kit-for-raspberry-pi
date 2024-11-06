@@ -1,88 +1,81 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y avances.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy!
 
 1.3.2 Servo
-============
+==============
 
-Introduction
---------------
+Introducción
+----------------
 
-In this lesson, we will learn how to make the servo rotate.
+En esta lección, aprenderemos a hacer girar un servo.
 
-Components
-----------
+Componentes
+-------------
 
 .. image:: img/list_1.3.2.png
 
-
-Principle
----------
+Principio
+-----------
 
 **Servo**
 
-A servo is generally composed of the following parts: case, shaft, gear
-system, potentiometer, DC motor, and embedded board.
+Un servo está compuesto generalmente por las siguientes partes: carcasa, eje, 
+sistema de engranajes, potenciómetro, motor de CC y placa embebida.
 
 .. image:: img/image121.png
 
-
-It works like this: The microcontroller sends out PWM signals to the
-servo, and then the embedded board in the servo receives the signals
-through the signal pin and controls the motor inside to turn. As a
-result, the motor drives the gear system and then motivates the shaft
-after deceleration. The shaft and potentiometer of the servo are
-connected together. When the shaft rotates, it drives the potentiometer,
-so the potentiometer outputs a voltage signal to the embedded board.
-Then the board determines the direction and speed of rotation based on
-the current position, so it can stop exactly at the right position as
-defined and hold there.
+Funciona de la siguiente manera: el microcontrolador envía señales PWM al servo, 
+y la placa embebida en el servo recibe las señales a través del pin de señal y 
+controla el motor interno para girar. Como resultado, el motor acciona el sistema 
+de engranajes y luego motiva el eje después de la desaceleración. El eje y el 
+potenciómetro del servo están conectados entre sí. Cuando el eje gira, acciona 
+el potenciómetro, que a su vez emite una señal de voltaje a la placa embebida. 
+Luego, la placa determina la dirección y velocidad de rotación en función de la 
+posición actual, permitiendo que el servo se detenga exactamente en la posición 
+definida y se mantenga ahí.
 
 .. image:: img/image122.png
 
+El ángulo se determina por la duración de un pulso que se aplica al cable de 
+control. Esto se llama Modulación por Ancho de Pulso (PWM). El servo espera 
+recibir un pulso cada 20 ms. La longitud del pulso determinará cuánto gira el 
+motor. Por ejemplo, un pulso de 1.5 ms hará que el motor gire a la posición de 
+90 grados (posición neutral).
 
-The angle is determined by the duration of a pulse that is applied to
-the control wire. This is called Pulse width Modulation. The servo
-expects to see a pulse every 20 ms. The length of the pulse will
-determine how far the motor turns. For example, a 1.5ms pulse will make
-the motor turn to the 90 degree position (neutral position).
-
-When a pulse is sent to a servo that is less than 1.5 ms, the servo
-rotates to a position and holds its output shaft some number of degrees
-counterclockwise from the neutral point. When the pulse is wider than
-1.5 ms the opposite occurs. The minimal width and the maximum width of
-pulse that will command the servo to turn to a valid position are
-functions of each servo. Generally the minimum pulse will be about 0.5
-ms wide and the maximum pulse will be 2.5 ms wide.
+Cuando se envía un pulso a un servo que es menor de 1.5 ms, el servo gira a una 
+posición y mantiene su eje de salida a algunos grados en sentido antihorario 
+desde el punto neutral. Cuando el pulso es mayor de 1.5 ms, ocurre lo contrario. 
+El ancho mínimo y máximo del pulso que ordenará al servo girar a una posición 
+válida son funciones de cada servo. Generalmente, el pulso mínimo será de 
+aproximadamente 0.5 ms de ancho y el pulso máximo será de 2.5 ms de ancho.
 
 .. image:: img/image123.jpeg
 
-
-Schematic Diagram
---------------------
+Diagrama Esquemático
+------------------------
 
 .. image:: ../img/image337.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+-------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: ../img/image125.png
 
-
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Acceder a la carpeta del código.
 
 .. raw:: html
 
@@ -92,7 +85,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.3.2
 
-**Step 3**: Compile the code.
+**Paso 3**: Compilar.
 
 .. raw:: html
 
@@ -102,7 +95,7 @@ Experimental Procedures
 
     gcc 1.3.2_Servo.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Paso 4**: Ejecutar el archivo ejecutable.
 
 .. raw:: html
 
@@ -112,14 +105,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the program is executed, the servo will rotate from 
-0 degrees to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
+Al ejecutar el programa, el servo girará de 0 grados a 180 grados, y luego 
+de 180 grados a 0 grados, de manera circular.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`C code is not working?`.
 
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -127,11 +120,11 @@ After the program is executed, the servo will rotate from
     #include <softPwm.h>
     #include <stdio.h>
 
-    #define ServoPin    1       //define the servo to GPIO1
+    #define ServoPin    1       //define el servo en GPIO1
     long Map(long value,long fromLow,long fromHigh,long toLow,long toHigh){
         return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
     }
-    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+    void setAngle(int pin, int angle){    //Crea una función para controlar el ángulo del servo.
         if(angle < 0)
             angle = 0;
         if(angle > 180)
@@ -142,17 +135,17 @@ After the program is executed, the servo will rotate from
     int main(void)
     {
         int i;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ //si la inicialización de wiring falla, imprime un mensaje en pantalla
             printf("setup wiringPi failed !");
             return 1; 
         }
-        softPwmCreate(ServoPin, 0, 200);       //initialize PMW pin of servo
+        softPwmCreate(ServoPin, 0, 200);       //inicializa el pin PMW del servo
         while(1){
-            for(i=0;i<181;i++){     // Let servo rotate from 0 to 180.            	setAngle(ServoPin,i);
+            for(i=0;i<181;i++){     // Permite que el servo gire de 0 a 180.            	setAngle(ServoPin,i);
                 delay(2);
             }
             delay(1000);
-            for(i=181;i>-1;i--){        // Let servo rotate from 180 to 0.            	setAngle(ServoPin,i);
+            for(i=181;i>-1;i--){        // Permite que el servo gire de 180 a 0.            	setAngle(ServoPin,i);
                 delay(2);
             }
             delay(1000);
@@ -160,7 +153,7 @@ After the program is executed, the servo will rotate from
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -168,11 +161,11 @@ After the program is executed, the servo will rotate from
         return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
     }
 
-Create a Map() function to map value in the following code.
+Crea una función Map() para mapear valores en el siguiente código.
 
 .. code-block:: c
 
-    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+    void setAngle(int pin, int angle){    //Crea una función para controlar el ángulo del servo.
         if(angle < 0)
             angle = 0;
         if(angle > 180)
@@ -180,30 +173,30 @@ Create a Map() function to map value in the following code.
         softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
     } 
 
-Create a funtion, setAngle() to write angle to the servo.
+Crea una función, setAngle(), para escribir el ángulo en el servo.
 
 .. code-block:: c
 
     softPwmWrite(pin,Map(angle,0,180,5,25));  
 
-This function can change the duty cycle of the PWM.
+Esta función puede cambiar el ciclo de trabajo del PWM.
 
-To make the servo rotate to 0 ~ 180 °, the pulse width should change
-within the range of 0.5ms ~ 2.5ms when the period is 20ms; in the
-function, softPwmCreate(), we have set that the period is
-200x100us=20ms, thus we need to map 0 ~ 180 to 5x100us ~ 25x100us.
+Para hacer que el servo gire de 0 a 180 °, el ancho del pulso debe cambiar
+dentro del rango de 0.5 ms a 2.5 ms cuando el período es de 20 ms; en la
+función softPwmCreate(), hemos establecido que el período es
+200x100us=20ms, por lo que necesitamos mapear de 0 a 180 a 5x100us a 25x100us.
 
-The prototype of this function is shown below.
+El prototipo de esta función se muestra a continuación.
 
 .. code-block:: 
 
     int softPwmCreate（int pin，int initialValue，int pwmRange）;
 
 
-**Parameter pin:** Any GPIO pin of Raspberry Pi can be set as PWM pin.
+**Parámetro pin:** Cualquier pin GPIO de Raspberry Pi puede configurarse como pin PWM.
 
-**Parameter initialValue:** The initial pulse width is that initialValue
-times 100us.
+**Parámetro initialValue:** El ancho del pulso inicial es el valor inicial
+multiplicado por 100us.
 
-**Parameter pwmRange:** the period of PWM is that pwmRange times 100us.
+**Parámetro pwmRange:** el período del PWM es el rango PWM multiplicado por 100us.
 

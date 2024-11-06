@@ -1,39 +1,39 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete junto a otros entusiastas en el fascinante mundo de Raspberry Pi, Arduino y ESP32.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Exclusivas**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-
-Video 2: Mastering Linux Essentials and Command Line Basics on Raspberry Pi
-=======================================================================================
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
 
-This tutorial provides a comprehensive introduction to mastering Linux essentials and command line basics on Raspberry Pi. 
-It covers essential commands, file system navigation, file management, software installation, super user mode, 
-file manipulation, path structures, and best practices. Viewers will learn how to navigate directories, create, rename, 
-and delete files, install software packages, execute privileged commands, manage directories, perform recursive operations, 
-edit files using the nano text editor, understand path structures, and utilize color coding for file types in the terminal.
+Video 2: Dominando lo Esencial de Linux y los Conceptos Básicos de la Línea de Comandos en Raspberry Pi
+============================================================================================================
 
 
-1. **File System Navigation**: Learn to navigate directories using cd, ls, and pwd commands.
-2. **File Management**: Understand file creation, renaming, and deletion using touch, mv, and rm commands.
-3. **Software Installation**: Explore installing software packages with apt-get and sudo commands.
-4. **Super User Mode**: Gain insights into super user mode and its application for executing privileged commands.
-5. **Directory Management**: Learn how to create and remove directories using mkdir and rmdir commands.
-6. **Recursive Operations**: Understand recursively deleting files and directories using rm -r command.
-7. **File Editing**: Explore the nano text editor for creating and editing files directly from the command line.
-8. **Path Structures**: Gain insight into absolute and relative path structures for effective file system navigation.
-9. **Linux File System Navigation**: Understand the fundamentals of navigating the Linux file system hierarchy.
-10. **Color Coding**: Learn about the color coding of file types in the terminal for easy identification.
+Este tutorial ofrece una introducción completa para dominar los aspectos esenciales de Linux y los conceptos básicos de la línea de comandos en Raspberry Pi. 
+Cubre comandos esenciales, navegación por el sistema de archivos, gestión de archivos, instalación de software, modo superusuario, 
+manipulación de archivos, estructuras de rutas y mejores prácticas. Los espectadores aprenderán a navegar por directorios, crear, renombrar y eliminar archivos, 
+instalar paquetes de software, ejecutar comandos con privilegios, gestionar directorios, realizar operaciones recursivas, editar archivos con el editor de texto nano, 
+entender las estructuras de rutas y utilizar el código de colores para identificar tipos de archivos en la terminal.
+
+
+1. **Navegación por el Sistema de Archivos**: Aprende a navegar por los directorios usando los comandos cd, ls y pwd.
+2. **Gestión de Archivos**: Entiende la creación, el renombrado y la eliminación de archivos con los comandos touch, mv y rm.
+3. **Instalación de Software**: Explora la instalación de paquetes de software con los comandos apt-get y sudo.
+4. **Modo Superusuario**: Obtén información sobre el modo superusuario y su aplicación para ejecutar comandos con privilegios.
+5. **Gestión de Directorios**: Aprende a crear y eliminar directorios usando los comandos mkdir y rmdir.
+6. **Operaciones Recursivas**: Comprende cómo eliminar archivos y directorios de forma recursiva con el comando rm -r.
+7. **Edición de Archivos**: Explora el editor de texto nano para crear y editar archivos directamente desde la línea de comandos.
+8. **Estructuras de Rutas**: Comprende las estructuras de rutas absolutas y relativas para una navegación efectiva en el sistema de archivos.
+9. **Navegación del Sistema de Archivos en Linux**: Entiende los fundamentos de la jerarquía del sistema de archivos en Linux.
+10. **Código de Colores**: Aprende sobre el código de colores de los tipos de archivos en la terminal para facilitar su identificación.
 
 
 **Video**

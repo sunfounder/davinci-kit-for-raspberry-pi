@@ -1,29 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Mac OS X user
+Usuarios de Mac OS X
 ==========================
 
-For Mac users, accessing the Raspberry Pi desktop directly via VNC is more convenient than from the command line. You can access it via Finder by entering the set account password after enabling VNC on the Raspberry Pi side.
+Para los usuarios de Mac, acceder al escritorio de Raspberry Pi a través 
+de VNC es más conveniente que usar solo la línea de comandos. Puedes acceder 
+a través de Finder ingresando la contraseña de la cuenta después de habilitar 
+VNC en el lado de Raspberry Pi.
 
-Note that this method does not encrypt communication between the Mac and Raspberry Pi. 
-The communication will take place within your home or business network, so even if it's unprotected, it won't be an issue. 
-However, if you are concerned about it, you can install a VNC application such as `VNC® Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_.
+Ten en cuenta que este método no cifra la comunicación entre el Mac y 
+Raspberry Pi. La comunicación tendrá lugar dentro de tu red doméstica 
+o de oficina, por lo que, aunque esté sin protección, no debería ser un 
+problema. Sin embargo, si te preocupa, puedes instalar una aplicación de 
+VNC como `VNC® Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_.
 
-Alternatively it would be handy if you could use a temporary monitor (TV), mouse and keyboard to open the Raspberry Pi desktop directly to set up VNC. 
-If not, it doesn't matter, you can also use the SSH command to open the Raspberry Pi's Bash shell and then using the command to set up the VNC.
-
+Alternativamente, sería útil si pudieras usar un monitor temporal (TV), mouse 
+y teclado para abrir el escritorio de Raspberry Pi directamente y configurar 
+VNC. Si no, no te preocupes, también puedes usar el comando SSH para abrir la 
+shell Bash de Raspberry Pi y luego configurar VNC.
 
 * :ref:`have_temp_monitor`
 * :ref:`no_temp_monitor`
@@ -31,93 +37,86 @@ If not, it doesn't matter, you can also use the SSH command to open the Raspberr
 
 .. _have_temp_monitor:
 
-Have Temporarily Monitor (or TV)?
----------------------------------------------------------------------
+¿Tienes un Monitor Temporal (o TV)?
+------------------------------------------
 
-#. Connect a monitor (or TV), mouse and keyboard to the Raspberry Pi and power it on. Select the menu according to the numbers in the figure.
-
+#. Conecta un monitor (o TV), mouse y teclado a la Raspberry Pi y enciéndela. Selecciona el menú según los números en la imagen.
 
     .. image:: img/mac_vnc1.png
         :align: center
 
-#. The following screen will be displayed. Set **VNC** to **Enabled** on the **Interfaces** tab, and click **OK**.
+#. Aparecerá la siguiente pantalla. Configura **VNC** en **Enabled** en la pestaña **Interfaces** y haz clic en **OK**.
 
     .. image:: img/mac_vnc2.png
         :align: center
 
-
-#. A VNC icon appears on the upper right of the screen and the VNC server starts.
+#. Aparece un icono de VNC en la parte superior derecha de la pantalla, y el servidor VNC se inicia.
 
     .. image:: img/login1.png
         :align: center
 
-
-#. Open the VNC server window by clicking on the **VNC** icon, then click on the **Menu** button in the top right corner and select **Options**.
+#. Abre la ventana del servidor VNC haciendo clic en el icono **VNC**, luego haz clic en el botón **Menu** en la esquina superior derecha y selecciona **Options**.
 
     .. image:: img/mac_vnc4.png
         :align: center
 
-#. You will be presented with the following screen where you can change the options.
+#. Se presentará la siguiente pantalla donde puedes cambiar las opciones.
 
     .. image:: img/mac_vnc5.png
         :align: center
 
-    Set **Encryption** to **Prefer off** and **Authentication** to **VNC password**. 
+    Configura **Encryption** en **Prefer off** y **Authentication** en **VNC password**.
     
-#. When you click the **OK** button, the password input screen is displayed. You can use the same password as the Raspberry pi password or a different password, so enter it and click **OK**. 
+#. Al hacer clic en el botón **OK**, se mostrará la pantalla de entrada de contraseña. Puedes usar la misma contraseña de Raspberry Pi u otra diferente, así que ingrésala y haz clic en **OK**.
 
     .. image:: img/mac_vnc16.png
         :align: center
 
-    You are now ready to connect from your Mac. It's okay to disconnect the monitor.
+    Ahora estás listo para conectarte desde tu Mac. Puedes desconectar el monitor.
 
-**From here, it will be the operation on the Mac side.**
+**Desde aquí, será la operación en el lado del Mac.**
 
-#. Now, select **Connect to Server** from the Finder's menu, which you can open by right-clicking.
+#. Selecciona **Conectar a Servidor** en el menú de Finder, el cual puedes abrir haciendo clic derecho.
 
     .. image:: img/mac_vnc10.png
         :align: center
 
-#. Type in ``vnc://<username>@<hostname>.local`` (or ``vnc://<username>@<IP address>``). After entering, click **Connect**.
+#. Escribe ``vnc://<username>@<hostname>.local`` (o ``vnc://<username>@<IP address>``). Después de ingresar, haz clic en **Conectar**.
 
-        .. image:: img/mac_vnc11.png
-            :align: center
+    .. image:: img/mac_vnc11.png
+        :align: center
 
 
-#. You will be asked for a password, so please enter it.
+#. Se te pedirá una contraseña, así que por favor ingrésala.
 
-        .. image:: img/mac_vnc12.png
-            :align: center
+    .. image:: img/mac_vnc12.png
+        :align: center
 
-#. The desktop of the Raspberry pi will be displayed, and you will be able to operate it from the Mac as it is.
+#. Se mostrará el escritorio de Raspberry Pi y podrás operarlo desde el Mac.
 
-        .. image:: img/mac_vnc13.png
-            :align: center
+    .. image:: img/mac_vnc13.png
+        :align: center
 
 .. _no_temp_monitor:
 
-Don't Have Temporarily Monitor (or TV)?
----------------------------------------------------------------------------
+¿No tienes un Monitor Temporal (o TV)?
+--------------------------------------------
 
-* You can apply the SSH command to open the Raspberry Pi's Bash shell.
-* Bash is the standard default shell for Linux.
-* The shell itself is a command (instruction) when the user uses Unix/Linux.
-* Most of what you need to do can be done through the shell.
-* After setting up the Raspberry pi side, you can access the desktop of the Raspberry Pi using the **Finder** from the Mac.
+* Puedes aplicar el comando SSH para abrir la shell Bash de Raspberry Pi.
+* Bash es la shell predeterminada estándar para Linux.
+* La shell misma es un comando (instrucción) cuando el usuario usa Unix/Linux.
+* La mayoría de las tareas que necesitas realizar se pueden hacer a través de la shell.
+* Después de configurar Raspberry Pi, puedes acceder al escritorio de Raspberry Pi usando **Finder** desde el Mac.
 
-
-#. Type ``ssh <username>@<hostname>.local`` to connect to the Raspberry Pi.
-
+#. Escribe ``ssh <username>@<hostname>.local`` para conectarte a la Raspberry Pi.
 
     .. code-block:: shell
 
         ssh pi@raspberrypi.local
 
-
     .. image:: img/mac_vnc14.png
 
-
-#. The following message will be displayed only when you log in for the first time, so enter **yes**.
+#. Solo cuando inicies sesión por primera vez, se mostrará el siguiente mensaje. Ingresa **yes**.
 
     .. code-block::
 
@@ -126,8 +125,7 @@ Don't Have Temporarily Monitor (or TV)?
         This key is not known by any other names
         Are you sure you want to continue connecting (yes/no/[fingerprint])?
 
-
-#. Enter the password for the Raspberry pi. The password you enter will not be displayed, so be careful not to make a mistake.
+#. Ingresa la contraseña para Raspberry Pi. La contraseña que ingreses no se mostrará, así que ten cuidado de no cometer errores.
 
     .. code-block::
 
@@ -141,12 +139,9 @@ Don't Have Temporarily Monitor (or TV)?
         Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
         permitted by applicable law.
         Last login: Thu Sep 22 12:18:22 2022
-        pi@raspberrypi:~ $ 
+        pi@raspberrypi:~ $
 
-
-    
-
-#. Set up your Raspberry Pi so that you can log in via VNC from your Mac once you have successfully logged into it. The first step is to update your operating system by running the following commands.
+#. Configura tu Raspberry Pi para que puedas iniciar sesión a través de VNC desde tu Mac una vez que hayas iniciado sesión. El primer paso es actualizar el sistema operativo con los siguientes comandos.
 
     .. code-block:: shell
 
@@ -154,77 +149,73 @@ Don't Have Temporarily Monitor (or TV)?
         sudo apt upgrade
 
 
-    ``Do you want to continue? [Y/n]``, Enter ``Y`` when prompted.
+    Cuando se te pregunte, ``Do you want to continue? [Y/n]``, ingresa ``Y``.
 
-    It may take some time for the update to finish. (It depends on the amount of updates at that time.)
+    La actualización puede tardar un poco. (Depende de la cantidad de actualizaciones en ese momento).
 
-
-#. Enter the following command to enable the **VNC Server**.
+#. Ingresa el siguiente comando para habilitar el **Servidor VNC**.
 
     .. code-block:: shell
 
         sudo raspi-config
 
-#. The following screen will be displayed. Select **3 Interface Options** with the arrow keys on the keyboard and press the **Enter** key.
+#. Aparecerá la siguiente pantalla. Selecciona **3 Interface Options** con las teclas de flecha en el teclado y presiona **Enter**.
 
     .. image:: img/image282.png
         :align: center
 
-#. Then select **P3 VNC**.
+#. Luego selecciona **P3 VNC**.
 
     .. image:: img/image288.png
         :align: center
 
-#. Use the arrow keys on the keyboard to select **<Yes>** -> **<OK>** -> **<Finish>** to complete the setup.
+#. Usa las teclas de flecha en el teclado para seleccionar **<Yes>** -> **<OK>** -> **<Finish>** y completa la configuración.
 
     .. image:: img/mac_vnc8.png
         :align: center
 
 
-#. Now that the VNC server has started, let's change the settings for connecting from a Mac.
+#. Ahora que el servidor VNC ha comenzado, cambiemos los ajustes para conectar desde un Mac.
 
-    To specify parameters for all programs for all user accounts on the computer, create ``/etc/vnc/config.d/common.custom``.
+    Para especificar parámetros para todos los programas de todas las cuentas de usuario en la computadora, crea ``/etc/vnc/config.d/common.custom``.
 
     .. code-block:: shell
 
         sudo nano /etc/vnc/config.d/common.custom
 
-    After entering ``Authentication=VncAuthenter``, press ``Ctrl+X`` -> ``Y`` -> ``Enter`` to save and exit.
+    Después de ingresar ``Authentication=VncAuthenter``, presiona ``Ctrl+X`` -> ``Y`` -> ``Enter`` para guardar y salir.
 
     .. image:: img/mac_vnc15.png
         :align: center
 
-#. In addition, set a password for logging in via VNC from a Mac. You can use the same password as the Raspberry pi password or a different password. 
-
+#. Además, establece una contraseña para iniciar sesión a través de VNC desde un Mac. Puedes usar la misma contraseña de Raspberry Pi u otra diferente.
 
     .. code-block:: shell
 
         sudo vncpasswd -service
 
-
-#. Once the setup is complete, restart the Raspberry Pi to apply the changes.
+#. Una vez que la configuración esté completa, reinicia la Raspberry Pi para aplicar los cambios.
 
     .. code-block:: shell
 
         sudo sudo reboot
 
-#. Now, select **Connect to Server** from the **Finder**'s menu, which you can open by right-clicking.
+#. Ahora, selecciona **Conectar a Servidor** en el menú de **Finder**, el cual puedes abrir haciendo clic derecho.
 
     .. image:: img/mac_vnc10.png
         :align: center
 
-#. Type in ``vnc://<username>@<hostname>.local`` (or ``vnc://<username>@<IP address>``). After entering, click **Connect**.
+#. Escribe ``vnc://<username>@<hostname>.local`` (o ``vnc://<username>@<IP address>``). Después de ingresar, haz clic en **Conectar**.
 
-        .. image:: img/mac_vnc11.png
-            :align: center
+    .. image:: img/mac_vnc11.png
+        :align: center
 
+#. Se te pedirá una contraseña, así que por favor ingrésala.
 
-#. You will be asked for a password, so please enter it.
+    .. image:: img/mac_vnc12.png
+        :align: center
 
-        .. image:: img/mac_vnc12.png
-            :align: center
+#. Se mostrará el escritorio de Raspberry Pi y podrás operarlo desde el Mac.
 
-#. The desktop of the Raspberry pi will be displayed, and you will be able to operate it from the Mac as it is.
-
-        .. image:: img/mac_vnc13.png
-            :align: center
+    .. image:: img/mac_vnc13.png
+        :align: center

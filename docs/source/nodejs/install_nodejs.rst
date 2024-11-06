@@ -1,30 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete profundamente en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-What is Nodejs？
+¿Qué es Nodejs?
 ===================
 
-Node.js was released in May 2009 and developed by Ryan Dahl. It is a JavaScript runtime environment based on the Chrome V8 engine. It uses an event-driven, non-blocking I/O model to allow JavaScript to run on the server-side development platform.
+Node.js fue lanzado en mayo de 2009 y desarrollado por Ryan Dahl. Es un entorno de ejecución para JavaScript basado en el motor V8 de Chrome. Emplea un modelo de E/S no bloqueante y orientado a eventos para permitir que JavaScript se ejecute en la plataforma de desarrollo del lado del servidor.
 
-Simply put, Node.js is JavaScript running on the server. If you are familiar with Javascript, then you will easily learn Node.js.
+En pocas palabras, Node.js es JavaScript corriendo en el servidor. Si estás familiarizado con JavaScript, entonces aprenderás Node.js fácilmente.
 
-Nodejs usually uses the command ``npm install xxx`` to install third-party packages, which requires us to install the npm tool, similar to the pip tool in python.
+Node.js usualmente utiliza el comando ``npm install xxx`` para instalar paquetes de terceros, lo que requiere que instalemos la herramienta npm, similar a la herramienta pip en Python.
 
-Install or update nodejs and npm
+Instalar o actualizar Node.js y npm
 ------------------------------------------
 
-Run the following commands to install and update nodejs and npm.
+Ejecuta los siguientes comandos para instalar y actualizar Node.js y npm.
 
 .. raw:: html
 
@@ -37,7 +37,7 @@ Run the following commands to install and update nodejs and npm.
     sudo apt-get install npm 
     sudo npm install npm -g
 
-Then check the current Node version with the following command.
+Luego verifica la versión actual de Node con el siguiente comando.
 
 .. raw:: html
 
@@ -47,7 +47,7 @@ Then check the current Node version with the following command.
 
     node -v
 
-The following command checks the current npm version.
+El siguiente comando verifica la versión actual de npm.
 
 .. raw:: html
 

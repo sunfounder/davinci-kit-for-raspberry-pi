@@ -1,40 +1,40 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el apasionante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas posventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso Exclusivo**: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales durante las festividades.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
 
-Video 10: Making a Dimmable LED with Two Push Buttons
+Video 10: Crear un LED Regulable con Dos Botones Pulsadores
 =======================================================================================
 
-This tutorial covers the construction of dimmable LED circuits using Raspberry Pi GPIO pins, 
-focusing on achieving smooth brightness control. Paul McQuarter demonstrates the process step-by-step, 
-from circuit setup to coding implementation. In the Raspberry Pi section, he explains how to build the circuit using GPIO pins and push buttons for control, 
-alongside Python coding for PWM (Pulse Width Modulation) control. 
-The video explores the nuances of PWM, 
-emphasizing non-linear changes in duty cycle for smoother brightness transitions and addressing synchronization issues between PWM frequency and camera scanning rate. 
-The video introduces the concept of using exponential scale for achieving smooth and precise brightness control. 
-It delves into mathematical concepts like logarithms and exponents, illustrating their application in coding for LED brightness control. 
-Troubleshooting tips are provided for debugging and refining the code to ensure optimal performance.
+Este tutorial cubre la construcción de circuitos de LED regulables utilizando los pines GPIO de Raspberry Pi, 
+con un enfoque en lograr un control suave de brillo. Paul McQuarter demuestra el proceso paso a paso, 
+desde la configuración del circuito hasta la implementación del código. En la sección de Raspberry Pi, explica cómo construir el circuito utilizando pines GPIO y botones para el control, 
+junto con la codificación en Python para el control de PWM (Modulación por Ancho de Pulso). 
+El video explora los matices del PWM, 
+enfatizando cambios no lineales en el ciclo de trabajo para transiciones de brillo más suaves y abordando problemas de sincronización entre la frecuencia de PWM y la velocidad de escaneo de la cámara. 
+El video introduce el concepto de usar una escala exponencial para lograr un control de brillo suave y preciso. 
+Profundiza en conceptos matemáticos como logaritmos y exponentes, ilustrando su aplicación en la codificación para el control de brillo del LED. 
+Se ofrecen consejos de resolución de problemas para depurar y refinar el código, asegurando un rendimiento óptimo.
 
 
-1. **Circuit setup**: Explanation and demonstration of building dimmable LED circuits with Raspberry Pi GPIO pins, utilizing push buttons for control.
-2. **Python coding**: Walkthroughs of Python code for implementing PWM control and exponential scale for LED brightness control, respectively.
-3. **PWM principles**: Understanding PWM duty cycle and its application in LED brightness control.
-4. **Exponential scale**: Utilizing exponential scale in coding to achieve smooth and linear brightness control.
-5. **Logarithmic concept**: Applying logarithms to determine the constant required for a specific number of button pushes for brightness adjustment.
-6. **Non-linear brightness adjustment**: Exploring non-linear changes in duty cycle for smoother brightness transitions.
-7. **Synchronization issues**: Addressing synchronization problems between PWM frequency and camera scanning rate.
-8. **Troubleshooting and refinement**: Techniques for debugging code and refining LED dimming functionality for optimal performance.
+1. **Configuración del circuito**: Explicación y demostración de la construcción de circuitos LED regulables con pines GPIO de Raspberry Pi, utilizando botones para el control.
+2. **Codificación en Python**: Recorridos del código en Python para implementar el control de PWM y la escala exponencial para el control de brillo del LED.
+3. **Principios de PWM**: Comprensión del ciclo de trabajo de PWM y su aplicación en el control de brillo de un LED.
+4. **Escala exponencial**: Uso de la escala exponencial en la codificación para lograr un control de brillo suave y lineal.
+5. **Concepto de logaritmo**: Aplicación de logaritmos para determinar la constante requerida para un número específico de pulsaciones de botón para ajustar el brillo.
+6. **Ajuste de brillo no lineal**: Exploración de cambios no lineales en el ciclo de trabajo para transiciones de brillo más suaves.
+7. **Problemas de sincronización**: Abordaje de problemas de sincronización entre la frecuencia PWM y la velocidad de escaneo de la cámara.
+8. **Solución de problemas y refinamiento**: Técnicas para depurar el código y mejorar la funcionalidad de atenuación del LED para un rendimiento óptimo.
 
 **Video**
 

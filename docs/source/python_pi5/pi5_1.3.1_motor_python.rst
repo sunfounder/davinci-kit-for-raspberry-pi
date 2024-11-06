@@ -1,60 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.3.1_py_pi5:
 
 1.3.1 Motor
 =============
 
-Introduction
------------------
+Introducción
+---------------
 
-In this project, we will learn to how to use L293D to drive a DC motor
-and make it rotate clockwise and counterclockwise. Since the DC Motor
-needs a larger current, for safety purpose, here we use the Power Supply
-Module to supply motors.
+En este proyecto, aprenderemos a usar el L293D para controlar un motor de 
+corriente continua (DC) y hacerlo girar en sentido horario y antihorario. 
+Dado que el motor de corriente continua requiere una corriente más alta, 
+usaremos el Módulo de Alimentación para proporcionar energía de manera segura al motor.
 
-Required Components
-------------------------------
+Componentes Necesarios
+-------------------------
 
-In this project, we need the following components. 
+Para este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../python_pi5/img/1.3.1_motor_list.png
 
 
-
-Schematic Diagram
-------------------
+Diagrama de Conexiones
+-------------------------
 
 .. image:: ../python_pi5/img/1.3.1_motor_schematic.png
 
 
-Experimental Procedures
----------------------------
+Procedimientos del Experimento
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../python_pi5/img/1.3.1_motor_circuit.png
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    El módulo de alimentación puede usar una batería de 9V con el conector para 
+    batería de 9V incluido en el kit. Inserta el capuchón del módulo de 
+    alimentación en las tiras de bus de 5V de la protoboard.
 
 .. image:: ../python_pi5/img/1.3.1_motor_battery.jpeg
 
-**Step 2**: Get into the folder of the code.
+**Paso 2:** Ve al directorio del código.
 
 .. raw:: html
 
@@ -64,7 +63,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3**: Run.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -74,19 +73,20 @@ Experimental Procedures
 
     sudo python3 1.3.1_Motor_zero.py
 
-As the code runs, the motor first rotates clockwise for 5s then stops for 5s,
-after that, it rotates anticlockwise for 5s; subsequently, the motor stops 
-for 5s. This series of actions will be executed repeatedly.  
+Al ejecutar el código, el motor primero gira en sentido horario durante 5 
+segundos, luego se detiene durante 5 segundos, después gira en sentido 
+antihorario durante 5 segundos y posteriormente se detiene nuevamente por 
+5 segundos. Esta serie de acciones se repetirá continuamente.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Si aparece el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Antes de eso, asegúrate de estar en la ruta del código fuente, como ``davinci-kit-for-raspberry-pi/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -99,29 +99,29 @@ for 5s. This series of actions will be executed repeatedly.
    from gpiozero import Motor
    from time import sleep
 
-   # Initialize the Motor with GPIO Zero, specifying GPIO pins for forward (17), backward (27), and enable (22) control
+   # Inicializa el Motor con GPIO Zero, especificando los pines GPIO para control de avance (17), retroceso (27) y habilitación (22)
    motor = Motor(forward=17, backward=27, enable=22)
 
    try:
-       # Main function to control the motor's direction and movement.
-       # Alternates motor rotation between clockwise and counterclockwise with stops in between.
-       actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Define motor actions for readability
+       # Función principal para controlar la dirección y movimiento del motor.
+       # Alterna la rotación del motor entre horario y antihorario con pausas intermedias.
+       actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Define las acciones del motor para facilitar la lectura
        
        while True:
-           # Loop through the defined actions to control motor direction
+           # Recorre las acciones definidas para controlar la dirección del motor
            for action in ['CW', 'STOP', 'CCW', 'STOP']:
-               actions[action]()  # Execute the current action (forward, stop, backward, stop)
-               print(f"{action}")  # Display the current action in the console
-               sleep(5)  # Pause for 5 seconds before proceeding to the next action
+               actions[action]()  # Ejecuta la acción actual (avanzar, parar, retroceder, parar)
+               print(f"{action}")  # Muestra la acción actual en la consola
+               sleep(5)  # Pausa de 5 segundos antes de proceder a la siguiente acción
 
    except KeyboardInterrupt:
-       # Gracefully handle a keyboard interrupt (e.g., Ctrl+C) to stop the program
+       # Maneja de forma segura una interrupción de teclado (Ctrl+C) para detener el programa
        pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. These import statements bring in the ``Motor`` class from the ``gpiozero`` library and the ``sleep`` function from the ``time`` module.
+#. Estas declaraciones de importación incorporan la clase ``Motor`` de la librería ``gpiozero`` y la función ``sleep`` del módulo ``time`` para manejar pausas.
     
    .. code-block:: python  
 
@@ -130,37 +130,37 @@ for 5s. This series of actions will be executed repeatedly.
        from time import sleep
       
 
-#. This line initializes a ``Motor`` object, specifying the GPIO pins for forward (17), backward (27), and enable (22) control.
+#. Esta línea inicializa un objeto ``Motor``, especificando los pines GPIO para el control de avance (17), retroceso (27) y habilitación (22).
     
    .. code-block:: python
        
-       # Initialize the Motor with GPIO Zero, specifying GPIO pins for forward (17), backward (27), and enable (22) control
+       # Inicializa el Motor con GPIO Zero, especificando los pines GPIO para control de avance (17), retroceso (27) y habilitación (22)
        motor = Motor(forward=17, backward=27, enable=22)
       
 
-#. The actions for motor control are defined in a dictionary for readability. An infinite loop (`while True`) iterates through these actions, executing each for 5 seconds.
+#. Las acciones de control del motor se definen en un diccionario para facilitar la lectura. Un bucle infinito (`while True`) recorre estas acciones, ejecutando cada una durante 5 segundos.
     
    .. code-block:: python
        
        try:
-           # Main function to control the motor's direction and movement.
-           # Alternates motor rotation between clockwise and counterclockwise with stops in between.
-           actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Define motor actions for readability
+           # Función principal para controlar la dirección y movimiento del motor.
+           # Alterna la rotación del motor entre horario y antihorario con pausas intermedias.
+           actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Define las acciones del motor para facilitar la lectura
            
            while True:
-               # Loop through the defined actions to control motor direction
+               # Recorre las acciones definidas para controlar la dirección del motor
                for action in ['CW', 'STOP', 'CCW', 'STOP']:
-                   actions[action]()  # Execute the current action (forward, stop, backward, stop)
-                   print(f"{action}")  # Display the current action in the console
-                   sleep(5)  # Pause for 5 seconds before proceeding to the next action
+                   actions[action]()  # Ejecuta la acción actual (avanzar, parar, retroceder, parar)
+                   print(f"{action}")  # Muestra la acción actual en la consola
+                   sleep(5)  # Pausa de 5 segundos antes de proceder a la siguiente acción
       
 
-#. This segment allows the program to be terminated safely using a keyboard interrupt (Ctrl+C) without causing errors.
+#. Este segmento permite que el programa se termine de manera segura utilizando una interrupción de teclado (Ctrl+C) sin causar errores.
     
    .. code-block:: python
        
        except KeyboardInterrupt:
-       # Gracefully handle a keyboard interrupt (e.g., Ctrl+C) to stop the program
+       # Maneja de forma segura una interrupción de teclado (Ctrl+C) para detener el programa
        pass
       
 

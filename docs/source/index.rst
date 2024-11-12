@@ -25,6 +25,9 @@ Gracias por elegir nuestro |link_DaVinci_kit|.
         * |link_german_tutorials|
         * |link_jp_tutorials|
         * |link_en_tutorials|
+        * |link_fr_tutorials|
+        * |link_es_tutorials|
+        * |link_it_tutorials|
     
     Haz clic en los enlaces correspondientes para acceder al documento en tu idioma preferido.
 

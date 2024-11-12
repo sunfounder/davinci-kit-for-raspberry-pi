@@ -33,6 +33,10 @@ It will hopefully be part of the official release soon, but not for now.
 
 <a id="update"></a>
 ## Update:
+
+2024-11-12:
+- Update the codes
+
 2020-07-09:
  - Add the note for the wiringPi library(Raspberry Pi 4B)
 

@@ -1,58 +1,55 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperti**: Risolvi problematiche tecniche e post-vendita con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue abilità.
+    - **Anteprime Esclusive**: Ottieni l’accesso anticipato ai nuovi annunci di prodotto.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Concorsi**: Partecipa a promozioni festive e a concorsi.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-1.2.2 Passive Buzzer
-=====================
+1.2.2 Buzzer Passivo
+========================
 
-Introduction
-------------
+Introduzione
+---------------
 
-In this lesson, we will learn how to make a passive buzzer play music.
+In questa lezione, impareremo come far suonare un buzzer passivo riproducendo musica.
 
-Components
-----------
+Componenti
+-------------
 
 .. image:: img/list_1.2.2.png
 
+Schema Elettrico
+---------------------
 
-Schematic Diagram
------------------
+In questo esperimento, vengono utilizzati un buzzer passivo, un transistor 
+PNP e una resistenza da 1kΩ tra la base del transistor e il GPIO per proteggere 
+il transistor.
 
-In this experiment, a passive buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor.
-
-When GPIO17 is given different frequencies, the passive buzzer will emit
-different sounds; in this way, the buzzer plays music.
+Quando a GPIO17 vengono applicate frequenze diverse, il buzzer passivo emetterà 
+suoni differenti; in questo modo, il buzzer riproduce la musica.
 
 .. image:: img/image333.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1**: Build the circuit.
+**Passo 1**: Costruisci il circuito.
 
 .. image:: img/image106.png
     :width: 800
 
+Per Utenti del Linguaggio C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
-
-**Step 2**: Change directory.
+**Passo 2**: Cambia directory.
 
 .. raw:: html
 
@@ -62,7 +59,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.2.2/
 
-**Step 3**: Compile.
+**Passo 3**: Compila.
 
 .. raw:: html
 
@@ -72,7 +69,7 @@ For C Language Users
 
     gcc 1.2.2_PassiveBuzzer.c -lwiringPi
 
-**Step 4**: Run.
+**Passo 4**: Esegui.
 
 .. raw:: html
 
@@ -82,13 +79,13 @@ For C Language Users
 
     sudo ./a.out
 
-The code run, the buzzer plays a piece of music.
+Eseguito il codice, il buzzer riproduce un pezzo musicale.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se, dopo l’esecuzione, non funziona o compare un messaggio di errore come: \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`Il codice C non funziona?`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -139,7 +136,7 @@ The code run, the buzzer plays a piece of music.
     int main(void)
     {
         int i, j;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ //se l'inizializzazione di wiring fallisce, stampa il messaggio
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -165,8 +162,7 @@ The code run, the buzzer plays a piece of music.
 
         return 0;
     }
-
-**Code Explanation**
+**Spiegazione del Codice** 
 
 .. code-block:: c
 
@@ -181,9 +177,9 @@ The code run, the buzzer plays a piece of music.
     #define  CM1  262
     #define  CM2  294
 
-
-These frequencies of each note are as shown. CL refers to low note, 
-CM middle note, CH high note, 1-7 correspond to the notes C, D, E, F, G, A, B.
+Le frequenze di ciascuna nota sono come mostrato. CL indica le note basse, 
+CM le note medie e CH le note alte; 1-7 corrispondono rispettivamente alle 
+note C, D, E, F, G, A, B.
 
 .. code-block:: c
 
@@ -193,19 +189,20 @@ CM middle note, CH high note, 1-7 correspond to the notes C, D, E, F, G, A, B.
     int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
                     1,1,1,1,1,1,3};
 
-The array, song_1[] stores a musical score of a song in which beat_1[] 
-refers to the beat of each note in the song (0.5s for each beat).
+L’array song_1[] memorizza una partitura musicale di una canzone, mentre beat_1[] 
+indica il ritmo di ogni nota della canzone (0,5 s per ciascun battito).
 
 .. code-block:: c
 
     if(softToneCreate(BuzPin) == -1){
             printf("setup softTone failed !");
             return 1;
-        
-This creates a software controlled tone pin. You can use any GPIO pin 
-and the pin numbering will be that of the wiringPiSetup() function 
-you used. The return value is 0 for success. Anything else and you 
-should check the global errnovariable to see what went wrong.
+
+Questo crea un pin di tono controllato tramite software. Puoi utilizzare 
+qualsiasi pin GPIO, e la numerazione dei pin sarà quella della funzione 
+wiringPiSetup() usata. Il valore di ritorno è 0 in caso di successo. 
+Diversamente, è necessario verificare la variabile globale errno per 
+capire l’errore.
 
 .. code-block:: c
 
@@ -214,31 +211,30 @@ should check the global errnovariable to see what went wrong.
         delay(beat_1[i] * 500);
     }
 
-Employ a for statement to play song_1.
+Usa una dichiarazione for per riprodurre song_1.
 
-In the judgment condition, **i<sizeof(song_1)/4**\ ，“devide by 4” is
-used because the array song_1[] is an array of the data type of integer,
-and each element takes up four bytes.
+Nella condizione di giudizio, **i<sizeof(song_1)/4**, la "divisione 
+per 4" è necessaria perché l’array song_1[] è di tipo integer, e ogni 
+elemento occupa quattro byte.
 
-The number of elements in song_1 (the number of musical notes) is gotten
-by deviding sizeof(song_4) by 4.
+Il numero di elementi in song_1 (il numero di note musicali) è calcolato 
+dividendo sizeof(song_4) per 4.
 
-To enable each note to play for beat \* 500ms, the function
-delay(beat_1[i] \* 500) is called.
+Per fare in modo che ogni nota suoni per beat \* 500 ms, viene chiamata la funzione delay(beat_1[i] \* 500).
 
-The prototype of softToneWrite(BuzPin, song_1[i])：
+Il prototipo di softToneWrite(BuzPin, song_1[i]) è:
 
 .. code-block:: c
 
     void softToneWrite (int pin, int freq);
 
-This updates the tone frequency value on the given pin. The tone 
-does not stop playing until you set the frequency to 0.
+Questo aggiorna la frequenza del tono sul pin dato. Il tono non smette di 
+suonare fino a quando la frequenza non viene impostata a 0.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Per Utenti del Linguaggio Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2: Change directory.**
+**Passo 2: Cambia directory.**
 
 .. raw:: html
 
@@ -248,7 +244,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3: Run.**
+**Passo 3: Esegui.**
 
 .. raw:: html
 
@@ -258,13 +254,13 @@ For Python Language Users
 
     sudo python3 1.2.2_PassiveBuzzer.py
 
-The code run, the buzzer plays a piece of music.
+Eseguito il codice, il buzzer riproduce un pezzo musicale.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice qui sotto. Ma prima di procedere, è necessario accedere al percorso del codice sorgente come ``davinci-kit-for-raspberry-pi/python``. 
     
 .. raw:: html
 
@@ -277,76 +273,76 @@ The code run, the buzzer plays a piece of music.
 
     Buzzer = 11
 
-    CL = [0, 131, 147, 165, 175, 196, 211, 248]		# Frequency of Bass tone in C major
+    CL = [0, 131, 147, 165, 175, 196, 211, 248]        # Frequenze delle note basse in Do maggiore
 
-    CM = [0, 262, 294, 330, 350, 393, 441, 495]		# Frequency of Midrange tone in C major
+    CM = [0, 262, 294, 330, 350, 393, 441, 495]        # Frequenze delle note medie in Do maggiore
 
-    CH = [0, 525, 589, 661, 700, 786, 882, 990]		# Frequency of Treble tone in C major
+    CH = [0, 525, 589, 661, 700, 786, 882, 990]        # Frequenze delle note alte in Do maggiore
 
-    song_1 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Notes of song1
+    song_1 = [   CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Note della canzone 1
                 CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3], 
                 CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
-                CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	]
+                CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5] ]
 
-    beat_1 = [	1, 1, 3, 1, 1, 3, 1, 1, 			# Beats of song 1, 1 means 1/8 beat
-                1, 1, 1, 1, 1, 1, 3, 1, 
-                1, 3, 1, 1, 1, 1, 1, 1, 
-                1, 2, 1, 1, 1, 1, 1, 1, 
-                1, 1, 3	]
+    beat_1 = [   1, 1, 3, 1, 1, 3, 1, 1,             # Ritmi della canzone 1, 1 significa 1/8 di battito                
+                 1, 1, 1, 1, 1, 1, 3, 1,                 
+                 1, 3, 1, 1, 1, 1, 1, 1,                 
+                 1, 2, 1, 1, 1, 1, 1, 1,                 
+                 1, 1, 3 ]
 
-    song_2 = [	CM[1], CM[1], CM[1], CL[5], CM[3], CM[3], CM[3], CM[1], # Notes of song2
+    song_2 = [   CM[1], CM[1], CM[1], CL[5], CM[3], CM[3], CM[3], CM[1], # Note della canzone 2
                 CM[1], CM[3], CM[5], CM[5], CM[4], CM[3], CM[2], CM[2], 
                 CM[3], CM[4], CM[4], CM[3], CM[2], CM[3], CM[1], CM[1], 
                 CM[3], CM[2], CL[5], CL[7], CM[2], CM[1]	]
 
-    beat_2 = [	1, 1, 2, 2, 1, 1, 2, 2, 			# Beats of song 2, 1 means 1/8 beat
-                1, 1, 2, 2, 1, 1, 3, 1, 
-                1, 2, 2, 1, 1, 2, 2, 1, 
-                1, 2, 2, 1, 1, 3 ]
+    beat_2 = [   1, 1, 2, 2, 1, 1, 2, 2,             # Ritmi della canzone 2, 1 significa 1/8 di battito                
+                 1, 1, 2, 2, 1, 1, 3, 1,                 
+                 1, 2, 2, 1, 1, 2, 2, 1,                 
+                 1, 2, 2, 1, 1, 3 ]
 
     def setup():
 
-        GPIO.setmode(GPIO.BOARD)		# Numbers GPIOs by physical location
-        GPIO.setup(Buzzer, GPIO.OUT)	# Set pins' mode is output
-        global Buzz						# Assign a global variable to replace GPIO.PWM 
-        Buzz = GPIO.PWM(Buzzer, 440)	# 440 is initial frequency.
-        Buzz.start(50)					# Start Buzzer pin with 50% duty cycle
+        GPIO.setmode(GPIO.BOARD)        # Numerazione dei GPIO in base alla posizione fisica
+        GPIO.setup(Buzzer, GPIO.OUT)    # Imposta i pin come output
+        global Buzz                     # Assegna una variabile globale per sostituire GPIO.PWM 
+        Buzz = GPIO.PWM(Buzzer, 440)    # 440 è la frequenza iniziale.
+        Buzz.start(50)                  # Avvia il pin del Buzzer con un ciclo di lavoro al 50%
 
     def loop():
         while True:
             print ('\n    Playing song 1...')
-            for i in range(1, len(song_1)):		# Play song 1
-                Buzz.ChangeFrequency(song_1[i])	# Change the frequency along the song note
-                time.sleep(beat_1[i] * 0.5)		# delay a note for beat * 0.5s
-            time.sleep(1)						# Wait a second for next song.
+            for i in range(1, len(song_1)):         # Riproduce la canzone 1
+                Buzz.ChangeFrequency(song_1[i])     # Cambia la frequenza in base alla nota della canzone
+                time.sleep(beat_1[i] * 0.5)         # Ritarda una nota per beat * 0,5 s
+            time.sleep(1)                           # Attendi un secondo per la prossima canzone.
 
             print ('\n\n    Playing song 2...')
-            for i in range(1, len(song_2)):     # Play song 1
-                Buzz.ChangeFrequency(song_2[i]) # Change the frequency along the song note
-                time.sleep(beat_2[i] * 0.5)     # delay a note for beat * 0.5s
+            for i in range(1, len(song_2)):         # Riproduce la canzone 2
+                Buzz.ChangeFrequency(song_2[i])     # Cambia la frequenza in base alla nota della canzone
+                time.sleep(beat_2[i] * 0.5)         # Ritarda una nota per beat * 0,5 s
 
-    def destory():
-        Buzz.stop()                 # Stop the buzzer
-        GPIO.output(Buzzer, 1)      # Set Buzzer pin to High
-        GPIO.cleanup()				# Release resource
+    def destroy():
+        Buzz.stop()                 # Ferma il buzzer
+        GPIO.output(Buzzer, 1)      # Imposta il pin del Buzzer su High
+        GPIO.cleanup()              # Rilascia le risorse
 
-    if __name__ == '__main__':		# Program start from here
+    if __name__ == '__main__':      # Il programma inizia da qui
         setup()
         try:
             loop()
-        except KeyboardInterrupt:  	# When 'Ctrl+C' is pressed, the program destroy() will be executed.
-            destory()
+        except KeyboardInterrupt:   # Quando viene premuto 'Ctrl+C', viene eseguita destroy().
+            destroy()
 
-**Code Explanation**
+**Spiegazione del Codice** 
 
 .. code-block:: python
 
-    CL = [0, 131, 147, 165, 175, 196, 211, 248]     # Frequency of Bass tone in C major
-    CM = [0, 262, 294, 330, 350, 393, 441, 495]     # Frequency of Midrange tone in C major
-    CH = [0, 525, 589, 661, 700, 786, 882, 990]     # Frequency of Treble tone in C major     
+    CL = [0, 131, 147, 165, 175, 196, 211, 248]     # Frequenza dei toni bassi in Do maggiore
+    CM = [0, 262, 294, 330, 350, 393, 441, 495]     # Frequenza dei toni medi in Do maggiore
+    CH = [0, 525, 589, 661, 700, 786, 882, 990]     # Frequenza dei toni alti in Do maggiore     
 
-These are the frequencies of each note. The first 0 is to 
-skip CL[0] so that the number 1-7 corresponds to the CDEFGAB of the tone.
+Queste sono le frequenze di ciascuna nota. Il primo valore 0 è per 
+saltare CL[0] affinché i numeri 1-7 corrispondano a CDEFGAB della scala.
 
 .. code-block:: python
 
@@ -355,23 +351,21 @@ skip CL[0] so that the number 1-7 corresponds to the CDEFGAB of the tone.
                 CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
                 CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5] ]
 
-These arrays are the notes of a song.
+Questi array rappresentano le note di una canzone.
 
 .. code-block:: python
 
-    beat_1 = [  1, 1, 3, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1,
-                1, 3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1,
-                1, 1, 3 ]
+    beat_1 = [  1, 1, 3, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1,                1, 3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1,                1, 1, 3 ]
 
-Every sound beat (each number) represents the ⅛ beat, or 0.5s
+Ogni numero nel ritmo (beat) rappresenta ⅛ di battito, cioè 0,5 s.
 
 .. code-block:: python
 
     Buzz = GPIO.PWM(Buzzer, 440)
     Buzz.start(50)  
 
-Define pin Buzzer as PWM pin, then set its frequency to 440 and 
-Buzz.start(50) is used to run PWM. What’s more, set the duty cycle to 50%.
+Definisci il pin Buzzer come pin PWM, imposta la sua frequenza a 440 e 
+Buzz.start(50) serve per avviare il PWM. Inoltre, imposta il ciclo di lavoro al 50%.
 
 .. code-block:: python
 
@@ -379,12 +373,12 @@ Buzz.start(50) is used to run PWM. What’s more, set the duty cycle to 50%.
                 Buzz.ChangeFrequency(song_1[i]) 
                 time.sleep(beat_1[i] * 0.5)  
 
-Run a for loop, then the buzzer will play the notes in the array song_1[] 
-with the beats in the beat_1[] array, .
+Esegui un ciclo for, e il buzzer riprodurrà le note nell’array song_1[] 
+con i tempi indicati nell’array beat_1[].
 
-Now you can hear the passive buzzer playing music.
+Ora puoi ascoltare il buzzer passivo che riproduce la musica.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+------------------------
 
 .. image:: img/image107.jpeg

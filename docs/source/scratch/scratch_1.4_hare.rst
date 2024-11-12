@@ -1,78 +1,79 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Esplora più a fondo Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni per le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
-1.4 Hare
+1.4 Lepre
 ==============
 
-Today, we will use Button, Raspberry Pi and Scratch to create a hare with various changes!
+Oggi utilizzeremo un Pulsante, Raspberry Pi e Scratch per creare una lepre con varie animazioni!
 
-When we press the first button, the hare in the stage area will change its body color; when we press the second button, the hare will change its body size; when we press the third button, the hare will take a step forward.
+Quando premiamo il primo pulsante, la lepre nell’area di scena cambierà il colore del corpo; premendo il secondo pulsante, cambierà la dimensione del corpo; premendo il terzo pulsante, la lepre farà un passo avanti.
 
 .. image:: img/1.4_header.png
 
-Required Components
+Componenti Necessari
 ----------------------------
 
 .. image:: img/1.4_list.png
 
-Build the Circuit
----------------------
+Costruisci il Circuito
+-------------------------
 
 .. image:: img/1.4_scratch_button.png
 
-Load the Code and See What Happens
+Carica il Codice e Guarda cosa Succede
 -----------------------------------------
 
-Load the code file (``1.4_hare.sb3``) into Scratch 3.
+Carica il file del codice (``1.4_hare.sb3``) in Scratch 3.
 
-Now you can try to press each of the 3 buttons to see how the Hare on the stage will change.
+Ora puoi provare a premere ciascuno dei 3 pulsanti per vedere come cambierà la Lepre sullo schermo.
 
 
-Tips on Sprite
-----------------
+Suggerimenti sullo Sprite
+-----------------------------
 
-Click the **Choose a Sprite** button in the lower right corner of the sprite area, enter **Hare** in the search box, and then click to add it.
+Clicca sul pulsante **Scegli uno Sprite** nell'angolo in basso a destra dell'area sprite, inserisci **Lepre** nella casella di ricerca, quindi clicca per aggiungerla.
 
 .. image:: img/1.4_button1.png
 
-Delete Sprite1.
+Elimina Sprite1.
 
 .. image:: img/1.4_button2.png
 
 
-Tips on Codes
---------------
+Suggerimenti sui Codici
+------------------------------
 
 .. image:: img/1.4_button3.png
   :width: 400
 
-This is an event block that is triggered when the level of GPIO17 is high, which means that the button is pressed at that moment.
+Questo è un blocco di evento che viene attivato quando il livello di GPIO17 è alto, il che significa che il pulsante è premuto in quel momento.
 
 .. image:: img/1.4_button4.png
   :width: 400
 
-This is a block to change the color of **Hare**, the range of the value is 0 ~ 199, beyond 199 will change from 0 again.
+Questo è un blocco per cambiare il colore della **Lepre**; il valore va da 0 a 199, superato il valore massimo, ricomincia da 0.
 
 .. image:: img/1.4_button5.png
   :width: 250
 
-This is a block used to change the size for sprite, the higher the value, the larger the sprite.
+Questo blocco serve a modificare la dimensione dello sprite; maggiore è il valore, più grande sarà lo sprite.
 
 .. note::
-  The sprite is also not infinitely large, and its maximum size is related to the original image size.
+  Lo sprite non può crescere all'infinito; la dimensione massima è correlata alla dimensione originale dell’immagine.
 
 .. image:: img/1.4_button6.png
   :width: 200
 
-This is a block that switches sprite costumes, and when **Hare**'s costume keeps switching, it does a series of coherent actions. For example, in this project, make **Hare** take a step forward.
+Questo è un blocco che cambia i costumi dello sprite; quando i costumi della **Lepre** vengono alternati, essa esegue una serie di movimenti coerenti. Ad esempio, in questo progetto, fa sì che la **Lepre** compia un passo in avanti.
+

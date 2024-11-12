@@ -1,25 +1,25 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di Facebook dedicata agli appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni speciali.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
-Clickable Color Blocks
-=======================
+Blocchi di Colore Cliccabili
+=================================
 
-We've already tried drawing a clickable dot to control the LED, so let's take it a step further and draw 3 colored squares to adjust the RGB colors!
+Abbiamo già provato a disegnare un punto cliccabile per controllare il LED, quindi facciamo un passo avanti e disegniamo 3 quadrati colorati per regolare i colori RGB!
 
 .. image:: img/colorful_square.png
 
-**Wiring**
+**Collegamenti**
 
 .. image:: img/image61.png
 
@@ -28,7 +28,7 @@ We've already tried drawing a clickable dot to control the LED, so let's take it
 
 .. code-block:: arduino
 
-    import processing.io.*; // use the GPIO library
+    import processing.io.*; // usa la libreria GPIO
 
     int[] pins = { 17, 18, 27 };
 
@@ -65,15 +65,17 @@ We've already tried drawing a clickable dot to control the LED, so let's take it
     }
 
 
-**How it works?**
+**Come funziona?**
 
-This project has a lot in common with :ref:`Clickable Dot`, except that it refines the conditions for determining mouse click event.
 
-First draw three color blocks in ``draw()``, then get which color block was clicked based on the value of mouseX (the X-axis coordinate of the mouse), and finally make RGB light up the corresponding color.
 
-**What more?**
+Questo progetto ha molto in comune con :ref:`Punto Cliccabile`, eccetto che affina le condizioni per determinare l’evento di click del mouse.
 
-Based on the addition of light, we can make RGB LED display seven colors - adding red to green produces yellow; adding all three primary colors together produces white.
-Now you can try it out for yourself.
+Prima disegna tre blocchi di colore in ``draw()``, poi rileva quale blocco è stato cliccato in base al valore di mouseX (la coordinata X del mouse), infine illumina il colore corrispondente sui LED RGB.
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+**Che altro?**
+
+Grazie alla sintesi additiva, possiamo fare in modo che i LED RGB mostrino sette colori - aggiungendo il rosso al verde si ottiene il giallo; aggiungendo i tre colori primari insieme si ottiene il bianco.
+Ora puoi provarlo tu stesso.
+
+Per maggiori dettagli, consulta il `Processing Reference <https://processing.org/reference/>`_.

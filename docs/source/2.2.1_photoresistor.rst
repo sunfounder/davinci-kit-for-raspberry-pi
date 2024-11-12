@@ -1,51 +1,52 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Unisciti a noi per esplorare più a fondo Raspberry Pi, Arduino e ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime.
+    - **Sconti Speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a promozioni e giveaway durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti subito!
 
-2.2.1 Photoresistor
-===================
+2.2.1 Fotoresistore
+======================
 
-Introduction
-------------
+Introduzione
+---------------
 
-Photoresistor is a commonly used component of ambient light intensity in
-life. It helps the controller to recognize day and night and realize
-light control functions such as night lamp. This project is very similar
-to potentiometer, and you might think it changing the voltage to sensing
-light.
+Il fotoresistore è un componente comunemente utilizzato per rilevare 
+l'intensità della luce ambientale. Aiuta il controller a distinguere 
+tra giorno e notte e permette di implementare funzioni di controllo 
+della luce, come quelle di una lampada notturna. Questo progetto è 
+molto simile a quello con il potenziometro e può essere visto come una 
+trasformazione della variazione di tensione in sensibilità alla luce.
 
-Components
-----------
+Componenti
+--------------
 
 .. image:: img/list_2.2.1_photoresistor.png
 
 
-Principle
----------
+Principio di Funzionamento
+-----------------------------
 
-A photoresistor or photocell is a light-controlled variable resistor.
-The resistance of a photoresistor decreases with increasing incident
-light intensity; in other words, it exhibits photo conductivity. A
-photoresistor can be applied in light-sensitive detector circuits, and
-light- and darkness-activated switching circuits.
+Un fotoresistore, o fotocellula, è una resistenza variabile controllata 
+dalla luce. La resistenza del fotoresistore diminuisce con l'aumentare 
+dell'intensità della luce incidente; in altre parole, mostra fotoconduttività. 
+Un fotoresistore può essere utilizzato in circuiti di rilevamento sensibili 
+alla luce, e in circuiti che si attivano con luce o oscurità.
 
 .. image:: img/image196.png
     :width: 200
     :align: center
 
 
-Schematic Diagram
------------------
+Schema del Circuito
+----------------------
 
 .. image:: img/image321.png
 
@@ -53,20 +54,20 @@ Schematic Diagram
 .. image:: img/image322.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+-------------------------
 
-**Step 1:** Build the circuit.
+**Passaggio 1:** Costruisci il circuito.
 
 .. image:: img/image198.png
     :width: 800
 
 
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
+Per Utenti C
+^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code.
+**Passaggio 2:** Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -76,7 +77,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.1/
 
-**Step 3:** Compile the code.
+**Passaggio 3:** Compila il codice.
 
 .. raw:: html
 
@@ -86,7 +87,7 @@ For C Language Users
 
     gcc 2.2.1_Photoresistor.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Passaggio 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -96,14 +97,13 @@ For C Language Users
 
     sudo ./a.out
 
-The code run, the brightness of LED will vary depending on the intensity
-of light that the photoresistor senses.
+Una volta eseguito il codice, la luminosità del LED varierà a seconda 
+dell'intensità di luce rilevata dal fotoresistore.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-
-**Code**
+    Se il programma non funziona o viene visualizzato un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta la sezione :ref:`Il codice C non funziona?`.
+**Codice**
 
 .. code-block:: c
 
@@ -133,11 +133,11 @@ of light that the photoresistor senses.
 
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
-        // Start bit
+        // Bit di avvio
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        //Single End mode
+        // Modalità Single End
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
@@ -145,7 +145,7 @@ of light that the photoresistor senses.
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        //Select
+        // Selezione
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);
@@ -178,7 +178,7 @@ of light that the photoresistor senses.
     int main(void)
     {
         uchar analogVal;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+        if(wiringPiSetup() == -1){ //se l'inizializzazione di wiring fallisce, stampa un messaggio a schermo
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -196,16 +196,17 @@ of light that the photoresistor senses.
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
-The codes here are the same as that in 2.1.4 Potentiometer. If you have
-any other questions, please check the code explanation of **2.1.4
-Potentiometer.c** for details.
+I codici qui sono gli stessi presenti nella sezione 2.1.4 Potenziometro. 
+Se hai ulteriori domande, consulta la spiegazione del codice in 
+**2.1.4 Potenziometro.c** per i dettagli.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code.
+Per gli Utenti di Linguaggio Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -215,7 +216,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run the executable file.
+**Passo 3:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -225,14 +226,14 @@ For Python Language Users
 
     sudo python3 2.2.1_Photoresistor.py
 
-The code run, the brightness of LED will vary depending on the intensity
-of light that the photoresistor senses.
+Durante l'esecuzione del codice, la luminosità del LED varierà a seconda 
+dell'intensità di luce rilevata dalla fotoresistenza.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice qui sotto. Prima di ciò, però, è necessario andare nel percorso del codice sorgente come ``davinci-kit-for-raspberry-pi/python``. 
     
 .. raw:: html
 
@@ -248,21 +249,21 @@ of light that the photoresistor senses.
 
     def setup():
         global led_val
-        # Set the GPIO modes to BCM Numbering
+        # Imposta la modalità GPIO a Numerazione BCM
         GPIO.setmode(GPIO.BCM)
-        # Set all LedPin's mode to output and initial level to High(3.3v)
+        # Imposta LedPin come output e il livello iniziale ad High (3.3v)
         GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
         ADC0834.setup()
-        # Set led as pwm channel and frequece to 2KHz
+        # Imposta il LED come canale PWM con frequenza a 2KHz
         led_val = GPIO.PWM(LedPin, 2000)
 
-        # Set all begin with value 0
+        # Inizializza con il valore 0
         led_val.start(0)
 
     def destroy():
-        # Stop all pwm channel
+        # Interrompi tutti i canali PWM
         led_val.stop()
-        # Release resource
+        # Rilascia le risorse
         GPIO.cleanup()
 
     def loop():
@@ -276,10 +277,10 @@ of light that the photoresistor senses.
         setup()
         try:
             loop()
-        except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt: # Quando viene premuto 'Ctrl+C', verrà eseguito il programma destroy().
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
@@ -290,16 +291,16 @@ of light that the photoresistor senses.
             led_val.ChangeDutyCycle(analogVal*100/255)
             time.sleep(0.2)
 
-Read the analog value of CH0 of ADC0834. By default, the function
-getResult() is used to read the value of CH0, so if you want to read
-other channels, please input 1, 2, or 3 into () of the function
-getResult(). Next, what you need is to print the value via the print
-function. Because the changing element is the duty cycle of LedPin, the
-computational formula, analogVal*100/255 is needed to convert analogVal
-into percentage. Finally, ChangeDutyCycle() is called to write the
-percentage into LedPin.
+Legge il valore analogico di CH0 di ADC0834. Per impostazione predefinita, 
+la funzione getResult() legge il valore di CH0; se desideri leggere altri 
+canali, inserisci 1, 2 o 3 nei parametri della funzione getResult(). 
+Successivamente, stampa il valore utilizzando la funzione print. Poiché 
+l'elemento che cambia è il ciclo di lavoro di LedPin, è necessario utilizzare 
+la formula di calcolo analogVal*100/255 per convertire analogVal in percentuale. 
+Infine, ChangeDutyCycle() viene chiamata per scrivere la percentuale in LedPin.
 
-Phenomenon Picture
-------------------
+
+Immagine del Fenomeno
+---------------------------
 
 .. image:: img/image199.jpeg

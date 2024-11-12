@@ -1,108 +1,103 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a giveaway e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-2.1.2 Slide Switch
-==================
+2.1.2 Interruttore a Scorrimento
+===================================
 
-Introduction
-------------
+Introduzione
+---------------
 
-In this lesson, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+In questa lezione impareremo a utilizzare un interruttore a scorrimento. 
+Solitamente, l'interruttore a scorrimento è saldato sul PCB come interruttore 
+di alimentazione, ma qui lo inseriamo nella breadboard, anche se potrebbe non 
+essere ben saldo, per dimostrarne la funzione.
 
-Components
-----------
+Componenti
+-------------
 
 .. image:: img/list_2.1.2_slide_switch.png
 
 
-Principle
----------
+Principio
+-------------
 
-**Slide Switch**
+**Interruttore a Scorrimento**
 
 .. image:: img/image156.jpeg
 
+Un interruttore a scorrimento, come suggerisce il nome, funziona facendo 
+scorrere la leva per connettere o interrompere il circuito, commutando così 
+i circuiti. I tipi più comuni sono SPDT, SPTT, DPDT, DPTT, e vengono utilizzati 
+frequentemente nei circuiti a bassa tensione. Presenta caratteristiche di 
+flessibilità e stabilità, ed è ampiamente utilizzato in strumenti elettrici e 
+giocattoli elettronici.
 
-A slide switch, just as its name implies, is to slide the switch bar to
-connect or break the circuit, and further switch circuits. The
-common-used types are SPDT, SPTT, DPDT, DPTT etc. The slide switch is
-commonly used in low-voltage circuit. It has the features of flexibility
-and stability, and applies in electric instruments and electric toys
-widely.
-
-How it works: Set the middle pin as the fixed one. When you pull the
-slide to the left, the two pins on the left are connected; when you pull
-it to the right, the two pins on the right are connected. Thus, it works
-as a switch connecting or disconnecting circuits. See the figure below:
+Funzionamento: Imposta il pin centrale come fisso. Quando fai scorrere 
+l'interruttore a sinistra, i due pin a sinistra sono collegati; quando 
+lo fai scorrere a destra, si collegano i due pin a destra. In questo modo, 
+funziona come un interruttore per connettere o disconnettere i circuiti. 
+Vedi la figura seguente:
 
 .. image:: img/image304.png
 
-
-The circuit symbol of the slide switch is shown as below. The pin2 in
-the figure refers to the middle pin.
+Il simbolo del circuito dell'interruttore a scorrimento è mostrato di seguito. 
+Il pin 2 nella figura si riferisce al pin centrale.
 
 .. image:: img/image159.png
 
+**Condensatore**
 
-**Capacitor**
+Un condensatore è un componente che ha la capacità di immagazzinare energia 
+sotto forma di carica elettrica o di produrre una differenza di potenziale 
+(tensione statica) tra le sue piastre, come una piccola batteria ricaricabile.
 
-The capacitor is a component that has the capacity to store energy in
-the form of electrical charge or to produce a potential difference
-(Static Voltage) between its plates, much like a small rechargeable
-battery.
+Unità standard di capacità:
 
-Standard Units of Capacitance
+Microfarad (μF) 1μF = 1/1.000.000 = 0,000001 = :math:`10^{- 6}` F
 
-Microfarad (μF) 1μF = 1/1,000,000 = 0.000001 = :math:`10^{- 6}` F
+Nanofarad (nF) 1nF = 1/1.000.000.000 = 0,000000001 = :math:`10^{- 9}`\ F
 
-Nanofarad (nF) 1nF = 1/1,000,000,000 = 0.000000001 = :math:`10^{- 9}`\ F
-
-Picofarad (pF) 1pF = 1/1,000,000,000,000 = 0.000000000001 =
-:math:`10^{- 12}`\ F
+Picofarad (pF) 1pF = 1/1.000.000.000.000 = 0,000000000001 = :math:`10^{- 12}`\ F
 
 .. note::
-    Here we use **104 capacitor(10 x 10\ 4\ PF)**. Just like the
-    ring of resistors, the numbers on the capacitors help to read the values
-    once assembled onto the board. The first two digits represent the value
-    and the last digit of the number means the multiplier. Thus 104
-    represents a power of 10 x 10 to 4 (in pF) equal to 100 nF.
+    Qui utilizziamo un **condensatore 104 (10 x 10^4 PF)**. Proprio come gli anelli 
+    dei resistori, i numeri sui condensatori aiutano a leggere i valori una volta 
+    assemblati sulla scheda. Le prime due cifre rappresentano il valore e l'ultima 
+    cifra indica il moltiplicatore. Pertanto, 104 rappresenta una potenza di 10 x 10 alla 4 (in pF), 
+    pari a 100 nF.
 
-Schematic Diagram
------------------
+Schema Elettrico
+--------------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Collega il pin centrale dell’interruttore a scorrimento al GPIO17 e due LED 
+rispettivamente ai pin GPIO22 e GPIO27. Quindi, quando sposti l'interruttore, 
+vedrai i due LED accendersi alternativamente.
 
 .. image:: img/image305.png
-
 
 .. image:: img/image306.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: img/image161.png
     :width: 800
 
-**Step 2**: Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -112,7 +107,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.1.2
 
-**Step 3**: Compile.
+**Passo 3:** Compila.
 
 .. raw:: html
 
@@ -122,7 +117,7 @@ Experimental Procedures
 
     gcc 2.1.2_Slider.c -lwiringPi 
 
-**Step 4**: Run the executable file above.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -132,14 +127,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Durante l'esecuzione del codice, collega l'interruttore a sinistra e si 
+accenderà il LED giallo; spostandolo a destra, si accenderà il LED rosso.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se non funziona dopo l’esecuzione, o appare un messaggio di errore: \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`Il codice C non funziona?`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -151,7 +146,7 @@ the yellow LED lights up; to the right, the red light turns on.
 
     int main(void)
     {
-        // When initialize wiring failed, print message to screen
+        // Se l'inizializzazione di wiring fallisce, stampa un messaggio a schermo
         if(wiringPiSetup() == -1){
             printf("setup wiringPi failed !");
             return 1;
@@ -160,14 +155,14 @@ the yellow LED lights up; to the right, the red light turns on.
         pinMode(led1, OUTPUT);
         pinMode(led2, OUTPUT);
         while(1){
-            // slide switch high, led1 on
+            // interruttore alto, led1 acceso
             if(digitalRead(slidePin) == 1){
                 digitalWrite(led1, LOW);
                 digitalWrite(led2, HIGH);
                 printf("LED1 on\n");
                 delay(100);
             }
-            // slide switch low, led2 on
+            // interruttore basso, led2 acceso
             if(digitalRead(slidePin) == 0){
                 digitalWrite(led2, LOW);
                 digitalWrite(led1, HIGH);
@@ -178,8 +173,7 @@ the yellow LED lights up; to the right, the red light turns on.
         return 0;
     }
 
-**Code Explanation**
-
+**Spiegazione del Codice**
 
 .. code-block:: c
 
@@ -189,9 +183,9 @@ the yellow LED lights up; to the right, the red light turns on.
                 printf("LED1 on\n");
         }
 
-When the slide is pulled to the right, the middle pin and right one are
-connected; the Raspberry Pi reads a high level at the middle pin, so the
-LED1 is on and LED2 off
+Quando l’interruttore è spostato a destra, il pin centrale e quello destro 
+sono collegati; il Raspberry Pi legge un livello alto sul pin centrale, quindi 
+LED1 si accende e LED2 si spegne.
 
 .. code-block:: c
 
@@ -201,6 +195,7 @@ LED1 is on and LED2 off
                 printf(".....LED2 on\n");
             }
 
-When the slide is pulled to the left, the middle pin and left one are
-connected; the Raspberry Pi reads a low, so the LED2 is on and LED1 off
+Quando l’interruttore è spostato a sinistra, il pin centrale e quello 
+sinistro sono collegati; il Raspberry Pi legge un livello basso, quindi 
+LED2 si accende e LED1 si spegne.
 

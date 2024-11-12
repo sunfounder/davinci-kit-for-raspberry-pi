@@ -1,112 +1,103 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di SunFounder per appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci l'uso di Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuove presentazioni di prodotti e anticipazioni.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni e omaggi festivi**: Partecipa a promozioni festive e a giveaway.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
 2.2.4 PIR
-=========
+===========
 
-Introduction
-------------
+Introduzione
+--------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+In questo progetto realizzeremo un dispositivo utilizzando sensori 
+piroelettrici a infrarossi per il corpo umano. Quando qualcuno si 
+avvicina, il LED si accende automaticamente. Altrimenti, la luce si 
+spegne. Questo sensore di movimento a infrarossi è in grado di rilevare 
+l'infrarosso emesso da esseri umani e animali.
 
-Components
-----------
+Componenti
+-------------
 
 .. image:: img/list_2.2.4_pir.png
 
 
-Principle
----------
+Principio
+----------
 
-The PIR sensor detects infrared heat radiation that can be used to
-detect the presence of organisms that emit infrared heat radiation.
+Il sensore PIR rileva la radiazione termica infrarossa, utilizzata per 
+individuare la presenza di organismi che emettono questa radiazione.
 
-The PIR sensor is split into two slots that are connected to a
-differential amplifier. Whenever a stationary object is in front of the
-sensor, the two slots receive the same amount of radiation and the
-output is zero. Whenever a moving object is in front of the sensor, one
-of the slots receives more radiation than the other , which makes the
-output fluctuate high or low. This change in output voltage is a result
-of detection of motion.
+Il sensore PIR è suddiviso in due sezioni collegate a un amplificatore 
+differenziale. Quando un oggetto stazionario è davanti al sensore, le 
+due sezioni ricevono la stessa quantità di radiazione e l'uscita è zero. 
+Quando un oggetto in movimento si avvicina, una delle sezioni riceve più 
+radiazione dell'altra, generando un'oscillazione dell'uscita tra alti e 
+bassi livelli. Questa variazione di tensione segnala la rilevazione del movimento.
 
 .. image:: img/image211.png
     :width: 200
 
 
-
-After the sensing module is wired, there is a one-minute initialization.
-During the initialization, module will output for 0~3 times at
-intervals. Then the module will be in the standby mode. Please keep the
-interference of light source and other sources away from the surface of
-the module so as to avoid the misoperation caused by the interfering
-signal. Even you'd better use the module without too much wind, because
-the wind can also interfere with the sensor.
+Dopo che il modulo di rilevamento è stato collegato, è previsto un minuto di 
+inizializzazione. Durante l'inizializzazione, il modulo emetterà un segnale 
+da 0 a 3 volte a intervalli. Successivamente, il modulo entra in modalità standby. 
+Assicurati di evitare l'interferenza di fonti di luce o altre fonti sul modulo per 
+prevenire falsi allarmi causati da segnali di disturbo. È preferibile anche evitare 
+un’eccessiva esposizione al vento, che potrebbe interferire con il sensore.
 
 .. image:: img/image212.png
     :width: 400
 
 
+**Regolazione della distanza**
 
-**Distance Adjustment**
+Ruotando la manopola del potenziometro di regolazione della distanza in senso 
+orario, aumenta la portata massima di rilevamento fino a circa 0-7 metri. 
+Girandola in senso antiorario, la distanza di rilevamento si riduce, raggiungendo 
+un minimo di circa 0-3 metri.
 
+**Regolazione del ritardo**
 
-Turning the knob of the distance adjustment potentiometer clockwise, the
-range of sensing distance increases, and the maximum sensing distance
-range is about 0-7 meters. If turn it anticlockwise, the range of
-sensing distance is reduced, and the minimum sensing distance range is
-about 0-3 meters.
+Ruotando la manopola del potenziometro di regolazione del ritardo in senso orario, 
+aumenta il ritardo di rilevamento fino a un massimo di 300 secondi. Al contrario, 
+ruotandola in senso antiorario, riduci il ritardo fino a un minimo di 5 secondi.
 
-**Delay adjustment**
+Due modalità di trigger: (scegli modalità diverse con il ponticello).
 
+-  **H:** **Modalità di trigger ripetibile**, dopo aver rilevato una persona, 
+   il modulo emette un livello alto. Durante il periodo di ritardo, se qualcuno 
+   entra nell'area di rilevamento, l'uscita rimane a livello alto.
 
-Rotate the knob of the delay adjustment potentiometer clockwise, you
-can also see the sensing delay increasing. The maximum of the sensing
-elay can reach up to 300s. On the contrary, if rotate it
-anticlockwise, you can shorten the delay with a minimum of 5s. 
-
-Two trigger modes: (choosing different modes by using the jumper cap).
-
--  **H:** **Repeatable trigger mode**, after sensing the human body, the
-   module outputs high level. During the subsequent delay period, if
-   somebody enters the sensing range,the output will keep being the high
-   level.
-
--  **L:** **Non-repeatable trigger mode**, outputs high level when
-   it senses the human body. After the delay, the output will change
-   from high level into low level automatically. 
+-  **L:** **Modalità di trigger non ripetibile**, emette un livello alto al 
+   rilevamento della persona. Dopo il ritardo, l'uscita passa automaticamente 
+   dal livello alto al livello basso.
 
 
 
-Schematic Diagram
------------------
+Schema Elettrico
+------------------
 
 .. image:: img/image327.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+-------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: img/image214.png
     :width: 800
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -116,7 +107,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.4/
 
-**Step 3:** Compile the code.
+**Passo 3:** Compila il codice.
 
 .. raw:: html
 
@@ -126,7 +117,7 @@ Experimental Procedures
 
     gcc 2.2.4_PIR.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -136,20 +127,20 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, PIR detects surroundings and let RGB LED glow
-yellow if it senses someone walking by. There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
+Dopo l'esecuzione del codice, il PIR rileva l'ambiente circostante e fa 
+illuminare l'LED RGB di giallo se rileva qualcuno di passaggio. Sul modulo 
+PIR ci sono due potenziometri: uno regola la sensibilità e l'altro la distanza 
+di rilevamento. Per ottimizzare il funzionamento del modulo PIR, è necessario 
+girarli entrambi in senso antiorario fino in fondo.
 
 .. image:: img/PIR_TTE.png
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se il programma non funziona dopo l'esecuzione o viene visualizzato un errore: \"wiringPi.h: Nessun file o directory di questo tipo", consulta :ref:`Il codice C non funziona?`.
 
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -158,7 +149,7 @@ You need to turn both of them counterclockwise to the end.
     #include <stdio.h>
     #define uchar unsigned char
 
-    #define pirPin    0     //the pir connect to GPIO0
+    #define pirPin    0     // pir collegato a GPIO0
     #define redPin    1
     #define greenPin  2
     #define bluePin   3
@@ -176,33 +167,33 @@ You need to turn both of them counterclockwise to the end.
     int main(void)
     {
         int pir_val;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ // se l'inizializzazione di wiring fallisce, stampa un messaggio sullo schermo
             printf("setup wiringPi failed !");
             return 1;
         }
         ledInit();
         pinMode(pirPin, INPUT);
         while(1){
-        pir_val = digitalRead(pirPin);
-            if(pir_val== 1){ //if read pir is HIGH level
+            pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ //se il valore letto dal pir è di livello HIGH
                 ledColorSet(0xff,0xff,0x00); 
             }
             else {
-            ledColorSet(0x00,0x00,0xff); 
+                ledColorSet(0x00,0x00,0xff); 
             }
         }
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
     void ledInit(void);
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
-These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2 RGB LED` for more details.
+Questi codici sono utilizzati per impostare il colore dell'LED RGB; per maggiori 
+dettagli, consulta :ref:`1.1.2 LED RGB`.
 
 .. code-block:: c
 
@@ -212,17 +203,17 @@ to :ref:`1.1.2 RGB LED` for more details.
         //…… 
         pinMode(pirPin, INPUT);
         while(1){
-        pir_val = digitalRead(pirPin);
-            if(pir_val== 1){ //if read pir is HIGH level
+            pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ //se il valore letto dal pir è di livello HIGH
                 ledColorSet(0xff,0xff,0x00); 
             }
             else {
-            ledColorSet(0x00,0x00,0xff); 
+                ledColorSet(0x00,0x00,0xff); 
             }
         }
         return 0;
     }
 
-When PIR detects the human infrared spectrum, RGB LED emits the yellow
-light; if not, emits the blue light.
+Quando il PIR rileva lo spettro infrarosso umano, l'LED RGB emette luce gialla; 
+altrimenti, emette luce blu.
 

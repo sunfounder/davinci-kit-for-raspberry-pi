@@ -1,60 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché Unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni speciali per le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-2.1.5 Keypad
-============
+2.1.5 Tastierino Numerico
+============================
 
-Introduction
-------------
+Introduzione
+---------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Un tastierino numerico è una matrice rettangolare di pulsanti. 
+In questo progetto, lo useremo per inserire caratteri.
 
-Components
-----------
+Componenti
+-------------
 
 .. image:: ../img/list_2.1.5_keypad.png
 
 
 
-Schematic Diagram
------------------
+Schema a Blocchi
+------------------
 
 .. image:: ../img/image315.png
-
 
 .. image:: ../img/image316.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image186.png
 
-**Step 2:** Open the code file.
+**Passo 2:** Apri il file del codice.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -64,10 +63,10 @@ Experimental Procedures
 
     sudo node keypad.js
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Dopo l'esecuzione del codice, i valori dei pulsanti premuti sul tastierino 
+(valore del pulsante) verranno stampati sullo schermo.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -75,10 +74,10 @@ Value) will be printed on the screen.
 
     var rowsPins = [18,23,24,25];
     var colsPins = [10,6,27,17];
-    var keys = ["1","2","3","A",
-            "4","5","6","B",
-            "7","8","9","C",
-            "*","0","#","D"];      
+    var keys = ["1","2","3","A",                
+                "4","5","6","B",                
+                "7","8","9","C",                
+                "*","0","#","D"];      
 
     for(let i=0;i<rowsPins.length;i++){
         rowsPins[i] = new Gpio(rowsPins[i],{mode: Gpio.OUTPUT})
@@ -114,8 +113,7 @@ Value) will be printed on the screen.
         rowsPins[row].digitalWrite(1);
     }, 10);
 
-
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: js
 
@@ -123,10 +121,10 @@ Value) will be printed on the screen.
 
     var rowsPins = [18,23,24,25];
     var colsPins = [10,6,27,17];
-    var keys = ["1","2","3","A",
-            "4","5","6","B",
-            "7","8","9","C",
-            "*","0","#","D"];      
+    var keys = ["1","2","3","A",                
+                "4","5","6","B",                
+                "7","8","9","C",                
+                "*","0","#","D"];      
 
     for(let i=0;i<rowsPins.length;i++){
         rowsPins[i] = new Gpio(rowsPins[i],{mode: Gpio.OUTPUT})
@@ -140,20 +138,21 @@ Value) will be printed on the screen.
     }
 
 
+Dichiara due insiemi di pin e una matrice per il tastierino. Quattro pin 
+rappresentano le righe e vengono impostati in modalità OUTPUT; gli altri 
+quattro rappresentano le colonne e vengono impostati in modalità INPUT con 
+l'interruzione sul fronte di salita.
 
-In the style of the keypad, declare two sets of pins and a matrix.
+Il funzionamento è il seguente: i pin delle righe forniscono alternativamente 
+un livello alto. Se viene premuto un pulsante, il pin di colonna corrispondente 
+rileva il livello alto rilasciato dal pin di riga, attivando così l'interruzione 
+sul fronte di salita.
 
-Four of the pins are the row of the keypad, set these pins to OUTPUT mode;
-The other four pins are the columns of the keypad, set these pins to INPUT mode, and set the rising edge interrupt for them.
-
-The principle that the main controller can obtain the key value is as follows:
-The four row pins provide high level in turn, if a button is pressed,
-The corresponding column pin will get the high level released by the row pin, which will trigger the rising edge interrupt.
-
-For example, if I press the button **3** , when the 2nd, 3rd, and 4th row pins release the high level, there is no effect;
-When the row pin in the first position releases the high level, the third column pin will be able to obtain the high level and trigger the rising edge interrupt. At this time, the 1st, 2nd, and 4th column pins do not trigger any events.
-
-Then, according to the 1st row pin that releases the high level and the 3rd column pin that gets the high level, the main controller will be able to know that the position of the pressed button is (1,3), which is the button **3**.
+Ad esempio, premendo il pulsante **3**, quando i pin delle righe 2, 3 e 4 
+rilasciano il livello alto, non accade nulla; invece, quando il pin di riga 
+1 rilascia il livello alto, il pin di colonna 3 rileva il livello alto e 
+attiva l'interruzione. In base alla combinazione di riga e colonna, il 
+controller principale può identificare il tasto premuto.
 
 .. image:: ../img/image187.png
 
@@ -169,7 +168,7 @@ Then, according to the 1st row pin that releases the high level and the 3rd colu
         rowsPins[row].digitalWrite(1);
     }, 10);
 
-The four row pins are periodically supplied high, and the variable ``row`` is used to locate the currently working row pin.
+I quattro pin di riga ricevono periodicamente un livello alto, e la variabile ``row`` localizza il pin attivo corrente.
 
 .. code-block:: js
 
@@ -185,9 +184,8 @@ The four row pins are periodically supplied high, and the variable ``row`` is us
         });
     }
 
-Set up interrupt functions for the four column pins, 
-and the variable ``col`` is used to locate the column pins that trigger the rising edge interrupt event.
-
+Imposta le funzioni di interruzione per i quattro pin di colonna. 
+La variabile ``col`` localizza il pin che ha attivato l'interruzione.
 
 .. code-block:: js
 
@@ -197,11 +195,12 @@ and the variable ``col`` is used to locate the column pins that trigger the risi
     }
     last_key_pressed = pressed_keys;
 
-There is also a piece of code in the break function to get the specific key value from the ``keys`` matrix according to ``row`` and ``col``.
-And every time you get a new key value, print the value.
+Il codice all'interno della funzione di interruzione recupera il valore 
+del tasto dalla matrice ``keys`` in base ai valori di ``row`` e ``col`` 
+e stampa il valore ogni volta che un tasto viene premuto.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+-------------------------
 
 .. image:: ../img/image188.jpeg
 

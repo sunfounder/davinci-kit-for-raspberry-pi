@@ -1,33 +1,34 @@
+
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community su Facebook per gli appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e anteprime esclusive.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Giveaway Festivi**: Partecipa a concorsi e promozioni in occasione delle festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-3.1.4 Smart Fan
-=================
+3.1.4 Ventilatore Intelligente
+=================================
 
-Introduction
------------------
+Introduzione
+---------------
 
-In this course, we will use motors, buttons and thermistors to make a
-manual + automatic smart fan whose wind speed is adjustable.
+In questo corso, utilizzeremo motori, pulsanti e termistori per creare un 
+ventilatore intelligente manuale e automatico, con velocità regolabile.
 
-Components
-------------------
+Componenti
+------------
 
 .. image:: img/list_Smart_Fan.png
     :align: center
 
-Schematic Diagram
+Schema di Collegamento
 ------------------------
 
 ============ ======== ======== ===
@@ -45,10 +46,10 @@ GPIO13       Pin 33   23       13
     :width: 500
     :align: center
 
-Experimental Procedures
------------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: img/image245.png
    :alt: Smart Fan_bb
@@ -56,9 +57,9 @@ Experimental Procedures
    :align: center
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    Il modulo di alimentazione può essere collegato a una batteria da 9V con 
+    la clip per batteria inclusa nel kit. Inserisci il jumper del modulo di 
+    alimentazione nelle strisce da 5V della breadboard.
 
 .. image:: img/image118.jpeg
    :alt: \_MG_2084
@@ -66,10 +67,10 @@ Experimental Procedures
    :height: 0.94375in
    :align: center
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^
+**Per gli utenti del linguaggio C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Get into the folder of the code.
+**Passo 2:** Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -79,7 +80,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.4/
 
-**Step 3**: Compile.
+**Passo 3:** Compila.
 
 .. raw:: html
 
@@ -89,7 +90,7 @@ Experimental Procedures
 
     gcc 3.1.4_SmartFan.c -lwiringPi -lm
 
-**Step 4**: Run the executable file above.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -99,21 +100,20 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, start the fan by pressing the button. Every time you
-press, 1 speed grade is adjusted up or down. There are **5** kinds of
-speed grades: **0~4**. When set to the 4\ :sup:`th` speed grade and you
-press the button, the fan stops working with a **0** wind speed.
+Una volta eseguito il codice, avvia il ventilatore premendo il pulsante. 
+Ogni pressione aumenta o diminuisce la velocità di 1 livello. Sono disponibili 
+**5** livelli di velocità: **0~4**. Se raggiungi il **4°** livello e premi di 
+nuovo, il ventilatore si ferma con velocità pari a **0**.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta :ref:`Il codice C non funziona?`.
+
+Quando la temperatura aumenta o diminuisce di più di 2℃, la velocità aumenta 
+o diminuisce automaticamente di 1 livello.
 
 
-Once the temperature goes up or down for more than 2℃, the speed
-automatically gets 1-grade faster or slower.
-
-
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
@@ -130,70 +130,71 @@ automatically gets 1-grade faster or slower.
         return t;
     }
 
-Temperture() works by converting thermistor values read by ADC0834 into
-temperature values. Refer to :ref:`2.2.2 Thermistor` for more details.
+La funzione temperture() converte i valori del termistore letti da ADC0834 
+in valori di temperatura. Consulta :ref:`2.2.2 Termistore` per ulteriori dettagli.
 
 .. code-block:: c
 
     int motor(int level){
-        if(level==0){
-            digitalWrite(MotorEnable,LOW);
+        if(level==0){
+            digitalWrite(MotorEnable,LOW);
             return 0;
-        }
+        }
         if (level>=4){
             level =4;
-        }
-        digitalWrite(MotorEnable,HIGH);
+        }
+        digitalWrite(MotorEnable,HIGH);
         softPwmWrite(MotorPin1, level*25);
         return level;    
     }
 
-This function controls the rotating speed of the motor. The range of the
-**Level**: **0-4** (level **0** stops the working motor). One level
-adjustment stands for a **25%** change of the wind speed.
+Questa funzione controlla la velocità di rotazione del motore. L’intervallo 
+di **level** va da **0 a 4** (il livello **0** arresta il motore). 
+Ogni livello rappresenta un aumento del **25%** della velocità del vento.
 
 .. code-block:: c
 
     int main(void)
     {
-        setup();
+        setup();
         int currentState,lastState=0;
         int level = 0;
         int currentTemp,markTemp=0;
-        while(1){
+        while(1){
             currentState=digitalRead(BtnPin);
             currentTemp=temperture();
             if (currentTemp<=0){continue;}
             if (currentState==1&&lastState==0){
                 level=(level+1)%5;
                 markTemp=currentTemp;
-                delay(500);
-            }
+                delay(500);
+            }
             lastState=currentState;
             if (level!=0){
                 if (currentTemp-markTemp<=-2){
                     level=level-1;
                     markTemp=currentTemp;
-                }
+                }
                 if (currentTemp-markTemp>=2){
                     level=level+1;
                     markTemp=currentTemp;
-                }
-            }
+                }
+            }
             level=motor(level);
-        }
+        }
         return 0;
     }
 
-The function **main()** contains the whole program process as shown:
+La funzione **main()** contiene l’intero processo del programma, come segue:
 
-1) Constantly read the button state and the current temperature.
+1) Legge costantemente lo stato del pulsante e la temperatura corrente.
 
-2) Every press makes level\ **+1** and at the same time, the temperature
-   is updated. The **Level** ranges **1~4**.
+2) Ad ogni pressione, il livello aumenta di **+1** e contemporaneamente la 
+   temperatura viene aggiornata. L’intervallo di **Level** è da **1 a 4**.
 
-3) As the fan works ( the level is **not 0**), the temperature is under
-   detection. A **2℃\ +** change causes the up and down of the level.
+3) Quando il ventilatore è in funzione (livello diverso da **0**), la temperatura 
+   viene monitorata. Una variazione di **±2℃** causa un aumento o diminuzione del 
+   livello.
 
-4) The motor changes the rotating speed with the **Level**.
+4) Il motore cambia velocità di rotazione in base al **Level**.
 

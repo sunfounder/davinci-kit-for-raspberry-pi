@@ -1,35 +1,33 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community SunFounder per gli appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Unisciti a noi per esplorare a fondo Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché Unirsi a Noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime.
+    - **Sconti Esclusivi**: Approfitta di sconti speciali sui nostri prodotti più recenti.
+    - **Promozioni e Concorsi Festivi**: Partecipa a promozioni e concorsi speciali durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti a noi oggi stesso!
 
 
-Video 20: Controlling Position of a Servo With a Potentiometer
+Video 20: Controllo della Posizione di un Servo con un Potenziometro
 =======================================================================================
 
-This video demonstrates how to control servo position using a potentiometer and Raspberry Pi GPIO, including explanations of circuit setup, Python coding, ADC, PWM, mathematical calculations, error handling, and the importance of connections.
+Questo video mostra come controllare la posizione di un servomotore utilizzando un potenziometro e i GPIO di Raspberry Pi, includendo spiegazioni sul circuito, codifica Python, ADC, PWM, calcoli matematici, gestione degli errori e l'importanza delle connessioni.
 
-
-#. **Circuit Setup**: Review of the previous lesson's analog input circuit using the ADC0834 for Raspberry Pi.
-#. **Servo Setup**: Instructions for setting up the servo in the circuit, including wiring and power considerations.
-#. **Understanding ADC and PWM**: Get familiar with the concepts of Analog-to-Digital Converter (ADC) and Pulse Width Modulation (PWM).
-#. **Reading analog signals**: Discover how to read analog signals from a potentiometer connected to the Raspberry Pi.
-#. **Calculating PWM percentage**: Learn the formula to calculate the PWM percentage based on the analog signal value obtained.
-#. **Controlling a servo motor**: Explore the process of applying the calculated PWM percentage to control the position of a servo motor.
-#. **Synchronization**: Ensure synchronization between the potentiometer's position and the servo motor's position for accurate control.
-#. **Mathematical Calculations**: Explanation of the mathematical calculations used to determine PWM values based on potentiometer readings.
-#. **Error Handling**: Implementation of try-except blocks for program termination and GPIO cleanup.
-#. **Importance of connections**: Understand the significance of establishing reliable connections for precise readings and outputs.
-
+#. **Configurazione del Circuito**: Riepilogo del circuito di input analogico della lezione precedente, utilizzando l'ADC0834 per Raspberry Pi.
+#. **Configurazione del Servo**: Istruzioni per inserire il servo nel circuito, inclusi cablaggio e considerazioni sull'alimentazione.
+#. **Comprensione di ADC e PWM**: Familiarizzati con i concetti di Convertitore Analogico-Digitale (ADC) e Modulazione a Larghezza di Impulso (PWM).
+#. **Lettura dei Segnali Analogici**: Scopri come leggere i segnali analogici da un potenziometro collegato al Raspberry Pi.
+#. **Calcolo della Percentuale PWM**: Impara la formula per calcolare la percentuale di PWM in base al valore del segnale analogico ottenuto.
+#. **Controllo di un Servo**: Esplora il processo di applicazione della percentuale di PWM calcolata per controllare la posizione di un servomotore.
+#. **Sincronizzazione**: Assicurati che la posizione del potenziometro e del servomotore siano sincronizzate per un controllo preciso.
+#. **Calcoli Matematici**: Spiegazione dei calcoli matematici utilizzati per determinare i valori di PWM in base alle letture del potenziometro.
+#. **Gestione degli Errori**: Implementazione dei blocchi try-except per la terminazione del programma e la pulizia dei GPIO.
+#. **Importanza delle Connessioni**: Comprendi l'importanza di stabilire connessioni affidabili per ottenere letture e output precisi.
 
 **Video**
 

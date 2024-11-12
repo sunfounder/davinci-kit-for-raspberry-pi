@@ -1,94 +1,91 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di SunFounder per appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Unisciti a noi per esplorare più a fondo il mondo di Raspberry Pi, Arduino e ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l’aiuto del nostro team e della community.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anticipo agli annunci di nuovi prodotti e alle anticipazioni.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Giveaway Festivi**: Partecipa a promozioni e concorsi durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
-1.1.2 RGB LED
+1.1.2 LED RGB
 ====================
 
-Introduction
+Introduzione
 --------------
 
-In this lesson, we will use it to control an RGB LED to flash various
-kinds of colors.
+In questa lezione, impareremo a controllare un LED RGB per farlo lampeggiare in diversi colori.
 
-Components
+Componenti
 --------------
 
 .. image:: img/list_rgb_led.png
     :align: center
 
-Principle
+Principio
 --------------
 
 **PWM**
 
-Pulse Width Modulation, or PWM, is a technique for getting analog
-results with digital means. Digital control is used to create a square
-wave, a signal switched between on and off. This on-off pattern can
-simulate voltages in between full on (5 Volts) and off (0 Volts) by
-changing the portion of the time the signal spends on versus the time
-that the signal spends off. The duration of \"on time\" is called pulse
-width. To get varying analog values, you change, or modulate, that
-width. If you repeat this on-off pattern fast enough with some device,
-an LED for example, the result would be like this: the signal is a
-steady voltage between 0 and 5v controlling the brightness of the LED.
+La modulazione di larghezza di impulso (PWM) è una tecnica per ottenere 
+risultati analogici con mezzi digitali. Si utilizza un controllo digitale 
+per creare un’onda quadra, un segnale che passa tra acceso e spento. Questa 
+alternanza consente di simulare tensioni intermedie tra il massimo (5V) e il 
+minimo (0V), regolando il tempo di permanenza del segnale in stato attivo (on) 
+rispetto a quello in stato inattivo (off). La durata del "tempo attivo" è detta 
+larghezza dell'impulso. Se questo pattern on-off si ripete abbastanza velocemente, 
+il risultato sembra essere una tensione continua che controlla la luminosità di un LED.
 
 **Duty Cycle**
 
-A duty cycle is the percentage of one period in which a signal is
-active. A period is the time it takes for a signal to complete an
-on-and-off cycle. As a formula, a duty cycle may be expressed as:
+Il duty cycle rappresenta la percentuale di un periodo in cui un segnale è 
+attivo. Un periodo è il tempo necessario al segnale per completare un ciclo 
+acceso-spento. La formula del duty cycle può essere espressa come:
 
 .. image:: img/image56.png
    :width: 1.16667in
    :height: 0.36458in
    :align: center
 
-Where **D** is the duty cycle, **T** is the time the signal is active,
-and **P** is the total period of the signal. Thus, a 60% duty cycle
-means the signal is on 60% of the time but off 40% of the time. The \"on
-time\" for a 60% duty cycle could be a fraction of a second, a day, or
-even a week, depending on the length of the period.
+Dove **D** è il ciclo di lavoro (duty cycle), **T** è il tempo in cui il segnale è attivo,
+e **P** è il periodo totale del segnale. Pertanto, un ciclo di lavoro al 60%
+significa che il segnale è attivo per il 60% del tempo e inattivo per il 40%. 
+Il "tempo di accensione" di un duty cycle del 60% può essere una frazione di 
+secondo, un giorno o persino una settimana, a seconda della lunghezza del periodo.
+
 
 .. image:: img/image57.jpeg
    :width: 4.325in
    :height: 5.49167in
    :align: center
 
-**RGB LED**
+**LED RGB**
 
 .. image:: img/rgb_led_sch.png
     :width: 500
     :align: center
 
-The three primary colors of the RGB LED can be mixed into various colors
-by brightness. The brightness of LED can be adjusted with PWM. Raspberry
-Pi has only one channel for hardware PWM output, but it needs three
-channels to control the RGB LED, which means it is difficult to control
-the RGB LED with the hardware PWM of Raspberry Pi. Fortunately, the
-softPwm library simulates PWM (softPwm) by programming. You only need to
-include the header file softPwm.h (for C language users), and then call
-the API it provides to easily control the RGB LED by multi-channel PWM
-output, so as to display all kinds of color.
+I tre colori primari del LED RGB possono essere combinati per ottenere varie 
+tonalità tramite la regolazione della luminosità. La luminosità può essere 
+controllata tramite PWM. Il Raspberry Pi dispone di un solo canale per l’uscita 
+PWM hardware, ma ne servono tre per controllare il LED RGB. Per fortuna, la 
+libreria softPwm simula il PWM (softPwm) tramite programmazione, permettendo il 
+controllo multi-canale del LED RGB.
 
-Schematic Diagram
+
+
+
+Diagramma Schematico
 -----------------------
 
-After connecting the pins of R, G, and B to a current limiting resistor,
-connect them to the GPIO17, GPIO18, and GPIO27 respectively. The longest
-pin (GND) of the LED connects to the GND of the Raspberry Pi. When the
-three pins are given different PWM values, the RGB LED will display
-different colors.
+Dopo aver collegato i pin R, G e B a una resistenza limitatrice di corrente, 
+collegali rispettivamente a GPIO17, GPIO18 e GPIO27. Il pin più lungo (GND) 
+del LED va collegato al GND del Raspberry Pi. Assegnando valori PWM differenti 
+ai tre pin, il LED RGB mostrerà diversi colori.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -99,16 +96,16 @@ GPIO27       Pin 13   2        27
 
 .. image:: img/rgb_led_schematic.png
 
-Experimental Procedures
+Procedure Sperimentali
 ----------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: img/image61.png
    :width: 6.59097in
    :height: 4.29722in
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -118,7 +115,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.1.2/
 
-**Step 3:** Compile the code.
+**Passo 3:** Compila il codice.
 
 .. raw:: html
 
@@ -130,9 +127,11 @@ Experimental Procedures
 
 .. note::
 
-    When the instruction \"gcc\" is executed, if \"-o\" is not called, then the executable file is named \"a.out\".
+    Quando si esegue l'istruzione "gcc", se non viene specificato "-o", il file eseguibile viene denominato "a.out".
 
-**Step 4:** Run the executable file.
+
+
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -142,15 +141,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-
-After the code runs, you will see that RGB displays red, green, blue,
-yellow, pink, and cyan.
-
+Dopo l'esecuzione del codice, il LED RGB mostrerà 
+i colori rosso, verde, blu, giallo, rosa e ciano.
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se, dopo l'esecuzione, il programma non funziona o compare il messaggio di errore: \"wiringPi.h: No such file or directory", fai riferimento a :ref:`Il codice C non funziona?`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -205,13 +202,13 @@ yellow, pink, and cyan.
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
     #include <softPwm.h>
 
-Library used for realizing the pwm function of the software.
+Libreria usata per realizzare la funzione pwm tramite software.
 
 .. code-block:: c
 
@@ -221,19 +218,17 @@ Library used for realizing the pwm function of the software.
         softPwmCreate(LedPinBlue, 0, 100);
     }
 
-The function is to use software to create a PWM pin, set its period
-between 0x100us-100x100us.
+La funzione crea un pin PWM software con un periodo tra 0x100us e 100x100us.
 
-The prototype of the function softPwmCreate(LedPinRed, 0, 100) is as
-follows:
+Il prototipo della funzione softPwmCreate(LedPinRed, 0, 100) è:
 
 .. code-block:: c
 
     int softPwmCreate(int pin,int initialValue,int pwmRange);
 
-* **Parameter pin:** Any GPIO pin of Raspberry Pi can be set as a PWM pin.
-* **Parameter initialValue:** The initial pulse width is that initialValue times100us.
-* **Parameter pwmRange:** the period of PWM is that pwmRange times100us.
+* **Parametro pin:** Qualsiasi pin GPIO del Raspberry Pi può essere impostato come pin PWM.
+* **Parametro initialValue:** Larghezza d'impulso iniziale pari a initialValue * 100us.
+* **Parametro pwmRange:** Il periodo di PWM è pari a pwmRange * 100us.
 
 .. code-block:: c
 
@@ -243,26 +238,22 @@ follows:
         softPwmWrite(LedPinBlue,  b_val);
     }
 
-This function is to set the colors of the LED. Using RGB, the formal
-parameter **r_val** represents the luminance of the red one, **g_val**
-of the green one, **b_val** of the blue one.
+Questa funzione imposta i colori del LED. Usando RGB, **r_val** rappresenta 
+la luminosità del rosso, **g_val** quella del verde, e **b_val** quella del blu.
 
-The prototype of the function softPwmWrite(LedPinBlue, b_val) is as
-follows：
+Il prototipo della funzione softPwmWrite(LedPinBlue, b_val) è:
 
 .. code-block:: c
 
     void softPwmWrite (int pin, int value) ;
 
-* **Parameter pin:** Any GPIO pin of Raspberry Pi can be set as a PWM pin.
-* **Parameter Value:** The pulse width of PWM is value times 100us. Note that value can only be less than pwmRange defined previously, if it is larger than pwmRange, the value will be given a fixed value, pwmRange.
+* **Parametro pin:** Qualsiasi pin GPIO del Raspberry Pi può essere impostato come pin PWM.
+* **Parametro value:** La larghezza dell'impulso PWM è value * 100us. Si noti che value deve essere inferiore a pwmRange definito in precedenza.
 
 .. code-block:: c
 
     ledColorSet(0xff,0x00,0x00);
 
-Call the function defined before. Write 0xff into LedPinRed and 0x00
-into LedPinGreen and LedPinBlue. Only the Red LED lights up after
-running this code. If you want to light up LEDs in other colors, just
-modify the parameters.
-
+Chiamata alla funzione definita in precedenza. Scrive 0xff su LedPinRed e 0x00 
+su LedPinGreen e LedPinBlue, accendendo solo il LED rosso. Modificando i parametri, 
+è possibile ottenere altre combinazioni di colori.

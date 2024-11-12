@@ -1,48 +1,48 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Unisciti a noi per esplorare a fondo Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problematiche post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anticipo agli annunci di nuovi prodotti e contenuti in anteprima.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni per le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-2.2.5 Ultrasonic Sensor Module
-==============================
+2.2.5 Modulo Sensore a Ultrasuoni
+===================================
 
-Introduction
---------------
+Introduzione
+---------------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+Il sensore a ultrasuoni utilizza onde ultrasoniche per rilevare con 
+precisione oggetti e misurare distanze. Emette onde ultrasoniche e 
+le converte in segnali elettronici.
 
-Components
-----------
+Componenti
+-------------
 
 .. image:: ../img/list_2.2.5.png
 
 
 
-Schematic Diagram
------------------
+Schema Elettrico
+--------------------
 
 .. image:: ../img/image329.png
 
 
-Experimental Procedures
------------------------
+Procedura Sperimentale
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Monta il circuito.
 
 .. image:: ../img/image220.png
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -52,7 +52,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Run the code.
+**Passo 3:** Esegui il codice.
 
 .. raw:: html
 
@@ -62,23 +62,23 @@ Experimental Procedures
 
     sudo node ultrasonic_sensor.js
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+Con l'esecuzione del codice, il modulo sensore a ultrasuoni rileva la 
+distanza tra l'ostacolo di fronte e il modulo stesso, e il valore della 
+distanza verrà stampato sullo schermo.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
 
-    // The number of microseconds it takes sound to travel 1cm at 20 degrees celcius
+    // Numero di microsecondi che il suono impiega per percorrere 1 cm a 20 gradi Celsius
     const MICROSECDONDS_PER_CM = 1e6/34321;
 
     const trigger = new Gpio(23, {mode: Gpio.OUTPUT});
     const echo = new Gpio(24, {mode: Gpio.INPUT, alert: true});
 
-    trigger.digitalWrite(0); // Make sure trigger is low
+    trigger.digitalWrite(0); // Assicura che il trigger sia basso
 
     const watchHCSR04 = () => {
       let startTick;
@@ -96,30 +96,27 @@ value will be printed on the screen.
 
     watchHCSR04();
 
-    // Trigger a distance measurement once per second
+    // Esegui una misurazione della distanza una volta al secondo
     setInterval(() => {
-      trigger.trigger(10, 1); // Set trigger high for 10 microseconds
+      trigger.trigger(10, 1); // Imposta il trigger su alto per 10 microsecondi
     }, 1000);
 
+**Spiegazione del Codice**
 
+La funzione ``trigger`` può essere usata per generare un impulso su un 
+GPIO e ``alerts`` può determinare il momento in cui cambia lo stato di un 
+GPIO con una precisione di alcuni microsecondi.
 
-
-**Code Explanation**
-
-The ``trigger`` function can be used to generate a pulse on a GPIO and 
-``alerts`` can be used to determine the time of a GPIO state change 
-accurate to a few microseconds. 
-
-These two features can be combined to measure distance using a HC-SR04 
-ultrasonic sensor.
+Queste due caratteristiche possono essere combinate per misurare la distanza 
+utilizzando un sensore a ultrasuoni HC-SR04.
 
 .. code-block:: js
 
     setInterval(() => {
-      trigger.trigger(10, 1); // Set trigger high for 10 microseconds
+      trigger.trigger(10, 1); // Imposta il trigger su alto per 10 microsecondi
     }, 1000);
 
-This is to periodically send out a 10us ultrasonic pulse.
+Questa funzione invia periodicamente un impulso ultrasonico di 10 microsecondi.
 
 .. code-block:: js
 
@@ -130,21 +127,18 @@ This is to periodically send out a 10us ultrasonic pulse.
           startTick = tick;
         } else {
           const endTick = tick;
-          const diff = (endTick >> 0) - (startTick >> 0); // Unsigned 32 bit arithmetic
+          const diff = (endTick >> 0) - (startTick >> 0); // Aritmetica non firmata a 32 bit
           console.log(diff / 2 / MICROSECDONDS_PER_CM);
         }    
     });
   };
 
-This function sets an alert that will record the time between sending the pulse (level is 1) and receiving the echo (level is 0).
-By multiplying the time difference by the speed of sound (and dividing by 2), you can get the distance to the obstacle ahead.
-
-
+Questa funzione imposta un alert che registra il tempo tra l'invio dell'impulso (level è 1) e la ricezione dell'eco (level è 0).
+Moltiplicando la differenza di tempo per la velocità del suono (e dividendo per 2), si ottiene la distanza dall'ostacolo.
 
 .. https://github.com/fivdi/pigpio
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+------------------------
 
 .. image:: ../img/image221.jpeg
-    

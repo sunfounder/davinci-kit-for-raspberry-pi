@@ -1,30 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di Facebook dedicata agli appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni speciali.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
-Draw a Matchmaker
+Disegnare un Matchmaker
 ========================
 
-You're now running the Processing Development Environment (or PDE). 
-There's not much to it; the large area is the Text Editor, and there's a row of buttons across the top; this is the toolbar. 
-Below the editor is the Message Area, and below that is the Console. 
-The Message Area is used for one line messages, and the Console is used for more technical details.
+Stai utilizzando ora l’ambiente di sviluppo di Processing (PDE). Non è 
+complesso: l'area grande è l'Editor di Testo e c'è una barra di pulsanti 
+in alto, ovvero la barra degli strumenti. Sotto l'editor trovi l'Area 
+Messaggi e, ancora più sotto, la Console. L'Area Messaggi serve per messaggi 
+brevi, mentre la Console è per dettagli più tecnici.
 
-Let's get familiar with the usage of Processing and draw a matchmaker.
+Prendiamo familiarità con Processing e disegniamo un "matchmaker".
 
 **Sketch**
 
-Copy the sketch below into Processing and run it. A new display window will appear and a cheering matchmaker will be drawn.
+Copia il codice qui sotto in Processing ed eseguilo. Apparirà una nuova finestra e verrà disegnato un simpatico personaggio.
 
 .. code-block:: arduino
 
@@ -42,18 +43,18 @@ Copy the sketch below into Processing and run it. A new display window will appe
 
 .. note:: 
 
-    If you run it and the message area turns red and reports some errors, then there is something wrong with the sketch. Make sure you copy the sample sketch exactly: numbers should be enclosed in parentheses, with commas between each number, and lines should end with semicolons.
+    Se esegui il codice e l'Area Messaggi si colora di rosso con segnalazioni di errore, c’è qualcosa che non va nello sketch. Assicurati di copiare esattamente l'esempio: i numeri devono essere racchiusi tra parentesi, separati da virgole, e le righe devono terminare con un punto e virgola.
 
 
-**How it works?**
+**Come funziona?**
 
-The key here is to realize that the display window can be treated as a square of paper.
+Il concetto principale è immaginare la finestra di visualizzazione come un foglio quadrato.
 
-Each pixel of the display window is a coordinate (x,y) that determines the position of a point in space. The origin (0,0) of the coordinates is in the upper left corner, the positive direction of the X-axis is horizontally to the right, and the positive direction of the Y-axis is vertically down.
+Ogni pixel della finestra è un punto con coordinate (x, y) che determinano la posizione nello spazio. L’origine (0,0) delle coordinate si trova in alto a sinistra; la direzione positiva dell’asse X è verso destra, mentre quella dell’asse Y è verso il basso.
 
-What we have to do is to specify what shape and color should appear at these pixel coordinates.
+Il nostro compito è specificare quali forme e colori appariranno in ciascuna coordinata di pixel.
 
-For example, draw a rectangle of width 20 and height 60 with coordinates (100,120) as the midpoint.
+Ad esempio, per disegnare un rettangolo di larghezza 20 e altezza 60 con le coordinate (100,120) come punto centrale:
 
 .. code-block:: arduino
 
@@ -62,19 +63,13 @@ For example, draw a rectangle of width 20 and height 60 with coordinates (100,12
 
 .. image:: img/draw_one_coodinate.png
 
-Once we understand the relationship between the display window and the axes, this sketch is not difficult for us, we just need to understand some simple graphic drawing statements.
+Una volta compreso il rapporto tra la finestra e gli assi, questo sketch diventa semplice; basta comprendere alcune istruzioni base per il disegno di forme.
 
-    * ``size(width, height)``: Defines the dimension of the display window width and height in units of pixels.
-    * ``background(red, green, blue)``: Set the background color of the display window.
-    * ``rectMode(mode)``: Modifies the location from which rectangles are drawn by changing the way in which parameters given to ``rect()`` are intepreted.
-    * ``rect(x, y, width, height)``: Draws a rectangle to the screen. 
-    * ``ellipse(x, y, width, height)``: Draws an ellipse (oval) to the screen. 
-    * ``line(x1, y1, x2, y2)``: Draws a line (a direct path between two points) to the screen.
+    * ``size(width, height)``: Definisce la larghezza e l’altezza della finestra in pixel.
+    * ``background(red, green, blue)``: Imposta il colore di sfondo della finestra.
+    * ``rectMode(mode)``: Modifica il punto da cui vengono disegnati i rettangoli, interpretando diversamente i parametri di ``rect()``.
+    * ``rect(x, y, width, height)``: Disegna un rettangolo nella finestra.
+    * ``ellipse(x, y, width, height)``: Disegna un’ellisse (ovale) nella finestra.
+    * ``line(x1, y1, x2, y2)``: Disegna una linea (un percorso diretto tra due punti) nella finestra.
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
-
-
-
-
-
-
+Per ulteriori dettagli, fai riferimento alla `Processing Reference <https://processing.org/reference/>`_.

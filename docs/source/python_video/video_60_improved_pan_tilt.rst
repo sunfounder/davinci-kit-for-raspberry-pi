@@ -1,38 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community SunFounder per appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue abilità.
+    - **Anteprime Esclusive**: Accedi in anticipo agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Giveaway**: Partecipa a giveaway e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-Video 60: Improved Pan/Tilt Tracking Control Algorithm
+Video 60: Algoritmo Ottimizzato per il Controllo di Tracciamento Pan/Tilt
 =======================================================================================
 
+In questo tutorial, approfondiamo l’ottimizzazione di un sistema di controllo 
+della fotocamera su Raspberry Pi, 
+concentrandoci sul miglioramento della velocità e della stabilità attraverso 
+modifiche all’algoritmo.
 
 
-In this tutorial, we delve into optimizing a Raspberry Pi camera control system, 
-focusing on enhancing its speed and stability through algorithm adjustments.
-
-
-1. Introduction: The video introduces the optimization of a Raspberry Pi camera control system to improve its speed and stability.
-2. System Shortcomings: The previous control system was slow and made corrections one degree at a time, leading to inefficiency.
-3. Proposed Solution: The speaker proposes adjusting the control algorithm to take "smart steps" proportional to the error, ensuring faster and more accurate movements.
-4. Algorithm Derivation: Mathematical derivation of the new control algorithm for both pan and tilt movements is explained.
-5. Code Implementation: The implementation of the new control algorithm is demonstrated, including adjustments to limit servo movements and ensure stability.
-6. Testing and Conclusion: The video concludes with testing of the optimized control system, highlighting parameter adjustments for optimal performance.
-
+1. Introduzione: Il video introduce l’ottimizzazione del sistema di controllo della fotocamera su Raspberry Pi per migliorarne la velocità e la stabilità.
+2. Limiti del Sistema Precedente: Il sistema precedente era lento e apportava correzioni di un grado alla volta, risultando inefficiente.
+3. Soluzione Proposta: Viene proposta una regolazione dell’algoritmo di controllo per fare “passi intelligenti” proporzionali all’errore, garantendo movimenti più rapidi e precisi.
+4. Derivazione dell’Algoritmo: Viene spiegata la derivazione matematica del nuovo algoritmo di controllo per i movimenti di pan e tilt.
+5. Implementazione del Codice: Viene dimostrata l'implementazione del nuovo algoritmo di controllo, incluse le regolazioni per limitare i movimenti dei servomotori e garantire stabilità.
+6. Test e Conclusioni: Il video si conclude con il test del sistema di controllo ottimizzato, mettendo in evidenza le regolazioni dei parametri per prestazioni ottimali.
 
 **Video**
 
 .. raw:: html
-
 
     <iframe width="700" height="500" src="https://www.youtube.com/embed/JVku3nZ2rxE?si=M1yrdf82Fgjeu_QV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 

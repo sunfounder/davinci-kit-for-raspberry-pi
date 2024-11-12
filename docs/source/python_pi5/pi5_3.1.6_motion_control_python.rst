@@ -1,41 +1,41 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci il tuo utilizzo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima agli annunci di nuovi prodotti.
+    - **Sconti Speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Giveaway Festivi**: Partecipa a giveaway e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
 .. _3.1.6_py_pi5:
 
-3.1.6 Motion Control
-========================
+3.1.6 Controllo di Movimento
+============================
 
-Introduction
------------------
+Introduzione
+------------
 
-In this lesson, we will make a simple motion sensing and controlling
-device. The MPU6050 is used as a sensor and the stepper motor as a
-controlled device. With the MPU6050 mounted on the glove, you can
-control the stepper motor by rotating your wrist.
+In questa lezione, realizzeremo un semplice dispositivo di rilevamento e 
+controllo del movimento. L'MPU6050 viene utilizzato come sensore e il motore 
+passo-passo come dispositivo controllato. Con l’MPU6050 montato su un guanto, 
+è possibile controllare il motore passo-passo ruotando il polso.
 
-Required Components
-------------------------------
+Componenti Necessari
+-----------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../python_pi5/img/3.1.6_motion_list.png
     :width: 800
     :align: center
 
-Schematic Diagram
---------------------------
+Schema Elettrico
+----------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -51,14 +51,14 @@ SCL1         Pin 5
    :align: center
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+-------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../python_pi5/img/3.1.6_motion_control_circuit.png
 
-**Step 2:** Open the code file.
+**Passo 2:** Apri il file del codice.
 
 .. raw:: html
 
@@ -69,7 +69,7 @@ Experimental Procedures
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -79,19 +79,20 @@ Experimental Procedures
 
     sudo python3 3.1.6_MotionControl_zero.py
 
-As the code runs, if the tilt angle of **mpu6050** on the
-`Y <https://cn.bing.com/dict/search?q=Y&FORM=BDVSP6&mkt=zh-cn>`__\ **-**\ `axis <https://cn.bing.com/dict/search?q=axis&FORM=BDVSP6&mkt=zh-cn>`__
-is larger than **45** ℃, the stepper motor rotates anticlockwise; if less than **-45** ℃, the stepper motor rotates clockwise.
+
+Una volta avviato il programma, se l'angolo di inclinazione dell’ **MPU6050** sull'
+**asse Y** è maggiore di **45**°, il motore passo-passo ruota in senso 
+antiorario; se è inferiore a **-45**°, il motore ruota in senso orario.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Se appare l’errore ``RuntimeError: Cannot determine SOC peripheral base address``, fai riferimento a :ref:`faq_soc`
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Fermare** il codice qui sotto. Prima di eseguire modifiche, assicurati di trovarti nel percorso del codice, ad esempio ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 .. raw:: html
 
@@ -105,36 +106,36 @@ is larger than **45** ℃, the stepper motor rotates anticlockwise; if less than
    import math
    import time
 
-   # Initialize power management registers for MPU6050
+   # Inizializzazione dei registri di gestione dell’alimentazione per MPU6050
    power_mgmt_1 = 0x6b
    power_mgmt_2 = 0x6c
 
-   # Set up I2C communication with MPU6050
-   bus = smbus.SMBus(1)  # Initialize SMBus
-   address = 0x68        # MPU6050 I2C address
-   bus.write_byte_data(address, power_mgmt_1, 0)  # Wake up MPU6050
+   # Configura la comunicazione I2C con MPU6050
+   bus = smbus.SMBus(1)  # Inizializza SMBus
+   address = 0x68        # Indirizzo I2C di MPU6050
+   bus.write_byte_data(address, power_mgmt_1, 0)  # Attiva MPU6050
 
-   # Initialize motor pins to GPIO pins 18, 23, 24, 25
+   # Inizializza i pin motore sui pin GPIO 18, 23, 24, 25
    motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
 
-   # Set motor rotation speed parameters
+   # Imposta i parametri di velocità di rotazione del motore
    rolePerMinute = 15
    stepsPerRevolution = 2048
-   # Calculate delay between steps for desired RPM
+   # Calcola il ritardo tra i passi per raggiungere il valore RPM desiderato
    stepSpeed = (60 / rolePerMinute) / stepsPerRevolution
 
-   # Read a single byte from the specified I2C address
+   # Legge un byte singolo dall'indirizzo I2C specificato
    def read_byte(adr):
        return bus.read_byte_data(address, adr)
 
-   # Read a word (2 bytes) from the specified I2C address
+   # Legge una parola (2 byte) dall'indirizzo I2C specificato
    def read_word(adr):
        high = bus.read_byte_data(address, adr)
        low = bus.read_byte_data(address, adr + 1)
        val = (high << 8) + low
        return val
 
-   # Read a word in 2's complement form
+   # Legge una parola in complemento a 2
    def read_word_2c(adr):
        val = read_word(adr)
        if val >= 0x8000:
@@ -142,21 +143,21 @@ is larger than **45** ℃, the stepper motor rotates anticlockwise; if less than
        else:
            return val
 
-   # Calculate Euclidean distance between two points
+   # Calcola la distanza euclidea tra due punti
    def dist(a, b):
        return math.sqrt((a * a) + (b * b))
 
-   # Calculate Y-axis rotation
+   # Calcola la rotazione sull'asse Y
    def get_y_rotation(x, y, z):
        radians = math.atan2(x, dist(y, z))
        return -math.degrees(radians)
 
-   # Calculate X-axis rotation
+   # Calcola la rotazione sull'asse X
    def get_x_rotation(x, y, z):
        radians = math.atan2(y, dist(x, z))
        return math.degrees(radians)
 
-   # Get tilt angle from MPU6050
+   # Ottiene l'angolo di inclinazione da MPU6050
    def mpu6050():
        accel_xout = read_word_2c(0x3b)
        accel_yout = read_word_2c(0x3d)
@@ -167,10 +168,10 @@ is larger than **45** ℃, the stepper motor rotates anticlockwise; if less than
        angle = get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
        return angle
 
-   # Control stepper motor rotation
+   # Controlla la rotazione del motore passo-passo
    def rotary(direction):
        if direction == 'c':
-           # Clockwise rotation sequence
+           # Sequenza di rotazione in senso orario
            for j in range(4):
                for i in range(4):
                    if 0x99 >> j & (0x08 >> i):
@@ -179,7 +180,7 @@ is larger than **45** ℃, the stepper motor rotates anticlockwise; if less than
                        motorPin[i].off()
                    time.sleep(stepSpeed)
        elif direction == 'a':
-           # Anti-clockwise rotation sequence
+           # Sequenza di rotazione in senso antiorario
            for j in range(4):
                for i in range(4):
                    if 0x99 << j & (0x08 >> i):
@@ -188,23 +189,23 @@ is larger than **45** ℃, the stepper motor rotates anticlockwise; if less than
                        motorPin[i].off()
                    time.sleep(stepSpeed)
 
-   # Main loop for continuously reading tilt angle and controlling motor
+   # Ciclo principale per leggere continuamente l'angolo di inclinazione e controllare il motore
    try:
        while True:
            angle = mpu6050()
            if angle >= 45:
-               rotary('a')  # Rotate anti-clockwise for positive tilt
+               rotary('a')  # Ruota in senso antiorario per inclinazioni positive
            elif angle <= -45:
-               rotary('c')  # Rotate clockwise for negative tilt
+               rotary('c')  # Ruota in senso orario per inclinazioni negative
    except KeyboardInterrupt:
-       # Turn off all motor pins on keyboard interrupt
+       # Spegne tutti i pin del motore su interruzione da tastiera
        for pin in motorPin:
            pin.off()
 
+           
+**Spiegazione del Codice**
 
-**Code Explanation**
-
-#. The script begins by importing necessary libraries. ``gpiozero`` for controlling the GPIO pins, ``smbus`` for I2C communication, ``math`` for mathematical operations, and ``time`` for delays.
+#. Lo script inizia importando le librerie necessarie: ``gpiozero`` per controllare i pin GPIO, ``smbus`` per la comunicazione I2C, ``math`` per operazioni matematiche e ``time`` per introdurre ritardi.
 
    .. code-block:: python
 
@@ -214,56 +215,56 @@ is larger than **45** ℃, the stepper motor rotates anticlockwise; if less than
        import math
        import time
 
-#. Sets up I2C communication with the MPU6050 sensor. ``power_mgmt_1`` and ``power_mgmt_2`` are registers for managing the sensor's power. The sensor is "woken up" by writing to ``power_mgmt_1``.
+#. Configura la comunicazione I2C con il sensore MPU6050. ``power_mgmt_1`` e ``power_mgmt_2`` sono registri per la gestione dell’alimentazione del sensore, che viene "svegliato" scrivendo su ``power_mgmt_1``.
 
    .. code-block:: python
 
-       # Initialize power management registers for MPU6050
+       # Inizializza i registri di gestione dell'alimentazione per MPU6050
        power_mgmt_1 = 0x6b
        power_mgmt_2 = 0x6c
 
-       # Set up I2C communication with MPU6050
-       bus = smbus.SMBus(1)  # Initialize SMBus
-       address = 0x68        # MPU6050 I2C address
-       bus.write_byte_data(address, power_mgmt_1, 0)  # Wake up MPU6050
+       # Configura la comunicazione I2C con MPU6050
+       bus = smbus.SMBus(1)  # Inizializza SMBus
+       address = 0x68        # Indirizzo I2C di MPU6050
+       bus.write_byte_data(address, power_mgmt_1, 0)  # Sveglia il MPU6050
 
-#. Initializes the GPIO pins (18, 23, 24, 25) on the Raspberry Pi to control the stepper motor. Each pin is associated with a coil in the motor.
+#. Inizializza i pin GPIO (18, 23, 24, 25) per il controllo del motore passo-passo. Ogni pin è associato a una bobina del motore.
 
    .. code-block:: python
 
-       # Initialize motor pins to GPIO pins 18, 23, 24, 25
+       # Inizializza i pin del motore sui pin GPIO 18, 23, 24, 25
        motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
 
-#. Sets the motor's rotations per minute (RPM) and the number of steps per revolution. ``stepSpeed`` calculates the delay between steps to achieve the desired RPM, ensuring smooth motor operation.
+#. Imposta i parametri di velocità del motore (giri al minuto) e il numero di passi per rivoluzione. ``stepSpeed`` calcola il ritardo tra i passi per ottenere la velocità RPM desiderata, garantendo un funzionamento fluido del motore.
 
    .. code-block:: python
 
-       # Set motor rotation speed parameters
+       # Imposta i parametri di velocità di rotazione del motore
        rolePerMinute = 15
        stepsPerRevolution = 2048
-       # Calculate delay between steps for desired RPM
+       # Calcola il ritardo tra i passi per raggiungere l'RPM desiderato
        stepSpeed = (60 / rolePerMinute) / stepsPerRevolution
 
-#. These functions are used for I2C communication. ``read_byte`` reads a single byte from a given address, while ``read_word`` reads two bytes (a word), combining them into a single value using bitwise operations (``<<`` and ``+``).
+#. Queste funzioni gestiscono la comunicazione I2C. ``read_byte`` legge un byte singolo da un indirizzo specificato, mentre ``read_word`` legge due byte (una parola) combinandoli in un unico valore utilizzando operazioni bitwise (``<<`` e ``+``).
 
    .. code-block:: python
 
-       # Read a single byte from the specified I2C address
+       # Legge un byte singolo dall'indirizzo I2C specificato
        def read_byte(adr):
            return bus.read_byte_data(address, adr)
 
-       # Read a word (2 bytes) from the specified I2C address
+       # Legge una parola (2 byte) dall'indirizzo I2C specificato
        def read_word(adr):
            high = bus.read_byte_data(address, adr)
            low = bus.read_byte_data(address, adr + 1)
            val = (high << 8) + low
            return val
 
-#. This function converts the read word into a 2's complement form, which is useful for interpreting signed values from sensor data. This conversion is necessary for handling negative sensor readings.
+#. Questa funzione converte la parola letta in formato di complemento a 2, utile per interpretare i valori firmati dei dati del sensore. La conversione è necessaria per gestire le letture negative del sensore.
 
    .. code-block:: python
 
-       # Read a word in 2's complement form
+       # Legge una parola in formato complemento a 2
        def read_word_2c(adr):
            val = read_word(adr)
            if val >= 0x8000:
@@ -271,29 +272,29 @@ is larger than **45** ℃, the stepper motor rotates anticlockwise; if less than
            else:
                return val
 
-#. ``dist`` calculates the Euclidean distance between two points, used in the rotation calculations. ``get_y_rotation`` and ``get_x_rotation`` calculate the rotational angles along the Y and X axes, respectively, using the ``atan2`` function from the ``math`` library and converting the result to degrees.
+#. ``dist`` calcola la distanza euclidea tra due punti, usata nei calcoli di rotazione. ``get_y_rotation`` e ``get_x_rotation`` calcolano gli angoli di rotazione lungo gli assi Y e X, rispettivamente, usando la funzione ``atan2`` della libreria ``math`` e convertendo il risultato in gradi.
 
    .. code-block:: python
 
-       # Calculate Euclidean distance between two points
+       # Calcola la distanza euclidea tra due punti
        def dist(a, b):
            return math.sqrt((a * a) + (b * b))
 
-       # Calculate Y-axis rotation
+       # Calcola la rotazione sull'asse Y
        def get_y_rotation(x, y, z):
            radians = math.atan2(x, dist(y, z))
            return -math.degrees(radians)
 
-       # Calculate X-axis rotation
+       # Calcola la rotazione sull'asse X
        def get_x_rotation(x, y, z):
            radians = math.atan2(y, dist(x, z))
            return math.degrees(radians)
 
-#. This function reads the accelerometer data from the MPU6050 sensor, scales the readings, and calculates the tilt angle using the ``get_y_rotation`` function. The function ``read_word_2c`` reads sensor data in 2's complement form to handle negative values.
+#. Questa funzione legge i dati dell'accelerometro dal sensore MPU6050, scala i valori letti e calcola l'angolo di inclinazione usando la funzione ``get_y_rotation``. ``read_word_2c`` viene utilizzata per leggere i dati del sensore in formato complemento a 2, gestendo i valori negativi.
 
    .. code-block:: python
 
-       # Get tilt angle from MPU6050
+       # Ottiene l'angolo di inclinazione da MPU6050
        def mpu6050():
            accel_xout = read_word_2c(0x3b)
            accel_yout = read_word_2c(0x3d)
@@ -304,14 +305,14 @@ is larger than **45** ℃, the stepper motor rotates anticlockwise; if less than
            angle = get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
            return angle
 
-#. The ``rotary`` function controls the stepper motor rotation. It executes a stepping sequence for either clockwise or anti-clockwise rotation, based on the ``direction`` parameter. The sequence involves turning specific motor pins on or off in a pattern.
+#. La funzione ``rotary`` controlla la rotazione del motore passo-passo. Esegue una sequenza di passi per la rotazione in senso orario o antiorario in base al parametro ``direction``. La sequenza accende o spegne i pin del motore in un pattern specifico.
 
    .. code-block:: python
 
-       # Control stepper motor rotation
+       # Controlla la rotazione del motore passo-passo
        def rotary(direction):
            if direction == 'c':
-               # Clockwise rotation sequence
+               # Sequenza di rotazione in senso orario
                for j in range(4):
                    for i in range(4):
                        if 0x99 >> j & (0x08 >> i):
@@ -320,7 +321,7 @@ is larger than **45** ℃, the stepper motor rotates anticlockwise; if less than
                            motorPin[i].off()
                        time.sleep(stepSpeed)
            elif direction == 'a':
-               # Anti-clockwise rotation sequence
+               # Sequenza di rotazione in senso antiorario
                for j in range(4):
                    for i in range(4):
                        if 0x99 << j & (0x08 >> i):
@@ -329,21 +330,19 @@ is larger than **45** ℃, the stepper motor rotates anticlockwise; if less than
                            motorPin[i].off()
                        time.sleep(stepSpeed)
 
-#. The main loop continuously reads the tilt angle from the MPU6050 sensor and controls the motor's rotation direction based on the angle. If the program is interrupted (e.g., through a keyboard interrupt), it turns off all motor pins for safety.
+#. Il ciclo principale legge continuamente l'angolo di inclinazione dal sensore MPU6050 e controlla la direzione di rotazione del motore in base all'angolo. Se il programma viene interrotto (ad es., con un'interruzione da tastiera), spegne tutti i pin del motore per sicurezza.
 
    .. code-block:: python
 
-       # Main loop for continuously reading tilt angle and controlling motor
+       # Ciclo principale per leggere continuamente l'angolo di inclinazione e controllare il motore
        try:
            while True:
                angle = mpu6050()
                if angle >= 45:
-                   rotary('a')  # Rotate anti-clockwise for positive tilt
+                   rotary('a')  # Ruota in senso antiorario per inclinazioni positive
                elif angle <= -45:
-                   rotary('c')  # Rotate clockwise for negative tilt
+                   rotary('c')  # Ruota in senso orario per inclinazioni negative
        except KeyboardInterrupt:
-           # Turn off all motor pins on keyboard interrupt
+           # Spegne tutti i pin del motore su interruzione da tastiera
            for pin in motorPin:
                pin.off()
-
-

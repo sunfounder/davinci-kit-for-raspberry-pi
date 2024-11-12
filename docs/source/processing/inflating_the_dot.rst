@@ -1,26 +1,26 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di Facebook dedicata agli appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni speciali.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
-Inflating the Dot
+Gonfiare il Punto
 ===========================
 
-Next, let's build a circuit that allows the button to control the size of the dot.
-When we press the button, the dot will quickly get bigger; when we release the button, the dot will gradually get smaller, which makes the dot look like a balloon being inflated.
+Ora costruiamo un circuito in cui un pulsante permette di controllare la dimensione del punto.
+Quando premiamo il pulsante, il punto si ingrandirà rapidamente; rilasciando il pulsante, il punto diminuirà gradualmente di dimensione, dando l’effetto di un palloncino che si gonfia.
 
 .. image:: img/dot_size.png
 
-**Wiring**
+**Collegamenti**
 
 .. image:: img/button_pressed.png
 
@@ -35,7 +35,7 @@ When we press the button, the dot will quickly get bigger; when we release the b
 
     void setup() {
         size(200, 200);
-        frameRate(64); //set frame rate
+        frameRate(64); // imposta la frequenza dei fotogrammi
         GPIO.pinMode(buttonPin, GPIO.INPUT_PULLUP); 
         diameter = width*0.5;
     }
@@ -50,12 +50,14 @@ When we press the button, the dot will quickly get bigger; when we release the b
         ellipse(width/2, height/2,diameter, diameter);
     }
 
-**How it works?**
+**Come funziona?**
 
-This project uses the input function compared to the previous 2 projects that used the output function of the GPIO.
 
-The ``GPIO.pinMode()`` function is used to set ``buttonPin`` to pull-up input mode, which makes the pin get high automatically in the default state.
 
-Then use the ``GPIO.digitalRead()`` function to read the value of ``buttonPin``. When the value is LOW, it means the button is pressed, at which point let the diameter of the dot increase by 5; if the button is released, then the diameter of the dot will decrease by 1.
+Questo progetto utilizza la funzione di input, a differenza dei due progetti precedenti che utilizzavano la funzione di output del GPIO.
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+La funzione ``GPIO.pinMode()`` imposta ``buttonPin`` in modalità input con pull-up, che porta il pin in stato HIGH per impostazione predefinita.
+
+Successivamente, usiamo la funzione ``GPIO.digitalRead()`` per leggere il valore di ``buttonPin``. Quando il valore è LOW, significa che il pulsante è premuto e, a questo punto, facciamo aumentare il diametro del punto di 5; se il pulsante è rilasciato, il diametro del punto diminuirà di 1.
+
+Per ulteriori dettagli, consulta `Processing Reference <https://processing.org/reference/>`_.

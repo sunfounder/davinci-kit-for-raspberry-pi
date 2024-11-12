@@ -1,30 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di SunFounder per gli appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima a nuovi annunci di prodotti e contenuti esclusivi.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Omaggi Festivi**: Partecipa a promozioni e concorsi speciali durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
 
-Video 35: Create Mobile Raspberry Pi Projects with Keypad and LCD
+Video 35: Creare Progetti Mobili con Raspberry Pi, Tastiera e Display LCD
 =======================================================================================
 
+In questo tutorial, imparerai a creare un sistema di allarme per Raspberry Pi utilizzando una tastiera per l’input e un display LCD per l’output, insieme a tecniche di programmazione Python per un flusso di programma efficiente.
 
-In this tutorial, learn how to create a Raspberry Pi alarm system using a keypad for input and an LCD display for output, along with Python coding techniques for efficient program flow.
-
-1. Project Introduction: Overview of building a Raspberry Pi alarm system.
-2. Component Setup: Setting up the keypad and LCD display components.
-3. Python Coding: Writing Python code to interact with the keypad and LCD.
-4. Threading Concept: Discussion on using threading for improved program flow.
-5. Alarm System States: Explanation of different states (armed, disarmed, password change) in the alarm system.
-6. Homework Assignment: Assigning a task to implement program flow for different states and password verification.
+1. Introduzione al Progetto: Panoramica sulla costruzione di un sistema di allarme con Raspberry Pi.
+2. Configurazione dei Componenti: Configurazione della tastiera e del display LCD.
+3. Programmazione in Python: Scrivere codice Python per interagire con la tastiera e il display LCD.
+4. Concetto di Threading: Discussione sull’uso del threading per migliorare il flusso del programma.
+5. Stati del Sistema di Allarme: Spiegazione dei diversi stati (attivato, disattivato, cambio password) nel sistema di allarme.
+6. Compito per Casa: Assegnazione di un compito per implementare il flusso del programma per i vari stati e la verifica della password.
 
 
 **Video**

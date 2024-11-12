@@ -1,36 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community SunFounder per appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci l'uso di Raspberry Pi, Arduino e ESP32 insieme ad altri entusiasti.
 
-    **Why Join?**
+    **Perché Unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a promozioni e omaggi durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-3.1.14 GAME– Not Not
+3.1.14 GIOCO – Not Not
 =======================
 
-Introduction
+Introduzione
 --------------------
 
-In this lesson, we will make an interesting game device, and we call it \"Not Not\".
+In questa lezione realizzeremo un dispositivo per un gioco interessante, che chiamiamo "Not Not".
 
-During the game, the dot matrix will refresh an arrow randomly. What you need to do is to press the button in the opposite direction of the arrow within a limited time. If the time is up, or if the button in the same direction as the arrow is pressed, you are out.
+Durante il gioco, la matrice di punti genererà casualmente una freccia. Il tuo obiettivo è premere il pulsante nella direzione opposta alla freccia entro un tempo limitato. Se il tempo scade, o se premi il pulsante nella stessa direzione della freccia, perdi la partita.
 
-This game can really practice your reverse thinking, and now shall we have a try?
+Questo gioco è un ottimo esercizio per allenare il pensiero inverso. Sei pronto a provare?
 
-Components
+Componenti
 ---------------
 
 .. image:: img/list_GAME_Not_Not.png
     :align: center
 
-Schematic Diagram
+Schema Circuitale
 -----------------------
 
 ============ ======== ======== ===
@@ -45,16 +45,15 @@ GPIO26       Pin 37   25       26
 .. image:: img/Schematic_three_one14.png
    :align: center
 
-Experimental Procedures
+Procedura Sperimentale
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Step 1:** Costruisci il circuito.
 
 .. image:: img/image280.png
     :width: 800
 
-
-**Step 2:** Go to the folder of code.
+**Step 2:** Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -64,7 +63,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.14/
 
-**Step 3**: Compile.
+**Step 3**: Compila.
 
 .. raw:: html
 
@@ -74,7 +73,7 @@ Experimental Procedures
 
     gcc 3.1.14_GAME_NotNot.c -lwiringPi
 
-**Step 4**: Run.
+**Step 4**: Esegui.
 
 .. raw:: html
 
@@ -84,39 +83,39 @@ Experimental Procedures
 
      sudo ./a.out
 
-After the program starts, a left or right arrow will be refreshed at
-random on the dot matrix. What you need to do is to press the button in
-the opposite direction of the arrow within a limited time. Then
-\"**√**\" appears on the dot matrix. If the time is up, or if the
-button in the same direction as the arrow is pressed, you are out and
-the dot matrix displays \"x\". You can also add 2 new buttons or replace
-them with Joystick keys for up, down, left and right— 4 directions to
-increase the difficulty of the game.
+All'avvio del programma, una freccia a sinistra o a destra apparirà 
+casualmente sulla matrice di punti. Devi premere il pulsante nella 
+direzione opposta alla freccia entro il tempo stabilito. Se ci riesci, 
+apparirà un \"**√**\" sulla matrice di punti. Se invece il tempo scade 
+o premi il pulsante nella stessa direzione della freccia, perdi e sulla 
+matrice di punti verrà visualizzato \"x\". Puoi aggiungere due nuovi 
+pulsanti o sostituirli con i tasti del Joystick per le direzioni su, 
+giù, sinistra e destra – aumentando così la difficoltà del gioco.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se il programma non funziona dopo l'avvio o compare un messaggio di errore come \"wiringPi.h: File o directory inesistente\", consulta :ref:`Il codice C non funziona?`.
 
 
-**Code Explanation**
+**Spiegazione del Codice**
 
-Based on **1.1.6 LED Dot Matrix**, this lesson adds **2** buttons to
-make an amusing game device. So, if you are not very familiar with the
-dot matrix, please refer to :ref:`1.1.6 LED Dot Matrix`.
+Basandosi su **1.1.6 Matrice LED**, questa lezione aggiunge **2** 
+pulsanti per creare un dispositivo di gioco divertente. Se non hai 
+familiarità con la matrice a punti, consulta :ref:`1.1.6 Matrice di LED`.
 
-The whole program process is as below:
+L’intero processo del programma è il seguente:
 
-1. Randomly select an arrow direction and generate **timer 1**.
+1. Seleziona casualmente la direzione di una freccia e genera il **timer 1**.
 
-2. Display the arrow image on the dot matrix.
+2. Visualizza l’immagine della freccia sulla matrice di punti.
 
-3. Judge the button input. If the button is pressed or **timer 1**
-   reminds time’s up, judgement starts.
+3. Verifica l'input del pulsante. Se viene premuto un pulsante o **timer 1** 
+   segnala lo scadere del tempo, inizia la valutazione.
 
-4. Display the image on the basis of a judging result; meanwhile,
-   generate **timer 2**.
+4. Visualizza l’immagine in base al risultato della valutazione; nel frattempo, 
+   genera **timer 2**.
 
-5. Rerun **step 1** when **timer 2** reminds time’s up.
+5. Ripeti **passo 1** quando **timer 2** segnala lo scadere del tempo.
 
 .. code-block:: c
 
@@ -139,20 +138,21 @@ The whole program process is as below:
         {"right",{0xFF,0xFF,0xF7,0xEB,0xDF,0xBF,0xFF,0xFF}}
     };
 
-GLYPH structure works like a dictionary: the **word** attribute
-corresponds to the **key** on the dictionary; the **code** attribute
-corresponds to the **value**.
+La struttura **GLYPH** funziona come un dizionario: l’attributo **word** 
+corrisponde alla **chiave** del dizionario, mentre l’attributo **code** 
+corrisponde al **valore**.
 
-Here, code is used to store an array for dot matrix to display images
-(an 8x8 bit array).
+Qui, **code** viene utilizzato per memorizzare un array per la matrice LED 
+al fine di visualizzare immagini (un array a 8 bit x 8 bit).
 
-Here, the array **arrow** can be used to display the arrow pattern in
-up, down, left and right directions on the LED dot matrix.
+L’array **arrow** può essere utilizzato per visualizzare le frecce in direzioni 
+verso l’alto, il basso, sinistra e destra sulla matrice LED.
 
-Now **down** and **up** are commented and uncomment them if needed.
+Attualmente, le frecce per **down** e **up** sono commentate; rimuovi i 
+commenti se necessario.
 
-The array **check** is used to display these two images: \"**×**\" and
-\"**√**\".
+L'array **check** viene utilizzato per visualizzare le seguenti immagini: 
+\"**×**\" e \"**√**\".
 
 .. code-block:: c
 
@@ -165,14 +165,11 @@ The array **check** is used to display these two images: \"**×**\" and
         }    
     }
 
-The function **lookup()** works by \"checking the dictionary\". Define a
-**key,** search the same words as **key** in the structure **GLYPH
-\*glyph** and return the corresponding information— \"**code**\" of
-the certain word.
+La funzione **lookup()** cerca una chiave **key** nella struttura 
+**GLYPH \*glyph** e restituisce l’array **code** corrispondente.
 
-The function **Strcmp()** is used to compare the identity of two
-character strings **glyph[i].word** and **key**; if the identity is
-judged, return **glyph[i].code** ( as shown).
+La funzione **Strcmp()** confronta due stringhe di caratteri 
+**glyph[i].word** e **key**; se sono identiche, restituisce **glyph[i].code**.
 
 .. code-block:: c
 
@@ -184,7 +181,7 @@ judged, return **glyph[i].code** ( as shown).
         }
     }
 
-Display the specified pattern on the dot matrix.
+Visualizza il pattern specificato sulla matrice di punti.
 
 .. code-block:: c
 
@@ -196,21 +193,19 @@ Display the specified pattern on the dot matrix.
         alarm(2);
     }
 
-The function **createGlyph()** is used to randomly select a direction
-(the word attribute of an element in the array **arrow[]:**
-\"**left**\", \"**right**\"... ). Set the stage as \"PLAY\" and start
-a 2-second alarm clock function.
+La funzione **createGlyph()** viene utilizzata per selezionare casualmente 
+una direzione (l'attributo "word" di un elemento nell'array **arrow[]:** 
+\"**left**\", \"**right**\"...). Imposta lo stato su \"PLAY\" e avvia una 
+funzione di allarme di 2 secondi.
 
-**srand(time(NULL)):** Initializes random seeds that are from the system
-clock.
+**srand(time(NULL))：** Inizializza i semi casuali derivanti dall'orologio di sistema.
 
-**(sizeof(arrow)/sizeof(arrow[0]))：** Get the length of the array, the
-outcome is 2.
+**(sizeof(arrow)/sizeof(arrow[0]))：** Ottiene la lunghezza dell'array, il risultato è 2.
 
-**rand()%2:** The remainder is **0** or **1,** gotten from dividing a
-generated random number by 2.
+**rand()%2:** Calcola il resto, che sarà **0** o **1**, ottenuto dividendo un numero casuale generato per 2.
 
-**waypoint=arrow[i].word:** The outcome should be \"right\" or \"left\".
+**waypoint=arrow[i].word:** Il risultato dovrebbe essere \"right\" o \"left\".
+
 
 .. code-block:: c
 
@@ -227,16 +222,16 @@ generated random number by 2.
         alarm(1);
     }
 
-checkPoint() is used to check the button input; if the button is not
-pressed or the button in the same direction as the arrow is pressed, the
-outcome of the waypoint is wrong and \"**x**\" appears on the dot
-matrix. Otherwise, the waypoint is right and dot matrix displays
-\"**√**\". Here the **stage** is **CHECK,** and there can be set a
-1-second alarm clock function.
+La funzione checkPoint() viene utilizzata per verificare l'input del pulsante; 
+se il pulsante non viene premuto o viene premuto nella stessa direzione della 
+freccia, il risultato del waypoint sarà "sbagliato" e apparirà una \"**x**\" 
+sulla matrice a punti. Al contrario, se il waypoint è corretto, la matrice 
+mostrerà il simbolo \"**√**\". In questo caso, lo **stato** è impostato su 
+**CHECK**, e può essere impostata una funzione di allarme di 1 secondo.
 
-alarm() is also called \"alarm clock\", in which a timer can be set, and
-it sends **SIGALRM** signals to the progress when the defined time is
-up.
+La funzione alarm(), chiamata anche \"allarme\", consente di impostare un 
+timer che invia segnali **SIGALRM** al processo una volta scaduto il tempo 
+definito.
 
 .. code-block:: c
 
@@ -247,9 +242,9 @@ up.
         {checkPoint("left");}
     }
 
-getKey() reads the states of the these two buttons; if the right button
-is pressed, the parameter of the function checkPoint() is **right** and
-if the left button is pressed, the parameter is **left**.
+getKey() legge gli stati dei due pulsanti; se è premuto il pulsante destro, 
+il parametro per checkPoint() è "destra"; se è premuto quello sinistro, il 
+parametro è "sinistra".
 
 .. code-block:: c
 
@@ -262,10 +257,9 @@ if the left button is pressed, the parameter is **left**.
         }
     }
 
-Previously, timer() was called when set as the alarm() time’s up. Then
-under the \"PLAY\" mode, checkPoint() is to be called to judge the
-outcome. If the program is set to \"CHECK\" mode, the function
-createGlyph() should be called to select new patterns.
+Quando il **timer()** scade, sotto lo stato "GIOCO", viene chiamato 
+checkPoint() per la verifica. Se il programma è impostato su "VERIFICA", 
+chiama **createGlyph()** per una nuova freccia.
 
 .. code-block:: c
 
@@ -289,13 +283,12 @@ createGlyph() should be called to select new patterns.
         }
     }
 
-The working of the function signal(SIGALRM,timer): calling the timer()
-function when a SIGALRM signal (generated by the alarm clock function
-alarm()) is received.
+**signal(SIGALRM, timer)**: Chiama **timer()** quando riceve un segnale 
+**SIGALRM** generato dal timer **alarm()**.
 
-When the program starts, call createGlyph() one time at first and then
-start the loop.
+All'avvio del programma, **createGlyph()** viene chiamato una volta, quindi 
+inizia il loop.
 
-In the loop: under PLAY mode, the dot matrix displays arrow patterns and
-check the button state; if under CHECK mode, what is displayed is
-\"**x**\" or \"**√**\".
+Nel loop: in modalità **GIOCO**, la matrice di punti mostra le frecce e 
+controlla lo stato dei pulsanti; in modalità **VERIFICA**, mostra "x" o "√".
+

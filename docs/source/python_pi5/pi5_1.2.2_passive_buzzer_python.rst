@@ -1,31 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Immergiti nel mondo di Raspberry Pi, Arduino ed ESP32 insieme a tanti altri appassionati.
 
-    **Why Join?**
+    **Perché Unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto da Esperti**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti inediti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _1.2.2_py_pi5:
 
-1.2.2 Passive Buzzer
-=====================
+1.2.2 Buzzer Passivo
+========================
 
-Introduction
-------------
+Introduzione
+---------------
 
-In this project, we will learn how to make a passive buzzer play music.
+In questo progetto, impareremo a far suonare un buzzer passivo per riprodurre musica.
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../python_pi5/img/1.2.2_passive_buzzer_list.png
 
@@ -33,15 +33,15 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
------------------
+Schema Elettrico
+-------------------
 
-In this experiment, a passive buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor.
+In questo esperimento vengono utilizzati un buzzer passivo, un transistor 
+PNP e una resistenza da 1k tra la base del transistor e il GPIO per proteggere 
+il transistor.
 
-When GPIO17 is given different frequencies, the passive buzzer will emit
-different sounds; in this way, the buzzer plays music.
+Quando al GPIO17 vengono assegnate frequenze diverse, il buzzer passivo emetterà 
+suoni differenti; in questo modo, il buzzer riproduce musica.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -51,14 +51,14 @@ GPIO17       Pin 11   0        17
 .. image:: ../python_pi5/img/1.2.2_passive_buzzer_schematic.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+---------------------------
 
-**Step 1**: Build the circuit. (The Passive buzzer with green circuit board on the back.)
+**Passo 1**: Costruisci il circuito. (Il buzzer passivo ha una scheda verde sul retro.)
 
 .. image:: ../python_pi5/img/1.2.2_PassiveBuzzer_circuit.png
 
-**Step 2: Change directory.**
+**Passo 2: Cambia directory.**
 
 .. raw:: html
 
@@ -68,7 +68,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3: Run.**
+**Passo 3: Esegui.**
 
 .. raw:: html
 
@@ -78,17 +78,17 @@ Experimental Procedures
 
     sudo python3 1.2.2_PassiveBuzzer_zero.py
 
-The code run, the buzzer plays a piece of music.
+Eseguendo il codice, il buzzer riproduce un brano musicale.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, potrai eseguirlo direttamente per vedere il risultato.
 
 
 .. raw:: html
@@ -101,8 +101,8 @@ The code run, the buzzer plays a piece of music.
    from gpiozero import TonalBuzzer
    from time import sleep
 
-   # Initialize a TonalBuzzer connected to GPIO pin 17
-   tb = TonalBuzzer(17)  # Update this pin number based on your setup
+   # Inizializza un TonalBuzzer collegato al pin GPIO 17
+   tb = TonalBuzzer(17)  # Aggiorna il numero di pin in base alla tua configurazione
 
    def play(tune):
        """
@@ -110,12 +110,12 @@ The code run, the buzzer plays a piece of music.
        :param tune: List of tuples (note, duration), where each tuple represents a note and its duration.
        """
        for note, duration in tune:
-           print(note)  # Output the current note being played
-           tb.play(note)  # Play the note on the buzzer
-           sleep(float(duration))  # Delay for the duration of the note
-       tb.stop()  # Stop playing after the tune is complete
+           print(note)  # Mostra in console la nota in riproduzione
+           tb.play(note)  # Riproduce la nota con il buzzer
+           sleep(float(duration))  # Ritarda per la durata della nota
+       tb.stop()  # Interrompe la riproduzione al termine della melodia
 
-   # Define a musical tune as a sequence of notes and durations
+   # Definisce una melodia come sequenza di note e durate
    tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
        ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
        ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
@@ -125,20 +125,20 @@ The code run, the buzzer plays a piece of music.
        ('F#4', 0.2), ('G4', 0.2), (None, 0.2),
        ('B4', 0.2), ('Bb4', 0.5), (None, 0.6),
        ('A4', 0.2), ('G4', 0.2), ('E4', 0.2), 
-       ('D4', 0.2), ('E4', 0.2)]
+       ('D4', 0.2), ('E4', 0.2)]  
 
    try:
-       play(tune)  # Execute the play function to start playing the tune
+       play(tune)  # Esegui la funzione play per avviare la melodia
 
    except KeyboardInterrupt:
-       # Handle KeyboardInterrupt for graceful termination
+       # Gestisce l'interruzione da tastiera per terminare il programma in modo sicuro
        pass
 
 
 
-**Code Explanation**
+**Spiegazione del Codice**
 
-#. These lines import the ``TonalBuzzer`` class from the ``gpiozero`` library for buzzer control and the ``sleep`` function from the ``time`` module for creating delays.
+#. Queste righe importano la classe ``TonalBuzzer`` dalla libreria ``gpiozero`` per controllare il buzzer e la funzione ``sleep`` dal modulo ``time`` per creare ritardi.
     
    .. code-block:: python  
 
@@ -147,15 +147,15 @@ The code run, the buzzer plays a piece of music.
        from time import sleep
       
 
-#. This line initializes a ``TonalBuzzer`` object on GPIO pin 17.
+#. Questa riga inizializza un oggetto ``TonalBuzzer`` sul pin GPIO 17.
     
    .. code-block:: python
        
-       # Initialize a TonalBuzzer connected to GPIO pin 17
-       tb = TonalBuzzer(17)  # Update this pin number based on your setup
+       # Inizializza un TonalBuzzer collegato al pin GPIO 17
+       tb = TonalBuzzer(17)  # Aggiorna il numero di pin in base alla tua configurazione
       
 
-#. The ``play`` function iterates over a list of tuples representing musical notes and their durations. Each note is played for its specified duration, and the buzzer stops after completing the tune.
+#. La funzione ``play`` itera su una lista di tuple rappresentanti note musicali e le loro durate. Ogni nota viene riprodotta per la durata specificata e il buzzer si ferma al termine della melodia.
     
    .. code-block:: python  
 
@@ -165,16 +165,16 @@ The code run, the buzzer plays a piece of music.
            :param tune: List of tuples (note, duration), where each tuple represents a note and its duration.
            """
            for note, duration in tune:
-               print(note)  # Output the current note being played
-               tb.play(note)  # Play the note on the buzzer
-               sleep(float(duration))  # Delay for the duration of the note
-           tb.stop()  # Stop playing after the tune is complete
+               print(note)  # Mostra in console la nota in riproduzione
+               tb.play(note)  # Riproduce la nota con il buzzer
+               sleep(float(duration))  # Ritarda per la durata della nota
+           tb.stop()  # Interrompe la riproduzione al termine della melodia
 
-#. The tune is defined as a sequence of notes (frequency) and durations (seconds).
+#. La melodia è definita come sequenza di note (frequenza) e durate (secondi).
     
    .. code-block:: python
 
-       # Define a musical tune as a sequence of notes and durations
+       # Definisce una melodia come sequenza di note e durate
        tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
            ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
            ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
@@ -186,13 +186,13 @@ The code run, the buzzer plays a piece of music.
            ('A4', 0.2), ('G4', 0.2), ('E4', 0.2), 
            ('D4', 0.2), ('E4', 0.2)]  
 
-#. The ``play(tune)`` function is called inside a ``try`` block. A ``KeyboardInterrupt`` (like Ctrl+C) will stop the program gracefully.
+#. La funzione ``play(tune)`` è chiamata all'interno di un blocco ``try``. Un'interruzione da tastiera (Ctrl+C) interromperà il programma in modo sicuro.
     
    .. code-block:: python  
        
        try:
-           play(tune)  # Execute the play function to start playing the tune
+           play(tune)  # Esegui la funzione play per avviare la melodia
 
        except KeyboardInterrupt:
-           # Handle KeyboardInterrupt for graceful termination
+           # Gestisce l'interruzione da tastiera per terminare il programma in modo sicuro
            pass

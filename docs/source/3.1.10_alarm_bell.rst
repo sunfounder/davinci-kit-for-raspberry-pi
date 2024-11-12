@@ -1,34 +1,34 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao! Benvenuto nella Community di appassionati SunFounder di Raspberry Pi, Arduino e ESP32 su Facebook! Esplora più a fondo Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotto e anticipazioni.
+    - **Sconti Speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Omaggi Festivi**: Partecipa a omaggi e promozioni speciali durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-3.1.10 Alarm Bell
-=====================
+3.1.10 Campanello di Allarme
+=============================
 
-Introduction
+Introduzione
 -----------------
 
-In this course, we will make a manual alarm device. You can replace the
-toggle switch with a thermistor or a photosensitive sensor to make a
-temperature alarm or a light alarm.
+In questo corso, realizzeremo un dispositivo di allarme manuale. È possibile 
+sostituire l'interruttore con un termistore o un sensore fotosensibile per 
+creare un allarme di temperatura o di luce.
 
-Components
+Componenti
 ---------------
 
 .. image:: img/list_Alarm_Bell.png
     :align: center
 
-Schematic Diagram
+Schema Elettrico
 -------------------------
 
 ============ ======== ======== ===
@@ -42,19 +42,19 @@ GPIO22       Pin 15   3        22
 .. image:: img/Schematic_three_one10.png
    :align: center
 
-Experimental Procedures
+Procedure Sperimentali
 -----------------------------
 
-**Step 1**: Build the circuit.
+**Step 1**: Costruisci il circuito.
 
 .. image:: img/image266.png
    :alt: Alarm Bell_bb
    :width: 800
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Per utenti linguaggio C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Change directory.
+**Step 2**: Cambia directory.
 
 .. raw:: html
 
@@ -64,87 +64,86 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.10/
 
-**Step 3**: Compile.
+**Step 3**: Compila.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     gcc 3.1.10_AlarmBell.c -lwiringPi -lpthread
 
-**Step 4**: Run.
+**Step 4**: Esegui.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     sudo ./a.out
 
-After the program starts, the toggle switch will be toggled to the
-right, and the buzzer will give out alarm sounds. At the same time, the
-red and green LEDs will flash at a certain frequency.
+Dopo l’avvio del programma, l’interruttore a leva viene posizionato a 
+destra e il cicalino emette suoni di allarme. Contemporaneamente, i 
+LED rosso e verde lampeggiano a una certa frequenza.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se non funziona dopo l'avvio, o appare un messaggio di errore: \"wiringPi.h: No such file or directory", fai riferimento a :ref:`Il codice C non funziona?`.
 
-
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
     #include <pthread.h>
 
-In this code, you'll use a new library, pthread.h, which is a set of
-common thread libraries and can realize multithreading. We add the
-**-lpthread** parameter at compile time for the independent working of
-the LED and the buzzer.
+In questo codice, si utilizza una nuova libreria, pthread.h, una libreria 
+comune per i thread che consente di realizzare il multithreading. Aggiungiamo 
+il parametro **-lpthread** in fase di compilazione per consentire il 
+funzionamento indipendente del LED e del cicalino.
 
 .. code-block:: c
 
     void *ledWork(void *arg){       
-        while(1)    
-        {   
-            if(flag==0){
-                pthread_exit(NULL);
-            }
-            digitalWrite(ALedPin,HIGH);
-            delay(500);
-            digitalWrite(ALedPin,LOW);
-            digitalWrite(BLedPin,HIGH);
-            delay(500);
-            digitalWrite(BLedPin,LOW);
-        }
+        while(1)    
+        {   
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            digitalWrite(ALedPin,HIGH);
+            delay(500);
+            digitalWrite(ALedPin,LOW);
+            digitalWrite(BLedPin,HIGH);
+            delay(500);
+            digitalWrite(BLedPin,LOW);
+        }
     }
 
-The function ledWork() helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+La funzione ledWork() imposta lo stato di funzionamento dei 2 LED: mantiene 
+acceso il LED verde per 0,5s e poi lo spegne; analogamente, accende il LED 
+rosso per 0,5s e poi lo spegne.
 
 .. code-block:: c
 
     void *buzzWork(void *arg){
-        while(1)
-        {
-            if(flag==0){
-                pthread_exit(NULL);
-            }
-            if((note>=800)||(note<=130)){
+        while(1)
+        {
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            if((note>=800)||(note<=130)){
                 pitch = -pitch;
-            }
-            note=note+pitch;
-            softToneWrite(BeepPin,note);
-            delay(10);
-        }
+            }
+            note=note+pitch;
+            softToneWrite(BeepPin,note);
+            delay(10);
+        }
     }
 
-The function buzzWork() is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+La funzione buzzWork() imposta lo stato di funzionamento del cicalino. 
+Qui impostiamo la frequenza tra 130 e 800, con un intervallo di accumulo 
+o decadenza di 20.
 
 .. code-block:: c
 
@@ -152,85 +151,83 @@ at an interval of 20.
         flag = 1;
         if(softToneCreate(BeepPin) == -1){
             printf("setup softTone failed !");
-            return; 
-        }    
+            return; 
+        }     
         pthread_t tLed;     
-        pthread_create(&tLed,NULL,ledWork,NULL);    
+        pthread_create(&tLed,NULL,ledWork,NULL);     
         pthread_t tBuzz;  
-        pthread_create(&tBuzz,NULL,buzzWork,NULL);      
+        pthread_create(&tBuzz,NULL,buzzWork,NULL);       
     }
 
-In the function on():
+Nella funzione on():
 
-1) Define the mark \"flag=1\", indicating the ending of the control
-   thread.
+1) Definiamo la variabile di stato "flag=1" per terminare il thread di controllo.
 
-2) Create a software-controlled tone pin **BeepPin**.
+2) Creiamo un pin per toni controllato da software **BeepPin**.
 
-3) Create two separate threads so that the LED and the buzzer can work
-   at the same time.
+3) Creiamo due thread separati in modo che LED e cicalino possano funzionare 
+   contemporaneamente.
 
-**pthread_t tLed:** Declare a thread **tLed**.
+**pthread_t tLed:** Dichiara un thread **tLed**.
 
-**pthread_create(&tLed,NULL,ledWork,NULL)：** Create the thread and its
-prototype is as follows:
+**pthread_create(&tLed,NULL,ledWork,NULL):** Crea il thread con il seguente 
+prototipo:
 
-int pthread_create(pthread_t \*restrict tidp,const pthread_attr_t
-\*restrict_attr,void*（*start_rtn)(void*),void \*restrict arg);
+int pthread_create(pthread_t *restrict tidp, const pthread_attr_t *restrict 
+attr, void*(*start_rtn)(void*), void *restrict arg);
 
-**Return the Value**
+**Valore Restituito**
 
-If successful, return \"**0**\"；otherwise, return the **fall number**
-\"**-1**\".
+Se ha successo, restituisce "0"; in caso contrario, restituisce il numero di 
+errore "-1".
 
-**Parameter**
+**Parametro**
 
-| The first parameter is a pointer to the thread identifier.
-| The second one is used to set the thread attribute.
-| The third one is the starting address of the thread running function.
-| The last one is the one that runs the function.
+| Il primo parametro è un puntatore all'identificatore del thread.
+| Il secondo parametro serve per impostare l'attributo del thread.
+| Il terzo è l'indirizzo di partenza della funzione del thread.
+| L'ultimo è l'argomento passato alla funzione.
 
 .. code-block:: c
 
     void off(){
         flag = 0;
-        softToneStop(BeepPin);
-        digitalWrite(ALedPin,LOW);
-        digitalWrite(BLedPin,LOW);
+        softToneStop(BeepPin);
+        digitalWrite(ALedPin,LOW);
+        digitalWrite(BLedPin,LOW);
     }
 
-
-The function Off() defines \"flag=0\" so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+La funzione Off() imposta "flag=0" per uscire dai thread 
+**ledWork** e **BuzzWork**, quindi spegne il cicalino e i LED.
 
 .. code-block:: c
 
     int main(){       
-        setup(); 
+        setup(); 
         int lastState = 0;
-        while(1){
+        while(1){
             int currentState = digitalRead(switchPin);
             if ((currentState == 1)&&(lastState==0)){
-                on();
-            }
+                on();
+            }
             else if((currentState == 0)&&(lastState==1)){
-                off();
-            }
-            lastState=currentState;
-        }
+                off();
+            }
+            lastState=currentState;
+        }
         return 0;
     }
 
-Main() contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function on() is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+Main() contiene l'intero processo del programma: innanzitutto legge il 
+valore dell'interruttore a scorrimento; se viene spostato a destra 
+(lettura pari a 1), viene chiamata la funzione on(), attivando il cicalino 
+e facendo lampeggiare i LED rosso e verde. Altrimenti, il cicalino e i 
+LED rimangono spenti.
 
-**For Python Language Users**
+**Per Utenti Python**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Change directory.
+**Passo 2:** Cambia directory.
 
 .. raw:: html
 
@@ -240,7 +237,7 @@ and the LED don’t work.
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -250,15 +247,15 @@ and the LED don’t work.
 
     sudo python3 3.1.10_AlarmBell.py
 
-After the program starts, the toggle switch will be toggled to the
-right, and the buzzer will give out alarm sounds. At the same time, the
-red and green LEDs will flash at a certain frequency.
+Dopo l'avvio del programma, sposta l'interruttore a leva a destra e il 
+cicalino emetterà suoni di allarme. Contemporaneamente, i LED rosso e 
+verde lampeggeranno a una certa frequenza.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puoi **Modificare/Resettare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, devi andare al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python``. 
     
 .. raw:: html
 
@@ -349,31 +346,31 @@ red and green LEDs will flash at a certain frequency.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
     import threading
 
-Here, we import the **Threading** module and it allows you to do
-multiple things at once, while normal programs can only execute code
-from top to bottom. With **Threading** modules, the LED and the buzzer
-can work separately.
+Qui importiamo il modulo **Threading** che permette di eseguire più 
+operazioni contemporaneamente, mentre i programmi normali possono 
+eseguire codice solo in ordine sequenziale dall’alto verso il basso. 
+Grazie a **Threading**, il LED e il cicalino possono funzionare separatamente.
 
 .. code-block:: python
 
     def ledWork():
         while flag:
             GPIO.output(ALedPin,GPIO.HIGH)
-            time.sleep(0.5)
+            time.sleep(0.5)
             GPIO.output(ALedPin,GPIO.LOW)
             GPIO.output(BLedPin,GPIO.HIGH)
-            time.sleep(0.5)
+            time.sleep(0.5)
             GPIO.output(BLedPin,GPIO.LOW)
 
-The function ledWork() helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+La funzione ledWork() serve a impostare lo stato operativo dei 2 LED: 
+mantiene il LED verde acceso per 0,5 secondi per poi spegnerlo; 
+analogamente, mantiene il LED rosso acceso per 0,5 secondi e poi lo spegne.
 
 .. code-block:: python
 
@@ -384,58 +381,56 @@ similarly, keeps the red LED lighting up for 0.5s and then turns off.
             if note >= 800 or note <=130:
                 pitch = -pitch
             note = note + pitch 
-            Buzz.ChangeFrequency(note)
-            time.sleep(0.01)
+            Buzz.ChangeFrequency(note)
+            time.sleep(0.01)
 
-The function buzzWork() is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+La funzione buzzWork() imposta lo stato operativo del cicalino. Qui la 
+frequenza è impostata tra 130 e 800, con un intervallo di accumulo o 
+decadimento di 20.
 
 .. code-block:: python
 
     def on():
         global flag
         flag = 1
-        Buzz.start(50)
+        Buzz.start(50)
         tBuzz = threading.Thread(target=buzzerWork) 
-        tBuzz.start()
+        tBuzz.start()
         tLed = threading.Thread(target=ledWork) 
-        tLed.start()  
+        tLed.start()   
 
-In the function on():
+Nella funzione on():
 
-1) Define the mark \"flag=1\", indicating the ending of the control
-   thread.
+1) Definisce il marcatore "flag=1", indicando la fine del thread di controllo.
 
-2) Start the Buzz, and set the duty cycle to 50%.
+2) Avvia il cicalino (Buzz) e imposta il ciclo di lavoro al 50%.
 
-3) Create **2** separate threads so that the LED and the buzzer can work
-   at the same time.
+3) Crea **2** thread separati affinché LED e cicalino possano funzionare 
+   contemporaneamente.
 
-   tBuzz = threading.Thread(target=buzzerWork) **:** Create the
-   thread and its prototype is as follows:
+   tBuzz = threading.Thread(target=buzzerWork): Crea il thread con il 
+   seguente prototipo:
 
+class threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, \*, daemon=None)
 
-class threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, \*, daemon=None)
+Tra i metodi costruttivi, il parametro principale è **target**, 
+a cui assegnare un oggetto invocabile (qui le funzioni **ledWork** 
+e **BuzzWork**).
 
-Among the construction methods, the principal parameter is **target**,
-we need to assign a callable object (here are the functions **ledWork**
-and **BuzzWork** ) to **target**.
-
-Next **start()** is called to start the thread object, ex.,
-tBuzz.start() is used to start the newly installed tBuzz thread.
+Poi, **start()** avvia l’oggetto thread, es., tBuzz.start() serve ad avviare 
+il nuovo thread tBuzz.
 
 .. code-block:: python
 
     def off():
         global flag
         flag = 0
-        Buzz.stop()
+        Buzz.stop()
         GPIO.output(ALedPin,GPIO.LOW)
         GPIO.output(BLedPin,GPIO.LOW)
 
-The function Off() defines \"flag=0\" so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+La funzione off() definisce "flag=0" per uscire dai thread 
+**ledWork** e **BuzzWork** e quindi spegnere il cicalino e i LED.
 
 .. code-block:: python
 
@@ -444,18 +439,18 @@ The function Off() defines \"flag=0\" so as to exit the threads
         while True:
             currentState =GPIO.input(switchPin)
             if currentState == 1 and lastState == 0:
-                on()
+                on()
             elif currentState == 0 and lastState == 1:
-                off()
+                off()
             lastState=currentState
 
-Main() contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function on() is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+Main() contiene l'intero processo del programma: legge inizialmente il 
+valore dell’interruttore a scorrimento; se l’interruttore a leva è 
+spostato a destra (il valore letto è 1), viene chiamata la funzione on(), 
+il cicalino emette suoni di allarme e i LED rosso e verde lampeggiano. 
+Altrimenti, né il cicalino né i LED funzionano.
 
-Phenomenon Picture
+Immagine del Fenomeno
 ------------------------
 
 .. image:: img/image267.jpeg

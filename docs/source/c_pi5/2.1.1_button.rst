@@ -1,95 +1,87 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a giveaway e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-2.1.1 Button
-============
+2.1.1 Pulsante
+==============
 
-Introduction
------------------
+Introduzione
+--------------
 
-In this lesson, we will learn how to turn on or off the LED by using a
-button.
+In questa lezione impareremo a accendere e spegnere un LED utilizzando un pulsante.
 
-Components
----------------
+Componenti
+--------------
 
 .. image:: img/list_2.1.1_Button.png
 
+Principio
+-----------
 
-Principle
--------------
+**Pulsante**
 
-**Button**
+Il pulsante è un componente comune per controllare i dispositivi elettronici. 
+Viene spesso utilizzato come interruttore per collegare o interrompere circuiti. 
+Esistono pulsanti di varie dimensioni e forme; quello utilizzato qui è un 
+mini-pulsante da 6 mm come mostrato nelle immagini seguenti.
 
-
-Button is a common component used to control electronic devices. It is
-usually used as switch to connect or break circuits. Although buttons
-come in a variety of sizes and shapes, the one used here is a 6mm
-mini-button as shown in the following pictures.
-
-Two pins on the left are connected, and the one on the right is similar
-to the left, which is shown below:
+I due pin a sinistra sono collegati, e lo stesso vale per quelli a destra, 
+come mostrato di seguito:
 
 .. image:: img/image148.png
     :width: 400
     :align: center
 
-The symbol shown as below is usually used to represent a button in
-circuits.
-
+Il simbolo seguente viene generalmente utilizzato per rappresentare un pulsante 
+nei circuiti:
 
 .. image:: img/image301.png
     :width: 400
     :align: center
 
+Quando il pulsante viene premuto, i 4 pin sono collegati, chiudendo il circuito.
 
-When the button is pressed, the 4 pins are connected, thus closing the
-circuit.
+Schema Elettrico
+--------------------
 
-Schematic Diagram
----------------------
-
-Use a normally open button as the input of Raspberry Pi, the connection
-is shown in the schematic diagram below. When the button is pressed, the
-GPIO18 will turn into low level (0V). We can detect the state of the
-GPIO18 through programming. That is, if the GPIO18 turns into low level,
-it means the button is pressed. You can run the corresponding code when
-the button is pressed, and then the LED will light up.
+Usa un pulsante normalmente aperto come input del Raspberry Pi. La connessione 
+è mostrata nel diagramma schematico qui sotto. Quando il pulsante è premuto, 
+il GPIO18 passa a livello basso (0V). Possiamo rilevare lo stato del GPIO18 
+attraverso il programma, ossia se il GPIO18 diventa di livello basso, significa 
+che il pulsante è premuto. Quando il pulsante è premuto, puoi eseguire il codice 
+corrispondente e il LED si accenderà.
 
 .. note::
-    The longer pin of the LED is the anode and the shorter one is
-    the cathode.
+    Il pin più lungo del LED è l'anodo e quello più corto è il catodo.
 
 .. image:: img/image302.png
     :width: 600
     :align: center
-
 
 .. image:: img/image303.png
     :width: 400
     :align: center
 
 
-Experimental Procedures
+Procedure Sperimentali
 ---------------------------
 
-**Step 1**: Build the circuit.
+**Passo 1**: Costruisci il circuito.
 
 .. image:: img/image152.png
     :width: 800
 
-**Step 2**: Open the code file.
+**Passo 2**: Apri il file di codice.
 
 .. raw:: html
 
@@ -100,9 +92,9 @@ Experimental Procedures
     cd ~/davinci-kit-for-raspberry-pi/c/2.1.1/
 
 .. note::
-    Change directory to the path of the code in this experiment via **cd**.
+    Cambia directory al percorso del codice di questo esperimento tramite **cd**.
 
-**Step 3**: Compile the code.
+**Passo 3**: Compila il codice.
 
 .. raw:: html
 
@@ -112,7 +104,7 @@ Experimental Procedures
 
     gcc 2.1.1_Button.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Passo 4**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -122,15 +114,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, press the button, the LED lights up; otherwise,
-turns off.
+Dopo aver eseguito il codice, premi il pulsante e il LED si accende; altrimenti, si spegne.
 
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se non funziona dopo l’esecuzione o appare un messaggio di errore: \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`Il codice C non funziona?`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -141,7 +132,7 @@ turns off.
     #define ButtonPin   1
 
     int main(void){
-        // When initialize wiring failed, print message to screen
+        // Se l'inizializzazione di wiring fallisce, stampa un messaggio a schermo
         if(wiringPiSetup() == -1){
             printf("setup wiringPi failed !");
             return 1;
@@ -152,67 +143,59 @@ turns off.
         digitalWrite(LedPin, HIGH);
         
         while(1){
-            // Indicate that button has pressed down
+            // Indica che il pulsante è stato premuto
             if(digitalRead(ButtonPin) == 0){
-                // Led on
+                // Accende il LED
                 digitalWrite(LedPin, LOW);
-            //  printf("...LED on\n");
             }
             else{
-                // Led off
+                // Spegne il LED
                 digitalWrite(LedPin, HIGH);
-            //  printf("LED off...\n");
             }
         }
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
-.. code-block:: 
+.. code-block::
 
     #define LedPin      0
 
-Pin GPIO17 in the T_Extension Board is equal to the GPIO0 in the
-wiringPi.
+Il pin GPIO17 sulla T_Extension Board corrisponde a GPIO0 in wiringPi.
 
-.. code-block:: 
+.. code-block::
 
     #define ButtonPin   1
 
-ButtonPin is connected to GPIO1.
+ButtonPin è collegato a GPIO1.
 
-.. code-block:: 
+.. code-block::
 
     pinMode(LedPin, OUTPUT);
 
-Set LedPin as output to assign value to it.
+Imposta LedPin come uscita per assegnargli un valore.
 
-.. code-block:: 
+.. code-block::
 
     pinMode(ButtonPin, INPUT);
 
-Set ButtonPin as input to read the value of ButtonPin.
+Imposta ButtonPin come ingresso per leggere il valore di ButtonPin.
 
 .. code-block:: C
 
     while(1){
-            // Indicate that button has pressed down
+            // Indica che il pulsante è stato premuto
             if(digitalRead(ButtonPin) == 0){
-                // Led on
+                // Accende il LED
                 digitalWrite(LedPin, LOW);
-            //  printf("...LED on\n");
             }
             else{
-                // Led off
+                // Spegne il LED
                 digitalWrite(LedPin, HIGH);
-            //  printf("LED off...\n");
             }
         }
 
-
-if (digitalRead (ButtonPin) == 0: check whether the button has been
-pressed. Execute digitalWrite(LedPin, LOW) when button is pressed to
-light up LED.
-
-
+if (digitalRead (ButtonPin) == 0: verifica se il pulsante è stato premuto. 
+Esegui digitalWrite(LedPin, LOW) quando il pulsante è premuto per accendere 
+il LED.

@@ -1,70 +1,69 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao e benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l’aiuto della nostra comunità e del nostro team.
+    - **Apprendi e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima agli annunci di nuovi prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-1.1.6 LED Dot Matrix
-=====================
+1.1.6 Matrice LED a Punti
+============================
 
-Introduction
---------------------
+Introduzione
+----------------
 
-As the name suggests, an LED dot matrix is a matrix composed of LEDs.
-The lighting up and dimming of the LEDs formulate different characters
-and patterns.
+Come suggerisce il nome, una matrice LED a punti è una matrice composta da LED. 
+L'accensione e lo spegnimento dei LED consentono di visualizzare diversi 
+caratteri e modelli.
 
-Components
-------------------
+Componenti
+-------------
 
 .. image:: img/list_dot.png
 
-Principle
-----------------
+Principio di Funzionamento
+------------------------------
 
-**LED Dot Matrix**
+**Matrice LED a Punti**
 
-Generally, LED dot matrix can be categorized into two types: common
-cathode (CC) and common anode (CA). They look much alike, but internally
-the difference lies. You can tell by test. A CA one is used in this kit.
-You can see 788BS labeled at the side.
+In generale, le matrici LED a punti si suddividono in due tipi: catodo 
+comune (CC) e anodo comune (CA). Anche se sembrano simili, differiscono 
+internamente. In questo kit utilizziamo una matrice CA (con anodo comune), 
+riconoscibile dalla scritta 788BS sul lato.
 
-See the figure below. The pins are arranged at the two ends at the back.
-Take the label side for reference: pins on this end are pin 1-8, and oh
-the other are pin 9-16.
+Nella figura qui sotto, i pin sono disposti su entrambi i lati della parte 
+posteriore. Prendendo come riferimento il lato con l’etichetta, i pin su 
+questo lato vanno da 1 a 8, mentre sull'altro lato da 9 a 16.
 
-The external view:
+Vista esterna:
 
 .. image:: img/image84.png
 
+Nelle figure seguenti è mostrata la struttura interna. Nella matrice LED CA, 
+ROW rappresenta l'anodo del LED e COL il catodo; è il contrario per una matrice CC. 
+In entrambi i tipi, i pin 13, 3, 4, 10, 6, 11, 15 e 16 corrispondono a COL, mentre 
+i pin 9, 14, 8, 12, 1, 7, 2 e 5 a ROW. Se si desidera accendere il primo LED in alto 
+a sinistra, per una matrice LED CA si imposta il pin 9 su Alto e il pin 13 su Basso;
+per una matrice CC, il pin 13 su Alto e il pin 9 su Basso.
 
-Below the figures show their internal structure. You can see in a CA LED
-dot matrix, ROW represents the anode of the LED, and COL is cathode;
-it's contrary for a CC one. One thing in common: for both types, pin 13,
-3, 4, 10, 6, 11, 15, and 16 are all COL, when pin 9, 14, 8, 12, 1, 7, 2,
-and 5 are all ROW. If you want to turn on the first LED at the top left
-corner, for a CA LED dot matrix, just set pin 9 as High and pin 13 as
-Low, and for a CC one, set pin 13 as High and pin 9 as Low. If you want
-to light up the whole first column, for CA, set pin 13 as Low and ROW 9,
-14, 8, 12, 1, 7, 2, and 5 as High, when for CC, set pin 13 as High and
-ROW 9, 14, 8, 12, 1, 7, 2, and 5 as Low. Consider the following figures
-for better understanding.
 
-The internal view:
+
+
+
+
+Vista interna:
 
 .. image:: img/image85.png
    :width: 400
    :align: center
 
-Pin numbering corresponding to the above rows and columns:
+Numerazione dei pin corrispondenti a righe e colonne:
 
 =========== ====== ====== ===== ====== ===== ====== ====== ======
 **COL**     **1**  **2**  **3** **4**  **5** **6**  **7**  **8**
@@ -73,11 +72,11 @@ Pin numbering corresponding to the above rows and columns:
 **Pin No.** **9**  **14** **8** **12** **1** **7**  **2**  **5**
 =========== ====== ====== ===== ====== ===== ====== ====== ======
 
-In addition, two 74HC595 chips are used here. One is to control the rows
-of the LED dot matrix while the other, the columns.
+Qui vengono utilizzati due chip 74HC595: uno controlla le righe e l'altro le 
+colonne della matrice LED a punti.
 
-Schematic Diagram
------------------------
+Schema di Collegamento
+--------------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -89,33 +88,32 @@ GPIO27       Pin 13   2        27
 .. image:: img/schematic_dot.png
    :width: 800
 
-Experimental Procedures
+Procedure Sperimentali
 ----------------------------
 
-**Step 1:** Build the circuit. Since the wiring is complicated, let's
-make it step by step. First, insert the T-Cobbler, the LED dot matrix
-and two 74HC595 chips into breadboard. Connect the 3.3V and GND of the
-T-Cobbler to holes on the two sides of the board, then hook up pin16 and
-10 of the two 74HC595 chips to VCC, pin 13 and pin 8 to GND.
+**Passo 1:** Costruisci il circuito. Poiché il cablaggio è complesso, 
+procediamo per gradi. Innanzitutto, inserisci il T-Cobbler, la matrice 
+LED a punti e i due chip 74HC595 nella breadboard. Collega il 3.3V e il 
+GND del T-Cobbler ai fori sui due lati della breadboard, quindi collega 
+il pin 16 e 10 dei due chip 74HC595 a VCC, i pin 13 e 8 a GND.
 
 .. note::
-   In the Fritzing image above, the side with label is at the bottom.
+   Nell'immagine Fritzing sopra, il lato con l'etichetta si trova in basso.
 
 .. image:: img/image87.png
    :width: 800
 
-**Step 2:** Connect pin 11 of the two 74HC595 together, and then to
-GPIO27; then pin 12 of the two chips, and to GPIO18; next, pin 14 of the
-74HC595 on the left side to GPIO17 and pin 9 to pin 14 of the second
-74HC595.
+**Passo 2:** Collega il pin 11 dei due 74HC595 tra loro e poi a GPIO27; 
+successivamente il pin 12 di entrambi i chip a GPIO18; infine, collega il 
+pin 14 del 74HC595 sul lato sinistro a GPIO17 e il pin 9 al pin 14 del 
+secondo 74HC595.
 
 .. image:: img/image88.png
    :width: 800
 
-**Step 3:** The 74HC595 on the right side is to control columns of the
-LED dot matrix. See the table below for the mapping. Therefore, Q0-Q7
-pins of the 74HC595 are mapped with pin 13, 3, 4, 10, 6, 11, 15, and 16
-respectively.
+**Passo 3:** Il 74HC595 sul lato destro controlla le colonne della matrice LED. 
+Consulta la tabella qui sotto per il mapping. Di conseguenza, i pin Q0-Q7 del 
+74HC595 corrispondono rispettivamente ai pin 13, 3, 4, 10, 6, 11, 15 e 16.
 
 +--------------------+--------+--------+--------+--------+--------+--------+--------+--------+
 | **74HC595**        | **Q0** | **Q1** | **Q2** | **Q3** | **Q4** | **Q5** | **Q6** | **Q7** |
@@ -126,10 +124,11 @@ respectively.
 .. image:: img/image89.png
    :width: 800
 
-**Step 4:** Now connect the ROWs of the LED dot matrix. The 74HC595 on
-the left controls ROW of the LED dot matrix. See the table below for the
-mapping. We can see, Q0-Q7 of the 74HC595 on the left are mapped with
-pin 9, 14, 8, 12, 1, 7, 2, and 5 respectively.
+**Passo 4:** Ora collega le RIGHE della matrice LED. Il 74HC595 sul lato sinistro 
+controlla le RIGHE. Consulta la tabella qui sotto per il mapping. I pin Q0-Q7 del 
+74HC595 sul lato sinistro sono quindi mappati ai pin 9, 14, 8, 12, 1, 7, 2 e 5 
+rispettivamente.
+
 
 +--------------------+--------+--------+--------+--------+--------+--------+--------+--------+
 | **74HC595**        | **Q0** | **Q1** | **Q2** | **Q3** | **Q4** | **Q5** | **Q6** | **Q7** |
@@ -140,8 +139,7 @@ pin 9, 14, 8, 12, 1, 7, 2, and 5 respectively.
 .. image:: img/image90.png
    :width: 800
 
-
-**Step 5:** Go to the folder of code.
+**Passo 5:** Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -151,7 +149,7 @@ pin 9, 14, 8, 12, 1, 7, 2, and 5 respectively.
 
    cd ~/davinci-kit-for-raspberry-pi/c/1.1.6/
 
-**Step 6:** Compile.
+**Passo 6:** Compila.
 
 .. raw:: html
 
@@ -161,7 +159,7 @@ pin 9, 14, 8, 12, 1, 7, 2, and 5 respectively.
 
    gcc 1.1.6_LedMatrix.c -lwiringPi
 
-**Step 7:** Run.
+**Passo 7:** Esegui.
 
 .. raw:: html
 
@@ -171,22 +169,22 @@ pin 9, 14, 8, 12, 1, 7, 2, and 5 respectively.
 
    sudo ./a.out
 
-After the code runs, the LED dot matrix lights up and out row by row and column by column.
+Dopo l'esecuzione del codice, la matrice LED si accende e si spegne riga per riga e colonna per colonna.
 
 .. note::
 
-   If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+   Se non funziona dopo l'esecuzione, o appare un messaggio di errore: \"wiringPi.h: No such file or directory", fare riferimento a :ref:`Il codice C non funziona?`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
    #include <wiringPi.h>
    #include <stdio.h>
 
-   #define   SDI   0   //serial data input
-   #define   RCLK  1   //memory clock input(STCP)
-   #define   SRCLK 2   //shift register clock input(SHCP)
+   #define   SDI   0   // ingresso dati seriali
+   #define   RCLK  1   // ingresso clock della memoria (STCP)
+   #define   SRCLK 2   // ingresso clock del registro a scorrimento (SHCP)
 
    unsigned char code_H[20] = {0x01,0xff,0x80,0xff,0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
    unsigned char code_L[20] = {0x00,0x7f,0x00,0xfe,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xfe,0xfd,0xfb,0xf7,0xef,0xdf,0xbf,0x7f};
@@ -219,7 +217,7 @@ After the code runs, the LED dot matrix lights up and out row by row and column 
 
    int main(void){
       int i;
-      if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen
+      if(wiringPiSetup() == -1){ //se l'inizializzazione di wiring fallisce, stampa il messaggio
          printf("setup wiringPi failed !");
          return 1;
       }
@@ -243,20 +241,20 @@ After the code runs, the LED dot matrix lights up and out row by row and column 
       return 0;
    }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
    unsigned char code_H[20] = {0x01,0xff,0x80,0xff,0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
    unsigned char code_L[20] = {0x00,0x7f,0x00,0xfe,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xfe,0xfd,0xfb,0xf7,0xef,0xdf,0xbf,0x7f};
 
-The array code_H represents the elements of the LED dot matrix row, and the array code_L refers to the elements of the column. When characters are displayed, an element in row and one in column are acquired and assigned to the two HC595 chips respectively. Thus a pattern is shown on the LED dot matrix.
-Take the first number of code_H, 0x01 and the first number of code_L, 0x00 as examples.
+L’array code_H rappresenta gli elementi della riga della matrice LED, mentre l’array code_L rappresenta quelli della colonna. Quando vengono visualizzati i caratteri, un elemento della riga e uno della colonna vengono presi e assegnati ai due chip HC595, mostrando così un pattern sulla matrice LED.
+Prendiamo come esempio il primo numero di code_H, 0x01, e il primo di code_L, 0x00.
 
-0x01 converted to binary becomes 00000001; 0x00 converted to binary becomes 0000 0000.
+0x01 convertito in binario diventa 00000001; 0x00 in binario diventa 0000 0000.
 
-In this kit, common anode LED dot matrix display is applied, so only the eight LEDs in the eighth row light up. 
-When the conditions that code H is 0xff and code_L is 0x7f are met simultaneously, these 8 LEDs in the first column are lit.
+In questo kit viene utilizzata una matrice LED ad anodo comune, quindi solo gli otto LED dell’ottava riga si illuminano. 
+Quando code_H è 0xff e code_L è 0x7f, si accendono i LED nella prima colonna.
 
 .. image:: img/anode_table.png
 
@@ -270,7 +268,7 @@ When the conditions that code H is 0xff and code_L is 0x7f are met simultaneousl
          delay(1);
          digitalWrite(SRCLK, 0);
 
-Write the value of dat to pin SDI of the HC595 bit by bit. SRCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge pulse, then shift the pinSDI(DS) date to shift register.
+Scrive il valore di dat al pin SDI dell’HC595 bit per bit. Il valore iniziale di SRCLK è impostato su 0, qui viene impostato su 1 per generare un impulso di salita, quindi si sposta il dato da pinSDI (DS) al registro a scorrimento.
 
 .. code-block:: c
 
@@ -279,7 +277,7 @@ Write the value of dat to pin SDI of the HC595 bit by bit. SRCLK's initial value
       delay(1);
       digitalWrite(RCLK, 0);
 
-RCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge, then shift data from shift register to storage register.       
+Il valore iniziale di RCLK è impostato su 0, e viene impostato su 1 per generare un impulso di salita, trasferendo i dati dal registro a scorrimento al registro di memoria.       
 
 .. code-block:: c
 
@@ -292,4 +290,5 @@ RCLK's initial value was set to 0, and here it's set to 1, which is to generate 
       }
    }
 
-In this loop, these 20  elements in the two arrays, code_L and code_H will be uploaded to the two 74HC595 chip one by one. Then call the function, hc595_out() to shift data from shift register to storage register. 
+In questo ciclo, i 20 elementi nei due array, code_L e code_H, vengono caricati uno ad uno sui due chip 74HC595. Poi viene chiamata la funzione hc595_out() per trasferire i dati dal registro a scorrimento al registro di memoria.
+

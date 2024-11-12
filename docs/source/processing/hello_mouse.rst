@@ -1,21 +1,21 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di Facebook dedicata agli appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni speciali.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
 Hello Mouse
 ==================
 
-In this project, your mouse will keep shooting lines towards a point; move the mouse and you will draw a unique line of stars. Press the mouse to restart the drawing.
+In questo progetto, il tuo mouse continuerà a tracciare linee verso un punto; muovi il mouse e disegnerai una linea unica di stelle. Premi il mouse per ricominciare il disegno.
 
 .. image:: img/hello_mouse1.png
 
@@ -42,14 +42,14 @@ In this project, your mouse will keep shooting lines towards a point; move the m
         background(192, 16, 18);
     }
 
-**How it works?**
+**Come funziona?**
 
-The previous project was drawing a single image without any animation or interaction.
+Nel progetto precedente abbiamo disegnato una singola immagine senza animazione né interazione.
 
-If we want to make an interactive sketch, we need to add the ``setup()`` and ``draw()`` functions (these are built-in functions that are called automatically) to build the frame.
+Se vogliamo creare uno sketch interattivo, dobbiamo aggiungere le funzioni ``setup()`` e ``draw()`` (funzioni incorporate che vengono richiamate automaticamente) per costruire il frame.
 
-* ``setup()``: Executed only once at the start of the sketch.
-* ``draw()``: Executed repeatedly, where we usually add the sketch for drawing the animation.
+* ``setup()``: Viene eseguita una sola volta all'inizio dello sketch.
+* ``draw()``: Viene eseguita in modo continuo, dove solitamente aggiungiamo lo sketch per disegnare l'animazione.
 
 .. code-block:: arduino
 
@@ -66,9 +66,9 @@ If we want to make an interactive sketch, we need to add the ``setup()`` and ``d
         line(pointX, pointY, mouseX, mouseY);
     }
 
-This sketch above already works smoothly as an interactive sketch.
+Questo sketch funziona già in modo fluido come sketch interattivo.
 
-Next you can add a mouse click event. This event can be implemented with the ``mousePressed()`` function, where we add statements to refresh the target point and clear the screen.
+Successivamente, puoi aggiungere un evento di clic del mouse. Questo evento può essere implementato con la funzione ``mousePressed()``, dove aggiungiamo istruzioni per aggiornare il punto di destinazione e cancellare lo schermo.
 
 .. code-block:: arduino
 
@@ -91,6 +91,4 @@ Next you can add a mouse click event. This event can be implemented with the ``m
         background(192, 16, 18);
     }
 
-
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
-
+Per ulteriori dettagli, fai riferimento alla `Processing Reference <https://processing.org/reference/>`_.

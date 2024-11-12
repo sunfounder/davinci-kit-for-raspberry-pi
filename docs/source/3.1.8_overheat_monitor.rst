@@ -1,32 +1,32 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community SunFounder per appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Unisciti a noi per approfondire le conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri entusiasti.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con il supporto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima agli annunci di nuovi prodotti e alle anticipazioni.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e concorsi festivi**: Partecipa ai concorsi e alle promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-3.1.8 Overheat Monitor
-========================
+3.1.8 Monitor di Surriscaldamento
+====================================
 
-Introduction
--------------------
+Introduzione
+--------------
 
-You may want to make an overheat monitoring device that applies to
-various situations, ex., in the factory, if we want to have an alarm and
-the timely automatic turning off of the machine when there is a circuit
-overheating. In this lesson, we will use thermistor, joystick, buzzer,
-LED and LCD to make an smart temperature monitoring device whose
-threshold is adjustable.
+Potresti voler creare un dispositivo di monitoraggio della temperatura che 
+si adatta a diverse situazioni. Ad esempio, in una fabbrica, potremmo voler 
+avere un sistema di allarme e spegnimento automatico quando c’è un surriscaldamento 
+del circuito. In questa lezione, utilizzeremo un termistore, un joystick, 
+un buzzer, un LED e un display LCD per creare un dispositivo intelligente 
+di monitoraggio della temperatura con una soglia regolabile.
 
-Components
------------------
+Componenti
+--------------
 
 .. image:: img/list_Overheat_Monitor.png
     :align: center
@@ -34,8 +34,8 @@ Components
 .. image:: img/list_Overheat_Monitor2.png
     :align: center
 
-Schematic Diagram
---------------------------
+Schema del Circuito
+-----------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -53,19 +53,19 @@ SCL1         Pin 5
    :width: 700
    :align: center
 
-Experimental Procedures
------------------------------
+Procedure Sperimentali
+---------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: img/image258.png
    :alt: Overheat Monitor_bb
    :width: 800
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Per Utenti C**
+^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Passo 2**: Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -75,7 +75,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.8/
 
-**Step 3**: Compile the code.
+**Passo 3**: Compila il codice.
 
 .. raw:: html
 
@@ -85,7 +85,7 @@ Experimental Procedures
 
     gcc 3.1.8_OverheatMonitor.c -lwiringPi -lm
 
-**Step 4**: Run the executable file.
+**Passo 4**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -95,23 +95,21 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+All’avvio del codice, la temperatura corrente e la soglia di alta temperatura 
+**40** sono visualizzate su **I2C LCD1602**. Se la temperatura corrente supera 
+la soglia, il buzzer e il LED si attivano per avvisarti.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se non funziona dopo l'esecuzione, o compare un errore come: \"wiringPi.h: No such file or directory\", consulta :ref:`Il codice C non funziona?`.
 
 
-**Joystick** here is for your pressing to adjust the high-temperature
-threshold. Toggling the **Joystick** in the direction of X-axis and
-Y-axis can adjust (turn up or down) the current high-temperature
-threshold. Press the **Joystick** once again to reset the threshold to
-initial value.
+Il **Joystick** consente di regolare la soglia della temperatura massima. 
+Muovendo il **Joystick** lungo gli assi X e Y è possibile aumentare o 
+diminuire la soglia di alta temperatura. Premendo nuovamente il **Joystick** 
+la soglia si resetta al valore iniziale.
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
@@ -137,9 +135,9 @@ initial value.
         }
     }
 
-This function reads values of X and Y. If **X>200**, there will return
-\"**1**\"; **X<50**, return \"**-1**\"; **y>200**, return
-\"**-10**\", and **y<50**, return \"**10**\".
+Questa funzione legge i valori di X e Y. Se **X>200**, restituisce \"**1**\"; 
+se **X<50**, restituisce \"**-1**\"; se **y>200**, restituisce \"**-10**\"; 
+e se **y<50**, restituisce \"**10**\".
 
 .. code-block:: c
 
@@ -149,15 +147,14 @@ This function reads values of X and Y. If **X>200**, there will return
         upperTem = upperTem + change;
         char str[6];
         snprintf(str,3,"%d",upperTem);
-    write(0,1,str);
-    int len;
-      len = strlen(str);
-      write(len,1,"             ");
+        write(0,1,str);
+        int len;
+        len = strlen(str);
+        write(len,1,"             ");
         delay(100);
     }
 
-This function is for adjusting the threshold and displaying it on the
-I2C LCD1602.
+Questa funzione serve a regolare la soglia e a visualizzarla sull’I2C LCD1602.
 
 .. code-block:: c
 
@@ -173,8 +170,8 @@ I2C LCD1602.
         return cel;
     }
 
-Read the analog value of the **CH0** (thermistor) of **ADC0834** and
-then convert it to temperature value.
+Leggi il valore analogico del **CH0** (termistore) su **ADC0834** e 
+convertilo in valore di temperatura.
 
 .. code-block:: c
 
@@ -198,10 +195,10 @@ then convert it to temperature value.
         }
     }
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Quando il codice viene eseguito, la temperatura attuale e la soglia di 
+alta temperatura **40** vengono visualizzate su **I2C LCD1602**. Se la 
+temperatura corrente supera la soglia, il buzzer e il LED si attivano 
+per avvisarti.
 
 .. code-block:: c
 
@@ -229,23 +226,22 @@ to alarm you.
         return 0;
     }
 
-The function main() contains the whole program process as shown:
+La funzione main() contiene l’intero processo del programma come segue:
 
-1) When the program starts, the initial value of **stage** is **0**, and
-   the current temperature and the high-temperature threshold **40** are
-   displayed on **I2C LCD1602**. If the current temperature is larger
-   than the threshold, the buzzer and the LED are started to alarm you.
+1) All’avvio del programma, il valore iniziale di **stage** è **0**, e la 
+temperatura corrente e la soglia di alta temperatura **40** vengono visualizzate 
+su **I2C LCD1602**. Se la temperatura corrente supera la soglia, il buzzer 
+e il LED si attivano per avvisarti.
 
-2) Press the Joystick, and **stage** will be **1** and you can adjust
-   the high-temperature threshold. Toggling the Joystick in the
-   direction of X-axis and Y-axis can adjust (turn up or down) the
-   current threshold. Press the Joystick once again to reset the
-   threshold to initial value.
+2) Premi il Joystick, e **stage** passerà a **1**, permettendoti di regolare 
+la soglia di alta temperatura. Muovendo il Joystick lungo gli assi X e Y è 
+possibile aumentare o diminuire la soglia attuale. Premendo nuovamente il 
+Joystick, la soglia si resetta al valore iniziale.
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Per Utenti Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Passo 2**: Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -255,7 +251,7 @@ The function main() contains the whole program process as shown:
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3**: Run the executable file.
+**Passo 3**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -265,22 +261,20 @@ The function main() contains the whole program process as shown:
 
     sudo python3 3.1.8_OverheatMonitor.py
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+All'avvio del codice, la temperatura corrente e la soglia di alta temperatura 
+**40** sono visualizzate su **I2C LCD1602**. Se la temperatura corrente supera 
+la soglia, il buzzer e il LED si attivano per avvisarti.
 
-**Joystick** here is for your pressing to adjust the high-temperature
-threshold. Toggling the **Joystick** in the direction of X-axis and
-Y-axis can adjust (turn up or down) the current high-temperature
-threshold. Press the **Joystick** once again to reset the threshold to
-initial value.
+Il **Joystick** consente di regolare la soglia di alta temperatura. Muovendo 
+il **Joystick** lungo gli assi X e Y è possibile aumentare o diminuire la 
+soglia attuale. Premendo nuovamente il **Joystick**, la soglia si resetta al 
+valore iniziale.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice qui sotto. Prima di farlo, però, devi accedere al percorso del codice sorgente, ad esempio ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -377,15 +371,14 @@ initial value.
         ADC0834.destroy()
         GPIO.cleanup()
 
-    if __name__ == '__main__':     # Program start from here
+    if __name__ == '__main__':     # Programma inizia da qui
         try:
             setup()
             while True:
                 loop()
-        except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt:   # Quando si preme 'Ctrl+C', viene eseguita la funzione destroy().
             destroy()
-
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
@@ -403,9 +396,9 @@ initial value.
         else:
             return 0
 
-This function reads values of X and Y. If **X>200**, there will return
-\"**1**\"; **X<50**, return \"**-1**\"; **y>200**, return
-\"**-10**\", and **y<50**, return \"**10**\".
+Questa funzione legge i valori di X e Y. Se **X>200**, restituisce
+\"**1**\"; se **X<50**, restituisce \"**-1**\"; se **Y>200**, restituisce
+\"**-10**\"; e se **Y<50**, restituisce \"**10**\".
 
 .. code-block:: python
 
@@ -418,7 +411,7 @@ This function reads values of X and Y. If **X>200**, there will return
     LCD1602.write(len(strUpperTem),1, '              ')
         time.sleep(0.1)
 
-This function is for adjusting the threshold and displaying it on the
+Questa funzione regola la soglia e la visualizza su
 I2C LCD1602.
 
 .. code-block:: python
@@ -432,8 +425,8 @@ I2C LCD1602.
         Fah = Cel * 1.8 + 32
         return round(Cel,2)
 
-Read the analog value of the **CH0** (thermistor) of **ADC0834** and
-then convert it to temperature value.
+Legge il valore analogico del **CH0** (termistore) su **ADC0834** e lo
+converte in valore di temperatura.
 
 .. code-block:: python
 
@@ -452,10 +445,10 @@ then convert it to temperature value.
             GPIO.output(buzzPin, GPIO.LOW)
             GPIO.output(ledPin, GPIO.LOW)
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Quando il codice è in esecuzione, la temperatura attuale e la soglia di
+alta temperatura **40** vengono visualizzate su **I2C LCD1602**. Se la
+temperatura corrente supera la soglia, il buzzer e il LED si attivano
+per avvisarti.
 
 .. code-block:: python
 
@@ -474,20 +467,20 @@ to alarm you.
             else:
                 monitoring_temp()
 
-The function main() contains the whole program process as shown:
+La funzione main() include l’intero processo del programma come segue:
 
-1) When the program starts, the initial value of **stage** is **0**, and
-   the current temperature and the high-temperature threshold **40** are
-   displayed on **I2C LCD1602**. If the current temperature is larger
-   than the threshold, the buzzer and the LED are started to alarm you.
+1) Quando il programma inizia, il valore iniziale di **stage** è **0**, 
+   e la temperatura corrente e la soglia di alta temperatura **40** sono 
+   visualizzate su **I2C LCD1602**. Se la temperatura corrente supera la 
+   soglia, il buzzer e il LED si attivano per avvisarti.
 
-2) Press the Joystick, and **stage** will be **1** and you can adjust
-   the high-temperature threshold. Toggling the Joystick in the
-   direction of X-axis and Y-axis can adjust (turn up or down) the
-   current high-temperature threshold. Press the Joystick once again to
-   reset the threshold to initial value.
+2) Premi il Joystick, e **stage** sarà impostato a **1** permettendoti di 
+   regolare la soglia di alta temperatura. Muovendo il Joystick lungo gli 
+   assi X e Y è possibile aumentare o diminuire la soglia attuale. Premendo 
+   nuovamente il Joystick, la soglia torna al valore iniziale.
 
-Phenomenon Picture
+
+Immagine del Fenomeno
 -------------------------
 
 .. image:: img/image259.jpeg

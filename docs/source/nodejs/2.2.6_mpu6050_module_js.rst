@@ -1,61 +1,60 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Unisciti a noi per approfondire Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anticipo agli annunci di nuovi prodotti e anteprime.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e omaggi festivi**: Partecipa a omaggi e promozioni per le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-2.2.6 MPU6050 Module
-====================
+2.2.6 Modulo MPU6050
+========================
 
-Introduction
-------------
+Introduzione
+---------------
 
-The MPU-6050 is the world’s first and only 6-axis motion tracking
-devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
-smartphones, tablets and wearable sensors that have these features,
-including the low power, low cost, and high performance requirements.
+L’MPU-6050 è il primo e unico dispositivo al mondo per il rilevamento del 
+movimento a 6 assi (3 assi per giroscopio e 3 assi per accelerometro) 
+progettato per smartphone, tablet e sensori indossabili. È dotato di 
+caratteristiche che includono bassi consumi energetici, bassi costi e 
+elevate prestazioni.
 
-In this experiment, use I2C to obtain the values of the three-axis
-acceleration sensor and three-axis gyroscope for MPU6050 and display
-them on the screen.
+In questo esperimento, utilizziamo I2C per ottenere i valori del sensore di 
+accelerazione a tre assi e del giroscopio a tre assi del modulo MPU6050 e li 
+mostriamo sullo schermo.
 
-Components
-----------
+Componenti
+-------------
 
 .. image:: ../img/list_2.2.6.png
 
 
 
-Schematic Diagram
------------------
+Schema Elettrico
+-------------------
 
-MPU6050 communicates with the microcontroller through the I2C bus
-interface. The SDA1 and SCL1 need to be connected to the corresponding
-pin.
+L'MPU6050 comunica con il microcontrollore attraverso l'interfaccia bus I2C. 
+SDA1 e SCL1 devono essere collegati ai rispettivi pin.
 
 .. image:: ../img/image330.png
 
 
-Experimental Procedures
--------------------------------
+Procedura Sperimentale
+------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Monta il circuito.
 
 .. image:: ../img/image227.png
 
 
-**Step 2**: Setup I2C (see Appendix :ref:`I2C Configuration`. If you have set I2C, skip this
-step.)
+**Passo 2**: Configura I2C (consulta l'Appendice :ref:`I2C Configuration`. Se hai già configurato I2C, salta questo passo.)
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -65,7 +64,7 @@ step.)
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3:** Install dependencies.
+**Passo 3:** Installa le dipendenze.
 
 .. raw:: html
 
@@ -75,7 +74,7 @@ step.)
 
     sudo npm install mpu6050-gyro
 
-**Step 4:** Run the code.
+**Passo 4:** Esegui il codice.
 
 .. raw:: html
 
@@ -85,11 +84,11 @@ step.)
 
     sudo node mpu6050_module.js
 
-With the code run, the angle of deflection of the x-axis and y-axis and
-the acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
+Quando il codice è in esecuzione, l'angolo di inclinazione sugli assi x e 
+y e l’accelerazione e velocità angolare su ciascun asse rilevati da MPU6050 
+verranno calcolati e stampati sullo schermo.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -119,21 +118,21 @@ printed on the screen after being calculating.
         update_telemetry();
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: js
 
     var gyro = require("mpu6050-gyro");
     
-    var address = 0x68; //MPU6050 address
-    var bus = 1; //i2c bus used   
-    var gyro = new gyro( bus,address );
+    var address = 0x68; // Indirizzo MPU6050
+    var bus = 1; // Bus i2c utilizzato   
+    var gyro = new gyro(bus, address);
 
-Import the ``mpu6050-gyro`` module, determine the MPU6050 address and the bus creation object gyro,
-It is convenient to call the encapsulated functions in the module.
+Importa il modulo ``mpu6050-gyro``, definisci l'indirizzo di MPU6050 e 
+crea un oggetto gyro per richiamare le funzioni incapsulate nel modulo.
 
 .. note:: 
-    About this module, please refer to: https://www.npmjs.com/package/mpu6050-gyro
+    Per maggiori dettagli sul modulo, consulta: https://www.npmjs.com/package/mpu6050-gyro
 
 .. code-block:: js
 
@@ -150,16 +149,15 @@ It is convenient to call the encapsulated functions in the module.
     
     setTimeout(update_telemetry, 500);
 
-The module encapsulates three available functions:
+Il modulo incapsula tre funzioni disponibili:
 
-``gyro.get_gyro_xyz()``: Returns JSON object with raw x,y,z datas from gyroscope.
+``gyro.get_gyro_xyz()``: Ritorna un oggetto JSON con i dati x, y, z grezzi del giroscopio.
 
-``gyro.get_accel_xyz()``: Returns JSON object with raw x,y,z datas from accelerometer.
+``gyro.get_accel_xyz()``: Ritorna un oggetto JSON con i dati x, y, z grezzi dell'accelerometro.
 
-``gyro.get_roll_pitch( gyro_xyz, accel_xyz )``: Returns JSON object with roll and pitch in degrees.
+``gyro.get_roll_pitch(gyro_xyz, accel_xyz)``: Ritorna un oggetto JSON con i valori di rollio e beccheggio in gradi.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+------------------------
 
 .. image:: ../img/image228.jpeg
-    

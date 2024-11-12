@@ -1,125 +1,112 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperti**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Omaggi Festivi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-1.1.4 7-segment Display
+1.1.4 Display a 7 segmenti
 =============================
 
-Introduction
+Introduzione
 -----------------
 
-Let's try to drive a 7-segment display to show a figure from 0 to 9 and
-A to F.
+In questo progetto, impareremo a controllare un display a 7 segmenti per mostrare cifre da 0 a 9 e lettere da A a F.
 
-Components
+Componenti
 ----------------
 
 .. image:: img/list_7_segment.png
 
-Principle
--------------
+Principio di Funzionamento
+-----------------------------
 
-**7-Segment Display**
+**Display a 7 Segmenti**
 
-A 7-segment display is an 8-shaped component which packages 7 LEDs. Each
-LED is called a segment - when energized, one segment forms part of a
-numeral to be displayed.
+Un display a 7 segmenti è un componente a forma di 8 che contiene 7 LED, 
+ciascuno dei quali rappresenta un segmento. Quando energizzato, ogni segmento 
+forma parte di una cifra da visualizzare.
 
-There are two types of pin connection: Common Cathode (CC) and Common
-Anode (CA). As the name suggests, a CC display has all the cathodes of
-the 7 LEDs connected when a CA display has all the anodes of the 7
-segments connected. In this kit, we use the former.
+Esistono due tipi di connessione per i pin: Catodo Comune (CC) e Anodo Comune (CA). 
+Come suggerisce il nome, un display CC ha tutti i catodi dei 7 LED collegati 
+insieme, mentre un display CA ha tutti gli anodi dei 7 segmenti collegati 
+insieme. In questo kit utilizziamo il primo tipo.
 
 .. image:: img/image70.jpeg
    :width: 3.89514in
    :height: 3.32222in
    :align: center
 
-Each of the LEDs in the display is given a positional segment with one
-of its connection pins led out from the rectangular plastic package.
-These LED pins are labeled from "a" through to "g" representing each
-individual LED. The other LED pins are connected together forming a
-common pin. So by forward biasing the appropriate pins of the LED
-segments in a particular order, some segments will brighten and others
-stay dim, thus showing the corresponding character on the display.
+Ciascuno dei LED nel display ha un segmento posizionale, con uno dei suoi 
+pin di connessione collegato all'interno del pacchetto plastico rettangolare. 
+Questi pin LED sono etichettati da "a" a "g" rappresentando ciascun LED 
+individuale. Collegando opportunamente i pin di ciascun segmento, alcuni 
+segmenti si illumineranno e altri resteranno spenti, formando così il 
+carattere desiderato sul display.
 
-**Display Codes**
+**Codici per la Visualizzazione**
 
-To help you get to know how 7-segment displays(Common Cathode) display
-Numbers, we have drawn the following table. Numbers are the number 0-F
-displayed on the 7-segment display; (DP) GFEDCBA refers to the
-corresponding LED set to 0 or 1, For example, 00111111 means that DP and
-G are set to 0, while others are set to 1. Therefore, the number 0 is
-displayed on the 7-segment display, while HEX Code corresponds to
-hexadecimal number.
+Per comprendere come i display a 7 segmenti (Catodo Comune) mostrino i numeri, 
+abbiamo disegnato la seguente tabella. I numeri da 0 a F sono mostrati con le 
+configurazioni GFEDCBA per i LED, rappresentate da 0 o 1. Ad esempio, 00111111 
+indica che DP e G sono impostati a 0, mentre gli altri sono a 1, mostrando così 
+il numero 0 sul display. Il Codice HEX corrisponde al numero in esadecimale.
 
 .. image:: img/common_cathode.png
 
-
 **74HC595**
 
-The 74HC595 consists of an 8−bit shift register and a storage register
-with three−state parallel outputs. It converts serial input into
-parallel output so you can save IO ports of an MCU.
+Il 74HC595 consiste in un registro a scorrimento a 8 bit e un registro di 
+memorizzazione con uscite parallele a tre stati, che convertono l’ingresso 
+seriale in uscita parallela, risparmiando i pin IO di un microcontrollore.
 
-When MR (pin10) is high level and OE (pin13) is low level, data is input
-in the rising edge of SHcp and goes to the memory register through the
-rising edge of SHcp. If the two clocks are connected together, the shift
-register is always one pulse earlier than the memory register. There is
-a serial shift input pin (Ds), a serial output pin (Q) and an
-asynchronous reset button (low level) in the memory register. The memory
-register outputs a Bus with a parallel 8-bit and in three states. When
-OE is enabled (low level), the data in memory register is output to the
-bus.
+Quando MR (pin10) è a livello alto e OE (pin13) è a livello basso, i dati 
+vengono inseriti al fronte di salita di SHcp e passano al registro di memoria 
+tramite il fronte di salita di SHcp. Se i due clock sono collegati insieme, 
+il registro a scorrimento è sempre un impulso avanti rispetto al registro di 
+memoria. Sono presenti un pin di ingresso seriale (Ds), un’uscita seriale (Q) 
+e un pulsante di reset asincrono (a livello basso) nel registro di memoria, 
+che fornisce un bus di uscita parallelo a 8 bit.
 
 .. image:: img/74hc595_sche.png
     :width: 400
     :align: center
 
+**Pin del 74HC595 e le loro Funzioni**:
 
+* **Q0-Q7**: Uscite dati paralleli a 8 bit, in grado di controllare direttamente 8 LED o 8 pin del display a 7 segmenti.
+* **Q7’**: Uscita in serie, connessa al pin DS di un altro 74HC595 per collegare più 74HC595 in serie.
 
+* **MR**: Pin di reset, attivo a livello basso.
 
-**Pins of 74HC595 and their functions**:
+* **SHcp**: Ingresso di clock del registro a scorrimento; al fronte di salita, i dati si spostano di un bit.
 
-* **Q0-Q7**: 8-bit parallel data output pins, able to control 8 LEDs or 8 pins of 7-segment display directly.
+* **STcp**: Ingresso di clock del registro di memoria; al fronte di salita, i dati passano dal registro a scorrimento al registro di memoria.
 
-* **Q7’**: Series output pin, connected to DS of another 74HC595 to connect multiple 74HC595s in series.
+* **CE**: Pin di abilitazione dell'uscita, attivo a livello basso.
 
-* **MR**: Reset pin, active at low level;
+* **DS**: Pin di ingresso dati seriali.
 
-* **SHcp**: Time sequence input of shift register. On the rising edge, the data in shift register moves successively one bit, i.e. data in Q1 moves to Q2, and so forth. While on the falling edge, the data in shift register remain unchanged.
+* **VCC**: Alimentazione positiva.
 
-* **STcp**: Time sequence input of storage register. On the rising edge, data in the shift register moves into memory register.
+* **GND**: Massa.
 
-* **CE**: Output enable pin, active at low level.
+Diagramma Schematico
+------------------------
 
-* **DS**: Serial data input pin
-
-* **VCC**: Positive supply voltage
-
-* **GND**: Ground
-
-Schematic Diagram
----------------------
-
-Connect pin ST_CP of 74HC595 to Raspberry Pi GPIO18, SH_CP to GPIO27, DS
-to GPIO17, parallel output ports to 8 segments of the LED segment
-display. Input data in DS pin to shift register when SH_CP (the clock
-input of the shift register) is at the rising edge, and to the memory
-register when ST_CP (the clock input of the memory) is at the rising
-edge. Then you can control the states of SH_CP and ST_CP via the
-Raspberry Pi GPIOs to transform serial data input into parallel data
-output so as to save Raspberry Pi GPIOs and drive the display.
+Collega il pin ST_CP del 74HC595 al GPIO18 del Raspberry Pi, SH_CP al GPIO27 
+e DS al GPIO17. Le porte di uscita parallela vanno collegate agli 8 segmenti 
+del display LED. Inserisci i dati nel pin DS e controlla gli stati di SH_CP e 
+ST_CP attraverso i GPIO del Raspberry Pi, in modo da trasformare i dati seriali 
+in ingresso in dati paralleli in uscita e risparmiare GPIO del Raspberry Pi per 
+controllare il display.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -131,18 +118,18 @@ GPIO27       Pin 13   2        27
 .. image:: img/schematic_7_segment.png
     :width: 800
 
-Experimental Procedures
+Procedure Sperimentali
 ------------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Assembla il circuito.
 
 .. image:: img/image73.png
     :width: 800
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Per utenti di linguaggio C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Step 2: Get into the folder of the code.
+Passo 2: Entra nella cartella del codice.
 
 .. raw:: html
 
@@ -152,7 +139,7 @@ Step 2: Get into the folder of the code.
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.1.4/
 
-Step 3: Compile.
+Passo 3: Compila.
 
 .. raw:: html
 
@@ -162,7 +149,7 @@ Step 3: Compile.
 
     gcc 1.1.4_7-Segment.c -lwiringPi
 
-Step 4: Run the executable file above.
+Passo 4: Esegui il file eseguibile creato.
 
 .. raw:: html
 
@@ -172,21 +159,21 @@ Step 4: Run the executable file above.
 
     sudo ./a.out
 
-After the code runs, you'll see the 7-segment display display 0-9, A-F.
+Dopo l'esecuzione del codice, vedrai il display a 7 segmenti mostrare i numeri da 0 a 9 e le lettere da A a F.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se il programma non funziona dopo l'esecuzione, oppure appare un messaggio di errore: \"wiringPi.h: Nessun file o directory", fai riferimento a :ref:`Il codice C non funziona?`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
     #include <wiringPi.h>
     #include <stdio.h>
-    #define   SDI   0   //serial data input
-    #define   RCLK  1   //memory clock input(STCP)
-    #define   SRCLK 2   //shift register clock input(SHCP)
+    #define   SDI   0   // ingresso dati seriali
+    #define   RCLK  1   // ingresso clock memoria (STCP)
+    #define   SRCLK 2   // ingresso clock registro a scorrimento (SHCP)
     unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
 
     void init(void){
@@ -213,14 +200,14 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
 
     int main(void){
         int i;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+        if(wiringPiSetup() == -1){ // se l'inizializzazione di wiring fallisce, stampa il messaggio sullo schermo
             printf("setup wiringPi failed !");
             return 1;
         }
         init();
         while(1){
             for(i=0;i<16;i++){
-                printf("Print %1X on Segment\n", i); // %X means hex output
+                printf("Print %1X on Segment\n", i); // %X significa output in esadecimale
                 hc595_shift(SegCode[i]);
                 delay(500);
             }
@@ -228,10 +215,10 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
-A segment code array from 0 to F in Hexadecimal (Common cathode).
+Array di codici segmenti per rappresentare valori da 0 a F in esadecimale (catodo comune).
 
 .. code-block:: c
 
@@ -244,44 +231,45 @@ A segment code array from 0 to F in Hexadecimal (Common cathode).
         digitalWrite(SRCLK, 0);
     }
 
-Set ds, st_cp, sh_cp three pins to OUTPUT, and the initial state as 0.
+Imposta i pin ds, st_cp, sh_cp su OUTPUT, e lo stato iniziale a 0.
+
 void hc595_shift(unsigned char dat){}
-To assign 8 bit value to 74HC595’s shift register.
+Assegna un valore a 8 bit al registro a scorrimento del 74HC595.
 
 .. code-block:: c
 
     digitalWrite(SDI, 0x80 & (dat << i));
 
-Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 1111, when i=2, 0x3f will shift left(<<) 2 bits. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
+Assegna i dati di "dat" a SDI(DS) per bit. Qui assumiamo dat=0x3f (0011 1111); quando i=2, 0x3f viene spostato a sinistra (<<) di 2 bit. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, è vero.
 
 .. code-block:: c
 
     digitalWrite(SRCLK, 1);
 
-SRCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge pulse, then shift the DS date to shift register.
+Il valore iniziale di SRCLK era impostato a 0; qui è impostato a 1 per generare un impulso di salita e spostare i dati DS nel registro a scorrimento.
 
 .. code-block:: c
-        
-		digitalWrite(RCLK, 1);
 
-RCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge, then shift data from shift register to storage register.
+    digitalWrite(RCLK, 1);
+
+Il valore iniziale di RCLK era impostato a 0; qui è impostato a 1 per generare un fronte di salita e trasferire i dati dal registro a scorrimento al registro di memorizzazione.
 
 .. code-block:: c
 
     while(1){
             for(i=0;i<16;i++){
-                printf("Print %1X on Segment\n", i); // %X means hex output
+                printf("Print %1X on Segment\n", i); // %X significa output esadecimale
                 hc595_shift(SegCode[i]);
                 delay(500);
             }
         }
 
-In this for loop, we use \"%1X\" to output i as a hexadecimal number. Apply i to find the corresponding segment code in the SegCode[] array, and employ hc595_shift() to pass the SegCode into 74HC595's shift register.
+In questo ciclo for, utilizziamo \"%1X\" per stampare i in esadecimale. Applichiamo i per trovare il codice segmento corrispondente nell'array SegCode[] e utilizziamo hc595_shift() per passare SegCode nel registro a scorrimento del 74HC595.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Per utenti di linguaggio Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Step 2: Get into the folder of the code.
+Passo 2: Entra nella cartella del codice.
 
 .. raw:: html
 
@@ -291,7 +279,7 @@ Step 2: Get into the folder of the code.
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-Step 3: Run.
+Passo 3: Esegui.
 
 .. raw:: html
 
@@ -301,14 +289,13 @@ Step 3: Run.
 
     sudo python3 1.1.4_7-Segment.py
 
-After the code runs, you'll see the 7-segment display display 0-9, A-F.
+Dopo l'esecuzione del codice, vedrai il display a 7 segmenti mostrare i numeri da 0 a 9 e le lettere da A a F.
 
-**Code**
-
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice seguente. Ma prima, è necessario accedere al percorso del codice sorgente come ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -319,13 +306,13 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
     import RPi.GPIO as GPIO
     import time
 
-    # Set up pins
+    # Configura i pin
     SDI   = 17
     RCLK  = 18
     SRCLK = 27
 
-    # Define a segment code from 0 to F in Hexadecimal
-    # Common cathode
+    # Definisce il codice segmento da 0 a F in esadecimale
+    # Catodo comune
     segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71]
 
     def setup():
@@ -334,7 +321,7 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
         GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)
 
-    # Shift the data to 74HC595
+    # Sposta i dati nel 74HC595
     def hc595_shift(dat):
         for bit in range(0, 8):	
             GPIO.output(SDI, 0x80 & (dat << bit))
@@ -347,10 +334,10 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
 
     def main():
         while True:
-            # Shift the code one by one from segCode list
+            # Sposta il codice uno alla volta dalla lista segCode
             for code in segCode:
                 hc595_shift(code)
-                print ("segCode[%s]: 0x%02X"%(segCode.index(code), code)) # %02X means double digit HEX to print
+                print ("segCode[%s]: 0x%02X"%(segCode.index(code), code)) # %02X significa stampa in HEX a due cifre
                 time.sleep(0.5)
 
     def destroy():
@@ -363,13 +350,13 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
     segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71]
 
-A segment code array from 0 to F in Hexadecimal (Common cathode). 
+Array di codici segmenti da 0 a F in esadecimale (catodo comune). 
 
 .. code-block:: python
 
@@ -379,32 +366,30 @@ A segment code array from 0 to F in Hexadecimal (Common cathode).
         GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)
 
-Set ds, st_cp, sh_cp three pins to output and the initial state as low level.
+Imposta i tre pin ds, st_cp, sh_cp come output e con stato iniziale a livello basso.
 
 .. code-block:: python
 
     GPIO.output(SDI, 0x80 & (dat << bit))
 
-Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 1111, when bit=2, 0x3f will shift right(<<) 2 bits. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
+Assegna i dati di "dat" a SDI (DS) bit per bit. Qui assumiamo dat=0x3f (0011 1111); quando bit=2, 0x3f viene spostato a destra (<<) di 2 bit. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, è vero.
 
 .. code-block:: python
 
     GPIO.output(SRCLK, GPIO.HIGH)
 
-SRCLK's initial value was set to LOW, and here it's set to HIGH, which is to generate a rising edge pulse, then shift the DS date to shift register.
+Il valore iniziale di SRCLK era impostato a LOW, e qui è impostato a HIGH, il che genera un impulso di salita e sposta i dati DS nel registro a scorrimento.
 
 .. code-block:: python
 
     GPIO.output(RCLK, GPIO.HIGH)
 
-RCLK's initial value was set to LOW, and here it's set to HIGH, which is to generate a rising edge, then shift data from shift register to storage register.
+Il valore iniziale di RCLK era impostato a LOW, e qui è impostato a HIGH, il che genera un impulso di salita e trasferisce i dati dal registro a scorrimento al registro di memorizzazione.
 
 .. note::
-    The hexadecimal format of number 0~15 are (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
+    Il formato esadecimale dei numeri da 0 a 15 è (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
 
-Phenomenon Picture
+Immagine del Fenomeno
 -------------------------
 
 .. image:: img/image74.jpeg
-
-

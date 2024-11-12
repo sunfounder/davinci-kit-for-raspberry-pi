@@ -1,38 +1,38 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché Unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti esclusivi.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
 .. _2.2.6_py_pi5:
 
-2.2.5 MPU6050 Module
-====================
+2.2.5 Modulo MPU6050
+======================
 
-Introduction
-------------
+Introduzione
+---------------
 
-The MPU-6050 is the world’s first and only 6-axis motion tracking
-devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
-smartphones, tablets and wearable sensors that have these features,
-including the low power, low cost, and high performance requirements.
+L'MPU-6050 è il primo e unico dispositivo di tracciamento del movimento a 
+6 assi al mondo (giroscopio a 3 assi e accelerometro a 3 assi) progettato 
+per smartphone, tablet e sensori indossabili che richiedono basso consumo 
+energetico, basso costo e alte prestazioni.
 
-In this experiment, use I2C to obtain the values of the three-axis
-acceleration sensor and three-axis gyroscope for MPU6050 and display
-them on the screen.
+In questo esperimento, utilizzeremo l'interfaccia I2C per ottenere i valori 
+del sensore di accelerazione e del giroscopio a tre assi dell'MPU6050 e 
+visualizzarli sullo schermo.
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../python_pi5/img/2.2.6_mpu6050_list.png
 
@@ -40,28 +40,27 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
------------------
+Schema Elettrico
+--------------------
 
-MPU6050 communicates with the microcontroller through the I2C bus
-interface. The SDA1 and SCL1 need to be connected to the corresponding
-pin.
+L’MPU6050 comunica con il microcontrollore tramite l’interfaccia bus I2C. 
+È necessario collegare i pin SDA1 e SCL1 ai pin corrispondenti.
 
 .. image:: ../python_pi5/img/2.2.6_mpu6050_schematic.png
 
 
-Experimental Procedures
+Procedure Sperimentali
 -------------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../python_pi5/img/2.2.6_mpu6050_circuit.png
 
 
-**Step 2**: Setup I2C (see Appendix :ref:`i2c_config`. If you have set I2C, skip this
-step.)
+**Passo 2:** Configura I2C (vedi Appendice :ref:`i2c_config`. Se I2C è già 
+configurato, salta questo passo.)
 
-**Step 3:** Go to the folder of the code.
+**Passo 3:** Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -71,7 +70,7 @@ step.)
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 4:** Run the executable file.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -81,26 +80,26 @@ step.)
 
     sudo python3 2.2.6_mpu6050_zero.py
 
-With the code run, the angle of deflection of the x-axis and y-axis and
-the acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
+Dopo l'avvio del codice, verranno stampati sullo schermo l'angolo di deviazione 
+degli assi x e y e l'accelerazione, oltre alla velocità angolare su ciascun asse, 
+calcolati e letti dall’MPU6050.
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
+    * Se ricevi l'errore ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, consulta :ref:`i2c_config` per abilitare I2C.
+    * Se ricevi l'errore ``ModuleNotFoundError: No module named 'smbus2'``, esegui ``sudo pip3 install smbus2``.
+    * Se appare l'errore ``OSError: [Errno 121] Remote I/O error``, significa che il modulo è cablato in modo errato o è danneggiato.
 
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc`
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere il risultato.
 
 
 .. raw:: html
@@ -113,7 +112,7 @@ printed on the screen after being calculating.
    import math
    import time
 
-   # Power management registers
+   # Registri di gestione dell’alimentazione
    power_mgmt_1 = 0x6b
    power_mgmt_2 = 0x6c
 
@@ -145,10 +144,10 @@ printed on the screen after being calculating.
        return math.degrees(radians)
 
 
-   bus = smbus.SMBus(1) # or bus = smbus.SMBus(1) for Revision 2 boards
-   address = 0x68       # This is the address value read via the i2cdetect command
+   bus = smbus.SMBus(1) # oppure bus = smbus.SMBus(1) per le schede di revisione 2
+   address = 0x68       # Questo è l'indirizzo letto tramite il comando i2cdetect
 
-   # Now wake the 6050 up as it starts in sleep mode
+   # Ora risvegliamo il 6050 poiché si avvia in modalità sleep
    bus.write_byte_data(address, power_mgmt_1, 0)
 
    while True:
@@ -179,9 +178,9 @@ printed on the screen after being calculating.
        time.sleep(1)
 
 
-**Code Explanation**
+**Spiegazione del Codice**
 
-#. Read sensor data sent from MPU6050.
+#. Legge i dati del sensore inviati dall'MPU6050.
 
    .. code-block:: python
 
@@ -198,7 +197,7 @@ printed on the screen after being calculating.
            else:
                return val
 
-#. Calculate the deflection angle of the y-axis.
+#. Calcola l'angolo di deviazione dell'asse y.
 
    .. code-block:: python
 
@@ -206,7 +205,7 @@ printed on the screen after being calculating.
            radians = math.atan2(x, dist(y,z))
            return -math.degrees(radians)
 
-#. Calculate the deflection angle of the x-axis.
+#. Calcola l'angolo di deviazione dell'asse x.
 
    .. code-block:: python
 
@@ -214,7 +213,7 @@ printed on the screen after being calculating.
            radians = math.atan2(y, dist(x,z))
            return math.degrees(radians)
 
-#. Read the values of the x axis, y axis and z axis on the gyroscope sensor, convert the metadata to angular velocity values, and then print them.
+#. Legge i valori degli assi x, y e z sul sensore giroscopico, converte i dati grezzi in valori di velocità angolare e li stampa.
 
    .. code-block:: python
 
@@ -226,7 +225,7 @@ printed on the screen after being calculating.
        print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
        print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
 
-#. Read the values of the x axis, y axis and z axis on the acceleration sensor, convert the elements to accelerated speed value (gravity unit), and print them.
+#. Legge i valori degli assi x, y e z sul sensore accelerometrico, converte i dati in valori di accelerazione (unità di gravità) e li stampa.
 
    .. code-block:: python
 
@@ -242,7 +241,7 @@ printed on the screen after being calculating.
        print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
        print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
 
-#. Print the deflection angles of the x-axis and y-axis.
+#. Stampa gli angoli di deviazione degli assi x e y.
 
    .. code-block:: python
 

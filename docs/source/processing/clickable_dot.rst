@@ -1,25 +1,25 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di Facebook dedicata agli appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni speciali.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
-Clickable Dot
+Punto Cliccabile
 ==================
 
-We've tried drawing motion graphic, responding to mouse event, and controlling LED.  So, we might as well combine these functions, draw a clickable dot, to control the LED!  
+Abbiamo provato a disegnare grafica in movimento, rispondere agli eventi del mouse e controllare il LED. Quindi, perché non combinare queste funzioni disegnando un punto cliccabile per controllare il LED!
 
 .. image:: img/clickable_dot_on.png
 
-**Wiring**
+**Collegamenti**
 
 .. image:: img/image49.png
 
@@ -53,11 +53,12 @@ We've tried drawing motion graphic, responding to mouse event, and controlling L
             {state = !state;}
     }
 
-**How it works?**
+**Come funziona?**
 
-This project has a lot in common with :ref:`Blinking Dot`, the difference is that it puts the toggle state in the mouse event.
-This causes the LED to not blink automatically, but to light up and go off with a mouse click.
 
-And in the ``mouseClicked()`` event, the ``dist()`` function is used to determine the position of the mouse at the time of the click, and the dot is considered clicked only if the distance between the mouse and the center of the dot is less than the radius.
+Questo progetto ha molte somiglianze con :ref:`Punto Lampeggiante`, la differenza è che lo stato alternato è inserito nell'evento del mouse.
+Questo fa sì che il LED non lampeggi automaticamente, ma si accenda e si spenga con un click del mouse.
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+Nell'evento ``mouseClicked()``, la funzione ``dist()`` viene usata per determinare la posizione del mouse al momento del clic, e il punto viene considerato cliccato solo se la distanza tra il mouse e il centro del punto è inferiore al raggio.
+
+Per maggiori dettagli, consulta il `Processing Reference <https://processing.org/reference/>`_.

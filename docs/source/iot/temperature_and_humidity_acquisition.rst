@@ -1,31 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché Unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni speciali per le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
-Temperature and Humidity Acquisition
-======================================
+Acquisizione di Temperatura e Umidità
+=========================================
 
-In this project, we use DHT11 to read the surrounding temperature and humidity, and then display them on Cloud4RPi.
+In questo progetto, utilizziamo il sensore DHT11 per leggere la temperatura e l'umidità dell'ambiente circostante e visualizzarle su Cloud4RPi.
 
-Experimental Procedures
--------------------------
+Procedura Sperimentale
+---------------------------
 
-Build the circuit.
+Costruisci il circuito.
 
 .. image:: img/tem4.png
   :align: center
 
-Open the code.
+Apri il codice.
 
 .. raw:: html
 
@@ -36,13 +36,13 @@ Open the code.
     cd ~/cloud4rpi-raspberrypi-python
     sudo nano temperature_and_humidity_acquisition.py
 
-Find the line below and fill in the correct device token.
+Trova la riga sottostante e inserisci il corretto dispositivo token.
 
 .. code-block:: python
 
     DEVICE_TOKEN = '__YOUR_DEVICE_TOKEN__'
 
-Run the code.
+Esegui il codice.
 
 .. raw:: html
 
@@ -52,30 +52,29 @@ Run the code.
 
     sudo python3 temperature_and_humidity_acquisition.py
 
-Go to Cloud4RPi, add a new Control Panel named project1, and click **Add Widget**.
+Vai su Cloud4RPi, aggiungi un nuovo pannello di controllo chiamato project1 e clicca su **Add Widget**.
 
 .. image:: img/tem1.png
   :align: center
 
-Select a **Chart** widget with both **Room Temp** and **CPU Temp** as the variables to be displayed.
-
+Seleziona un widget **Chart** con le variabili **Room Temp** e **CPU Temp** da visualizzare.
 
 .. image:: img/tem2.png
   :align: center
 
-Once added, you will see the temperature (Room Temp) and humidity (CPU Temp) curves over time, and you can adjust the display window by clicking on the options at the bottom right.
+Una volta aggiunto, vedrai le curve della temperatura (Room Temp) e dell'umidità (CPU Temp) nel tempo, e puoi regolare la finestra di visualizzazione cliccando sulle opzioni in basso a destra.
 
 .. image:: img/tem3.png
   :align: center
 
-Code Explanation
-----------------------
+Spiegazione del Codice
+--------------------------
 
 .. code-block:: python
 
     dht11 = DHT11.DHT11(17)
 
-Instantiate a dht11 object.
+Crea un'istanza di un oggetto dht11.
 
 .. code-block:: python
 
@@ -88,7 +87,7 @@ Instantiate a dht11 object.
                 result = dht11.get_result()
         return result[1]
 
-The temperature (``result[1]``) is obtained by this function, and the function will not be interrupted until the reading is successful.
+La temperatura (``result[1]``) viene ottenuta tramite questa funzione, che continuerà fino a quando la lettura non avrà successo.
 
 .. code-block:: python
 
@@ -101,7 +100,7 @@ The temperature (``result[1]``) is obtained by this function, and the function w
             result = dht11.get_result()
     return result[0]
 
-The humidity (``result[0]``) is obtained by this function, and the function will not be interrupted until the reading is successful.
+L'umidità (``result[0]``) viene ottenuta tramite questa funzione, che continuerà fino a quando la lettura non avrà successo.
 
 .. code-block:: python
 
@@ -116,6 +115,4 @@ The humidity (``result[0]``) is obtained by this function, and the function will
         },
     }
 
-The temperature is stored in the ``'bind'`` of the ``'Room Temp'`` key, and the humidity is stored in the ``'bind'`` of the ``'CPU Temp'`` key. When Cloud4RPi receives the ``variables`` dictionary, it will convert it into a JavaScript object that can be recognized by the web page.
-
-
+La temperatura è memorizzata in ``'bind'`` nella chiave ``'Room Temp'``, mentre l'umidità è memorizzata in ``'bind'`` nella chiave ``'CPU Temp'``. Quando Cloud4RPi riceve il dizionario ``variables``, lo converte in un oggetto JavaScript riconoscibile dalla pagina web.

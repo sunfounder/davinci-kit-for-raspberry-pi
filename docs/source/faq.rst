@@ -1,55 +1,47 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Scopri di più su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto da esperti**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni un accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e omaggi**: Partecipa a promozioni speciali e omaggi durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
 FAQ
 ============
 
-C code is not working?
+Il codice C non funziona?
 ----------------------------------
 
-
-* Check your wiring for problems.
-* Check if the code is reporting errors, if so, refer to: :ref:`install_wiringpi`.
-* Has the code been compiled before running.
-* If all the above 3 conditions are OK, it may be that your wiringPi version (2.50) is not compatible with your Raspberry Pi 4B and above, refer to :ref:`install_wiringpi` to manually upgrade it to version 2.52.
-
-
-
-
+* Verifica che i collegamenti siano corretti.
+* Controlla se il codice riporta errori. In caso affermativo, consulta: :ref:`install_wiringpi`.
+* Assicurati che il codice sia stato compilato prima di eseguirlo.
+* Se tutti e tre i punti precedenti sono corretti, potrebbe essere che la tua versione di wiringPi (2.50) non sia compatibile con il tuo Raspberry Pi 4B o superiore. Consulta :ref:`install_wiringpi` per aggiornare manualmente alla versione 2.52.
 
 .. _faq_soc:
 
-If ``gpiozero`` doesn't work.
+Se ``gpiozero`` non funziona.
 -------------------------------------------------------------------------
 
-Our Raspberry Pi 5 GPIO Python tutorial is based on the gpiozero library, 
-and it has been thoroughly tested during the design process. 
+Il nostro tutorial GPIO per Raspberry Pi 5 si basa sulla libreria gpiozero ed è stato testato accuratamente durante il processo di progettazione.
 
-However, recent modifications to the Linux kernel on the Raspberry Pi OS [1] have changed the way GPIO system calls are handled, 
-which has caused the original Python library to be unable to access GPIO on the Raspberry Pi 5. 
-Our developers have reported this issue to the gpiozero library, 
-and the gpiozero developers are aware of the issue and are actively working on an update [2]. 
+Tuttavia, recenti modifiche al kernel Linux su Raspberry Pi OS [1] hanno cambiato il modo in cui vengono gestite le chiamate di sistema GPIO, 
+causando l’impossibilità della libreria Python originale di accedere a GPIO sul Raspberry Pi 5. I nostri sviluppatori hanno segnalato questo 
+problema al team della libreria gpiozero, e gli sviluppatori della gpiozero sono a conoscenza del problema e stanno lavorando attivamente a un aggiornamento [2].
 
 * [1] https://github.com/raspberrypi/linux/pull/6144
 * [2] https://github.com/gpiozero/gpiozero/issues/1166
 
-In the meantime, 
-we have found a temporary solution: by running the command below, the GPIO will function normally. 
+Nel frattempo, abbiamo trovato una soluzione temporanea: eseguendo il comando 
+seguente, il GPIO funzionerà normalmente.
 
 .. code-block::
 
     sudo ln -s gpiochip0 /dev/gpiochip4
 
-This solution will remain effective until the gpiozero library releases an appropriate fix.
-
+Questa soluzione sarà efficace fino a quando la libreria gpiozero non rilascerà un aggiornamento adeguato.

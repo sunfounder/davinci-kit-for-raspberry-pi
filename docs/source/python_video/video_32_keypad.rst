@@ -1,29 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community SunFounder per gli appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché Unirsi a Noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue abilità.
+    - **Anteprime Esclusive**: Accedi in anteprima a nuovi annunci di prodotti e contenuti esclusivi.
+    - **Sconti Speciali**: Approfitta di sconti riservati sui nostri prodotti più recenti.
+    - **Promozioni e Omaggi Festivi**: Partecipa a promozioni speciali e concorsi durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
 
-Video 32: Understanding and Using a Keypad with the Raspberry Pi
+Video 32: Comprendere e Utilizzare una Tastiera con il Raspberry Pi
 =======================================================================================
 
-Learn how to efficiently incorporate a keypad into your Raspberry Pi projects using passive row-column addressing for input reading.
+Scopri come integrare in modo efficiente una tastiera nei tuoi progetti Raspberry Pi utilizzando l'indirizzamento passivo riga-colonna per la lettura degli input.
 
-1. **Introduction**: Learn how to integrate a keypad into your Raspberry Pi projects.
-2. **Passive Row-Column Addressing**: Understand the concept of passive addressing for efficient keypad input reading.
-3. **Wiring Setup**: Discover the wiring setup using rows and columns for the keypad.
-4. **GPIO Pins Configuration**: Set up GPIO pins as outputs for rows and inputs for columns.
-5. **Key Labeling**: Create a matrix to label the keys on the keypad for easier reference.
-6. **Implementation**: Follow along with the coding process to incorporate the keypad into your projects.
+1. **Introduzione**: Impara a integrare una tastiera nei tuoi progetti Raspberry Pi.
+2. **Indirizzamento Passivo Riga-Colonna**: Comprendi il concetto di indirizzamento passivo per una lettura efficiente degli input della tastiera.
+3. **Configurazione dei Collegamenti**: Scopri come configurare i collegamenti con le righe e colonne della tastiera.
+4. **Configurazione dei Pin GPIO**: Imposta i pin GPIO come output per le righe e input per le colonne.
+5. **Etichettatura dei Tasti**: Crea una matrice per etichettare i tasti della tastiera per facilitarne il riferimento.
+6. **Implementazione**: Segui il processo di programmazione per integrare la tastiera nei tuoi progetti.
 
 
 **Video**

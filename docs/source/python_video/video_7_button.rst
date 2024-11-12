@@ -1,29 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di SunFounder per gli appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Unisciti a noi per esplorare a fondo il mondo di Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anticipo agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 
-Video 7: GPIO Inputs from Button Switch
+Video 7: Input GPIO da Interruttore a Pulsante
 =======================================================================================
 
-Learn how to simplify GPIO circuits for switches or push buttons by using the internal pull-up resistor in Raspberry Pi GPIO pins, including a demonstration of the concept, circuit setup, and Python code example to toggle an LED.
+Impara come semplificare i circuiti GPIO per interruttori o pulsanti utilizzando la resistenza pull-up interna nei pin GPIO di Raspberry Pi. Questa lezione include una dimostrazione del concetto, la configurazione del circuito e un esempio di codice Python per attivare un LED.
 
-1. Understanding pull-up and pull-down resistors in GPIO circuits.
-2. Demonstrating a circuit setup with a push button, pull-up resistor, and LED.
-3. Introducing the concept of using the internal pull-up resistor in Raspberry Pi GPIO pins.
-4. Explaining how to activate the internal pull-up resistor in the GPIO pin setup.
-5. Providing a Python code example to toggle an LED using a push button, utilizing the internal pull-up resistor.
-6. Highlighting the importance of toggle switches in practical applications and assigning a homework task to implement a toggle switch using the existing circuit.
+1. Comprensione delle resistenze pull-up e pull-down nei circuiti GPIO.
+2. Dimostrazione di un circuito con pulsante, resistenza pull-up e LED.
+3. Introduzione al concetto di utilizzo della resistenza pull-up interna nei pin GPIO del Raspberry Pi.
+4. Spiegazione su come attivare la resistenza pull-up interna nella configurazione dei pin GPIO.
+5. Esempio di codice Python per attivare un LED utilizzando un pulsante e la resistenza pull-up interna.
+6. Importanza degli interruttori toggle nelle applicazioni pratiche e compito a casa per implementare un interruttore toggle utilizzando il circuito esistente.
 
 **Video**
 

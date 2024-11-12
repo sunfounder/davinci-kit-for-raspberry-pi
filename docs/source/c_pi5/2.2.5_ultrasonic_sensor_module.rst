@@ -1,98 +1,93 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella comunità SunFounder per gli appassionati di Raspberry Pi, Arduino & ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra comunità e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri ultimi prodotti.
+    - **Promozioni e Omaggi Festivi**: Partecipa a concorsi e promozioni in occasione delle festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
-2.2.5 Ultrasonic Sensor Module
-==============================
+2.2.5 Sensore a Ultrasuoni
+=============================
 
-Introduction
---------------
+Introduzione
+---------------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+Il sensore a ultrasuoni utilizza onde ultrasoniche per rilevare oggetti con 
+precisione e misurare distanze. Emana onde ultrasoniche e le converte in 
+segnali elettronici.
 
-Components
-----------
+Componenti
+-------------
 
 .. image:: img/list_2.2.5.png
 
 
-Principle
----------
+Principio di Funzionamento
+------------------------------
 
-**Ultrasonic**
+**Ultrasuoni**
 
-Ultrasonic ranging module provides 2cm - 400cm non-contact measurement
-function, and the ranging accuracy can reach to 3mm. It can ensure that
-the signal is stable within 5m, and the signal is gradually weakened
-after 5m, till the 7m position disappears.
+Il modulo di misurazione a ultrasuoni offre una funzione di misurazione 
+senza contatto da 2cm a 400cm con una precisione di 3mm. Garantisce un 
+segnale stabile fino a 5m, che si indebolisce gradualmente fino a scomparire a 7m.
 
-The module includes ultrasonic transmitters, receiver and control
-circuit. The basic principles are as follows:
+Il modulo include trasmettitori e ricevitori ultrasonici e un circuito di 
+controllo. I principi di base sono i seguenti:
 
-(1)Use an IO flip-flop to process a high level signal of at least 10us.
+(1) Utilizzare un flip-flop IO per gestire un segnale di livello alto di almeno 10μs.
 
-(2)The module automatically sends eight 40khz and detects if there is a
-pulse signal return.
+(2) Il modulo invia automaticamente otto impulsi a 40kHz e rileva se c'è un 
+    segnale di ritorno.
 
-(3)If the signal returns, passing the high level, the high output IO
-duration is the time from the transmission of the ultrasonic wave to the
-return of it. Here, test distance = (high time x sound speed (340 m / s)
-/ 2.
+(3) Se il segnale ritorna, il livello alto dell’uscita IO indica il tempo 
+    trascorso dall'emissione alla ricezione dell'onda ultrasonica. La distanza di 
+    test è calcolata come = (tempo di livello alto x velocità del suono (340 m/s) / 2.
 
 .. image:: img/image217.png
     :width: 200
-
 
 
 .. image:: img/image328.png
     :width: 500
 
 
+Il diagramma temporale è mostrato di seguito. È sufficiente fornire un 
+breve impulso di 10μs all'input trigger per avviare la misurazione della 
+distanza, quindi il modulo emetterà un ciclo di 8 onde ultrasoniche a 40 kHz 
+e attiverà l'eco. È possibile calcolare la distanza in base all’intervallo di 
+tempo tra l'invio del segnale di trigger e la ricezione del segnale di eco.
 
-The timing diagram is shown below. You only need to supply a short 10us
-pulse for the trigger input to start the ranging, and then the module
-will send out an 8 cycle burst of ultrasound at 40 kHz and raise its
-echo. You can calculate the range through the time interval between
-sending trigger signal and receiving echo signal.
-
-Formula: us / 58 = centimeters or us / 148 =inch; or: the range = high
-level time \* velocity (340M/S) / 2; you are suggested to use
-measurement cycle over 60ms in order to prevent signal collisions of
-trigger signal and the echo signal.
+Formula: us / 58 = centimetri o us / 148 = pollici; oppure: distanza = tempo di 
+livello alto \* velocità (340 M/S) / 2; si consiglia di utilizzare un ciclo di 
+misurazione superiore a 60 ms per prevenire collisioni tra il segnale di trigger 
+e quello di eco.
 
 .. image:: img/image218.png
     :width: 800
 
 
-
-Schematic Diagram
------------------
+Schema Elettrico
+---------------------
 
 .. image:: img/image329.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+-------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: img/image220.png
     :width: 800
 
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -102,7 +97,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.5/
 
-**Step 3:** Compile the code.
+**Passo 3:** Compila il codice.
 
 .. raw:: html
 
@@ -112,7 +107,7 @@ Experimental Procedures
 
     gcc 2.2.5_Ultrasonic.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -122,15 +117,15 @@ Experimental Procedures
 
     sudo ./a.out
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+Dopo aver eseguito il codice, il modulo del sensore a ultrasuoni rileva la 
+distanza tra l'ostacolo davanti e il modulo stesso, visualizzando il valore 
+della distanza sullo schermo.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se il programma non funziona o viene visualizzato un messaggio di errore: \"wiringPi.h: Nessun file o directory di questo tipo", consulta :ref:`Il codice C non funziona?`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -152,7 +147,7 @@ value will be printed on the screen.
         struct timeval tv1;
         struct timeval tv2;
         long time1, time2;
-    float dis;
+        float dis;
 
         digitalWrite(Trig, LOW);
         delayMicroseconds(2);
@@ -160,7 +155,7 @@ value will be printed on the screen.
         digitalWrite(Trig, HIGH);
         delayMicroseconds(10);      
         digitalWrite(Trig, LOW);
-                                    
+                                      
         while(!(digitalRead(Echo) == 1));   
         gettimeofday(&tv1, NULL);           
 
@@ -178,7 +173,7 @@ value will be printed on the screen.
     int main(void)
     {
         float dis;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ // quando l'inizializzazione di wiringPi fallisce, stampa un messaggio a schermo
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -194,7 +189,7 @@ value will be printed on the screen.
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
@@ -204,35 +199,35 @@ value will be printed on the screen.
         pinMode(Trig, OUTPUT);
     }
 
-Initialize the ultrasonic pin; meanwhile, set Echo to input, Trig to
-output.
+Inizializza i pin dell'ultrasuono; nel frattempo, imposta Echo come input 
+e Trig come output.
 
 .. code-block:: c
 
     float disMeasure(void){};
 
-This function is used to realize the function of ultrasonic sensor by
-calculating the return detection distance.
+Questa funzione consente di misurare la distanza rilevata dal sensore 
+ultrasonico calcolando il tempo di ritorno.
 
 .. code-block:: c
 
     struct timeval tv1;
     struct timeval tv2;
 
-Struct timeval is a structure used to store the current time. The
-complete structure is as follows:
+La struct timeval è una struttura utilizzata per memorizzare il tempo attuale. 
+La struttura completa è la seguente:
 
 .. code-block:: c
 
     struct timeval
     {
-    __time_t tv_sec;        /* Seconds. */
-    __suseconds_t tv_usec;  /* Microseconds. */
+    __time_t tv_sec;        /* Secondi. */
+    __suseconds_t tv_usec;  /* Microsecondi. */
     };
 
-Here, tv_sec represents the seconds that Epoch spent when creating
-struct timeval. Tv_usec stands for microseconds or a fraction of
-seconds.
+Qui, tv_sec rappresenta i secondi trascorsi dall'Epoch al momento della 
+creazione di struct timeval. Tv_usec indica i microsecondi, ovvero una 
+frazione di secondo.
 
 .. code-block:: c
 
@@ -240,35 +235,37 @@ seconds.
     delayMicroseconds(10);     
     digitalWrite(Trig, LOW);
 
-A 10us ultrasonic pulse is being sent out.
+Viene inviato un impulso ultrasonico di 10 microsecondi.
 
 .. code-block:: c
 
     while(!(digitalRead(Echo) == 1));
     gettimeofday(&tv1, NULL);
 
-This empty loop is used to ensure that when the trigger signal is sent,
-there is no interfering echo signal and then get the current time.
+Questo ciclo vuoto viene utilizzato per assicurarsi che, quando il segnale 
+di attivazione viene inviato, non ci siano segnali di eco interferenti, 
+quindi viene registrato il tempo attuale.
 
 .. code-block:: c
 
     while(!(digitalRead(Echo) == 0)); 
     gettimeofday(&tv2, NULL);
 
-This empty loop is used to ensure that the next step is not performed
-until the echo signal is received and then get the current time.
+Questo ciclo vuoto serve a garantire che non venga eseguito il passo 
+successivo finché non viene ricevuto il segnale di eco; successivamente 
+viene registrato il tempo attuale.
 
 .. code-block:: c
 
     time1 = tv1.tv_sec * 1000000 + tv1.tv_usec;
     time2  = tv2.tv_sec * 1000000 + tv2.tv_usec;
 
-Convert the time stored by struct timeval into a full microsecond time.
+Converte il tempo memorizzato dalla struct timeval in microsecondi totali.
 
 .. code-block:: c
 
     dis = (float)(time2 - time1) / 1000000 * 34000 / 2;  
 
-The distance is calculated by the time interval and the speed of sound
-propagation. The speed of sound in the air: 34000cm/s.
+La distanza viene calcolata in base all'intervallo di tempo e alla velocità 
+di propagazione del suono. Velocità del suono nell'aria: 34000 cm/s.
 

@@ -1,104 +1,100 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi anticipatamente alle nuove presentazioni di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni festive e omaggi**: Partecipa a promozioni speciali e concorsi durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto per esplorare e creare insieme a noi? Clicca [|link_sf_facebook|] e unisciti subito!
 
-1.2.1 Active Buzzer
-===================
+1.2.1 Buzzer Attivo
+======================
 
-Introduction
-------------
+Introduzione
+---------------
 
-In this lesson, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+In questa lezione impareremo a far suonare un buzzer attivo tramite un 
+transistor PNP.
 
-Components
-----------
+Componenti
+-------------
 
 .. image:: img/list_1.2.1.png
 
 
-Principle
----------
+Principio
+------------
 
 **Buzzer**
 
-As a type of electronic buzzer with an integrated structure, buzzers,
-which are supplied by DC power, are widely used in computers, printers,
-photocopiers, alarms, electronic toys, automotive electronic devices,
-telephones, timers and other electronic products or voice devices.
-Buzzers can be categorized as active and passive ones (see the following
-picture). Turn the buzzer so that its pins are facing up, and the buzzer
-with a green circuit board is a passive buzzer, while the one enclosed
-with a black tape is an active one.
+Il buzzer è un tipo di dispositivo sonoro elettronico con una struttura 
+integrata, alimentato in corrente continua (DC). È ampiamente usato in 
+computer, stampanti, fotocopiatrici, allarmi, giocattoli elettronici, 
+dispositivi elettronici per auto, telefoni, timer e altri dispositivi 
+elettronici o sonori. I buzzer possono essere di due tipi: attivi e passivi 
+(vedi immagine seguente). Capovolgendo il buzzer con i pin rivolti verso 
+l’alto, noterai che quello con una scheda verde è passivo, mentre quello 
+avvolto in nastro nero è attivo.
 
-The difference between an active buzzer and a passive buzzer:
+La differenza tra un buzzer attivo e uno passivo:
 
 .. image:: img/image101.png
     :width: 400
     :align: center
 
 
-The difference between an active buzzer and a passive buzzer is: An
-active buzzer has a built-in oscillating source, so it will make sounds
-when electrified. But a passive buzzer does not have such source, so it
-will not beep if DC signals are used; instead, you need to use square
-waves whose frequency is between 2K and 5K to drive it. The active
-buzzer is often more expensive than the passive one because of multiple
-built-in oscillating circuits.
+La differenza principale è che un buzzer attivo ha una sorgente oscillante 
+integrata e quindi emette un suono quando viene alimentato. Un buzzer passivo, 
+invece, richiede segnali in forma d'onda quadra con una frequenza tra 2K e 
+5K per funzionare, in quanto privo di sorgente oscillante interna. Di solito, 
+il buzzer attivo è più costoso a causa della sua struttura interna.
 
-The following is the electrical symbol of a buzzer. It has two pins with
-positive and negative poles. With a + in the surface represents the
-anode and the other is the cathode.
+Di seguito trovi il simbolo elettrico di un buzzer. Ha due pin con polarità 
+positiva e negativa. Il simbolo + sulla superficie rappresenta l'anodo, mentre 
+l'altro pin è il catodo.
 
 .. image:: img/image102.png
     :width: 150
     :align: center
 
 
-You can check the pins of the buzzer, the longer one is the anode and
-the shorter one is the cathode. Please don’t mix them up when
-connecting, otherwise the buzzer will not make sound.
+Puoi riconoscere i pin del buzzer: il pin più lungo è l'anodo, mentre il più 
+corto è il catodo. È importante non invertire le polarità per evitare che il 
+buzzer non emetta suono.
 
-Schematic Diagram
------------------
+Schema Elettrico
+---------------------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+In questo esperimento, usiamo un buzzer attivo, un transistor PNP e una 
+resistenza da 1k tra la base del transistor e il GPIO per proteggerlo. 
+Quando il GPIO17 del Raspberry Pi è impostato a basso livello (0V) tramite 
+il programma, il transistor entra in conduzione a causa della saturazione 
+di corrente, facendo suonare il buzzer. Al contrario, quando il GPIO è 
+impostato a livello alto, il transistor si spegne e il buzzer smette di suonare.
 
 .. image:: img/image332.png
 
 
-Experimental Procedures
------------------------
+Procedura Sperimentale
+------------------------
 
-**Step 1:** Build the circuit. (Pay attention to poles of the buzzer:
-The one with + label is the positive pole and the other is the
-negative.)
+**Passo 1:** Monta il circuito. (Fai attenzione ai poli del buzzer: 
+il pin con l’etichetta + è il polo positivo, mentre l'altro è il polo negativo.)
 
 .. image:: img/image104.png
     :width: 800
 
 
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^
+Per Utenti del Linguaggio C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Open the code file.
+**Passo 2**: Apri il file del codice.
 
 .. raw:: html
 
@@ -108,7 +104,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.2.1/
 
-**Step 3**: Compile the code.
+**Passo 3**: Compila il codice.
 
 .. raw:: html
 
@@ -118,7 +114,7 @@ For C Language Users
 
     gcc 1.2.1_ActiveBuzzer.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**Passo 4**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -128,13 +124,13 @@ For C Language Users
 
     sudo ./a.out
 
-The code run, the buzzer beeps.
+Eseguito il codice, il buzzer emetterà un suono.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se, dopo aver eseguito il codice, non funziona o appare un messaggio di errore: "wiringPi.h: No such file or directory", fai riferimento a :ref:`Il codice C non funziona?`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -143,47 +139,47 @@ The code run, the buzzer beeps.
 
     #define BeepPin 0
     int main(void){
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+        if(wiringPiSetup() == -1){ //se l'inizializzazione di wiring fallisce, stampa un messaggio a schermo
             printf("setup wiringPi failed !");
             return 1;
         }
         
-        pinMode(BeepPin, OUTPUT);   //set GPIO0 output
+        pinMode(BeepPin, OUTPUT);   //imposta GPIO0 come output
         while(1){
-            //beep on
+            //attiva il buzzer
             printf("Buzzer on\n");
             digitalWrite(BeepPin, LOW);
             delay(100);
             printf("Buzzer off\n");
-            //beep off
+            //spegni il buzzer
             digitalWrite(BeepPin, HIGH);
             delay(100);
         }
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice** 
 
 .. code-block:: c
 
     digitalWrite(BeepPin, LOW);
 
-We use an active buzzer in this experiment, so it will make sound 
-automatically when connecting to the direct current. This sketch 
-is to set the I/O port as low level (0V), thus to manage the 
-transistor and make the buzzer beep. 
+In questo esperimento utilizziamo un buzzer attivo, che emette 
+automaticamente un suono quando collegato alla corrente continua. 
+Questo sketch imposta la porta I/O a livello basso (0V), gestendo 
+così il transistor per far suonare il buzzer.
 
 .. code-block:: c
 
     digitalWrite(BeepPin, HIGH);
 
-To set the I/O port as high level(3.3V), thus the transistor is 
-not energized and the buzzer doesn’t beep. 
+Impostando la porta I/O a livello alto (3,3V), il transistor non viene 
+alimentato e il buzzer non emette suono.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Per Utenti del Linguaggio Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Open the code file.
+**Passo 2**: Apri il file del codice.
 
 .. raw:: html
 
@@ -193,7 +189,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python
 
-**Step 3**: Run.
+**Passo 3**: Esegui.
 
 .. raw:: html
 
@@ -203,13 +199,13 @@ For Python Language Users
 
     sudo python3 1.2.1_ActiveBuzzer.py
 
-The code run, the buzzer beeps.
+Eseguito il codice, il buzzer emetterà un suono.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice qui sotto. Prima di farlo, devi accedere al percorso del codice sorgente come ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -220,68 +216,66 @@ The code run, the buzzer beeps.
     import RPi.GPIO as GPIO
     import time
 
-    # Set #17 as buzzer pin
+    # Imposta il pin #17 come pin del buzzer
     BeepPin = 17
 
     def setup():
-        # Set the GPIO modes to BCM Numbering
+        # Imposta le modalità GPIO con la numerazione BCM
         GPIO.setmode(GPIO.BCM)
-        # Set LedPin's mode to output, 
-        # and initial level to High(3.3v)
+        # Imposta il pin del Led come output e il livello iniziale su High (3.3v)
         GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.HIGH)
 
     def main():
         while True:
-            # Buzzer on (Beep)
+            # Accensione del Buzzer
             print ('Buzzer On')
             GPIO.output(BeepPin, GPIO.LOW)
             time.sleep(0.1)
-            # Buzzer off
+            # Spegnimento del Buzzer
             print ('Buzzer Off')
             GPIO.output(BeepPin, GPIO.HIGH)
             time.sleep(0.1)
 
     def destroy():
-        # Turn off buzzer
+        # Spegne il buzzer
         GPIO.output(BeepPin, GPIO.HIGH)
-        # Release resource
+        # Rilascia le risorse
         GPIO.cleanup()    
 
-    # If run this script directly, do:
+    # Se esegui questo script direttamente, avvia:
     if __name__ == '__main__':
         setup()
         try:
             main()
-        # When 'Ctrl+C' is pressed, the program 
-        # destroy() will be  executed.
+        # Quando viene premuto 'Ctrl+C', viene eseguita la funzione destroy()
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
     GPIO.output(BeepPin, GPIO.LOW)
 
-Set the buzzer pin as low level to make the buzzer beep.  
+Imposta il pin del buzzer a livello basso per far emettere suono al buzzer.  
 
 .. code-block:: python
 
     time.sleep(0.1)
 
-Wait for 0.1 second. Change the switching frequency by 
-changing this parameter. 
+Attendi 0,1 secondi. Modifica la frequenza di commutazione cambiando questo 
+parametro.
 
 .. note::
-    Not the sound frequency. Active Buzzer cannot change sound frequency.
+    Non si tratta della frequenza del suono. Il buzzer attivo non può cambiare la frequenza del suono.
 
 .. code-block:: python
 
     GPIO.output(BeepPin, GPIO.HIGH)
 
-Close the buzzer. 
+Spegne il buzzer.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+---------------------------
 
 .. image:: img/image105.jpeg

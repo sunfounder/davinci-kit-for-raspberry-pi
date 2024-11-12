@@ -1,37 +1,37 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder per Raspberry Pi, Arduino e ESP32 su Facebook! Unisciti a noi per esplorare a fondo Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche grazie al supporto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci e alle anteprime dei nuovi prodotti.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a promozioni e omaggi speciali durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 
-Video 1: First Boot
+Video 1: Primo Avvio
 =========================================================================================
 
-The video introduces a comprehensive Raspberry Pi tutorial series, covering everything from basic setup to advanced projects. 
-It emphasizes a thorough learning approach, focusing on circuits, sensors, and GPIO pins. SunFounder sponsors the series, 
-providing a comprehensive and affordable Raspberry Pi kit. The upcoming lessons will include setting up the Raspberry Pi, 
-basic Linux usage, Python overview, and working with GPIO pins. Additionally, it discusses the required hardware, 
-including the Raspberry Pi model, SD card, power supply, and HDMI adapter. 
-Another video focuses on customizing the Raspberry Pi desktop interface, 
-covering panel configuration, applet management, theme settings, and troubleshooting tips.
+Il video introduce una serie completa di tutorial su Raspberry Pi, che copre tutto, dalla configurazione di base a progetti avanzati. 
+Il focus è su un approccio di apprendimento approfondito, con particolare attenzione ai circuiti, ai sensori e ai pin GPIO. La serie è sponsorizzata da SunFounder, 
+che fornisce un kit Raspberry Pi completo e accessibile. Le prossime lezioni includeranno la configurazione del Raspberry Pi, 
+l'uso di base di Linux, una panoramica su Python e l'uso dei pin GPIO. Inoltre, vengono discussi l’hardware necessario, 
+inclusi il modello di Raspberry Pi, la scheda SD, l'alimentatore e l'adattatore HDMI. 
+Un altro video si concentra sulla personalizzazione dell'interfaccia desktop del Raspberry Pi, 
+coprendo la configurazione del pannello, la gestione delle applet, le impostazioni dei temi e i consigli per risolvere i problemi più comuni.
 
-1. Introduction to the Raspberry Pi tutorial series to meet the demand for systematic educational resources.
-2. Emphasis on comprehensive learning rather than project-based learning.
-3. Focus on circuits, sensors, and GPIO pins similar to Arduino for differentiation.
-4. SunFounder sponsorship providing a comprehensive and affordable Raspberry Pi kit.
-5. Overview of upcoming lessons, including basic setup, Linux usage, Python, and GPIO pins.
-6. Explanation of required hardware, such as the Raspberry Pi model, SD card, power supply, and HDMI adapter.
-7. Customization options for the Raspberry Pi desktop interface, including panel layout, applets, spacers, and themes.
-8. Troubleshooting tips for common issues like missing icons and misplaced panel elements.
+1. Introduzione alla serie di tutorial su Raspberry Pi per soddisfare la domanda di risorse educative sistematiche.
+2. Enfasi su un apprendimento completo piuttosto che basato su singoli progetti.
+3. Focus su circuiti, sensori e pin GPIO simili all'Arduino per una chiara differenziazione.
+4. Sponsorizzazione di SunFounder che offre un kit Raspberry Pi completo e accessibile.
+5. Panoramica delle prossime lezioni, tra cui configurazione di base, uso di Linux, Python e pin GPIO.
+6. Spiegazione dell'hardware richiesto, come il modello di Raspberry Pi, la scheda SD, l'alimentatore e l'adattatore HDMI.
+7. Opzioni di personalizzazione per l'interfaccia desktop di Raspberry Pi, inclusi layout del pannello, applet, spaziatori e temi.
+8. Suggerimenti per la risoluzione dei problemi comuni, come icone mancanti e elementi del pannello fuori posto.
 
 **Video**
 

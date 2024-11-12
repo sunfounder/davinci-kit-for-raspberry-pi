@@ -1,38 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di Facebook dedicata agli appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni speciali.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
-Show Number
+Mostrare un Numero
 =============================================
 
-In this lesson, we use processing to drive a 7-segment display to show a figure from 0 to 9 and A to F.
+In questa lezione, utilizziamo Processing per controllare un display a 7 segmenti e mostrare i numeri da 0 a 9 e da A a F.
 
-
-**Wiring**
+**Collegamenti**
 
 .. image:: img/image125.png
 
-
-**Sketch**
+**Codice**
 
 .. code-block:: arduino
 
 	import processing.io.*;
 
-	int SDI=17;   //serial data input
-	int RCLK=18;  //memory clock input(STCP)
-	int SRCLK =27;   //shift register clock input(SHCP)
-
+	int SDI=17;   // ingresso dati seriale
+	int RCLK=18;  // ingresso orologio memoria (STCP)
+	int SRCLK=27; // ingresso orologio registro di scorrimento (SHCP)
 
 	int[] SegCode= {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
 
@@ -81,16 +78,16 @@ In this lesson, we use processing to drive a 7-segment display to show a figure 
 		hc595_shift(SegCode[number]);
 	}
 
-**How it works?**
+**Come funziona?**
 
-Import ``processing.io.*`` and use the GPIO function library to control the digital tube pins.
+Importa ``processing.io.*`` e utilizza la libreria GPIO per controllare i pin del display a 7 segmenti.
 
-Define array ``SegCode = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}``
-which represents a segment code array from 0 to F in Hexadecimal (Common cathode).
+Definisci l'array ``SegCode = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}``
+che rappresenta un array di codici segmenti da 0 a F in esadecimale (catodo comune).
 
-``setup()`` function sets the three pins SDI,RCLK and SRCLK as output, and the initial data as 0.
+La funzione ``setup()`` imposta i tre pin SDI, RCLK e SRCLK come output e i dati iniziali a 0.
 
-``hc595_shift(int dat)`` function is used to shift the ``SegCode`` to 74HC595.
+La funzione ``hc595_shift(int dat)`` viene utilizzata per inviare il codice dei segmenti al 74HC595.
  
 .. code:: 
 
@@ -113,18 +110,19 @@ which represents a segment code array from 0 to F in Hexadecimal (Common cathode
 		delay(1);
 		GPIO.digitalWrite(RCLK, 0);
 	}
- 
-``n=(0x80 & (dat << i))`` means to shift dat to the left by ``i`` bits and then do the ``&`` operation with 0x80.
 
-The rule of ``&`` operation is that when both sides of ``&`` are 1, the result is 1, otherwise the result is 0.
+``n=(0x80 & (dat << i))`` significa spostare i dati a sinistra di ``i`` bit e poi eseguire l'operazione ``&`` con 0x80.
 
-For example, we assume dat=0x3f,i=2(0011 1111 << 2 shift to 1111 1100), then 1111 1100 & 1000 0000 (0x80)) = 1000 0000.
+La regola dell'operazione ``&`` è che il risultato è 1 solo quando entrambi i lati sono 1, altrimenti è 0.
 
-At last assign the dat data to SDI(DS) by bits.
+Ad esempio, assumendo dat=0x3f e i=2 (0011 1111 << 2 diventa 1111 1100), allora 1111 1100 & 1000 0000 (0x80) = 1000 0000.
+
+Infine, i dati vengono assegnati a SDI(DS) bit per bit.
  
-``digitalWrite(SRCLK, 1)`` when SRCLK generates a rising edge pulse from 0 to 1, the data will be transferred from the DS register to the shift register;
  
-``digitalWrite(RCLK, 1)`` when RCLK generates a rising edge pulse from 0 to 1, the data will be transferred from the shift register to the storage register.
+``digitalWrite(SRCLK, 1)`` quando SRCLK genera un impulso in salita da 0 a 1, i dati vengono trasferiti dal registro DS al registro di scorrimento;
+ 
+``digitalWrite(RCLK, 1)`` quando RCLK genera un impulso in salita da 0 a 1, i dati vengono trasferiti dal registro di scorrimento al registro di memoria.
 
 .. code::
 
@@ -132,11 +130,11 @@ At last assign the dat data to SDI(DS) by bits.
 	textAlign(CENTER,CENTER);
 	textSize(height*0.8);
 
-* ``fill()``: Sets the color used to fill shapes.
-* ``textAlign(CENTER,CENTER)``: Sets the current alignment for drawing text. The parameters ``LEFT``, ``CENTER``, and ``RIGHT`` set the display characteristics of the letters in relation to the values for the x and y parameters of the ``text()`` function.
-* ``textSize()``: Sets the current font size. This size will be used in all subsequent calls to the ``text()`` function. Font size is measured in units of pixels.
+* ``fill()``: Imposta il colore utilizzato per riempire le forme.
+* ``textAlign(CENTER,CENTER)``: Imposta l'allineamento corrente per disegnare il testo. I parametri ``LEFT``, ``CENTER`` e ``RIGHT`` definiscono le caratteristiche di visualizzazione delle lettere rispetto ai valori dei parametri x e y della funzione ``text()``.
+* ``textSize()``: Imposta la dimensione corrente del font. Questa dimensione verrà utilizzata in tutte le chiamate successive alla funzione ``text()``. La dimensione del font è misurata in pixel.
 
-These functions can customize the text style displayed on the processing.
+Queste funzioni personalizzano lo stile del testo visualizzato su Processing.
 
 .. code::
 
@@ -148,9 +146,9 @@ These functions can customize the text style displayed on the processing.
 		hc595_shift(SegCode[number]);
 	}
 
-The ``frameCount`` is a seed, which is related to ``frameRate``.
-By default ``frameRate`` is 60, which means that ``frameCount`` will accumulate 60 times per second.
+Il ``frameCount`` è un seme, correlato a ``frameRate``.
+Di default ``frameRate`` è 60, il che significa che ``frameCount`` si accumulerà 60 volte al secondo.
 
-Then we can let processing and 7-segment display to show the figure from 0 to 9 and A to F simultaneously.
+Così possiamo far sì che Processing e il display a 7 segmenti mostrino contemporaneamente i numeri da 0 a 9 e da A a F.
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+Per ulteriori informazioni, consulta `Processing Reference <https://processing.org/reference/>`_.

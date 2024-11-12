@@ -1,33 +1,28 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community SunFounder per appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-Video 58: Tracking an Object of Interest with Pan/Tilt Camera Mount
-=======================================================================================
+Video 58: Tracciamento di un Oggetto di Interesse con la Montatura Pan/Tilt della Camera
+============================================================================================
 
+Impara a sviluppare un sistema di tracciamento degli oggetti utilizzando Raspberry Pi, OpenCV e servomotori per mantenere un oggetto di interesse centrato nell'inquadratura.
 
-
-Learn to develop an object tracking system using Raspberry Pi, OpenCV, and servo motors to keep an object of interest centered in the frame.
-
-
-
-1. **Introduction**: An introduction to a series of Raspberry Pi tutorials sponsored by SunFounder.
-2. **Raspberry Pi Kit**: Utilizing the SunFounder Raphael kit for Raspberry Pi.
-3. **Object Tracking Objective**: Combining previous lessons on object identification and camera mounting to achieve object tracking.
-4. **Understanding Control Systems**: Explanation of the importance of understanding control systems for effective coding.
-5. **Error Calculation**: Demonstrating how to calculate the error between the object's position and the frame's center.
-6. **Pan and Tilt Movement**: Explanation of the logic behind adjusting pan and tilt angles based on the error.
-
+1. **Introduzione**: Introduzione a una serie di tutorial su Raspberry Pi sponsorizzati da SunFounder.
+2. **Kit Raspberry Pi**: Utilizzo del kit SunFounder Raphael per Raspberry Pi.
+3. **Obiettivo del Tracciamento Oggetti**: Combinazione delle lezioni precedenti su identificazione oggetti e montaggio camera per ottenere il tracciamento degli oggetti.
+4. **Comprensione dei Sistemi di Controllo**: Spiegazione dell'importanza della comprensione dei sistemi di controllo per una programmazione efficace.
+5. **Calcolo dell'Errore**: Dimostrazione di come calcolare l'errore tra la posizione dell'oggetto e il centro dell'inquadratura.
+6. **Movimento Pan e Tilt**: Spiegazione della logica per regolare gli angoli di pan e tilt in base all'errore rilevato.
 
 **Video**
 

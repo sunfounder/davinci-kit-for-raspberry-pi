@@ -1,75 +1,74 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
-1.8 123 Wooden Man
+1.8 123 Uomo di Legno
 ===========================
 
-Today, we are going to play a game of 123 wooden man.
+Oggi giocheremo a "123 uomo di legno".
 
-Click on the green flag to start the game, hold down the right arrow key on the keyboard to make the sprite go right. If the green light is on, the sprite can move; but when the red LED is on, you have to stop the sprite from moving; otherwise the buzzer will keep ringing.
+Clicca sulla bandiera verde per avviare il gioco. Tieni premuto il tasto freccia destra sulla tastiera per far muovere il personaggio verso destra. Se la luce verde è accesa, il personaggio può muoversi; ma quando si accende il LED rosso, devi fermare il personaggio; altrimenti, il buzzer continuerà a suonare.
 
 .. image:: img/1.14_header.png
 
-Required Components
+Componenti Necessari
 ------------------------
 
 .. image:: img/1.14_component.png
 
-Build the Circuit
----------------------
+Costruisci il Circuito
+-----------------------
 
 .. image:: img/1.14_fritzing.png
 
-
-Load the Code and See What Happens
+Carica il Codice e Guarda cosa Succede
 ---------------------------------------
 
-Load the code file (``1.8_123_wooden_man.sb3``) to Scratch 3.
+Carica il file di codice (``1.8_123_wooden_man.sb3``) in Scratch 3.
 
-When the green LED is on, you can use the right arrow key to control **Avery** to walk to the right; when the red LED is on, if you continue to let **Avery** move to the right, then an alarm will sound.
+Quando il LED verde è acceso, puoi usare il tasto freccia destra per controllare **Avery** che cammina verso destra; quando si accende il LED rosso, se continui a far muovere **Avery** verso destra, un allarme inizierà a suonare.
 
-Tips on Sprite
-----------------
-Delete the default sprite, then choose the **Avery Walking** sprite.
+Suggerimenti sugli Sprite
+-----------------------------
+Elimina lo sprite predefinito, quindi scegli lo sprite **Avery Walking**.
 
 .. image:: img/1.14_wooden1.png
   :width: 400
 
-Tips on Codes
---------------
+Suggerimenti sui Codici
+---------------------------
 
 .. image:: img/1.14_wooden2.png
   :width: 400
 
-Initialize all pins to high.
+Inizializza tutti i pin su high.
 
 .. image:: img/1.14_wooden3.png
   :width: 400
 
-When the game starts, assign the status variable to 1, indicating that the Avery Walking sprite is movable, and then set gpio18 to low, which lights up the green LED for 5s.
+Quando il gioco inizia, assegna alla variabile **status** il valore 1, indicando che lo sprite Avery Walking è attivo, quindi imposta gpio18 su low, accendendo il LED verde per 5s.
 
 .. image:: img/1.14_wooden4.png
   :width: 400
 
-Set gpio18 to high, then set gpio27 to low, which means turn off the green LED and light up the yellow LED for 0.5s.
+Imposta gpio18 su high, quindi gpio27 su low, per spegnere il LED verde e accendere il LED giallo per 0,5s.
 
 .. image:: img/1.14_wooden5.png
   :width: 400
 
-Assign the status variable to 0, which means the Avery Walking sprite is not moving; then set gpio27 to low and gpio17 to high, which turns off the yellow LED and then lights up the red LED for 3s. Finally, set gpio17 to high to turn off the red LED.
+Assegna alla variabile **status** il valore 0, indicando che lo sprite Avery Walking non è in movimento; quindi imposta gpio27 su low e gpio17 su high, spegnendo il LED giallo e accendendo il LED rosso per 3s. Infine, imposta gpio17 su high per spegnere il LED rosso.
 
 .. image:: img/1.14_wooden6.png
   :width: 400
 
-When we press the right arrow key on the keyboard, we need to switch the **Avery Walking** sprite to the next costume so that we can see Avery walking to the right. Then we need to determine the value of the **status** variable. If it is 0, it means that the Avery Walking sprite is not moving at this moment, and the buzzer will sound to warn you that you cannot press the right arrow key again.
+Quando premi il tasto freccia destra sulla tastiera, è necessario cambiare il costume dello sprite **Avery Walking** per mostrare il movimento verso destra. Poi, controlla il valore della variabile **status**. Se è 0, significa che lo sprite Avery Walking non dovrebbe muoversi in questo momento, e il buzzer suonerà per avvertirti di non premere il tasto freccia destra.

@@ -1,32 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di Facebook dedicata agli appassionati di SunFounder Raspberry Pi, Arduino ed ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni speciali.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
 .. _1.1.4_py_pi5:
 
-1.1.4 7-segment Display
+1.1.4 Display a 7 Segmenti
 =============================
 
-Introduction
+Introduzione
 -----------------
 
-Let's try to drive a 7-segment display to show a figure from 0 to 9 and
-A to F.
+Proviamo a gestire un display a 7 segmenti per visualizzare le cifre da 
+0 a 9 e le lettere da A a F.
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+Per questo progetto, avremo bisogno dei seguenti componenti.
 
 .. image:: ../python_pi5/img/1.1.4_7_segment_list.png
 
@@ -34,21 +34,19 @@ In this project, we need the following components.
 
    <br/>
 
-Schematic Diagram
----------------------
+Schema a Blocchi
+-----------------------
 
-Connect pin ST_CP of 74HC595 to Raspberry Pi GPIO18, SH_CP to GPIO27, DS
-to GPIO17, parallel output ports to 8 segments of the LED segment
-display. 
+Collega il pin ST_CP del 74HC595 al GPIO18 del Raspberry Pi, SH_CP al GPIO27, 
+DS al GPIO17 e le porte di uscita parallela agli 8 segmenti del display a 7 segmenti LED.
 
-Input data in DS pin to shift register when SH_CP (the clock
-input of the shift register) is at the rising edge, and to the memory
-register when ST_CP (the clock input of the memory) is at the rising
-edge. 
+Invia i dati al pin DS per il registro a scorrimento quando SH_CP (l’ingresso di 
+clock del registro a scorrimento) è al fronte di salita, e al registro di memoria 
+quando ST_CP (l’ingresso di clock della memoria) è al fronte di salita.
 
-Then you can control the states of SH_CP and ST_CP via the
-Raspberry Pi GPIOs to transform serial data input into parallel data
-output so as to save Raspberry Pi GPIOs and drive the display.
+In questo modo, puoi controllare gli stati di SH_CP e ST_CP tramite i GPIO del 
+Raspberry Pi per convertire i dati di ingresso seriale in uscita parallela, 
+risparmiando GPIO e guidando il display.
 
 ============ ======== ===
 T-Board Name physical BCM
@@ -59,15 +57,14 @@ GPIO27       Pin 13   27
 
 .. image:: ../python_pi5/img/1.1.4_7_segment_schematic.png
 
-
-Experimental Procedures
+Procedure Sperimentali
 ------------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../python_pi5/img/1.1.4_7-Segment_circuit.png
 
-**Step 2:** Get into the folder of the code.
+**Passo 2:** Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -77,7 +74,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/python-pi5
 
-**Step 3:** Run.
+**Passo 3:** Esegui il programma.
 
 .. raw:: html
 
@@ -87,16 +84,16 @@ Experimental Procedures
 
     sudo python3 1.1.4_7-Segment_zero.py
 
-After the code runs, you'll see the 7-segment display display 0-9, A-F.
+Dopo l'esecuzione del codice, vedrai il display a 7 segmenti mostrare le cifre da 0 a 9 e da A a F.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Se appare l’errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
 
-**Code**
+**Codice**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect. After confirming that there are no problems, you can use the Copy button to copy the modified code, then open the source code in Terminal via ``nano``  cammand and paste it.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice qui sotto. Ma prima, è necessario andare al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l’effetto. Dopo aver verificato che non ci siano problemi, puoi usare il pulsante Copy per copiare il codice modificato, poi aprire il codice sorgente nel Terminale tramite il comando ``nano`` e incollarlo.
 
 .. raw:: html
 
@@ -108,54 +105,54 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
    from gpiozero import OutputDevice
    from time import sleep
 
-   # GPIO pins connected to 74HC595 shift register
-   SDI = OutputDevice(17)   # Serial Data Input
-   RCLK = OutputDevice(18)  # Memory Clock Input (Register Clock)
-   SRCLK = OutputDevice(27) # Shift Register Clock
+   # Pin GPIO collegati al registro a scorrimento 74HC595
+   SDI = OutputDevice(17)   # Ingresso dati seriali
+   RCLK = OutputDevice(18)  # Ingresso clock della memoria (Clock del registro)
+   SRCLK = OutputDevice(27) # Clock del registro a scorrimento
 
-   # Hexadecimal digit codes for a common cathode 7-segment display
+   # Codici esadecimali per visualizzare le cifre su un display a 7 segmenti a catodo comune
    segCode = [
        0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
        0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
    ]
 
    def hc595_shift(data):
-       # Shift 8 bits of data into the 74HC595
+       # Scorrimento di 8 bit di dati nel 74HC595
        for bit in range(8):
-           # Set SDI high or low based on data bit
+           # Imposta SDI su alto o basso in base al bit di dati
            SDI.value = 0x80 & (data << bit)
-           # Trigger shift register clock
+           # Attiva il clock del registro a scorrimento
            SRCLK.on()
            sleep(0.001)
            SRCLK.off()
-       # Latch data to output by triggering memory clock
+       # Blocca i dati sull’uscita attivando il clock della memoria
        RCLK.on()
        sleep(0.001)
        RCLK.off()
 
    def display_all_on():
-       # Function to turn all segments on (for common cathode 7-segment display)
+       # Funzione per accendere tutti i segmenti (per display a 7 segmenti a catodo comune)
        all_on_code = 0x3f
        hc595_shift(all_on_code)
        print("Displaying all segments on")
 
    try:
        while True:
-           # Display each hexadecimal digit on 7-segment display
+           # Visualizza ciascuna cifra esadecimale sul display a 7 segmenti
            for code in segCode:
-               hc595_shift(code)  # Shift the code into 74HC595
-               # Print the displayed segment code
-               print(f"Displaying segCode[{segCode.index(code)}]: 0x{code:02X}")
-               sleep(0.5)  # Pause between displaying each digit
+               hc595_shift(code)  # Trasferisci il codice nel 74HC595
+               # Stampa il codice del segmento visualizzato
+                   print(f"Displaying segCode[{segCode.index(code)}]: 0x{code:02X}")
+               sleep(0.5)  # Pausa tra ogni cifra visualizzata
 
    except KeyboardInterrupt:
-       # Gracefully handle script interruption (e.g., Ctrl+C)
+       # Gestisce l'interruzione dello script (ad es. Ctrl+C)
        pass
 
 
-**Code Explanation**
+**Spiegazione del Codice**
 
-#. This snippet imports the necessary classes for the project. ``OutputDevice`` from ``gpiozero`` is used to control hardware components connected to GPIO pins, and ``sleep`` from ``time`` is for adding delays.
+#. Questo snippet importa le classi necessarie per il progetto. ``OutputDevice`` da ``gpiozero`` è usato per controllare i componenti hardware collegati ai pin GPIO, e ``sleep`` da ``time`` per aggiungere ritardi.
 
    .. code-block:: python
 
@@ -163,72 +160,72 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
        from gpiozero import OutputDevice
        from time import sleep
 
-#. SDI, RCLK, and SRCLK correspond to the Serial Data Input, Memory Clock Input (Register Clock), and Shift Register Clock pins of the 74HC595.
+#. SDI, RCLK e SRCLK corrispondono rispettivamente all'Ingresso Dati Seriali, all'Ingresso Clock della Memoria (Clock del Registro) e al Clock del Registro a Scorrimento del 74HC595.
 
    .. code-block:: python
 
-       # GPIO pins connected to 74HC595 shift register
-       SDI = OutputDevice(17)   # Serial Data Input
-       RCLK = OutputDevice(18)  # Memory Clock Input (Register Clock)
-       SRCLK = OutputDevice(27) # Shift Register Clock
+       # Pin GPIO collegati al registro a scorrimento 74HC595
+       SDI = OutputDevice(17)   # Ingresso dati seriali
+       RCLK = OutputDevice(18)  # Ingresso clock della memoria (Clock del registro)
+       SRCLK = OutputDevice(27) # Clock del registro a scorrimento
 
 
-#. ``segCode`` is an array containing hexadecimal codes for each digit to be displayed on the 7-segment display.
+#. ``segCode`` è un array che contiene i codici esadecimali per ogni cifra da visualizzare sul display a 7 segmenti.
 
    .. code-block:: python
 
-       # Hexadecimal digit codes for a common cathode 7-segment display
+       # Codici esadecimali per visualizzare le cifre su un display a 7 segmenti a catodo comune
        segCode = [
            0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
            0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
        ]
 
-#. This function shifts 8 bits of data into the 74HC595. It serially inputs each bit into ``SDI``, toggles ``SRCLK`` to shift the bit, and uses ``RCLK`` to latch the data to the output.
+#. Questa funzione scorre 8 bit di dati nel 74HC595. Immette ciascun bit in ``SDI``, attiva ``SRCLK`` per scorrere il bit e utilizza ``RCLK`` per bloccare i dati sull'uscita.
 
    .. code-block:: python
 
        def hc595_shift(data):
-           # Shift 8 bits of data into the 74HC595
+           # Scorrimento di 8 bit di dati nel 74HC595
            for bit in range(8):
-               # Set SDI high or low based on data bit
+               # Imposta SDI su alto o basso in base al bit di dati
                SDI.value = 0x80 & (data << bit)
-               # Trigger shift register clock
+               # Attiva il clock del registro a scorrimento
                SRCLK.on()
                sleep(0.001)
                SRCLK.off()
-           # Latch data to output by triggering memory clock
+           # Blocca i dati sull’uscita attivando il clock della memoria
            RCLK.on()
            sleep(0.001)
            RCLK.off()
 
-#. This function turns all segments of the display on by sending a specific code to ``hc595_shift``.
+#. Questa funzione accende tutti i segmenti del display inviando un codice specifico a ``hc595_shift``.
 
    .. code-block:: python
 
        def display_all_on():
-           # Function to turn all segments on (for common cathode 7-segment display)
+           # Funzione per accendere tutti i segmenti (per display a 7 segmenti a catodo comune)
            all_on_code = 0x3f
            hc595_shift(all_on_code)
            print("Displaying all segments on")
 
-#. In the main loop, each code in ``segCode`` is sent to the display in sequence, with a delay between each.
+#. Nel ciclo principale, ogni codice in ``segCode`` viene inviato al display in sequenza, con una pausa tra ciascuno.
 
    .. code-block:: python
 
        try:
            while True:
-               # Display each hexadecimal digit on 7-segment display
+               # Visualizza ciascuna cifra esadecimale sul display a 7 segmenti
                for code in segCode:
-                   hc595_shift(code)  # Shift the code into 74HC595
-                   # Print the displayed segment code
-                   print(f"Displaying segCode[{segCode.index(code)}]: 0x{code:02X}")
-                   sleep(0.5)  # Pause between displaying each digit
+                   hc595_shift(code)  # Trasferisci il codice nel 74HC595
+                   # Stampa il codice del segmento visualizzato
+                          print(f"Displaying segCode[{segCode.index(code)}]: 0x{code:02X}")
+                   sleep(0.5)  # Pausa tra ogni cifra visualizzata
 
-#. This part of the code gracefully handles script interruption (like Ctrl+C).
+#. Questa parte del codice gestisce l'interruzione dello script (come Ctrl+C) in modo sicuro.
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Gracefully handle script interruption (e.g., Ctrl+C)
+           # Gestisce l'interruzione dello script (ad es. Ctrl+C)
            pass
 

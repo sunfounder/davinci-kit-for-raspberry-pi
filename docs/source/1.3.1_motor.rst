@@ -1,105 +1,103 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao e benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi tecnici e post-vendita con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti e alle anticipazioni.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri ultimi prodotti.
+    - **Promozioni e omaggi festivi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi!
 
-1.3.1 Motor
+1.3.1 Motore
 =============
 
-Introduction
+Introduzione
 -----------------
 
-In this lesson, we will learn to how to use L293D to drive a DC motor
-and make it rotate clockwise and counterclockwise. Since the DC Motor
-needs a larger current, for safety purpose, here we use the Power Supply
-Module to supply motors.
+In questa lezione, impareremo a utilizzare l'L293D per controllare un motore 
+DC, facendolo ruotare in senso orario e antiorario. Poiché il motore DC 
+richiede una corrente elevata, per ragioni di sicurezza useremo il Modulo 
+di Alimentazione per alimentare i motori.
 
-Components
------------
+Componenti
+-------------
 
 .. image:: img/list_1.3.1.png
 
 
-Principle
----------
+Principio
+-----------
 
 **L293D**
 
-L293D is a 4-channel motor driver integrated by chip with high voltage
-and high current. It's designed to connect to standard DTL, TTL logic
-level, and drive inductive loads (such as relay coils, DC, Stepper
-Motors) and power switching transistors etc. DC Motors are devices that
-turn DC electrical energy into mechanical energy. They are widely used
-in electrical drive for their superior speed regulation performance.
+L'L293D è un driver motore a 4 canali integrato in un chip ad alta tensione e 
+corrente. È progettato per collegarsi a livelli logici standard DTL, TTL, e per 
+azionare carichi induttivi (come relè, motori DC, motori passo-passo) e transistor 
+per il controllo di potenza. I motori DC convertono l’energia elettrica in energia 
+meccanica e sono ampiamente usati per il loro eccellente controllo della velocità.
 
-See the figure of pins below. L293D has two pins (Vcc1 and Vcc2) for
-power supply. Vcc2 is used to supply power for the motor, while Vcc1 to
-supply for the chip. Since a small-sized DC motor is used here, connect
-both pins to +5V.
+Guarda l'immagine dei pin di seguito. L'L293D ha due pin (Vcc1 e Vcc2) per 
+l'alimentazione: Vcc2 alimenta il motore, mentre Vcc1 alimenta il chip. 
+Dato che qui utilizziamo un motore DC di piccole dimensioni, collega entrambi 
+i pin a +5V.
 
 .. image:: img/image111.png
 
 
-The following is the internal structure of L293D. Pin EN is an enable
-pin and only works with high level; A stands for input and Y for output.
-You can see the relationship among them at the right bottom. When pin EN
-is High level, if A is High, Y outputs high level; if A is Low, Y
-outputs Low level. When pin EN is Low level, the L293D does not work.
+La figura seguente mostra la struttura interna dell'L293D. Il pin EN è un pin 
+di abilitazione e funziona solo con livello alto; A rappresenta l’ingresso e Y 
+l’uscita. La relazione tra essi è mostrata in basso a destra. Quando EN è alto, 
+se A è alto, Y emette livello alto; se A è basso, Y emette livello basso. Quando 
+EN è basso, l'L293D non funziona.
 
 .. image:: img/image334.png
 
 
-**DC Motor**
+**Motore DC**
 
 .. image:: img/image114.jpeg
 
 
-This is a 5V DC motor. It will rotate when you give the two terminals of
-the copper sheet one high and one low level. For convenience, you can
-weld the pins to it.
+Questo è un motore DC a 5V. Ruota quando viene alimentato con una tensione tra 
+i due terminali. Per comodità, puoi saldare i pin.
 
 .. image:: img/image335.png
 
 
-**Power Supply Module**
+**Modulo di Alimentazione**
 
-In this experiment, it needs large currents to drive the motor
-especially when it starts and stops, which will severely interfere with
-the normal work of Raspberry Pi. Therefore, we separately supply power
-for the motor by this module to make it run safely and steadily.
+In questo esperimento, sono necessarie correnti elevate per alimentare il 
+motore, soprattutto durante l’avvio e l’arresto, il che potrebbe interferire 
+con il funzionamento del Raspberry Pi. Pertanto, alimentiamo separatamente il 
+motore con questo modulo per garantire stabilità e sicurezza.
 
-You can just plug it in the breadboard to supply power. It provides a
-voltage of 3.3V and 5V, and you can connect either via a jumper cap
-included.
+È sufficiente collegarlo alla breadboard per fornire alimentazione. Fornisce 
+una tensione di 3,3V e 5V, e puoi selezionare l’opzione tramite un ponticello 
+incluso.
 
 .. image:: img/image115.png
 
 
-Schematic Diagram
-------------------
+Diagramma Schematico
+------------------------
 
-Plug the power supply module in breadboard, and insert the jumper cap to
-pin of 5V, then it will output voltage of 5V. Connect pin 1 of L293D to
-GPIO22, and set it as high level. Connect pin2 to GPIO27, and pin7 to
-GPIO17, then set one pin high, while the other low. Thus you can change
-the motor’s rotation direction.
+Collega il modulo di alimentazione alla breadboard e inserisci il ponticello 
+sul pin da 5V, quindi erogherà una tensione di 5V. Collega il pin 1 dell'L293D 
+a GPIO22, impostandolo su livello alto. Collega il pin2 a GPIO27 e il pin7 a 
+GPIO17, impostando uno dei pin su alto e l’altro su basso. In questo modo puoi 
+cambiare la direzione di rotazione del motore.
 
 .. image:: img/image336.png
 
 
-Experimental Procedures
+Procedure Sperimentali
 --------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: img/1.3.1.png
     :width: 800
@@ -107,17 +105,17 @@ Experimental Procedures
 
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    Il modulo di alimentazione può essere collegato a una batteria da 9V 
+    tramite il connettore 9V incluso nel kit. Inserisci il ponticello del 
+    modulo di alimentazione nella striscia da 5V della breadboard.
 
 .. image:: img/image118.jpeg
 
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^^
+Per gli Utenti del Linguaggio C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Get into the folder of the code.
+**Passo 2**: Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -127,7 +125,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.3.1/
 
-**Step 3**: Compile.
+**Passo 3**: Compila.
 
 .. raw:: html
 
@@ -137,7 +135,7 @@ For C Language Users
 
     gcc 1.3.1_Motor.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**Passo 4**: Esegui il file eseguibile sopra.
 
 .. raw:: html
 
@@ -147,15 +145,15 @@ For C Language Users
 
     sudo ./a.out
 
-As the code runs, the motor first rotates clockwise for 5s then stops for 5s, 
-after that, it rotates anticlockwise for 5s; subsequently, the motor stops 
-for 5s. This series of actions will be executed repeatedly.  
+Quando il codice viene eseguito, il motore ruota prima in senso orario 
+per 5s, quindi si ferma per 5s. Successivamente ruota in senso antiorario 
+per 5s e si ferma di nuovo per 5s. Questa sequenza di azioni verrà eseguita 
+ripetutamente.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-
-**Code**
+    Se il programma non funziona, o se appare l’errore: \"wiringPi.h: No such file or directory\", consulta :ref:`Il codice C non funziona?`.
+**Codice**
 
 .. code-block:: c
 
@@ -168,7 +166,7 @@ for 5s. This series of actions will be executed repeatedly.
 
     int main(void){
         int i;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+        if(wiringPiSetup() == -1){ //in caso di errore di inizializzazione stampa il messaggio
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -212,24 +210,24 @@ for 5s. This series of actions will be executed repeatedly.
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
     digitalWrite(MotorEnable, HIGH);
 
-Enable the L239D.
+Abilita l’L293D.
 
 .. code-block:: c
 
     digitalWrite(MotorPin1, HIGH);
     digitalWrite(MotorPin2, LOW);
 
-Set a high level for 2A(pin 7); since 1,2EN(pin 1) is in 
-high level, 2Y will output high level.
+Imposta un livello alto per 2A (pin 7); poiché 1,2EN (pin 1) è a livello alto, 
+2Y emetterà un livello alto.
 
-Set a low level for 1A, then 1Y will output low level, and 
-the motor will rotate.
+Imposta un livello basso per 1A, così 1Y emetterà un livello basso e il motore 
+inizierà a ruotare.
 
 .. code-block:: c
 
@@ -237,25 +235,25 @@ the motor will rotate.
     delay(1000);
     }
 
-this loop is to delay for 3*1000ms.
+Questo ciclo è un ritardo per 3*1000ms.
 
 .. code-block:: c
 
     digitalWrite(MotorEnable, LOW)
 
-If 1,2EN (pin1) is in low level, L293D does not work. Motor stops rotating.
+Quando 1,2EN (pin1) è a livello basso, l’L293D non funziona. Il motore si ferma.
 
 .. code-block:: c
 
     digitalWrite(MotorPin1, LOW)
     digitalWrite(MotorPin2, HIGH)
 
-Reverse the current flow of the motor, then the motor will rotate reversely.
+Inverte la direzione della corrente nel motore, facendolo ruotare nel senso opposto.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Per Utenti del Linguaggio Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Get into the folder of the code.
+**Passo 2**: Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -265,7 +263,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python
 
-**Step 3**: Run.
+**Passo 3**: Esegui.
 
 .. raw:: html
 
@@ -275,15 +273,15 @@ For Python Language Users
 
     sudo python3 1.3.1_Motor.py
 
-As the code runs, the motor first rotates clockwise for 5s then stops for 5s,
-after that, it rotates anticlockwise for 5s; subsequently, the motor stops 
-for 5s. This series of actions will be executed repeatedly.  
+Quando il codice viene eseguito, il motore ruota prima in senso orario per 5s, 
+poi si ferma per 5s, successivamente ruota in senso antiorario per 5s, e si 
+ferma di nuovo per 5s. Questa sequenza di azioni si ripete continuamente.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    È possibile **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice qui sotto. Tuttavia, prima è necessario spostarsi nel percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python``. 
     
 .. raw:: html
 
@@ -296,130 +294,129 @@ for 5s. This series of actions will be executed repeatedly.
     import RPi.GPIO as GPIO
     import time
     
-    # Set up pins
+    # Imposta i pin
     MotorPin1   = 17
     MotorPin2   = 27
     MotorEnable = 22
     
     def setup():
-    	# Set the GPIO modes to BCM Numbering
+    	# Imposta la numerazione GPIO in modalità BCM
     	GPIO.setmode(GPIO.BCM)
-    	# Set pins to output
+    	# Configura i pin come output
     	GPIO.setup(MotorPin1, GPIO.OUT)
     	GPIO.setup(MotorPin2, GPIO.OUT)
     	GPIO.setup(MotorEnable, GPIO.OUT, initial=GPIO.LOW)
     
-    # Define a motor function to spin the motor
-    # direction should be 
-    # 1(clockwise), 0(stop), -1(counterclockwise)
+    # Definisce una funzione per controllare il motore
+    # direzione deve essere 
+    # 1 (orario), 0 (fermo), -1 (antiorario)
     def motor(direction):
-    	# Clockwise
+    	# Rotazione in senso orario
     	if direction == 1:
-    		# Set direction
+    		# Imposta direzione
     		GPIO.output(MotorPin1, GPIO.HIGH)
     		GPIO.output(MotorPin2, GPIO.LOW)
-    		# Enable the motor
+    		# Abilita il motore
     		GPIO.output(MotorEnable, GPIO.HIGH)
     		print ("Clockwise")
-    	# Counterclockwise
+    	# Rotazione in senso antiorario
     	if direction == -1:
-    		# Set direction
+    		# Imposta direzione
     		GPIO.output(MotorPin1, GPIO.LOW)
     		GPIO.output(MotorPin2, GPIO.HIGH)
-    		# Enable the motor
+    		# Abilita il motore
     		GPIO.output(MotorEnable, GPIO.HIGH)
     		print ("Counterclockwise")
     	# Stop
     	if direction == 0:
-    		# Disable the motor
+    		# Disabilita il motore
     		GPIO.output(MotorEnable, GPIO.LOW)
     		print ("Stop")
     
     def main():
     
-    	# Define a dictionary to make the script more readable
-    	# CW as clockwise, CCW as counterclockwise, STOP as stop
+    	# Crea un dizionario per rendere lo script più leggibile
+    	# CW per orario, CCW per antiorario, STOP per fermare
     	directions = {'CW': 1, 'CCW': -1, 'STOP': 0}
     	while True:
-    		# Clockwise
+    		# Rotazione in senso orario
     		motor(directions['CW'])
     		time.sleep(5)
-    		# Stop
+    		# Fermo
     		motor(directions['STOP'])
     		time.sleep(5)
-    		# Anticlockwise
+    		# Rotazione in senso antiorario
     		motor(directions['CCW'])
     		time.sleep(5)
-    		# Stop
+    		# Fermo
     		motor(directions['STOP'])
     		time.sleep(5)
     
     def destroy():
-    	# Stop the motor
+    	# Ferma il motore
     	GPIO.output(MotorEnable, GPIO.LOW)
-    	# Release resource
+    	# Rilascia le risorse
     	GPIO.cleanup()    
     
-    # If run this script directly, do:
+    # Se si esegue direttamente questo script:
     if __name__ == '__main__':
     	setup()
     	try:
     		main()
-    	# When 'Ctrl+C' is pressed, the program 
-    	# destroy() will be executed.
+    	# Quando viene premuto 'Ctrl+C', il programma
+    	# eseguirà destroy().
     	except KeyboardInterrupt:
     		destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
     def motor(direction):
-        # Clockwise
+        # Rotazione oraria
         if direction == 1:
-            # Set direction
+            # Imposta direzione
             GPIO.output(MotorPin1, GPIO.HIGH)
             GPIO.output(MotorPin2, GPIO.LOW)
-            # Enable the motor
+            # Abilita il motore
             GPIO.output(MotorEnable, GPIO.HIGH)
             print ("Clockwise")
     ...
 
-Create a function, **motor()** whose variable is direction. As the
-condition that direction=1 is met, the motor rotates clockwise; when
-direction=-1, the motor rotates anticlockwise; and under the condition
-that direction=0, it stops rotating.
+Crea una funzione **motor()** il cui parametro è direzione. Quando la 
+condizione direction=1 è soddisfatta, il motore ruota in senso orario; 
+se direction=-1, ruota in senso antiorario; e quando direction=0, si ferma.
 
 .. code-block:: python
 
     def main():
-        # Define a dictionary to make the script more readable
-        # CW as clockwise, CCW as counterclockwise, STOP as stop
+        # Crea un dizionario per rendere lo script più leggibile
+        # CW per orario, CCW per antiorario, STOP per fermo
         directions = {'CW': 1, 'CCW': -1, 'STOP': 0}
         while True:
-            # Clockwise
+            # Rotazione oraria
             motor(directions['CW'])
             time.sleep(5)
-            # Stop
+            # Fermo
             motor(directions['STOP'])
             time.sleep(5)
-            # Anticlockwise
+            # Rotazione antioraria
             motor(directions['CCW'])
             time.sleep(5)
-            # Stop
+            # Fermo
             motor(directions['STOP'])
             time.sleep(5)
         
-In the main（）function, create an array, directions[], in which CW is
-equal to 1, the value of CCW is -1, and the number 0 refers to Stop.
+Nella funzione main(), crea un dizionario directions[], dove CW è uguale a 1, 
+CCW è uguale a -1, e 0 si riferisce al comando Stop.
 
-As the code runs, the motor first rotates clockwise for 5s then stop for
-5s, after that, it rotates anticlockwise for 5s; subsequently, the motor
-stops for 5s. This series of actions will be executed repeatedly.
+Quando il codice viene eseguito, il motore ruota inizialmente in senso orario 
+per 5 secondi, poi si ferma per altri 5 secondi. Successivamente ruota in senso 
+antiorario per 5 secondi, e infine si ferma di nuovo per 5 secondi. Questa sequenza di azioni si ripeterà.
 
-Now, you should see the motor blade rotating.
+Ora dovresti vedere le pale del motore ruotare.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+-----------------------------
 
 .. image:: img/image119.jpeg

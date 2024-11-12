@@ -1,31 +1,31 @@
+
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community su Facebook per gli appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e anteprime esclusive.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Giveaway Festivi**: Partecipa a concorsi e promozioni in occasione delle festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-3.1.1 Counting Device
+3.1.1 Dispositivo Contatore
 ==============================
 
-Introduction
------------------
+Introduzione
+-------------
 
-Here we will make a number-displaying counter system, consisting of a
-PIR sensor and a 4-digit segment display. When the PIR detects that
-someone is passing by, the number on the 4-digit segment display will
-add 1. You can use this counter to count the number of people walking 
-through the passageway.
+Qui realizzeremo un sistema di conteggio che visualizza numeri, composto da 
+un sensore PIR e un display a 4 cifre. Quando il sensore PIR rileva il passaggio 
+di una persona, il numero sul display a 4 cifre aumenterà di 1. Puoi utilizzare 
+questo contatore per contare il numero di persone che attraversano un passaggio.
 
-Components
----------------
+Componenti
+-------------
 
 .. image:: img/list_Counting_Device1.png
     :align: center
@@ -33,8 +33,8 @@ Components
 .. image:: img/list_Counting_Device2.png
     :align: center
 
-Schematic Diagram
-----------------------
+Schema di Collegamento
+-------------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -51,16 +51,16 @@ GPIO26       Pin 37   25       26
 .. image:: img/Schematic_three_one1.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procedure Sperimentali
+---------------------------
 
-**Step 1**: Build the circuit.
+**Passo 1**: Costruisci il circuito.
 
 .. image:: img/image235.png
    :alt: 计数器_bb
    :width: 800
 
-**Step 2**: Go to the folder of the code.
+**Passo 2**: Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -70,7 +70,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.1/
 
-**Step 3**: Compile the code.
+**Passo 3**: Compila il codice.
 
 .. raw:: html
 
@@ -80,7 +80,7 @@ Experimental Procedures
 
     gcc 3.1.1_CountingDevice.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Passo 4**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -90,63 +90,62 @@ Experimental Procedures
  
     sudo ./a.out
  
-After the code runs, when the PIR detects that someone is passing by,
-the number on the 4-digit segment display will add 1.
+Dopo l'esecuzione del codice, quando il PIR rileva il passaggio di una 
+persona, il numero sul display a 4 cifre aumenterà di 1.
 
-There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
-
+Sul modulo PIR sono presenti due potenziometri: uno per regolare la 
+sensibilità e l'altro per regolare la distanza di rilevamento. Per far 
+funzionare meglio il modulo PIR, è necessario ruotare entrambi in senso 
+antiorario fino al massimo.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-    
-**Code Explanation**
+    Se non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta :ref:`Il codice C non funziona?`.
+
+**Spiegazione del Codice**
 
 .. code-block:: c
 
     void display()
     {
-        clearDisplay();
-        pickDigit(0);
+        clearDisplay();
+        pickDigit(0);
         hc595_shift(number[counter % 10]);
 
-        clearDisplay();
-        pickDigit(1);
+        clearDisplay();
+        pickDigit(1);
         hc595_shift(number[counter % 100 / 10]);
 
-        clearDisplay();
-        pickDigit(2);
+        clearDisplay();
+        pickDigit(2);
         hc595_shift(number[counter % 1000 / 100]);
-     
-        clearDisplay();
-        pickDigit(3);
+     
+        clearDisplay();
+        pickDigit(3);
         hc595_shift(number[counter % 10000 / 1000]);
     }
 
-First, start the fourth segment display, write the single-digit number.
-Then start the third segment display, and type in the tens digit; after
-that, start the second and the first segment display respectively, and
-write the hundreds and thousands digits respectively. Because the
-refreshing speed is very fast, we see a complete four-digit display.
+Inizia con il quarto segmento del display e scrive il numero delle unità. 
+Poi passa al terzo segmento e scrive le decine; successivamente visualizza 
+le centinaia e le migliaia sui segmenti restanti. Poiché la velocità di 
+aggiornamento è molto elevata, vediamo un display completo a quattro cifre.
 
 .. code-block:: c
 
     void loop(){
         int currentState =0;
         int lastState=0;
-        while(1){
-            display();
+        while(1){
+            display();
             currentState=digitalRead(sensorPin);
             if((currentState==0)&&(lastState==1)){
                 counter +=1;
-            }
+            }
             lastState=currentState;
-        }
+        }
     }
 
-This is the main function: display the number on the 4-digit segment
-display and read the PIR value. When the PIR detects that someone is
-passing by, the number on the 4-digit segment display will add 1.
+Questa è la funzione principale: visualizza il numero sul display a 4 cifre e 
+legge il valore del PIR. Quando il PIR rileva il passaggio di una persona, il 
+numero sul display a 4 cifre aumenta di 1.
+

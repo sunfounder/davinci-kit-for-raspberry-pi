@@ -1,79 +1,74 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di SunFounder per appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa ai concorsi e alle promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare insieme a noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-2.1.5 Keypad
-============
+2.1.5 Tastierino
+==================
 
-Introduction
-------------
+Introduzione
+----------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Un tastierino è un array rettangolare di pulsanti. In questo progetto, lo 
+useremo per inserire caratteri.
 
-Components
-----------
+Componenti
+-------------
 
 .. image:: img/list_2.1.5_keypad.png
 
+Principio
+-----------
 
-Principle
----------
+**Tastierino**
 
-**Keypad**
-
-A keypad is a rectangular array of 12 or 16 OFF-(ON) buttons. Their
-contacts are accessed via a header suitable for connection with a ribbon
-cable or insertion into a printed circuit board. In some keypads, each
-button connects with a separate contact in the header, while all the
-buttons share a common ground.
+Un tastierino è un array rettangolare di 12 o 16 pulsanti OFF-(ON). 
+I contatti sono accessibili tramite un connettore adatto per un cavo 
+a nastro o per l'inserimento in un circuito stampato. In alcuni tastierini, 
+ogni pulsante è collegato a un contatto separato nel connettore, mentre tutti 
+i pulsanti condividono una massa comune.
 
 .. image:: img/image314.png
 
+Più spesso, i pulsanti sono codificati a matrice, il che significa che ognuno di 
+essi collega una coppia unica di conduttori in una matrice. Questa configurazione 
+è adatta per un polling da parte di un microcontrollore, programmato per inviare 
+un impulso di uscita su ciascuno dei quattro fili orizzontali a turno. Durante 
+ogni impulso, controlla in sequenza i restanti quattro fili verticali per 
+determinare quale di essi, se presente, sta trasmettendo un segnale. Per evitare 
+comportamenti imprevedibili degli ingressi del microcontrollore quando non è 
+presente alcun segnale, dovrebbero essere aggiunti resistori di pullup o pulldown ai 
+fili di ingresso.
 
-More often, the buttons are matrix encoded, meaning that each of them
-bridges a unique pair of conductors in a matrix. This configuration is
-suitable for polling by a microcontroller, which can be programmed to
-send an output pulse to each of the four horizontal wires in turn.
-During each pulse, it checks the remaining four vertical wires in
-sequence, to determine which one, if any, is carrying a signal. Pullup
-or pulldown resistors should be added to the input wires to prevent the
-inputs of the microcontroller from behaving unpredictably when no signal
-is present.
-
-Schematic Diagram
------------------
+Schema Elettrico
+-------------------
 
 .. image:: img/image315.png
-
 
 .. image:: img/image316.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+-------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Assembla il circuito.
 
 .. image:: img/image186.png
     :width: 800
 
+Per gli Utenti di Linguaggio C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^^^
-
-**Step 2:** Open the code file.
+**Passo 2:** Apri il file del codice.
 
 .. raw:: html
 
@@ -83,7 +78,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.1.5/
 
-**Step 3:** Compile the code.
+**Passo 3:** Compila il codice.
 
 .. raw:: html
 
@@ -93,7 +88,7 @@ For C Language Users
 
     gcc 2.1.5_Keypad.cpp -lwiringPi
 
-**Step 4:** Run.
+**Passo 4:** Esegui.
 
 .. raw:: html
 
@@ -103,14 +98,13 @@ For C Language Users
 
     sudo ./a.out
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Dopo l'esecuzione del codice, i valori dei pulsanti premuti sul tastierino 
+(Valore del pulsante) verranno visualizzati sullo schermo.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-    
-**Code**
+    Se non funziona dopo l'esecuzione o viene visualizzato un messaggio di errore: \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`Il codice C non funziona?`.
+**Codice** 
 
 .. code-block:: c
 
@@ -148,7 +142,7 @@ Value) will be printed on the screen.
         unsigned char pressed_keys[BUTTON_NUM];
         unsigned char last_key_pressed[BUTTON_NUM];
 
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ //in caso di errore nella configurazione iniziale, stampa un messaggio a schermo
             printf("setup wiringPi failed !");
             return 1; 
         }
@@ -225,7 +219,7 @@ Value) will be printed on the screen.
         return -1;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
@@ -238,8 +232,8 @@ Value) will be printed on the screen.
     unsigned char rowPins[ROWS] = {1, 4, 5, 6}; 
     unsigned char colPins[COLS] = {12, 3, 2, 0};
 
-Declare each key of the matrix keyboard to the array keys[] and define
-the pins on each row and column.
+Dichiara ciascun tasto della tastiera a matrice nell'array keys[] e definisce
+i pin di ogni riga e colonna.
 
 .. code-block:: c
 
@@ -253,16 +247,16 @@ the pins on each row and column.
             delay(100);
         }
 
-This is the part of the main function that reads and prints the button
-value.
+Questa parte della funzione principale legge e stampa il valore del pulsante
+premuto.
 
-The function keyRead() will read the state of every button.
+La funzione keyRead() legge lo stato di ogni pulsante.
 
-KeyCompare() and keyCopy() are used to judge whether the state of a
-button has changed (that is, a button has been pressed or released).
+KeyCompare() e keyCopy() vengono utilizzate per verificare se lo stato di un
+pulsante è cambiato (cioè se è stato premuto o rilasciato).
 
-keyPrint() will print the button value of the button whose current level
-is high level (the button is pressed).
+keyPrint() stampa il valore del pulsante che si trova attualmente ad un livello
+alto (cioè il pulsante è premuto).
 
 .. code-block:: c
 
@@ -284,23 +278,23 @@ is high level (the button is pressed).
         }
     }
 
-This function assigns a high level to each row in turn, and when the key
-in the column is pressed, the column in which the key is located gets a
-high level. After the two-layer loop judgment, the key state compilation
-will generate an array (reasult[]).
+Questa funzione assegna un livello alto a ciascuna riga a turno, e quando viene
+premuto un pulsante in una colonna, la colonna in cui si trova il pulsante ottiene un
+livello alto. Dopo il giudizio del ciclo a due livelli, la compilazione dello stato del
+pulsante genererà un array (result[]).
 
-When pressing button 3:
+Quando si preme il pulsante 3:
 
 .. image:: img/image187.png
 
 
-RowPin [0] writes in the high level, and colPin[2] gets the high level.
-ColPin [0], colPin[1], colPin[3] get the low level.
+RowPin[0] scrive il livello alto e colPin[2] ottiene il livello alto.
+ColPin[0], colPin[1], colPin[3] ottengono il livello basso.
 
-This gives us 0,0,1,0. When rowPin[1], rowPin[2] and rowPin[3] are
-written in high level, colPin[0]~colPin[4] will get low level.
+Questo produce 0,0,1,0. Quando rowPin[1], rowPin[2] e rowPin[3] sono scritti ad un livello alto, 
+colPin[0]~colPin[4] ottengono un livello basso.
 
-After the loop judgment is completed, an array will be generated:
+Dopo il completamento del giudizio del ciclo, si genera un array:
 
 .. code-block:: c
 
@@ -327,14 +321,13 @@ After the loop judgment is completed, an array will be generated:
         }
     }
 
+Queste due funzioni vengono utilizzate per determinare se lo stato del tasto è cambiato,
+ad esempio quando si rilascia il pulsante premuto \'3\' o si preme \'2\', keyCompare()
+restituisce false.
 
-These two functions are used to judge whether the key state has changed,
-for example when you release your hand when pressing \'3\' or pressing
-\'2\', keyCompare() returns false.
-
-KeyCopy() is used to re-write the current button value for the a array
-(last_key_pressed[BUTTON_NUM]) after each comparison. So we can compare
-them next time.
+KeyCopy() viene utilizzata per riscrivere il valore corrente del pulsante per l'array a
+(last_key_pressed[BUTTON_NUM]) dopo ogni confronto. Così possiamo confrontarli la
+volta successiva.
 
 .. code-block:: c
 
@@ -351,15 +344,15 @@ them next time.
         printf("\n");
     }
 
-This function is used to print the value of the button currently
-pressed. If the button \'1\' is pressed, the \'1\' will be printed. If the
-button \'1\' is pressed and the button \'3\' is pressed, the \'1, 3\' will be
-printed.
+Questa funzione stampa il valore del pulsante attualmente premuto. Se viene premuto
+il pulsante '1', verrà stampato '1'. Se vengono premuti i pulsanti '1' e '3', verrà
+stampato '1, 3'.
 
-For Python Language Users
+
+Per Utenti Python
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Open the code file.
+**Passo 2:** Apri il file del codice.
 
 .. raw:: html
 
@@ -369,7 +362,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -379,17 +372,15 @@ For Python Language Users
 
     sudo python3 2.1.5_Keypad.py
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Dopo aver eseguito il codice, i valori dei pulsanti premuti sulla tastiera (valore del pulsante)
+verranno visualizzati sullo schermo.
 
-
-
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di procedere, devi accedere al percorso del codice sorgente come ``davinci-kit-for-raspberry-pi/python``.
+
 .. raw:: html
 
     <run></run>
@@ -440,20 +431,19 @@ Value) will be printed on the screen.
         last_key_pressed = pressed_keys
         time.sleep(0.1)
 
-    # Define a destroy function for clean up everything after the script finished
+    # Definisci una funzione di distruzione per pulire tutto al termine dello script
     def destroy():
-        # Release resource
+        # Rilascia risorse
         GPIO.cleanup() 
 
-    if __name__ == '__main__':     # Program start from here
+    if __name__ == '__main__':     # Il programma inizia da qui
         try:
             setup()
             while True:
                 loop()
-        except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt:   # Quando viene premuto 'Ctrl+C', la funzione destroy() viene eseguita.
             destroy()
-
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
@@ -461,15 +451,15 @@ Value) will be printed on the screen.
         global keypad, last_key_pressed
         rowsPins = [18,23,24,25]
         colsPins = [10,22,27,17]
-        keys = ["1","2","3","A",
-                "4","5","6","B",
-                "7","8","9","C",
+        keys = ["1","2","3","A",                
+                "4","5","6","B",                
+                "7","8","9","C",                
                 "*","0","#","D"]
         keypad = Keypad(rowsPins, colsPins, keys)
         last_key_pressed = []
 
-Declare each key of the matrix keyboard to the array keys[] and define
-the pins on each row and column.
+Dichiara ogni tasto della tastiera a matrice nell'array keys[] e definisce
+i pin di ogni riga e colonna.
 
 .. code-block:: python
 
@@ -481,23 +471,19 @@ the pins on each row and column.
         last_key_pressed = pressed_keys
         time.sleep(0.1)
 
-This is the part of the main function that reads and prints the button
-value.
+Questa è la parte della funzione principale che legge e stampa il valore
+del tasto premuto.
 
-The function keyRead() will read the state of every button.
+La funzione keyRead() legge lo stato di ogni tasto.
 
-The statement if len(pressed_keys) != 0 and last_key_pressed !=
-pressed_keys is used to judge
+L'istruzione if len(pressed_keys) != 0 and last_key_pressed != pressed_keys 
+viene utilizzata per determinare se è stato premuto un tasto e lo stato del 
+tasto stesso. (Se premi '3' mentre premi '1', la condizione è vera.)
 
-whether a key is pressed and the state of the pressed button. (If you
-press \'3\' when you press \'1\', the judgement is tenable.)
+Stampa il valore del tasto premuto attualmente quando la condizione è verificata.
 
-Prints the value of the currently pressed key when the condition is
-tenable.
-
-The statement last_key_pressed = pressed_keys assigns the state of each
-judgment to an array last_key_pressed to facilitate the next round of
-conditional judgment.
+L'istruzione last_key_pressed = pressed_keys assegna lo stato di ogni verifica a 
+un array last_key_pressed per facilitare il prossimo ciclo di verifica.
 
 .. code-block:: python
 
@@ -512,32 +498,31 @@ conditional judgment.
                 GPIO.output(row, GPIO.LOW)
             return pressed_keys
 
-This function assigns a high level to each row in turn, and when the
-button in the column is pressed, the column in which the key is located
-gets a high level. After the two-layer loop is judged, the value of the
-button whose state is 1 is stored in the array pressed_keys.
+Questa funzione assegna un livello alto a ciascuna riga a turno e, quando
+viene premuto il tasto in una colonna, la colonna in cui si trova il tasto
+ottiene un livello alto. Dopo aver eseguito il loop a due livelli, il valore 
+del tasto il cui stato è 1 viene memorizzato nell'array pressed_keys.
 
-If you press the key \'3\':
+Se premi il tasto '3':
 
 .. image:: img/image187.png
 
 
-rowPins[0] is written in high level, and colPins[2] gets high level.
+rowPins[0] viene impostato su alto, e colPins[2] ottiene il livello alto.
 
-colPins[0]、colPins[1]、colPins[3] get low level.
+colPins[0], colPins[1], colPins[3] ottengono livello basso.
 
-There are four states:0, 0, 1, 0; and we write \'3\' into pressed_keys.
+Gli stati sono quattro: 0, 0, 1, 0; e scriviamo '3' in pressed_keys.
 
-When rowPins[1] , rowPins[2] , rowPins[3] are written into high level,
-colPins[0] ~ colPins[4] get low level.
+Quando rowPins[1], rowPins[2], rowPins[3] sono impostati su alto,
+colPins[0] ~ colPins[4] ottengono livello basso.
 
-The loop stopped, there returns pressed_keys = \'3\'.
+Il ciclo si interrompe e viene restituito pressed_keys = '3'.
 
-If you press the buttons \'1\' and \'3\', there will return pressed_keys =
-[\'1\',\'3\'].
+Se premi i tasti '1' e '3', verrà restituito pressed_keys = ['1','3'].
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+--------------------------
 
 .. image:: img/image188.jpeg
 

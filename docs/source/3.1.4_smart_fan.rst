@@ -1,34 +1,34 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community su Facebook di appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci l'esplorazione di Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: risolvi i problemi post-vendita e le sfide tecniche grazie all'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: accedi in anteprima agli annunci di nuovi prodotti e curiosità.
+    - **Sconti speciali**: approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: partecipa a promozioni e giveaway per le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare insieme a noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-3.1.4 Smart Fan
-=================
+3.1.4 Ventilatore Intelligente
+=================================
 
-Introduction
------------------
+Introduzione
+---------------
 
-In this course, we will use motors, buttons and thermistors to make a
-manual + automatic smart fan whose wind speed is adjustable.
+In questo corso, utilizzeremo motori, pulsanti e termistori per creare un 
+ventilatore intelligente manuale + automatico, con velocità del vento regolabile.
 
-Components
-------------------
+Componenti
+------------
 
 .. image:: img/list_Smart_Fan.png
     :align: center
 
-Schematic Diagram
-------------------------
+Schema Elettrico
+------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -45,20 +45,20 @@ GPIO13       Pin 33   23       13
     :width: 500
     :align: center
 
-Experimental Procedures
------------------------------
+Procedura Sperimentale
+-------------------------
 
-**Step 1:** Build the circuit.
+**Step 1:** Costruisci il circuito.
 
 .. image:: img/image245.png
-   :alt: Smart Fan_bb
+   :alt: Ventilatore_Intelligente_bb
    :width: 800
    :align: center
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    Il modulo di alimentazione può utilizzare una batteria da 9V con 
+    l'apposito connettore incluso nel kit. Inserisci il ponticello del 
+    modulo di alimentazione nella striscia di bus da 5V della breadboard.
 
 .. image:: img/image118.jpeg
    :alt: \_MG_2084
@@ -66,10 +66,10 @@ Experimental Procedures
    :height: 0.94375in
    :align: center
 
-**For C Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^
+**Per utenti del linguaggio C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Get into the folder of the code.
+**Step 2:** Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -79,7 +79,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/3.1.4/
 
-**Step 3**: Compile.
+**Step 3:** Compila.
 
 .. raw:: html
 
@@ -89,7 +89,7 @@ Experimental Procedures
 
     gcc 3.1.4_SmartFan.c -lwiringPi -lm
 
-**Step 4**: Run the executable file above.
+**Step 4:** Esegui il file compilato.
 
 .. raw:: html
 
@@ -99,21 +99,20 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, start the fan by pressing the button. Every time you
-press, 1 speed grade is adjusted up or down. There are **5** kinds of
-speed grades: **0~4**. When set to the 4\ :sup:`th` speed grade and you
-press the button, the fan stops working with a **0** wind speed.
+All’avvio del codice, premi il pulsante per accendere il ventilatore. Ogni 
+volta che premi, la velocità aumenta o diminuisce di una tacca. Sono disponibili 
+**5** livelli di velocità: **0~4**. Quando è impostato sulla 4a velocità e premi 
+il pulsante, il ventilatore si ferma con velocità del vento **0**.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se il programma non funziona dopo l'esecuzione o appare il messaggio di 
+    errore: "wiringPi.h: No such file or directory", fai riferimento a :ref:`Il codice C non funziona?`.
 
+Quando la temperatura aumenta o diminuisce di oltre 2°C, la velocità aumenta o 
+diminuisce automaticamente di 1 livello.
 
-Once the temperature goes up or down for more than 2℃, the speed
-automatically gets 1-grade faster or slower.
-
-
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
@@ -130,8 +129,8 @@ automatically gets 1-grade faster or slower.
         return t;
     }
 
-Temperture() works by converting thermistor values read by ADC0834 into
-temperature values. Refer to :ref:`2.2.2 Thermistor` for more details.
+La funzione **temperature()** converte i valori del termistore letti da 
+ADC0834 in valori di temperatura. Per ulteriori dettagli consulta :ref:`2.2.2 Termistore`.
 
 .. code-block:: c
 
@@ -148,9 +147,9 @@ temperature values. Refer to :ref:`2.2.2 Thermistor` for more details.
         return level;    
     }
 
-This function controls the rotating speed of the motor. The range of the
-**Level**: **0-4** (level **0** stops the working motor). One level
-adjustment stands for a **25%** change of the wind speed.
+Questa funzione controlla la velocità di rotazione del motore. 
+**Livello**: **0-4** (il livello **0** ferma il motore). Ogni 
+livello rappresenta un cambiamento del **25%** nella velocità del vento.
 
 .. code-block:: c
 
@@ -185,22 +184,22 @@ adjustment stands for a **25%** change of the wind speed.
         return 0;
     }
 
-The function **main()** contains the whole program process as shown:
+La funzione **main()** racchiude l'intero processo del programma come segue:
 
-1) Constantly read the button state and the current temperature.
+1) Legge costantemente lo stato del pulsante e la temperatura attuale.
 
-2) Every press makes level\ **+1** and at the same time, the temperature
-   is updated. The **Level** ranges **1~4**.
+2) Ogni pressione incrementa di **+1** il livello e aggiorna la temperatura. 
+I livelli vanno da **1** a **4**.
 
-3) As the fan works ( the level is **not 0**), the temperature is under
-   detection. A **2℃\ +** change causes the up and down of the level.
+3) Mentre il ventilatore è in funzione (livello diverso da **0**), la 
+temperatura viene monitorata. Una variazione di **2°C** comporta l'aumento o la diminuzione del livello.
 
-4) The motor changes the rotating speed with the **Level**.
+4) Il motore modifica la velocità di rotazione in base al **livello**.
 
-**For Python Language Users**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Per Utenti Python**
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Get into the folder of the code.
+**Step 2**: Entra nella cartella del codice.
 
 .. raw:: html
 
@@ -210,7 +209,7 @@ The function **main()** contains the whole program process as shown:
 
     cd ~/davinci-kit-for-raspberry-pi/python
 
-**Step 3**: Run.
+**Step 3**: Esegui.
 
 .. raw:: html
 
@@ -220,19 +219,21 @@ The function **main()** contains the whole program process as shown:
 
     sudo python3 3.1.4_SmartFan.py
 
-As the code runs, start the fan by pressing the button. Every time you
-press, 1 speed grade is adjusted up or down. There are **5** kinds of
-speed grades: **0~4**. When set to the 4\ :sup:`th` speed grade and you
-press the button, the fan stops working with a **0** wind speed.
+Quando il codice è in esecuzione, accendi il ventilatore premendo il pulsante. 
+Ogni volta che premi, la velocità viene aumentata o diminuita di un livello. 
+Sono disponibili **5** livelli di velocità: **0~4**. Quando è impostato al 4° 
+livello e premi il pulsante, il ventilatore si ferma con una velocità **0**.
 
-Once the temperature goes up or down for more than 2℃, the speed
-automatically gets 1-grade faster or slower.
+Quando la temperatura sale o scende di più di 2°C, la velocità aumenta o 
+diminuisce automaticamente di un livello.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
+    Puoi **Modificare/Ripristinare/Copiare/Eseguire/Interrompere** il codice 
+    qui sotto. Prima di farlo, devi accedere alla directory del codice come 
+    ``davinci-kit-for-raspberry-pi/python``.
     
 .. raw:: html
 
@@ -245,7 +246,7 @@ automatically gets 1-grade faster or slower.
     import ADC0834
     import math
 
-    # Set up pins
+    # Configurazione dei pin
     MotorPin1   = 5
     MotorPin2   = 6
     MotorEnable = 13
@@ -305,7 +306,7 @@ automatically gets 1-grade faster or slower.
                     level = level +1
                     markTemp=currentTemp             
             level = motor(level)
-            
+
 
     def destroy():
         GPIO.output(MotorEnable, GPIO.LOW)
@@ -320,7 +321,7 @@ automatically gets 1-grade faster or slower.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
@@ -333,8 +334,8 @@ automatically gets 1-grade faster or slower.
         Fah = Cel * 1.8 + 32
         return Cel
 
-temperture() works by converting thermistor values read by **ADC0834**
-into temperature values. Refer to :ref:`2.2.2 Thermistor` for more details.
+La funzione **temperature()** converte i valori del termistore letti da **ADC0834** 
+in valori di temperatura. Per maggiori dettagli consulta :ref:`2.2.2 Termistore`.
 
 .. code-block:: python
 
@@ -348,10 +349,9 @@ into temperature values. Refer to :ref:`2.2.2 Thermistor` for more details.
         p_M1.ChangeDutyCycle(level*25)
         return level
 
-
-This function controls the rotating speed of the motor. The range of the
-**Lever**: **0-4** (level **0** stops the working motor). One level
-adjustment stands for a **25%** change of the wind speed.
+Questa funzione controlla la velocità di rotazione del motore. Il range di 
+**Livello** va da **0 a 4** (livello **0** ferma il motore). Ogni livello 
+rappresenta un cambiamento del **25%** nella velocità del vento.
 
 .. code-block:: python
 
@@ -376,21 +376,20 @@ adjustment stands for a **25%** change of the wind speed.
                     markTemp=currentTemp             
             level = motor(level)
 
+La funzione **main()** racchiude l'intero processo del programma:
 
-The function **main()** contains the whole program process as shown:
+1) Legge costantemente lo stato del pulsante e la temperatura corrente.
 
-1) Constantly read the button state and the current temperature.
+2) Ogni pressione incrementa il livello di **+1** e allo stesso tempo aggiorna 
+   la temperatura. Il **Livello** varia da **1 a 4**.
 
-2) Every press makes level\ **+1** and at the same time, the temperature
-   is updated. The **Level** ranges **1~4**.
+3) Mentre il ventilatore è attivo (livello diverso da **0**), la temperatura 
+   viene monitorata. Una variazione di **±2°C** comporta un aumento o una diminuzione del livello.
 
-3) As the fan works ( the level is **not 0**), the temperature is under
-   detection. A **2℃\ +** change causes the up and down of the level.
+4) Il motore modifica la velocità di rotazione in base al **livello**.
 
-4) The motor changes the rotating speed with the **Level**.
-
-Phenomenon Picture
-------------------------
+Immagine del Fenomeno
+-------------------------
 
 .. image:: img/image246.png
    :align: center

@@ -1,28 +1,28 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue abilità.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato alle novità sui prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni e Concorsi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
-1.1.1 Blinking LED
+1.1.1 LED Lampeggiante
 =========================
 
-Introduction
+Introduzione
 -----------------
 
-In this lesson, we will learn how to make a blinking LED by programming.
-Through your settings, your LED can produce a series of interesting
-phenomena. Now, go for it.
+In questa lezione impareremo a far lampeggiare un LED programmando.
+Attraverso le tue impostazioni, il LED può produrre una serie di effetti
+interessanti. Ora, inizia subito!
 
-Components
+Componenti
 ------------------
 
 .. image:: img/blinking_led_list.png
@@ -31,33 +31,30 @@ Components
 
 
 .. note::
-    In order to proceed smoothly, you need to bring your own
-    Raspberry Pi, TF card and Raspberry Pi power.
+    Per procedere senza problemi, è necessario disporre di un Raspberry Pi, 
+    una scheda TF e l’alimentazione per Raspberry Pi.
 
-
-Principle
+Principio
 -----------
 
 **Breadboard**
 
-A breadboard is a construction base for prototyping of electronics. It
-is used to build and test circuits quickly before finishing any circuit
-design. And it has many holes into which components mentioned above can
-be inserted like ICs and resistors as well as jumper wires. The
-breadboard allows you to plug in and remove components easily.
+La breadboard è una base per prototipi utilizzata per costruire e testare 
+rapidamente circuiti elettronici prima di completare il design definitivo. 
+È dotata di numerosi fori in cui è possibile inserire componenti come IC, 
+resistenze e fili jumper, consentendo di collegare e scollegare facilmente 
+i componenti.
 
-The picture shows the internal structure of a full+ breadboard. Although
-these holes on the breadboard appear to be independent of each other,
-they are actually connected to each other through metal strips
-internally.
+L’immagine mostra la struttura interna di una breadboard completa. Sebbene 
+i fori sembrino indipendenti tra loro, sono in realtà collegati tramite strisce 
+metalliche.
 
 .. image:: img/image41.png
 
 **LED**
 
-LED is a kind of diode. LED will shine only if the long pin of LED is
-connected to the positive electrode and the short pin is connected to
-negative electrode.
+Il LED è un tipo di diodo e brilla solo se il pin lungo del LED è collegato 
+al polo positivo e il pin corto al polo negativo.
 
 .. |image42| image:: img/image42.png
 
@@ -65,25 +62,22 @@ negative electrode.
 
 |image42|\ |image43|
 
-The LED can not be directly connected to power supply, which can damage
-component. A resistor with 160Ω or larger (work in 5V) must be connected
-in series in the circuit of LED.
+Il LED non può essere collegato direttamente all’alimentazione, poiché 
+potrebbe danneggiarsi. È necessario inserire in serie una resistenza di 
+almeno 160Ω (a 5V) nel circuito del LED.
 
+**Resistenza**
 
+La resistenza è un elemento elettronico che limita la corrente. Una resistenza 
+fissa ha un valore non modificabile, mentre il potenziometro o la resistenza 
+variabile possono essere regolati.
 
-**Resistor**
-
-Resistor is an electronic element that can limit the branch current. A
-fixed resistor is a kind of resistor whose resistance cannot be changed,
-while that of a potentiometer or a variable resistor can be adjusted.
-
-Fixed resistor is applied in this kit. In the circuit, it is essential
-to protect the connected components. The following pictures show a real
-object, 220Ω resistor and two generally used circuit symbols of
-resistor. Ω is the unit of resistance and the larger units include KΩ,
-MΩ, etc. Their relationship can be shown as follows: 1 MΩ=1000 KΩ, 1 KΩ
-= 1000 Ω. Normally, the value of resistance is marked on it. So if you
-see these symbols in a circuit, it means that there is a resistor.
+Nella confezione trovi una resistenza fissa, essenziale per proteggere i 
+componenti collegati. Di seguito sono riportati una resistenza da 220Ω e 
+due simboli usati nei circuiti. Ω è l'unità di misura della resistenza; 
+le unità superiori sono KΩ e MΩ. Le relazioni sono: 1 MΩ = 1000 KΩ e 
+1 KΩ = 1000 Ω. Il valore della resistenza è generalmente indicato. 
+Se vedi questi simboli in un circuito, significa che c’è una resistenza.
 
 .. image:: img/image44.png
 
@@ -93,33 +87,31 @@ see these symbols in a circuit, it means that there is a resistor.
 
 |image45|\ |image46|
 
-When using a resistor, we need to know its resistance first. Here are
-two methods: you can observe the bands on the resistor, or use a
-multimeter to measure the resistance. You are recommended to use the
-first method as it is more convenient and faster. To measure the value,
-use multimeter.
+Per usare una resistenza, è importante conoscerne il valore. Puoi osservare 
+le bande colorate sulla resistenza o usare un multimetro. Si consiglia il 
+primo metodo per comodità. Per misurare il valore, usa un multimetro.
 
-As shown in the card, each color stands for a number.
+Come mostrato nella tabella, ogni colore rappresenta un numero.
 
 .. image:: img/image47.jpeg
 
-Schematic Diagram
----------------------
+Diagramma Schematico
+------------------------
 
-In this experiment, connect a 220Ω resistor to the anode (the long pin
-of the LED), then the resistor to 3.3 V, and connect the cathode (the
-short pin) of the LED to GPIO17 of Raspberry Pi. Therefore, to turn on
-an LED, we need to make GPIO17 low (0V) level. We can get this
-phenomenon by programming.
+In questo esperimento, collega una resistenza da 220Ω all’anodo (pin lungo) 
+del LED, poi la resistenza a 3,3V e il catodo (pin corto) del LED a GPIO17 
+del Raspberry Pi. Per accendere il LED, bisogna impostare GPIO17 su livello 
+basso (0V), ottenibile tramite programmazione.
 
 .. note::
 
-    **Pin11** refers to the 11th pin of the Raspberry Pi from left to right, and its corresponding **wiringPi** and **BCM** pin numbers are shown in the following table.
+    **Pin11** si riferisce all'undicesimo pin del Raspberry Pi da sinistra a 
+    destra. I numeri corrispondenti **wiringPi** e **BCM** sono riportati 
+    nella seguente tabella.
 
-In the C language related content, we make GPIO0 equivalent to 0 in the
-wiringPi. Among the Python language related content, BCM 17 is 17 in the
-BCM column of the following table. At the same time, they are the same
-as the 11th pin on the Raspberry Pi, Pin 11.
+Nel contesto del linguaggio C, GPIO0 equivale a 0 in wiringPi. In Python, 
+BCM 17 corrisponde al numero 17 nella colonna BCM della tabella seguente. 
+Entrambi corrispondono all'11° pin del Raspberry Pi, Pin 11.
 
 ============ ======== ======== ====
 T-Board Name physical wiringPi BCM
@@ -130,45 +122,43 @@ GPIO17       Pin 11   0        17
     :width: 800
     :align: center
 
-Experimental Procedures
+Procedura dell'Esperimento
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Passaggio 1:** Assembla il circuito.
 
 .. image:: img/image49.png
     :width: 800
     :align: center
 
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Per gli Utenti del Linguaggio C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
-1) If you use a screen, you're recommended to take the following steps.
+1) Se utilizzi uno schermo, ti consigliamo di seguire questi passaggi.
 
-Go to **~/** and find the folder
+Vai su **~/** e trova la cartella
 **davinci-kit-for-raspberry-pi**.
 
-Find **C** in the folder, right-click on it and select **Open in
-Terminal**.
+Trova **C** nella cartella, fai clic con il tasto destro e seleziona **Apri in Terminale**.
 
 .. image:: img/image50.png
     :width: 800
     :align: center
 
-Then a window will pop up as shown below. So now you've entered the path
-of the code **1.1.1_BlinkingLed.c** .
+A questo punto, si aprirà una finestra come mostrato di seguito. Ora ti trovi 
+nel percorso del codice **1.1.1_BlinkingLed.c**.
 
 .. image:: img/image51.png
     :width: 800
     :align: center
 
-In the following lessons, we will use command to enter the code file
-instead of right-clicking. But you can choose the method you prefer.
+Nelle lezioni successive, utilizzeremo i comandi per entrare nel file di 
+codice, ma puoi scegliere il metodo che preferisci.
 
-
-2) If you log into the Raspberry Pi remotely, use ``cd`` to change directory:
+2) Se accedi al Raspberry Pi in remoto, usa ``cd`` per cambiare directory:
 
 .. raw:: html
 
@@ -179,12 +169,12 @@ instead of right-clicking. But you can choose the method you prefer.
    cd ~/davinci-kit-for-raspberry-pi/c/1.1.1/
 
 .. note::
-    Change directory to the path of the code in this experiment via cd.
+    Cambia la directory al percorso del codice in questo esperimento tramite cd.
 
-In either way, now you are in the folder C. The subsequent
-procedures based on these two methods are the same. Let's move on.
+In entrambi i modi, ora ti trovi nella cartella C. Le procedure successive per 
+entrambi i metodi sono le stesse. Andiamo avanti.
 
-**Step 3:** Compile the code
+**Passo 3:** Compila il codice.
 
 .. raw:: html
 
@@ -195,16 +185,15 @@ procedures based on these two methods are the same. Let's move on.
    gcc 1.1.1_BlinkingLed.c -o BlinkingLed -lwiringPi
 
 .. note::
-    gcc is GNU Compiler Collection. Here, it functions like
-    compiling the C language file *1_BlinkingLed.c* and outputting an
-    executable file.
+    gcc è il GNU Compiler Collection. Qui viene usato per compilare il file 
+    C *1_BlinkingLed.c* e generare un file eseguibile.
 
-In the command, ``-o`` means outputting (the character immediately
-following -o is the filename output after compilation, and an executable
-named ``BlinkingLed`` will generate here) and ``-lwiringPi`` is to load
-the library wiringPi (``l`` is the abbreviation of library).
+Nel comando, ``-o`` indica l’output (il carattere immediatamente successivo 
+a -o è il nome del file generato dopo la compilazione, e qui verrà creato un 
+eseguibile chiamato ``BlinkingLed``) e ``-lwiringPi`` serve a caricare la 
+libreria wiringPi (``l`` sta per library).
 
-**Step 4:** Run the executable file output in the previous step.
+**Passo 4:** Esegui il file eseguibile creato nel passaggio precedente.
 
 .. raw:: html
 
@@ -216,24 +205,21 @@ the library wiringPi (``l`` is the abbreviation of library).
 
 .. note::
 
-   To control the GPIO, you need to run the program, by the
-   command, sudo(superuser do). The command ``./`` indicates the current
-   directory. The whole command is to run the ``BlinkingLed`` in the
-   current directory.
+   Per controllare i GPIO, è necessario eseguire il programma con il comando 
+   sudo (superuser do). Il comando ``./`` indica la directory corrente. Il 
+   comando completo serve a eseguire ``BlinkingLed`` nella directory corrente.
 
 .. image:: img/image52.png
     :width: 800
     :align: center
 
-After the code runs, you will see the LED flashing.
+Dopo aver eseguito il codice, vedrai il LED lampeggiare.
 
 .. note::
 
-   If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+   Se non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta :ref:`Il codice C non funziona?`.
 
-If you want to edit the code file ``1.1.1_BlinkingLed.c``, press ``Ctrl +
-C`` to stop running the code. Then type the following command to open
-it:
+Se desideri modificare il file di codice ``1.1.1_BlinkingLed.c``, premi ``Ctrl + C`` per interrompere l’esecuzione. Quindi digita il comando seguente per aprirlo:
 
 .. raw:: html
 
@@ -244,21 +230,21 @@ it:
    nano 1.1.1_BlinkingLed.c
 
 .. note::
-    nano is a text editor tool. The command is used to open the
-    code file ``1.1.1_BlinkingLed.c`` by this tool.
+    nano è un editor di testo. Il comando viene utilizzato per aprire il 
+    file di codice ``1.1.1_BlinkingLed.c`` con questo strumento.
 
-Press ``Ctrl+X`` to exit. If you have modified the code, there will be a
-prompt asking whether to save the changes or not. Type in ``Y`` (save)
-or ``N`` (don’t save). Then press ``Enter`` to exit. Repeat ``Step 3``
-and ``Step 4`` to see the effect after modifying.
+Premi ``Ctrl+X`` per uscire. Se hai modificato il codice, apparirà un prompt 
+che ti chiederà se salvare le modifiche. Digita ``Y`` (salva) o ``N`` (non salvare). 
+Poi premi ``Enter`` per uscire. Ripeti il ``Passo 3`` e ``Passo 4`` per vedere il 
+risultato dopo la modifica.
 
 .. image:: img/image53.png
     :width: 800
     :align: center
 
-**Code**
+**Codice**
 
-The program code is shown as follows:
+Il codice del programma è mostrato di seguito:
 
 .. code-block:: c
 
@@ -267,18 +253,18 @@ The program code is shown as follows:
    #define LedPin      0
    int main(void)
    {
-      // When initialize wiring failed, print message to screen
+      // Quando l’inizializzazione di wiring fallisce, mostra un messaggio
       if(wiringPiSetup() == -1){
          printf("setup wiringPi failed !");
          return 1;
       }
-      pinMode(LedPin, OUTPUT);// Set LedPin as output to write value to it.
+      pinMode(LedPin, OUTPUT); // Imposta LedPin come output per scriverne il valore.
       while(1){
-         // LED on
+         // LED acceso
          digitalWrite(LedPin, LOW);
          printf("...LED on\n");
          delay(500);
-         // LED off
+         // LED spento
          digitalWrite(LedPin, HIGH);
          printf("LED off...\n");
          delay(500);
@@ -286,31 +272,30 @@ The program code is shown as follows:
       return 0;
    }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
    include <wiringPi.h>
 
-The hardware drive library is designed for the C language of Raspberry
-Pi. Adding this library is conducive to the initialization of hardware,
-and the output of I/O ports, PWM, etc.
+La libreria hardware di wiringPi è progettata per il linguaggio C del Raspberry Pi. 
+L'aggiunta di questa libreria facilita l'inizializzazione dell'hardware e la gestione 
+delle porte I/O, PWM, ecc.
 
 .. code-block:: c
 
    #include <stdio.h>
 
-Standard I/O library. The pintf function used for printing the data
-displayed on the screen is realized by this library. There are many
-other performance functions for you to explore.
+Libreria di I/O standard. La funzione printf, utilizzata per visualizzare dati 
+sullo schermo, è implementata in questa libreria. Ci sono molte altre funzioni 
+che puoi esplorare.
 
 .. code-block:: c
 
    #define LedPin 0
 
-Pin GPIO17 of the T_Extension Board is corresponding to the GPIO0 in
-wiringPi. Assign GPIO0 to LedPin, LedPin represents GPIO0 in the code
-later.
+Il Pin GPIO17 della T_Extension Board corrisponde a GPIO0 in wiringPi. Assegna 
+GPIO0 a LedPin, che rappresenta GPIO0 nel codice.
 
 .. code-block:: c
 
@@ -318,80 +303,78 @@ later.
         printf("setup wiringPi failed !");
         return 1;
 
-This initialises wiringPi and assumes that the calling program is going
-to be using the wiringPi pin numbering scheme.
+Inizializza wiringPi assumendo che il programma utilizzi la numerazione dei 
+pin di wiringPi. La funzione necessita di privilegi di root. 
 
-This function needs to be called with root privileges.
-When initialize wiring failed, print message to screen. The function
-“return” is used to jump out of the current function. Using return in
-main() function will end the program.
+Se l'inizializzazione fallisce, stampa un messaggio. “return” è usato per 
+uscire dalla funzione corrente. Usare return in main() termina il programma.
 
 .. code-block:: c
 
    pinMode(LedPin, OUTPUT);
 
-Set LedPin as output to write value to it.
+Imposta LedPin come uscita per scrivere valori.
 
 .. code-block:: c
 
    digitalWrite(LedPin, LOW);
 
-Set GPIO0 as 0V (low level). Since the cathode of LED is connected to
-GPIO0, thus the LED will light up if GPIO0 is set low. On the contrary,
-set GPIO0 as high level, digitalWrite (LedPin, HIGH): LED will go out.
+Imposta GPIO0 a 0V (livello basso). Poiché il catodo del LED è collegato 
+a GPIO0, questo si accenderà se GPIO0 è impostato a basso. Altrimenti, 
+impostandolo a livello alto, digitalWrite (LedPin, HIGH), il LED si spegnerà.
 
 .. code-block:: c
 
    printf("...LED off\n");
 
-The printf function is a standard library function and its function
-prototype is in the header file "stdio.h". The general form of the call
-is: printf(" format control string ", output table columns). The format
-control string is used to specify the output format, which is divided
-into format string and non-format string. The format string starts with
-'%' followed by format characters, such as' %d 'for decimal integer
-output. Unformatted strings are printed as prototypes. What is used here
-is a non-format string, followed by "\n" that is a newline character,
-representing automatic line wrapping after printing a string.
+La funzione printf è una funzione di libreria standard e il suo prototipo 
+si trova nel file di intestazione "stdio.h". La forma generale della chiamata 
+è: printf("stringa di controllo del formato", colonne della tabella di output). 
+La stringa di controllo del formato è utilizzata per specificare il formato 
+dell'output e si divide in stringhe formattate e non formattate. La stringa 
+formattata inizia con il simbolo '%' seguito dai caratteri di formato, come 
+'%d' per l'output di un intero decimale. Le stringhe non formattate vengono 
+stampate così come sono. Qui viene utilizzata una stringa non formattata, 
+seguita da "\n", un carattere di nuova riga che consente l'andata a capo 
+automatica dopo la stampa di una stringa.
+
 
 .. code-block:: c
 
    delay(500);
 
-Delay (500) keeps the current HIGH or LOW state for 500ms.
+Delay (500) mantiene lo stato corrente (ALTO o BASSO) per 500ms.
 
-This is a function that suspends the program for a period of time. And
-the speed of the program is determined by our hardware. Here we turn on
-or off the LED. If there is no delay function, the program will run the
-whole program very fast and continuously loop. So we need the delay
-function to help us write and debug the program.
+Questa funzione sospende il programma per un periodo. La velocità del 
+programma è determinata dall'hardware. Senza questa funzione, il programma 
+si eseguirebbe molto velocemente e in un loop continuo. Il ritardo aiuta nel 
+debug e nello sviluppo del programma.
 
 .. code-block:: c
 
    return 0;
 
-Usually, it is placed behind the main function, indicating that the
-function returns 0 on successful execution.
+Solitamente è posto alla fine di main per indicare che la funzione ritorna 0, 
+segnalando l'esecuzione con successo.
 
-For Python Language Users
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Per Utenti Python
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2:** Go to the folder of the code and run it.
+**Passo 2:** Vai nella cartella del codice ed eseguilo.
 
-1. If you use a screen, you're recommended to take the following steps.
+1. Se utilizzi uno schermo, segui i seguenti passaggi.
 
-Find 1.1.1_BlinkingLed.py and double click it to open. Now you're in the
-file.
+Trova 1.1.1_BlinkingLed.py e fai doppio clic per aprirlo.
 
-Click **Run** ->\ **Run Module** in the window and the following
-contents will appear.
+Fai clic su **Run** -> **Run Module** nella finestra e appariranno i seguenti contenuti.
 
-To stop it from running, just click the X button on the top right to
-close it and then you'll back to the code. If you modify the code,
-before clicking **Run Module (F5)** you need to save it first. Then you
-can see the results.
+Per interrompere l'esecuzione, fai semplicemente clic sul pulsante X in alto a 
+destra per chiudere la finestra, tornando così al codice. Se modifichi il codice, 
+prima di cliccare su **Run Module (F5)** devi salvarlo. A quel punto potrai vedere 
+i risultati.
 
-2. If you log into the Raspberry Pi remotely, type in the command:
+
+2. Se accedi a Raspberry Pi da remoto, digita il comando:
 
 .. raw:: html
 
@@ -402,9 +385,9 @@ can see the results.
    cd ~/davinci-kit-for-raspberry-pi/python
 
 .. note::
-    Change directory to the path of the code in this experiment via ``cd``.
+    Cambia la directory al percorso del codice con ``cd``.
 
-**Step 3:** Run the code
+**Passo 3:** Esegui il codice
 
 .. raw:: html
 
@@ -415,13 +398,16 @@ can see the results.
    sudo python3 1.1.1_BlinkingLed.py
 
 .. note::
-    Here sudo - superuser do, and python means to run the file by Python.
+    sudo esegue il file con privilegi di superuser, e python lancia il file in Python.
 
-After the code runs, you will see the LED flashing.
+Dopo l'esecuzione, vedrai il LED lampeggiare.
 
-**Step 4:** If you want to edit the code file 1.1.1_BlinkingLed.py,
-press ``Ctrl + C`` to stop running the code. Then type the following
-command to open 1.1.1_BlinkingLed.py:
+
+
+**Passo 4:** Se desideri modificare il file di codice 1.1.1_BlinkingLed.py, 
+premi ``Ctrl + C`` per interrompere l'esecuzione del codice. Poi digita il 
+seguente comando per aprire 1.1.1_BlinkingLed.py:
+
 
 .. raw:: html
 
@@ -432,22 +418,18 @@ command to open 1.1.1_BlinkingLed.py:
    nano 1.1.1_BlinkingLed.py
 
 .. note::
-    nano is a text editor tool. The command is used to open the
-    code file 1.1.1_BlinkingLed.py by this tool.
+    nano è un editor di testo. Questo comando apre il file con nano.
 
-Press ``Ctrl+X`` to exit. If you have modified the code, there will be a
-prompt asking whether to save the changes or not. Type in ``Y`` (save)
-or ``N`` (don’t save).
+Premi ``Ctrl+X`` per uscire. Se hai modificato il codice, ti verrà chiesto di 
+salvare le modifiche. Digita ``Y`` (salva) o ``N`` (non salvare).
 
-Then press ``Enter`` to exit. Type in nano 1.1.1_BlinkingLed.py again to
-see the effect after the change.
-
-**Code**
+Premi ``Enter`` per uscire. Digita di nuovo nano 1.1.1_BlinkingLed.py per 
+vedere le modifiche.
+**Codice**
 
 .. note::
 
-   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-   
+   Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di procedere, è necessario accedere al percorso del codice sorgente come ``davinci-kit-for-raspberry-pi/python``. 
    
 .. raw:: html
    
@@ -459,66 +441,65 @@ see the effect after the change.
    import time
    LedPin = 17
    def setup():
-      # Set the GPIO modes to BCM Numbering
+      # Imposta la modalità GPIO su numerazione BCM
       GPIO.setmode(GPIO.BCM)
-      # Set LedPin's mode to output,and initial level to High(3.3v)
+      # Imposta il pin LedPin come uscita con livello iniziale Alto (3.3v)
       GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
-   # Define a main function for main process
+   # Definisci una funzione principale per il processo principale
    def main():
       while True:
          print ('...LED ON')
-         # Turn on LED
+         # Accende il LED
          GPIO.output(LedPin, GPIO.LOW)
          time.sleep(0.5)
          print ('LED OFF...')
-         # Turn off LED
+         # Spegne il LED
          GPIO.output(LedPin, GPIO.HIGH)
          time.sleep(0.5)
-   # Define a destroy function for clean up everything after the script finished
+   # Definisci una funzione destroy per pulire tutto alla fine dello script
    def destroy():
-      # Turn off LED
+      # Spegne il LED
       GPIO.output(LedPin, GPIO.HIGH)
-      # Release resource
+      # Libera le risorse
       GPIO.cleanup()                   
-   # If run this script directly, do:
+   # Se esegui questo script direttamente, fai:
    if __name__ == '__main__':
       setup()
       try:
          main()
-      # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
+      # Quando si preme 'Ctrl+C', verrà eseguita la funzione destroy().
       except KeyboardInterrupt:
          destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
    #!/usr/bin/env python3
 
-When the system detects this, it will search the installation path of
-python in the env setting, then call the corresponding interpreter to
-complete the operation. It’s to prevent the user not installing the
-python onto the /usr/bin default path.
+Quando il sistema rileva questa linea, cercherà il percorso di
+installazione di Python nell'ambiente configurato e chiamerà l'interprete
+corrispondente per eseguire il programma. Questo previene problemi nel caso 
+Python non sia installato in /usr/bin di default.
 
 .. code-block:: python
 
    import RPi.GPIO as GPIO
 
-In this way, import the RPi.GPIO library, then define a variable, GPIO
-to replace RPI.GPIO in the following code.
+Questa riga importa la libreria RPi.GPIO e definisce una variabile,
+GPIO, per sostituire RPi.GPIO nel codice.
 
 .. code-block:: python
 
    import time
 
-Import time package, for time delay function in the following program.
+Importa il pacchetto time, necessario per la funzione di ritardo nel programma.
 
 .. code-block:: python
 
    LedPin = 17
 
-LED connects to the GPIO17 of the T-shape extension board, namely, BCM
-17.
+Il LED è collegato al pin GPIO17 della scheda di estensione a T, cioè BCM 17.
 
 .. code-block:: python
 
@@ -526,33 +507,31 @@ LED connects to the GPIO17 of the T-shape extension board, namely, BCM
       GPIO.setmode(GPIO.BCM)
       GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
 
-Set LedPin's mode to output, and initial level to High (3.3v).
+Imposta la modalità di LedPin come uscita e il livello iniziale come alto (3.3V).
 
-There are two ways of numbering the IO pins on a Raspberry Pi within
-RPi.GPIO: BOARD numbers and BCM numbers. In our lessons, what we use is
-BCM numbers. You need to set up every channel you are using as an input
-or an output.
+In RPi.GPIO, ci sono due modi per numerare i pin di IO su Raspberry Pi: modalità 
+BOARD e BCM. In queste lezioni, usiamo la modalità BCM. È necessario impostare 
+ogni canale come ingresso o uscita.
 
 .. code-block:: python
 
    GPIO.output(LedPin, GPIO.LOW)
 
-Set GPIO17(BCM17) as 0V (low level). Since the cathode of LED is
-connected to GPIO17, thus the LED will light up.
+Imposta GPIO17 (BCM17) a 0V (livello basso). Poiché il catodo del LED è collegato 
+a GPIO17, il LED si accenderà.
 
 .. code-block:: python
 
    time.sleep(0.5)
 
-Delay for 0.5 second. Here, the statement is delay function in C language, the unit is second.
+Ritarda per 0,5 secondi. Qui la dichiarazione rappresenta una funzione di ritardo in C, l'unità è in secondi.
 
 .. code-block:: python
 
    def destroy():
       GPIO.cleanup()  
 
-Define a destroy function for clean up everything after the script
-finished.
+Definisce una funzione destroy per pulire tutto dopo la fine dello script.
 
 .. code-block:: python
 
@@ -560,18 +539,17 @@ finished.
       setup()
       try:
          main()
-      # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
+      # Quando si preme 'Ctrl+C', verrà eseguita la funzione destroy().
       except KeyboardInterrupt:
          destroy()
 
-This is the general running structure of the code. When the program
-starts to run, it initializes the pin by running the setup(), and then
-runs the code in the main() function to set the pin to high and low
-levels. When 'Ctrl+C' is pressed, the program,
-destroy() will be  executed.  
+Questa è la struttura generale del codice. Quando il programma inizia a 
+funzionare, inizializza il pin eseguendo setup(), poi esegue il codice 
+in main() per impostare i livelli alto e basso sul pin. Quando si preme 
+'Ctrl+C', viene eseguita destroy() per chiudere il programma.
 
-Phenomenon Picture
---------------------
+Immagine del Fenomeno
+-------------------------
 
 .. image:: img/image54.jpeg
     :width: 800

@@ -1,31 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community SunFounder per gli appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Unisciti a noi per esplorare più a fondo Raspberry Pi, Arduino e ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché Unirsi a Noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e alle anteprime.
+    - **Sconti Esclusivi**: Approfitta di sconti speciali sui nostri prodotti più recenti.
+    - **Promozioni e Omaggi Festivi**: Partecipa a promozioni festive e concorsi a premi.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 
-Video 19: Simple Control of Servo From Raspberry Pi
+Video 19: Controllo Semplice di un Servo con Raspberry Pi
 =======================================================================================
 
+Scopri come controllare un servomotore con un Raspberry Pi mentre Paul McQuarter ti guida attraverso il processo di configurazione, codifica e test.
 
-Learn how to control a servo motor with a Raspberry Pi as Paul McQuarter guides you through the setup, coding, and testing process.
-
-1. **Hardware setup**: Paul demonstrates the correct wiring and alignment of the servo motor with the Raspberry Pi.
-2. **Power considerations**: He explains the importance of using an external power supply for larger servos to avoid damaging the Raspberry Pi.
-3. **PWM basics**: Understand how Pulse Width Modulation (PWM) controls the servo motor's position by adjusting the duty cycle of the PWM signal.
-4. **Python code implementation**: Walk through the Python code to set up and control the servo motor using GPIO pins.
-5. **Testing and calibration**: Learn how to test and calibrate the servo motor's range of motion by inputting different PWM percentages.
-6. **Error handling**: Discover how to handle errors and ensure proper cleanup of GPIO pins using try-except blocks in Python.
-
+1. **Configurazione Hardware**: Paul mostra il cablaggio corretto e l'allineamento del servomotore con il Raspberry Pi.
+2. **Considerazioni di Alimentazione**: Spiega l'importanza di utilizzare un'alimentazione esterna per servomotori più grandi, per evitare di danneggiare il Raspberry Pi.
+3. **Nozioni di Base su PWM**: Comprendi come il Pulse Width Modulation (PWM) controlla la posizione del servomotore regolando il ciclo di lavoro del segnale PWM.
+4. **Implementazione del Codice Python**: Segui il codice Python per configurare e controllare il servomotore utilizzando i pin GPIO.
+5. **Test e Calibrazione**: Impara a testare e calibrare l'escursione del servomotore inserendo diverse percentuali di PWM.
+6. **Gestione degli Errori**: Scopri come gestire gli errori e assicurare una corretta pulizia dei pin GPIO utilizzando blocchi try-except in Python.
 
 **Video**
 

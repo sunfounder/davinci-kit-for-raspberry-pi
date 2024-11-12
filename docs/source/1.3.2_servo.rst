@@ -1,93 +1,92 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao e benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue abilità.
+    - **Anteprime Esclusive**: Ottieni l'accesso anticipato a nuovi annunci di prodotto e anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaways**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare insieme a noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
 1.3.2 Servo
-============
+==============
 
-Introduction
---------------
+Introduzione
+---------------
 
-In this lesson, we will learn how to make the servo rotate.
+In questa lezione, impareremo a far ruotare un servomotore.
 
-Components
-----------
+Componenti
+------------
 
 .. image:: img/list_1.3.2.png
 
 
-Principle
+Principio
 ---------
 
 **Servo**
 
-A servo is generally composed of the following parts: case, shaft, gear
-system, potentiometer, DC motor, and embedded board.
+Un servomotore è generalmente composto dalle seguenti parti: custodia, 
+asse, sistema di ingranaggi, potenziometro, motore CC e scheda integrata.
 
 .. image:: img/image121.png
 
 
-It works like this: The microcontroller sends out PWM signals to the
-servo, and then the embedded board in the servo receives the signals
-through the signal pin and controls the motor inside to turn. As a
-result, the motor drives the gear system and then motivates the shaft
-after deceleration. The shaft and potentiometer of the servo are
-connected together. When the shaft rotates, it drives the potentiometer,
-so the potentiometer outputs a voltage signal to the embedded board.
-Then the board determines the direction and speed of rotation based on
-the current position, so it can stop exactly at the right position as
-defined and hold there.
+Funziona nel seguente modo: il microcontrollore invia segnali PWM al 
+servomotore, e la scheda integrata nel servo riceve i segnali tramite 
+il pin di segnale e controlla il motore interno per girare. Di conseguenza, 
+il motore aziona il sistema di ingranaggi, che a sua volta muove l’asse 
+dopo la decelerazione. L'asse e il potenziometro del servomotore sono 
+collegati tra loro. Quando l'asse ruota, muove il potenziometro, che a 
+sua volta emette un segnale di tensione alla scheda integrata. La scheda 
+determina quindi la direzione e la velocità della rotazione in base alla 
+posizione corrente, in modo che possa fermarsi esattamente nella posizione 
+desiderata e mantenerla.
 
 .. image:: img/image122.png
 
 
-The angle is determined by the duration of a pulse that is applied to
-the control wire. This is called Pulse width Modulation. The servo
-expects to see a pulse every 20 ms. The length of the pulse will
-determine how far the motor turns. For example, a 1.5ms pulse will make
-the motor turn to the 90 degree position (neutral position).
+L'angolo è determinato dalla durata di un impulso applicato al filo di 
+controllo, un processo chiamato modulazione della larghezza di impulso (PWM). 
+Il servomotore si aspetta di ricevere un impulso ogni 20 ms. La lunghezza 
+dell'impulso determinerà quanto ruoterà il motore. Ad esempio, un impulso 
+di 1,5 ms farà girare il motore alla posizione di 90 gradi (posizione neutrale).
 
-When a pulse is sent to a servo that is less than 1.5 ms, the servo
-rotates to a position and holds its output shaft some number of degrees
-counterclockwise from the neutral point. When the pulse is wider than
-1.5 ms the opposite occurs. The minimal width and the maximum width of
-pulse that will command the servo to turn to a valid position are
-functions of each servo. Generally the minimum pulse will be about 0.5
-ms wide and the maximum pulse will be 2.5 ms wide.
+Quando al servo viene inviato un impulso inferiore a 1,5 ms, il servomotore 
+ruota in senso antiorario rispetto al punto neutro e mantiene l'albero di 
+uscita in una determinata posizione. Quando l'impulso è più lungo di 1,5 ms, 
+si verifica il contrario. La larghezza minima e massima degli impulsi necessari 
+per posizionare il servo in una posizione valida varia per ogni servo. In genere, 
+l'impulso minimo è di circa 0,5 ms e quello massimo è di 2,5 ms.
 
 .. image:: img/image123.jpeg
 
 
-Schematic Diagram
------------------
+Schema Elettrico
+--------------------
 
 .. image:: img/image337.png
 
 
-Experimental Procedures
------------------------
+Procedura Sperimentale
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruire il circuito.
 
 .. image:: img/image125.png
     :width: 800
 
 
 
-For C Language Users
-^^^^^^^^^^^^^^^^^^^^^
+Per gli utenti C
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Passo 2**: Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -97,7 +96,7 @@ For C Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.3.2
 
-**Step 3**: Compile the code.
+**Passo 3**: Compila il codice.
 
 .. raw:: html
 
@@ -107,7 +106,7 @@ For C Language Users
 
     gcc 1.3.2_Servo.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Passo 4**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -117,14 +116,13 @@ For C Language Users
 
     sudo ./a.out
 
-After the program is executed, the servo will rotate from 
-0 degrees to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
+Dopo l'esecuzione del programma, il servomotore ruoterà da 
+0 gradi a 180 gradi, e poi da 180 gradi a 0 gradi, in modo ciclico.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
-
-**Code**
+    Se non funziona dopo l'esecuzione o appare un errore del tipo: \"wiringPi.h: No such file or directory\", fare riferimento a :ref:`Il codice C non funziona?`.
+**Codice**
 
 .. code-block:: c
 
@@ -132,12 +130,13 @@ After the program is executed, the servo will rotate from
     #include <softPwm.h>
     #include <stdio.h>
 
-    #define ServoPin    1       //define the servo to GPIO1
-    long Map(long value,long fromLow,long fromHigh,long toLow,long toHigh){
+    #define ServoPin    1       // definisce il servo su GPIO1
+    long Map(long value, long fromLow, long fromHigh, long toLow, long toHigh) {
         return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
     }
-    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
-        if(angle < 0)
+
+    void setAngle(int pin, int angle){    // Crea una funzione per controllare l'angolo del servo.
+        if (angle < 0)
             angle = 0;
         if(angle > 180)
             angle = 180;
@@ -147,7 +146,7 @@ After the program is executed, the servo will rotate from
     int main(void)
     {
         int i;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if (wiringPiSetup() == -1){ // in caso di errore nell'inizializzazione di wiringPi, stampa messaggio su schermo
             printf("setup wiringPi failed !");
             return 1; 
         }
@@ -165,7 +164,7 @@ After the program is executed, the servo will rotate from
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
@@ -173,49 +172,48 @@ After the program is executed, the servo will rotate from
         return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
     }
 
-Create a Map() function to map value in the following code.
+Crea una funzione Map() per mappare il valore nel codice seguente.
 
 .. code-block:: c
 
-    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
-        if(angle < 0)
+    void setAngle(int pin, int angle){    // Crea una funzione per controllare l'angolo del servo.
+        if (angle < 0)
             angle = 0;
         if(angle > 180)
             angle = 180;
         softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
     } 
 
-Create a funtion, setAngle() to write angle to the servo.
+Crea una funzione, setAngle(), per impostare l'angolo del servo.
 
 .. code-block:: c
 
     softPwmWrite(pin,Map(angle,0,180,5,25));  
 
-This function can change the duty cycle of the PWM.
+Questa funzione può modificare il ciclo di lavoro del PWM.
 
-To make the servo rotate to 0 ~ 180 °, the pulse width should change
-within the range of 0.5ms ~ 2.5ms when the period is 20ms; in the
-function, softPwmCreate(), we have set that the period is
-200x100us=20ms, thus we need to map 0 ~ 180 to 5x100us ~ 25x100us.
+Per fare in modo che il servo ruoti da 0 a 180°, la larghezza dell'impulso 
+deve variare tra 0,5ms e 2,5ms con un periodo di 20ms; nella funzione 
+softPwmCreate(), abbiamo impostato il periodo a 200x100us=20ms, quindi dobbiamo 
+mappare 0 ~ 180 a 5x100us ~ 25x100us.
 
-The prototype of this function is shown below.
+Il prototipo di questa funzione è mostrato di seguito.
 
-.. code-block:: 
+.. code-block::
 
-    int softPwmCreate（int pin，int initialValue，int pwmRange）;
+    int softPwmCreate(int pin, int initialValue, int pwmRange);
 
 
-**Parameter pin:** Any GPIO pin of Raspberry Pi can be set as PWM pin.
+**Parametro pin:** Qualsiasi pin GPIO del Raspberry Pi può essere impostato come pin PWM.
 
-**Parameter initialValue:** The initial pulse width is that initialValue
-times 100us.
+**Parametro initialValue:** La larghezza dell'impulso iniziale è il valore di initialValue moltiplicato per 100us.
 
-**Parameter pwmRange:** the period of PWM is that pwmRange times 100us.
+**Parametro pwmRange:** il periodo del PWM è pwmRange moltiplicato per 100us.
 
-For Python Language Users
+Per gli utenti Python
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Step 2**: Go to the folder of the code.
+**Passo 2**: Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -225,7 +223,7 @@ For Python Language Users
 
     cd ~/davinci-kit-for-raspberry-pi/python/
 
-**Step 3**: Run the executable file.
+**Passo 3**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -235,15 +233,14 @@ For Python Language Users
 
     sudo python3 1.3.2_Servo.py
 
-After the program is executed, the servo will rotate from 0 degrees 
-to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
-
-**Code**
+Dopo l'esecuzione del programma, il servo ruoterà da 0 gradi a 180 gradi, 
+e poi da 180 gradi a 0 gradi, in modo ciclico.
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python``. 
-    
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, assicurati di accedere alla cartella del codice sorgente, come ad esempio ``davinci-kit-for-raspberry-pi/python``.
+
 .. raw:: html
 
     <run></run>
@@ -263,25 +260,25 @@ to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
 
     def setup():
         global p
-        GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by BCM
-        GPIO.setup(ServoPin, GPIO.OUT)   # Set ServoPin's mode is output
-        GPIO.output(ServoPin, GPIO.LOW)  # Set ServoPin to low
-        p = GPIO.PWM(ServoPin, 50)     # set Frequecy to 50Hz
-        p.start(0)                     # Duty Cycle = 0
+        GPIO.setmode(GPIO.BCM)       # Numerazione GPIO in BCM
+        GPIO.setup(ServoPin, GPIO.OUT)   # Imposta il pin del servo come output
+        GPIO.output(ServoPin, GPIO.LOW)  # Imposta il pin del servo su LOW
+        p = GPIO.PWM(ServoPin, 50)     # Imposta la frequenza a 50Hz
+        p.start(0)                     # Ciclo di lavoro iniziale = 0
         
-    def setAngle(angle):      # make the servo rotate to specific angle (0-180 degrees) 
+    def setAngle(angle):      # fa ruotare il servo ad un angolo specifico (0-180 gradi) 
         angle = max(0, min(180, angle))
         pulse_width = map(angle, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
         pwm = map(pulse_width, 0, 20000, 0, 100)
-        p.ChangeDutyCycle(pwm)#map the angle to duty cycle and output it
+        p.ChangeDutyCycle(pwm) # mappa l'angolo in un ciclo di lavoro e lo emette
         
     def loop():
         while True:
-            for i in range(0, 181, 5):   #make servo rotate from 0 to 180 deg
-                setAngle(i)     # Write to servo
+            for i in range(0, 181, 5):   # ruota il servo da 0 a 180 gradi
+                setAngle(i)     # Scrive l'angolo sul servo
                 time.sleep(0.002)
             time.sleep(1)
-            for i in range(180, -1, -5): #make servo rotate from 180 to 0 deg
+            for i in range(180, -1, -5): # ruota il servo da 180 a 0 gradi
                 setAngle(i)
                 time.sleep(0.001)
             time.sleep(1)
@@ -290,46 +287,46 @@ to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
         p.stop()
         GPIO.cleanup()
 
-    if __name__ == '__main__':     #Program start from here
+    if __name__ == '__main__':     # Programma inizia da qui
         setup()
         try:
             loop()
-        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt:  # Quando si preme 'Ctrl+C', il programma eseguirà destroy().
             destroy()
         
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
-    p = GPIO.PWM(ServoPin, 50)     # set Frequecy to 50Hz
-    p.start(0)                     # Duty Cycle = 0
+    p = GPIO.PWM(ServoPin, 50)     # imposta la frequenza a 50Hz
+    p.start(0)                     # Ciclo di lavoro = 0
 
-Set the servoPin to PWM pin, then the frequency to 50hz, and the period to 20ms.
+Imposta ServoPin come pin PWM, con frequenza di 50Hz e periodo di 20ms.
 
-p.start(0): Run the PWM function，and set the initial value to 0.
+p.start(0): Avvia la funzione PWM, con valore iniziale impostato a 0.
 
 .. code-block:: python
 
-    def setAngle(angle):      # make the servo rotate to specific angle (0-180 degrees) 
+    def setAngle(angle):      # fa ruotare il servo ad un angolo specifico (0-180 gradi) 
         angle = max(0, min(180, angle))
         pulse_width = map(angle, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
         pwm = map(pulse_width, 0, 20000, 0, 100)
-        p.ChangeDutyCycle(pwm)#map the angle to duty cycle and output it
+        p.ChangeDutyCycle(pwm) # mappa l'angolo in un ciclo di lavoro e lo emette
     
-Create a function, setAngle() to write angle that ranges from 0 to 180 into the servo.
+Crea la funzione setAngle() per scrivere un angolo da 0 a 180 nel servo.
 
 .. code-block:: python
 
     angle = max(0, min(180, angle))
 
-This code is used to limit the angle within the range 0-180°.
+Questa riga limita l’angolo entro il range di 0-180°.
 
-The min() function returns the minimum of the input values. 
-If 180<angle, then return 180,if not, return angle.
+La funzione min() restituisce il valore minimo tra quelli in ingresso.
+Se 180 < angle, restituisce 180, altrimenti restituisce angle.
 
-The max() method returns the maximum element in an iterable or largest of 
-two or more parameters. If 0>angle, then return 0, if not, return angle.
+La funzione max() restituisce il valore massimo tra quelli in ingresso.
+Se 0 > angle, restituisce 0, altrimenti restituisce angle.
 
 .. code-block:: python
 
@@ -337,16 +334,14 @@ two or more parameters. If 0>angle, then return 0, if not, return angle.
     pwm = map(pulse_width, 0, 20000, 0, 100)
     p.ChangeDutyCycle(pwm)
 
-To render a range 0 ~ 180 ° to the servo, the pulse width of the servo
-is set to 0.5ms(500us)-2.5ms(2500us).
+Per impostare una gamma di 0 ~ 180° per il servo, la larghezza dell’impulso 
+è impostata tra 0,5ms (500us) e 2,5ms (2500us).
 
-The period of PWM is 20ms(20000us), thus the duty cycle of PWM is
-(500/20000)%-(2500/20000)%, and the range 0 ~ 180 is mapped to 2.5 ~
-12.5.
+Il periodo di PWM è 20ms (20000us), quindi il ciclo di lavoro del PWM varia 
+da (500/20000)% a (2500/20000)% e la gamma 0 ~ 180 è mappata a 2.5 ~ 12.5.
 
 
-Phenomenon Picture
-------------------
+Immagine Dimostrativa
+------------------------
 
 .. image:: img/image126.jpeg
-

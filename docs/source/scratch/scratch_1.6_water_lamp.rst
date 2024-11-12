@@ -1,97 +1,90 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
-1.6 Water Lamp
-================
+1.6 Lampada d'Acqua
+=======================
 
+Oggi utilizzeremo un LED Bar Graph, un Raspberry Pi e Scratch per realizzare una Lampada d'Acqua.
 
-Today, we will use LED Bar Graph, Raspberry Pi and scratch to make a Water Lamp.
-
-The LED Bar Graph will light up in order with the direction of the arrows on the stage.
+Il LED Bar Graph si illuminerà progressivamente seguendo la direzione delle frecce nella scena.
 
 .. image:: img/1.12_header.png
 
-Required Components
+Componenti Necessari
 -------------------------
 
 .. image:: img/1.12_list.png
 
-Build the Circuit
------------------------
+Costruisci il Circuito
+-------------------------
 
 .. image:: img/1.12_image66.png
 
-Load the Code and See What Happens
+Carica il Codice e Guarda cosa Succede
 -----------------------------------------
 
-Load the code file (``1.6_water_lamp.sb3``) from your computer to Scratch 3.
+Carica il file di codice (``1.6_water_lamp.sb3``) dal tuo computer a Scratch 3.
 
-By clicking on **Arrow1**, the LEDs on the LED bar are lit in sequence from the left to the right (one at a time) and then off. Click **Arrow2** and the LEDs light up in the opposite order.
+Cliccando su **Arrow1**, i LED del LED Bar si accendono uno alla volta in sequenza da sinistra verso destra e poi si spengono. Clicca su **Arrow2** e i LED si accenderanno nell'ordine inverso.
 
-Tips on Sprites
-----------------
+Suggerimenti sugli Sprite
+------------------------------
 
-Delete the default sprite and choose the **Arrow1** sprite.
+Elimina lo sprite predefinito e scegli lo sprite **Arrow1**.
 
 .. image:: img/1.12_graph1.png
 
-Here we will need 2 **Arrow1** sprites, which can be done with the duplicate button.
+Qui avremo bisogno di 2 sprite **Arrow1**, che si possono duplicare con il pulsante di duplicazione.
 
 .. image:: img/1.12_scratch_duplicate.png
 
-Click on the **Arrow 2** sprite and change the direction of the arrow by selecting costume 2.
+Clicca sullo sprite **Arrow 2** e cambia la direzione della freccia selezionando il costume 2.
 
 .. image:: img/1.12_graph2.png
 
-
-Now let's make a variable.
+Ora creiamo una variabile.
 
 .. image:: img/1.12_graph3.png
 
-
-Name it as **num**.
+Nominala **num**.
 
 .. image:: img/1.12_graph4.png
 
-
-Follow the same method to create a list called **led**.
+Segui lo stesso metodo per creare una lista chiamata **led**.
 
 .. image:: img/1.12_graph6.png
 
 
-After adding, you should see the **num** variable and the **led** list on the stage area. 
+Dopo aver aggiunto, dovresti vedere la variabile **num** e la lista **led** nell'area della scena.
 
-Click **+** to add 10 list items and enter the pin numbers in order (17,18,27,22,23,24,25,2,3,8).
+Clicca su **+** per aggiungere 10 elementi alla lista e inserisci i numeri dei pin in ordine (17,18,27,22,23,24,25,2,3,8).
 
 .. image:: img/1.12_graph7.png
 
-Tips on Codes
---------------
+Suggerimenti sui Codici
+---------------------------
 
 .. image:: img/1.12_graph10.png
   :width: 300
 
-This is an event block that is triggered when the current sprite is clicked.
+Questo è un blocco di evento che si attiva quando si clicca sullo sprite corrente.
 
 .. image:: img/1.12_graph8.png
   :width: 300
 
-The initial value of the **num** variable determines which LED is lit first.
+Il valore iniziale della variabile **num** determina quale LED si accende per primo.
 
 .. image:: img/1.12_graph9.png
 
-
-Set the pin corresponding to **num** in the led list to low to light the LED, and then set the pin corresponding to **num-1** to high to turn off the previous LED.
-
-
+Imposta il pin corrispondente a **num** nella lista led su low per accendere il LED e quindi imposta il pin corrispondente a **num-1** su high per spegnere il LED precedente.

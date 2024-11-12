@@ -1,31 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché Unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni speciali per le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
-Remote Switch
-=================
+Interruttore Remoto
+============================
 
-In this project, we will learn to use Cloud4RPi's Switch to control the relay, thereby controlling the relay's load-LED. You can also change the load of the relay to household appliances, but with safety in mind.
+In questo progetto, impareremo a utilizzare l'interruttore di Cloud4RPi per controllare il relè e quindi gestire il carico LED collegato al relè. È anche possibile cambiare il carico del relè con elettrodomestici, tenendo sempre a mente la sicurezza.
 
-Experimental Procedures
+Procedura Sperimentale
 -------------------------
 
-Build the circuit.
+Costruisci il circuito.
 
 .. image:: img/relay1.png
     :align: center
 
-Open the code.
+Apri il codice.
 
 .. raw:: html
 
@@ -36,13 +36,13 @@ Open the code.
     cd ~/cloud4rpi-raspberrypi-python
     sudo nano remote_switch.py
 
-Find the line below and fill in the correct device token.
+Trova la riga sottostante e inserisci il corretto dispositivo token.
 
 .. code-block:: python
 
     DEVICE_TOKEN = '__YOUR_DEVICE_TOKEN__'
 
-Run the code.
+Esegui il codice.
 
 .. raw:: html
 
@@ -52,31 +52,31 @@ Run the code.
 
     sudo python3 remote_switch.py
 
-Go to Cloud4RPi, add a new Control Panel named project2, and click **Add Widget** to add a **Switch** widget.
+Vai su Cloud4RPi, aggiungi un nuovo pannello di controllo chiamato project2 e fai clic su **Add Widget** per aggiungere un widget **Switch**.
 
 .. image:: img/relay2.png
     :align: center
 
-Once added, you can use the Switch widget to control the relay.
+Una volta aggiunto, puoi usare il widget Switch per controllare il relè.
 
 .. image:: img/relay3.png
     :align: center
 
-Code Explanation
-----------------------
+Spiegazione del Codice
+---------------------------
 
 .. code-block:: python
 
     RELAY_PIN = 18
 
-Relay connected to GPIO18 of the T-expansion board.
+Il relè è collegato al GPIO18 della scheda di espansione T.
 
 .. code-block:: python
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(RELAY_PIN, GPIO.OUT)
 
-Set to BCM nomenclature and set ``RELAY_PIN`` to output.
+Imposta la nomenclatura BCM e configura ``RELAY_PIN`` come output.
 
 .. code-block:: python
 
@@ -84,11 +84,11 @@ Set to BCM nomenclature and set ``RELAY_PIN`` to output.
         GPIO.output(RELAY_PIN, value)
         return GPIO.input(RELAY_PIN)
 
-This function controls the relay according to the ``value`` and returns the current level of the relay.
+Questa funzione controlla il relè in base al ``value`` e restituisce il livello corrente del relè.
 
 .. note::
 
-    Since the relay works at high level, the relay closes when the switch state is True and opens when the switch state is False.
+    Poiché il relè funziona a livello alto, si chiude quando lo stato dell'interruttore è True e si apre quando lo stato dell'interruttore è False.
 
 .. code-block:: python
 
@@ -100,9 +100,5 @@ This function controls the relay according to the ``value`` and returns the curr
         },
     }
 
-By setting the value of the ``'value'`` key, we can set the initial value of the Switch widget, then always read the value of the ``'value'`` key and send the current level of ``RELAY_PIN`` (the value returned by the function ``relay_control()``) to Cloud4RPi.
-
-
-
-
+Impostando il valore della chiave ``'value'``, possiamo definire il valore iniziale del widget Switch, quindi leggere continuamente il valore della chiave ``'value'`` e inviare a Cloud4RPi il livello corrente di ``RELAY_PIN`` (il valore restituito dalla funzione ``relay_control()``).
 

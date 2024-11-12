@@ -1,100 +1,90 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché Unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con il supporto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima a nuovi annunci di prodotti e anticipazioni.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-1.2.1 Active Buzzer
-===================
+1.2.1 Cicalino Attivo
+=======================
 
-Introduction
-------------
+Introduzione
+-----------------
 
-In this lesson, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+In questa lezione, impareremo a far suonare un cicalino attivo usando un 
+transistor PNP.
 
-Components
-----------
+Componenti
+--------------
 
 .. image:: img/list_1.2.1.png
 
 
-Principle
+Principio
 ---------
 
-**Buzzer**
+**Cicalino**
 
-As a type of electronic buzzer with an integrated structure, buzzers,
-which are supplied by DC power, are widely used in computers, printers,
-photocopiers, alarms, electronic toys, automotive electronic devices,
-telephones, timers and other electronic products or voice devices.
-Buzzers can be categorized as active and passive ones (see the following
-picture). Turn the buzzer so that its pins are facing up, and the buzzer
-with a green circuit board is a passive buzzer, while the one enclosed
-with a black tape is an active one.
+Il cicalino è un tipo di dispositivo elettronico integrato, alimentato in 
+corrente continua, ampiamente utilizzato in computer, stampanti, fotocopiatrici, 
+allarmi, giocattoli elettronici, dispositivi elettronici per auto, telefoni, 
+timer e altri prodotti o dispositivi a voce. I cicalini si dividono in attivi e 
+passivi (vedi immagine seguente). Ruota il cicalino in modo che i pin siano 
+rivolti verso l’alto: il cicalino con una scheda verde è passivo, mentre quello 
+con nastro nero è attivo.
 
-The difference between an active buzzer and a passive buzzer:
+Differenza tra un cicalino attivo e uno passivo:
 
 .. image:: img/image101.png
     :width: 400
     :align: center
 
+La differenza principale è che un cicalino attivo ha una sorgente di 
+oscillazione interna, quindi emette suoni quando è alimentato. Al contrario, 
+il cicalino passivo non ha questa sorgente e non suona se alimentato da corrente 
+continua; richiede onde quadre con frequenza tra 2K e 5K per funzionare. 
+I cicalini attivi, a causa dei circuiti oscillanti interni, tendono ad essere più 
+costosi di quelli passivi.
 
-The difference between an active buzzer and a passive buzzer is: An
-active buzzer has a built-in oscillating source, so it will make sounds
-when electrified. But a passive buzzer does not have such source, so it
-will not beep if DC signals are used; instead, you need to use square
-waves whose frequency is between 2K and 5K to drive it. The active
-buzzer is often more expensive than the passive one because of multiple
-built-in oscillating circuits.
-
-The following is the electrical symbol of a buzzer. It has two pins with
-positive and negative poles. With a + in the surface represents the
-anode and the other is the cathode.
+Ecco il simbolo elettrico di un cicalino. Ha due pin, uno positivo e uno negativo. 
+Il pin contrassegnato con un + sulla superficie è l'anodo e l'altro è il catodo.
 
 .. image:: img/image102.png
     :width: 150
     :align: center
 
+Controlla i pin del cicalino: il pin più lungo è l'anodo e quello più corto è il catodo. 
+Assicurati di non invertirli durante il collegamento, altrimenti il cicalino non emetterà suoni.
 
-You can check the pins of the buzzer, the longer one is the anode and
-the shorter one is the cathode. Please don’t mix them up when
-connecting, otherwise the buzzer will not make sound.
-
-Schematic Diagram
+Schema Elettrico
 -----------------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+In questo esperimento, si utilizza un cicalino attivo, un transistor PNP e una 
+resistenza da 1k tra la base del transistor e il GPIO per proteggere il transistor. 
+Quando il GPIO17 del Raspberry Pi viene impostato a livello basso (0V) tramite 
+programmazione, il transistor si satura di corrente e il cicalino emette suoni. 
+Quando, invece, il GPIO è impostato a livello alto, il transistor si spegne e il 
+cicalino non suona.
 
 .. image:: img/image332.png
 
+Procedure Sperimentali
+---------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit. (Pay attention to poles of the buzzer:
-The one with + label is the positive pole and the other is the
-negative.)
+**Step 1:** Costruisci il circuito. (Fai attenzione ai poli del cicalino: quello 
+con l'etichetta + è il polo positivo e l'altro è il negativo.)
 
 .. image:: img/image104.png
     :width: 800
 
-
-**Step 2**: Open the code file.
+**Step 2**: Apri il file di codice.
 
 .. raw:: html
 
@@ -104,7 +94,7 @@ negative.)
 
     cd ~/davinci-kit-for-raspberry-pi/c/1.2.1/
 
-**Step 3**: Compile the code.
+**Step 3**: Compila il codice.
 
 .. raw:: html
 
@@ -114,7 +104,7 @@ negative.)
 
     gcc 1.2.1_ActiveBuzzer.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**Step 4**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -124,13 +114,13 @@ negative.)
 
     sudo ./a.out
 
-The code run, the buzzer beeps.
+Quando il codice viene eseguito, il cicalino suona.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se il programma non funziona o appare un errore come "wiringPi.h: No such file or directory", consulta :ref:`Il codice C non funziona?`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -139,39 +129,38 @@ The code run, the buzzer beeps.
 
     #define BeepPin 0
     int main(void){
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+        if(wiringPiSetup() == -1){ //se l'inizializzazione fallisce, stampa un messaggio
             printf("setup wiringPi failed !");
             return 1;
         }
         
-        pinMode(BeepPin, OUTPUT);   //set GPIO0 output
+        pinMode(BeepPin, OUTPUT);   //imposta GPIO0 come uscita
         while(1){
-            //beep on
+            //accendi il cicalino
             printf("Buzzer on\n");
             digitalWrite(BeepPin, LOW);
             delay(100);
             printf("Buzzer off\n");
-            //beep off
+            //spegni il cicalino
             digitalWrite(BeepPin, HIGH);
             delay(100);
         }
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
     digitalWrite(BeepPin, LOW);
 
-We use an active buzzer in this experiment, so it will make sound 
-automatically when connecting to the direct current. This sketch 
-is to set the I/O port as low level (0V), thus to manage the 
-transistor and make the buzzer beep. 
+Usiamo un cicalino attivo in questo esperimento, quindi suonerà automaticamente 
+quando collegato alla corrente continua. Questo comando imposta la porta I/O a 
+livello basso (0V), attivando il transistor e facendo suonare il cicalino.
 
 .. code-block:: c
 
     digitalWrite(BeepPin, HIGH);
 
-To set the I/O port as high level(3.3V), thus the transistor is 
-not energized and the buzzer doesn’t beep. 
+Imposta la porta I/O a livello alto (3.3V), disattivando il transistor, e il 
+cicalino non suona.

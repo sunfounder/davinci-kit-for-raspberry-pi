@@ -1,36 +1,33 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci sui nuovi prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni speciali durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-Video 68: Controlling an RGB LED With A Capacitive Touch Sensor
+Video 68: Controllare un LED RGB con un Sensore Tattile Capacitivo
 =======================================================================================
 
+Unisciti a noi nella nostra nuova serie di tutorial su Raspberry Pi, sponsorizzata da SunFounder, 
+in cui esploreremo progetti entusiasmanti e soluzioni pratiche. In questo video, introduciamo la serie e presentiamo una soluzione al compito assegnato in una lezione precedente.
 
-Join us in our new Raspberry Pi tutorial series sponsored by SunFounder, 
-where we explore exciting projects and solutions. In this video, we introduce the series and showcase a solution to a previous lesson's homework assignment.
-
-
-1. **Introduction**: Welcome to our new Raspberry Pi tutorial series, brought to you by SunFounder.
-2. **Kit Overview**: Learn about the Raspberry Pi kit used in the series and its components.
-3. **Hardware Acquisition**: Ensure you have the same hardware to follow along easily with the tutorials.
-4. **Homework Assignment Review**: Recap of a previous lesson's homework task involving a capacitive touch sensor and RGB LED control.
-5. **Code Implementation**: Step-by-step demonstration of coding to achieve the desired functionality.
-6. **Code Explanation**: Detailed explanation of code segments covering GPIO pin setup, sensor integration, LED control, and error handling.
+1. **Introduzione**: Benvenuto nella nostra nuova serie di tutorial su Raspberry Pi, offerta da SunFounder.
+2. **Panoramica del Kit**: Scopri il kit Raspberry Pi utilizzato nella serie e i suoi componenti.
+3. **Acquisizione dell'Hardware**: Assicurati di avere lo stesso hardware per seguire facilmente i tutorial.
+4. **Revisione del Compito**: Riepilogo del compito della lezione precedente che coinvolge un sensore tattile capacitivo e il controllo di un LED RGB.
+5. **Implementazione del Codice**: Dimostrazione passo passo del codice per ottenere la funzionalità desiderata.
+6. **Spiegazione del Codice**: Spiegazione dettagliata dei segmenti di codice, coprendo la configurazione dei pin GPIO, l'integrazione del sensore, il controllo del LED e la gestione degli errori.
 
 **Video**
 
 .. raw:: html
-
 
     <iframe width="700" height="500" src="https://www.youtube.com/embed/2s5Me7g7jqI?si=Aw0QeViAOdTcB5Ot" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 

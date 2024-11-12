@@ -1,76 +1,71 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao e benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche grazie all’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima agli annunci sui nuovi prodotti.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a promozioni festive e concorsi.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 2.2.3 DHT-11
 ============
 
-Introduction
---------------
+Introduzione
+---------------
 
-The digital temperature and humidity sensor DHT11 is a composite sensor
-that contains a calibrated digital signal output of temperature and
-humidity. The technology of a dedicated digital modules collection and
-the technology of the temperature and humidity sensing are applied to
-ensure that the product has high reliability and excellent stability.
+Il sensore digitale di temperatura e umidità DHT11 è un sensore composito 
+che fornisce un’uscita digitale calibrata della temperatura e dell’umidità. 
+Grazie alla tecnologia dei moduli digitali dedicati e a quella del rilevamento 
+di temperatura e umidità, il prodotto offre alta affidabilità e ottima stabilità.
 
-The sensors include a wet element resistive sensor and a NTC temperature
-sensor and they are connected to a high performance 8-bit
-microcontroller.
+I sensori includono un elemento umido sensibile e un sensore di temperatura NTC, 
+collegati a un microcontrollore a 8 bit ad alte prestazioni.
 
-Components
-----------
+Componenti
+-------------
 
 .. image:: img/list_2.2.3_dht-11.png
 
 
-Principle
----------
+Principio di funzionamento
+----------------------------
 
-The DHT11 is a basic, ultra low-cost digital temperature and humidity
-sensor. It uses a capacitive humidity sensor and a thermistor to measure
-the surrounding air, and spits out a digital signal on the data pin (no
-analog input pins are needed).
+Il DHT11 è un sensore digitale di temperatura e umidità a basso costo. 
+Utilizza un sensore capacitivo di umidità e un termistore per misurare 
+l'aria circostante e fornisce un segnale digitale sul pin dei dati (non 
+sono necessari pin di ingresso analogico).
 
 .. image:: img/image205.png
     :width: 200
 
+Sono disponibili solo tre pin: VCC, GND e DATA. Il processo di comunicazione 
+inizia con l'invio dei segnali di avvio sulla linea DATA al DHT11; il DHT11 
+riceve i segnali e invia un segnale di risposta. Il dispositivo riceve il 
+segnale di risposta e inizia a ricevere 40 bit di dati (8 bit per l'umidità 
+intera + 8 bit per l'umidità decimale + 8 bit per la temperatura intera + 8 bit 
+per la temperatura decimale + 8 bit di checksum). Per maggiori informazioni, 
+fare riferimento al datasheet del DHT11.
 
-
-Only three pins are available: VCC, GND, and DATA. The communication
-process begins with the DATA line sending start signals to DHT11, and
-DHT11 receives the signals and returns an answer signal. Then the host
-receives the answer signal and begins to receive 40-bit humiture data
-(8-bit humidity integer + 8-bit humidity decimal + 8-bit temperature
-integer + 8-bit temperature decimal + 8-bit checksum). For more
-information, please refer to DHT11 datasheet.
-
-Schematic Diagram
------------------
+Schema elettrico
+-------------------
 
 .. image:: img/image326.png
 
 
-Experimental Procedures
------------------------
+Procedure sperimentali
+-------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: img/image207.png
     :width: 800
 
-
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -80,7 +75,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/c/2.2.3/
 
-**Step 3:** Compile the code.
+**Passo 3:** Compila il codice.
 
 .. raw:: html
 
@@ -90,7 +85,7 @@ Experimental Procedures
 
     gcc 2.2.3_DHT.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -100,15 +95,15 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the program will print the temperature and humidity
-detected by DHT11 on the computer screen.
+Dopo aver avviato il codice, il programma stamperà sullo schermo del 
+computer la temperatura e l’umidità rilevate dal DHT11.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+    Se il programma non funziona dopo l'esecuzione o compare un messaggio 
+    di errore: \"wiringPi.h: No such file or directory", fai riferimento a :ref:`Il codice C non funziona?`.
 
-
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -128,18 +123,18 @@ detected by DHT11 on the computer screen.
         uint8_t j = 0, i;
         float Fah; // fahrenheit
         dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
-        // pull pin down for 18 milliseconds
+        // abbassa il pin per 18 millisecondi
         pinMode(dhtPin, OUTPUT);
         digitalWrite(dhtPin, LOW);
         delay(18);
-        // then pull it up for 40 microseconds
+        // poi alzalo per 40 microsecondi
         digitalWrite(dhtPin, HIGH);
         delayMicroseconds(40); 
-        // prepare to read the pin
+        // prepara il pin per la lettura
         pinMode(dhtPin, INPUT);
 
-        // detect change and read data
-        for ( i=0; i< maxTim; i++) {
+        // rileva cambiamenti e leggi i dati
+        for (i=0; i< maxTim; i++) {
             counter = 0;
             while (digitalRead(dhtPin) == laststate) {
                 counter++;
@@ -151,17 +146,17 @@ detected by DHT11 on the computer screen.
             laststate = digitalRead(dhtPin);
 
             if (counter == 255) break;
-            // ignore first 3 transitions
+            // ignora le prime 3 transizioni
             if ((i >= 4) && (i%2 == 0)) {
-                // shove each bit into the storage bytes
+                // memorizza ogni bit nei byte di archiviazione
                 dht11_dat[j/8] <<= 1;
                 if (counter > 50)
                     dht11_dat[j/8] |= 1;
                 j++;
             }
         }
-        // check we read 40 bits (8bit x 5 ) + verify checksum in the last byte
-        // print it out if data is good
+        // verifica la lettura di 40 bit (8 bit x 5) + verifica checksum nell'ultimo byte
+        // stampa il risultato se i dati sono corretti
         if ((j >= 40) && 
                 (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) ) {
             Fah = dht11_dat[2] * 9. / 5. + 32;
@@ -171,18 +166,18 @@ detected by DHT11 on the computer screen.
     }
 
     int main (void) {
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+        if(wiringPiSetup() == -1){ //se l'inizializzazione di wiring fallisce, stampa un messaggio
             printf("setup wiringPi failed !");
             return 1; 
         }
         while (1) {
             readDht11();
-            delay(500); // wait 1sec to refresh
+            delay(500); // aspetta 1 sec per aggiornare
         }
         return 0 ;
     }
 
-**Code Explanation**
+**Spiegazione del codice**
 
 .. code-block:: c
 
@@ -195,41 +190,39 @@ detected by DHT11 on the computer screen.
         // ...
     }
 
-This function is used to realize the function of DHT11.
+Questa funzione serve a realizzare la lettura dei dati del DHT11.
 
-It generally can be divided into 3 parts:
+In generale, può essere suddivisa in 3 parti:
 
-1. prepare to read the pin:
+1. Preparazione per la lettura del pin:
 
 .. code-block:: c
 
-    // pull pin down for 18 milliseconds
+    // abbassa il pin per 18 millisecondi
     pinMode(dhtPin, OUTPUT);
     digitalWrite(dhtPin, LOW);
     delay(18);
-    // then pull it up for 40 microseconds
+    // poi alzalo per 40 microsecondi
     digitalWrite(dhtPin, HIGH);
     delayMicroseconds(40); 
-    // prepare to read the pin
+    // prepara il pin per la lettura
     pinMode(dhtPin, INPUT);
 
-Its communication flow is determined by work timing.
+Il flusso di comunicazione è determinato dal timing di funzionamento.
 
 .. image:: img/image208.png
     :width: 800
 
+Quando DHT11 si avvia, il microcontrollore (MCU) invia un segnale di basso 
+livello e poi mantiene il segnale a livello alto per 40 µs. Successivamente, 
+inizia il rilevamento delle condizioni dell'ambiente esterno.
 
-
-When DHT11 starts up, MCU will send a low level signal and then keep the
-signal at high level for 40us. After that, the detection of the
-condition of external environment will start.
-
-2. read data:
+2. Lettura dei dati:
 
 .. code-block:: c
 
-    // detect change and read data  
-    for ( i=0; i< maxTim; i++) {
+    // rileva cambiamenti e leggi i dati  
+    for (i=0; i< maxTim; i++) {
             counter = 0;
             while (digitalRead(dhtPin) == laststate) {
                 counter++;
@@ -240,9 +233,9 @@ condition of external environment will start.
             }
             laststate = digitalRead(dhtPin);
             if (counter == 255) break;
-            // ignore first 3 transitions
+            // ignora le prime 3 transizioni
             if ((i >= 4) && (i%2 == 0)) {
-                // shove each bit into the storage bytes
+                // inserisci ogni bit nei byte di archiviazione
                 dht11_dat[j/8] <<= 1;
                 if (counter > 50)
                     dht11_dat[j/8] |= 1;
@@ -250,21 +243,21 @@ condition of external environment will start.
             }
         }
 
-The loop stores the detected data in the dht11_dat[] array. DHT11
-transmits data of 40 bits at a time. The first 16 bits are related to
-humidity, the middle 16 bits are related to temperature, and the last
-eight bits are used for verification. The data format is:
+Il ciclo memorizza i dati rilevati nell'array dht11_dat[]. DHT11 trasmette i 
+dati in blocchi di 40 bit. I primi 16 bit si riferiscono all'umidità, i 
+successivi 16 bit alla temperatura, e gli ultimi 8 bit sono utilizzati per 
+la verifica. Il formato dei dati è:
 
-**8bit humidity integer data** + **8bit humidity decimal data** + **8bit
-temperature integer data** + **8bit temperature decimal data** + **8bit
-check bit**.
+**8 bit per l'intero dell'umidità** + **8 bit per la parte decimale dell'umidità** 
++ **8 bit per l'intero della temperatura** + **8 bit per la parte decimale della 
+temperatura** + **8 bit per il bit di controllo**.
 
-3. Print Humidity & Temperature.
+3. Stampa Umidità e Temperatura.
 
 .. code-block:: c
 
-    // check we read 40 bits (8bit x 5 ) + verify checksum in the last byte
-    // print it out if data is good
+    // verifica che abbiamo letto 40 bit (8 bit x 5) + verifica checksum nell'ultimo byte
+    // stampa i risultati se i dati sono corretti
     if ((j >= 40) && 
             (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) ) {
         Fah = dht11_dat[2] * 9. / 5. + 32;
@@ -272,25 +265,21 @@ check bit**.
                 dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], Fah);
     }
 
-When the data storage is up to 40 bits, check the validity of the data
-through the **check bit (dht11_dat[4])**, and then print the temperature
-and humidity.
+Quando la memorizzazione dei dati arriva a 40 bit, verifica la validità dei 
+dati tramite il **bit di controllo (dht11_dat[4])** e successivamente stampa 
+i valori di temperatura e umidità.
 
-For example, if the received data is 00101011(8-bit value of humidity
-integer) 00000000 (8-bit value of humidity decimal) 00111100 (8-bit
-value of temperature integer) 00000000 (8-bit value of temperature
-decimal) 01100111 (check bit)
+Ad esempio, se i dati ricevuti sono 00101011 (valore intero dell'umidità a 8 bit) 
+00000000 (valore decimale dell'umidità a 8 bit) 00111100 (valore intero della 
+temperatura a 8 bit) 00000000 (valore decimale della temperatura a 8 bit) 01100111 (bit di controllo)
 
-**Calculation:**
+**Calcolo:**
 
 00101011+00000000+00111100+00000000=01100111.
 
-The final result is equal to the check bit data, then the received data
-is correct:
+Il risultato finale è uguale al bit di controllo, quindi i dati ricevuti sono corretti:
 
-Humidity =43%，Temperature =60*C.
+Umidità = 43%, Temperatura = 60 °C.
 
-If it is not equal to the check bit data, the data transmission is not
-normal and the data is received again.
-
+Se non è uguale al bit di controllo, la trasmissione dei dati non è normale e i dati vengono ricevuti di nuovo.
 

@@ -1,56 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché Unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni speciali per le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-2.1.2 Slide Switch
-==================
+2.1.2 Interruttore a Scorrimento
+=====================================
 
-Introduction
-------------
+Introduzione
+--------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+In questo progetto, impareremo come utilizzare un interruttore a scorrimento. 
+Di solito, l’interruttore a scorrimento è saldato su un PCB come interruttore 
+di alimentazione; qui, invece, lo inseriremo in una breadboard per mostrare il 
+suo funzionamento.
 
-Components
-----------
+Componenti
+-------------
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
 
 
-Schematic Diagram
------------------
+Schema a Blocchi
+--------------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Collega il pin centrale dell’interruttore a scorrimento a GPIO17 e due LED 
+ai pin GPIO22 e GPIO27, rispettivamente. Spostando l’interruttore, vedrai 
+accendersi i due LED alternativamente.
 
 .. image:: ../img/image305.png
-
 
 .. image:: ../img/image306.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image161.png
 
-**Step 2**: Go to the folder of the code.
+**Passo 2**: Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -60,7 +59,7 @@ Experimental Procedures
 
     cd ~/davinci-kit-for-raspberry-pi/nodejs/
 
-**Step 3**: Run the code.
+**Passo 3**: Esegui il codice.
 
 .. raw:: html
 
@@ -70,10 +69,10 @@ Experimental Procedures
 
     sudo node slide_switch.js
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Durante l’esecuzione del codice, sposta l’interruttore verso sinistra: 
+il LED giallo si accenderà; spostalo verso destra, e si accenderà la luce rossa.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -93,8 +92,7 @@ the yellow LED lights up; to the right, the red light turns on.
         led2.digitalWrite(!level);       
     });
 
-
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: js
 
@@ -109,8 +107,9 @@ the yellow LED lights up; to the right, the red light turns on.
         edge: Gpio.EITHER_EDGE        
     });
 
-Import the pigpio module, and create three objects led1, led2, slideSwitch, 
-and control the on and off of led1 and led2 by reading the level of the slideSwitch IO port.   
+Importa il modulo pigpio e crea tre oggetti: led1, led2, e slideSwitch, 
+per controllare l'accensione e lo spegnimento di led1 e led2 in base al 
+livello del pin dell’interruttore a scorrimento.
 
 .. code-block:: js
 
@@ -119,12 +118,10 @@ and control the on and off of led1 and led2 by reading the level of the slideSwi
         led2.digitalWrite(!level);       
     });
 
-When the read level of the slideSwitch IO port changes,
-Write the same level to led1 and the opposite level to led2.
+Quando cambia il livello del pin dell’interruttore, lo stesso livello 
+viene scritto su led1 e il livello opposto su led2.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+------------------------
 
 .. image:: ../img/image162.jpeg
-
-

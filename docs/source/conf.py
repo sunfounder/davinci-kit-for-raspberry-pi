@@ -101,15 +101,15 @@ rst_epilog = """
 
 .. |link_fr_tutorials| raw:: html
 
-    <a href="https://docs.sunfounder.com/projects/davinci-kit/en/latest/" target="_blank">Didacticiels en ligne en français</a>
+    <a href="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/" target="_blank">Didacticiels en ligne en français</a>
 
 .. |link_es_tutorials| raw:: html
 
-    <a href="https://docs.sunfounder.com/projects/davinci-kit/en/latest/" target="_blank">Tutoriales en línea en español</a>
+    <a href="https://docs.sunfounder.com/projects/davinci-kit/es/latest/" target="_blank">Tutoriales en línea en español</a>
 
 .. |link_it_tutorials| raw:: html
 
-    <a href="https://docs.sunfounder.com/projects/davinci-kit/en/latest/" target="_blank">Tutorial online in italiano</a>
+    <a href="https://docs.sunfounder.com/projects/davinci-kit/it/latest/" target="_blank">Tutorial online in italiano</a>
 
     """
 

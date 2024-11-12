@@ -1,71 +1,72 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anticipo agli annunci dei nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri ultimi prodotti.
+    - **Promozioni Festive e Giveaway**: Partecipa a promozioni festive e giveaway.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-1.7 Doorbell
+1.7 Campanello
 ==================
 
-Today we will make a doorbell, click the button3 sprite on the stage, the buzzer will sound; click again, the buzzer will stop sounding.
+Oggi realizzeremo un campanello: cliccando sullo sprite **button3** nell'area dello stage, il cicalino emetterà un suono; cliccando di nuovo, il cicalino si spegnerà.
 
 .. image:: img/1.13_header.png
 
-Required Components
+Componenti Necessari
 -----------------------
 
 .. image:: img/1.13_list.png
 
-Build the Circuit
----------------------
+Costruire il Circuito
+------------------------
 
 .. image:: img/1.13_image106.png
 
-Load the Code and See What Happens
------------------------------------------
+Carica il Codice e Osserva Cosa Succede
+------------------------------------------
 
-Load the code file (``1.7_doorbell.sb3``) to Scratch 3.
+Carica il file di codice (``1.7_doorbell.sb3``) su Scratch 3.
 
-Click on the green flag on the stage. When we click on the Button 3 sprite, it will turn blue and then the buzzer will sound; when we click again, the **Button3** sprite reverts to gray and the buzzer stops sounding.
+Clicca sulla bandiera verde sullo stage. Quando clicchiamo sullo sprite **Button 3**, questo diventerà blu e il cicalino emetterà un suono; cliccando nuovamente, lo sprite **Button3** tornerà grigio e il cicalino smetterà di suonare.
 
 
-Tips on Sprite
-----------------
+Suggerimenti per lo Sprite
+------------------------------
 
-Delete the default sprite, then choose the **Button 3** sprite.
+Elimina lo sprite di default, quindi scegli lo sprite **Button 3**.
 
 .. image:: img/1.13_scratch_button3.png
 
-Then set the size to 200.
+Imposta quindi la dimensione a 200.
 
 .. image:: img/1.13_scratch_button3_size.png
 
-Tips on Codes
---------------
+Suggerimenti sul Codice
+---------------------------
 
 .. image:: img/1.13_buzzer4.png
   :width: 400
 
-This block allows you to switch the sprite's costume.
+Questo blocco ti permette di cambiare il costume dello sprite.
 
 .. image:: img/1.13_buzzer5.png
   :width: 400
 
-Set gpio17 to low to make the buzzer sound; set it to high and the buzzer will not sound.
+Imposta gpio17 su basso per attivare il suono del cicalino; impostandolo su alto, il cicalino non suonerà.
 
 
-The **status** switch is used here, and we will use a flowchart to help you understand the whole code.
+Per controllare il suono utilizziamo lo switch **status**, e di seguito un diagramma di flusso per aiutarti a comprendere il funzionamento completo del codice.
 
-When the green flag is clicked, the **status** will be set to 0 first, and wait for the sprite to be clicked at this time; if **button3** sprite is clicked, it will switch to costume as **button-b** costume (blue) and the **status** will be set to 1. When the main program receives the **status** as 1, it will let the buzzer sound at 0.1s interval.
-If **button3** is clicked again, it will switch to **button-a** costume (gray) and **status** will be set to 0 again.
+Quando si clicca sulla bandiera verde, lo **status** viene impostato inizialmente a 0 e attende il clic sullo sprite; se lo sprite **button3** viene cliccato, 
+cambia il suo costume in **button-b** (blu) e lo **status** viene impostato su 1. Quando il programma principale rileva lo **status** come 1, il cicalino emette 
+un suono a intervalli di 0,1 secondi. Cliccando nuovamente su **button3**, il costume cambia in **button-a** (grigio) e lo **status** torna a 0.
 
 .. image:: img/1.13_scratch_code.png
 

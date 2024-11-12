@@ -1,70 +1,70 @@
-.. note::
+.. note:: 
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anticipo agli annunci dei nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri ultimi prodotti.
+    - **Promozioni Festive e Giveaway**: Partecipa a promozioni festive e giveaway.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-1.5 Wake up the Owl
-====================
+1.5 Sveglia il Gufo
+======================
 
-Today we are going to play a game of waking up the owl.
+Oggi giocheremo al gioco per svegliare il gufo.
 
-When someone approaches the PIR sensor module, the owl will wake up from sleep.
+Quando qualcuno si avvicina al modulo sensore PIR, il gufo si sveglierà dal sonno.
 
-There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. To make the PIR module work better, you
-You need to turn both of them counterclockwise to the end.
+Sul modulo PIR ci sono due potenziometri: uno per regolare la sensibilità 
+e l'altro per regolare la distanza di rilevamento. Per far funzionare al 
+meglio il modulo PIR, è necessario ruotarli entrambi in senso antiorario 
+fino in fondo.
 
 .. image:: img/1.5_header.png
 
-Required Components
+Componenti Necessari
 -----------------------
 
 .. image:: img/1.5_component.png
 
-Build the Circuit
----------------------
+Costruire il Circuito
+-------------------------
 
 .. image:: img/1.5_fritzing.png
 
-Load the Code and See What Happens
----------------------------------------
+Carica il Codice e Osserva Cosa Succede
+-------------------------------------------
 
-Load the code file (``1.5_wake_up_the_owl.sb3``) to Scratch 3.
+Carica il file di codice (``1.5_wake_up_the_owl.sb3``) in Scratch 3.
 
-When you approach the PIR sensor module, you will see the owl on the stage area open its wings and wake up, and when you leave, the owl will go back to sleep again.
+Quando ti avvicini al modulo sensore PIR, vedrai il gufo nell'area dello stage aprire le ali e svegliarsi; quando ti allontani, il gufo tornerà a dormire.
 
 
-Tips on Sprite
-----------------
+Suggerimenti per lo Sprite
+------------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **owl1.png** and **owl2.png** from the ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **owl**.
+Seleziona Sprite1 e clicca su **Costumi** in alto a sinistra; carica **owl1.png** e **owl2.png** dal percorso ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` tramite il pulsante **Carica Costume**; elimina i 2 costumi di default e rinomina lo sprite come **gufo**.
 
 .. image:: img/1.5_pir1.png
 
-Tips on Codes
---------------
+Suggerimenti sul Codice
+--------------------------------
 
 .. image:: img/1.3_title2.png
 
 
-When the green flag is clicked, the initial state of gpio17 is set to low.
+Quando si clicca sulla bandierina verde, lo stato iniziale di gpio17 è impostato su basso.
 
 .. image:: img/1.5_owl1.png
   :width: 400
 
-When pin17 is low (no one is approaching), switch the costume of the owl sprite to owl1 (sleeping state).
+Quando pin17 è basso (nessuno si avvicina), cambia il costume dello sprite gufo su owl1 (stato dormiente).
 
 .. image:: img/1.5_owl2.png
   :width: 400
 
-When pin17 is high (someone is approaching), we switch the costume of owl sprite to owl2 (wake up state).
+Quando pin17 è alto (qualcuno si avvicina), cambia il costume dello sprite gufo su owl2 (stato sveglio).

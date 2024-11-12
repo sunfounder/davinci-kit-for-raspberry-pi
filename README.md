@@ -18,6 +18,10 @@ In the 3-in-1 starter kit, you will find a complete Arduino course to help begin
 
 <a id="update"></a>
 ## Update:
+
+2024-11-04:
+- Solve the problem that DHT11 and MFRC522 module are not compatible with Pi 5.
+
 2024-04-03:
 - Add the tutorial on installing a virtual environment
 

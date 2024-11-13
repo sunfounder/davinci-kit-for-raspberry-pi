@@ -13,13 +13,15 @@
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
 Appendix
-==============
+===============
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
+    install_the_libraries
     i2c_configuration
     spi_configuration
     remote_desktop
     get_ip
-    create_virtual_environment
+    install_openssh_powershell
+    login_windows

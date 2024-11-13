@@ -25,9 +25,6 @@ Thanks for choosing our |link_DaVinci_kit|.
         * |link_german_tutorials|
         * |link_jp_tutorials|
         * |link_en_tutorials|
-        * |link_fr_tutorials|
-        * |link_es_tutorials|
-        * |link_it_tutorials|
     
     Please click on the respective links to access the document in your preferred language.
 
@@ -67,10 +64,9 @@ If you have any questions, please send an email to service@sunfounder.com and we
 
     About this Kit <self>
     component_list
-    libraries
     gpio_extension_board
     download_the_code
-    preparation/preparation
+    install_setup_os/install_setup_os
     for_pi5
     for_other_models
     python_video/python_video

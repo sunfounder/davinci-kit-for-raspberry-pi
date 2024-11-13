@@ -12,6 +12,8 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
+.. _remote_desktop:
+
 Remote Desktop 
 =====================
 
@@ -35,11 +37,11 @@ Input the following command:
 
 .. raw:: html
 
-   <run></run>
+    <run></run>
 
 .. code-block:: 
 
-   sudo raspi-config
+    sudo raspi-config
 
 .. image:: img/image287.png
    :align: center
@@ -128,7 +130,7 @@ Input the following instructions to install XRDP.
 
 .. raw:: html
 
-   <run></run>
+    <run></run>
 
 .. code-block:: 
 

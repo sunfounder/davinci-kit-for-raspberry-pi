@@ -47,7 +47,7 @@ Ecke und fügen Sie dann **Raspberry Pi GPIO** hinzu, eine Erweiterung, die wir 
 Load the Code and See What Happens
 -----------------------------------------
 
-Lade die Code-Datei von deinem Computer (``home/pi/davinci-kit-for-raspberry-pi/scratch/code``) in Scratch 3.
+Lade die Code-Datei von deinem Computer (``davinci-kit-for-raspberry-pi/scratch/code``) in Scratch 3.
 
 .. image:: media/1.1_scratch_step1.png
 
@@ -65,7 +65,7 @@ Klicken Sie auf die Schaltfläche **Upload Sprite**.
 
 .. image:: media/1.1_upload_sprite.png
 
-Lade **Wand.png** aus dem Pfad ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` in Scratch 3 hoch.
+Lade **Wand.png** aus dem Pfad ``davinci-kit-for-raspberry-pi/scratch/picture`` in Scratch 3 hoch.
 
 .. image:: media/1.1_upload.png
 

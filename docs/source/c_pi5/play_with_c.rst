@@ -17,7 +17,8 @@ Spielen Sie mit C
 
 .. toctree::
     :maxdepth: 2
-
+    
+    check_the_wiringpi_c
     1_output 
     2_input 
     3_extension

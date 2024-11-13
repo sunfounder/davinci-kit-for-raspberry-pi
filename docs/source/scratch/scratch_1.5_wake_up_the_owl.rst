@@ -44,7 +44,7 @@ Tipps zu Figur
 ----------------
 
 Wählen Sie Sprite1 und klicken Sie auf **Costumes** in der oberen linken Ecke; 
-laden Sie **owl1.png** und **owl2.png** aus dem Pfad ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` 
+laden Sie **owl1.png** und **owl2.png** aus dem Pfad ``davinci-kit-for-raspberry-pi/scratch/picture`` 
 über die Schaltfläche **Upload Costume** hoch; löschen Sie die 2 Standardkostüme und benennen Sie das Sprite in **owl** um.
 
 .. image:: media/1.5_pir1.png

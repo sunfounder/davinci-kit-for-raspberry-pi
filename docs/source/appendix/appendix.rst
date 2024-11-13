@@ -23,4 +23,7 @@ Anhang
     i2c_configuration
     spi_configuration
     remote_desktop
+    get_ip
     create_virtual_environment
+    login_windows
+    install_openssh_powershell

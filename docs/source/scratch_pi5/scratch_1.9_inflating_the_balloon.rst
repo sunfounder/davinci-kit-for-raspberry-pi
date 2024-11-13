@@ -48,7 +48,7 @@ Löschen Sie das vorherige Sprite1-Sprite und fügen Sie dann das **Balloon1** -
 In diesem Projekt wird ein Ballonexplosions-Soundeffekt verwendet. Sehen wir uns also an, wie er hinzugefügt wurde.
 
 Klicken Sie oben auf die Option **Sound** und dann auf **Upload Sound** um ``boom.wav`` 
-von ``home/pi/davinci-kit-for-raspberry-pi/scratch/sound`` hochzuladen. Pfad zu Scratch 3.
+von ``davinci-kit-for-raspberry-pi/scratch/sound`` hochzuladen. Pfad zu Scratch 3.
 
 .. image:: media/1.15_slide2.png
 

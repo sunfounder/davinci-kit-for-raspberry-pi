@@ -28,12 +28,12 @@ Melden Sie sich bei Raspberry Pi an und wechseln Sie dann das Verzeichnis in ``/
    
 .. code-block::
 
-   cd /home/pi/
+   cd ~/
 
 
 .. note::
 
-   cd, um vom aktuellen Pfad in das beabsichtigte Verzeichnis zu wechseln. Informell geht es hier zum Pfad ``/home/pi/``.
+   cd, um vom aktuellen Pfad in das beabsichtigte Verzeichnis zu wechseln. Informell geht es hier zum Pfad ``~/``.
 
 Klonen Sie das Repository von GitHub.
 

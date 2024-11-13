@@ -19,6 +19,9 @@ In the 3-in-1 starter kit, you will find a complete Arduino course to help begin
 <a id="update"></a>
 ## Update:
 
+2024-11-13:
+- Solve the problem that DHT11 and MFRC522 module are not compatible with Pi 5.
+
 2023-09-20:
 - Modified the code and code analysis in ar_calibration.rst and ar_reversing_aid.rst.
 - Addressed various minor corrections.

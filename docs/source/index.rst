@@ -44,10 +44,9 @@ Hier ist die E-Mail: service@sunfounder.com.
 
     About this Kit <self>
     component_list
-    introduction
-    libraries
     gpio_extension_board
-    preparation/preparation
+    download_the_code
+    install_setup_os/preparation
     for_pi5
     for_other_models
     python_video/python_video

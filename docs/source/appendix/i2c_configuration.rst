@@ -29,7 +29,7 @@ Schritt 1: Aktivieren Sie den I2C-Port Ihres Raspberry Pi (Wenn Sie ihn aktivier
 
 **3 Interfacing options**
 
-.. image:: media/image282.png
+.. image:: img/image282.png
     :align: center
 
 **I4 I2C**
@@ -39,7 +39,7 @@ Schritt 1: Aktivieren Sie den I2C-Port Ihres Raspberry Pi (Wenn Sie ihn aktivier
 
 **<Yes>, dann  <Ok> -> <Finish>**
 
-.. image:: media/image284.png
+.. image:: i/davinci-kit-for-raspberry-pi/image284.png
     :align: center
 
 Schritt 2: Prüfen Sie, ob die i2c-Module geladen und aktiv sind.

@@ -12,7 +12,7 @@
 
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
-.. _spi_config:
+.. _spi_configuration:
 
 SPI-Konfiguration
 ====================
@@ -31,7 +31,7 @@ wenn Sie nicht wissen, ob Sie das getan haben oder nicht, fahren Sie bitte fort)
 
 **3 Interfacing options**
 
-.. image:: media/image282.png
+.. image:: img/image282.png
    :align: center
 
 **I3 SPI**
@@ -41,7 +41,7 @@ wenn Sie nicht wissen, ob Sie das getan haben oder nicht, fahren Sie bitte fort)
 
 **<YES>**, dann auf **<OK>** und **<Finish>** klicken. Jetzt können Sie den Raspberry Pi mit dem Befehl ``sudo reboot`` neu starten.
 
-.. image:: media/image286.png
+.. image:: img/image286.png
    :align: center 
 
 

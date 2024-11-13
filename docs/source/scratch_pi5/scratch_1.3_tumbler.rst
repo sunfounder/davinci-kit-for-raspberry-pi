@@ -41,7 +41,7 @@ Tipps zu Figur
 ----------------
 
 Wähle Sprite1 und klicke oben links auf **Costumes**; Laden Sie ``tumbler1.png`` und ``tumbler2.png`` aus dem 
-Pfad ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` über die Schaltfläche Kostüm hochladen hoch; 
+Pfad ``davinci-kit-for-raspberry-pi/scratch/picture`` über die Schaltfläche Kostüm hochladen hoch; 
 Löschen Sie die 2 Standardkostüme und benennen Sie das Sprite in Tumbler um.
 
 .. image:: media/1.3_add_tumbler.png

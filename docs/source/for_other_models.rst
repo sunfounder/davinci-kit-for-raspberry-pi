@@ -18,6 +18,7 @@ Für Pi 4, 3 und alle anderen Pi-Modelle
 .. toctree::
     :maxdepth: 2
 
+    libraries
     1_output
     2_input
     3_extension

@@ -46,7 +46,7 @@ Cuando te acerques al módulo sensor PIR, verás que el búho en el área del es
 Consejos sobre el Sprite
 --------------------------
 
-Selecciona Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **owl1.png** y **owl2.png** desde la ruta ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` mediante el botón **Subir Disfraz**; elimina los 2 disfraces predeterminados y renombra el sprite como **búho**.
+Selecciona Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **owl1.png** y **owl2.png** desde la ruta ``davinci-kit-for-raspberry-pi/scratch/picture`` mediante el botón **Subir Disfraz**; elimina los 2 disfraces predeterminados y renombra el sprite como **búho**.
 
 .. image:: img/1.5_pir1.png
 

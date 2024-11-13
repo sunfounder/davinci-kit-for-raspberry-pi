@@ -46,7 +46,7 @@ Haz clic en el botón **Agregar Extensión** en la esquina inferior izquierda y 
 Cargar el Código y Ver Qué Sucede
 ------------------------------------
 
-Carga el archivo de código desde tu computadora (``home/pi/davinci-kit-for-raspberry-pi/scratch/code``) a Scratch 3.
+Carga el archivo de código desde tu computadora (``davinci-kit-for-raspberry-pi/scratch/code``) a Scratch 3.
 
 .. image:: img/1.1_scratch_step1.png
 
@@ -64,7 +64,7 @@ Haz clic en **Subir Sprite**.
 
 .. image:: img/1.1_upload_sprite.png
 
-Sube **Wand.png** desde la ruta ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` a Scratch 3.
+Sube **Wand.png** desde la ruta ``davinci-kit-for-raspberry-pi/scratch/picture`` a Scratch 3.
 
 .. image:: img/1.1_upload.png
 

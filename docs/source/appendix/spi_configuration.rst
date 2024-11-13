@@ -1,24 +1,9 @@
-.. note::
-
-    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
-
-    **¿Por qué unirse?**
-
-    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
-    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
-    - **Acceso exclusivo**: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.
-    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
-    - **Promociones y sorteos**: Participa en sorteos y promociones festivas.
-
-    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
-
 .. _spi_configuration:
 
-SPI Configuration
+SPI Configurtion
 -----------------------
 
-**Paso 1**: Habilita el puerto SPI de tu Raspberry Pi (si ya lo has habilitado, 
-omite esto; si no estás seguro, continúa).
+**Paso 1**: Habilita el puerto SPI de tu Raspberry Pi (si ya lo has habilitado, omite este paso; si no sabes si lo has hecho, continúa).
 
 .. raw:: html
 
@@ -28,7 +13,7 @@ omite esto; si no estás seguro, continúa).
 
     sudo raspi-config
 
-**3 Opciones de interfaz**
+**3 Interfacing options**
 
 .. image:: img/image282.png
    :align: center
@@ -38,12 +23,12 @@ omite esto; si no estás seguro, continúa).
 .. image:: img/i3spi.png
    :align: center
 
-**<SÍ>, luego haz clic en <OK> y <Finalizar>.**
+**<YES>, luego haz clic en <OK> y <Finish>.**
 
 .. image:: img/image286.png
    :align: center 
 
-**Paso 2:** Verifica que los módulos SPI estén cargados y activos.
+**Paso 2:** Verifica que los módulos spi estén cargados y activos.
 
 .. raw:: html
 
@@ -53,13 +38,13 @@ omite esto; si no estás seguro, continúa).
 
     ls /dev/sp*
 
-Aparecerán los siguientes códigos (el número puede variar).
+Luego aparecerán los siguientes códigos (el número puede ser diferente).
 
 .. code-block:: 
 
     /dev/spidev0.0  /dev/spidev0.1
 
-**Paso 3:** Instala el módulo SPI-Py para Python.
+**Paso 3:** Instala el módulo Python SPI-Py.
 
 .. raw:: html
 
@@ -72,6 +57,5 @@ Aparecerán los siguientes códigos (el número puede variar).
     sudo python3 setup.py install
 
 .. note::
-    Este paso es para usuarios de Python; si usas el lenguaje C, por favor
-    omite este paso.
+    Este paso es para usuarios de Python, si usas lenguaje C, por favor omítelo.
 

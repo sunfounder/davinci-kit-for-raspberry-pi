@@ -41,7 +41,7 @@ Cuando el interruptor de inclinación se coloca en posición vertical, el juguet
 Consejos sobre el Objeto
 ----------------------------
 
-Selecciona el objeto Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **tumbler1.png** y **tumbler2.png** desde la ruta ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` mediante el botón **Subir Disfraz**; elimina los 2 disfraces predeterminados y renombra el objeto como **tumbler**.
+Selecciona el objeto Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **tumbler1.png** y **tumbler2.png** desde la ruta ``davinci-kit-for-raspberry-pi/scratch/picture`` mediante el botón **Subir Disfraz**; elimina los 2 disfraces predeterminados y renombra el objeto como **tumbler**.
 
 .. image:: img/1.3_add_tumbler.png
 

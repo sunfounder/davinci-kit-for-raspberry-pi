@@ -1,65 +1,68 @@
 .. note::
 
-    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **¿Por qué unirse?**
+    **¿Por qué unirte?**
 
-    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
-    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
-    - **Acceso exclusivo**: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.
-    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
-    - **Promociones y sorteos**: Participa en sorteos y promociones festivas.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
     👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-Remote Desktop 
-=====================
+.. _remote_desktop:
 
-Existen dos maneras de controlar el escritorio de la Raspberry Pi de forma remota:
+Escritorio Remoto 
+========================
 
-**VNC** y **XRDP**, puedes usar cualquiera de ellas.
+Existen dos formas de controlar el escritorio de la Raspberry Pi de forma remota:
 
-VNC
---------------
+**VNC** y **XRDP**, puedes usar cualquiera de ellos.
 
-Puedes utilizar la función de escritorio remoto a través de VNC.
+VNC 
+-----------------
+
+Puedes usar la función de escritorio remoto a través de VNC.
 
 **Habilitar el servicio VNC**
 
-El servicio VNC ya está instalado en el sistema. Por defecto, VNC está deshabilitado. Debes habilitarlo en la configuración.
+El servicio VNC ya está instalado en el sistema. Por defecto, VNC está deshabilitado. Necesitas habilitarlo en la configuración.
 
 **Paso 1**
 
-Ingresa el siguiente comando:
+Introduce el siguiente comando:
 
 .. raw:: html
 
-   <run></run>
+    <run></run>
 
-.. code-block:: 
+.. code-block:: shell
 
-   sudo raspi-config
+    sudo raspi-config
 
 .. image:: img/image287.png
    :align: center
 
 **Paso 2**
 
-Selecciona **3** **Opciones de Interfaz** presionando la tecla de flecha hacia abajo en tu teclado, luego presiona la tecla **Enter**.
+Elige **3** **Interfacing Options** presionando la tecla de flecha hacia abajo en tu teclado, 
+luego presiona la tecla **Enter**.
 
 .. image:: img/image282.png
    :align: center
 
 **Paso 3**
 
-**P3 VNC**
+Selecciona **P3 VNC**
 
 .. image:: img/image288.png
    :align: center
 
 **Paso 4**
 
-Selecciona **Sí -> Aceptar -> Finalizar** para salir de la configuración.
+Selecciona **Yes -> OK -> Finish** para salir de la configuración.
 
 .. image:: img/image289.png
    :align: center
@@ -68,18 +71,18 @@ Selecciona **Sí -> Aceptar -> Finalizar** para salir de la configuración.
 
 **Paso 1**
 
-Necesitas descargar e instalar el `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ en tu computadora personal. Después de completar la instalación, ábrelo.
+Necesitas descargar e instalar el `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ en tu computadora personal. Después de la instalación, ábrelo.
 
 **Paso 2**
 
-Luego selecciona \"**Nueva conexión**\".
+Luego selecciona \"**New connection**\".
 
 .. image:: img/image290.png
    :align: center
 
 **Paso 3**
 
-Ingresa la dirección IP de la Raspberry Pi y cualquier **Nombre**.
+Introduce la dirección IP de la Raspberry Pi y cualquier **Nombre**.
 
 .. image:: img/image291.png
    :align: center
@@ -93,39 +96,39 @@ Haz doble clic en la **conexión** que acabas de crear:
 
 **Paso 5**
 
-Ingresa el nombre de usuario (**pi**) y la contraseña (**raspberry** por defecto).
+Introduce el Nombre de usuario (**pi**) y la Contraseña (**raspberry** por defecto).
 
 .. image:: img/image293.png
    :align: center
 
 **Paso 6**
 
-Ahora podrás ver el escritorio de la Raspberry Pi:
+Ahora puedes ver el escritorio de la Raspberry Pi:
 
 .. image:: img/image294.png
    :align: center
 
-Eso es todo por la parte de VNC.
+Esto es el final de la parte de VNC.
 
 XRDP
 -----------------------
 
-Otro método de escritorio remoto es XRDP, que proporciona un inicio de sesión 
-gráfico en máquinas remotas utilizando RDP (Protocolo de Escritorio Remoto de Microsoft).
+Otro método de escritorio remoto es XRDP, que proporciona un inicio de sesión gráfico 
+a máquinas remotas utilizando RDP (Protocolo de Escritorio Remoto de Microsoft).
 
 **Instalar XRDP**
 
 **Paso 1**
 
-Inicia sesión en la Raspberry Pi usando SSH.
+Inicia sesión en la Raspberry Pi utilizando SSH.
 
 **Paso 2**
 
-Ingresa las siguientes instrucciones para instalar XRDP.
+Introduce las siguientes instrucciones para instalar XRDP.
 
 .. raw:: html
 
-   <run></run>
+    <run></run>
 
 .. code-block:: 
 
@@ -134,59 +137,55 @@ Ingresa las siguientes instrucciones para instalar XRDP.
 
 **Paso 3**
 
-Luego, comenzará la instalación.
+A continuación, comienza la instalación.
 
-Ingresa \"Y\" y presiona la tecla \"Enter\" para confirmar.
+Escribe \"Y\" y presiona la tecla \"Enter\" para confirmar.
 
 .. image:: img/image295.png
    :align: center
 
 **Paso 4**
 
-Una vez finalizada la instalación, deberás iniciar sesión en tu Raspberry Pi 
-usando aplicaciones de escritorio remoto de Windows.
+Una vez finalizada la instalación, debes iniciar sesión en tu Raspberry Pi utilizando aplicaciones de escritorio remoto de Windows.
 
 **Iniciar sesión en XRDP**
 
 **Paso 1**
 
-Si eres usuario de Windows, puedes usar la función de Escritorio Remoto que 
-viene con Windows. Si eres usuario de Mac, puedes descargar y usar Microsoft 
-Remote Desktop desde la App Store, y no hay mucha diferencia entre ambos. El 
-siguiente ejemplo es para Escritorio Remoto de Windows.
+Si eres usuario de Windows, puedes utilizar la función de Escritorio Remoto que viene con Windows. 
+Si eres usuario de Mac, puedes descargar y utilizar Microsoft Remote Desktop desde la APP Store, 
+y no hay mucha diferencia entre los dos. El siguiente ejemplo es para escritorio remoto de Windows.
 
 **Paso 2**
 
-Escribe \"**mstsc**\" en Ejecutar (WIN+R) para abrir la Conexión de Escritorio 
-Remoto, e ingresa la dirección IP de la Raspberry Pi, luego haz clic en \"Conectar\".
+Escribe \"**mstsc**\" en Ejecutar (WIN+R) para abrir la Conexión a Escritorio Remoto 
+e introduce la dirección IP de la Raspberry Pi, luego haz clic en \"Connect\".
 
 .. image:: img/image296.png
    :align: center
 
 **Paso 3**
 
-A continuación, aparecerá la página de inicio de sesión de XRDP. Por favor, 
-ingresa tu nombre de usuario y contraseña. Después de eso, haz clic en \"Aceptar\". 
-La primera vez que inicies sesión, tu nombre de usuario es \"pi\" y la contraseña es \"raspberry\".
+A continuación, aparecerá la página de inicio de sesión de xrdp. Introduce tu nombre de 
+usuario y contraseña. Después de eso, haz clic en \"OK\". La primera vez que inicies sesión, 
+tu nombre de usuario es \"pi\" y la contraseña es \"raspberry\".
 
 .. image:: img/image297.png
    :align: center
 
 **Paso 4**
 
-Aquí, has iniciado sesión con éxito en RPi usando el escritorio remoto.
+Aquí, has iniciado sesión exitosamente en la RPi utilizando el escritorio remoto.
 
 .. image:: img/image20.png
    :align: center
 
 **Aviso de Derechos de Autor**
 
-Todos los contenidos, incluidos pero no limitados a textos, imágenes y código 
-en este manual, son propiedad de la empresa SunFounder. Solo debes usarlos para 
-estudio personal, investigación, disfrute u otros fines no comerciales o sin 
-fines de lucro, bajo las regulaciones relacionadas y las leyes de derechos de 
-autor, sin infringir los derechos legales del autor y de los titulares de 
-derechos correspondientes. Para cualquier individuo u organización que utilice 
-esto con fines de lucro comercial sin permiso, la empresa se reserva el derecho 
-de tomar acciones legales.
+Todos los contenidos, incluyendo pero no limitados a textos, imágenes y código en este manual, 
+son propiedad de SunFounder Company. Debes usarlos solo para estudio personal, investigación, 
+disfrute u otros propósitos no comerciales o sin fines de lucro, bajo las regulaciones y leyes 
+de derechos de autor relacionadas, sin infringir los derechos legales del autor y titulares de 
+derechos relevantes. Para cualquier individuo u organización que utilice estos contenidos para 
+lucro comercial sin permiso, la Empresa se reserva el derecho de tomar acciones legales.
 

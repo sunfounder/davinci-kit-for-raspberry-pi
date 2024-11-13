@@ -17,7 +17,7 @@ Proyectos
 
 En esta sección, comenzarás a aprender cómo crear proyectos de IoT.
 
-Antes de iniciar el proyecto, debes haber descargado el código que hemos proporcionado (:ref:`Download the Code`).
+Antes de iniciar el proyecto, debes haber descargado el código que hemos proporcionado (:ref:`download_code`).
 
 Luego, copia los códigos desde la carpeta ``iot`` a la carpeta ``cloud4rpi-raspberrypi-python``.
 

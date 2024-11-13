@@ -41,7 +41,7 @@ Cuando el interruptor de inclinación está en posición vertical, el muñeco ta
 Consejos sobre el Sprite
 --------------------------
 
-Selecciona Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **tumbler1.png** y **tumbler2.png** desde la ruta ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` usando el botón **Subir Disfraz**; elimina los dos disfraces predeterminados y renombra el sprite como **tumbler**.
+Selecciona Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **tumbler1.png** y **tumbler2.png** desde la ruta ``davinci-kit-for-raspberry-pi/scratch/picture`` usando el botón **Subir Disfraz**; elimina los dos disfraces predeterminados y renombra el sprite como **tumbler**.
 
 .. image:: img/1.3_add_tumbler.png
 

@@ -48,7 +48,7 @@ Elimina el sprite Sprite1 anterior, luego agrega el sprite **Balloon1**.
 
 Se usa un efecto de sonido de explosión de globo en este proyecto, veamos cómo se añadió.
 
-Haz clic en la opción **Sonido** en la parte superior, luego haz clic en **Subir Sonido** para subir ``boom.wav`` desde la ruta ``home/pi/davinci-kit-for-raspberry-pi/scratch/sound`` a Scratch 3.
+Haz clic en la opción **Sonido** en la parte superior, luego haz clic en **Subir Sonido** para subir ``boom.wav`` desde la ruta ``davinci-kit-for-raspberry-pi/scratch/sound`` a Scratch 3.
 
 .. image:: img/1.15_slide2.png
 

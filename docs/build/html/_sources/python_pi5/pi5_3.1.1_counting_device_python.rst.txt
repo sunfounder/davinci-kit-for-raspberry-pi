@@ -1,0 +1,357 @@
+.. note::
+
+    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+
+    **Why Join?**
+
+    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
+    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
+    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
+    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
+    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+
+    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+
+.. _py_pi5_counting_device:
+
+3.1.1 Counting Device
+=======================
+
+Introduction
+-----------------
+
+Here we will make a number-displaying counter system, consisting of a
+PIR sensor and a 4-digit segment display. When the PIR detects that
+someone is passing by, the number on the 4-digit segment display will
+add 1. You can use this counter to count the number of people walking 
+through the passageway.
+
+Required Components
+------------------------------
+
+In this project, we need the following components.
+
+.. image:: ../python_pi5/img/4.1.7_counting_device_list_1.png
+    :align: center
+
+.. image:: ../python_pi5/img/4.1.7_counting_device_list_2.png
+    :align: center
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`4_digit`
+..         - \-
+..     *   - :ref:`74hc595`
+..         - |link_74hc595_buy|
+..     *   - :ref:`pir`
+..         - \-
+
+
+Schematic Diagram
+----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.7_counting_device_schematic.png
+   :align: center
+
+Experimental Procedures
+-----------------------------
+
+**Step 1**: Build the circuit.
+
+.. image:: ../python_pi5/img/4.1.7_counting_device_circuit.png
+
+
+**Step 2**: Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Step 3**: Run the executable file.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.1_CountingDevice.py
+
+After the code runs, when the PIR detects that someone is passing by,
+the number on the 4-digit segment display will add 1.
+
+There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+
+.. image:: ../python_pi5/img/4.1.7_PIR_TTE.png
+    :width: 400
+    :align: center
+
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice, MotionSensor
+
+   # Initialize PIR motion sensor on GPIO 26
+   pir = MotionSensor(26)
+
+   # Initialize shift register pins
+   SDI = OutputDevice(24)    # Serial Data Input
+   RCLK = OutputDevice(23)   # Register Clock Input
+   SRCLK = OutputDevice(18)  # Shift Register Clock Input
+
+   # Initialize 7-segment display pins
+   placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+   # Define digit codes for 7-segment display
+   number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+   # Counter for the displayed number
+   counter = 0
+
+   def clearDisplay():
+       # Clears the display by setting all segments off
+       for _ in range(8):
+           SDI.on()
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def hc595_shift(data):
+       # Shifts data into the 74HC595 shift register
+       for i in range(8):
+           SDI.value = 0x80 & (data << i)
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def pickDigit(digit):
+       # Activates a specific digit of the 7-segment display
+       for pin in placePin:
+           pin.off()
+       placePin[digit].on()
+
+   def display():
+       # Updates the display with the current counter value
+       global counter
+       clearDisplay()
+       pickDigit(0)
+       hc595_shift(number[counter % 10])
+
+       clearDisplay()
+       pickDigit(1)
+       hc595_shift(number[counter % 100//10])
+
+       clearDisplay()
+       pickDigit(2)
+       hc595_shift(number[counter % 1000//100])
+
+       clearDisplay()
+       pickDigit(3)
+       hc595_shift(number[counter % 10000//1000])
+
+   def loop():
+       # Main loop to update display and check for motion
+       global counter
+       currentState = 0
+       lastState = 0
+       while True:
+           display()
+           currentState = 1 if pir.motion_detected else 0
+           if currentState == 1 and lastState == 0:
+               counter += 1
+           lastState = currentState
+
+   try:
+       loop()
+   except KeyboardInterrupt:
+       # Turn off all pins when the script is interrupted
+       SDI.off()
+       SRCLK.off()
+       RCLK.off()
+       pass
+
+
+**Code Explanation**
+
+#. This line imports the ``OutputDevice`` and ``MotionSensor`` classes from the ``gpiozero`` library. ``OutputDevice`` can be an LED, motor, or any device that you want to control as an output. The ``MotionSensor`` is typically a PIR (Passive Infrared) sensor used to detect motion.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice, MotionSensor
+
+#. Initializes the PIR motion sensor connected to GPIO pin 26.
+
+   .. code-block:: python
+
+       # Initialize PIR motion sensor on GPIO 26
+       pir = MotionSensor(26)
+
+#. Initializes GPIO pins connected to the shift register's Serial Data Input (SDI), Register Clock Input (RCLK), and Shift Register Clock Input (SRCLK).
+
+   .. code-block:: python
+
+       # Initialize shift register pins
+       SDI = OutputDevice(24)    # Serial Data Input
+       RCLK = OutputDevice(23)   # Register Clock Input
+       SRCLK = OutputDevice(18)  # Shift Register Clock Input
+
+#. Initializes the pins for each digit of the 7-segment display and defines the binary codes for displaying numbers 0-9.
+
+   .. code-block:: python
+
+       # Initialize 7-segment display pins
+       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+       # Define digit codes for 7-segment display
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+#. Clears the 7-segment display by setting all segments off before displaying the next digit.
+
+   .. code-block:: python
+
+       def clearDisplay():
+           # Clears the display by setting all segments off
+           for _ in range(8):
+               SDI.on()
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+#. Shifts a byte of data into the 74HC595 shift register, controlling the display segments.
+
+   .. code-block:: python
+
+       def hc595_shift(data):
+           # Shifts data into the 74HC595 shift register
+           for i in range(8):
+               SDI.value = 0x80 & (data << i)
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+#. Selects which digit of the 7-segment display to activate. Each digit is controlled by a separate GPIO pin.
+
+   .. code-block:: python
+
+       def pickDigit(digit):
+           # Activates a specific digit of the 7-segment display
+           for pin in placePin:
+               pin.off()
+           placePin[digit].on()
+
+#. Initiate the display for the unit digit first, followed by activating the display for the tens digit. Subsequently, engage the displays for the hundreds and thousands digits in order. This rapid succession of activations creates the illusion of a continuous four-digit display.
+
+   .. code-block:: python
+
+       def display():
+           # Updates the display with the current counter value
+           global counter
+           clearDisplay()
+           pickDigit(0)
+           hc595_shift(number[counter % 10])
+
+           clearDisplay()
+           pickDigit(1)
+           hc595_shift(number[counter % 100//10])
+
+           clearDisplay()
+           pickDigit(2)
+           hc595_shift(number[counter % 1000//100])
+
+           clearDisplay()
+           pickDigit(3)
+           hc595_shift(number[counter % 10000//1000])
+
+#. Defines the main loop where the display is continuously updated, and the PIR sensor's state is checked. If motion is detected, the counter is incremented.
+
+   .. code-block:: python
+
+       def loop():
+           # Main loop to update display and check for motion
+           global counter
+           currentState = 0
+           lastState = 0
+           while True:
+               display()
+               currentState = 1 if pir.motion_detected else 0
+               if currentState == 1 and lastState == 0:
+                   counter += 1
+               lastState = currentState
+
+#. Runs the main loop and ensures that the script can be interrupted with a keyboard command (Ctrl+C), turning off all pins for a clean exit.
+
+   .. code-block:: python
+
+       try:
+           loop()
+       except KeyboardInterrupt:
+           # Turn off all pins when the script is interrupted
+           SDI.off()
+           SRCLK.off()
+           RCLK.off()
+           pass
+
+
+

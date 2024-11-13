@@ -1,0 +1,208 @@
+.. note::
+
+    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+
+    **Why Join?**
+
+    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
+    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
+    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
+    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
+    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+
+    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+
+1.1.1 Blinking LED
+=========================
+
+Introduction
+-----------------
+
+In this project, we will learn how to make a blinking LED by programming.
+Through your settings, your LED can produce a series of interesting
+phenomena. Now, go for it.
+
+Components
+------------------
+
+.. image:: img/blinking_led_list.png
+    :width: 800
+    :align: center
+
+
+
+Schematic Diagram
+---------------------
+
+In this experiment, connect a 220Ω resistor to the anode (the long pin
+of the LED), then the resistor to 3.3 V, and connect the cathode (the
+short pin) of the LED to GPIO17 of Raspberry Pi. Therefore, to turn on
+an LED, we need to make GPIO17 low (0V) level. We can get this
+phenomenon by programming.
+
+.. image:: img/image48.png
+    :width: 800
+    :align: center
+
+Experimental Procedures
+-----------------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: img/image49.png
+    :width: 800
+    :align: center
+
+**Step 2:** Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+.. note::
+    Change directory to the path of the code in this experiment via ``cd``.
+
+**Step 3:** Run the code
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo node blink.js
+
+.. note::
+    Here sudo - superuser do, and python means to run the file by Python.
+
+After the code runs, you will see the LED flashing.
+
+**Step 4:** If you want to edit the code file blink.js,
+press ``Ctrl + C`` to stop running the code. Then type the following
+command to open blink.js:
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   nano blink.js
+
+.. note::
+    nano is a text editor tool. The command is used to open the
+    code file blink.js by this tool.
+
+Press ``Ctrl+X`` to exit. If you have modified the code, there will be a
+prompt asking whether to save the changes or not. Type in ``Y`` (save)
+or ``N`` (don’t save).
+
+Then press ``Enter`` to exit. Type in nano blink.js again to
+see the effect after the change.
+
+**Code**
+
+The following is the program code:
+
+.. code-block:: js
+
+   const Gpio = require('pigpio').Gpio;
+   const led = new Gpio(17,{mode: Gpio.OUTPUT});
+
+   var led_state = 0;
+
+   function blink_led(){
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }
+
+   setInterval(blink_led,300);
+
+
+Alternatively, write the code as a more js-specific arrow function:
+
+.. code-block:: js
+
+   const Gpio = require('pigpio').Gpio;
+   const led = new Gpio(17,{mode: Gpio.OUTPUT});
+
+   var led_state = 0;
+
+   setInterval(() => {
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }, 300);
+
+
+**Code Explanation**
+
+.. code-block:: js
+
+   const Gpio = require('pigpio').Gpio;
+
+Import the Gpio constructor in the pigpio package in this way, 
+and then define a constant ``Gpio`` to represent this constructor.
+
+With a variety of constructor, we can use js to control electronic devices.
+``pigpio`` can be used to implement fast GPIO, PWM, servo control, state change notification and interrupt handling.
+
+* `pigpio - github <https://github.com/fivdi/pigpio>`_
+
+.. A wrapper for the pigpio C library to enable fast GPIO, PWM, servo control, 
+.. state change notification and interrupt handling with JS on the Raspberry Pi Zero, 
+.. 1, 2, 3 or 4.
+
+.. code-block:: js
+
+   const led = new Gpio(17,{mode: Gpio.OUTPUT});
+
+The ``new`` keyword is used to construct instantiated objects of the class.
+
+Connect the LED to the GPIO17 of the T-shaped expansion board, 
+set the LedPin mode to output and assign it to the constant ``led``, 
+that is, construct a GPIO17 object ``led``, and its mode is the output mode.
+
+There are two ways to number the IO pins on the Raspberry Pi: 
+BOARD number and BCM number. In our project, we use the BCM number. 
+You need to set each channel used as input or output.
+
+.. code-block:: js
+
+   function blink_led(){
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }
+
+   setInterval(blink_led,300);
+
+The ``setInterval()`` method can call functions or compute expressions with a specified period (in milliseconds).
+Here we change the operating state of the LED with a period of 300ms.
+
+*  `setInerval <https://developer.mozilla.org/en-US/docs/Web/API/setInterval>`_
+
+The ``gpio.digitalWrite(level)`` method sets the gpio level to 1 or 0.
+
+.. code-block:: js
+
+
+   var led_state = 0;
+
+   setInterval(() => {
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }, 300);
+
+Rewrite the code as an arrow function to make the code shorter.
+
+* `Arrow Functions <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions>`_
+
+Phenomenon Picture
+-------------------------
+
+.. image:: img/image54.jpeg
+    :width: 800
+    :align: center

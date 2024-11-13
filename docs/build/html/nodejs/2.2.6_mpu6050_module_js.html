@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.6 MPU6050 Module &mdash; SunFounder davinci-kit-for-raspberry-pi  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/custom.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+        <script src="../_static/./lang.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Play with Scratch" href="../scratch/play_with_scratch.html" />
+    <link rel="prev" title="2.2.5 Ultrasonic Sensor Module" href="2.2.5_ultrasonic_sensor_module_js.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Component List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO Extension Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preparation/preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">For Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/play_with_processing.html">Play with Processing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_nodejs.html">Play with Nodejs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install_nodejs.html">What is Nodejs？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="check_pigpio.html">Check the pigpio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_js.html">Output</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="input_js.html">Input</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="input_js.html#controllers">2.1 Controllers</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="input_js.html#sensors">2.2 Sensors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch/play_with_scratch.html">Play with Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Video Course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+          <li class="breadcrumb-item"><a href="play_with_nodejs.html">Play with Nodejs</a></li>
+          <li class="breadcrumb-item"><a href="input_js.html">Input</a></li>
+      <li class="breadcrumb-item active">2.2.6 MPU6050 Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nodejs/2.2.6_mpu6050_module_js.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hello, welcome to the SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.</p>
+<p><strong>Why Join?</strong></p>
+<ul class="simple">
+<li><p><strong>Expert Support</strong>: Solve post-sale issues and technical challenges with help from our community and team.</p></li>
+<li><p><strong>Learn &amp; Share</strong>: Exchange tips and tutorials to enhance your skills.</p></li>
+<li><p><strong>Exclusive Previews</strong>: Get early access to new product announcements and sneak peeks.</p></li>
+<li><p><strong>Special Discounts</strong>: Enjoy exclusive discounts on our newest products.</p></li>
+<li><p><strong>Festive Promotions and Giveaways</strong>: Take part in giveaways and holiday promotions.</p></li>
+</ul>
+<p>👉 Ready to explore and create with us? Click [<a href="https://bit.ly/raphaelkit " target="_blank">here</a>] and join today!</p>
+</div>
+<section id="mpu6050-module">
+<h1>2.2.6 MPU6050 Module<a class="headerlink" href="#mpu6050-module" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>The MPU-6050 is the world’s first and only 6-axis motion tracking
+devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
+smartphones, tablets and wearable sensors that have these features,
+including the low power, low cost, and high performance requirements.</p>
+<p>In this experiment, use I2C to obtain the values of the three-axis
+acceleration sensor and three-axis gyroscope for MPU6050 and display
+them on the screen.</p>
+</section>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this heading"></a></h2>
+<img alt="../_images/list_2.2.6.png" src="../_images/list_2.2.6.png" />
+</section>
+<section id="schematic-diagram">
+<h2>Schematic Diagram<a class="headerlink" href="#schematic-diagram" title="Permalink to this heading"></a></h2>
+<p>MPU6050 communicates with the microcontroller through the I2C bus
+interface. The SDA1 and SCL1 need to be connected to the corresponding
+pin.</p>
+<img alt="../_images/image330.png" src="../_images/image330.png" />
+</section>
+<section id="experimental-procedures">
+<h2>Experimental Procedures<a class="headerlink" href="#experimental-procedures" title="Permalink to this heading"></a></h2>
+<p><strong>Step 1:</strong> Build the circuit.</p>
+<img alt="../_images/image227.png" src="../_images/image227.png" />
+<p><strong>Step 2</strong>: Setup I2C (see Appendix <a class="reference internal" href="../appendix/i2c_configuration.html#i2c-configuration"><span class="std std-ref">I2C Configuration</span></a>. If you have set I2C, skip this
+step.)</p>
+<p><strong>Step 2:</strong> Go to the folder of the code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">nodejs</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Step 3:</strong> Install dependencies.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">npm</span> <span class="n">install</span> <span class="n">mpu6050</span><span class="o">-</span><span class="n">gyro</span>
+</pre></div>
+</div>
+<p><strong>Step 4:</strong> Run the code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">node</span> <span class="n">mpu6050_module</span><span class="o">.</span><span class="n">js</span>
+</pre></div>
+</div>
+<p>With the code run, the angle of deflection of the x-axis and y-axis and
+the acceleration, angular velocity on each axis read by MPU6050 will be
+printed on the screen after being calculating.</p>
+<p><strong>Code</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">gyro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;mpu6050-gyro&quot;</span><span class="p">);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x68</span><span class="p">;</span><span class="w"> </span><span class="c1">//MPU6050 address</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">bus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="c1">//i2c bus used</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">gyro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">gyro</span><span class="p">(</span><span class="w"> </span><span class="nx">bus</span><span class="p">,</span><span class="nx">address</span><span class="w"> </span><span class="p">);</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">update_telemetry</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">gyro_xyz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">gyro</span><span class="p">.</span><span class="nx">get_gyro_xyz</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">accel_xyz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">gyro</span><span class="p">.</span><span class="nx">get_accel_xyz</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">gyro_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">gyro_xyz</span><span class="o">:</span><span class="w"> </span><span class="nx">gyro_xyz</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">accel_xyz</span><span class="o">:</span><span class="w"> </span><span class="nx">accel_xyz</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">rollpitch</span><span class="o">:</span><span class="w"> </span><span class="nx">gyro</span><span class="p">.</span><span class="nx">get_roll_pitch</span><span class="p">(</span><span class="w"> </span><span class="nx">gyro_xyz</span><span class="p">,</span><span class="w"> </span><span class="nx">accel_xyz</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gyro_data</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">update_telemetry</span><span class="p">,</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nx">gyro</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">update_telemetry</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">gyro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;mpu6050-gyro&quot;</span><span class="p">);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x68</span><span class="p">;</span><span class="w"> </span><span class="c1">//MPU6050 address</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">bus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="c1">//i2c bus used</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">gyro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">gyro</span><span class="p">(</span><span class="w"> </span><span class="nx">bus</span><span class="p">,</span><span class="nx">address</span><span class="w"> </span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Import the <code class="docutils literal notranslate"><span class="pre">mpu6050-gyro</span></code> module, determine the MPU6050 address and the bus creation object gyro,
+It is convenient to call the encapsulated functions in the module.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>About this module, please refer to: <a class="reference external" href="https://www.npmjs.com/package/mpu6050-gyro">https://www.npmjs.com/package/mpu6050-gyro</a></p>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">gyro_xyz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">gyro</span><span class="p">.</span><span class="nx">get_gyro_xyz</span><span class="p">();</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">accel_xyz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">gyro</span><span class="p">.</span><span class="nx">get_accel_xyz</span><span class="p">();</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">gyro_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">gyro_xyz</span><span class="o">:</span><span class="w"> </span><span class="nx">gyro_xyz</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">accel_xyz</span><span class="o">:</span><span class="w"> </span><span class="nx">accel_xyz</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">rollpitch</span><span class="o">:</span><span class="w"> </span><span class="nx">gyro</span><span class="p">.</span><span class="nx">get_roll_pitch</span><span class="p">(</span><span class="w"> </span><span class="nx">gyro_xyz</span><span class="p">,</span><span class="w"> </span><span class="nx">accel_xyz</span><span class="w"> </span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gyro_data</span><span class="p">);</span>
+
+<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">update_telemetry</span><span class="p">,</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The module encapsulates three available functions:</p>
+<p><code class="docutils literal notranslate"><span class="pre">gyro.get_gyro_xyz()</span></code>: Returns JSON object with raw x,y,z datas from gyroscope.</p>
+<p><code class="docutils literal notranslate"><span class="pre">gyro.get_accel_xyz()</span></code>: Returns JSON object with raw x,y,z datas from accelerometer.</p>
+<p><code class="docutils literal notranslate"><span class="pre">gyro.get_roll_pitch(</span> <span class="pre">gyro_xyz,</span> <span class="pre">accel_xyz</span> <span class="pre">)</span></code>: Returns JSON object with roll and pitch in degrees.</p>
+</section>
+<section id="phenomenon-picture">
+<h2>Phenomenon Picture<a class="headerlink" href="#phenomenon-picture" title="Permalink to this heading"></a></h2>
+<img alt="../_images/image228.jpeg" src="../_images/image228.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2.2.5_ultrasonic_sensor_module_js.html" class="btn btn-neutral float-left" title="2.2.5 Ultrasonic Sensor Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../scratch/play_with_scratch.html" class="btn btn-neutral float-right" title="Play with Scratch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

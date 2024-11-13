@@ -1,0 +1,171 @@
+.. note::
+
+    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+
+    **Why Join?**
+
+    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
+    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
+    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
+    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
+    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+
+    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+
+.. _2.1.2_py_pi5:
+
+2.1.2 Slide Switch
+==================
+
+Introduction
+------------
+
+In this project, we will learn how to use a slide switch. Usually,the
+slide switch is soldered on PCB as a power switch, but here we need to
+insert it into the breadboard, thus it may not be tightened. And we use
+it on the breadboard to show its function.
+
+Required Components
+------------------------------
+
+In this project, we need the following components. 
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schematic Diagram
+-----------------
+
+Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
+pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
+can see the two LEDs light up alternately.
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_schematic_2.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_circuit.png
+
+**Step 2**: Get into the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Step 3**: Run.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.2_Slider.py
+
+While the code is running, get the switch connected to the left, then
+the yellow LED lights up; to the right, the red light turns on.
+
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``davinci-kit-for-raspberry-pi/python-pi5``. After modifying the code, you can run it directly to see the effect.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button  # Import LED and Button classes for GPIO control
+   from time import sleep  # Import sleep function for adding delays
+
+   # Initialize the micro switch on GPIO pin 17 with the pull-up resistor disabled
+   micro_switch = Button(17, pull_up=False)
+   # Initialize LED1 on GPIO pin 22
+   led1 = LED(22)
+   # Initialize LED2 on GPIO pin 27
+   led2 = LED(27)
+
+   try:
+       # Main loop to control LED states based on the micro switch's state
+       while True:
+           if micro_switch.is_pressed:  # Check if the micro switch is pressed
+               print('    LED1 ON    ')  # Print status message
+               led1.on()   # Turn on LED1
+               led2.off()  # Turn off LED2
+           else:  # If the micro switch is not pressed
+               print('    LED2 ON    ')  # Print status message
+               led1.off()  # Turn off LED1
+               led2.on()   # Turn on LED2
+
+           sleep(0.5)  # Wait for 0.5 seconds before rechecking the switch state
+
+   except KeyboardInterrupt:
+       # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
+       pass
+ 
+
+**Code Explanation**
+
+#. This line sets the script to run with Python 3. It imports ``LED`` and ``Button`` from ``gpiozero`` for controlling GPIO devices, and ``sleep`` from ``time`` for delays.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button  # Import LED and Button classes for GPIO control
+       from time import sleep  # Import sleep function for adding delays
+
+#. Initializes a micro switch connected to GPIO pin 17 with the pull-up resistor disabled, and two LEDs connected to GPIO pins 22 and 27.
+
+   .. code-block:: python
+
+       # Initialize the micro switch on GPIO pin 17 with the pull-up resistor disabled
+       micro_switch = Button(17, pull_up=False)
+       # Initialize LED1 on GPIO pin 22
+       led1 = LED(22)
+       # Initialize LED2 on GPIO pin 27
+       led2 = LED(27)
+
+#. The main loop checks the state of the micro switch. If pressed, LED1 turns on and LED2 off; if not pressed, LED1 off and LED2 on. The loop repeats every 0.5 seconds. Catches a KeyboardInterrupt (like Ctrl+C) to allow for graceful script termination.
+
+   .. code-block:: python
+
+       try:
+       # Main loop to control LED states based on the micro switch's state
+       while True:
+           if micro_switch.is_pressed:  # Check if the micro switch is pressed
+               print('    LED1 ON    ')  # Print status message
+               led1.on()   # Turn on LED1
+               led2.off()  # Turn off LED2
+           else:  # If the micro switch is not pressed
+               print('    LED2 ON    ')  # Print status message
+               led1.off()  # Turn off LED1
+               led2.on()   # Turn on LED2
+
+           sleep(0.5)  # Wait for 0.5 seconds before rechecking the switch state
+
+       except KeyboardInterrupt:
+           # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
+           pass
+       

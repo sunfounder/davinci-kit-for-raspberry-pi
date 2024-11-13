@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.3 DHT-11 &mdash; SunFounder davinci-kit-for-raspberry-pi  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/custom.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+        <script src="../_static/./lang.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.2.4 PIR" href="pi5_2.2.4_pir_python.html" />
+    <link rel="prev" title="2.2.2 Thermistor" href="pi5_2.2.2_thermistor_python.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Component List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO Extension Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preparation/preparation.html">Preparation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">For Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Play with Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Check the <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">Output</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_input_python.html">Input</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_input_python.html#controllers">2.1 Controllers</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pi5_input_python.html#sensors">2.2 Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_extension_python.html">Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Play with C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Play with Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Video Course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">For Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Play with Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_input_python.html">Input</a></li>
+      <li class="breadcrumb-item active">2.2.3 DHT-11</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_2.2.3_dht_python.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hello, welcome to the SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.</p>
+<p><strong>Why Join?</strong></p>
+<ul class="simple">
+<li><p><strong>Expert Support</strong>: Solve post-sale issues and technical challenges with help from our community and team.</p></li>
+<li><p><strong>Learn &amp; Share</strong>: Exchange tips and tutorials to enhance your skills.</p></li>
+<li><p><strong>Exclusive Previews</strong>: Get early access to new product announcements and sneak peeks.</p></li>
+<li><p><strong>Special Discounts</strong>: Enjoy exclusive discounts on our newest products.</p></li>
+<li><p><strong>Festive Promotions and Giveaways</strong>: Take part in giveaways and holiday promotions.</p></li>
+</ul>
+<p>👉 Ready to explore and create with us? Click [<a href="https://bit.ly/raphaelkit " target="_blank">here</a>] and join today!</p>
+</div>
+<section id="dht-11">
+<span id="py-pi5"></span><h1>2.2.3 DHT-11<a class="headerlink" href="#dht-11" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>In this lesson, you will learn how to connect and read data from a DHT11 temperature and humidity sensor using a Raspberry Pi. You will learn how to set up the sensor, read temperature in both Celsius and Fahrenheit, and obtain humidity readings. This project introduces you to working with external sensors, handling real-time data, and basic exception handling in Python.</p>
+</section>
+<section id="required-components">
+<h2>Required Components<a class="headerlink" href="#required-components" title="Permalink to this heading"></a></h2>
+<p>In this project, we need the following components.</p>
+<img alt="../_images/list_2.2.3_dht-11.png" src="../_images/list_2.2.3_dht-11.png" />
+</section>
+<section id="schematic-diagram">
+<h2>Schematic Diagram<a class="headerlink" href="#schematic-diagram" title="Permalink to this heading"></a></h2>
+<img alt="../_images/image326.png" src="../_images/image326.png" />
+</section>
+<section id="experimental-procedures">
+<h2>Experimental Procedures<a class="headerlink" href="#experimental-procedures" title="Permalink to this heading"></a></h2>
+<p><strong>Step 1:</strong> Build the circuit.</p>
+<img alt="../_images/image207.png" src="../_images/image207.png" />
+<p><strong>Step 2:</strong> Go to the folder of the code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python_pi5</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Step 3:</strong> Run the executable file.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">2.2.3</span><span class="n">_DHT</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>After the code runs, the program will print the temperature and humidity
+detected by DHT11 on the computer screen.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If there is an error prompt  <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code>, please refer to <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">If gpiozero doesn’t work.</span></a></p>
+</div>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can <strong>Modify/Reset/Copy/Run/Stop</strong> the code below. But before that, you need to go to  source code path like <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python_pi5</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span><span class="p">,</span> <span class="n">InputDevice</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="k">class</span> <span class="nc">DHT11</span><span class="p">():</span>
+   <span class="n">MAX_DELAY_COUINT</span> <span class="o">=</span> <span class="mi">100</span>
+   <span class="n">BIT_1_DELAY_COUNT</span> <span class="o">=</span> <span class="mi">10</span>
+   <span class="n">BITS_LEN</span> <span class="o">=</span> <span class="mi">40</span>
+
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pin</span><span class="p">,</span> <span class="n">pull_up</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_pin</span> <span class="o">=</span> <span class="n">pin</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_pull_up</span> <span class="o">=</span> <span class="n">pull_up</span>
+
+
+   <span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="n">bit_count</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">delay_count</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">bits</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+      <span class="c1"># -------------- send start --------------</span>
+      <span class="n">gpio</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pin</span><span class="p">)</span>
+      <span class="n">gpio</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+      <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)</span>
+
+      <span class="n">gpio</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+      <span class="n">gpio</span> <span class="o">=</span> <span class="n">InputDevice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pin</span><span class="p">,</span> <span class="n">pull_up</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_pull_up</span><span class="p">)</span>
+
+      <span class="c1"># -------------- wait response --------------</span>
+      <span class="k">while</span> <span class="n">gpio</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+      <span class="c1"># -------------- read data --------------</span>
+      <span class="k">while</span> <span class="n">bit_count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">BITS_LEN</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">gpio</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+               <span class="k">pass</span>
+
+            <span class="c1"># st = time.time()</span>
+            <span class="k">while</span> <span class="n">gpio</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+               <span class="n">delay_count</span> <span class="o">+=</span> <span class="mi">1</span>
+               <span class="c1"># break</span>
+               <span class="k">if</span> <span class="n">delay_count</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_DELAY_COUINT</span><span class="p">:</span>
+                  <span class="k">break</span>
+            <span class="k">if</span> <span class="n">delay_count</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">BIT_1_DELAY_COUNT</span><span class="p">:</span>
+               <span class="n">bits</span> <span class="o">+=</span> <span class="s2">&quot;1&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+               <span class="n">bits</span> <span class="o">+=</span> <span class="s2">&quot;0&quot;</span>
+
+            <span class="n">delay_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">bit_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+      <span class="c1"># -------------- verify --------------</span>
+      <span class="n">humidity_integer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bits</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">humidity_decimal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bits</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">16</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">temperature_integer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bits</span><span class="p">[</span><span class="mi">16</span><span class="p">:</span><span class="mi">24</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">temperature_decimal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bits</span><span class="p">[</span><span class="mi">24</span><span class="p">:</span><span class="mi">32</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">check_sum</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bits</span><span class="p">[</span><span class="mi">32</span><span class="p">:</span><span class="mi">40</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+
+      <span class="n">_sum</span> <span class="o">=</span> <span class="n">humidity_integer</span> <span class="o">+</span> <span class="n">humidity_decimal</span> <span class="o">+</span> <span class="n">temperature_integer</span> <span class="o">+</span> <span class="n">temperature_decimal</span>
+
+      <span class="c1"># print(bits)</span>
+      <span class="c1"># print(humidity_integer, humidity_decimal, temperature_integer, temperature_decimal)</span>
+      <span class="c1"># print(f&#39;sum:{_sum}, check_sum:{check_sum}&#39;)</span>
+      <span class="c1"># print()</span>
+
+      <span class="k">if</span> <span class="n">check_sum</span> <span class="o">!=</span> <span class="n">_sum</span><span class="p">:</span>
+            <span class="n">humidity</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.0</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="n">humidity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">humidity_integer</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">humidity_decimal</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">temperature</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">temperature_integer</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">temperature_decimal</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+      <span class="c1"># -------------- return --------------</span>
+      <span class="k">return</span> <span class="n">humidity</span><span class="p">,</span> <span class="n">temperature</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">dht11</span> <span class="o">=</span> <span class="n">DHT11</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+   <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+      <span class="n">humidity</span><span class="p">,</span> <span class="n">temperature</span> <span class="o">=</span> <span class="n">dht11</span><span class="o">.</span><span class="n">read_data</span><span class="p">()</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">  temperature:</span><span class="si">{</span><span class="n">temperature</span><span class="si">}</span><span class="s2">°C  humidity: </span><span class="si">{</span><span class="n">humidity</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+      <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+   <span class="n">bit_count</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">delay_count</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">bits</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+   <span class="c1"># -------------- send start --------------</span>
+   <span class="n">gpio</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pin</span><span class="p">)</span>
+   <span class="n">gpio</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+   <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)</span>
+
+   <span class="n">gpio</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+   <span class="n">gpio</span> <span class="o">=</span> <span class="n">InputDevice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pin</span><span class="p">,</span> <span class="n">pull_up</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_pull_up</span><span class="p">)</span>
+   <span class="c1">#...</span>
+</pre></div>
+</div>
+<p>This function is used to implement the functions of DHT11. It stores the
+detected data in the bits[] array. DHT11 transmits data of 40 bits
+at a time. The first 16 bits are related to humidity, the middle 16 bits
+are related to temperature, and the last eight bits are used for
+verification. The data format is:</p>
+<p><strong>8bit humidity integer data</strong> +<strong>8bit humidity decimal data</strong>
++<strong>8bit temperature integer data</strong> + <strong>8bit temperature decimal data</strong>
++ <strong>8bit check bit</strong>.</p>
+<p>When the validity is detected via the check bit, the function returns
+two results: 1. error; 2. humidity and temperature.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_sum</span> <span class="o">=</span> <span class="n">humidity_integer</span> <span class="o">+</span> <span class="n">humidity_decimal</span> <span class="o">+</span> <span class="n">temperature_integer</span> <span class="o">+</span> <span class="n">temperature_decimal</span>
+
+<span class="k">if</span> <span class="n">check_sum</span> <span class="o">!=</span> <span class="n">_sum</span><span class="p">:</span>
+      <span class="n">humidity</span> <span class="o">=</span> <span class="mf">0.0</span>
+      <span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">else</span><span class="p">:</span>
+      <span class="n">humidity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">humidity_integer</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">humidity_decimal</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+      <span class="n">temperature</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">temperature_integer</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">temperature_decimal</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For example, if the received date is 00101011(8-bit value of humidity
+integer) 00000000 (8-bit value of humidity decimal) 00111100 (8-bit
+value of temperature integer) 00000000 (8-bit value of temperature
+decimal) 01100111 (check bit)</p>
+<p><strong>Calculation:</strong></p>
+<p>00101011+00000000+00111100+00000000=01100111.</p>
+<p>If the final result is equal to the check bit data, the data
+transmission is abnormal: return False.</p>
+<p>If the final result is equal to the check bit data, the received data is
+correct, then there will return <code class="docutils literal notranslate"><span class="pre">humidity</span></code> and <code class="docutils literal notranslate"><span class="pre">temperature</span></code> and output
+&quot;Humidity =43%，Temperature =60C&quot;.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pi5_2.2.2_thermistor_python.html" class="btn btn-neutral float-left" title="2.2.2 Thermistor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pi5_2.2.4_pir_python.html" class="btn btn-neutral float-right" title="2.2.4 PIR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

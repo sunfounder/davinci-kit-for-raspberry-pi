@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.1 Blinking LED &mdash; SunFounder davinci-kit-for-raspberry-pi  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/custom.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+        <script src="../_static/./lang.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.1.2 RGB LED" href="1.1.2_rgb_led_js.html" />
+    <link rel="prev" title="Output" href="output_js.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Component List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO Extension Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preparation/preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">For Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/play_with_processing.html">Play with Processing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_nodejs.html">Play with Nodejs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install_nodejs.html">What is Nodejs？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="check_pigpio.html">Check the pigpio</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="output_js.html">Output</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="output_js.html#displays">1.1 Displays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output_js.html#sound">1.2 Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output_js.html#drivers">1.3 Drivers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="input_js.html">Input</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch/play_with_scratch.html">Play with Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Video Course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+          <li class="breadcrumb-item"><a href="play_with_nodejs.html">Play with Nodejs</a></li>
+          <li class="breadcrumb-item"><a href="output_js.html">Output</a></li>
+      <li class="breadcrumb-item active">1.1.1 Blinking LED</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nodejs/1.1.1_blinking_led_js.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hello, welcome to the SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.</p>
+<p><strong>Why Join?</strong></p>
+<ul class="simple">
+<li><p><strong>Expert Support</strong>: Solve post-sale issues and technical challenges with help from our community and team.</p></li>
+<li><p><strong>Learn &amp; Share</strong>: Exchange tips and tutorials to enhance your skills.</p></li>
+<li><p><strong>Exclusive Previews</strong>: Get early access to new product announcements and sneak peeks.</p></li>
+<li><p><strong>Special Discounts</strong>: Enjoy exclusive discounts on our newest products.</p></li>
+<li><p><strong>Festive Promotions and Giveaways</strong>: Take part in giveaways and holiday promotions.</p></li>
+</ul>
+<p>👉 Ready to explore and create with us? Click [<a href="https://bit.ly/raphaelkit " target="_blank">here</a>] and join today!</p>
+</div>
+<section id="blinking-led">
+<h1>1.1.1 Blinking LED<a class="headerlink" href="#blinking-led" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>In this project, we will learn how to make a blinking LED by programming.
+Through your settings, your LED can produce a series of interesting
+phenomena. Now, go for it.</p>
+</section>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/blinking_led_list2.png"><img alt="../_images/blinking_led_list2.png" class="align-center" src="../_images/blinking_led_list2.png" style="width: 800px;" /></a>
+</section>
+<section id="schematic-diagram">
+<h2>Schematic Diagram<a class="headerlink" href="#schematic-diagram" title="Permalink to this heading"></a></h2>
+<p>In this experiment, connect a 220Ω resistor to the anode (the long pin
+of the LED), then the resistor to 3.3 V, and connect the cathode (the
+short pin) of the LED to GPIO17 of Raspberry Pi. Therefore, to turn on
+an LED, we need to make GPIO17 low (0V) level. We can get this
+phenomenon by programming.</p>
+<a class="reference internal image-reference" href="../_images/image482.png"><img alt="../_images/image482.png" class="align-center" src="../_images/image482.png" style="width: 800px;" /></a>
+</section>
+<section id="experimental-procedures">
+<h2>Experimental Procedures<a class="headerlink" href="#experimental-procedures" title="Permalink to this heading"></a></h2>
+<p><strong>Step 1:</strong> Build the circuit.</p>
+<a class="reference internal image-reference" href="../_images/image492.png"><img alt="../_images/image492.png" class="align-center" src="../_images/image492.png" style="width: 800px;" /></a>
+<p><strong>Step 2:</strong> Go to the folder of the code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">nodejs</span><span class="o">/</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Change directory to the path of the code in this experiment via <code class="docutils literal notranslate"><span class="pre">cd</span></code>.</p>
+</div>
+<p><strong>Step 3:</strong> Run the code</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">node</span> <span class="n">blink</span><span class="o">.</span><span class="n">js</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here sudo - superuser do, and python means to run the file by Python.</p>
+</div>
+<p>After the code runs, you will see the LED flashing.</p>
+<p><strong>Step 4:</strong> If you want to edit the code file blink.js,
+press <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code> to stop running the code. Then type the following
+command to open blink.js:</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="n">blink</span><span class="o">.</span><span class="n">js</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>nano is a text editor tool. The command is used to open the
+code file blink.js by this tool.</p>
+</div>
+<p>Press <code class="docutils literal notranslate"><span class="pre">Ctrl+X</span></code> to exit. If you have modified the code, there will be a
+prompt asking whether to save the changes or not. Type in <code class="docutils literal notranslate"><span class="pre">Y</span></code> (save)
+or <code class="docutils literal notranslate"><span class="pre">N</span></code> (don’t save).</p>
+<p>Then press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to exit. Type in nano blink.js again to
+see the effect after the change.</p>
+<p><strong>Code</strong></p>
+<p>The following is the program code:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">17</span><span class="p">,{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">led_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">blink_led</span><span class="p">(){</span>
+<span class="w">   </span><span class="nx">led</span><span class="p">.</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="nx">led_state</span><span class="p">);</span>
+<span class="w">   </span><span class="nx">led_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">led_state</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">setInterval</span><span class="p">(</span><span class="nx">blink_led</span><span class="p">,</span><span class="mf">300</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Alternatively, write the code as a more js-specific arrow function:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">17</span><span class="p">,{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">led_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">led</span><span class="p">.</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="nx">led_state</span><span class="p">);</span>
+<span class="w">   </span><span class="nx">led_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">led_state</span><span class="p">;</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">300</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Import the Gpio constructor in the pigpio package in this way,
+and then define a constant <code class="docutils literal notranslate"><span class="pre">Gpio</span></code> to represent this constructor.</p>
+<p>With a variety of constructor, we can use js to control electronic devices.
+<code class="docutils literal notranslate"><span class="pre">pigpio</span></code> can be used to implement fast GPIO, PWM, servo control, state change notification and interrupt handling.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fivdi/pigpio">pigpio - github</a></p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">17</span><span class="p">,{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">new</span></code> keyword is used to construct instantiated objects of the class.</p>
+<p>Connect the LED to the GPIO17 of the T-shaped expansion board,
+set the LedPin mode to output and assign it to the constant <code class="docutils literal notranslate"><span class="pre">led</span></code>,
+that is, construct a GPIO17 object <code class="docutils literal notranslate"><span class="pre">led</span></code>, and its mode is the output mode.</p>
+<p>There are two ways to number the IO pins on the Raspberry Pi:
+BOARD number and BCM number. In our project, we use the BCM number.
+You need to set each channel used as input or output.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">blink_led</span><span class="p">(){</span>
+<span class="w">   </span><span class="nx">led</span><span class="p">.</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="nx">led_state</span><span class="p">);</span>
+<span class="w">   </span><span class="nx">led_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">led_state</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">setInterval</span><span class="p">(</span><span class="nx">blink_led</span><span class="p">,</span><span class="mf">300</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">setInterval()</span></code> method can call functions or compute expressions with a specified period (in milliseconds).
+Here we change the operating state of the LED with a period of 300ms.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/setInterval">setInerval</a></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">gpio.digitalWrite(level)</span></code> method sets the gpio level to 1 or 0.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">led_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nx">led</span><span class="p">.</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="nx">led_state</span><span class="p">);</span>
+<span class="w">   </span><span class="nx">led_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">led_state</span><span class="p">;</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">300</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Rewrite the code as an arrow function to make the code shorter.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow Functions</a></p></li>
+</ul>
+</section>
+<section id="phenomenon-picture">
+<h2>Phenomenon Picture<a class="headerlink" href="#phenomenon-picture" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/image541.jpeg"><img alt="../_images/image541.jpeg" class="align-center" src="../_images/image541.jpeg" style="width: 800px;" /></a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="output_js.html" class="btn btn-neutral float-left" title="Output" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="1.1.2_rgb_led_js.html" class="btn btn-neutral float-right" title="1.1.2 RGB LED" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+.. note::
+
+    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+
+    **Why Join?**
+
+    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
+    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
+    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
+    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
+    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+
+    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+
+2.1.2 Slide Switch
+==================
+
+Introduction
+------------
+
+In this project, we will learn how to use a slide switch. Usually,the
+slide switch is soldered on PCB as a power switch, but here we need to
+insert it into the breadboard, thus it may not be tightened. And we use
+it on the breadboard to show its function.
+
+Components
+----------
+
+.. image:: ../img/list_2.1.2_slide_switch.png
+
+
+
+Schematic Diagram
+-----------------
+
+Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
+pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
+can see the two LEDs light up alternately.
+
+.. image:: ../img/image305.png
+
+
+.. image:: ../img/image306.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../img/image161.png
+
+**Step 2**: Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Step 3**: Run the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node slide_switch.js
+
+While the code is running, get the switch connected to the left, then
+the yellow LED lights up; to the right, the red light turns on.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
+    const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
+
+    const slideSwitch = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+    slideSwitch.on('interrupt', (level) => {  
+        led1.digitalWrite(level);   
+        led2.digitalWrite(!level);       
+    });
+
+
+**Code Explanation**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
+    const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
+
+    const slideSwitch = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+Import the pigpio module, and create three objects led1, led2, slideSwitch, 
+and control the on and off of led1 and led2 by reading the level of the slideSwitch IO port.   
+
+.. code-block:: js
+
+    slideSwitch.on('interrupt', (level) => {  
+        led1.digitalWrite(level);   
+        led2.digitalWrite(!level);       
+    });
+
+When the read level of the slideSwitch IO port changes,
+Write the same level to led1 and the opposite level to led2.
+
+Phenomenon Picture
+------------------
+
+.. image:: ../img/image162.jpeg
+
+

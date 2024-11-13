@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.6 LED Dot Matrix &mdash; SunFounder davinci-kit-for-raspberry-pi  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/custom.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+        <script src="../_static/./lang.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.1.7 I2C LCD1602" href="pi5_1.1.7_i2c_lcd1602_python.html" />
+    <link rel="prev" title="1.1.5 4-Digit 7-Segment Display" href="pi5_1.1.5_4-Digit_7-segment_display_python.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Component List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO Extension Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preparation/preparation.html">Preparation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">For Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Play with Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Check the <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_output_python.html">Output</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="pi5_output_python.html#displays">1.1 Displays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_output_python.html#sound">1.2 Sound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_output_python.html#drivers">1.3 Drivers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_extension_python.html">Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Play with C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Play with Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Video Course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">For Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Play with Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_output_python.html">Output</a></li>
+      <li class="breadcrumb-item active">1.1.6 LED Dot Matrix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_1.1.6_led_dot_matrix_python.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hello, welcome to the SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.</p>
+<p><strong>Why Join?</strong></p>
+<ul class="simple">
+<li><p><strong>Expert Support</strong>: Solve post-sale issues and technical challenges with help from our community and team.</p></li>
+<li><p><strong>Learn &amp; Share</strong>: Exchange tips and tutorials to enhance your skills.</p></li>
+<li><p><strong>Exclusive Previews</strong>: Get early access to new product announcements and sneak peeks.</p></li>
+<li><p><strong>Special Discounts</strong>: Enjoy exclusive discounts on our newest products.</p></li>
+<li><p><strong>Festive Promotions and Giveaways</strong>: Take part in giveaways and holiday promotions.</p></li>
+</ul>
+<p>👉 Ready to explore and create with us? Click [<a href="https://bit.ly/raphaelkit " target="_blank">here</a>] and join today!</p>
+</div>
+<section id="led-dot-matrix">
+<span id="py-pi5"></span><h1>1.1.6 LED Dot Matrix<a class="headerlink" href="#led-dot-matrix" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>As the name suggests, an LED dot matrix is a matrix composed of LEDs.
+The lighting up and dimming of the LEDs formulate different characters
+and patterns.</p>
+</section>
+<section id="required-components">
+<h2>Required Components<a class="headerlink" href="#required-components" title="Permalink to this heading"></a></h2>
+<p>In this project, we need the following components.</p>
+<a class="reference internal image-reference" href="../_images/1.1.6_led_dot_matrix_list.png"><img alt="../_images/1.1.6_led_dot_matrix_list.png" class="align-center" src="../_images/1.1.6_led_dot_matrix_list.png" style="width: 800px;" /></a>
+<br/></section>
+<section id="principle">
+<h2>Principle<a class="headerlink" href="#principle" title="Permalink to this heading"></a></h2>
+<p><strong>LED Dot Matrix</strong></p>
+<p>Generally, LED dot matrix can be categorized into two types: common
+cathode (CC) and common anode (CA). They look much alike, but internally
+the difference lies. You can tell by test. A CA one is used in this kit.
+You can see 788BS labeled at the side.</p>
+<p>See the figure below. The pins are arranged at the two ends at the back.
+Take the label side for reference: pins on this end are pin 1-8, and oh
+the other are pin 9-16.</p>
+<p>The external view:</p>
+<a class="reference internal image-reference" href="../_images/1.1.6_led_dot_matrix_1.png"><img alt="../_images/1.1.6_led_dot_matrix_1.png" class="align-center" src="../_images/1.1.6_led_dot_matrix_1.png" style="width: 400px;" /></a>
+<p>Below the figures show their internal structure. You can see in a CA LED
+dot matrix, ROW represents the anode of the LED, and COL is cathode;
+it’s contrary for a CC one. One thing in common: for both types, pin 13,
+3, 4, 10, 6, 11, 15, and 16 are all COL, when pin 9, 14, 8, 12, 1, 7, 2,
+and 5 are all ROW. If you want to turn on the first LED at the top left
+corner, for a CA LED dot matrix, just set pin 9 as High and pin 13 as
+Low, and for a CC one, set pin 13 as High and pin 9 as Low. If you want
+to light up the whole first column, for CA, set pin 13 as Low and ROW 9,
+14, 8, 12, 1, 7, 2, and 5 as High, when for CC, set pin 13 as High and
+ROW 9, 14, 8, 12, 1, 7, 2, and 5 as Low. Consider the following figures
+for better understanding.</p>
+<p>The internal view:</p>
+<a class="reference internal image-reference" href="../_images/1.1.6_led_dot_matrix_2.png"><img alt="../_images/1.1.6_led_dot_matrix_2.png" class="align-center" src="../_images/1.1.6_led_dot_matrix_2.png" style="width: 400px;" /></a>
+<p>Pin numbering corresponding to the above rows and columns:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>COL</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>5</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>8</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Pin No.</strong></p></td>
+<td><p><strong>13</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>10</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>11</strong></p></td>
+<td><p><strong>15</strong></p></td>
+<td><p><strong>16</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ROW</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>5</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>8</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Pin No.</strong></p></td>
+<td><p><strong>9</strong></p></td>
+<td><p><strong>14</strong></p></td>
+<td><p><strong>8</strong></p></td>
+<td><p><strong>12</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>5</strong></p></td>
+</tr>
+</tbody>
+</table>
+<p>In addition, two 74HC595 chips are used here. One is to control the rows
+of the LED dot matrix while the other, the columns.</p>
+</section>
+<section id="schematic-diagram">
+<h2>Schematic Diagram<a class="headerlink" href="#schematic-diagram" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/1.1.6_led_dot_matrix_schematic.png"><img alt="../_images/1.1.6_led_dot_matrix_schematic.png" src="../_images/1.1.6_led_dot_matrix_schematic.png" style="width: 800px;" /></a>
+</section>
+<section id="experimental-procedures">
+<h2>Experimental Procedures<a class="headerlink" href="#experimental-procedures" title="Permalink to this heading"></a></h2>
+<p><strong>Step 1:</strong> Build the circuit. Since the wiring is complicated, let’s
+make it step by step. First, insert the T-Cobbler, the LED dot matrix
+and two 74HC595 chips into breadboard. Connect the 3.3V and GND of the
+T-Cobbler to holes on the two sides of the board, then hook up pin16 and
+10 of the two 74HC595 chips to VCC, pin 13 and pin 8 to GND.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the Fritzing image above, the side with label is at the bottom.</p>
+</div>
+<a class="reference internal image-reference" href="../_images/1.1.6_LedMatrix_circuit_1.png"><img alt="../_images/1.1.6_LedMatrix_circuit_1.png" src="../_images/1.1.6_LedMatrix_circuit_1.png" style="width: 800px;" /></a>
+<p><strong>Step 2:</strong> Connect pin 11 of the two 74HC595 together, and then to
+GPIO27; then pin 12 of the two chips, and to GPIO18; next, pin 14 of the
+74HC595 on the left side to GPIO17 and pin 9 to pin 14 of the second
+74HC595.</p>
+<a class="reference internal image-reference" href="../_images/1.1.6_LedMatrix_circuit_2.png"><img alt="../_images/1.1.6_LedMatrix_circuit_2.png" src="../_images/1.1.6_LedMatrix_circuit_2.png" style="width: 800px;" /></a>
+<p><strong>Step 3:</strong> The 74HC595 on the right side is to control columns of the
+LED dot matrix. See the table below for the mapping. Therefore, Q0-Q7
+pins of the 74HC595 are mapped with pin 13, 3, 4, 10, 6, 11, 15, and 16
+respectively.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>74HC595</strong></p></td>
+<td><p><strong>Q0</strong></p></td>
+<td><p><strong>Q1</strong></p></td>
+<td><p><strong>Q2</strong></p></td>
+<td><p><strong>Q3</strong></p></td>
+<td><p><strong>Q4</strong></p></td>
+<td><p><strong>Q5</strong></p></td>
+<td><p><strong>Q6</strong></p></td>
+<td><p><strong>Q7</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LED Dot Matrix</strong></p></td>
+<td><p><strong>13</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>10</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>11</strong></p></td>
+<td><p><strong>15</strong></p></td>
+<td><p><strong>16</strong></p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/1.1.6_LedMatrix_circuit_3.png"><img alt="../_images/1.1.6_LedMatrix_circuit_3.png" src="../_images/1.1.6_LedMatrix_circuit_3.png" style="width: 800px;" /></a>
+<p><strong>Step 4:</strong> Now connect the ROWs of the LED dot matrix. The 74HC595 on
+the left controls ROW of the LED dot matrix. See the table below for the
+mapping. We can see, Q0-Q7 of the 74HC595 on the left are mapped with
+pin 9, 14, 8, 12, 1, 7, 2, and 5 respectively.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>74HC595</strong></p></td>
+<td><p><strong>Q0</strong></p></td>
+<td><p><strong>Q1</strong></p></td>
+<td><p><strong>Q2</strong></p></td>
+<td><p><strong>Q3</strong></p></td>
+<td><p><strong>Q4</strong></p></td>
+<td><p><strong>Q5</strong></p></td>
+<td><p><strong>Q6</strong></p></td>
+<td><p><strong>Q7</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LED Dot Matrix</strong></p></td>
+<td><p><strong>9</strong></p></td>
+<td><p><strong>14</strong></p></td>
+<td><p><strong>8</strong></p></td>
+<td><p><strong>12</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>5</strong></p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/1.1.6_LedMatrix_circuit_4.png"><img alt="../_images/1.1.6_LedMatrix_circuit_4.png" src="../_images/1.1.6_LedMatrix_circuit_4.png" style="width: 800px;" /></a>
+<p><strong>Step 5:</strong> Open the code file.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Step 6:</strong> Run.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.1.6</span><span class="n">_led_dot_matrix</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>After the code runs, the LED dot matrix lights up and out row by row and column by column.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If there is an error prompt  <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code>, please refer to <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">If gpiozero doesn’t work.</span></a></p>
+</div>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can <strong>Modify/Reset/Copy/Run/Stop</strong> the code below. But before that, you need to go to  source code path like <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code>. After modifying the code, you can run it directly to see the effect.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="c1"># Define GPIO pins connected to the 74HC595 shift register</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>   <span class="c1"># Serial Data Input</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>  <span class="c1"># Register Clock</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span> <span class="c1"># Shift Register Clock</span>
+
+<span class="c1"># Define patterns for matrix display; ROWs are anodes (+), COLs are cathodes (-)</span>
+<span class="c1"># Pattern for ROWs (anode signals)</span>
+<span class="n">code_H</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x40</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">]</span>
+<span class="c1"># Pattern for COLs (cathode signals)</span>
+<span class="n">code_L</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xfe</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xfe</span><span class="p">,</span> <span class="mh">0xfd</span><span class="p">,</span> <span class="mh">0xfb</span><span class="p">,</span> <span class="mh">0xf7</span><span class="p">,</span> <span class="mh">0xef</span><span class="p">,</span> <span class="mh">0xdf</span><span class="p">,</span> <span class="mh">0xbf</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">]</span>
+
+<span class="c1"># Shift data to 74HC595</span>
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">dat</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot; Shift data to the 74HC595 shift register for displaying on the matrix. &quot;&quot;&quot;</span>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+      <span class="c1"># Set SDI value and trigger shift register clock</span>
+      <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dat</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span>
+      <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+      <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+   <span class="c1"># Trigger register clock to update display</span>
+   <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+   <span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+   <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot; Main loop for cycling through display patterns. &quot;&quot;&quot;</span>
+   <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+      <span class="c1"># Cycle through patterns in ascending order</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">code_H</span><span class="p">)):</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+      <span class="c1"># Cycle through patterns in descending order</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">code_H</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Run main loop, handle keyboard interrupt gracefully</span>
+<span class="k">try</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+   <span class="k">pass</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<ol class="arabic">
+<li><p>This snippet imports the necessary classes for the project. <code class="docutils literal notranslate"><span class="pre">OutputDevice</span></code> from <code class="docutils literal notranslate"><span class="pre">gpiozero</span></code> is used to control hardware components connected to GPIO pins, and <code class="docutils literal notranslate"><span class="pre">sleep</span></code> from <code class="docutils literal notranslate"><span class="pre">time</span></code> is for adding delays.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+</pre></div>
+</div>
+</li>
+<li><p>This section initializes GPIO pins connected to the 74HC595 shift register. <code class="docutils literal notranslate"><span class="pre">SDI</span></code> is the Serial Data Input, <code class="docutils literal notranslate"><span class="pre">RCLK</span></code> is the Register Clock, and <code class="docutils literal notranslate"><span class="pre">SRCLK</span></code> is the Shift Register Clock. These pins are used to shift data into the register and control the display of the LED matrix.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define GPIO pins connected to the 74HC595 shift register</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>   <span class="c1"># Serial Data Input</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>  <span class="c1"># Register Clock</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span> <span class="c1"># Shift Register Clock</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">code_H</span></code> and <code class="docutils literal notranslate"><span class="pre">code_L</span></code> define binary patterns for controlling the rows (anodes) and columns (cathodes) of the LED matrix, respectively. Each element in these arrays represents a binary pattern that controls which LEDs are turned on or off in the matrix.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define patterns for matrix display; ROWs are anodes (+), COLs are cathodes (-)</span>
+<span class="c1"># Pattern for ROWs (anode signals)</span>
+<span class="n">code_H</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x40</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">]</span>
+<span class="c1"># Pattern for COLs (cathode signals)</span>
+<span class="n">code_L</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xfe</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xfe</span><span class="p">,</span> <span class="mh">0xfd</span><span class="p">,</span> <span class="mh">0xfb</span><span class="p">,</span> <span class="mh">0xf7</span><span class="p">,</span> <span class="mh">0xef</span><span class="p">,</span> <span class="mh">0xdf</span><span class="p">,</span> <span class="mh">0xbf</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>This function shifts a byte of data (<code class="docutils literal notranslate"><span class="pre">dat</span></code>) into the 74HC595 shift register. It iterates over each bit in the byte, setting the <code class="docutils literal notranslate"><span class="pre">SDI</span></code> pin high or low based on the bit value, and toggles the <code class="docutils literal notranslate"><span class="pre">SRCLK</span></code> pin to shift the bit into the register. After all bits are shifted, it toggles the <code class="docutils literal notranslate"><span class="pre">RCLK</span></code> pin to update the LED matrix display.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Shift data to 74HC595</span>
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">dat</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot; Shift data to the 74HC595 shift register for displaying on the matrix. &quot;&quot;&quot;</span>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+      <span class="c1"># Set SDI value and trigger shift register clock</span>
+      <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dat</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span>
+      <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+      <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+   <span class="c1"># Trigger register clock to update display</span>
+   <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+   <span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+   <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>The main function contains an infinite loop that cycles through predefined patterns for the LED matrix. It uses the <code class="docutils literal notranslate"><span class="pre">hc595_shift</span></code> function to send row and column patterns (<code class="docutils literal notranslate"><span class="pre">code_H</span></code> and <code class="docutils literal notranslate"><span class="pre">code_L</span></code>) to the shift register, first in ascending order and then in descending order, creating a dynamic display.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot; Main loop for cycling through display patterns. &quot;&quot;&quot;</span>
+   <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+      <span class="c1"># Cycle through patterns in ascending order</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">code_H</span><span class="p">)):</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+      <span class="c1"># Cycle through patterns in descending order</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">code_H</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>This segment ensures the program can be interrupted using a keyboard interrupt (Ctrl+C). It gracefully exits the main loop without any abrupt stoppage or resource leakage.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run main loop, handle keyboard interrupt gracefully</span>
+<span class="k">try</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+   <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pi5_1.1.5_4-Digit_7-segment_display_python.html" class="btn btn-neutral float-left" title="1.1.5 4-Digit 7-Segment Display" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pi5_1.1.7_i2c_lcd1602_python.html" class="btn btn-neutral float-right" title="1.1.7 I2C LCD1602" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

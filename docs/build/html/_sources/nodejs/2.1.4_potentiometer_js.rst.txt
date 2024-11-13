@@ -1,0 +1,149 @@
+.. note::
+
+    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+
+    **Why Join?**
+
+    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
+    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
+    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
+    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
+    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+
+    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+
+2.1.4 Potentionmeter
+=====================
+
+Introduction
+------------
+
+The ADC function can be used to convert analog signals to digital
+signals, and in this experiment, ADC0834 is used to get the function
+involving ADC. Here, we implement this process by using potentiometer.
+Potentiometer changes the physical quantity -- voltage, which is
+converted by the ADC function.
+
+Components
+----------
+
+.. image:: ../img/list_2.1.4_potentiometer.png
+
+
+
+Schematic Diagram
+-----------------
+
+.. image:: ../img/image311.png
+
+
+.. image:: ../img/image312.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../img/image180.png
+
+
+.. note::
+    Please place the chip by referring to the corresponding position
+    depicted in the picture. Note that the grooves on the chip should be on
+    the left when it is placed.
+
+**Step 2:** Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Step 3:** Run the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node potentionmeter.js
+
+After the code runs, rotate the knob on the potentiometer, the intensity
+of LED will change accordingly.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+    const adc = new ADC0834(17, 18, 27);
+    const led = new Gpio(22, {mode: Gpio.OUTPUT});
+
+    setInterval(() => {
+        adc.read(0).then((value) => {
+            console.log(`Current analogVal: ${value}\n`);
+            led.pwmWrite(value);
+        }, (error)=>{
+            console.log("Error: " + error);
+        });
+    }, 100);
+
+**Code Explanation**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+Import the ``pigpio`` module.
+
+.. code-block:: js
+
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+We import an ``ADC0834`` constructor to use the adc0834 module.
+
+
+.. code-block:: js
+
+   const adc = new ADC0834(17, 18, 27);
+
+
+Instantiate an ADC0834 object, the three parameters are its three pins.
+
+This is a promise object, you may need to understand the concept from the following link.
+
+* `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+
+
+.. code-block:: js
+
+    setInterval(() => {
+        adc.read(0).then((value) => {
+            console.log(`Current analogVal: ${value}\n`);
+            led.pwmWrite(value);
+        }, (error)=>{
+            console.log("Error: " + error);
+        });
+    }, 100);
+
+The value of ADC0834 channel 0 (channel 0 is connected to the potentiometer) is read every 100ms, and the value will be stored in ``value``.
+
+Print ``value`` and use it to control the brightness of the LED, now you can see that the brightness of the LED changes with the value of the potentiometer.
+
+
+
+
+
+Phenomenon Picture
+------------------
+
+.. image:: ../img/image181.jpeg
+
+

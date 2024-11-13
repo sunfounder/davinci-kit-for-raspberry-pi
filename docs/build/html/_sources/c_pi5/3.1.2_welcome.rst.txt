@@ -1,0 +1,176 @@
+.. note::
+
+    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+
+    **Why Join?**
+
+    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
+    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
+    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
+    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
+    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+
+    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+
+3.1.2 Welcome
+===============
+
+Introduction
+-------------
+
+In this project, we will use PIR to sense the movement of pedestrians,
+and use servos, LED, buzzer to simulate the work of the sensor door of
+the convenience store. When the pedestrian appears within the sensing
+range of the PIR, the indicator light will be on, the door will be
+opened, and the buzzer will play the opening bell.
+
+Components
+---------------
+
+.. image:: img/list_Welcome.png
+    :align: center
+
+Schematic Diagram
+-------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO18       Pin 12   1        18
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one2.png
+   :align: center
+
+Experimental Procedures
+-------------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: img/image239.png
+    :alt: C:\Users\sunfounder\Desktop\3.1.4_Welcome_bb.png3.1.4_Welcome_bb
+    :width: 800
+    :align: center
+
+
+**Step 2:** Change directory.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.2/
+
+**Step 3:** Compile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.2_Welcome.c -lwiringPi
+
+**Step 4:** Run.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+After the code runs, if the PIR sensor detects someone passing by, the
+door will automatically open (simulated by the servo), turn on the
+indicator and play the doorbell music. After the doorbell music plays,
+the system will automatically close the door and turn off the indicator
+light, waiting for the next time someone passes by.
+
+There are two potentiometers on
+the PIR module: one is to adjust sensitivity and the other is to adjust
+the detection distance. To make the PIR module work better, you
+You need to turn both of them counterclockwise to the end.
+
+.. note::
+
+    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
+
+**Code Explanation**
+
+.. code-block:: c
+
+    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+        if(angle < 0)
+            angle = 0;
+        if(angle > 180)
+            angle = 180;
+        softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
+    } 
+
+Create a function, setAngle to write the angle in the servo that is
+0-180.
+
+.. code-block:: c
+
+    void doorbell(){
+    for(int i=0;i<sizeof(song)/4;i++){
+            softToneWrite(BuzPin, song[i]); 
+            delay(beat[i] * 250);
+        }
+
+Create a function, doorbell to enable the buzzer to play music.
+
+.. code-block:: c
+
+    void closedoor(){
+    digitalWrite(ledPin, LOW);   //led off
+    for(int i=180;i>-1;i--){  //make servo rotate from maximum angle to minimum angle
+        setAngle(servoPin,i);
+        delay(1);
+        }
+    }
+
+Create a closedoor function to simulate closing the door, turn off the
+LED and let the servo turn from 180 degrees to 0 degree.
+
+.. code-block:: c
+
+    void opendoor(){
+        digitalWrite(ledPin, HIGH);   //led on
+        for(int i=0;i<181;i++){  //make servo rotate from minimum angle to maximum angle
+            setAngle(servoPin,i);
+            delay(1);
+        }
+        doorbell();
+        closedoor();
+    }
+
+The function opendoor() includes several parts: turn on the indicator
+light, turn the servo (simulate the action of opening the door), play
+the doorbell music of the convenience store, and call the function
+closedoor() after playing music.
+
+.. code-block:: c
+
+        int main(void)
+    {
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+    ......
+
+In the function main(), initialize library wiringPi and setup softTone,
+then set ledPin to output state and pirPin to input state. If the PIR
+sensor detects someone passing by, the function opendoor will be called
+to simulate opening the door.
+
+

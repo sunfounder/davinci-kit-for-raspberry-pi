@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.4 Smart Fan &mdash; SunFounder davinci-kit-for-raspberry-pi  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/custom.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" type="text/css" />
+      <link rel="stylesheet" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+        <script src="_static/./lang.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+        <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3.1.5 Battery Indicator" href="3.1.5_battery_indicator.html" />
+    <link rel="prev" title="3.1.3 Reversing Alarm" href="3.1.3_reversing_alarm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Component List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libraries.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">GPIO Extension Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preparation/preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">For Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">For Pi 4, 3, and All Other Pi Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_output.html">1 Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 Input</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="3_extension.html">3 Extension</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="3.1.1_counting_device.html">3.1.1 Counting Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.2_welcome.html">3.1.2 Welcome</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.3_reversing_alarm.html">3.1.3 Reversing Alarm</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.4 Smart Fan</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#components">Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#schematic-diagram">Schematic Diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#experimental-procedures">Experimental Procedures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#phenomenon-picture">Phenomenon Picture</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.5_battery_indicator.html">3.1.5 Battery Indicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.6_motion_control.html">3.1.6 Motion Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.7_traffic_light.html">3.1.7 Traffic Light</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.8_overheat_monitor.html">3.1.8 Overheat Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.9_password_lock.html">3.1.9 Password Lock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.10_alarm_bell.html">3.1.10 Alarm Bell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.11_morse_code_generator.html">3.1.11 Morse Code Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.12_game_guess_number.html">3.1.12 GAME– Guess Number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.13_game_10_second.html">3.1.13 GAME– 10 Second</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.14_game_not_not.html">3.1.14 GAME– Not Not</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Play with Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Play with Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Play with Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Python Video Course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Thank You</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+          <li class="breadcrumb-item"><a href="3_extension.html">3 Extension</a></li>
+      <li class="breadcrumb-item active">3.1.4 Smart Fan</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/3.1.4_smart_fan.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hello, welcome to the SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.</p>
+<p><strong>Why Join?</strong></p>
+<ul class="simple">
+<li><p><strong>Expert Support</strong>: Solve post-sale issues and technical challenges with help from our community and team.</p></li>
+<li><p><strong>Learn &amp; Share</strong>: Exchange tips and tutorials to enhance your skills.</p></li>
+<li><p><strong>Exclusive Previews</strong>: Get early access to new product announcements and sneak peeks.</p></li>
+<li><p><strong>Special Discounts</strong>: Enjoy exclusive discounts on our newest products.</p></li>
+<li><p><strong>Festive Promotions and Giveaways</strong>: Take part in giveaways and holiday promotions.</p></li>
+</ul>
+<p>👉 Ready to explore and create with us? Click [<a href="https://bit.ly/raphaelkit " target="_blank">here</a>] and join today!</p>
+</div>
+<section id="smart-fan">
+<h1>3.1.4 Smart Fan<a class="headerlink" href="#smart-fan" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>In this course, we will use motors, buttons and thermistors to make a
+manual + automatic smart fan whose wind speed is adjustable.</p>
+</section>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this heading"></a></h2>
+<img alt="_images/list_Smart_Fan.png" class="align-center" src="_images/list_Smart_Fan.png" />
+</section>
+<section id="schematic-diagram">
+<h2>Schematic Diagram<a class="headerlink" href="#schematic-diagram" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO5</p></td>
+<td><p>Pin 29</p></td>
+<td><p>21</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO6</p></td>
+<td><p>Pin 31</p></td>
+<td><p>22</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO13</p></td>
+<td><p>Pin 33</p></td>
+<td><p>23</p></td>
+<td><p>13</p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="_images/Schematic_three_one4.png"><img alt="_images/Schematic_three_one4.png" class="align-center" src="_images/Schematic_three_one4.png" style="width: 500px;" /></a>
+</section>
+<section id="experimental-procedures">
+<h2>Experimental Procedures<a class="headerlink" href="#experimental-procedures" title="Permalink to this heading"></a></h2>
+<p><strong>Step 1:</strong> Build the circuit.</p>
+<a class="reference internal image-reference" href="_images/image245.png"><img alt="Smart Fan_bb" class="align-center" src="_images/image245.png" style="width: 800px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The power module can apply a 9V battery with the 9V Battery
+Buckle in the kit. Insert the jumper cap of the power module into the 5V
+bus strips of the breadboard.</p>
+</div>
+<a class="reference internal image-reference" href="_images/image118.jpeg"><img alt="\_MG_2084" class="align-center" src="_images/image118.jpeg" style="width: 2.80694in; height: 0.94375in;" /></a>
+<section id="for-c-language-users">
+<h3><strong>For C Language Users</strong><a class="headerlink" href="#for-c-language-users" title="Permalink to this heading"></a></h3>
+<p><strong>Step 2</strong>: Get into the folder of the code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">3.1.4</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Step 3</strong>: Compile.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">3.1.4</span><span class="n">_SmartFan</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span> <span class="o">-</span><span class="n">lm</span>
+</pre></div>
+</div>
+<p><strong>Step 4</strong>: Run the executable file above.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>As the code runs, start the fan by pressing the button. Every time you
+press, 1 speed grade is adjusted up or down. There are <strong>5</strong> kinds of
+speed grades: <strong>0~4</strong>. When set to the 4<sup>th</sup> speed grade and you
+press the button, the fan stops working with a <strong>0</strong> wind speed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If it does not work after running, or there is an error prompt: &quot;wiringPi.h: No such file or directory&quot;, please refer to <a class="reference internal" href="faq.html#c-code-is-not-working"><span class="std std-ref">C code is not working?</span></a>.</p>
+</div>
+<p>Once the temperature goes up or down for more than 2℃, the speed
+automatically gets 1-grade faster or slower.</p>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">temperture</span><span class="p">(){</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">analogVal</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">Vr</span><span class="p">,</span><span class="w"> </span><span class="n">Rt</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="n">cel</span><span class="p">,</span><span class="w"> </span><span class="n">Fah</span><span class="p">;</span>
+<span class="w">    </span><span class="n">analogVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_ADC_Result</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Vr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">analogVal</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Rt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">Vr</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">Vr</span><span class="p">));</span>
+<span class="w">    </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(((</span><span class="n">log</span><span class="p">(</span><span class="n">Rt</span><span class="o">/</span><span class="mi">10000</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3950</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">273.15</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">25</span><span class="p">)));</span>
+<span class="w">    </span><span class="n">cel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">273.15</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Fah</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cel</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.8</span><span class="w"> </span><span class="o">+</span><span class="mi">32</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="o">=</span><span class="n">cel</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Temperture() works by converting thermistor values read by ADC0834 into
+temperature values. Refer to <a class="reference internal" href="python_pi5/pi5_2.2.2_thermistor_python.html#thermistor"><span class="std std-ref">2.2.2 Thermistor</span></a> for more details.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">motor</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">level</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">level</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">level</span><span class="o">&gt;=</span><span class="mi">4</span><span class="p">){</span>
+<span class="w">        </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="mi">4</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span><span class="w"> </span><span class="n">level</span><span class="o">*</span><span class="mi">25</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">level</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This function controls the rotating speed of the motor. The range of the
+<strong>Level</strong>: <strong>0-4</strong> (level <strong>0</strong> stops the working motor). One level
+adjustment stands for a <strong>25%</strong> change of the wind speed.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">setup</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">currentState</span><span class="p">,</span><span class="n">lastState</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">currentTemp</span><span class="p">,</span><span class="n">markTemp</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">currentState</span><span class="o">=</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BtnPin</span><span class="p">);</span>
+<span class="w">        </span><span class="n">currentTemp</span><span class="o">=</span><span class="n">temperture</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentTemp</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">){</span><span class="k">continue</span><span class="p">;}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentState</span><span class="o">==</span><span class="mi">1</span><span class="o">&amp;&amp;</span><span class="n">lastState</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+<span class="w">            </span><span class="n">level</span><span class="o">=</span><span class="p">(</span><span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">;</span>
+<span class="w">            </span><span class="n">markTemp</span><span class="o">=</span><span class="n">currentTemp</span><span class="p">;</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">lastState</span><span class="o">=</span><span class="n">currentState</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">level</span><span class="o">!=</span><span class="mi">0</span><span class="p">){</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentTemp</span><span class="o">-</span><span class="n">markTemp</span><span class="o">&lt;=</span><span class="mi">-2</span><span class="p">){</span>
+<span class="w">                </span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">                </span><span class="n">markTemp</span><span class="o">=</span><span class="n">currentTemp</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentTemp</span><span class="o">-</span><span class="n">markTemp</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">){</span>
+<span class="w">                </span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="n">markTemp</span><span class="o">=</span><span class="n">currentTemp</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">level</span><span class="o">=</span><span class="n">motor</span><span class="p">(</span><span class="n">level</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The function <strong>main()</strong> contains the whole program process as shown:</p>
+<ol class="arabic simple">
+<li><p>Constantly read the button state and the current temperature.</p></li>
+<li><p>Every press makes level<strong>+1</strong> and at the same time, the temperature
+is updated. The <strong>Level</strong> ranges <strong>1~4</strong>.</p></li>
+<li><p>As the fan works ( the level is <strong>not 0</strong>), the temperature is under
+detection. A <strong>2℃+</strong> change causes the up and down of the level.</p></li>
+<li><p>The motor changes the rotating speed with the <strong>Level</strong>.</p></li>
+</ol>
+</section>
+<section id="for-python-language-users">
+<h3><strong>For Python Language Users</strong><a class="headerlink" href="#for-python-language-users" title="Permalink to this heading"></a></h3>
+<p><strong>Step 2</strong>: Get into the folder of the code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p><strong>Step 3</strong>: Run.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.4</span><span class="n">_SmartFan</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>As the code runs, start the fan by pressing the button. Every time you
+press, 1 speed grade is adjusted up or down. There are <strong>5</strong> kinds of
+speed grades: <strong>0~4</strong>. When set to the 4<sup>th</sup> speed grade and you
+press the button, the fan stops working with a <strong>0</strong> wind speed.</p>
+<p>Once the temperature goes up or down for more than 2℃, the speed
+automatically gets 1-grade faster or slower.</p>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can <strong>Modify/Reset/Copy/Run/Stop</strong> the code below. But before that, you need to go to  source code path like <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">ADC0834</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># Set up pins</span>
+<span class="n">MotorPin1</span>   <span class="o">=</span> <span class="mi">5</span>
+<span class="n">MotorPin2</span>   <span class="o">=</span> <span class="mi">6</span>
+<span class="n">MotorEnable</span> <span class="o">=</span> <span class="mi">13</span>
+<span class="n">BtnPin</span>  <span class="o">=</span> <span class="mi">22</span>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">p_M1</span><span class="p">,</span><span class="n">p_M2</span>
+    <span class="n">ADC0834</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">MotorPin2</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="n">p_M1</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span><span class="mi">2000</span><span class="p">)</span>
+    <span class="n">p_M2</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">MotorPin2</span><span class="p">,</span><span class="mi">2000</span><span class="p">)</span>
+    <span class="n">p_M1</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">p_M2</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">BtnPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">temperature</span><span class="p">():</span>
+    <span class="n">analogVal</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span>
+    <span class="n">Vr</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">analogVal</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+    <span class="n">Rt</span> <span class="o">=</span> <span class="mi">10000</span> <span class="o">*</span> <span class="n">Vr</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="n">Vr</span><span class="p">)</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(((</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Rt</span> <span class="o">/</span> <span class="mi">10000</span><span class="p">))</span> <span class="o">/</span> <span class="mi">3950</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mf">273.15</span><span class="o">+</span><span class="mi">25</span><span class="p">)))</span>
+    <span class="n">Cel</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">-</span> <span class="mf">273.15</span>
+    <span class="n">Fah</span> <span class="o">=</span> <span class="n">Cel</span> <span class="o">*</span> <span class="mf">1.8</span> <span class="o">+</span> <span class="mi">32</span>
+    <span class="k">return</span> <span class="n">Cel</span>
+
+<span class="k">def</span> <span class="nf">motor</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">level</span><span class="o">&gt;=</span><span class="mi">4</span><span class="p">:</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+    <span class="n">p_M1</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">level</span><span class="o">*</span><span class="mi">25</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">level</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">lastState</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">level</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">markTemp</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">currentState</span> <span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">BtnPin</span><span class="p">)</span>
+        <span class="n">currentTemp</span><span class="o">=</span><span class="n">temperature</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">currentState</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">lastState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">level</span><span class="o">=</span><span class="p">(</span><span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span>
+            <span class="n">markTemp</span> <span class="o">=</span> <span class="n">currentTemp</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">lastState</span><span class="o">=</span><span class="n">currentState</span>
+        <span class="k">if</span> <span class="n">level</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">currentTemp</span><span class="o">-</span><span class="n">markTemp</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span>
+                <span class="n">level</span> <span class="o">=</span> <span class="n">level</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="n">markTemp</span><span class="o">=</span><span class="n">currentTemp</span>
+            <span class="k">if</span> <span class="n">currentTemp</span><span class="o">-</span><span class="n">markTemp</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">level</span> <span class="o">=</span> <span class="n">level</span> <span class="o">+</span><span class="mi">1</span>
+                <span class="n">markTemp</span><span class="o">=</span><span class="n">currentTemp</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">motor</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">p_M1</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">p_M2</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">main</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">temperature</span><span class="p">():</span>
+    <span class="n">analogVal</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span>
+    <span class="n">Vr</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">analogVal</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+    <span class="n">Rt</span> <span class="o">=</span> <span class="mi">10000</span> <span class="o">*</span> <span class="n">Vr</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="n">Vr</span><span class="p">)</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(((</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Rt</span> <span class="o">/</span> <span class="mi">10000</span><span class="p">))</span> <span class="o">/</span> <span class="mi">3950</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mf">273.15</span><span class="o">+</span><span class="mi">25</span><span class="p">)))</span>
+    <span class="n">Cel</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">-</span> <span class="mf">273.15</span>
+    <span class="n">Fah</span> <span class="o">=</span> <span class="n">Cel</span> <span class="o">*</span> <span class="mf">1.8</span> <span class="o">+</span> <span class="mi">32</span>
+    <span class="k">return</span> <span class="n">Cel</span>
+</pre></div>
+</div>
+<p>temperture() works by converting thermistor values read by <strong>ADC0834</strong>
+into temperature values. Refer to <a class="reference internal" href="python_pi5/pi5_2.2.2_thermistor_python.html#thermistor"><span class="std std-ref">2.2.2 Thermistor</span></a> for more details.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">motor</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">level</span><span class="o">&gt;=</span><span class="mi">4</span><span class="p">:</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+    <span class="n">p_M1</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">level</span><span class="o">*</span><span class="mi">25</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">level</span>
+</pre></div>
+</div>
+<p>This function controls the rotating speed of the motor. The range of the
+<strong>Lever</strong>: <strong>0-4</strong> (level <strong>0</strong> stops the working motor). One level
+adjustment stands for a <strong>25%</strong> change of the wind speed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">lastState</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">level</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">markTemp</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">currentState</span> <span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">BtnPin</span><span class="p">)</span>
+        <span class="n">currentTemp</span><span class="o">=</span><span class="n">temperature</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">currentState</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">lastState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">level</span><span class="o">=</span><span class="p">(</span><span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span>
+            <span class="n">markTemp</span> <span class="o">=</span> <span class="n">currentTemp</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">lastState</span><span class="o">=</span><span class="n">currentState</span>
+        <span class="k">if</span> <span class="n">level</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">currentTemp</span><span class="o">-</span><span class="n">markTemp</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span>
+                <span class="n">level</span> <span class="o">=</span> <span class="n">level</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="n">markTemp</span><span class="o">=</span><span class="n">currentTemp</span>
+            <span class="k">if</span> <span class="n">currentTemp</span><span class="o">-</span><span class="n">markTemp</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">level</span> <span class="o">=</span> <span class="n">level</span> <span class="o">+</span><span class="mi">1</span>
+                <span class="n">markTemp</span><span class="o">=</span><span class="n">currentTemp</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">motor</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The function <strong>main()</strong> contains the whole program process as shown:</p>
+<ol class="arabic simple">
+<li><p>Constantly read the button state and the current temperature.</p></li>
+<li><p>Every press makes level<strong>+1</strong> and at the same time, the temperature
+is updated. The <strong>Level</strong> ranges <strong>1~4</strong>.</p></li>
+<li><p>As the fan works ( the level is <strong>not 0</strong>), the temperature is under
+detection. A <strong>2℃+</strong> change causes the up and down of the level.</p></li>
+<li><p>The motor changes the rotating speed with the <strong>Level</strong>.</p></li>
+</ol>
+</section>
+</section>
+<section id="phenomenon-picture">
+<h2>Phenomenon Picture<a class="headerlink" href="#phenomenon-picture" title="Permalink to this heading"></a></h2>
+<img alt="_images/image246.png" class="align-center" src="_images/image246.png" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3.1.3_reversing_alarm.html" class="btn btn-neutral float-left" title="3.1.3 Reversing Alarm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3.1.5_battery_indicator.html" class="btn btn-neutral float-right" title="3.1.5 Battery Indicator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

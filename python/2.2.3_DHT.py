@@ -1,134 +1,81 @@
-'''
-**********************************************************************
-* Filename    : dht11.py
-* Description : test for SunFoudner DHT11 humiture & temperature module
-* Author      : sunfounder
-* E-mail      : service@sunfounder.com
-* Website     : www.sunfounder.com
-* Update      : Dream    2016-09-30    New release
-**********************************************************************
-'''
-#!/usr/bin/env python3
-import RPi.GPIO as GPIO
+from gpiozero import OutputDevice, InputDevice
 import time
 
-dhtPin = 17
 
-GPIO.setmode(GPIO.BCM)
+class DHT11():
+    MAX_DELAY_COUINT = 100
+    BIT_1_DELAY_COUNT = 10
+    BITS_LEN = 40
 
-MAX_UNCHANGE_COUNT = 100
+    def __init__(self, pin, pull_up=False):
+        self._pin = pin
+        self._pull_up = pull_up
 
-STATE_INIT_PULL_DOWN = 1
-STATE_INIT_PULL_UP = 2
-STATE_DATA_FIRST_PULL_DOWN = 3
-STATE_DATA_PULL_UP = 4
-STATE_DATA_PULL_DOWN = 5
 
-def readDht11():
-	GPIO.setup(dhtPin, GPIO.OUT)
-	GPIO.output(dhtPin, GPIO.HIGH)
-	time.sleep(0.05)
-	GPIO.output(dhtPin, GPIO.LOW)
-	time.sleep(0.02)
-	GPIO.setup(dhtPin, GPIO.IN, GPIO.PUD_UP)
+    def read_data(self):
+        bit_count = 0
+        delay_count = 0
+        bits = ""
 
-	unchanged_count = 0
-	last = -1
-	data = []
-	while True:
-		current = GPIO.input(dhtPin)
-		data.append(current)
-		if last != current:
-			unchanged_count = 0
-			last = current
-		else:
-			unchanged_count += 1
-			if unchanged_count > MAX_UNCHANGE_COUNT:
-				break
+        # -------------- send start --------------
+        gpio = OutputDevice(self._pin)
+        gpio.off()
+        time.sleep(0.02)
 
-	state = STATE_INIT_PULL_DOWN
+        gpio.close()
+        gpio = InputDevice(self._pin, pull_up=self._pull_up)
 
-	lengths = []
-	current_length = 0
+        # -------------- wait response --------------
+        while gpio.value == 1:
+            pass
+        
+        # -------------- read data --------------
+        while bit_count < self.BITS_LEN:
+            while gpio.value == 0:
+                pass
 
-	for current in data:
-		current_length += 1
+            # st = time.time()
+            while gpio.value == 1:
+                delay_count += 1
+                # break
+                if delay_count > self.MAX_DELAY_COUINT:
+                    break
+            if delay_count > self.BIT_1_DELAY_COUNT:
+                bits += "1"
+            else:
+                bits += "0"
 
-		if state == STATE_INIT_PULL_DOWN:
-			if current == GPIO.LOW:
-				state = STATE_INIT_PULL_UP
-			else:
-				continue
-		if state == STATE_INIT_PULL_UP:
-			if current == GPIO.HIGH:
-				state = STATE_DATA_FIRST_PULL_DOWN
-			else:
-				continue
-		if state == STATE_DATA_FIRST_PULL_DOWN:
-			if current == GPIO.LOW:
-				state = STATE_DATA_PULL_UP
-			else:
-				continue
-		if state == STATE_DATA_PULL_UP:
-			if current == GPIO.HIGH:
-				current_length = 0
-				state = STATE_DATA_PULL_DOWN
-			else:
-				continue
-		if state == STATE_DATA_PULL_DOWN:
-			if current == GPIO.LOW:
-				lengths.append(current_length)
-				state = STATE_DATA_PULL_UP
-			else:
-				continue
-	if len(lengths) != 40:
-		#print ("Data not good, skip")
-		return False
+            delay_count = 0
+            bit_count += 1
 
-	shortest_pull_up = min(lengths)
-	longest_pull_up = max(lengths)
-	halfway = (longest_pull_up + shortest_pull_up) / 2
-	bits = []
-	the_bytes = []
-	byte = 0
+        # -------------- verify --------------
+        humidity_integer = int(bits[0:8], 2)
+        humidity_decimal = int(bits[8:16], 2)
+        temperature_integer = int(bits[16:24], 2)
+        temperature_decimal = int(bits[24:32], 2)
+        check_sum = int(bits[32:40], 2)
 
-	for length in lengths:
-		bit = 0
-		if length > halfway:
-			bit = 1
-		bits.append(bit)
-	#print ("bits: %s, length: %d" % (bits, len(bits)))
-	for i in range(0, len(bits)):
-		byte = byte << 1
-		if (bits[i]):
-			byte = byte | 1
-		else:
-			byte = byte | 0
-		if ((i + 1) % 8 == 0):
-			the_bytes.append(byte)
-			byte = 0
-	#print (the_bytes)
-	checksum = (the_bytes[0] + the_bytes[1] + the_bytes[2] + the_bytes[3]) & 0xFF
-	if the_bytes[4] != checksum:
-		#print ("Data not good, skip")
-		return False
+        _sum = humidity_integer + humidity_decimal + temperature_integer + temperature_decimal
 
-	return the_bytes[0], the_bytes[2]
+        # print(bits)
+        # print(humidity_integer, humidity_decimal, temperature_integer, temperature_decimal)
+        # print(f'sum:{_sum}, check_sum:{check_sum}')
+        # print()
 
-def main():
+        if check_sum != _sum:
+            humidity = 0.0
+            temperature = 0.0
+        else:
+            humidity = float(f'{humidity_integer}.{humidity_decimal}')
+            temperature = float(f'{temperature_integer}.{temperature_decimal}')
 
-	while True:
-		result = readDht11()
-		if result:
-			humidity, temperature = result
-			print ("humidity: %s %%,  Temperature: %s C`" % (humidity, temperature))
-		time.sleep(1)
+        # -------------- return --------------
+        return humidity, temperature
 
-def destroy():
-	GPIO.cleanup()
 
 if __name__ == '__main__':
-	try:
-		main()
-	except KeyboardInterrupt:
-		destroy() 
+    dht11 = DHT11(17)
+    while True:
+        humidity, temperature = dht11.read_data()
+        print(f"{time.time():.3f}  temperature:{temperature}°C  humidity: {humidity}%")
+        time.sleep(2)

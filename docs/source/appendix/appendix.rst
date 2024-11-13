@@ -18,10 +18,10 @@ Appendix
 .. toctree::
     :maxdepth: 1
 
-    install_the_libraries
     i2c_configuration
     spi_configuration
     remote_desktop
     get_ip
     install_openssh_powershell
     login_windows
+    create_virtual_environment

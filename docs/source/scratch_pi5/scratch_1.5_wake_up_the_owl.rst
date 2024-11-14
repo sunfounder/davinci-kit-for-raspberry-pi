@@ -47,7 +47,7 @@ Quando ti avvicini al modulo sensore PIR, vedrai il gufo nell'area dello stage a
 Suggerimenti per lo Sprite
 ------------------------------
 
-Seleziona Sprite1 e clicca su **Costumi** in alto a sinistra; carica **owl1.png** e **owl2.png** dal percorso ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` tramite il pulsante **Carica Costume**; elimina i 2 costumi di default e rinomina lo sprite come **gufo**.
+Seleziona Sprite1 e clicca su **Costumi** in alto a sinistra; carica **owl1.png** e **owl2.png** dal percorso ``davinci-kit-for-raspberry-pi/scratch/picture`` tramite il pulsante **Carica Costume**; elimina i 2 costumi di default e rinomina lo sprite come **gufo**.
 
 .. image:: img/1.5_pir1.png
 

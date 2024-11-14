@@ -1,24 +1,25 @@
 .. note::
 
-    Ciao e benvenuto nella Community di SunFounder per gli appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Unisciti a noi per esplorare in profondità Raspberry Pi, Arduino e ESP32 con altri appassionati.
+    Ciao, benvenuto nella community SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
     **Perché unirti a noi?**
 
-    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l’aiuto del nostro team e della community.
-    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
-    - **Anteprime Esclusive**: Ottieni l'accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
-    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
-    - **Promozioni e Omaggi Festivi**: Partecipa a omaggi e promozioni speciali durante le festività.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti e alle anticipazioni.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa agli omaggi e alle promozioni festive.
 
-    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi!
 
 .. _spi_configuration:
 
 Configurazione SPI
-------------------------
+-----------------------
 
-**Passo 1**: Abilita la porta SPI del tuo Raspberry Pi (Se l'hai già abilitata, 
-salta questo passaggio; se non sei sicuro di averlo fatto, continua a leggere).
+**Passo 1**: Abilita la porta SPI del tuo Raspberry Pi (se l'hai già
+abilitata, salta questo passaggio; se non sei sicuro di averlo fatto o meno,
+continua a seguire le istruzioni).
 
 .. raw:: html
 
@@ -28,7 +29,7 @@ salta questo passaggio; se non sei sicuro di averlo fatto, continua a leggere).
 
     sudo raspi-config
 
-**3 Opzioni Interfaccia**
+**3 Opzioni di Interfaccia**
 
 .. image:: img/image282.png
    :align: center
@@ -38,12 +39,12 @@ salta questo passaggio; se non sei sicuro di averlo fatto, continua a leggere).
 .. image:: img/i3spi.png
    :align: center
 
-**<SI>, poi clicca su <OK> e <Finish>.**
+**<SÌ>, quindi fai clic su <OK> e <Finish>.**
 
 .. image:: img/image286.png
    :align: center 
 
-**Passo 2:** Verifica che i moduli SPI siano caricati e attivi.
+**Passo 2:** Verifica che i moduli spi siano caricati e attivi.
 
 .. raw:: html
 
@@ -53,7 +54,7 @@ salta questo passaggio; se non sei sicuro di averlo fatto, continua a leggere).
 
     ls /dev/sp*
 
-Appariranno i seguenti codici (i numeri possono variare).
+A questo punto compariranno i seguenti codici (il numero può variare).
 
 
 .. code-block:: 
@@ -73,5 +74,5 @@ Appariranno i seguenti codici (i numeri possono variare).
     sudo python3 setup.py install
 
 .. note::
-    Questo passaggio è per gli utenti Python; se utilizzi il linguaggio C, puoi saltarlo.
-
+    Questo passaggio è per gli utenti Python, se utilizzi il linguaggio C,
+    puoi saltarlo.

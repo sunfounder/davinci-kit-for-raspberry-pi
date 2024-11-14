@@ -34,6 +34,8 @@
 
     2.2.1_photoresistor
     2.2.2_thermistor
+    2.2.3_dht-11
     2.2.4_pir
     2.2.5_ultrasonic_sensor_module
     2.2.6_mpu6050_module
+    2.2.7_mfrc522_rfid_module

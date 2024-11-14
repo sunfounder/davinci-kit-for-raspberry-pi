@@ -41,7 +41,7 @@ Quando l'interruttore a inclinazione è in posizione verticale, il tumbler resta
 Suggerimenti sugli Sprite
 ---------------------------
 
-Seleziona Sprite1 e fai clic su **Costumi** nell'angolo in alto a sinistra; carica **tumbler1.png** e **tumbler2.png** dal percorso ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` tramite il pulsante **Carica Costume**; elimina i 2 costumi predefiniti e rinomina lo sprite in **tumbler**.
+Seleziona Sprite1 e fai clic su **Costumi** nell'angolo in alto a sinistra; carica **tumbler1.png** e **tumbler2.png** dal percorso ``davinci-kit-for-raspberry-pi/scratch/picture`` tramite il pulsante **Carica Costume**; elimina i 2 costumi predefiniti e rinomina lo sprite in **tumbler**.
 
 .. image:: img/1.3_add_tumbler.png
 

@@ -1,192 +1,192 @@
 .. note::
 
-    Ciao! Benvenuto nella Community di SunFounder per gli appassionati di Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+    Ciao, benvenuto nella community SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Perché unirsi?**
+    **Perché unirti a noi?**
 
-    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con il supporto della nostra comunità e del nostro team.
-    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
-    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime speciali.
-    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
-    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni durante le festività.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti e alle anticipazioni.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa agli omaggi e alle promozioni festive.
 
-    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi!
 
-Desktop Remoto
+.. _remote_desktop:
+
+Desktop Remoto 
 =====================
 
 Ci sono due modi per controllare il desktop del Raspberry Pi da remoto:
 
-**VNC** e **XRDP**, puoi scegliere uno dei due.
+**VNC** e **XRDP**, puoi utilizzare entrambi.
 
-VNC
+VNC 
 --------------
 
 Puoi utilizzare la funzione di desktop remoto tramite VNC.
 
 **Abilitare il servizio VNC**
 
-Il servizio VNC è già installato nel sistema, ma di default è disabilitato. 
-È necessario abilitarlo nelle impostazioni.
+Il servizio VNC è già installato nel sistema. Per impostazione predefinita, VNC è
+disabilitato. È necessario abilitarlo nella configurazione.
 
-**Passaggio 1**
+**Passo 1**
 
 Inserisci il seguente comando:
 
 .. raw:: html
 
-   <run></run>
+    <run></run>
 
 .. code-block:: 
 
-   sudo raspi-config
+    sudo raspi-config
 
 .. image:: img/image287.png
    :align: center
 
-**Passaggio 2**
+**Passo 2**
 
-Seleziona **3 Opzioni di Interfacciamento** usando il tasto freccia giù 
-sulla tastiera, quindi premi **Invio**.
+Scegli **3** **Interfacing Options** premendo la freccia verso il basso sulla tua
+tastiera, poi premi il tasto **Enter**.
 
 .. image:: img/image282.png
    :align: center
 
-**Passaggio 3**
+**Passo 3**
 
 **P3 VNC**
 
 .. image:: img/image288.png
    :align: center
 
-**Passaggio 4**
+**Passo 4**
 
-Seleziona **Sì -> OK -> Fine** per uscire dalla configurazione.
+Seleziona **Yes -> OK -> Finish** per uscire dalla configurazione.
 
 .. image:: img/image289.png
    :align: center
 
-**Accesso a VNC**
+**Accedere a VNC**
 
-**Passaggio 1**
+**Passo 1**
 
-Scarica e installa il `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ sul tuo computer personale. Dopo l'installazione, aprilo.
+Devi scaricare e installare `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ sul tuo computer. Dopo aver completato l'installazione, aprilo.
 
-**Passaggio 2**
+**Passo 2**
 
-Seleziona "**Nuova connessione**".
+Seleziona \"**New connection**\".
 
 .. image:: img/image290.png
    :align: center
 
-**Passaggio 3**
+**Passo 3**
 
-Inserisci l'indirizzo IP del Raspberry Pi e un **Nome** a piacere.
+Inserisci l'indirizzo IP del Raspberry Pi e un **Nome** a tua scelta.
 
 .. image:: img/image291.png
    :align: center
 
-**Passaggio 4**
+**Passo 4**
 
 Fai doppio clic sulla **connessione** appena creata:
 
 .. image:: img/image292.png
    :align: center
 
-**Passaggio 5**
+**Passo 5**
 
-Inserisci il nome utente (**pi**) e la password (di default **raspberry**).
+Inserisci il Nome utente (**pi**) e la Password (**raspberry** per impostazione predefinita).
 
 .. image:: img/image293.png
    :align: center
 
-**Passaggio 6**
+**Passo 6**
 
-Ora dovresti visualizzare il desktop del Raspberry Pi:
+Ora puoi vedere il desktop del Raspberry Pi:
 
 .. image:: img/image294.png
    :align: center
 
-Questa è la fine della parte relativa a VNC.
+Questa è la fine della parte VNC.
+
 
 XRDP
 -----------------------
 
-Un altro metodo di accesso remoto è XRDP, che fornisce un'interfaccia grafica per il login remoto utilizzando il protocollo RDP (Remote Desktop Protocol di Microsoft).
+Un altro metodo di desktop remoto è XRDP, che fornisce un accesso grafico alle macchine remote utilizzando RDP (Microsoft Remote Desktop Protocol).
 
 **Installare XRDP**
 
-**Passaggio 1**
+**Passo 1**
 
-Accedi al Raspberry Pi utilizzando SSH.
+Accedi al Raspberry Pi tramite SSH.
 
-**Passaggio 2**
+**Passo 2**
 
 Inserisci i seguenti comandi per installare XRDP.
 
 .. raw:: html
 
-   <run></run>
+    <run></run>
 
 .. code-block:: 
 
    sudo apt-get update
    sudo apt-get install xrdp
 
-**Passaggio 3**
+**Passo 3**
 
 L'installazione inizierà.
 
-Inserisci "Y" e premi "Invio" per confermare.
+Digita \"Y\" e premi il tasto \"Enter\" per confermare.
 
 .. image:: img/image295.png
    :align: center
 
-**Passaggio 4**
+**Passo 4**
 
-Dopo l'installazione, puoi accedere al Raspberry Pi utilizzando le 
-applicazioni desktop remote di Windows.
+Terminata l'installazione, dovrai accedere al tuo Raspberry Pi utilizzando 
+le applicazioni di desktop remoto di Windows.
 
-**Accesso a XRDP**
+**Accedere a XRDP**
 
-**Passaggio 1**
+**Passo 1**
 
-Se sei un utente Windows, puoi utilizzare la funzione Desktop Remoto inclusa 
-in Windows. Se sei un utente Mac, puoi scaricare e utilizzare Microsoft Remote 
-Desktop dall'App Store. Nei passaggi seguenti viene mostrato l'esempio di 
-Desktop Remoto di Windows.
+Se sei un utente Windows, puoi utilizzare la funzione di Desktop Remoto 
+inclusa in Windows. Se sei un utente Mac, puoi scaricare e utilizzare 
+Microsoft Remote Desktop dall'APP Store. Non ci sono grandi differenze 
+tra le due versioni. L'esempio seguente è per il desktop remoto su Windows.
 
-**Passaggio 2**
+**Passo 2**
 
-Digita "**mstsc**" nella barra di ricerca di Esegui (WIN+R) per aprire la 
-connessione Desktop Remoto, inserisci l'indirizzo IP del Raspberry Pi e 
-clicca su "Connetti".
+Digita \"**mstsc**\" in Esegui (WIN+R) per aprire la Connessione Desktop 
+Remoto e inserisci l'indirizzo IP del Raspberry Pi, quindi clicca su \"Connect\".
 
 .. image:: img/image296.png
    :align: center
 
-**Passaggio 3**
+**Passo 3**
 
-Si aprirà la pagina di login di xrdp. Inserisci il tuo nome utente e password, 
-quindi clicca su "OK". Al primo accesso, il nome utente è "pi" e la password è 
-"raspberry".
+Apparirà la pagina di login di xrdp. Inserisci il tuo nome utente e
+password. Successivamente, clicca su \"OK\". Al primo accesso,
+il tuo nome utente sarà \"pi\" e la password sarà \"raspberry\".
 
 .. image:: img/image297.png
    :align: center
 
-**Passaggio 4**
+**Passo 4**
 
-Ora hai effettuato correttamente l'accesso al Raspberry Pi tramite desktop remoto.
+Ora sei connesso con successo al Raspberry Pi utilizzando il desktop remoto.
 
 .. image:: img/image20.png
    :align: center
 
-**Nota sui Diritti d'Autore**
+**Nota sul Copyright**
 
-Tutti i contenuti inclusi, ma non limitati a testi, immagini e codice in 
-questo manuale sono di proprietà della SunFounder Company. Il loro utilizzo 
-è consentito solo per scopi di studio personale, investigazione, intrattenimento 
-o altri fini non commerciali o non a scopo di lucro, rispettando le normative e 
-le leggi sul copyright, senza violare i diritti legali dell'autore e dei detentori 
-di tali diritti. La SunFounder si riserva il diritto di intraprendere azioni legali 
-per qualsiasi utilizzo a fini di lucro senza autorizzazione.
+Tutti i contenuti, inclusi ma non limitati a testi, immagini e codice in
+questo manuale, sono di proprietà della SunFounder Company. Dovresti utilizzarli
+solo per scopi personali di studio, indagine, divertimento o altri scopi non commerciali o senza fini di lucro, in conformità con le normative e le leggi sul copyright,
+senza violare i diritti legali dell'autore e dei relativi titolari di diritti.
+Per qualsiasi individuo o organizzazione che utilizzi questi contenuti per profitto commerciale senza permesso, la società si riserva il diritto di intraprendere azioni legali.

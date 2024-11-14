@@ -48,7 +48,7 @@ Elimina il precedente sprite Sprite1, quindi aggiungi lo sprite **Balloon1**.
 
 In questo progetto è utilizzato un effetto sonoro di esplosione del palloncino; vediamo come aggiungerlo.
 
-Clicca sull'opzione **Suono** in alto, quindi su **Carica Suono** per caricare il file ``boom.wav`` dal percorso ``home/pi/davinci-kit-for-raspberry-pi/scratch/sound`` su Scratch 3.
+Clicca sull'opzione **Suono** in alto, quindi su **Carica Suono** per caricare il file ``boom.wav`` dal percorso ``davinci-kit-for-raspberry-pi/scratch/sound`` su Scratch 3.
 
 .. image:: img/1.15_slide2.png
 

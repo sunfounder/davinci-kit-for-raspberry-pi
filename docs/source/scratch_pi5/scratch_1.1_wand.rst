@@ -46,7 +46,7 @@ Clicca sul pulsante **Aggiungi Estensione** nell'angolo in basso a sinistra, qui
 Carica il Codice e Osserva Cosa Succede
 -------------------------------------------
 
-Carica il file di codice dal tuo computer (``home/pi/davinci-kit-for-raspberry-pi/scratch/code``) su Scratch 3.
+Carica il file di codice dal tuo computer (``davinci-kit-for-raspberry-pi/scratch/code``) su Scratch 3.
 
 .. image:: img/1.1_scratch_step1.png
 
@@ -57,13 +57,13 @@ Dopo aver cliccato sulla bacchetta magica nell'area di scena, vedrai il LED lamp
 .. image:: img/1.1_step3.png
 
 Suggerimenti per lo Sprite
-----------------
+------------------------------------
 
 Clicca su **Carica Sprite**.
 
 .. image:: img/1.1_upload_sprite.png
 
-Carica **Wand.png** dal percorso `home/pi/davinci-kit-for-raspberry-pi/scratch/picture` su Scratch 3.
+Carica **Wand.png** dal percorso ``davinci-kit-for-raspberry-pi/scratch/picture`` su Scratch 3.
 
 .. image:: img/1.1_upload.png
 

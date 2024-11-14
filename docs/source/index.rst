@@ -65,18 +65,15 @@ nous répondrons dès que possible.
 
     About this Kit <self>
     component_list
-    libraries
     gpio_extension_board
     download_the_code
-    preparation/preparation
+    install_setup_os/install_setup_os
     for_pi5
     for_other_models
     python_video/python_video
     appendix/appendix
     faq
     thank-learning
-
-
 
 
 Avis de droits d'auteur

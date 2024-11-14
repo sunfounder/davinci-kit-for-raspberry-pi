@@ -40,7 +40,7 @@ Lorsque l'interrupteur à bascule est en position verticale, le culbuto est debo
 Conseils sur le sprite
 -------------------------
 
-Sélectionnez **Sprite1** et cliquez sur **Costumes** en haut à gauche ; téléversez **tumbler1.png** et **tumbler2.png** depuis le chemin ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` via le bouton **Téléverser un costume** ; supprimez les 2 costumes par défaut et renommez le sprite en **culbuto**.
+Sélectionnez **Sprite1** et cliquez sur **Costumes** en haut à gauche ; téléversez **tumbler1.png** et **tumbler2.png** depuis le chemin ``davinci-kit-for-raspberry-pi/scratch/picture`` via le bouton **Téléverser un costume** ; supprimez les 2 costumes par défaut et renommez le sprite en **culbuto**.
 
 .. image:: img/1.3_add_tumbler.png
 

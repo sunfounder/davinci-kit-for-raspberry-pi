@@ -42,7 +42,7 @@ Installation de Processing
 
 .. note::
 
-    Avant de pouvoir utiliser Processing, vous devez accéder au bureau du Raspberry Pi à distance (:ref:`Remote Desktop`) ou connecter un écran au Raspberry Pi.
+    Avant de pouvoir utiliser Processing, vous devez accéder au bureau du Raspberry Pi à distance (:ref:`remote_desktop`) ou connecter un écran au Raspberry Pi.
 
 .. Exécutez la commande suivante dans le Terminal pour installer Processing.
 

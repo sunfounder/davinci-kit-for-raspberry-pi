@@ -46,7 +46,7 @@ Cliquez sur le bouton **Ajouter une extension** en bas à gauche, puis ajoutez l
 Charger le Code et Voir le Résultat
 ---------------------------------------
 
-Chargez le fichier de code depuis votre ordinateur (`home/pi/davinci-kit-for-raspberry-pi/scratch/code`) vers Scratch 3.
+Chargez le fichier de code depuis votre ordinateur (`davinci-kit-for-raspberry-pi/scratch/code`) vers Scratch 3.
 
 .. image:: img/1.1_scratch_step1.png
 

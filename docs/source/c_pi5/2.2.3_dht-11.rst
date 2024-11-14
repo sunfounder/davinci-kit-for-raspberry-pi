@@ -114,176 +114,245 @@ seront affichées sur l'écran de l'ordinateur.
     #include <stdlib.h>
     #include <stdint.h>
 
-    #define maxTim 85
-    #define dhtPin 0
+    #define MAXTIMINGS 85  // Maximum number of timing transitions
 
-    int dht11_dat[5] = {0,0,0,0,0};
+    int dht11_dat[5] = {0, 0, 0, 0, 0};  // Data array to hold sensor values
 
-    void readDht11() {
+    // Function to read data from DHT11 sensor
+    void read_dht11_dat(int GPIOPIN)
+    {
+        uint8_t currState;
         uint8_t laststate = HIGH;
         uint8_t counter = 0;
-        uint8_t j = 0, i;
-        float Fah; // Fahrenheit
+        uint8_t j = 0;
+        uint8_t i;
+        float f; // Temperature in Fahrenheit
+
+        // Reset data array before each read
         dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
-        // Tirer la broche vers le bas pendant 18 millisecondes
-        pinMode(dhtPin, OUTPUT);
-        digitalWrite(dhtPin, LOW);
+
+        // Pull pin down for 18 milliseconds to initiate communication
+        pinMode(GPIOPIN, OUTPUT);
+        digitalWrite(GPIOPIN, LOW);
         delay(18);
-        // Puis tirer la broche vers le haut pendant 40 microsecondes
-        digitalWrite(dhtPin, HIGH);
+
+        // Then pull it up for 40 microseconds
+        digitalWrite(GPIOPIN, HIGH);
         delayMicroseconds(40); 
-        // Préparer la lecture de la broche
-        pinMode(dhtPin, INPUT);
 
-        // Détecter les changements et lire les données
-        for ( i=0; i< maxTim; i++) {
+        // Prepare to read the pin
+        pinMode(GPIOPIN, INPUT);
+
+        // Detect change and read data
+        for (i = 0; i < MAXTIMINGS; i++) 
+        {
             counter = 0;
-            while (digitalRead(dhtPin) == laststate) {
+
+            // Count how long each state lasts
+            while (digitalRead(GPIOPIN) == laststate)
+            {
                 counter++;
-                delayMicroseconds(1);
-                if (counter == 255) {
+                delayMicroseconds(2);
+                if (counter == 255) 
+                {
                     break;
                 }
             }
-            laststate = digitalRead(dhtPin);
+
+            // Save the current state
+            laststate = digitalRead(GPIOPIN);
 
             if (counter == 255) break;
-            // Ignorer les 3 premières transitions
-            if ((i >= 4) && (i%2 == 0)) {
-                // Insérer chaque bit dans les octets de stockage
+
+            // Ignore first 3 transitions (DHT11 response signal)
+            if ((i >= 4) && (i % 2 == 0)) 
+            {
+                // Shift bits and store data
                 dht11_dat[j/8] <<= 1;
-                if (counter > 50)
+                if (counter > 16)
+                {
                     dht11_dat[j/8] |= 1;
+                }
+
                 j++;
             }
         }
-        // Vérifier que nous avons lu 40 bits (8 bits x 5) et vérifier le checksum dans le dernier octet
-        // Afficher les résultats si les données sont valides
-        if ((j >= 40) && 
-                (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) ) {
-            Fah = dht11_dat[2] * 9. / 5. + 32;
-            printf("Humidity = %d.%d %% Temperature = %d.%d *C (%.1f *F)\n", 
-                    dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], Fah);
+
+        // Check if we received 40 bits (5 bytes) and verify checksum
+        if ((j >= 40) && (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) ) 
+        {
+            // Convert temperature to Fahrenheit
+            f = dht11_dat[2] * 9.0 / 5.0 + 32;
+            printf("Humidity = %d.%d %% Temperature = %d.%d °C (%.1f °F)\n",
+                   dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], f);
+        }
+        else
+        {
+            printf("Data not good, skip\n");
         }
     }
 
-    int main (void) {
-        if(wiringPiSetup() == -1){ // En cas d'échec d'initialisation de wiringPi, afficher un message à l'écran
-            printf("setup wiringPi failed !");
-            return 1; 
+    int main (void)
+    {
+        printf("Raspberry Pi wiringPi DHT11 Temperature test program\n");
+
+        // Initialize wiringPi using BCM GPIO pin numbering
+        if (wiringPiSetupGpio() == -1)
+        {
+            exit(1);
         }
-        while (1) {
-            readDht11();
-            delay(500); // attendre 1 seconde pour actualiser
+
+        while(1) 
+        {
+            // Read data from DHT11 connected to GPIO pin 17
+            read_dht11_dat(17);
+            delay(1000); // Wait 1 second before next read
         }
-        return 0 ;
+
+        return 0;
     }
 
-**Explication du Code**
+**Explication du code**
 
-.. code-block:: c
+#. Inclure les en-têtes : Le code inclut les en-têtes nécessaires pour les fonctions wiringPi et l’entrée/sortie standard.
 
-    void readDht11() {
-        uint8_t laststate = HIGH;
-        uint8_t counter = 0;
-        uint8_t j = 0, i;
-        float Fah; // Fahrenheit
+   .. code-block:: c
+
+        #include <wiringPi.h>
+        #include <stdio.h>
+        #include <stdlib.h>
+        #include <stdint.h>
+
+#. Définir les constantes :
+
+   * ``MAXTIMINGS`` : Le nombre maximum de transitions de temps attendu du capteur DHT11 (85).
+   
+   .. code-block:: C
+
+        #define MAXTIMINGS 85  // Nombre maximum de transitions de temps
+
+#. Tableau de données global :
+
+   * ``dht11_dat[5]`` : Un tableau pour stocker les 5 octets de données reçus du capteur DHT11.
+   
+   .. code-block:: C
+
+        int dht11_dat[5] = {0, 0, 0, 0, 0};  // Tableau de données pour stocker les valeurs du capteur
+
+#. Fonction ``read_dht11_dat(int GPIOPIN)`` : Lit les données du capteur DHT11 connecté à la broche GPIO spécifiée.
+   
+   * Initialisation : Réinitialise le tableau ``dht11_dat`` à zéro avant chaque lecture.
+   
+     .. code-block:: C
+
         dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
-        // ...
-    }
 
-Cette fonction est utilisée pour implémenter le fonctionnement du DHT11.
+   * Signal de démarrage : Met la broche GPIO à bas pendant au moins 18 millisecondes pour signaler au DHT11 de commencer à envoyer des données.
+   
+     .. code-block:: C
 
-Elle peut généralement être divisée en 3 parties :
+        pinMode(GPIOPIN, OUTPUT);
+        digitalWrite(GPIOPIN, LOW);
+        delay(18);  // 18 millisecondes
 
-1. Préparation de la broche pour la lecture :
+   * Met la broche GPIO à haut pendant 40 microsecondes.
+   
+     .. code-block:: C
 
-.. code-block:: c
+        digitalWrite(GPIOPIN, HIGH);
+        delayMicroseconds(40);  // 40 microsecondes
 
-    // Tirer la broche vers le bas pendant 18 millisecondes
-    pinMode(dhtPin, OUTPUT);
-    digitalWrite(dhtPin, LOW);
-    delay(18);
-    // Puis tirer la broche vers le haut pendant 40 microsecondes
-    digitalWrite(dhtPin, HIGH);
-    delayMicroseconds(40); 
-    // Préparer la lecture de la broche
-    pinMode(dhtPin, INPUT);
+   * Configure la broche GPIO en mode entrée pour lire les données du capteur.
+   
+     .. code-block:: C
 
-Le flux de communication est déterminé par la synchronisation du fonctionnement.
+        pinMode(GPIOPIN, INPUT);
 
-.. image:: img/image208.png
-    :width: 800
+   * Boucle de lecture des données : La boucle s’exécute jusqu’à ``MAXTIMINGS`` fois pour lire les bits de données.
 
+     Pour chaque transition (de haut à bas ou de bas à haut), elle mesure combien de temps la broche reste dans chaque état.
 
-Lorsque le DHT11 démarre, le MCU envoie un signal de niveau bas, puis maintient le 
-signal à un niveau haut pendant 40 microsecondes. Après cela, la détection des conditions 
-de l'environnement externe commence.
+     .. code-block:: C
 
-2. Lecture des données :
-
-.. code-block:: c
-
-    // détecter les changements et lire les données  
-    for ( i=0; i< maxTim; i++) {
+        for (i = 0; i < MAXTIMINGS; i++) 
+        {
             counter = 0;
-            while (digitalRead(dhtPin) == laststate) {
+            while (digitalRead(GPIOPIN) == laststate)
+            {
                 counter++;
-                delayMicroseconds(1);
-                if (counter == 255) {
+                delayMicroseconds(2);
+                if (counter == 255) 
+                {
                     break;
                 }
             }
-            laststate = digitalRead(dhtPin);
-            if (counter == 255) break;
-            // ignorer les 3 premières transitions
-            if ((i >= 4) && (i%2 == 0)) {
-                // insérer chaque bit dans les octets de stockage
-                dht11_dat[j/8] <<= 1;
-                if (counter > 50)
-                    dht11_dat[j/8] |= 1;
-                j++;
-            }
+            laststate = digitalRead(GPIOPIN);
+            // ... reste de la boucle
         }
 
-La boucle stocke les données détectées dans le tableau dht11_dat[]. Le DHT11 
-transmet des données par blocs de 40 bits. Les 16 premiers bits sont liés à 
-l'humidité, les 16 bits intermédiaires sont liés à la température, et les 8 
-derniers bits sont utilisés pour la vérification. Le format des données est :
+   * Extraction de bits de données : Les 3 premières transitions sont ignorées car elles font partie de la réponse initiale du DHT11.
 
-**8 bits de données entières pour l'humidité** + **8 bits de données décimales 
-pour l'humidité** + **8 bits de données entières pour la température** + **8 bits 
-de données décimales pour la température** + **8 bits de bit de contrôle**.
+     Pour chaque bit de données, elle détermine si le bit est 0 ou 1 en fonction de la durée pendant laquelle la broche reste à haut.
 
-3. Affichage de l'humidité et de la température.
+     .. code-block:: C
 
-.. code-block:: c
+        if ((i >= 4) && (i % 2 == 0)) 
+        {
+            dht11_dat[j/8] <<= 1;
+            if (counter > 16)
+            {
+                dht11_dat[j/8] |= 1;
+            }
+            j++;
+        }
 
-    // vérifier que nous avons bien lu 40 bits (8 bits x 5) + vérifier le checksum dans le dernier octet
-    // afficher si les données sont correctes
-    if ((j >= 40) && 
-            (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) ) {
-        Fah = dht11_dat[2] * 9. / 5. + 32;
-        printf("Humidity = %d.%d %% Temperature = %d.%d *C (%.1f *F)\n", 
-                dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], Fah);
-    }
+   * Vérification de la somme de contrôle : Après avoir reçu tous les bits, le code vérifie la somme de contrôle pour garantir l'intégrité des données.
+   
+     .. code-block:: C
 
-Lorsque le stockage des données atteint 40 bits, vérifiez la validité des données 
-à l'aide du **bit de contrôle (dht11_dat[4])**, puis affichez la température et l'humidité.
+        if ((j >= 40) && (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) )
 
-Par exemple, si les données reçues sont : 00101011 (valeur entière de l'humidité 
-sur 8 bits) 00000000 (valeur décimale de l'humidité sur 8 bits) 00111100 (valeur 
-entière de la température sur 8 bits) 00000000 (valeur décimale de la température 
-sur 8 bits) 01100111 (bit de contrôle)
+   * Si la somme de contrôle est correcte, elle affiche les valeurs d'humidité et de température.
+   
+     .. code-block:: C
 
-**Calcul :**
+        f = dht11_dat[2] * 9.0 / 5.0 + 32;
+        printf("Humidité = %d.%d %% Température = %d.%d °C (%.1f °F)\n",
+               dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], f);
 
-00101011+00000000+00111100+00000000=01100111.
+   * Si la somme de contrôle échoue, elle affiche un message d'erreur.
+   
+     .. code-block:: C
 
-Le résultat final est égal au bit de contrôle, ce qui signifie que les données 
-reçues sont correctes :
+        else
+        {
+            printf("Données incorrectes, saut\n");
+        }
 
-Humidité = 43 %, Température = 60 °C.
+#. Fonction principale :
 
-Si ce n'est pas égal au bit de contrôle, la transmission des données n'est pas 
-correcte et les données doivent être reçues à nouveau.
+   * Affiche un message de démarrage.
+
+   .. code-block:: C
+
+        printf("Programme de test de température DHT11 pour Raspberry Pi avec wiringPi\n");
+
+   * Initialise wiringPi en utilisant la numérotation des broches GPIO BCM.
+   
+   .. code-block:: C
+
+        if (wiringPiSetupGpio() == -1)
+        {
+            exit(1);
+        }
+
+   * Entre dans une boucle infinie pour lire les données du capteur DHT11 chaque seconde.
+     
+     .. code-block:: C
+
+        while(1) 
+        {
+            read_dht11_dat(17);
+            delay(1000); // attendre 1 seconde
+        }
+

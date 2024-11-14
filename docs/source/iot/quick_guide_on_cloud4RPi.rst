@@ -163,4 +163,4 @@ Par exemple, nous sélectionnons le widget **Text** puis choisissons **Hot Water
 
 .. note::
 
-  Nous introduirons ces données affichées plus en détail dans le chapitre :ref:`Learn More about control.py.
+  Nous introduirons ces données affichées plus en détail dans le chapitre :ref:`control_py`.

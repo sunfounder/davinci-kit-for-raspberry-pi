@@ -1,25 +1,27 @@
 .. note::
 
-    Bonjour, bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l’univers du Raspberry Pi, Arduino et ESP32 aux côtés d’autres passionnés.
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Pourquoi nous rejoindre ?**
+    **Pourquoi rejoindre ?**
 
-    - **Assistance d'experts** : Résolvez les problèmes post-achat et les défis techniques grâce à l’aide de notre communauté et de notre équipe.
-    - **Apprenez et partagez** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
-    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux avant-goûts exclusifs.
-    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
-    - **Promotions festives et concours** : Participez à des concours et promotions spéciales pour les fêtes.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
 
-    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
 
-Appendix
-==============
+Appendice
+===============
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     i2c_configuration
     spi_configuration
     remote_desktop
     get_ip
+    install_openssh_powershell
+    login_windows
     create_virtual_environment

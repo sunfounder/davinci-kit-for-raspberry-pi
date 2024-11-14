@@ -1,32 +1,33 @@
+
 .. note::
 
-    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez au cœur de l’univers Raspberry Pi, Arduino et ESP32 en compagnie d’autres passionnés.
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Pourquoi nous rejoindre ?**
+    **Pourquoi rejoindre ?**
 
-    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l’aide de notre communauté et de notre équipe.
-    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour approfondir vos compétences.
-    - **Aperçus exclusifs** : Profitez d’un accès anticipé aux nouvelles annonces de produits et à des avant-premières exclusives.
-    - **Réductions spéciales** : Bénéficiez de remises exclusives sur nos tout nouveaux produits.
-    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales lors des fêtes.
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
 
-    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
 
 .. _get_ip:
 
 Obtenir l'adresse IP
-===========================
+=========================
 
-Il existe plusieurs méthodes pour connaître l'adresse IP, en voici deux exemples.
+Il existe plusieurs façons de connaître l'adresse IP, et deux d'entre elles sont listées ci-dessous.
 
 **Vérification via le routeur**
 
-Si vous avez les autorisations pour vous connecter au routeur (par exemple, sur un réseau domestique), vous pouvez vérifier les adresses attribuées au Raspberry Pi via l’interface d’administration du routeur.
+Si vous avez la permission de vous connecter au routeur (comme sur un réseau domestique), vous pouvez vérifier les adresses assignées au Raspberry Pi sur l'interface d'administration du routeur.
 
-Le nom d'hôte par défaut du système d'exploitation Raspberry Pi est « raspberrypi », et vous devez le rechercher dans la liste des appareils connectés. (Si vous utilisez le système ArchLinuxARM, cherchez « alarmpi ».)
+Le nom d'hôte par défaut du système d'exploitation Raspberry Pi est raspberrypi, et vous devez le trouver. (Si vous utilisez le système ArchLinuxARM, veuillez chercher alarmpi.)
 
-**Scan du réseau**
+**Scan de segment de réseau**
 
-Vous pouvez également utiliser la technique de balayage de réseau pour trouver l'adresse IP du Raspberry Pi. Pour ce faire, utilisez des logiciels tels que **Advanced IP Scanner**.
+Vous pouvez également utiliser un scan réseau pour trouver l'adresse IP du Raspberry Pi. Vous pouvez utiliser des logiciels tels que **Advanced IP scanner**.
 
-Scannez la plage d'adresses IP définie et le nom de tous les appareils connectés s'affichera. De même, le nom d'hôte par défaut du Raspberry Pi OS est « raspberrypi », à moins que vous ne l'ayez modifié.
+Scannez la plage d'IP définie, et le nom de tous les appareils connectés sera affiché. De même, le nom d'hôte par défaut du système d'exploitation Raspberry Pi est raspberrypi, si vous ne l'avez pas modifié.

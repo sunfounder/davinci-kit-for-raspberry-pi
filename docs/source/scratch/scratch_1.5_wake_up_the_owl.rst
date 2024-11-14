@@ -46,7 +46,7 @@ Lorsque vous vous approchez du module capteur PIR, vous verrez le hibou sur la s
 Conseils pour le Sprite
 --------------------------
 
-Sélectionnez Sprite1 et cliquez sur **Costumes** en haut à gauche ; téléchargez les images **owl1.png** et **owl2.png** depuis le répertoire ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` via le bouton **Télécharger un Costume** ; supprimez les 2 costumes par défaut et renommez le sprite en **owl**.
+Sélectionnez Sprite1 et cliquez sur **Costumes** en haut à gauche ; téléchargez les images **owl1.png** et **owl2.png** depuis le répertoire ``davinci-kit-for-raspberry-pi/scratch/picture`` via le bouton **Télécharger un Costume** ; supprimez les 2 costumes par défaut et renommez le sprite en **owl**.
 
 .. image:: img/1.5_pir1.png
 

@@ -49,7 +49,7 @@ Spriteに関するヒント
 
 このプロジェクトでは風船爆発効果音を使用しているので、どのように追加されたか見てみましょう。
 
-上部の Sound オプションをクリックし、Upload Sound をクリックして、 ``boom.wav`` を ``home/pi/davinci-kit-for-raspberry-pi/scratch/sound`` パスからScratch3にアップロードします。
+上部の Sound オプションをクリックし、Upload Sound をクリックして、 ``boom.wav`` を ``davinci-kit-for-raspberry-pi/scratch/sound`` パスからScratch3にアップロードします。
 
 .. image:: media/1.15_slide2.png
 

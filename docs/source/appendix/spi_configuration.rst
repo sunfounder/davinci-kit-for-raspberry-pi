@@ -12,60 +12,58 @@
 
     👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
 
-.. _spi_config:
+.. _spi_configuration:
 
-SPI構成
+SPI設定
 ===============
 
-ステップ1：Raspberry PiのSPIポートを有効にします（有効にしている場合はスキップします。有効にしたかどうかわからない場合は続行してください）。
+**ステップ1**: お使いのRaspberry PiのSPIポートを有効にしてください（すでに有効化している場合はこのステップをスキップ。不明な場合は、続けてください）。
 
 .. raw:: html
 
-    <run></run>
-
+   <run></run>
+  
 .. code-block:: 
 
     sudo raspi-config
 
-**3 Interfacing options**
+**3 インターフェースオプション**
 
-.. image:: media/image282.png
-   :align: center
+.. image:: img/image282.png
+    :align: center
 
 **I3 SPI**
 
-.. image:: img/i3spi.png
-   :align: center
+.. image:: img/image285.png
+    :align: center
 
-<YES> をクリックし、<OK> と <Finish> をクリックします。 これで、 ``sudo reboot`` コマンドを使用してRaspberryPiを再起動できます。
+**<YES>を選択し、<OK>と<Finish>をクリックしてください。**
 
-.. image:: media/image286.png
-   :align: center 
+.. image:: img/image286.png
+    :align: center
 
-
-ステップ2： spiモジュールがロードされてアクティブになっていることを確認します。
+**ステップ2**: SPIモジュールがロードされていることを確認します。
 
 .. raw:: html
 
-    <run></run>
-
+   <run></run>
+  
 .. code-block:: 
 
     ls /dev/sp*
 
-次に、次のコードが表示されます（番号は異なる場合があります）。
-
+次のようなコードが表示されます（番号は異なる場合があります）。
 
 .. code-block:: 
 
     /dev/spidev0.0  /dev/spidev0.1
 
-ステップ3： PythonモジュールSPI-Pyをインストールします。
+**ステップ3**: PythonモジュールSPI-Pyをインストールします。
 
 .. raw:: html
 
-    <run></run>
-
+   <run></run>
+  
 .. code-block:: 
 
     git clone https://github.com/lthiery/SPI-Py.git
@@ -73,6 +71,5 @@ SPI構成
     sudo python3 setup.py install
 
 .. note::
-
-    この手順はPythonユーザー向けです。C言語を使用している場合は、スキップしてください。
+    このステップはPythonユーザーのためのものです。C言語を使用している場合は、このステップをスキップしてください。
 

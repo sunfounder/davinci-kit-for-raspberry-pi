@@ -18,7 +18,7 @@ SunFounder |link_DaVinci_kit| for Raspberry Pi
 
 |link_DaVin_kit|
 
-|link_DaVinci_kit|をお選びいただき、ありがとうございます。
+|link_DaVinci_kit| をお選びいただき、ありがとうございます。
 
 .. note::
     このドキュメントは以下の言語で利用可能です。
@@ -39,18 +39,15 @@ SunFounder |link_DaVinci_kit| for Raspberry Pi
 
     About this Kit <self>
     component_list
-    introduction
-    preparation/preparation
-    libraries
     gpio_extension_board
     download_the_code
+    install_setup_os/install_setup_os
     for_pi5
     for_other_models
     python_video/python_video
     appendix/appendix
     faq
     thank-learning
-
 
 
 

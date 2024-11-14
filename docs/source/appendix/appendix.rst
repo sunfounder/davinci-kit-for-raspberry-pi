@@ -13,12 +13,15 @@
     👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
 
 付録
-==============
+===============
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     i2c_configuration
     spi_configuration
+    remote_desktop
+    get_ip
+    install_openssh_powershell
+    login_windows
     create_virtual_environment
-    

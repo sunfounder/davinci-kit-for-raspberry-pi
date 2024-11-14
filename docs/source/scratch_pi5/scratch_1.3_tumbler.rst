@@ -42,7 +42,7 @@ Spriteに関するヒント
 --------------------
 
 Sprite1を選択し、左上隅の **Costumes** をクリックします。
-**Upload Costume** ボタンを使用して、 ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` パスから **tumbler1.png** と **tumbler2.png** をアップロードします。 
+**Upload Costume** ボタンを使用して、 ``davinci-kit-for-raspberry-pi/scratch/picture`` パスから **tumbler1.png** と **tumbler2.png** をアップロードします。 
 デフォルトの2つのcostumesを削除し、 spriteの名前を **tumbler** に変更します。
 
 コードに関するヒント

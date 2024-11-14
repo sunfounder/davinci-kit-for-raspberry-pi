@@ -49,7 +49,7 @@ GPIO拡張機能を追加する
 --------------------------------------------
 
 
-コンピューター( ``home/pi/davinci-kit-for-raspberry-pi/scratch/code`` )からScratch3にコードファイルをロードします。
+コンピューター( ``davinci-kit-for-raspberry-pi/scratch/code`` )からScratch3にコードファイルをロードします。
 
 .. image:: media/1.1_scratch_step1.png
 
@@ -67,7 +67,7 @@ Upload Sprite をクリックします。
 
 .. image:: media/1.1_upload_sprite.png
 
-**Wand.png** を ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` パスからScratch3にアップロードします。
+**Wand.png** を ``davinci-kit-for-raspberry-pi/scratch/picture`` パスからScratch3にアップロードします。
 
 .. image:: media/1.1_upload.png
 

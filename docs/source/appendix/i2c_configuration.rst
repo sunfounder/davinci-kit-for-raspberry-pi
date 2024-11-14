@@ -14,81 +14,78 @@
 
 .. _i2c_config:
 
-I2C構成
-==================
+I2C設定
+==============
 
-ステップ1: Raspberry PiのI2Cポートを有効にしてください（有効にしている場合はスキップしてください。
+**ステップ1**: Raspberry PiのI2Cポートを有効にします（既に有効にしている場合はこのステップをスキップしてください。不明な場合は続けてください）。
 
 .. raw:: html
 
-    <run></run>
- 
+   <run></run>
+  
 .. code-block:: 
 
     sudo raspi-config
 
-**3 Interfacing options**
+**3 インターフェイスオプション**
 
-.. image:: media/image282.png
+.. image:: img/image282.png
     :align: center
 
 **I4 I2C**
 
-.. image:: img/I4i2c.jpeg
+.. image:: img/image283.png
     :align: center
 
-**<Yes>、次に<Ok> -> <Finish>**
+**<Yes>, では <Ok> -> <Finish>**
 
-.. image:: media/image284.png
+.. image:: img/image284.png
     :align: center
 
-ステップ2: i2cモジュールがロードされ、アクティブになっているかどうかを確認します。
+**ステップ2**: i2cモジュールがロードされているか確認します。
 
 .. raw:: html
 
-    <run></run>
+   <run></run>
  
 .. code-block:: 
 
     lsmod | grep i2c
 
-すると、次のようなコードが表示されます（番号は異なる場合があります）。
-これらが表示されない場合は、
-``sudo reboot`` でRaspberry Piを再起動してください。
-
+次のようなコードが表示されれば成功です（数字は異なる場合があります）。表示されない場合は、 ``sudo reboot`` でRaspberry Piを再起動してください。
 
 .. code-block:: 
 
     i2c_dev                     6276    0
     i2c_bcm2708                 4121    0
 
-ステップ3： i2c-toolsをインストールします。
+**ステップ3**: i2c-toolsをインストールします。
 
 .. raw:: html
 
-    <run></run>
+   <run></run>
  
 .. code-block:: 
 
     sudo apt-get install i2c-tools
 
-ステップ4： I2Cデバイスのアドレスを確認します。
-
-.. raw:: html
-
-    <run></run>
-
-.. code-block:: 
-
-    i2cdetect -y 1      # For Raspberry Pi 2 and higher version
+**ステップ4**: I2Cデバイスのアドレスを確認します。
 
 .. raw:: html
 
    <run></run>
-
+  
 .. code-block:: 
 
-    i2cdetect -y 0      # For Raspberry Pi 1
+    i2cdetect -y 1      # Raspberry Pi 2以降のバージョン用
+
+.. raw:: html
+
+   <run></run>
+ 
+.. code-block:: 
+
+    i2cdetect -y 0      # Raspberry Pi 1用
 
 
 .. code-block:: 
@@ -104,27 +101,25 @@ I2C構成
     60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     70: -- -- -- -- -- -- -- --
 
-I2Cデバイスが接続されている場合は、デバイスのアドレスが表示されます。
+I2Cデバイスが接続されている場合、そのデバイスのアドレスが表示されます。
 
-ステップ5:
+**ステップ5**:
 
-C言語をお使いの方へ： libi2c-devをインストールしてください。
+**C言語ユーザー向け**: libi2c-devをインストールします。
 
 .. raw:: html
 
-    <run></run>
+   <run></run>
  
 .. code-block:: 
 
     sudo apt-get install libi2c-dev 
 
-Pythonユーザーの場合： 
-
-**For Python users:**
+**Pythonユーザー向け:**
 
 1. 仮想環境の有効化。
 
-.. note::
+.. 注意::
     
     * 有効化する前に、仮想環境を作成していることを確認してください。詳細はこちらを参照してください: :ref:`create_virtual`.
 
@@ -141,7 +136,7 @@ Pythonユーザーの場合：
 仮想環境が有効化されると、コマンドラインのプロンプトの前に環境名が表示され、仮想環境内で作業していることが示されます。
 
 
-2. I2Cのためのsmbusのインストール。
+2. I2C用のsmbusのインストール。
 
 .. raw:: html
 
@@ -152,7 +147,7 @@ Pythonユーザーの場合：
     sudo pip3 install smbus2
 
 
-3.  仮想環境からの退出。
+3. 仮想環境の終了。
 
 作業を完了し、仮想環境から退出したい場合は、単純に次のコマンドを実行します:
 
@@ -165,3 +160,4 @@ Pythonユーザーの場合：
     deactivate
 
 これにより、システムのグローバルPython環境に戻ります。
+

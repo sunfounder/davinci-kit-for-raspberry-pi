@@ -46,7 +46,7 @@ Spriteに関するヒント
 ----------------------
 
 Sprite1を選択し、左上隅にある コスチューム をクリックします。 
-owl1.png と owl2.png を、[コスチュームのアップロード]ボタンを介して ``home/pi/davinci-kit-for-raspberry-pi/scratch/picture`` パスからアップロードします。 
+owl1.png と owl2.png を、[コスチュームのアップロード]ボタンを介して ``davinci-kit-for-raspberry-pi/scratch/picture`` パスからアップロードします。 
 デフォルトの2つのコスチュームを削除し、スプライトの名前を owl に変更します。
 
 .. image:: media/1.5_pir1.png
